@@ -1,7 +1,7 @@
-import Location from "@/models/Location";
+import LocalLocation from "@/models/LocalLocation";
 
 export default interface Game {
     name: string;
-    locations: Location[];
+    locations: LocalLocation[];
     starters: string[];
 }

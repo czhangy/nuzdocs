@@ -2,9 +2,28 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { LocationClient } from "pokenode-ts";
 
+import FetchedLocation from "@/models/FetchedLocation";
+
+type LocationName = {
+    language: {
+        name: string;
+        url: string;
+    };
+    name: string;
+};
+
 type ResData = {
     location?: string;
     error?: string;
+};
+
+const getEnglishLocationName: (names: LocationName[]) => string = (
+    names: LocationName[]
+) => {
+    const nameObj: LocationName = names.find(
+        (name) => name.language.name === "en"
+    )!;
+    return nameObj.name;
 };
 
 export default async function handler(
@@ -20,7 +39,13 @@ export default async function handler(
         await api
             .getLocationByName(req.query.location)
             .then((location) => {
-                res.status(200).json({ location: JSON.stringify(location) });
+                let locationData: FetchedLocation = {
+                    name: getEnglishLocationName(location.names),
+                    encounters: [],
+                };
+                res.status(200).json({
+                    location: JSON.stringify(locationData),
+                });
             })
             .catch((error) =>
                 res.status(500).json({
