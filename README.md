@@ -123,29 +123,6 @@ To run this project, you will need to add the following environment variables to
 
 -   [ ] Data collection
 
-    -   [ ] Major fights
-        -   [ ] Trainer names
-        -   [ ] Trainer sprites
-        -   [ ] Teams
-            -   [ ] EV/IV spreads
-            -   [ ] Natures
-    -   [ ] Encounters
-        -   [ ] Methods
-        -   [ ] Percentages
-    -   [ ] Routes
-        -   [ ] Maps
-    -   [ ] Pokémon
-        -   [ ] Sprites
-        -   [ ] Learnsets
-        -   [ ] Types
-        -   [ ] Abilities
-        -   [ ] Tiers
-    -   [ ] Misc.
-        -   [ ] Abilities
-        -   [ ] Natures
-        -   [ ] Type matchups
-        -   [ ] Items
-
 -   [ ] Persistent storage
 
     -   [ ] Local storage data saved on a timer

@@ -1,0 +1,69 @@
+@use "@/styles/constants";
+
+.navbar-container {
+    --link-size: 1.2rem;
+    --logo-size: 80px;
+
+    background: constants.$accent-color;
+    height: constants.$mobile-navbar-height;
+    width: 100%;
+
+    .navbar {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+        margin: 0 auto;
+        max-width: constants.$max-width;
+        padding: 0 constants.$page-padding;
+        width: 100%;
+
+        .branding {
+            align-items: center;
+            display: flex;
+            gap: 0.5rem;
+
+            .logo {
+                height: var(--logo-size);
+                position: relative;
+                width: var(--logo-size);
+            }
+
+            .site-name {
+                font-family: constants.$title-font;
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+        }
+
+        .links {
+            display: flex;
+            gap: 3rem;
+
+            .link {
+                font-family: constants.$title-font;
+                font-size: var(--link-size);
+                letter-spacing: 1px;
+
+                &:hover {
+                    color: constants.$hover-color;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .navbar-container {
+        --link-size: 1.5rem;
+
+        height: constants.$navbar-height;
+
+        .navbar {
+            flex-direction: row;
+            gap: 0;
+            justify-content: space-between;
+        }
+    }
+}

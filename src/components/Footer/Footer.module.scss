@@ -1,0 +1,82 @@
+@use "@/styles/constants";
+
+.footer-container {
+    --icon-size: 40px;
+    --text-size: 1.2rem;
+
+    background: constants.$accent-color;
+    padding: 2rem;
+    width: 100%;
+
+    .footer {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0 auto;
+        max-width: constants.$max-width;
+        padding: 0 constants.$page-padding;
+        width: 100%;
+
+        .text-content {
+            margin-bottom: 2rem;
+            text-align: center;
+
+            .text {
+                font-size: var(--text-size);
+                margin-bottom: 1rem;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                .link {
+                    text-decoration: underline;
+
+                    &:hover {
+                        color: constants.$hover-color;
+                    }
+                }
+            }
+        }
+
+        .links {
+            align-items: center;
+            display: flex;
+            gap: 1.5rem;
+
+            .icon {
+                display: block;
+                filter: constants.$svg-color;
+                height: var(--icon-size);
+                position: relative;
+                transition: transform 0.2s;
+                width: var(--icon-size);
+
+                &:hover {
+                    filter: constants.$svg-hover-color;
+                    transform: rotate(10deg);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .footer-container {
+        --text-size: 1.5rem;
+
+        .footer {
+            flex-direction: row;
+
+            .text-content {
+                margin-bottom: 0;
+                text-align: left;
+            }
+
+            .links {
+                gap: 2.5rem;
+            }
+        }
+    }
+}
