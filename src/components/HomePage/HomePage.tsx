@@ -17,7 +17,11 @@ const HomePage: React.FC = () => {
 
     return (
         <>
-            <Modal onClose={closeCreateRunModal} open={createRunOpen}>
+            <Modal
+                modalID="create-run-modal"
+                onClose={closeCreateRunModal}
+                open={createRunOpen}
+            >
                 <CreateRun />
             </Modal>
             <div className={styles["home-page"]}>

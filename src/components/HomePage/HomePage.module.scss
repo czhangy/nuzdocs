@@ -2,13 +2,11 @@
 
 .home-page {
     .new-button {
-        border: 5px solid constants.$text-color;
+        border: 2px solid constants.$text-color;
         border-radius: 10px;
-        color: inherit;
-        font-family: constants.$title-font;
         font-size: 2rem;
-        letter-spacing: 1px;
-        padding: 0.75rem 1.5rem;
+        font-weight: bold;
+        padding: 0.75rem 2rem;
 
         &:hover {
             background: constants.$text-color;
