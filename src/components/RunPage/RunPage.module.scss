@@ -4,10 +4,9 @@
     --name-size: 2rem;
 
     .location-name {
-        font-family: constants.$title-font;
         font-size: var(--name-size);
+        font-weight: bold;
         letter-spacing: 2px;
-        text-decoration: underline;
     }
 }
 

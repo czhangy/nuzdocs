@@ -8,6 +8,8 @@ import Game from "@/models/Game";
 
 import SoulSilver from "@/static/soulsilver";
 
+import StarterSelect from "@/components/StarterSelect/StarterSelect";
+
 type LocationData = {
     name: string;
     encounter: Encounter;
@@ -23,8 +25,8 @@ type LocationName = {
 
 type Props = {
     game: string;
-    locationIdx: number;
-    onNav: (idx: number) => void;
+    run: string;
+    location: string;
 };
 
 const RunPage: React.FC<Props> = (props) => {
@@ -44,7 +46,7 @@ const RunPage: React.FC<Props> = (props) => {
         axios
             .get("/api/location", {
                 params: {
-                    location: game.locations[props.locationIdx].slug,
+                    location: props.location,
                 },
             })
             .then((res) => {
@@ -64,7 +66,11 @@ const RunPage: React.FC<Props> = (props) => {
             });
     };
 
-    useEffect(fetchLocationData, []);
+    useEffect(() => {
+        if (props.location && props.location.length > 0) {
+            fetchLocationData();
+        }
+    }, [props.location]);
 
     return (
         <div className={styles["run-page"]}>

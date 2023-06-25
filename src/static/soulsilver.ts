@@ -5,8 +5,10 @@ const SoulSilver: Game = {
     locations: [
         {
             slug: "new-bark-town",
+            encounters: [],
         },
     ],
+    starters: ["chikorita", "cyndaquil", "totodile"],
 };
 
 export default SoulSilver;
