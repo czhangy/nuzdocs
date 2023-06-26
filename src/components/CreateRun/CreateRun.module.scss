@@ -4,6 +4,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+    width: 400px;
 
     .create-header {
         font-size: 2rem;
@@ -27,6 +28,13 @@
             &:focus {
                 border: 2px solid constants.$hover-color;
             }
+        }
+
+        .error {
+            color: constants.$error-color;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
         }
 
         .submit-button {

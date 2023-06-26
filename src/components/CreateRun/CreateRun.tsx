@@ -16,6 +16,7 @@ const CreateRun: React.FC = () => {
             let runs: string[] = JSON.parse(storedRuns);
             if (runs.includes(name)) {
                 setNameError(true);
+                return;
             } else {
                 runs.push(name);
                 localStorage.setItem("runs", JSON.stringify(runs));
@@ -43,6 +44,14 @@ const CreateRun: React.FC = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
+                {nameError ? (
+                    <p className={styles.error}>
+                        This name is already being used, please choose another
+                        one.
+                    </p>
+                ) : (
+                    ""
+                )}
                 <button
                     className={styles["submit-button"]}
                     disabled={name.length === 0}

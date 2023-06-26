@@ -5,12 +5,12 @@ import type { NextPage } from "next";
 
 const Home: NextPage = () => {
     return (
-        <div>
+        <>
             <Head>
                 <title>NuzlockeDB</title>
             </Head>
             <HomePage />
-        </div>
+        </>
     );
 };
 
