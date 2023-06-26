@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { LocationClient } from "pokenode-ts";
 
-import FetchedLocation from "@/models/FetchedLocation";
+import LocationData from "@/models/LocationData";
 
 type LocationName = {
     language: {
@@ -39,7 +39,7 @@ export default async function handler(
         await api
             .getLocationByName(req.query.location)
             .then((location) => {
-                let locationData: FetchedLocation = {
+                let locationData: LocationData = {
                     name: getEnglishLocationName(location.names),
                     encounters: [],
                 };

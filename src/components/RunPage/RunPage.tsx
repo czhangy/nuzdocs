@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import styles from "./RunPage.module.scss";
 
-import FetchedLocation from "@/models/FetchedLocation";
+import LocationData from "@/models/LocationData";
 import Game from "@/models/Game";
 
 import SoulSilver from "@/static/soulsilver";
@@ -17,9 +17,7 @@ type Props = {
 };
 
 const RunPage: React.FC<Props> = (props) => {
-    const [locationData, setLocationData] = useState<FetchedLocation | null>(
-        null
-    );
+    const [locationData, setLocationData] = useState<LocationData | null>(null);
     const game: Game = SoulSilver;
 
     const fetchLocationData = () => {
@@ -51,7 +49,11 @@ const RunPage: React.FC<Props> = (props) => {
                     <h2 className={styles["location-name"]}>
                         {locationData.name}
                     </h2>
-                    <StarterSelect starters={game.starters} />
+                    {props.location === game.startingTown ? (
+                        <StarterSelect startersList={game.starters} />
+                    ) : (
+                        ""
+                    )}
                 </>
             ) : (
                 ""

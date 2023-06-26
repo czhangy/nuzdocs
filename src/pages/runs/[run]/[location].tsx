@@ -9,16 +9,16 @@ const Run: NextPage = () => {
     const router = useRouter();
 
     return (
-        <div>
+        <>
             <Head>
-                <title>NuzlockeDB</title>
+                <title>{`NuzlockeDB | ${router.query.run}`}</title>
             </Head>
             <RunPage
                 game="soulsilver"
                 run={router.query.run as string}
                 location={router.query.location as string}
             />
-        </div>
+        </>
     );
 };
 

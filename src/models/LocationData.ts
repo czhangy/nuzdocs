@@ -1,6 +1,6 @@
 import Encounter from "@/models/Encounter";
 
-export default interface FetchedLocation {
+export default interface LocationData {
     name: string;
     encounters: Encounter[];
 }

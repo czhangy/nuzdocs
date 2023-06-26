@@ -1,6 +1,4 @@
-import Pokemon from "@/models/Pokemon";
-
 export default interface Encounter {
-    pokemon: Pokemon | null;
+    pokemon: string;
     status: "none" | "missed" | "caught";
 }
