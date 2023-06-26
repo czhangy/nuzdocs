@@ -1,6 +1,7 @@
 @use "@/styles/constants";
 
 .starter-select {
+    --confirm-icon-size: 20px;
     --name-size: 1.7rem;
     --sprite-offset: -3.5rem;
     --sprite-size: 120px;
@@ -8,7 +9,36 @@
     margin: 2rem 0;
 
     .header {
-        font-size: 1.7rem;
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+
+        .header-text {
+            font-size: 1.7rem;
+        }
+
+        .confirm-button {
+            border: 2px solid constants.$text-color;
+            border-radius: 8px;
+            display: block;
+            padding: 0.5rem;
+            transition: transform 0.2s;
+
+            &:disabled {
+                border-color: constants.$accent-color;
+
+                .confirm-icon {
+                    filter: constants.$svg-accent-color;
+                }
+            }
+
+            .confirm-icon {
+                filter: constants.$svg-color;
+                height: var(--confirm-icon-size);
+                position: relative;
+                width: var(--confirm-icon-size);
+            }
+        }
     }
 
     .starter-list {
@@ -20,6 +50,7 @@
         width: 100%;
 
         .starter {
+            border-radius: 10px;
             width: 100%;
 
             .select-button {
@@ -42,6 +73,10 @@
                     font-size: var(--name-size);
                 }
             }
+        }
+
+        .selected > .select-button {
+            background: transparent;
         }
     }
 }
@@ -91,13 +126,24 @@
 }
 
 @media (hover: hover) {
-    .starter-select > .starter-list > .starter:hover {
-        .select-button {
-            background: transparent;
+    .starter-select {
+        .header > .confirm-button:hover {
+            border-color: constants.$hover-color;
+            transform: scale(1.05);
 
-            .sprite {
-                animation: shake 1s;
-                animation-iteration-count: infinite;
+            .confirm-icon {
+                filter: constants.$svg-hover-color;
+            }
+        }
+
+        .starter-list > .starter:hover {
+            .select-button {
+                background-color: transparent;
+
+                .sprite {
+                    animation: shake 1s;
+                    animation-iteration-count: infinite;
+                }
             }
         }
     }

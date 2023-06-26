@@ -8,8 +8,10 @@ const CreateRun: React.FC = () => {
     const [nameError, setNameError] = useState<boolean>(false);
 
     const newRun: Run = {
-        game: "soulsilver",
-        prevLocation: "new-bark-town",
+        gameName: "soulsilver",
+        prevLocationName: "new-bark-town",
+        starterName: "",
+        box: [],
     };
 
     const onCreateRun = (e: React.FormEvent<HTMLFormElement>) => {

@@ -11,9 +11,9 @@ import SoulSilver from "@/static/soulsilver";
 import StarterSelect from "@/components/StarterSelect/StarterSelect";
 
 type Props = {
-    game: string;
-    run: string;
-    location: string;
+    gameName: string;
+    runName: string;
+    locationName: string;
 };
 
 const RunPage: React.FC<Props> = (props) => {
@@ -24,7 +24,7 @@ const RunPage: React.FC<Props> = (props) => {
         axios
             .get("/api/location", {
                 params: {
-                    location: props.location,
+                    location: props.locationName,
                 },
             })
             .then((res) => {
@@ -37,10 +37,10 @@ const RunPage: React.FC<Props> = (props) => {
     };
 
     useEffect(() => {
-        if (props.location && props.location.length > 0) {
+        if (props.locationName && props.locationName.length > 0) {
             fetchLocationData();
         }
-    }, [props.location]);
+    }, [props.locationName]);
 
     return (
         <div className={styles["run-page"]}>
@@ -49,8 +49,12 @@ const RunPage: React.FC<Props> = (props) => {
                     <h2 className={styles["location-name"]}>
                         {locationData.name}
                     </h2>
-                    {props.location === game.startingTown ? (
-                        <StarterSelect startersList={game.starters} />
+                    {props.locationName === game.startingTown ? (
+                        <StarterSelect
+                            runName={props.runName}
+                            startersList={game.starters}
+                            locationName={game.startingTown}
+                        />
                     ) : (
                         ""
                     )}

@@ -14,13 +14,15 @@ const RunEntry: React.FC<Props> = (props: Props) => {
         let runs = JSON.parse(localStorage.getItem("runs") as string);
         runs.splice(runs.indexOf(props.run), 1);
         localStorage.setItem("runs", JSON.stringify(runs));
+
         localStorage.removeItem(props.run);
+
         props.onDelete();
     };
 
     const handleRunNav = () => {
         const run: Run = JSON.parse(localStorage.getItem(props.run) as string);
-        Router.push(`/runs/${props.run}/${run.prevLocation}`);
+        Router.push(`/runs/${props.run}/${run.prevLocationName}`);
     };
 
     return (
