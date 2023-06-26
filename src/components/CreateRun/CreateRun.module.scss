@@ -1,10 +1,12 @@
 @use "@/styles/constants";
 
 .create-run {
+    --content-width: 320px;
+
     align-items: center;
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: var(--content-width);
 
     .create-header {
         font-size: 2rem;
@@ -44,16 +46,24 @@
             margin-top: 2rem;
             padding: 0.5rem 2rem;
 
-            &:hover {
-                border-color: constants.$hover-color;
-                color: constants.$hover-color;
-            }
-
             &:disabled {
                 border-color: constants.$bg-color;
                 color: constants.$bg-color;
                 cursor: default;
             }
         }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .create-run {
+        --content-width: 400px;
+    }
+}
+
+@media (hover: hover) {
+    .create-run > .create-form > .submit-button:hover {
+        border-color: constants.$hover-color;
+        color: constants.$hover-color;
     }
 }

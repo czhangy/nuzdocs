@@ -1,9 +1,8 @@
-import styles from "./HomePage.module.scss";
-
-import { useEffect, useState } from "react";
-
 import CreateRun from "@/components/CreateRun/CreateRun";
 import Modal from "@/components/Modal/Modal";
+import RunEntry from "@/components/RunEntry/RunEntry";
+import { useEffect, useState } from "react";
+import styles from "./HomePage.module.scss";
 
 const HomePage: React.FC = () => {
     const [createRunOpen, setCreateRunOpen] = useState<boolean>(false);
@@ -19,12 +18,16 @@ const HomePage: React.FC = () => {
     };
 
     // Fetch existing runs from local storage to display in list
-    useEffect(() => {
+    const fetchRuns = () => {
         const storedRuns = localStorage.getItem("runs");
         if (storedRuns) {
-            setRuns(JSON.parse(storedRuns));
+            let storedRunsList: string[] = JSON.parse(storedRuns);
+            storedRunsList.reverse();
+            setRuns(storedRunsList);
         }
-    }, []);
+    };
+
+    useEffect(fetchRuns, []);
 
     return (
         <>
@@ -46,7 +49,23 @@ const HomePage: React.FC = () => {
                             + New Run
                         </button>
                     </div>
-                    {runs.length > 0 ? "" : ""}
+                    <ul className={styles["run-list"]}>
+                        {runs.length > 0 ? (
+                            runs.map((run: string, key: number) => {
+                                return (
+                                    <RunEntry
+                                        key={key}
+                                        onDelete={fetchRuns}
+                                        run={run}
+                                    />
+                                );
+                            })
+                        ) : (
+                            <p className={styles["alt-text"]}>
+                                You don't have any saved runs yet!
+                            </p>
+                        )}
+                    </ul>
                 </div>
             </div>
         </>

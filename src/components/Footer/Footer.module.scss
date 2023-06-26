@@ -34,10 +34,6 @@
 
                 .link {
                     text-decoration: underline;
-
-                    &:hover {
-                        color: constants.$hover-color;
-                    }
                 }
             }
         }
@@ -54,11 +50,6 @@
                 position: relative;
                 transition: transform 0.2s;
                 width: var(--icon-size);
-
-                &:hover {
-                    filter: constants.$svg-hover-color;
-                    transform: rotate(10deg);
-                }
             }
         }
     }
@@ -79,6 +70,19 @@
             .links {
                 gap: 2.5rem;
             }
+        }
+    }
+}
+
+@media (hover: hover) {
+    .footer-container > .footer {
+        .text-content > .text > .link:hover {
+            color: constants.$hover-color;
+        }
+
+        .links .icon:hover {
+            filter: constants.$svg-hover-color;
+            transform: rotate(10deg);
         }
     }
 }

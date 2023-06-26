@@ -46,19 +46,6 @@
     }
 }
 
-@media screen and (hover: hover) {
-    .starter-select > .starter-list > .starter:hover {
-        .select-button {
-            background: transparent;
-
-            .sprite {
-                animation: shake 1s;
-                animation-iteration-count: infinite;
-            }
-        }
-    }
-}
-
 @media screen and (min-width: constants.$tablet) {
     .starter-select {
         --sprite-size: 160px;
@@ -98,6 +85,19 @@
 
             .name {
                 margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@media (hover: hover) {
+    .starter-select > .starter-list > .starter:hover {
+        .select-button {
+            background: transparent;
+
+            .sprite {
+                animation: shake 1s;
+                animation-iteration-count: infinite;
             }
         }
     }

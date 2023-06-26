@@ -1,6 +1,8 @@
 @use "@/styles/constants";
 
 .home-page {
+    --alt-text-size: 1.2rem;
+
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -9,19 +11,19 @@
     .runs {
         background-color: constants.$accent-color;
         border-radius: 4px;
-        height: 600px;
+        height: 70vh;
+        overflow-y: scroll;
         padding: 2rem;
         width: 100%;
 
         .header {
             align-items: center;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            margin-bottom: 2rem;
 
             .title {
-                font-size: 2rem;
-                font-weight: bold;
-                text-align: center;
+                display: none;
             }
 
             .new-button {
@@ -31,10 +33,48 @@
                 padding: 0.75rem 2rem;
             }
         }
+
+        .run-list {
+            width: 100%;
+
+            .alt-text {
+                font-size: var(--alt-text-size);
+                margin-top: 10rem;
+                text-align: center;
+            }
+        }
+    }
+
+    ::-webkit-scrollbar {
+        background: constants.$accent-color;
+        width: 16px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: constants.$text-color;
+        border: 5px solid constants.$accent-color;
+        border-radius: 20px;
     }
 }
 
-@media screen and (hover: hover) {
+@media screen and (min-width: constants.$tablet) {
+    .home-page {
+        --alt-text-size: 1.5rem;
+
+        .runs > .header {
+            justify-content: space-between;
+
+            .title {
+                display: block;
+                font-size: 2rem;
+                font-weight: bold;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media (hover: hover) {
     .new-button:hover {
         background: constants.$text-color;
         color: constants.$bg-color;

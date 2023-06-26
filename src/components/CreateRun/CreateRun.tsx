@@ -1,11 +1,16 @@
-import styles from "./CreateRun.module.scss";
-
+import Run from "@/models/Run";
 import Router from "next/router";
 import { useState } from "react";
+import styles from "./CreateRun.module.scss";
 
 const CreateRun: React.FC = () => {
     const [name, setName] = useState<string>("");
     const [nameError, setNameError] = useState<boolean>(false);
+
+    const newRun: Run = {
+        game: "soulsilver",
+        prevLocation: "new-bark-town",
+    };
 
     const onCreateRun = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -25,6 +30,7 @@ const CreateRun: React.FC = () => {
             localStorage.setItem("runs", JSON.stringify([name]));
         }
 
+        localStorage.setItem(name, JSON.stringify(newRun));
         Router.push(`/runs/${name}/new-bark-town`);
     };
 
