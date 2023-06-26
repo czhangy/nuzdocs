@@ -40,6 +40,11 @@ button {
     color: inherit;
     cursor: pointer;
     font-family: inherit;
+
+    &:disabled {
+        cursor: default;
+        pointer-events: none;
+    }
 }
 
 input,
