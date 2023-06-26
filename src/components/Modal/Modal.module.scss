@@ -1,0 +1,39 @@
+@use "@/styles/constants";
+
+.modal {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.2s;
+    width: 100%;
+
+    .modal-overlay {
+        background: black;
+        height: 100%;
+        position: absolute;
+        opacity: 0.9;
+        width: 100%;
+    }
+
+    .modal-content {
+        background: constants.$accent-color;
+        border-radius: 15px;
+        max-width: constants.$max-width;
+        padding: 2rem;
+        z-index: 100;
+    }
+}
+
+.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.closed {
+    opacity: 0;
+    pointer-events: none;
+}

@@ -48,12 +48,16 @@ hr {
 button {
     background: none;
     border: none;
+    color: inherit;
     cursor: pointer;
+    font-family: inherit;
 }
 
 input,
 textarea {
     border: none;
+    color: inherit;
+    font-family: inherit;
 
     &:focus {
         outline: none;

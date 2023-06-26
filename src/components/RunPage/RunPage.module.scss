@@ -1,0 +1,21 @@
+@use "@/styles/constants";
+
+.run-page {
+    --location-size: 2rem;
+
+    margin: 2rem 0;
+    max-width: constants.$max-width;
+    width: 100%;
+
+    .location-name {
+        font-size: var(--location-size);
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .run-page {
+        --location-size: 2.5rem;
+    }
+}
