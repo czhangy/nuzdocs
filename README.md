@@ -125,28 +125,20 @@ To run this project, you will need to add the following environment variables to
 
 -   [ ] Persistent storage
 
-    -   [ ] Local storage data saved on a timer
+    -   [ ] Local storage data saves run info
     -   [ ] Import/export run data
-
--   [ ] POST APIs
-
-    -   [ ] Run progress
-        -   [ ] Box
-        -   [ ] Team
-        -   [ ] Cleared fights
-        -   [ ] Deaths
-    -   [ ] Runs
 
 -   [ ] Run roadmap/tracker
 
     -   [ ] Routes
+        -   [ ] Maps
     -   [ ] Encounters
     -   [ ] Major fights
         -   [ ] Auto-complete damage calcs
     -   [ ] Deaths
     -   [ ] Box
     -   [ ] Run finish
-    -   [ ] Master list
+    -   [ ] Master list/overview
 
 -   [ ] Damage calculator
 

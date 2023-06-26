@@ -11,7 +11,9 @@ const Run: NextPage = () => {
     return (
         <>
             <Head>
-                <title>{`NuzlockeDB | ${router.query.run}`}</title>
+                <title>{`NuzlockeDB ${
+                    router.query.run ? "| " + router.query.run : ""
+                }`}</title>
             </Head>
             <RunPage
                 gameName="soulsilver"

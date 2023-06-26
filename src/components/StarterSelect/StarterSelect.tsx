@@ -22,13 +22,11 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
         (
             document.querySelector("#confirm-button") as HTMLButtonElement
         ).disabled = true;
-        console.log("running");
         Array.from(
             document.getElementsByClassName(
                 styles.starter
             ) as HTMLCollectionOf<HTMLLIElement>
         ).forEach((el: HTMLLIElement) => {
-            console.log("hi");
             el.style.pointerEvents = "none";
         });
     };
