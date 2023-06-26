@@ -1,0 +1,74 @@
+@use "@/styles/constants";
+
+// Google Fonts
+// @import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;700&family=Poppins:wght@400;700&family=Bungee&display=swap");
+
+#app {
+    color: white;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+}
+
+::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-thumb {
+    &:hover {
+    }
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+p {
+    margin: 0;
+}
+
+hr {
+    border: none;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+input,
+textarea {
+    border: none;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-weight: normal;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
