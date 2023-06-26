@@ -62,7 +62,7 @@ const HomePage: React.FC = () => {
                             })
                         ) : (
                             <p className={styles["alt-text"]}>
-                                You don't have any saved runs yet!
+                                You don&apos;t have any saved runs yet!
                             </p>
                         )}
                     </ul>
