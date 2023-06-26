@@ -1,11 +1,16 @@
-import styles from "./CreateRun.module.scss";
-
+import Run from "@/models/Run";
 import Router from "next/router";
 import { useState } from "react";
+import styles from "./CreateRun.module.scss";
 
 const CreateRun: React.FC = () => {
     const [name, setName] = useState<string>("");
     const [nameError, setNameError] = useState<boolean>(false);
+
+    const newRun: Run = {
+        game: "soulsilver",
+        prevLocation: "new-bark-town",
+    };
 
     const onCreateRun = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -16,6 +21,7 @@ const CreateRun: React.FC = () => {
             let runs: string[] = JSON.parse(storedRuns);
             if (runs.includes(name)) {
                 setNameError(true);
+                return;
             } else {
                 runs.push(name);
                 localStorage.setItem("runs", JSON.stringify(runs));
@@ -24,6 +30,7 @@ const CreateRun: React.FC = () => {
             localStorage.setItem("runs", JSON.stringify([name]));
         }
 
+        localStorage.setItem(name, JSON.stringify(newRun));
         Router.push(`/runs/${name}/new-bark-town`);
     };
 
@@ -43,6 +50,14 @@ const CreateRun: React.FC = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
+                {nameError ? (
+                    <p className={styles.error}>
+                        This name is already being used, please choose another
+                        one.
+                    </p>
+                ) : (
+                    ""
+                )}
                 <button
                     className={styles["submit-button"]}
                     disabled={name.length === 0}

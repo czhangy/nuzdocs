@@ -47,10 +47,6 @@
                 font-family: constants.$title-font;
                 font-size: var(--link-size);
                 letter-spacing: 1px;
-
-                &:hover {
-                    color: constants.$hover-color;
-                }
             }
         }
     }
@@ -67,5 +63,11 @@
             gap: 0;
             justify-content: space-between;
         }
+    }
+}
+
+@media (hover: hover) {
+    .link:hover {
+        color: constants.$hover-color;
     }
 }

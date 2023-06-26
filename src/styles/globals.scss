@@ -8,17 +8,6 @@
     overflow-x: hidden;
 }
 
-::-webkit-scrollbar {
-}
-
-::-webkit-scrollbar-track {
-}
-
-::-webkit-scrollbar-thumb {
-    &:hover {
-    }
-}
-
 html,
 body {
     background: constants.$accent-color;

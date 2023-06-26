@@ -1,0 +1,57 @@
+@use "@/styles/constants";
+
+.run-entry {
+    --entry-padding: 0;
+    --icon-size: 32px;
+
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 var(--entry-padding);
+    width: 100%;
+
+    .run-button {
+        border-left: 5px solid constants.$accent-color;
+        padding: 2rem;
+        text-align: left;
+        width: 80%;
+
+        .name {
+            font-size: 1.5rem;
+        }
+    }
+
+    .delete-button {
+        filter: constants.$svg-color;
+        height: var(--icon-size);
+        position: relative;
+        transition: transform 0.3s;
+        width: var(--icon-size);
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .run-entry {
+        --entry-padding: 2rem;
+        --icon-size: 40px;
+    }
+}
+
+@media screen and (min-width: constants.$desktop) {
+    .run-entry {
+        --entry-padding: 4rem;
+    }
+}
+
+@media (hover: hover) {
+    .run-entry {
+        .run-button:hover {
+            border-left: 5px solid constants.$hover-color;
+        }
+
+        .delete-button:hover {
+            filter: constants.$svg-hover-color;
+            transform: scale(1.2) rotate(5deg);
+        }
+    }
+}
