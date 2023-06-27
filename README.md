@@ -85,9 +85,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: [PROJECT_URL
     <a href="https://nextjs.org/">
         <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" alt="NextJS" />
     </a>
-    <a href="https://www.prisma.io/">
-        <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" alt="Prisma" />
-    </a>
     <a href="https://www.postgresql.org/">
         <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
     </a>
@@ -125,6 +122,7 @@ To run this project, you will need to add the following environment variables to
 ## Roadmap
 
 -   [ ] Data collection
+
     -   [ ] Major fights
         -   [ ] Trainer names
         -   [ ] Trainer sprites
@@ -147,11 +145,11 @@ To run this project, you will need to add the following environment variables to
         -   [ ] Natures
         -   [ ] Type matchups
         -   [ ] Items
--   [ ] User authentication
 
-    -   [ ] Google sign-in
-    -   [ ] Saves data to profile on a timer
-    -   [ ] Achievements
+-   [ ] Persistent storage
+
+    -   [ ] Local storage data saved on a timer
+    -   [ ] Import/export run data
 
 -   [ ] POST APIs
 
@@ -174,11 +172,13 @@ To run this project, you will need to add the following environment variables to
     -   [ ] Master list
 
 -   [ ] Damage calculator
+
     -   [ ] Pokémon select
     -   [ ] EV/IV input
     -   [ ] Damage ranges
     -   [ ] OHKO Percentages
     -   [ ] Boosts
+
 -   [ ] Type calculator
     -   [ ] Defensive coverage
     -   [ ] Offensive coverage
@@ -209,6 +209,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Acknowledgements
 
 -   [Awesome README](https://github.com/matiassingers/awesome-readme)
+-   [Nuzlocke Tracker](https://nuzlocke.app/)
 -   [PokéAPI](https://pokeapi.co/)
 -   [pokenode-ts](https://github.com/Gabb-c/pokenode-ts)
 -   [Shields.io](https://shields.io/)
