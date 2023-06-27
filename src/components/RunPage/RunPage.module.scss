@@ -1,0 +1,18 @@
+@use "@/styles/constants";
+
+.run-page {
+    --name-size: 2rem;
+
+    .location-name {
+        font-family: constants.$title-font;
+        font-size: var(--name-size);
+        letter-spacing: 2px;
+        text-decoration: underline;
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .run-page {
+        --name-size: 2.5rem;
+    }
+}

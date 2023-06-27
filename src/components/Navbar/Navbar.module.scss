@@ -6,7 +6,9 @@
 
     background: constants.$accent-color;
     height: constants.$mobile-navbar-height;
+    position: relative;
     width: 100%;
+    z-index: 9;
 
     .navbar {
         align-items: center;

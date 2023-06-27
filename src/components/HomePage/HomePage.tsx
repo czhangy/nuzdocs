@@ -4,7 +4,7 @@ import Router from "next/router";
 
 const HomePage: React.FC = () => {
     const createRun = () => {
-        Router.push("/test");
+        Router.push("/run");
     };
 
     return (

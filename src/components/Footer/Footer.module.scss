@@ -6,7 +6,9 @@
 
     background: constants.$accent-color;
     padding: 2rem;
+    position: relative;
     width: 100%;
+    z-index: 9;
 
     .footer {
         align-items: center;
