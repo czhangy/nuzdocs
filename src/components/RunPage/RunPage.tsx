@@ -17,6 +17,7 @@ type Props = {
 };
 
 const RunPage: React.FC<Props> = (props) => {
+    const [missedEncounter, setMissedEncounter] = useState<boolean>(false);
     const [encounteredPokemon, setEncounteredPokemon] =
         useState<PokemonData | null>(null);
     const [locationData, setLocationData] = useState<LocationData | null>(null);
@@ -44,6 +45,7 @@ const RunPage: React.FC<Props> = (props) => {
         );
         run.encounters.forEach((encounter: LocalEncounter) => {
             if (encounter.locationName === props.locationName) {
+                setMissedEncounter(encounter.status === "missed");
                 axios
                     .get("/api/pokemon", {
                         params: {
@@ -97,7 +99,10 @@ const RunPage: React.FC<Props> = (props) => {
                 )}
             </div>
             <div className={styles["sticky-info"]}>
-                <EncounterDisplay encounteredPokemon={encounteredPokemon} />
+                <EncounterDisplay
+                    encounteredPokemon={encounteredPokemon}
+                    missedEncounter={missedEncounter}
+                />
             </div>
         </div>
     );

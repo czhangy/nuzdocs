@@ -5,12 +5,17 @@ import styles from "./EncounterDisplay.module.scss";
 
 type Props = {
     encounteredPokemon: PokemonData | null;
+    missedEncounter: boolean;
 };
 
 const EncounterDisplay: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["encounter-display"]}>
-            <div className={`${styles.info} ${styles.missed}`}>
+            <div
+                className={`${styles.info} ${
+                    props.missedEncounter ? styles.missed : ""
+                }`}
+            >
                 <strong className={`${styles.title}`}>Encounter:</strong>
                 {props.encounteredPokemon ? (
                     <>
