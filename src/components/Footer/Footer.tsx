@@ -13,47 +13,57 @@ const Footer: React.FC = () => {
                     </p>
                     <p className={styles.text}>
                         Inspired by{" "}
-                        <Link href="https://nuzlocke.app/">
-                            <a className={styles.link}>Nuzlocke Tracker</a>
-                        </Link>
+                        <a
+                            href="https://nuzlocke.app/"
+                            target="_blank"
+                            className={styles.link}
+                        >
+                            Nuzlocke Tracker
+                        </a>
                     </p>
                 </div>
                 <ul className={styles.links}>
                     <li>
-                        <Link href="https://github.com/czhangy">
-                            <a className={styles.icon}>
-                                <Image
-                                    src="/assets/icons/github.svg"
-                                    alt="GitHub"
-                                    layout="fill"
-                                    objectFit="contain"
-                                />
-                            </a>
-                        </Link>
+                        <a
+                            href="https://github.com/czhangy"
+                            target="_blank"
+                            className={styles.icon}
+                        >
+                            <Image
+                                src="/assets/icons/github.svg"
+                                alt="GitHub"
+                                layout="fill"
+                                objectFit="contain"
+                            />
+                        </a>
                     </li>
                     <li>
-                        <Link href="https://www.linkedin.com/in/czhangy/">
-                            <a className={styles.icon}>
-                                <Image
-                                    src="/assets/icons/linkedin.svg"
-                                    alt="LinkedIn"
-                                    layout="fill"
-                                    objectFit="contain"
-                                />
-                            </a>
-                        </Link>
+                        <a
+                            href="https://www.linkedin.com/in/czhangy/"
+                            target="_blank"
+                            className={styles.icon}
+                        >
+                            <Image
+                                src="/assets/icons/linkedin.svg"
+                                alt="LinkedIn"
+                                layout="fill"
+                                objectFit="contain"
+                            />
+                        </a>
                     </li>
                     <li>
-                        <Link href="https://twitter.com/czhangy_">
-                            <a className={styles.icon}>
-                                <Image
-                                    src="/assets/icons/twitter.svg"
-                                    alt="Twitter"
-                                    layout="fill"
-                                    objectFit="contain"
-                                />
-                            </a>
-                        </Link>
+                        <a
+                            href="https://twitter.com/czhangy_"
+                            target="_blank"
+                            className={styles.icon}
+                        >
+                            <Image
+                                src="/assets/icons/twitter.svg"
+                                alt="Twitter"
+                                layout="fill"
+                                objectFit="contain"
+                            />
+                        </a>
                     </li>
                 </ul>
             </div>
