@@ -5,6 +5,7 @@
     --text-size: 1.2rem;
 
     background: constants.$accent-color;
+    padding: 2rem;
     width: 100%;
 
     .footer {
@@ -23,7 +24,6 @@
 
             .text {
                 font-size: var(--text-size);
-                letter-spacing: 1px;
                 margin-bottom: 1rem;
 
                 &:last-child {

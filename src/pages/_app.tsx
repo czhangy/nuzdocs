@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer/Footer";
+import PageWrapper from "@/components/PageWrapper/PageWrapper";
 import Navbar from "@/components/Navbar/Navbar";
 
 import "@/styles/globals.scss";
@@ -9,7 +10,9 @@ function App({ Component, pageProps }: AppProps) {
     return (
         <>
             <Navbar />
-            <Component {...pageProps} />
+            <PageWrapper>
+                <Component {...pageProps} />
+            </PageWrapper>
             <Footer />
         </>
     );

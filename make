@@ -9,5 +9,4 @@ const $name: React.FC = () => {
 
 export default $name;
 EOT
-
 echo "@use \"@/styles/constants\";" > src/components/"$name"/"$name".module.scss

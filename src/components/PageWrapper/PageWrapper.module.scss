@@ -1,0 +1,40 @@
+@use "@/styles/constants";
+
+.page-container {
+    animation-duration: 0.3s;
+    animation-name: load;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - #{constants.$mobile-navbar-height});
+    transition: opacity 0.4s, transform 0.4s;
+    width: 100%;
+
+    .page-wrapper {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        max-width: constants.$max-width;
+        padding: 0 constants.$page-padding;
+        width: 100%;
+    }
+}
+
+@keyframes load {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Tablet view
+@media screen and (min-width: constants.$tablet) {
+    .page-container {
+        align-items: center;
+        min-height: calc(100vh - #{constants.$navbar-height});
+    }
+}
