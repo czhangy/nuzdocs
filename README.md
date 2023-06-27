@@ -52,7 +52,7 @@
 
 ### Summary
 
-NuzlockeDB is a web app designed as a tool for Nuzlocke runs in various Pokémon games, providing features like a run tracker, coverage calculator, damage calculator, etc.
+NuzlockeDB is a web app designed as a tool for Nuzlocke runs in various Pokémon games, providing features like a run tracker, coverage calculator, damage calculator, etc. In its early development stages, the tracker will focus on HG/SS, but will expand once core features are implemented.
 
 The most up-to-date version of NuzlockeDB is currently deployed at: [PROJECT_URL].
 
@@ -91,16 +91,11 @@ The most up-to-date version of NuzlockeDB is currently deployed at: [PROJECT_URL
     <a href="https://www.prisma.io/">
         <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" alt="Prisma" />
     </a>
-</details>
-
-<details>
-    <summary>Database</summary>
-    <br />
     <a href="https://www.postgresql.org/">
         <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
     </a>
 </details>
-
+    
 <details>
     <summary>Deployment</summary>
     <br />
@@ -132,7 +127,64 @@ To run this project, you will need to add the following environment variables to
 
 ## Roadmap
 
--   [x] Roadmap items go here
+-   [ ] Data collection
+    -   [ ] Major fights
+        -   [ ] Trainer names
+        -   [ ] Trainer sprites
+        -   [ ] Teams
+            -   [ ] EV/IV spreads
+            -   [ ] Natures
+    -   [ ] Encounters
+        -   [ ] Methods
+        -   [ ] Percentages
+    -   [ ] Routes
+        -   [ ] Maps
+    -   [ ] Pokémon
+        -   [ ] Sprites
+        -   [ ] Learnsets
+        -   [ ] Types
+        -   [ ] Abilities
+        -   [ ] Tiers
+    -   [ ] Misc.
+        -   [ ] Abilities
+        -   [ ] Natures
+        -   [ ] Type matchups
+        -   [ ] Items
+-   [ ] User authentication
+
+    -   [ ] Google sign-in
+    -   [ ] Saves data to profile on a timer
+    -   [ ] Achievements
+
+-   [ ] Fetch APIs
+
+    -   [ ] Pokémon
+    -   [ ] Abilities
+    -   [ ] Major fights
+    -   [ ] Routes
+    -   [ ] Items
+
+-   [ ] Run roadmap/tracker
+
+    -   [ ] Routes
+    -   [ ] Encounters
+    -   [ ] Major fights
+        -   [ ] Auto-complete damage calcs
+    -   [ ] Deaths
+    -   [ ] Box
+    -   [ ] Run finish
+    -   [ ] Master list
+
+-   [ ] Damage calculator
+    -   [ ] Pokémon select
+    -   [ ] EV/IV input
+    -   [ ] Damage ranges
+    -   [ ] OHKO Percentages
+    -   [ ] Boosts
+-   [ ] Type calculator
+    -   [ ] Defensive coverage
+    -   [ ] Offensive coverage
+        -   [ ] STAB coverage
 
 ## License
 
