@@ -1,14 +1,14 @@
+import EncounterDisplay from "@/components/EncounterDisplay/EncounterDisplay";
+import StarterSelect from "@/components/StarterSelect/StarterSelect";
+import Game from "@/models/Game";
+import LocalEncounter from "@/models/LocalEncounter";
+import LocationData from "@/models/LocationData";
+import PokemonData from "@/models/PokemonData";
+import Run from "@/models/Run";
+import SoulSilver from "@/static/soulsilver";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 import styles from "./RunPage.module.scss";
-
-import LocationData from "@/models/LocationData";
-import Game from "@/models/Game";
-
-import SoulSilver from "@/static/soulsilver";
-
-import StarterSelect from "@/components/StarterSelect/StarterSelect";
 
 type Props = {
     gameName: string;
@@ -17,6 +17,8 @@ type Props = {
 };
 
 const RunPage: React.FC<Props> = (props) => {
+    const [encounteredPokemon, setEncounteredPokemon] =
+        useState<PokemonData | null>(null);
     const [locationData, setLocationData] = useState<LocationData | null>(null);
     const game: Game = SoulSilver;
 
@@ -36,32 +38,67 @@ const RunPage: React.FC<Props> = (props) => {
             });
     };
 
+    const fetchEncounteredPokemonData = () => {
+        const run: Run = JSON.parse(
+            localStorage.getItem(props.runName) as string
+        );
+        run.encounters.forEach((encounter: LocalEncounter) => {
+            if (encounter.locationName === props.locationName) {
+                axios
+                    .get("/api/pokemon", {
+                        params: {
+                            name: encounter.pokemonName,
+                        },
+                    })
+                    .then((res) =>
+                        setEncounteredPokemon(JSON.parse(res.data.pokemon))
+                    )
+                    .catch((error) => {
+                        console.log(error);
+                    });
+                return;
+            }
+        });
+    };
+
     useEffect(() => {
         if (props.locationName && props.locationName.length > 0) {
             fetchLocationData();
         }
     }, [props.locationName]);
 
+    useEffect(() => {
+        if (props.runName && props.locationName) {
+            fetchEncounteredPokemonData();
+        }
+    }, [props.runName, props.locationName]);
+
     return (
         <div className={styles["run-page"]}>
-            {locationData ? (
-                <>
-                    <h2 className={styles["location-name"]}>
-                        {locationData.name}
-                    </h2>
-                    {props.locationName === game.startingTown ? (
-                        <StarterSelect
-                            runName={props.runName}
-                            startersList={game.starters}
-                            locationName={game.startingTown}
-                        />
-                    ) : (
-                        ""
-                    )}
-                </>
-            ) : (
-                ""
-            )}
+            <div className={styles["run-info"]}>
+                {locationData ? (
+                    <>
+                        <h2 className={styles["location-name"]}>
+                            {locationData.name}
+                        </h2>
+                        {props.locationName === game.startingTown ? (
+                            <StarterSelect
+                                runName={props.runName}
+                                startersList={game.starters}
+                                locationName={game.startingTown}
+                                onConfirm={fetchEncounteredPokemonData}
+                            />
+                        ) : (
+                            ""
+                        )}
+                    </>
+                ) : (
+                    ""
+                )}
+            </div>
+            <div className={styles["sticky-info"]}>
+                <EncounterDisplay encounteredPokemon={encounteredPokemon} />
+            </div>
         </div>
     );
 };

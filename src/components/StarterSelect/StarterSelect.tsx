@@ -12,6 +12,7 @@ type Props = {
     runName: string;
     startersList: string[];
     locationName: string;
+    onConfirm: () => void;
 };
 
 const StarterSelect: React.FC<Props> = (props: Props) => {
@@ -48,9 +49,10 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
             status: "caught",
             locationName: props.locationName,
         };
-        run.box.push(encounter);
+        run.encounters.push(encounter);
 
         localStorage.setItem(props.runName, JSON.stringify(run));
+        props.onConfirm();
     };
 
     useEffect(() => {

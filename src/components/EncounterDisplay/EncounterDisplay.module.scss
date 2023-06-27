@@ -1,0 +1,48 @@
+@use "@/styles/constants";
+
+.encounter-display {
+    --border-radius: 10px;
+    --box-sprite-height: 80px;
+    --box-sprite-width: 80px;
+    --display-height: 80px;
+    --display-margin: 1rem;
+
+    align-items: center;
+    border: 2px solid constants.$text-color;
+    border-radius: var(--border-radius);
+    display: flex;
+    height: var(--display-height);
+
+    .info {
+        align-items: center;
+        display: flex;
+        font-size: 1.2rem;
+        height: var(--display-height);
+        margin-left: calc(var(--display-margin) + 1rem);
+        margin-right: 0;
+        position: relative;
+
+        .title {
+            margin-right: 0.4rem;
+        }
+
+        .divider {
+            background: constants.$text-color;
+            display: block;
+            height: calc(var(--display-height));
+            margin-left: calc(var(--display-margin) + 1rem);
+            width: 2px;
+        }
+
+        .box-sprite {
+            height: var(--box-sprite-height);
+            margin: 0 0.5rem;
+            position: relative;
+            width: var(--box-sprite-width);
+        }
+
+        .placeholder {
+            margin-right: calc(var(--display-margin) + 1rem);
+        }
+    }
+}

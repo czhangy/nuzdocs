@@ -3,19 +3,51 @@
 .run-page {
     --location-size: 2rem;
 
-    margin: 2rem 0;
-    max-width: constants.$max-width;
+    position: relative;
     width: 100%;
 
-    .location-name {
-        font-size: var(--location-size);
-        font-weight: bold;
-        letter-spacing: 2px;
+    .run-info {
+        margin: 2rem 0;
+        max-width: constants.$max-width;
+        min-height: calc(100vh - constants.$mobile-navbar-height);
+        width: 100%;
+
+        .location-name {
+            font-size: var(--location-size);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+    }
+
+    .sticky-info {
+        background: constants.$bg-color;
+        bottom: 2rem;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+        margin-left: calc(constants.$page-padding * -1);
+        padding-top: 2rem;
+        position: sticky;
+        width: 100vw;
     }
 }
 
 @media screen and (min-width: constants.$tablet) {
     .run-page {
         --location-size: 2.5rem;
+
+        .run-info {
+            min-height: calc(100vh - constants.$navbar-height);
+        }
+    }
+}
+
+@media screen and (min-width: constants.$max-width) {
+    .run-page > .sticky-info {
+        // Account for max size
+        margin-left: calc(
+            (100vw - constants.$max-width) / -2 - constants.$page-padding
+        );
     }
 }

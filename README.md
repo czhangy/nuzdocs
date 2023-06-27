@@ -180,5 +180,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 -   [Awesome README](https://github.com/matiassingers/awesome-readme)
 -   [Nuzlocke Tracker](https://nuzlocke.app/)
 -   [PokéAPI](https://pokeapi.co/)
+-   [Pokémon Database](https://pokemondb.net/)
 -   [pokenode-ts](https://github.com/Gabb-c/pokenode-ts)
 -   [Shields.io](https://shields.io/)

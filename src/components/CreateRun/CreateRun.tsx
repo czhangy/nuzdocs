@@ -11,7 +11,7 @@ const CreateRun: React.FC = () => {
         gameName: "soulsilver",
         prevLocationName: "new-bark-town",
         starterName: "",
-        box: [],
+        encounters: [],
     };
 
     const onCreateRun = (e: React.FormEvent<HTMLFormElement>) => {
