@@ -13,6 +13,7 @@ body {
     background: constants.$accent-color;
     color: constants.$text-color;
     font-family: constants.$main-font;
+    overflow-x: clip;
     padding: 0;
     margin: 0;
 }

@@ -12,6 +12,7 @@ type Props = {
     runName: string;
     startersList: string[];
     locationName: string;
+    onConfirm: () => void;
 };
 
 const StarterSelect: React.FC<Props> = (props: Props) => {
@@ -22,13 +23,11 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
         (
             document.querySelector("#confirm-button") as HTMLButtonElement
         ).disabled = true;
-        console.log("running");
         Array.from(
             document.getElementsByClassName(
                 styles.starter
             ) as HTMLCollectionOf<HTMLLIElement>
         ).forEach((el: HTMLLIElement) => {
-            console.log("hi");
             el.style.pointerEvents = "none";
         });
     };
@@ -50,9 +49,10 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
             status: "caught",
             locationName: props.locationName,
         };
-        run.box.push(encounter);
+        run.encounters.push(encounter);
 
         localStorage.setItem(props.runName, JSON.stringify(run));
+        props.onConfirm();
     };
 
     useEffect(() => {

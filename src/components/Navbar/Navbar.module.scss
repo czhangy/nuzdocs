@@ -4,11 +4,10 @@
     --link-size: 1.2rem;
     --logo-size: 80px;
 
-    background: constants.$accent-color;
+    background-color: constants.$bg-color;
     height: constants.$mobile-navbar-height;
     position: relative;
     width: 100%;
-    z-index: 9;
 
     .navbar {
         align-items: center;

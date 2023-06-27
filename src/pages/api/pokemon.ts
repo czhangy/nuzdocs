@@ -14,11 +14,11 @@ const fetchPokemon = async (name: string) => {
     const pokemon = await api.getPokemonByName(name).catch((error) => {
         throw error;
     });
-    console.log(pokemon.types);
+    console.log(pokemon);
     return {
         name: pokemon.name,
-        sprite: pokemon.sprites.front_default!,
         types: pokemon.types.map((type) => type.type.name),
+        sprite: pokemon.sprites.front_default!,
     };
 };
 
@@ -45,7 +45,7 @@ export default async function handler(
         "name" in req.query &&
         typeof req.query.name === "string"
     ) {
-        const pokemon = fetchPokemon(req.query.name).catch((error) => {
+        const pokemon = await fetchPokemon(req.query.name).catch((error) => {
             res.status(500).json({
                 error: error,
             });

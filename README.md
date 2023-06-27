@@ -125,28 +125,20 @@ To run this project, you will need to add the following environment variables to
 
 -   [ ] Persistent storage
 
-    -   [ ] Local storage data saved on a timer
+    -   [ ] Local storage data saves run info
     -   [ ] Import/export run data
-
--   [ ] POST APIs
-
-    -   [ ] Run progress
-        -   [ ] Box
-        -   [ ] Team
-        -   [ ] Cleared fights
-        -   [ ] Deaths
-    -   [ ] Runs
 
 -   [ ] Run roadmap/tracker
 
     -   [ ] Routes
+        -   [ ] Maps
     -   [ ] Encounters
     -   [ ] Major fights
         -   [ ] Auto-complete damage calcs
     -   [ ] Deaths
     -   [ ] Box
     -   [ ] Run finish
-    -   [ ] Master list
+    -   [ ] Master list/overview
 
 -   [ ] Damage calculator
 
@@ -188,5 +180,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 -   [Awesome README](https://github.com/matiassingers/awesome-readme)
 -   [Nuzlocke Tracker](https://nuzlocke.app/)
 -   [PokéAPI](https://pokeapi.co/)
+-   [Pokémon Database](https://pokemondb.net/)
 -   [pokenode-ts](https://github.com/Gabb-c/pokenode-ts)
 -   [Shields.io](https://shields.io/)
