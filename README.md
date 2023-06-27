@@ -153,13 +153,14 @@ To run this project, you will need to add the following environment variables to
     -   [ ] Saves data to profile on a timer
     -   [ ] Achievements
 
--   [ ] Fetch APIs
+-   [ ] POST APIs
 
-    -   [ ] Pokémon
-    -   [ ] Abilities
-    -   [ ] Major fights
-    -   [ ] Routes
-    -   [ ] Items
+    -   [ ] Run progress
+        -   [ ] Box
+        -   [ ] Team
+        -   [ ] Cleared fights
+        -   [ ] Deaths
+    -   [ ] Runs
 
 -   [ ] Run roadmap/tracker
 
@@ -208,4 +209,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Acknowledgements
 
 -   [Awesome README](https://github.com/matiassingers/awesome-readme)
+-   [PokéAPI](https://pokeapi.co/)
+-   [pokenode-ts](https://github.com/Gabb-c/pokenode-ts)
 -   [Shields.io](https://shields.io/)
