@@ -1,0 +1,24 @@
+// Fonts
+$main-font: "Mulish", sans-serif;
+$title-font: "Russo One", sans-serif;
+$emph-font: "Bungee", cursive;
+
+// Color scheme
+$accent-color: #1a1a1a;
+$bg-color: #2e2e2e;
+$hover-color: #369a2d;
+$svg-color: invert(100%) sepia(0%) saturate(7500%) hue-rotate(208deg)
+    brightness(107%) contrast(100%);
+$svg-hover-color: invert(41%) sepia(10%) saturate(3132%) hue-rotate(68deg)
+    brightness(116%) contrast(88%);
+$text-color: #ffffff;
+
+// Dimensions
+$mobile-navbar-height: 150px;
+$navbar-height: 100px;
+$max-width: 1600px;
+$page-padding: 2rem;
+
+// Screen breakpoints
+$desktop: 1440px;
+$tablet: 768px;
