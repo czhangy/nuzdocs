@@ -2,7 +2,7 @@
 
 <!-- Title -->
 
-<!-- <img src="assets/main.webp" alt="logo" width="200" height="auto" /> -->
+<img src="assets/images/nuzleaf.webp" alt="logo" width="200" height="auto" />
 <h1>NuzlockeDB</h1>
 
 <!-- Badges -->
