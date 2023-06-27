@@ -1,11 +1,10 @@
 import styles from "./HomePage.module.scss";
 
-import { useRouter } from "next/router";
+import Router from "next/router";
 
 const HomePage: React.FC = () => {
     const createRun = () => {
-        const router = useRouter();
-        router.push("/run");
+        Router.push("/test");
     };
 
     return (
