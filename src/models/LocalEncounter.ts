@@ -1,5 +1,5 @@
 export default interface LocalEncounter {
     pokemonName: string;
-    status: "none" | "missed" | "caught";
+    status: "caught" | "missed";
     locationName: string;
 }

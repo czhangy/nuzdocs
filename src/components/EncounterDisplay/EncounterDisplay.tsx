@@ -10,7 +10,7 @@ type Props = {
 const EncounterDisplay: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["encounter-display"]}>
-            <div className={styles.info}>
+            <div className={`${styles.info} ${styles.missed}`}>
                 <strong className={`${styles.title}`}>Encounter:</strong>
                 {props.encounteredPokemon ? (
                     <>

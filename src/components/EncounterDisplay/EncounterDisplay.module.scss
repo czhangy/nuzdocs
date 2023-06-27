@@ -45,4 +45,14 @@
             margin-right: calc(var(--display-margin) + 1rem);
         }
     }
+
+    .missed {
+        .name {
+            text-decoration: line-through;
+        }
+
+        .box-sprite {
+            filter: grayscale(1);
+        }
+    }
 }
