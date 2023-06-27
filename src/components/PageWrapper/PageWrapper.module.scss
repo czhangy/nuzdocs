@@ -3,6 +3,7 @@
 .page-container {
     animation-duration: 0.3s;
     animation-name: load;
+    background: constants.$bg-color;
     display: flex;
     justify-content: center;
     min-height: calc(100vh - #{constants.$mobile-navbar-height});

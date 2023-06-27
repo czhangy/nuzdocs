@@ -1,4 +1,18 @@
 @use "@/styles/constants";
 
 .home-page {
+    .new-button {
+        border: 5px solid constants.$text-color;
+        border-radius: 10px;
+        color: inherit;
+        font-family: constants.$title-font;
+        font-size: 2rem;
+        letter-spacing: 1px;
+        padding: 0.75rem 1.5rem;
+
+        &:hover {
+            background: constants.$text-color;
+            color: constants.$bg-color;
+        }
+    }
 }
