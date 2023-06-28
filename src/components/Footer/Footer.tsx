@@ -16,6 +16,7 @@ const Footer: React.FC = () => {
                         <a
                             href="https://nuzlocke.app/"
                             target="_blank"
+                            rel="noreferrer"
                             className={styles.link}
                         >
                             Nuzlocke Tracker
@@ -27,6 +28,7 @@ const Footer: React.FC = () => {
                         <a
                             href="https://github.com/czhangy"
                             target="_blank"
+                            rel="noreferrer"
                             className={styles.icon}
                         >
                             <Image
@@ -41,6 +43,7 @@ const Footer: React.FC = () => {
                         <a
                             href="https://www.linkedin.com/in/czhangy/"
                             target="_blank"
+                            rel="noreferrer"
                             className={styles.icon}
                         >
                             <Image
@@ -55,6 +58,7 @@ const Footer: React.FC = () => {
                         <a
                             href="https://twitter.com/czhangy_"
                             target="_blank"
+                            rel="noreferrer"
                             className={styles.icon}
                         >
                             <Image
