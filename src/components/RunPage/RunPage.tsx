@@ -88,7 +88,6 @@ const RunPage: React.FC<Props> = (props) => {
                                 runName={props.runName}
                                 startersList={game.starters}
                                 locationName={game.startingTown}
-                                onConfirm={fetchEncounteredPokemonData}
                             />
                         ) : (
                             ""

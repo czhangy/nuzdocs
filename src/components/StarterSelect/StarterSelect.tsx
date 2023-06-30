@@ -1,60 +1,22 @@
-import LocalEncounter from "@/models/LocalEncounter";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
-import typeColors from "@/static/type-colors";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { formatName } from "utils";
 import styles from "./StarterSelect.module.scss";
+import LocalEncounter from "@/models/LocalEncounter";
 
 type Props = {
     runName: string;
     startersList: string[];
     locationName: string;
-    onConfirm: () => void;
 };
 
 const StarterSelect: React.FC<Props> = (props: Props) => {
     const [starters, setStarters] = useState<PokemonData[]>([]);
     const [selectedStarter, setSelectedStarter] = useState<string>("");
 
-    const disableButtons = () => {
-        (
-            document.querySelector("#confirm-button") as HTMLButtonElement
-        ).disabled = true;
-        Array.from(
-            document.getElementsByClassName(
-                styles.starter
-            ) as HTMLCollectionOf<HTMLLIElement>
-        ).forEach((el: HTMLLIElement) => {
-            el.style.pointerEvents = "none";
-        });
-    };
-
-    const handleStarterSelect = (pokemonName: string) => {
-        setSelectedStarter(pokemonName);
-    };
-
-    const handleStarterConfirm = () => {
-        disableButtons();
-
-        let run: Run = JSON.parse(
-            localStorage.getItem(props.runName) as string
-        );
-        run.starterName = selectedStarter;
-
-        const encounter: LocalEncounter = {
-            pokemonName: selectedStarter,
-            status: "caught",
-            locationName: props.locationName,
-        };
-        run.encounters.push(encounter);
-
-        localStorage.setItem(props.runName, JSON.stringify(run));
-        props.onConfirm();
-    };
-
+    // Persist selected starter on page load or initialize starter for fresh runs
     useEffect(() => {
         const run: Run = JSON.parse(
             localStorage.getItem(props.runName) as string
@@ -66,6 +28,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
         }
     }, []);
 
+    // Fetch starter data
     useEffect(() => {
         axios
             .get("/api/pokemon", {
@@ -79,35 +42,34 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
             });
     }, [props.startersList]);
 
-    // Disable starters => must wait for starter lis to render
+    // Place starter in box and remove existing starter on starter change + set run's starter
     useEffect(() => {
-        const run: Run = JSON.parse(
-            localStorage.getItem(props.runName) as string
-        );
-        if (run.starterName !== "") {
-            disableButtons();
+        if (selectedStarter.length > 0) {
+            const run: Run = JSON.parse(
+                localStorage.getItem(props.runName) as string
+            );
+            run.starterName = selectedStarter;
+
+            for (let i = 0; i < run.encounters.length; i++) {
+                if (run.encounters[i].locationName === "starter") {
+                    run.encounters.splice(i, 1);
+                    break;
+                }
+            }
+            const starter: LocalEncounter = {
+                pokemonName: selectedStarter,
+                status: "caught",
+                locationName: "starter",
+            };
+            run.encounters.push(starter);
+
+            localStorage.setItem(props.runName, JSON.stringify(run));
         }
-    }, [starters]);
+    }, [selectedStarter]);
 
     return (
         <div className={styles["starter-select"]}>
-            <div className={styles.header}>
-                <h3 className={styles["header-text"]}>Select your starter:</h3>
-                <button
-                    id="confirm-button"
-                    className={styles["confirm-button"]}
-                    onClick={handleStarterConfirm}
-                >
-                    <div className={styles["confirm-icon"]}>
-                        <Image
-                            src="/assets/icons/check.svg"
-                            alt="Confirm"
-                            layout="fill"
-                            objectFit="contain"
-                        />
-                    </div>
-                </button>
-            </div>
+            <h3 className={styles.header}>Starter:</h3>
             <ul className={styles["starter-list"]}>
                 {starters.map((starter: PokemonData, key: number) => {
                     return (
@@ -118,19 +80,10 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                                     : ""
                             }`}
                             key={key}
-                            style={{
-                                background:
-                                    typeColors[
-                                        starter
-                                            .types[0] as keyof typeof typeColors
-                                    ],
-                            }}
                         >
                             <button
                                 className={styles["select-button"]}
-                                onClick={() =>
-                                    handleStarterSelect(starter.name)
-                                }
+                                onClick={() => setSelectedStarter(starter.name)}
                             >
                                 <div className={styles.sprite}>
                                     <Image
@@ -140,9 +93,6 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                                         objectFit="contain"
                                     />
                                 </div>
-                                <p className={styles.name}>
-                                    {formatName(starter.name)}
-                                </p>
                             </button>
                         </li>
                     );
