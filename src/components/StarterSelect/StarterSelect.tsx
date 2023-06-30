@@ -69,9 +69,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
 
     return (
         <div className={styles["starter-select"]}>
-            <div className={styles.header}>
-                <h3 className={styles["header-text"]}>Select your starter:</h3>
-            </div>
+            <h3 className={styles.header}>Starter:</h3>
             <ul className={styles["starter-list"]}>
                 {starters.map((starter: PokemonData, key: number) => {
                     return (

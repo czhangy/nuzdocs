@@ -1,20 +1,20 @@
 @use "@/styles/constants";
 
 .starter-select {
+    --component-spacing: 2rem;
     --name-size: 1.7rem;
     --sprite-size: 120px;
+    --text-icon-spacing: 1rem;
 
-    margin: 2rem 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--text-icon-spacing);
+    justify-content: center;
+    margin: var(--component-spacing) 0;
 
     .header {
-        align-items: center;
-        display: flex;
-        gap: 1rem;
-
-        .header-text {
-            font-size: 1.7rem;
-            margin-top: -0.4rem;
-        }
+        font-size: 1.7rem;
     }
 
     .starter-list {
@@ -22,8 +22,6 @@
         display: flex;
         gap: 1rem;
         justify-content: center;
-        margin-top: 2rem;
-        width: 100%;
 
         .starter {
             .select-button {
@@ -52,25 +50,20 @@
 
 @media screen and (min-width: constants.$tablet) {
     .starter-select {
+        --component-spacing: 4rem;
         --sprite-size: 160px;
+        --text-icon-spacing: 2rem;
     }
 }
 
 @media (hover: hover) {
-    .starter-select {
-        .header > .confirm-button:hover {
-            border-color: constants.$hover-color;
-            transform: scale(1.05);
-
-            .confirm-icon {
-                filter: constants.$svg-hover-color;
-            }
-        }
-
-        .starter-list > .starter:hover > .select-button > .sprite {
-            animation: shake 1s;
-            animation-iteration-count: infinite;
-        }
+    .starter-select
+        > .starter-list
+        > .starter:hover
+        > .select-button
+        > .sprite {
+        animation: shake 1s;
+        animation-iteration-count: infinite;
     }
 }
 
