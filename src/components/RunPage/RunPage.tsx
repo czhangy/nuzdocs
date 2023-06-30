@@ -28,11 +28,12 @@ const RunPage: React.FC<Props> = (props) => {
         axios
             .get("/api/location", {
                 params: {
-                    location: props.locationName,
+                    locationName: props.locationName,
                 },
             })
             .then((res) => {
                 const locationData = res.data;
+                console.log(locationData);
                 setLocationData(JSON.parse(locationData.location));
             })
             .catch((error) => {
@@ -84,7 +85,7 @@ const RunPage: React.FC<Props> = (props) => {
                 {locationData ? (
                     <>
                         <h2 className={styles["location-name"]}>
-                            {locationData.name}
+                            {locationData.locationName}
                         </h2>
                         {props.locationName === game.startingTown ? (
                             <StarterSelect
@@ -95,7 +96,10 @@ const RunPage: React.FC<Props> = (props) => {
                         ) : (
                             ""
                         )}
-                        <EncounterTable />
+                        <EncounterTable
+                            runName={props.runName}
+                            areaNames={locationData.areaNames}
+                        />
                     </>
                 ) : (
                     ""

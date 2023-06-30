@@ -14,20 +14,19 @@ const fetchPokemon = async (name: string) => {
     const pokemon = await api.getPokemonByName(name).catch((error) => {
         throw error;
     });
-    console.log(pokemon);
     return {
-        name: pokemon.name,
+        pokemonName: pokemon.name,
         types: pokemon.types.map((type) => type.type.name),
         sprite: pokemon.sprites.front_default!,
     };
 };
 
-const fetchPokemonGroup = async (names: string[]) => {
+const fetchPokemonGroup = async (pokemonNames: string[]) => {
     let promises: Promise<PokemonData>[] = [];
 
-    names.forEach((name) => {
+    pokemonNames.forEach((pokemonName: string) => {
         promises.push(
-            fetchPokemon(name).catch((error) => {
+            fetchPokemon(pokemonName).catch((error) => {
                 throw error;
             })
         );
@@ -42,22 +41,24 @@ export default async function handler(
 ) {
     if (
         req.method === "GET" &&
-        "name" in req.query &&
-        typeof req.query.name === "string"
+        "pokemonName" in req.query &&
+        typeof req.query.pokemonName === "string"
     ) {
-        const pokemon = await fetchPokemon(req.query.name).catch((error) => {
-            res.status(500).json({
-                error: error,
-            });
-        });
+        const pokemon = await fetchPokemon(req.query.pokemonName).catch(
+            (error) => {
+                res.status(500).json({
+                    error: error,
+                });
+            }
+        );
         res.status(200).json({ pokemon: JSON.stringify(pokemon) });
     } else if (
         req.method === "GET" &&
-        "name[]" in req.query &&
-        Array.isArray(req.query["name[]"])
+        "pokemonName[]" in req.query &&
+        Array.isArray(req.query["pokemonName[]"])
     ) {
         const pokemonDataList: void | PokemonData[] = await fetchPokemonGroup(
-            req.query["name[]"]
+            req.query["pokemonName[]"]
         ).catch((error) => {
             res.status(500).json({
                 error: error,

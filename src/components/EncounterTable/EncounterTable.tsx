@@ -1,6 +1,11 @@
 import styles from "./EncounterTable.module.scss";
 
-const EncounterTable: React.FC = () => {
+type Props = {
+    runName: string;
+    areaNames: string[];
+};
+
+const EncounterTable: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["encounter-table"]}>
             <h3 className={styles.header}>Encounters:</h3>

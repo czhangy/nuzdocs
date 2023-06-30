@@ -33,7 +33,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
         axios
             .get("/api/pokemon", {
                 params: {
-                    name: props.startersList,
+                    pokemonName: props.startersList,
                 },
             })
             .then((res) => setStarters(JSON.parse(res.data.pokemon)))
@@ -75,7 +75,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                     return (
                         <li
                             className={`${styles.starter} ${
-                                selectedStarter === starter.name
+                                selectedStarter === starter.pokemonName
                                     ? styles.selected
                                     : ""
                             }`}
@@ -83,12 +83,14 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                         >
                             <button
                                 className={styles["select-button"]}
-                                onClick={() => setSelectedStarter(starter.name)}
+                                onClick={() =>
+                                    setSelectedStarter(starter.pokemonName)
+                                }
                             >
                                 <div className={styles.sprite}>
                                     <Image
                                         src={starter.sprite}
-                                        alt={starter.name}
+                                        alt={starter.pokemonName}
                                         layout="fill"
                                         objectFit="contain"
                                     />

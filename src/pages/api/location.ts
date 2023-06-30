@@ -26,32 +26,53 @@ const getEnglishLocationName: (names: LocationName[]) => string = (
     return nameObj.name;
 };
 
+const fetchLocation = async (locationName: string) => {
+    const api = new LocationClient();
+    const location = await api
+        .getLocationByName(locationName)
+        .catch((error) => {
+            throw error;
+        });
+    return {
+        locationName: getEnglishLocationName(location.names),
+        areaNames: location.areas.map((area) => area.name),
+    };
+};
+
+const fetchArea = async (areaName: string) => {
+    const api = new LocationClient();
+    const area = await api.getLocationAreaByName(areaName).catch((error) => {
+        throw error;
+    });
+    console.log(area);
+};
+
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<ResData>
 ) {
     if (
         req.method === "GET" &&
-        "location" in req.query &&
-        typeof req.query.location === "string"
+        "locationName" in req.query &&
+        typeof req.query.locationName === "string"
     ) {
-        const api = new LocationClient();
-        await api
-            .getLocationByName(req.query.location)
-            .then((location) => {
-                let locationData: LocationData = {
-                    name: getEnglishLocationName(location.names),
-                    encounters: [],
-                };
-                res.status(200).json({
-                    location: JSON.stringify(locationData),
-                });
-            })
-            .catch((error) =>
-                res.status(500).json({
-                    error: error,
-                })
-            );
+        const location: void | LocationData = await fetchLocation(
+            req.query.locationName
+        ).catch((error) => {
+            res.status(500).json({
+                error: error,
+            });
+        });
+        res.status(200).json({
+            location: JSON.stringify(location),
+        });
+    } else if (
+        req.method === "GET" &&
+        "areaName" in req.query &&
+        typeof req.query.areaName === "string"
+    ) {
+        fetchArea(req.query.areaName);
+        res.status(200).json({});
     } else if (req.method === "GET") {
         res.status(400).json({
             error: "A location slug must be specified",

@@ -1,4 +1,4 @@
 export default interface LocationData {
-    name: string;
-    encounters: string[];
+    locationName: string;
+    areaNames: string[];
 }
