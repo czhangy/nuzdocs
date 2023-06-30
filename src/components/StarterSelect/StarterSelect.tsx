@@ -4,7 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./StarterSelect.module.scss";
-import LocalEncounter from "@/models/LocalEncounter";
+import LocalPokemon from "@/models/LocalPokemon";
 
 type Props = {
     runName: string;
@@ -56,7 +56,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                     break;
                 }
             }
-            const starter: LocalEncounter = {
+            const starter: LocalPokemon = {
                 pokemonName: selectedStarter,
                 status: "caught",
                 locationName: "starter",

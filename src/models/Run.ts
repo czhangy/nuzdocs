@@ -1,8 +1,8 @@
-import LocalEncounter from "@/models/LocalEncounter";
+import LocalPokemon from "@/models/LocalPokemon";
 
 export default interface Run {
     gameName: string;
     prevLocationName: string;
     starterName: string;
-    encounters: LocalEncounter[];
+    encounters: LocalPokemon[];
 }

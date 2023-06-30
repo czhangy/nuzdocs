@@ -1,0 +1,19 @@
+@use "@/styles/constants";
+
+.encounter-table {
+    --component-spacing: 2rem;
+    --name-size: 1.7rem;
+    --sprite-size: 120px;
+    --inner-spacing: 1rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--inner-spacing);
+    justify-content: center;
+    margin: var(--component-spacing) 0;
+
+    .header {
+        font-size: 1.7rem;
+    }
+}

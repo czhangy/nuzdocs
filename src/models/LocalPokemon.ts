@@ -1,4 +1,4 @@
-export default interface LocalEncounter {
+export default interface LocalPokemon {
     pokemonName: string;
     status: "caught" | "missed";
     locationName: string;

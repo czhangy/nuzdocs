@@ -1,7 +1,7 @@
 import EncounterDisplay from "@/components/EncounterDisplay/EncounterDisplay";
 import StarterSelect from "@/components/StarterSelect/StarterSelect";
 import Game from "@/models/Game";
-import LocalEncounter from "@/models/LocalEncounter";
+import LocalPokemon from "@/models/LocalPokemon";
 import LocationData from "@/models/LocationData";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
@@ -9,6 +9,7 @@ import SoulSilver from "@/static/soulsilver";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from "./RunPage.module.scss";
+import EncounterTable from "../EncounterTable/EncounterTable";
 
 type Props = {
     gameName: string;
@@ -43,7 +44,7 @@ const RunPage: React.FC<Props> = (props) => {
         const run: Run = JSON.parse(
             localStorage.getItem(props.runName) as string
         );
-        run.encounters.forEach((encounter: LocalEncounter) => {
+        run.encounters.forEach((encounter: LocalPokemon) => {
             if (encounter.locationName === props.locationName) {
                 setMissedEncounter(encounter.status === "missed");
                 axios
@@ -63,12 +64,14 @@ const RunPage: React.FC<Props> = (props) => {
         });
     };
 
+    // Get data associated with current location on page load
     useEffect(() => {
         if (props.locationName && props.locationName.length > 0) {
             fetchLocationData();
         }
     }, [props.locationName]);
 
+    // Fetch location's encounter data for encounter display
     useEffect(() => {
         if (props.runName && props.locationName) {
             fetchEncounteredPokemonData();
@@ -92,6 +95,7 @@ const RunPage: React.FC<Props> = (props) => {
                         ) : (
                             ""
                         )}
+                        <EncounterTable />
                     </>
                 ) : (
                     ""
