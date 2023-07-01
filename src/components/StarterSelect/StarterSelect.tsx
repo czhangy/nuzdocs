@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./StarterSelect.module.scss";
 import LocalPokemon from "@/models/LocalPokemon";
+import { getRun } from "utils";
 
 type Props = {
     runName: string;
@@ -18,9 +19,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
 
     // Persist selected starter on page load or initialize starter for fresh runs
     useEffect(() => {
-        const run: Run = JSON.parse(
-            localStorage.getItem(props.runName) as string
-        );
+        const run: Run = getRun(props.runName);
         if (run.starterName === "") {
             setSelectedStarter(props.startersList[0]);
         } else {
@@ -45,9 +44,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     // Place starter in box and remove existing starter on starter change + set run's starter
     useEffect(() => {
         if (selectedStarter.length > 0) {
-            const run: Run = JSON.parse(
-                localStorage.getItem(props.runName) as string
-            );
+            const run: Run = getRun(props.runName);
             run.starterName = selectedStarter;
 
             for (let i = 0; i < run.encounters.length; i++) {

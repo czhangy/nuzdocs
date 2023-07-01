@@ -10,6 +10,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from "./RunPage.module.scss";
 import EncounterTable from "../EncounterTable/EncounterTable";
+import { getRun } from "utils";
 
 type Props = {
     gameName: string;
@@ -21,7 +22,9 @@ const RunPage: React.FC<Props> = (props) => {
     const [missedEncounter, setMissedEncounter] = useState<boolean>(false);
     const [encounteredPokemon, setEncounteredPokemon] =
         useState<PokemonData | null>(null);
-    const [locationData, setLocationData] = useState<LocationData | null>(null);
+    const [currentLocation, setCurrentLocation] = useState<LocationData | null>(
+        null
+    );
     const game: Game = SoulSilver;
 
     const fetchLocationData = () => {
@@ -33,8 +36,7 @@ const RunPage: React.FC<Props> = (props) => {
             })
             .then((res) => {
                 const locationData = res.data;
-                console.log(locationData);
-                setLocationData(JSON.parse(locationData.location));
+                setCurrentLocation(JSON.parse(locationData.location));
             })
             .catch((error) => {
                 console.log(error);
@@ -42,9 +44,7 @@ const RunPage: React.FC<Props> = (props) => {
     };
 
     const fetchEncounteredPokemonData = () => {
-        const run: Run = JSON.parse(
-            localStorage.getItem(props.runName) as string
-        );
+        const run: Run = getRun(props.runName);
         run.encounters.forEach((encounter: LocalPokemon) => {
             if (encounter.locationName === props.locationName) {
                 setMissedEncounter(encounter.status === "missed");
@@ -82,10 +82,10 @@ const RunPage: React.FC<Props> = (props) => {
     return (
         <div className={styles["run-page"]}>
             <div className={styles["run-info"]}>
-                {locationData ? (
+                {currentLocation ? (
                     <>
                         <h2 className={styles["location-name"]}>
-                            {locationData.locationName}
+                            {currentLocation.locationName}
                         </h2>
                         {props.locationName === game.startingTown ? (
                             <StarterSelect
@@ -98,7 +98,7 @@ const RunPage: React.FC<Props> = (props) => {
                         )}
                         <EncounterTable
                             runName={props.runName}
-                            areaNames={locationData.areaNames}
+                            areaNames={currentLocation.areaNames}
                         />
                     </>
                 ) : (

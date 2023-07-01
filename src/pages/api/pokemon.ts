@@ -1,8 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-
-import { PokemonClient } from "pokenode-ts";
-
 import PokemonData from "@/models/PokemonData";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { Pokemon, PokemonClient } from "pokenode-ts";
 
 type ResData = {
     pokemon?: string;
@@ -10,8 +8,8 @@ type ResData = {
 };
 
 const fetchPokemon = async (name: string) => {
-    const api = new PokemonClient();
-    const pokemon = await api.getPokemonByName(name).catch((error) => {
+    const api: PokemonClient = new PokemonClient();
+    const pokemon: Pokemon = await api.getPokemonByName(name).catch((error) => {
         throw error;
     });
     return {
