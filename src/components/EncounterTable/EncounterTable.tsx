@@ -9,18 +9,18 @@ type Props = {
 };
 
 const EncounterTable: React.FC<Props> = (props: Props) => {
-    const [currentAreaName, setCurrentAreaName] = useState<string>("");
+    const [currentAreaSlug, setCurrentAreaSlug] = useState<string>("");
 
     useEffect(() => {
-        setCurrentAreaName(props.areaNames[0]);
+        setCurrentAreaSlug(props.areaNames[0]);
     }, [props.areaNames]);
 
     useEffect(() => {
-        if (currentAreaName.length > 0) {
+        if (currentAreaSlug.length > 0) {
             axios
                 .get("/api/location", {
                     params: {
-                        areaName: currentAreaName,
+                        areaName: currentAreaSlug,
                         gameName: getRun(props.runName).gameName,
                     },
                 })
@@ -32,7 +32,7 @@ const EncounterTable: React.FC<Props> = (props: Props) => {
                     console.log(error);
                 });
         }
-    }, [currentAreaName]);
+    }, [currentAreaSlug]);
 
     return (
         <div className={styles["encounter-table"]}>

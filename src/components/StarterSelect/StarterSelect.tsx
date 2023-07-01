@@ -59,6 +59,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                 locationName: "starter",
             };
             run.encounters.push(starter);
+            run.caughtPokemonNames.push(selectedStarter);
 
             localStorage.setItem(props.runName, JSON.stringify(run));
         }

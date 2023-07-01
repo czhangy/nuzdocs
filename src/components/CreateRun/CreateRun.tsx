@@ -12,6 +12,7 @@ const CreateRun: React.FC = () => {
         prevLocationName: "new-bark-town",
         starterName: "",
         encounters: [],
+        caughtPokemonNames: [],
     };
 
     const onCreateRun = (e: React.FormEvent<HTMLFormElement>) => {

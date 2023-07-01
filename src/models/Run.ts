@@ -5,4 +5,5 @@ export default interface Run {
     prevLocationName: string;
     starterName: string;
     encounters: LocalPokemon[];
+    caughtPokemonNames: string[];
 }
