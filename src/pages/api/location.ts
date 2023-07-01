@@ -100,6 +100,7 @@ const fetchArea = async (areaSlug: string, gameSlug: string) => {
             throw error;
         });
     return {
+        areaSlug: areaSlug,
         areaName: getEnglishName(area.names),
         encounters: getEncounterDataForAllPokemon(
             area.pokemon_encounters,
