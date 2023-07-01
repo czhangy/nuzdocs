@@ -26,13 +26,13 @@ const getEnglishName: (names: Name[]) => string = (names: Name[]) => {
 
 const getEncounterDataForSinglePokemon = (
     pokemonEncounter: PokemonEncounter,
-    gameName: string
+    gameSlug: string
 ) => {
     let encounterData: EncounterData[] = [];
     const versionDetails = pokemonEncounter.version_details;
     const versionEncounterDetails: VersionEncounterDetail =
         versionDetails.filter(
-            (ved: VersionEncounterDetail) => ved.version.name === gameName
+            (ved: VersionEncounterDetail) => ved.version.name === gameSlug
         )[0];
     const encounters: Encounter[] = versionEncounterDetails.encounter_details;
     const groupedEncounters = groupBy(
@@ -66,12 +66,12 @@ const getEncounterDataForSinglePokemon = (
 
 const getEncounterDataForAllPokemon = (
     pokemonEncounters: PokemonEncounter[],
-    gameName: string
+    gameSlug: string
 ) => {
     let encounterData: EncounterData[] = [];
     pokemonEncounters.forEach((pokemonEncounter: PokemonEncounter) => {
         const pokemonEncounterData: EncounterData[] =
-            getEncounterDataForSinglePokemon(pokemonEncounter, gameName);
+            getEncounterDataForSinglePokemon(pokemonEncounter, gameSlug);
         pokemonEncounterData.forEach((data: EncounterData) => {
             encounterData.push(data);
         });
@@ -79,23 +79,23 @@ const getEncounterDataForAllPokemon = (
     return encounterData;
 };
 
-const fetchLocation = async (locationName: string) => {
+const fetchLocation = async (locationSlug: string) => {
     const api: LocationClient = new LocationClient();
     const location: Location = await api
-        .getLocationByName(locationName)
+        .getLocationByName(locationSlug)
         .catch((error) => {
             throw error;
         });
     return {
         locationName: getEnglishName(location.names),
-        areaNames: location.areas.map((area) => area.name),
+        areaSlugList: location.areas.map((area) => area.name),
     };
 };
 
-const fetchArea = async (areaName: string, gameName: string) => {
+const fetchArea = async (areaSlug: string, gameSlug: string) => {
     const api: LocationClient = new LocationClient();
     const area: LocationArea = await api
-        .getLocationAreaByName(areaName)
+        .getLocationAreaByName(areaSlug)
         .catch((error) => {
             throw error;
         });
@@ -103,9 +103,21 @@ const fetchArea = async (areaName: string, gameName: string) => {
         areaName: getEnglishName(area.names),
         encounters: getEncounterDataForAllPokemon(
             area.pokemon_encounters,
-            gameName
+            gameSlug
         ),
     };
+};
+
+const fetchListOfAreas = async (areaSlugList: string[], gameSlug: string) => {
+    let areaPromises: Promise<AreaData>[] = [];
+    areaSlugList.forEach((areaSlug: string) => {
+        areaPromises.push(
+            fetchArea(areaSlug, gameSlug).catch((error) => {
+                throw error;
+            })
+        );
+    });
+    return await Promise.all(areaPromises).then((areaList) => areaList);
 };
 
 export default async function handler(
@@ -114,11 +126,11 @@ export default async function handler(
 ) {
     if (
         req.method === "GET" &&
-        "locationName" in req.query &&
-        typeof req.query.locationName === "string"
+        "locationSlug" in req.query &&
+        typeof req.query.locationSlug === "string"
     ) {
         const location: void | LocationData = await fetchLocation(
-            req.query.locationName
+            req.query.locationSlug
         ).catch((error) => {
             res.status(500).json({
                 error: error,
@@ -129,20 +141,26 @@ export default async function handler(
         });
     } else if (
         req.method === "GET" &&
-        "areaName" in req.query &&
-        "gameName" in req.query &&
-        typeof req.query.areaName === "string" &&
-        typeof req.query.gameName === "string"
+        "areaSlugList[]" in req.query &&
+        "gameSlug" in req.query &&
+        (Array.isArray(req.query["areaSlugList[]"]) ||
+            typeof req.query["areaSlugList[]"] === "string") &&
+        typeof req.query.gameSlug === "string"
     ) {
-        const area: void | AreaData = await fetchArea(
-            req.query.areaName,
-            req.query.gameName
+        const areaSlugList: string[] = Array.isArray(
+            req.query["areaSlugList[]"]
+        )
+            ? req.query["areaSlugList[]"]
+            : [req.query["areaSlugList[]"]];
+        const areaList: void | AreaData[] = await fetchListOfAreas(
+            areaSlugList,
+            req.query.gameSlug
         ).catch((error) => {
             res.status(500).json({
                 error: error,
             });
         });
-        res.status(200).json({ area: JSON.stringify(area) });
+        res.status(200).json({ areaList: JSON.stringify(areaList) });
     } else if (req.method === "GET") {
         res.status(400).json({
             error: "Required params are missing",

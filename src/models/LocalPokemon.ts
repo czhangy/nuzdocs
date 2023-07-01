@@ -1,5 +1,5 @@
 export default interface LocalPokemon {
-    pokemonName: string;
+    pokemonSlug: string;
     status: "caught" | "missed";
-    locationName: string;
+    locationSlug: string;
 }

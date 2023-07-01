@@ -12,13 +12,13 @@ const Run: NextPage = () => {
         <>
             <Head>
                 <title>{`NuzlockeDB ${
-                    router.query.run ? "| " + router.query.run : ""
+                    router.query.runName ? "| " + router.query.runName : ""
                 }`}</title>
             </Head>
             <RunPage
-                gameName="soulsilver"
-                runName={router.query.run as string}
-                locationName={router.query.location as string}
+                gameSlug="soulsilver"
+                runName={router.query.runName as string}
+                locationSlug={router.query.locationSlug as string}
             />
         </>
     );

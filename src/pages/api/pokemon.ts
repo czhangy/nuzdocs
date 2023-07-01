@@ -7,11 +7,13 @@ type ResData = {
     error?: string;
 };
 
-const fetchPokemon = async (name: string) => {
+const fetchPokemon = async (pokemonSlug: string) => {
     const api: PokemonClient = new PokemonClient();
-    const pokemon: Pokemon = await api.getPokemonByName(name).catch((error) => {
-        throw error;
-    });
+    const pokemon: Pokemon = await api
+        .getPokemonByName(pokemonSlug)
+        .catch((error) => {
+            throw error;
+        });
     return {
         pokemonName: pokemon.name,
         types: pokemon.types.map((type) => type.type.name),
@@ -19,18 +21,18 @@ const fetchPokemon = async (name: string) => {
     };
 };
 
-const fetchPokemonGroup = async (pokemonNames: string[]) => {
-    let promises: Promise<PokemonData>[] = [];
-
-    pokemonNames.forEach((pokemonName: string) => {
-        promises.push(
-            fetchPokemon(pokemonName).catch((error) => {
+const fetchListOfPokemon = async (pokemonSlugList: string[]) => {
+    let pokemonPromises: Promise<PokemonData>[] = [];
+    pokemonSlugList.forEach((pokemonSlug: string) => {
+        pokemonPromises.push(
+            fetchPokemon(pokemonSlug).catch((error) => {
                 throw error;
             })
         );
     });
-
-    return await Promise.all(promises).then((pokemonList) => pokemonList);
+    return await Promise.all(pokemonPromises).then(
+        (pokemonList) => pokemonList
+    );
 };
 
 export default async function handler(
@@ -39,24 +41,24 @@ export default async function handler(
 ) {
     if (
         req.method === "GET" &&
-        "pokemonName" in req.query &&
-        typeof req.query.pokemonName === "string"
+        "pokemonSlug" in req.query &&
+        typeof req.query.pokemonSlug === "string"
     ) {
-        const pokemon = await fetchPokemon(req.query.pokemonName).catch(
-            (error) => {
-                res.status(500).json({
-                    error: error,
-                });
-            }
-        );
+        const pokemon: void | PokemonData = await fetchPokemon(
+            req.query.pokemonSlug
+        ).catch((error) => {
+            res.status(500).json({
+                error: error,
+            });
+        });
         res.status(200).json({ pokemon: JSON.stringify(pokemon) });
     } else if (
         req.method === "GET" &&
-        "pokemonName[]" in req.query &&
-        Array.isArray(req.query["pokemonName[]"])
+        "pokemonSlugList[]" in req.query &&
+        Array.isArray(req.query["pokemonSlugList[]"])
     ) {
-        const pokemonDataList: void | PokemonData[] = await fetchPokemonGroup(
-            req.query["pokemonName[]"]
+        const pokemonDataList: void | PokemonData[] = await fetchListOfPokemon(
+            req.query["pokemonSlugList[]"]
         ).catch((error) => {
             res.status(500).json({
                 error: error,

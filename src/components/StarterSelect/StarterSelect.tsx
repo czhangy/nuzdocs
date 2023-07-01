@@ -9,21 +9,21 @@ import { getRun } from "utils";
 
 type Props = {
     runName: string;
-    startersList: string[];
+    starterSlugsList: string[];
     locationName: string;
 };
 
 const StarterSelect: React.FC<Props> = (props: Props) => {
     const [starters, setStarters] = useState<PokemonData[]>([]);
-    const [selectedStarter, setSelectedStarter] = useState<string>("");
+    const [selectedStarterSlug, setSelectedStarterSlug] = useState<string>("");
 
     // Persist selected starter on page load or initialize starter for fresh runs
     useEffect(() => {
         const run: Run = getRun(props.runName);
-        if (run.starterName === "") {
-            setSelectedStarter(props.startersList[0]);
+        if (run.starterSlug === "") {
+            setSelectedStarterSlug(props.starterSlugsList[0]);
         } else {
-            setSelectedStarter(run.starterName);
+            setSelectedStarterSlug(run.starterSlug);
         }
     }, []);
 
@@ -32,38 +32,37 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
         axios
             .get("/api/pokemon", {
                 params: {
-                    pokemonName: props.startersList,
+                    pokemonSlugList: props.starterSlugsList,
                 },
             })
             .then((res) => setStarters(JSON.parse(res.data.pokemon)))
             .catch((error) => {
                 console.log(error);
             });
-    }, [props.startersList]);
+    }, [props.starterSlugsList]);
 
     // Place starter in box and remove existing starter on starter change + set run's starter
     useEffect(() => {
-        if (selectedStarter.length > 0) {
+        if (selectedStarterSlug.length > 0) {
             const run: Run = getRun(props.runName);
-            run.starterName = selectedStarter;
-
-            for (let i = 0; i < run.encounters.length; i++) {
-                if (run.encounters[i].locationName === "starter") {
-                    run.encounters.splice(i, 1);
+            run.starterSlug = selectedStarterSlug;
+            for (let i = 0; i < run.encounterList.length; i++) {
+                if (run.encounterList[i].locationSlug === "starter") {
+                    run.encounterList.splice(i, 1);
                     break;
                 }
             }
             const starter: LocalPokemon = {
-                pokemonName: selectedStarter,
+                pokemonSlug: selectedStarterSlug,
                 status: "caught",
-                locationName: "starter",
+                locationSlug: "starter",
             };
-            run.encounters.push(starter);
-            run.caughtPokemonNames.push(selectedStarter);
+            run.encounterList.push(starter);
+            run.caughtPokemonSlugsList.push(selectedStarterSlug);
 
             localStorage.setItem(props.runName, JSON.stringify(run));
         }
-    }, [selectedStarter]);
+    }, [selectedStarterSlug]);
 
     return (
         <div className={styles["starter-select"]}>
@@ -73,7 +72,8 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                     return (
                         <li
                             className={`${styles.starter} ${
-                                selectedStarter === starter.pokemonName
+                                selectedStarterSlug ===
+                                props.starterSlugsList[key]
                                     ? styles.selected
                                     : ""
                             }`}
@@ -82,7 +82,9 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                             <button
                                 className={styles["select-button"]}
                                 onClick={() =>
-                                    setSelectedStarter(starter.pokemonName)
+                                    setSelectedStarterSlug(
+                                        props.starterSlugsList[key]
+                                    )
                                 }
                             >
                                 <div className={styles.sprite}>

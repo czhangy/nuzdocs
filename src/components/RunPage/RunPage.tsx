@@ -8,14 +8,14 @@ import Run from "@/models/Run";
 import SoulSilver from "@/static/soulsilver";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import styles from "./RunPage.module.scss";
-import EncounterTable from "../EncounterTable/EncounterTable";
 import { getRun } from "utils";
+import EncounterTable from "../EncounterTable/EncounterTable";
+import styles from "./RunPage.module.scss";
 
 type Props = {
-    gameName: string;
+    gameSlug: string;
     runName: string;
-    locationName: string;
+    locationSlug: string;
 };
 
 const RunPage: React.FC<Props> = (props) => {
@@ -31,7 +31,7 @@ const RunPage: React.FC<Props> = (props) => {
         axios
             .get("/api/location", {
                 params: {
-                    locationName: props.locationName,
+                    locationSlug: props.locationSlug,
                 },
             })
             .then((res) => {
@@ -45,13 +45,13 @@ const RunPage: React.FC<Props> = (props) => {
 
     const fetchEncounteredPokemonData = () => {
         const run: Run = getRun(props.runName);
-        run.encounters.forEach((encounter: LocalPokemon) => {
-            if (encounter.locationName === props.locationName) {
+        run.encounterList.forEach((encounter: LocalPokemon) => {
+            if (encounter.locationSlug === props.locationSlug) {
                 setMissedEncounter(encounter.status === "missed");
                 axios
                     .get("/api/pokemon", {
                         params: {
-                            name: encounter.pokemonName,
+                            pokemonSlug: encounter.pokemonSlug,
                         },
                     })
                     .then((res) =>
@@ -67,17 +67,17 @@ const RunPage: React.FC<Props> = (props) => {
 
     // Get data associated with current location on page load
     useEffect(() => {
-        if (props.locationName && props.locationName.length > 0) {
+        if (props.locationSlug && props.locationSlug.length > 0) {
             fetchLocationData();
         }
-    }, [props.locationName]);
+    }, [props.locationSlug]);
 
     // Fetch location's encounter data for encounter display
     useEffect(() => {
-        if (props.runName && props.locationName) {
+        if (props.runName && props.locationSlug) {
             fetchEncounteredPokemonData();
         }
-    }, [props.runName, props.locationName]);
+    }, [props.runName, props.locationSlug]);
 
     return (
         <div className={styles["run-page"]}>
@@ -87,10 +87,10 @@ const RunPage: React.FC<Props> = (props) => {
                         <h2 className={styles["location-name"]}>
                             {currentLocation.locationName}
                         </h2>
-                        {props.locationName === game.startingTown ? (
+                        {props.locationSlug === game.startingTown ? (
                             <StarterSelect
                                 runName={props.runName}
-                                startersList={game.starters}
+                                starterSlugsList={game.starters}
                                 locationName={game.startingTown}
                             />
                         ) : (
@@ -98,7 +98,7 @@ const RunPage: React.FC<Props> = (props) => {
                         )}
                         <EncounterTable
                             runName={props.runName}
-                            areaNames={currentLocation.areaNames}
+                            areaSlugList={currentLocation.areaSlugList}
                         />
                     </>
                 ) : (
