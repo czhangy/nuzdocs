@@ -15,7 +15,7 @@ import {
 
 type ResData = {
     location?: string;
-    area?: string;
+    areaList?: string;
     error?: string;
 };
 
