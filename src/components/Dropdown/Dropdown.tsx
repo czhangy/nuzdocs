@@ -1,18 +1,18 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Dropdown.module.scss";
 
 type Props = {
     placeholder: string;
     options: string[];
     onSelect: (label: string) => void;
+    disabled?: boolean;
+    reversed?: boolean;
 };
 
 const Dropdown: React.FC<Props> = (props: Props) => {
     const [open, setOpen] = useState<boolean>(false);
     const [displayValue, setDisplayValue] = useState<string>(props.placeholder);
-
-    window.addEventListener("scroll", () => setOpen(false));
 
     const handleSelect = (label: string) => {
         setDisplayValue(label);
@@ -20,14 +20,21 @@ const Dropdown: React.FC<Props> = (props: Props) => {
         props.onSelect(label);
     };
 
+    useEffect(() => {
+        window.addEventListener("scroll", () => setOpen(false));
+    }, []);
+
     return (
-        <div className={styles.dropdown}>
+        <div className={`${styles.dropdown} ${props.reversed ? styles.reversed : ""}`}>
             <div
                 className={`${styles.overlay} ${open ? "" : styles.hidden}`}
                 onClick={() => setOpen(false)}
                 onScroll={() => setOpen(false)}
             />
-            <div className={styles.controller} onClick={() => setOpen(true)}>
+            <div
+                className={`${styles.controller} ${props.disabled ? styles.disabled : ""}`}
+                onClick={() => setOpen(true)}
+            >
                 <p className={styles["display-value"]}>{displayValue}</p>
                 <div className={`${styles.arrow} ${open ? styles.flipped : ""}`}>
                     <Image

@@ -54,7 +54,6 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
             }
             const starter: LocalPokemon = {
                 pokemonSlug: selectedStarterSlug,
-                status: "caught",
                 locationSlug: "starter",
             };
             run.encounterList.push(starter);

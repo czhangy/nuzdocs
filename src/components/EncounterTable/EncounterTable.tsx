@@ -13,6 +13,7 @@ type Props = {
     areaSlugList: string[];
     starterSlugsList: string[];
     gameGroup: string;
+    onFetch: (pokemonDataList: PokemonData[]) => void;
 };
 
 const EncounterTable: React.FC<Props> = (props: Props) => {
@@ -47,8 +48,9 @@ const EncounterTable: React.FC<Props> = (props: Props) => {
                 },
             })
             .then((res) => {
-                const pokemonData = res.data.pokemon;
-                setPokemonDataList(JSON.parse(pokemonData));
+                const pokemonDataList: PokemonData[] = JSON.parse(res.data.pokemon);
+                setPokemonDataList(pokemonDataList);
+                props.onFetch(pokemonDataList);
             })
             .catch((error: any) => {
                 console.log(error);

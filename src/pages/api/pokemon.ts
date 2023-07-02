@@ -23,6 +23,7 @@ const fetchPokemon = async (pokemonSlug: string) => {
     try {
         const pokemon: Pokemon = await api.getPokemonByName(pokemonSlug);
         return {
+            pokemonSlug: pokemonSlug,
             pokemonName: await fetchPokemonName(pokemon.name),
             types: pokemon.types.map((type) => type.type.name),
             sprite: pokemon.sprites.front_default!,

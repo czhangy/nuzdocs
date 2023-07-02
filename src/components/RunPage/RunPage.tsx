@@ -19,9 +19,9 @@ type Props = {
 };
 
 const RunPage: React.FC<Props> = (props) => {
-    const [missedEncounter, setMissedEncounter] = useState<boolean>(false);
     const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | null>(null);
     const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
+    const [pokemonDataList, setPokemonDataList] = useState<PokemonData[]>([]);
     const game: Game = SoulSilver;
 
     const fetchLocationData = () => {
@@ -44,7 +44,6 @@ const RunPage: React.FC<Props> = (props) => {
         const run: Run = getRun(props.runName);
         run.encounterList.forEach((encounter: LocalPokemon) => {
             if (encounter.locationSlug === props.locationSlug) {
-                setMissedEncounter(encounter.status === "missed");
                 axios
                     .get("/api/pokemon", {
                         params: {
@@ -58,6 +57,19 @@ const RunPage: React.FC<Props> = (props) => {
                 return;
             }
         });
+    };
+
+    const saveEncounter = (pokemonSlug: string) => {
+        const run: Run = getRun(props.runName);
+        const newEncounter: LocalPokemon = {
+            pokemonSlug: pokemonSlug,
+            locationSlug: props.locationSlug,
+        };
+        run.encounterList = run.encounterList.filter(
+            (encounter: LocalPokemon) => encounter.locationSlug !== props.locationSlug
+        );
+        run.encounterList.push(newEncounter);
+        localStorage.setItem(props.runName, JSON.stringify(run));
     };
 
     // Get data associated with current location on page load
@@ -94,6 +106,7 @@ const RunPage: React.FC<Props> = (props) => {
                             areaSlugList={currentLocation.areaSlugList}
                             starterSlugsList={game.starterSlugs}
                             gameGroup={game.gameGroup}
+                            onFetch={(pokemonDataList: PokemonData[]) => setPokemonDataList(pokemonDataList)}
                         />
                     </>
                 ) : (
@@ -101,7 +114,11 @@ const RunPage: React.FC<Props> = (props) => {
                 )}
             </div>
             <div className={styles["sticky-info"]}>
-                <EncounterDisplay encounteredPokemon={encounteredPokemon} missedEncounter={missedEncounter} />
+                <EncounterDisplay
+                    encounteredPokemon={encounteredPokemon}
+                    pokemonDataList={pokemonDataList}
+                    onSelect={(pokemonSlug: string) => saveEncounter(pokemonSlug)}
+                />
             </div>
         </div>
     );

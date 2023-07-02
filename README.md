@@ -35,8 +35,7 @@
     -   [Summary](#summary)
     -   [Tech Stack](#tech-stack)
     -   [Features](#features)
-    -   [Environment Variables](#environment-variables)
--   [Roadmap](#roadmap)
+-   [To-Dos](#to-do)
 -   [License](#license)
 -   [Contact](#contact)
 -   [Acknowledgements](#acknowledgements)
@@ -109,49 +108,22 @@ The most up-to-date version of NuzlockeDB is currently deployed at: [PROJECT_URL
     </a>
 </details>
 
-<!-- Env Variables -->
+<!-- To-Do -->
 
-### Environment Variables
+## To-Do
 
-To run this project, you will need to add the following environment variables to your `.env` file
-
--   `DATABASE_URL`
-
-<!-- Roadmap -->
-
-## Roadmap
-
--   [ ] Data collection
-
--   [ ] Persistent storage
-
-    -   [ ] Local storage data saves run info
-    -   [ ] Import/export run data
-
--   [ ] Run roadmap/tracker
-
-    -   [ ] Routes
-        -   [ ] Maps
-    -   [ ] Encounters
-    -   [ ] Major fights
-        -   [ ] Auto-complete damage calcs
-    -   [ ] Deaths
-    -   [ ] Box
-    -   [ ] Run finish
-    -   [ ] Master list/overview
-
+-   [ ] Run navigation
+-   [ ] Major fights
+-   [ ] Box view
+-   [ ] About page
+-   [ ] Encounter table rework
+-   [ ] Custom encounter input
+-   [ ] Location maps
+-   [ ] Tier list page
+-   [ ] Game data
+-   [ ] Game select
+-   [ ] Coverage calculator
 -   [ ] Damage calculator
-
-    -   [ ] Pokémon select
-    -   [ ] EV/IV input
-    -   [ ] Damage ranges
-    -   [ ] OHKO Percentages
-    -   [ ] Boosts
-
--   [ ] Type calculator
-    -   [ ] Defensive coverage
-    -   [ ] Offensive coverage
-        -   [ ] STAB coverage
 
 ## License
 
