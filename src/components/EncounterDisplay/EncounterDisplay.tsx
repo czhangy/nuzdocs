@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 type Props = {
     encounteredPokemon: PokemonData | null;
-    missedEncounter: boolean;
     pokemonDataList: PokemonData[];
     onSelect: (pokemonName: string) => void;
 };
