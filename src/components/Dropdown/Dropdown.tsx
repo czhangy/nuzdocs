@@ -27,7 +27,7 @@ const Dropdown: React.FC<Props> = (props: Props) => {
                 onClick={() => setOpen(false)}
                 onScroll={() => setOpen(false)}
             />
-            <div className={styles.controller} onClick={() => setOpen(!open)}>
+            <div className={styles.controller} onClick={() => setOpen(true)}>
                 <p className={styles["display-value"]}>{displayValue}</p>
                 <div className={`${styles.arrow} ${open ? styles.flipped : ""}`}>
                     <Image
