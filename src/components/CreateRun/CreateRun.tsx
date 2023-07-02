@@ -8,10 +8,11 @@ const CreateRun: React.FC = () => {
     const [nameError, setNameError] = useState<boolean>(false);
 
     const newRun: Run = {
-        gameName: "soulsilver",
-        prevLocationName: "new-bark-town",
-        starterName: "",
-        encounters: [],
+        gameSlug: "soulsilver",
+        prevLocationSlug: "new-bark-town",
+        starterSlug: "",
+        encounterList: [],
+        caughtPokemonSlugsList: [],
     };
 
     const onCreateRun = (e: React.FormEvent<HTMLFormElement>) => {
@@ -39,11 +40,7 @@ const CreateRun: React.FC = () => {
     return (
         <div className={styles["create-run"]}>
             <h2 className={styles["create-header"]}>Start a New Run</h2>
-            <form
-                id="create-form"
-                className={styles["create-form"]}
-                onSubmit={onCreateRun}
-            >
+            <form id="create-form" className={styles["create-form"]} onSubmit={onCreateRun}>
                 <input
                     className={styles["create-input"]}
                     maxLength={30}
@@ -53,17 +50,11 @@ const CreateRun: React.FC = () => {
                     onChange={(e) => setName(e.target.value)}
                 />
                 {nameError ? (
-                    <p className={styles.error}>
-                        This name is already being used, please choose another
-                        one.
-                    </p>
+                    <p className={styles.error}>This name is already being used, please choose another one.</p>
                 ) : (
                     ""
                 )}
-                <button
-                    className={styles["submit-button"]}
-                    disabled={name.length === 0}
-                >
+                <button className={styles["submit-button"]} disabled={name.length === 0}>
                     Start!
                 </button>
             </form>

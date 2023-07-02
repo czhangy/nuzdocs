@@ -1,8 +1,9 @@
 import LocalLocation from "@/models/LocalLocation";
 
 export default interface Game {
-    name: string;
+    slug: string;
+    gameGroup: string;
     locations: LocalLocation[];
-    starters: string[];
+    starterSlugs: string[];
     startingTown: string;
 }

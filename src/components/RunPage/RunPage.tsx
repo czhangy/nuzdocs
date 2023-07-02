@@ -1,38 +1,39 @@
 import EncounterDisplay from "@/components/EncounterDisplay/EncounterDisplay";
 import StarterSelect from "@/components/StarterSelect/StarterSelect";
 import Game from "@/models/Game";
-import LocalEncounter from "@/models/LocalEncounter";
+import LocalPokemon from "@/models/LocalPokemon";
 import LocationData from "@/models/LocationData";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import SoulSilver from "@/static/soulsilver";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { getRun } from "utils";
+import EncounterTable from "../EncounterTable/EncounterTable";
 import styles from "./RunPage.module.scss";
 
 type Props = {
-    gameName: string;
+    gameSlug: string;
     runName: string;
-    locationName: string;
+    locationSlug: string;
 };
 
 const RunPage: React.FC<Props> = (props) => {
     const [missedEncounter, setMissedEncounter] = useState<boolean>(false);
-    const [encounteredPokemon, setEncounteredPokemon] =
-        useState<PokemonData | null>(null);
-    const [locationData, setLocationData] = useState<LocationData | null>(null);
+    const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | null>(null);
+    const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
     const game: Game = SoulSilver;
 
     const fetchLocationData = () => {
         axios
             .get("/api/location", {
                 params: {
-                    location: props.locationName,
+                    locationSlug: props.locationSlug,
                 },
             })
             .then((res) => {
                 const locationData = res.data;
-                setLocationData(JSON.parse(locationData.location));
+                setCurrentLocation(JSON.parse(locationData.location));
             })
             .catch((error) => {
                 console.log(error);
@@ -40,21 +41,17 @@ const RunPage: React.FC<Props> = (props) => {
     };
 
     const fetchEncounteredPokemonData = () => {
-        const run: Run = JSON.parse(
-            localStorage.getItem(props.runName) as string
-        );
-        run.encounters.forEach((encounter: LocalEncounter) => {
-            if (encounter.locationName === props.locationName) {
+        const run: Run = getRun(props.runName);
+        run.encounterList.forEach((encounter: LocalPokemon) => {
+            if (encounter.locationSlug === props.locationSlug) {
                 setMissedEncounter(encounter.status === "missed");
                 axios
                     .get("/api/pokemon", {
                         params: {
-                            name: encounter.pokemonName,
+                            pokemonSlug: encounter.pokemonSlug,
                         },
                     })
-                    .then((res) =>
-                        setEncounteredPokemon(JSON.parse(res.data.pokemon))
-                    )
+                    .then((res) => setEncounteredPokemon(JSON.parse(res.data.pokemon)))
                     .catch((error) => {
                         console.log(error);
                     });
@@ -63,45 +60,48 @@ const RunPage: React.FC<Props> = (props) => {
         });
     };
 
+    // Get data associated with current location on page load
     useEffect(() => {
-        if (props.locationName && props.locationName.length > 0) {
+        if (props.locationSlug && props.locationSlug.length > 0) {
             fetchLocationData();
         }
-    }, [props.locationName]);
+    }, [props.locationSlug]);
 
+    // Fetch location's encounter data for encounter display
     useEffect(() => {
-        if (props.runName && props.locationName) {
+        if (props.runName && props.locationSlug) {
             fetchEncounteredPokemonData();
         }
-    }, [props.runName, props.locationName]);
+    }, [props.runName, props.locationSlug]);
 
     return (
         <div className={styles["run-page"]}>
             <div className={styles["run-info"]}>
-                {locationData ? (
+                {currentLocation ? (
                     <>
-                        <h2 className={styles["location-name"]}>
-                            {locationData.name}
-                        </h2>
-                        {props.locationName === game.startingTown ? (
+                        <h2 className={styles["location-name"]}>{currentLocation.locationName}</h2>
+                        {props.locationSlug === game.startingTown ? (
                             <StarterSelect
                                 runName={props.runName}
-                                startersList={game.starters}
+                                starterSlugsList={game.starterSlugs}
                                 locationName={game.startingTown}
                             />
                         ) : (
                             ""
                         )}
+                        <EncounterTable
+                            runName={props.runName}
+                            areaSlugList={currentLocation.areaSlugList}
+                            starterSlugsList={game.starterSlugs}
+                            gameGroup={game.gameGroup}
+                        />
                     </>
                 ) : (
                     ""
                 )}
             </div>
             <div className={styles["sticky-info"]}>
-                <EncounterDisplay
-                    encounteredPokemon={encounteredPokemon}
-                    missedEncounter={missedEncounter}
-                />
+                <EncounterDisplay encounteredPokemon={encounteredPokemon} missedEncounter={missedEncounter} />
             </div>
         </div>
     );

@@ -1,5 +1,5 @@
 export default interface PokemonData {
-    name: string;
+    pokemonName: string;
     types: string[];
     sprite: string;
 }

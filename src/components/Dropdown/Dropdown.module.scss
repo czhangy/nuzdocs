@@ -1,0 +1,103 @@
+@use "@/styles/constants";
+
+.dropdown {
+    --chevron-size: 20px;
+
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    .overlay {
+        background: transparent;
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 99;
+    }
+
+    .controller {
+        align-items: center;
+        border: 2px solid constants.$text-color;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        padding: 0.5rem 4rem;
+
+        .display-value {
+            font-size: 1.2rem;
+        }
+
+        .arrow {
+            filter: constants.$svg-color;
+            height: var(--chevron-size);
+            position: absolute;
+            transition: transform 0.2s;
+            right: 1rem;
+            width: var(--chevron-size);
+        }
+
+        .flipped {
+            transform: rotate(180deg);
+        }
+    }
+
+    .dropdown-options {
+        background-color: constants.$bg-color;
+        border: 2px solid constants.$text-color;
+        border-radius: 5px;
+        max-height: 300px;
+        overflow-y: scroll;
+        position: absolute;
+        top: 3rem;
+        transition: opacity 0.2s, transform 0.2s;
+        width: 100%;
+        z-index: 100;
+
+        .dropdown-option {
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.5rem 0;
+            text-align: center;
+            width: 100%;
+        }
+    }
+
+    ::-webkit-scrollbar {
+        background: constants.$bg-color;
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: constants.$text-color;
+        border: 2px solid constants.$bg-color;
+        border-radius: 20px;
+    }
+
+    .hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-2px);
+    }
+}
+
+@media (hover: hover) {
+    .dropdown {
+        .controller:hover {
+            border-color: constants.$hover-color;
+
+            .display-value {
+                color: constants.$hover-color;
+            }
+
+            .arrow {
+                filter: constants.$svg-hover-color;
+            }
+        }
+
+        .dropdown-options > .dropdown-option:hover {
+            color: constants.$hover-color;
+        }
+    }
+}

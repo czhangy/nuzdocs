@@ -1,75 +1,78 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-
-import { PokemonClient } from "pokenode-ts";
-
 import PokemonData from "@/models/PokemonData";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts";
+import { getEnglishName } from "utils";
 
 type ResData = {
     pokemon?: string;
     error?: string;
 };
 
-const fetchPokemon = async (name: string) => {
-    const api = new PokemonClient();
-    const pokemon = await api.getPokemonByName(name).catch((error) => {
+const fetchPokemonName = async (pokemonSlug: string) => {
+    const api: PokemonClient = new PokemonClient();
+    try {
+        const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemonSlug);
+        return getEnglishName(species.names);
+    } catch (error: any) {
         throw error;
-    });
-    console.log(pokemon);
-    return {
-        name: pokemon.name,
-        types: pokemon.types.map((type) => type.type.name),
-        sprite: pokemon.sprites.front_default!,
-    };
+    }
 };
 
-const fetchPokemonGroup = async (names: string[]) => {
-    let promises: Promise<PokemonData>[] = [];
-
-    names.forEach((name) => {
-        promises.push(
-            fetchPokemon(name).catch((error) => {
-                throw error;
-            })
-        );
-    });
-
-    return await Promise.all(promises).then((pokemonList) => pokemonList);
+const fetchPokemon = async (pokemonSlug: string) => {
+    const api: PokemonClient = new PokemonClient();
+    try {
+        const pokemon: Pokemon = await api.getPokemonByName(pokemonSlug);
+        return {
+            pokemonName: await fetchPokemonName(pokemon.name),
+            types: pokemon.types.map((type) => type.type.name),
+            sprite: pokemon.sprites.front_default!,
+        };
+    } catch (error: any) {
+        throw error;
+    }
 };
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<ResData>
-) {
-    if (
-        req.method === "GET" &&
-        "name" in req.query &&
-        typeof req.query.name === "string"
-    ) {
-        const pokemon = await fetchPokemon(req.query.name).catch((error) => {
-            res.status(500).json({
+const fetchListOfPokemon = async (pokemonSlugList: string[]) => {
+    let pokemonPromises: Promise<PokemonData>[] = [];
+    pokemonSlugList.forEach((pokemonSlug: string) => {
+        pokemonPromises.push(fetchPokemon(pokemonSlug));
+    });
+    try {
+        return await Promise.all(pokemonPromises);
+    } catch (error: any) {
+        throw error;
+    }
+};
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse<ResData>) {
+    if (req.method === "GET" && "pokemonSlug" in req.query && typeof req.query.pokemonSlug === "string") {
+        try {
+            const pokemon: void | PokemonData = await fetchPokemon(req.query.pokemonSlug);
+            return res.status(200).json({ pokemon: JSON.stringify(pokemon) });
+        } catch (error: any) {
+            return res.status(500).json({
                 error: error,
             });
-        });
-        res.status(200).json({ pokemon: JSON.stringify(pokemon) });
+        }
     } else if (
         req.method === "GET" &&
-        "name[]" in req.query &&
-        Array.isArray(req.query["name[]"])
+        "pokemonSlugList[]" in req.query &&
+        Array.isArray(req.query["pokemonSlugList[]"])
     ) {
-        const pokemonDataList: void | PokemonData[] = await fetchPokemonGroup(
-            req.query["name[]"]
-        ).catch((error) => {
-            res.status(500).json({
+        try {
+            const pokemonDataList: void | PokemonData[] = await fetchListOfPokemon(req.query["pokemonSlugList[]"]);
+            return res.status(200).json({ pokemon: JSON.stringify(pokemonDataList) });
+        } catch (error: any) {
+            return res.status(500).json({
                 error: error,
             });
-        });
-        res.status(200).json({ pokemon: JSON.stringify(pokemonDataList) });
+        }
     } else if (req.method === "GET") {
-        res.status(400).json({
+        return res.status(400).json({
             error: "A Pokemon name must be specified",
         });
     } else {
-        res.status(405).json({
+        return res.status(405).json({
             error: "Only GET requests are allowed at this route",
         });
     }
