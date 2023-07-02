@@ -28,16 +28,8 @@ const RunEntry: React.FC<Props> = (props: Props) => {
             <button className={styles["run-button"]} onClick={handleRunNav}>
                 <p className={styles.name}>{props.run}</p>
             </button>
-            <button
-                className={styles["delete-button"]}
-                onClick={handleDeleteRun}
-            >
-                <Image
-                    src="/assets/icons/delete.svg"
-                    alt="Delete"
-                    layout="fill"
-                    objectFit="contain"
-                />
+            <button className={styles["delete-button"]} onClick={handleDeleteRun}>
+                <Image src="/assets/icons/delete.svg" alt="Delete" layout="fill" objectFit="contain" />
             </button>
         </li>
     );

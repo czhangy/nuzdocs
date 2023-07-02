@@ -29,9 +29,7 @@ const Dropdown: React.FC<Props> = (props: Props) => {
             />
             <div className={styles.controller} onClick={() => setOpen(!open)}>
                 <p className={styles["display-value"]}>{displayValue}</p>
-                <div
-                    className={`${styles.arrow} ${open ? styles.flipped : ""}`}
-                >
+                <div className={`${styles.arrow} ${open ? styles.flipped : ""}`}>
                     <Image
                         src="/assets/icons/chevron.svg"
                         alt={open ? "Close dropdown" : "Open dropdown"}
@@ -40,18 +38,10 @@ const Dropdown: React.FC<Props> = (props: Props) => {
                     />
                 </div>
             </div>
-            <ul
-                className={`${styles["dropdown-options"]} ${
-                    open ? "" : styles.hidden
-                }`}
-            >
+            <ul className={`${styles["dropdown-options"]} ${open ? "" : styles.hidden}`}>
                 {props.options.map((option: string, key: number) => {
                     return (
-                        <li
-                            className={styles["dropdown-option"]}
-                            key={key}
-                            onClick={() => handleSelect(option)}
-                        >
+                        <li className={styles["dropdown-option"]} key={key} onClick={() => handleSelect(option)}>
                             {option}
                         </li>
                     );

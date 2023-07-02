@@ -10,17 +10,11 @@ type Props = {
 const EncounterDisplay: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["encounter-display"]}>
-            <div
-                className={`${styles.info} ${
-                    props.missedEncounter ? styles.missed : ""
-                }`}
-            >
+            <div className={`${styles.info} ${props.missedEncounter ? styles.missed : ""}`}>
                 <strong className={`${styles.title}`}>Encounter:</strong>
                 {props.encounteredPokemon ? (
                     <>
-                        <p className={styles.name}>
-                            {props.encounteredPokemon.pokemonName}
-                        </p>
+                        <p className={styles.name}>{props.encounteredPokemon.pokemonName}</p>
                         <span className={styles.divider} />
                         <div className={styles["box-sprite"]}>
                             <Image

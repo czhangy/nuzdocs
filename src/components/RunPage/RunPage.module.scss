@@ -46,8 +46,6 @@
 @media screen and (min-width: constants.$max-width) {
     .run-page > .sticky-info {
         // Account for max size
-        margin-left: calc(
-            (100vw - constants.$max-width) / -2 - constants.$page-padding
-        );
+        margin-left: calc((100vw - constants.$max-width) / -2 - constants.$page-padding);
     }
 }

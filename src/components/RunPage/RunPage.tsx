@@ -20,11 +20,8 @@ type Props = {
 
 const RunPage: React.FC<Props> = (props) => {
     const [missedEncounter, setMissedEncounter] = useState<boolean>(false);
-    const [encounteredPokemon, setEncounteredPokemon] =
-        useState<PokemonData | null>(null);
-    const [currentLocation, setCurrentLocation] = useState<LocationData | null>(
-        null
-    );
+    const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | null>(null);
+    const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
     const game: Game = SoulSilver;
 
     const fetchLocationData = () => {
@@ -54,9 +51,7 @@ const RunPage: React.FC<Props> = (props) => {
                             pokemonSlug: encounter.pokemonSlug,
                         },
                     })
-                    .then((res) =>
-                        setEncounteredPokemon(JSON.parse(res.data.pokemon))
-                    )
+                    .then((res) => setEncounteredPokemon(JSON.parse(res.data.pokemon)))
                     .catch((error) => {
                         console.log(error);
                     });
@@ -84,9 +79,7 @@ const RunPage: React.FC<Props> = (props) => {
             <div className={styles["run-info"]}>
                 {currentLocation ? (
                     <>
-                        <h2 className={styles["location-name"]}>
-                            {currentLocation.locationName}
-                        </h2>
+                        <h2 className={styles["location-name"]}>{currentLocation.locationName}</h2>
                         {props.locationSlug === game.startingTown ? (
                             <StarterSelect
                                 runName={props.runName}
@@ -108,10 +101,7 @@ const RunPage: React.FC<Props> = (props) => {
                 )}
             </div>
             <div className={styles["sticky-info"]}>
-                <EncounterDisplay
-                    encounteredPokemon={encounteredPokemon}
-                    missedEncounter={missedEncounter}
-                />
+                <EncounterDisplay encounteredPokemon={encounteredPokemon} missedEncounter={missedEncounter} />
             </div>
         </div>
     );

@@ -13,30 +13,15 @@ const Footer: React.FC = () => {
                     </p>
                     <p className={styles.text}>
                         Inspired by{" "}
-                        <a
-                            href="https://nuzlocke.app/"
-                            target="_blank"
-                            rel="noreferrer"
-                            className={styles.link}
-                        >
+                        <a href="https://nuzlocke.app/" target="_blank" rel="noreferrer" className={styles.link}>
                             Nuzlocke Tracker
                         </a>
                     </p>
                 </div>
                 <ul className={styles.links}>
                     <li>
-                        <a
-                            href="https://github.com/czhangy"
-                            target="_blank"
-                            rel="noreferrer"
-                            className={styles.icon}
-                        >
-                            <Image
-                                src="/assets/icons/github.svg"
-                                alt="GitHub"
-                                layout="fill"
-                                objectFit="contain"
-                            />
+                        <a href="https://github.com/czhangy" target="_blank" rel="noreferrer" className={styles.icon}>
+                            <Image src="/assets/icons/github.svg" alt="GitHub" layout="fill" objectFit="contain" />
                         </a>
                     </li>
                     <li>
@@ -46,27 +31,12 @@ const Footer: React.FC = () => {
                             rel="noreferrer"
                             className={styles.icon}
                         >
-                            <Image
-                                src="/assets/icons/linkedin.svg"
-                                alt="LinkedIn"
-                                layout="fill"
-                                objectFit="contain"
-                            />
+                            <Image src="/assets/icons/linkedin.svg" alt="LinkedIn" layout="fill" objectFit="contain" />
                         </a>
                     </li>
                     <li>
-                        <a
-                            href="https://twitter.com/czhangy_"
-                            target="_blank"
-                            rel="noreferrer"
-                            className={styles.icon}
-                        >
-                            <Image
-                                src="/assets/icons/twitter.svg"
-                                alt="Twitter"
-                                layout="fill"
-                                objectFit="contain"
-                            />
+                        <a href="https://twitter.com/czhangy_" target="_blank" rel="noreferrer" className={styles.icon}>
+                            <Image src="/assets/icons/twitter.svg" alt="Twitter" layout="fill" objectFit="contain" />
                         </a>
                     </li>
                 </ul>

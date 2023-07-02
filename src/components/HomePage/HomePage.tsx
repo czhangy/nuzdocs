@@ -31,39 +31,24 @@ const HomePage: React.FC = () => {
 
     return (
         <>
-            <Modal
-                modalID="create-run-modal"
-                onClose={closeCreateRunModal}
-                open={createRunOpen}
-            >
+            <Modal modalID="create-run-modal" onClose={closeCreateRunModal} open={createRunOpen}>
                 <CreateRun key={resetFlag} />
             </Modal>
             <div className={styles["home-page"]}>
                 <div className={styles.runs}>
                     <div className={styles.header}>
                         <h2 className={styles.title}>Your Runs</h2>
-                        <button
-                            className={styles["new-button"]}
-                            onClick={() => setCreateRunOpen(true)}
-                        >
+                        <button className={styles["new-button"]} onClick={() => setCreateRunOpen(true)}>
                             + New Run
                         </button>
                     </div>
                     <ul className={styles["run-list"]}>
                         {runs.length > 0 ? (
                             runs.map((run: string, key: number) => {
-                                return (
-                                    <RunEntry
-                                        key={key}
-                                        onDelete={fetchRuns}
-                                        run={run}
-                                    />
-                                );
+                                return <RunEntry key={key} onDelete={fetchRuns} run={run} />;
                             })
                         ) : (
-                            <p className={styles["alt-text"]}>
-                                You don&apos;t have any saved runs yet!
-                            </p>
+                            <p className={styles["alt-text"]}>You don&apos;t have any saved runs yet!</p>
                         )}
                     </ul>
                 </div>

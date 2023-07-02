@@ -72,20 +72,13 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                     return (
                         <li
                             className={`${styles.starter} ${
-                                selectedStarterSlug ===
-                                props.starterSlugsList[key]
-                                    ? styles.selected
-                                    : ""
+                                selectedStarterSlug === props.starterSlugsList[key] ? styles.selected : ""
                             }`}
                             key={key}
                         >
                             <button
                                 className={styles["select-button"]}
-                                onClick={() =>
-                                    setSelectedStarterSlug(
-                                        props.starterSlugsList[key]
-                                    )
-                                }
+                                onClick={() => setSelectedStarterSlug(props.starterSlugsList[key])}
                             >
                                 <div className={styles.sprite}>
                                     <Image

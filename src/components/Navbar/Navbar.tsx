@@ -9,12 +9,7 @@ const Navbar: React.FC = () => {
             <nav className={styles.navbar}>
                 <div className={styles.branding}>
                     <div className={styles.logo}>
-                        <Image
-                            src="/assets/images/nuzleaf.webp"
-                            alt="Logo"
-                            layout="fill"
-                            objectFit="contain"
-                        />
+                        <Image src="/assets/images/nuzleaf.webp" alt="Logo" layout="fill" objectFit="contain" />
                     </div>
                     <h1 className={styles["site-name"]}>NuzlockeDB</h1>
                 </div>

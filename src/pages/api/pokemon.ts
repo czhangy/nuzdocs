@@ -11,9 +11,7 @@ type ResData = {
 const fetchPokemonName = async (pokemonSlug: string) => {
     const api: PokemonClient = new PokemonClient();
     try {
-        const species: PokemonSpecies = await api.getPokemonSpeciesByName(
-            pokemonSlug
-        );
+        const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemonSlug);
         return getEnglishName(species.names);
     } catch (error: any) {
         throw error;
@@ -46,19 +44,10 @@ const fetchListOfPokemon = async (pokemonSlugList: string[]) => {
     }
 };
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<ResData>
-) {
-    if (
-        req.method === "GET" &&
-        "pokemonSlug" in req.query &&
-        typeof req.query.pokemonSlug === "string"
-    ) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<ResData>) {
+    if (req.method === "GET" && "pokemonSlug" in req.query && typeof req.query.pokemonSlug === "string") {
         try {
-            const pokemon: void | PokemonData = await fetchPokemon(
-                req.query.pokemonSlug
-            );
+            const pokemon: void | PokemonData = await fetchPokemon(req.query.pokemonSlug);
             return res.status(200).json({ pokemon: JSON.stringify(pokemon) });
         } catch (error: any) {
             return res.status(500).json({
@@ -71,11 +60,8 @@ export default async function handler(
         Array.isArray(req.query["pokemonSlugList[]"])
     ) {
         try {
-            const pokemonDataList: void | PokemonData[] =
-                await fetchListOfPokemon(req.query["pokemonSlugList[]"]);
-            return res
-                .status(200)
-                .json({ pokemon: JSON.stringify(pokemonDataList) });
+            const pokemonDataList: void | PokemonData[] = await fetchListOfPokemon(req.query["pokemonSlugList[]"]);
+            return res.status(200).json({ pokemon: JSON.stringify(pokemonDataList) });
         } catch (error: any) {
             return res.status(500).json({
                 error: error,

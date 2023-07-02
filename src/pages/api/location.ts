@@ -19,38 +19,30 @@ type ResData = {
     error?: any;
 };
 
-const getEncounterDataForSinglePokemon = (
-    pokemonEncounter: PokemonEncounter,
-    gameSlug: string
-) => {
+const getEncounterDataForSinglePokemon = (pokemonEncounter: PokemonEncounter, gameSlug: string) => {
     let encounterData: EncounterData[] = [];
     const versionDetails = pokemonEncounter.version_details;
-    const versionEncounterDetails: VersionEncounterDetail =
-        versionDetails.filter(
-            (ved: VersionEncounterDetail) => ved.version.name === gameSlug
-        )[0];
+    const versionEncounterDetails: VersionEncounterDetail = versionDetails.filter(
+        (ved: VersionEncounterDetail) => ved.version.name === gameSlug
+    )[0];
     const encounters: Encounter[] = versionEncounterDetails.encounter_details;
-    const groupedEncounters = groupBy(
-        encounters,
-        (encounter: Encounter) => encounter.method.name
+    const groupedEncounters = groupBy(encounters, (encounter: Encounter) =>
+        getEncounterMethodName(encounter.method.name, encounter.condition_values)
     );
-    for (let methodSlug in groupedEncounters) {
+    for (let method in groupedEncounters) {
         encounterData.push({
             pokemonSlug: pokemonEncounter.pokemon.name,
-            method: getEncounterMethodName(methodSlug),
-            chance: groupedEncounters[methodSlug].reduce(
-                (sum: number, encounter: Encounter) => sum + encounter.chance,
-                0
-            ),
+            method: method,
+            chance: groupedEncounters[method].reduce((sum: number, encounter: Encounter) => sum + encounter.chance, 0),
             minLevel: Math.min.apply(
                 null,
-                groupedEncounters[methodSlug].map((encounter: Encounter) => {
+                groupedEncounters[method].map((encounter: Encounter) => {
                     return encounter.min_level;
                 })
             ),
             maxLevel: Math.max.apply(
                 null,
-                groupedEncounters[methodSlug].map((encounter: Encounter) => {
+                groupedEncounters[method].map((encounter: Encounter) => {
                     return encounter.max_level;
                 })
             ),
@@ -59,21 +51,13 @@ const getEncounterDataForSinglePokemon = (
     return encounterData;
 };
 
-const getEncounterDataForAllPokemon = (
-    pokemonEncounters: PokemonEncounter[],
-    gameSlug: string
-) => {
+const getEncounterDataForAllPokemon = (pokemonEncounters: PokemonEncounter[], gameSlug: string) => {
     let encounterData: EncounterData[][] = [];
-    pokemonEncounters = pokemonEncounters.filter(
-        (pokemonEncounter: PokemonEncounter) =>
-            pokemonEncounter.version_details.some(
-                (ved) => ved.version.name === gameSlug
-            )
+    pokemonEncounters = pokemonEncounters.filter((pokemonEncounter: PokemonEncounter) =>
+        pokemonEncounter.version_details.some((ved) => ved.version.name === gameSlug)
     );
     pokemonEncounters.forEach((pokemonEncounter: PokemonEncounter) => {
-        encounterData.push(
-            getEncounterDataForSinglePokemon(pokemonEncounter, gameSlug)
-        );
+        encounterData.push(getEncounterDataForSinglePokemon(pokemonEncounter, gameSlug));
     });
     return encounterData.flat();
 };
@@ -97,10 +81,7 @@ const fetchArea = async (areaSlug: string, gameSlug: string) => {
         const area: LocationArea = await api.getLocationAreaByName(areaSlug);
         return {
             areaName: getEnglishName(area.names),
-            encounters: getEncounterDataForAllPokemon(
-                area.pokemon_encounters,
-                gameSlug
-            ),
+            encounters: getEncounterDataForAllPokemon(area.pokemon_encounters, gameSlug),
         };
     } catch (error: any) {
         throw error;
@@ -119,19 +100,10 @@ const fetchListOfAreas = async (areaSlugList: string[], gameSlug: string) => {
     }
 };
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<ResData>
-) {
-    if (
-        req.method === "GET" &&
-        "locationSlug" in req.query &&
-        typeof req.query.locationSlug === "string"
-    ) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<ResData>) {
+    if (req.method === "GET" && "locationSlug" in req.query && typeof req.query.locationSlug === "string") {
         try {
-            const location: void | LocationData = await fetchLocation(
-                req.query.locationSlug
-            );
+            const location: void | LocationData = await fetchLocation(req.query.locationSlug);
             return res.status(200).json({
                 location: JSON.stringify(location),
             });
@@ -144,20 +116,14 @@ export default async function handler(
         req.method === "GET" &&
         "areaSlugList[]" in req.query &&
         "gameSlug" in req.query &&
-        (Array.isArray(req.query["areaSlugList[]"]) ||
-            typeof req.query["areaSlugList[]"] === "string") &&
+        (Array.isArray(req.query["areaSlugList[]"]) || typeof req.query["areaSlugList[]"] === "string") &&
         typeof req.query.gameSlug === "string"
     ) {
-        const areaSlugList: string[] = Array.isArray(
-            req.query["areaSlugList[]"]
-        )
+        const areaSlugList: string[] = Array.isArray(req.query["areaSlugList[]"])
             ? req.query["areaSlugList[]"]
             : [req.query["areaSlugList[]"]];
         try {
-            const areaList: void | AreaData[] = await fetchListOfAreas(
-                areaSlugList,
-                req.query.gameSlug
-            );
+            const areaList: void | AreaData[] = await fetchListOfAreas(areaSlugList, req.query.gameSlug);
             return res.status(200).json({ areaList: JSON.stringify(areaList) });
         } catch (error: any) {
             return res.status(500).json({
