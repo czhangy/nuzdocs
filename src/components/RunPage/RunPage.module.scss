@@ -22,13 +22,12 @@
 
     .sticky-info {
         background: constants.$bg-color;
-        bottom: 2rem;
+        bottom: 0;
         box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
         display: flex;
         justify-content: center;
-        margin-bottom: 2rem;
         margin-left: calc(constants.$page-padding * -1);
-        padding-top: 2rem;
+        padding: 2rem 0;
         position: sticky;
         width: 100vw;
     }

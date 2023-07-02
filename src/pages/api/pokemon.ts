@@ -30,9 +30,7 @@ const fetchListOfPokemon = async (pokemonSlugList: string[]) => {
             })
         );
     });
-    return await Promise.all(pokemonPromises).then(
-        (pokemonList) => pokemonList
-    );
+    return await Promise.all(pokemonPromises);
 };
 
 export default async function handler(
@@ -47,11 +45,11 @@ export default async function handler(
         const pokemon: void | PokemonData = await fetchPokemon(
             req.query.pokemonSlug
         ).catch((error) => {
-            res.status(500).json({
+            return res.status(500).json({
                 error: error,
             });
         });
-        res.status(200).json({ pokemon: JSON.stringify(pokemon) });
+        return res.status(200).json({ pokemon: JSON.stringify(pokemon) });
     } else if (
         req.method === "GET" &&
         "pokemonSlugList[]" in req.query &&
@@ -60,17 +58,19 @@ export default async function handler(
         const pokemonDataList: void | PokemonData[] = await fetchListOfPokemon(
             req.query["pokemonSlugList[]"]
         ).catch((error) => {
-            res.status(500).json({
+            return res.status(500).json({
                 error: error,
             });
         });
-        res.status(200).json({ pokemon: JSON.stringify(pokemonDataList) });
+        return res
+            .status(200)
+            .json({ pokemon: JSON.stringify(pokemonDataList) });
     } else if (req.method === "GET") {
-        res.status(400).json({
+        return res.status(400).json({
             error: "A Pokemon name must be specified",
         });
     } else {
-        res.status(405).json({
+        return res.status(405).json({
             error: "Only GET requests are allowed at this route",
         });
     }
