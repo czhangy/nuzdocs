@@ -8,20 +8,15 @@ import {
     Location,
     LocationArea,
     LocationClient,
-    Name,
     PokemonEncounter,
     VersionEncounterDetail,
 } from "pokenode-ts";
+import { getEncounterMethodName, getEnglishName } from "utils";
 
 type ResData = {
     location?: string;
     areaList?: string;
     error?: any;
-};
-
-const getEnglishName: (names: Name[]) => string = (names: Name[]) => {
-    const nameObj: Name = names.find((name) => name.language.name === "en")!;
-    return nameObj.name;
 };
 
 const getEncounterDataForSinglePokemon = (
@@ -39,23 +34,23 @@ const getEncounterDataForSinglePokemon = (
         encounters,
         (encounter: Encounter) => encounter.method.name
     );
-    for (let method in groupedEncounters) {
+    for (let methodSlug in groupedEncounters) {
         encounterData.push({
-            pokemonName: pokemonEncounter.pokemon.name,
-            method: method,
-            chance: groupedEncounters[method].reduce(
+            pokemonSlug: pokemonEncounter.pokemon.name,
+            method: getEncounterMethodName(methodSlug),
+            chance: groupedEncounters[methodSlug].reduce(
                 (sum: number, encounter: Encounter) => sum + encounter.chance,
                 0
             ),
             minLevel: Math.min.apply(
                 null,
-                groupedEncounters[method].map((encounter: Encounter) => {
+                groupedEncounters[methodSlug].map((encounter: Encounter) => {
                     return encounter.min_level;
                 })
             ),
             maxLevel: Math.max.apply(
                 null,
-                groupedEncounters[method].map((encounter: Encounter) => {
+                groupedEncounters[methodSlug].map((encounter: Encounter) => {
                     return encounter.max_level;
                 })
             ),
@@ -68,7 +63,7 @@ const getEncounterDataForAllPokemon = (
     pokemonEncounters: PokemonEncounter[],
     gameSlug: string
 ) => {
-    let encounterData: EncounterData[] = [];
+    let encounterData: EncounterData[][] = [];
     pokemonEncounters = pokemonEncounters.filter(
         (pokemonEncounter: PokemonEncounter) =>
             pokemonEncounter.version_details.some(
@@ -76,13 +71,11 @@ const getEncounterDataForAllPokemon = (
             )
     );
     pokemonEncounters.forEach((pokemonEncounter: PokemonEncounter) => {
-        const pokemonEncounterData: EncounterData[] =
-            getEncounterDataForSinglePokemon(pokemonEncounter, gameSlug);
-        pokemonEncounterData.forEach((data: EncounterData) => {
-            encounterData.push(data);
-        });
+        encounterData.push(
+            getEncounterDataForSinglePokemon(pokemonEncounter, gameSlug)
+        );
     });
-    return encounterData;
+    return encounterData.flat();
 };
 
 const fetchLocation = async (locationSlug: string) => {
@@ -102,7 +95,6 @@ const fetchArea = async (areaSlug: string, gameSlug: string) => {
     const api: LocationClient = new LocationClient();
     try {
         const area: LocationArea = await api.getLocationAreaByName(areaSlug);
-        console.log(area.names);
         return {
             areaName: getEnglishName(area.names),
             encounters: getEncounterDataForAllPokemon(

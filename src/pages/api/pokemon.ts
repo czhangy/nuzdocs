@@ -1,36 +1,49 @@
 import PokemonData from "@/models/PokemonData";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Pokemon, PokemonClient } from "pokenode-ts";
+import { Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts";
+import { getEnglishName } from "utils";
 
 type ResData = {
     pokemon?: string;
     error?: string;
 };
 
+const fetchPokemonName = async (pokemonSlug: string) => {
+    const api: PokemonClient = new PokemonClient();
+    try {
+        const species: PokemonSpecies = await api.getPokemonSpeciesByName(
+            pokemonSlug
+        );
+        return getEnglishName(species.names);
+    } catch (error: any) {
+        throw error;
+    }
+};
+
 const fetchPokemon = async (pokemonSlug: string) => {
     const api: PokemonClient = new PokemonClient();
-    const pokemon: Pokemon = await api
-        .getPokemonByName(pokemonSlug)
-        .catch((error) => {
-            throw error;
-        });
-    return {
-        pokemonName: pokemon.name,
-        types: pokemon.types.map((type) => type.type.name),
-        sprite: pokemon.sprites.front_default!,
-    };
+    try {
+        const pokemon: Pokemon = await api.getPokemonByName(pokemonSlug);
+        return {
+            pokemonName: await fetchPokemonName(pokemon.name),
+            types: pokemon.types.map((type) => type.type.name),
+            sprite: pokemon.sprites.front_default!,
+        };
+    } catch (error: any) {
+        throw error;
+    }
 };
 
 const fetchListOfPokemon = async (pokemonSlugList: string[]) => {
     let pokemonPromises: Promise<PokemonData>[] = [];
     pokemonSlugList.forEach((pokemonSlug: string) => {
-        pokemonPromises.push(
-            fetchPokemon(pokemonSlug).catch((error) => {
-                throw error;
-            })
-        );
+        pokemonPromises.push(fetchPokemon(pokemonSlug));
     });
-    return await Promise.all(pokemonPromises);
+    try {
+        return await Promise.all(pokemonPromises);
+    } catch (error: any) {
+        throw error;
+    }
 };
 
 export default async function handler(
@@ -42,29 +55,32 @@ export default async function handler(
         "pokemonSlug" in req.query &&
         typeof req.query.pokemonSlug === "string"
     ) {
-        const pokemon: void | PokemonData = await fetchPokemon(
-            req.query.pokemonSlug
-        ).catch((error) => {
+        try {
+            const pokemon: void | PokemonData = await fetchPokemon(
+                req.query.pokemonSlug
+            );
+            return res.status(200).json({ pokemon: JSON.stringify(pokemon) });
+        } catch (error: any) {
             return res.status(500).json({
                 error: error,
             });
-        });
-        return res.status(200).json({ pokemon: JSON.stringify(pokemon) });
+        }
     } else if (
         req.method === "GET" &&
         "pokemonSlugList[]" in req.query &&
         Array.isArray(req.query["pokemonSlugList[]"])
     ) {
-        const pokemonDataList: void | PokemonData[] = await fetchListOfPokemon(
-            req.query["pokemonSlugList[]"]
-        ).catch((error) => {
+        try {
+            const pokemonDataList: void | PokemonData[] =
+                await fetchListOfPokemon(req.query["pokemonSlugList[]"]);
+            return res
+                .status(200)
+                .json({ pokemon: JSON.stringify(pokemonDataList) });
+        } catch (error: any) {
             return res.status(500).json({
                 error: error,
             });
-        });
-        return res
-            .status(200)
-            .json({ pokemon: JSON.stringify(pokemonDataList) });
+        }
     } else if (req.method === "GET") {
         return res.status(400).json({
             error: "A Pokemon name must be specified",

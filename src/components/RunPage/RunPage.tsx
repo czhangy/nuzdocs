@@ -90,7 +90,7 @@ const RunPage: React.FC<Props> = (props) => {
                         {props.locationSlug === game.startingTown ? (
                             <StarterSelect
                                 runName={props.runName}
-                                starterSlugsList={game.starters}
+                                starterSlugsList={game.starterSlugs}
                                 locationName={game.startingTown}
                             />
                         ) : (
@@ -99,6 +99,8 @@ const RunPage: React.FC<Props> = (props) => {
                         <EncounterTable
                             runName={props.runName}
                             areaSlugList={currentLocation.areaSlugList}
+                            starterSlugsList={game.starterSlugs}
+                            gameGroup={game.gameGroup}
                         />
                     </>
                 ) : (

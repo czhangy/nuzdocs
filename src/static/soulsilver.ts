@@ -1,13 +1,14 @@
 import Game from "@/models/Game";
 
 const SoulSilver: Game = {
-    name: "soulsilver",
+    slug: "soulsilver",
+    gameGroup: "hgss",
     locations: [
         {
             slug: "new-bark-town",
         },
     ],
-    starters: ["chikorita", "cyndaquil", "totodile"],
+    starterSlugs: ["chikorita", "cyndaquil", "totodile"],
     startingTown: "new-bark-town",
 };
 

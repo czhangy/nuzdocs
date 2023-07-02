@@ -1,5 +1,5 @@
 export default interface EncounterData {
-    pokemonName: string;
+    pokemonSlug: string;
     method: string;
     chance: number;
     minLevel: number;

@@ -1,6 +1,5 @@
 import PokemonData from "@/models/PokemonData";
 import Image from "next/image";
-import { formatName } from "utils";
 import styles from "./EncounterDisplay.module.scss";
 
 type Props = {
@@ -20,7 +19,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                 {props.encounteredPokemon ? (
                     <>
                         <p className={styles.name}>
-                            {formatName(props.encounteredPokemon.pokemonName)}
+                            {props.encounteredPokemon.pokemonName}
                         </p>
                         <span className={styles.divider} />
                         <div className={styles["box-sprite"]}>

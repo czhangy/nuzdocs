@@ -44,6 +44,7 @@
     }
 
     .dropdown-options {
+        background-color: constants.$bg-color;
         border: 2px solid constants.$text-color;
         border-radius: 5px;
         max-height: 300px;
