@@ -22,6 +22,7 @@ const RunPage: React.FC<Props> = (props) => {
     const [missedEncounter, setMissedEncounter] = useState<boolean>(false);
     const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | null>(null);
     const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
+    const [pokemonDataList, setPokemonDataList] = useState<PokemonData[]>([]);
     const game: Game = SoulSilver;
 
     const fetchLocationData = () => {
@@ -94,6 +95,7 @@ const RunPage: React.FC<Props> = (props) => {
                             areaSlugList={currentLocation.areaSlugList}
                             starterSlugsList={game.starterSlugs}
                             gameGroup={game.gameGroup}
+                            onFetch={(pokemonDataList: PokemonData[]) => setPokemonDataList(pokemonDataList)}
                         />
                     </>
                 ) : (
@@ -101,7 +103,11 @@ const RunPage: React.FC<Props> = (props) => {
                 )}
             </div>
             <div className={styles["sticky-info"]}>
-                <EncounterDisplay encounteredPokemon={encounteredPokemon} missedEncounter={missedEncounter} />
+                <EncounterDisplay
+                    encounteredPokemon={encounteredPokemon}
+                    missedEncounter={missedEncounter}
+                    pokemonDataList={pokemonDataList}
+                />
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 @use "@/styles/constants";
 
 .dropdown {
-    --chevron-size: 20px;
+    --chevron-size: 12px;
 
     display: flex;
     justify-content: center;
@@ -23,7 +23,7 @@
         border-radius: 5px;
         cursor: pointer;
         display: flex;
-        padding: 0.5rem 4rem;
+        padding: 0.5rem 3rem;
 
         .display-value {
             font-size: 1.2rem;
@@ -40,6 +40,16 @@
 
         .flipped {
             transform: rotate(180deg);
+        }
+    }
+
+    .disabled {
+        border-color: constants.$accent-color;
+        color: constants.$accent-color;
+        pointer-events: none;
+
+        .arrow {
+            filter: constants.$svg-accent-color;
         }
     }
 
@@ -79,6 +89,27 @@
         opacity: 0;
         pointer-events: none;
         transform: translateY(-2px);
+    }
+}
+
+.reversed {
+    .controller {
+        .arrow {
+            transform: rotate(180deg);
+        }
+
+        .flipped {
+            transform: rotate(0);
+        }
+    }
+
+    .dropdown-options {
+        bottom: 3rem;
+        top: auto;
+    }
+
+    .hidden {
+        transform: translateY(2px);
     }
 }
 
