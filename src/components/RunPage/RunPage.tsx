@@ -61,6 +61,19 @@ const RunPage: React.FC<Props> = (props) => {
         });
     };
 
+    const saveEncounter = (pokemonSlug: string) => {
+        const run: Run = getRun(props.runName);
+        const newEncounter: LocalPokemon = {
+            pokemonSlug: pokemonSlug,
+            locationSlug: props.locationSlug,
+        };
+        run.encounterList = run.encounterList.filter(
+            (encounter: LocalPokemon) => encounter.locationSlug !== props.locationSlug
+        );
+        run.encounterList.push(newEncounter);
+        localStorage.setItem(props.runName, JSON.stringify(run));
+    };
+
     // Get data associated with current location on page load
     useEffect(() => {
         if (props.locationSlug && props.locationSlug.length > 0) {
@@ -107,6 +120,7 @@ const RunPage: React.FC<Props> = (props) => {
                     encounteredPokemon={encounteredPokemon}
                     missedEncounter={missedEncounter}
                     pokemonDataList={pokemonDataList}
+                    onSelect={(pokemonSlug: string) => saveEncounter(pokemonSlug)}
                 />
             </div>
         </div>
