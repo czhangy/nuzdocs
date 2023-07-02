@@ -1,11 +1,12 @@
+import Dropdown from "@/components/Dropdown/Dropdown";
 import AreaData from "@/models/AreaData";
+import EncounterData from "@/models/EncounterData";
+import PokemonData from "@/models/PokemonData";
 import axios from "axios";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getPokemonTier, getRun } from "utils";
 import styles from "./EncounterTable.module.scss";
-import Dropdown from "@/components/Dropdown/Dropdown";
-import EncounterData from "@/models/EncounterData";
-import PokemonData from "@/models/PokemonData";
 
 type Props = {
     runName: string;
@@ -95,12 +96,12 @@ const EncounterTable: React.FC<Props> = (props: Props) => {
             {pokemonDataList.length > 0 ? (
                 <table className={styles.table}>
                     <thead>
-                        <tr className={styles.row}>
-                            <th>Pokémon</th>
-                            <th>Method</th>
-                            <th>Chance</th>
-                            <th>Level</th>
-                            <th>Tier</th>
+                        <tr>
+                            <th className={styles["table-header"]}>Pokémon</th>
+                            <th className={styles["table-header"]}>Method</th>
+                            <th className={styles["table-header"]}>Chance</th>
+                            <th className={styles["table-header"]}>Level</th>
+                            <th className={styles["table-header"]}>Tier</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -108,13 +109,38 @@ const EncounterTable: React.FC<Props> = (props: Props) => {
                             (encounter: EncounterData, key: number) => {
                                 return (
                                     <tr className={styles.row} key={key}>
-                                        <td>
-                                            {pokemonDataList[key].pokemonName}
+                                        <td className={styles["table-element"]}>
+                                            <div className={styles.pokemon}>
+                                                <div className={styles.sprite}>
+                                                    <Image
+                                                        src={
+                                                            pokemonDataList[key]
+                                                                .sprite
+                                                        }
+                                                        alt={
+                                                            pokemonDataList[key]
+                                                                .pokemonName
+                                                        }
+                                                        layout="fill"
+                                                        objectFit="contain"
+                                                    />
+                                                </div>
+                                                {
+                                                    pokemonDataList[key]
+                                                        .pokemonName
+                                                }
+                                            </div>
                                         </td>
-                                        <td>{encounter.method}</td>
-                                        <td>{encounter.chance}%</td>
-                                        <td>{generateLevelRange(encounter)}</td>
-                                        <td>
+                                        <td className={styles["table-element"]}>
+                                            {encounter.method}
+                                        </td>
+                                        <td className={styles["table-element"]}>
+                                            {encounter.chance}%
+                                        </td>
+                                        <td className={styles["table-element"]}>
+                                            {generateLevelRange(encounter)}
+                                        </td>
+                                        <td className={styles["table-element"]}>
                                             {getPokemonTier(
                                                 encounter.pokemonSlug,
                                                 props.gameGroup

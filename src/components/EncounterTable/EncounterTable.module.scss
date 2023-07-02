@@ -16,4 +16,33 @@
     .header {
         font-size: 1.7rem;
     }
+
+    .table {
+        border-radius: 5px;
+
+        .table-header {
+            font-size: 1.4rem;
+            padding: 1rem;
+        }
+
+        .row {
+            .table-element {
+                background-color: constants.$accent-color;
+                font-size: 1.2rem;
+                padding: 0.5rem 1rem;
+                text-align: center;
+
+                .pokemon {
+                    align-items: center;
+                    display: flex;
+
+                    .sprite {
+                        height: var(--sprite-size);
+                        position: relative;
+                        width: var(--sprite-size);
+                    }
+                }
+            }
+        }
+    }
 }
