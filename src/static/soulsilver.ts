@@ -6,6 +6,11 @@ const SoulSilver: Game = {
     locations: [
         {
             slug: "new-bark-town",
+            name: "New Bark Town",
+        },
+        {
+            slug: "johto-route-29",
+            name: "Route 29",
         },
     ],
     starterSlugs: ["chikorita", "cyndaquil", "totodile"],

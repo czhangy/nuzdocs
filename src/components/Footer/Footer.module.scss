@@ -5,6 +5,7 @@
     --text-size: 0.8rem;
 
     background: constants.$accent-color;
+    border-top: 1px solid constants.$text-color;
     padding: 2rem;
     position: relative;
     width: 100%;

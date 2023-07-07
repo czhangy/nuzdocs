@@ -5,6 +5,7 @@
     --logo-size: 80px;
 
     background-color: constants.$bg-color;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     height: constants.$mobile-navbar-height;
     position: relative;
     width: 100%;
@@ -32,9 +33,9 @@
             }
 
             .site-name {
-                font-family: constants.$title-font;
                 font-size: 2.5rem;
-                letter-spacing: 2px;
+                font-weight: bold;
+                letter-spacing: 1px;
             }
         }
 
@@ -43,8 +44,8 @@
             gap: 3rem;
 
             .link {
-                font-family: constants.$title-font;
                 font-size: var(--link-size);
+                font-weight: bold;
                 letter-spacing: 1px;
             }
         }

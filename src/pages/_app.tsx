@@ -1,14 +1,18 @@
 import Footer from "@/components/Footer/Footer";
-import Navbar from "@/components/Navbar/Navbar";
+import MainNavbar from "@/components/MainNavbar/MainNavbar";
+import RunNavbar from "@/components/RunNavbar/RunNavbar";
 import PageWrapper from "@/components/PageWrapper/PageWrapper";
 import "@/styles/globals.scss";
-import type { AppProps } from "next/app";
 import { Analytics } from "@vercel/analytics/react";
+import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
 
 function App({ Component, pageProps }: AppProps) {
+    const router = useRouter();
+
     return (
         <>
-            <Navbar />
+            {router.pathname === "/" ? <MainNavbar /> : <RunNavbar />}
             <PageWrapper>
                 <Component {...pageProps} />
             </PageWrapper>

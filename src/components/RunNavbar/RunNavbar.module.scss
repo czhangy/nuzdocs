@@ -1,0 +1,97 @@
+@use "@/styles/constants";
+
+.navbar-container {
+    --link-font: 1rem;
+    --link-size: 1.2rem;
+    --icon-size: 40px;
+
+    background-color: constants.$bg-color;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    height: constants.$mobile-navbar-height;
+    position: relative;
+    width: 100%;
+
+    .navbar {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+        margin: 0 auto;
+        max-width: constants.$max-width;
+        padding: 0 constants.$page-padding;
+        width: 100%;
+
+        .game {
+            align-items: center;
+            display: flex;
+            gap: 0.5rem;
+
+            .back-arrow {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                height: 80px;
+                margin-right: 0.5rem;
+                position: relative;
+                width: 120px;
+            }
+        }
+
+        .links {
+            display: flex;
+            gap: 3rem;
+
+            .link {
+                align-items: center;
+                display: flex;
+
+                .link-icon {
+                    filter: constants.$svg-color;
+                    height: var(--icon-size);
+                    margin-right: 0.5rem;
+                    position: relative;
+                    width: var(--icon-size);
+                }
+
+                .link-text {
+                    font-size: var(--link-font);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .navbar-container {
+        --link-font: 1.2rem;
+        --link-size: 1.5rem;
+
+        height: constants.$navbar-height;
+
+        .navbar {
+            flex-direction: row;
+            gap: 0;
+            justify-content: space-between;
+        }
+    }
+}
+
+@media (hover: hover) {
+    .navbar-container > .navbar {
+        .game:hover > .back-arrow {
+            color: constants.$hover-color;
+        }
+
+        .links .link:hover {
+            .link-icon {
+                filter: constants.$svg-hover-color;
+            }
+
+            .link-text {
+                color: constants.$hover-color;
+            }
+        }
+    }
+}
