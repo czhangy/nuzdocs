@@ -6,6 +6,10 @@
     position: relative;
     width: 100%;
 
+    .nav-button {
+        position: absolute;
+    }
+
     .run-info {
         margin: 2rem 0;
         max-width: constants.$max-width;

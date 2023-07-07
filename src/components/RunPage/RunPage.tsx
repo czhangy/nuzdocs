@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { getRun } from "utils";
 import EncounterTable from "../EncounterTable/EncounterTable";
 import styles from "./RunPage.module.scss";
+import SegmentNav from "@/components/SegmentNav/SegmentNav";
 
 type Props = {
     gameSlug: string;
@@ -88,6 +89,7 @@ const RunPage: React.FC<Props> = (props) => {
 
     return (
         <div className={styles["run-page"]}>
+            <SegmentNav segments={game.locations} segmentSlug={props.locationSlug} />
             <div className={styles["run-info"]}>
                 {currentLocation ? (
                     <>
