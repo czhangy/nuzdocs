@@ -5,22 +5,23 @@ import PokemonData from "@/models/PokemonData";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { getPokemonTier, getRun } from "utils";
+import { getPokemonTier } from "utils";
 import styles from "./EncounterTable.module.scss";
 
 type Props = {
     runName: string;
-    areaSlugList: string[];
+    areaList: AreaData[];
     starterSlugsList: string[];
     gameGroup: string;
     onFetch: (pokemonDataList: PokemonData[]) => void;
 };
 
 const EncounterTable: React.FC<Props> = (props: Props) => {
-    const [areaList, setAreaList] = useState<AreaData[]>([]);
+    const [areaNameList, setAreaNameList] = useState<string[]>([]);
     const [currentArea, setCurrentArea] = useState<AreaData | null>(null);
     const [pokemonDataList, setPokemonDataList] = useState<PokemonData[]>([]);
 
+    // Formats the level range of an encounter
     const generateLevelRange = (encounter: EncounterData) => {
         if (encounter.minLevel === encounter.maxLevel) {
             return encounter.minLevel;
@@ -29,11 +30,13 @@ const EncounterTable: React.FC<Props> = (props: Props) => {
         }
     };
 
+    // Sets the current area on dropdown select
     const handleAreaSelect = (areaName: string) => {
-        const area: AreaData = areaList.filter((area: AreaData) => area.areaName === areaName)[0];
+        const area: AreaData = props.areaList.filter((area: AreaData) => area.areaName === areaName)[0];
         setCurrentArea(area);
     };
 
+    // API call to fetch Pokemon names and sprites
     const fetchPokemonData = async () => {
         currentArea!.encounters = currentArea!.encounters.filter(
             (encounter: EncounterData) => !props.starterSlugsList.includes(encounter.pokemonSlug)
@@ -57,40 +60,25 @@ const EncounterTable: React.FC<Props> = (props: Props) => {
             });
     };
 
-    // Fetch areas in location and nullify past location
-    useEffect(() => {
-        if (props.areaSlugList) {
-            setCurrentArea(null);
-            axios
-                .get("/api/location", {
-                    params: {
-                        areaSlugList: props.areaSlugList,
-                        gameSlug: getRun(props.runName).gameSlug,
-                    },
-                })
-                .then((res) => {
-                    const areaList = res.data;
-                    setAreaList(JSON.parse(areaList.areaList));
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        }
-    }, [props.areaSlugList]);
-
-    // Fetch Pokemon info when area is selected
+    // Fetch Pokemon names/sprites when area is changed
     useEffect(() => {
         if (currentArea) {
             fetchPokemonData();
         }
     }, [currentArea]);
 
+    // Nullify area when location is changed
+    useEffect(() => {
+        setCurrentArea(null);
+        setAreaNameList(props.areaList.map((area: AreaData) => area.areaName).sort());
+    }, [props.areaList]);
+
     return (
         <div className={styles["encounter-table"]}>
             <h3 className={styles.header}>Encounters:</h3>
             <Dropdown
                 placeholder="Select a zone..."
-                options={areaList.map((area: AreaData) => area.areaName).sort()}
+                options={areaNameList}
                 onSelect={(areaName: string) => handleAreaSelect(areaName)}
             />
             {currentArea && pokemonDataList.length > 0 ? (

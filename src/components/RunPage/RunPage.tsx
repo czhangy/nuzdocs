@@ -1,6 +1,7 @@
 import EncounterDisplay from "@/components/EncounterDisplay/EncounterDisplay";
 import SegmentNav from "@/components/SegmentNav/SegmentNav";
 import StarterSelect from "@/components/StarterSelect/StarterSelect";
+import AreaData from "@/models/AreaData";
 import Game from "@/models/Game";
 import LocalPokemon from "@/models/LocalPokemon";
 import LocationData from "@/models/LocationData";
@@ -20,6 +21,7 @@ type Props = {
 };
 
 const RunPage: React.FC<Props> = (props) => {
+    const [areaList, setAreaList] = useState<AreaData[]>([]);
     const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | null>(null);
     const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
     const [pokemonDataList, setPokemonDataList] = useState<PokemonData[]>([]);
@@ -88,6 +90,26 @@ const RunPage: React.FC<Props> = (props) => {
         }
     }, [props.runName, props.locationSlug]);
 
+    // Fetch areas + encounters in location
+    useEffect(() => {
+        if (currentLocation) {
+            axios
+                .get("/api/location", {
+                    params: {
+                        areaSlugList: currentLocation.areaSlugList,
+                        gameSlug: getRun(props.runName).gameSlug,
+                    },
+                })
+                .then((res) => {
+                    const areaList = res.data;
+                    setAreaList(JSON.parse(areaList.areaList));
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    }, [currentLocation]);
+
     return (
         <div className={styles["run-page"]}>
             <SegmentNav segments={game.segments} segmentSlug={props.locationSlug} />
@@ -106,7 +128,7 @@ const RunPage: React.FC<Props> = (props) => {
                         )}
                         <EncounterTable
                             runName={props.runName}
-                            areaSlugList={currentLocation.areaSlugList}
+                            areaList={areaList}
                             starterSlugsList={game.starterSlugs}
                             gameGroup={game.gameGroup}
                             onFetch={(pokemonDataList: PokemonData[]) => setPokemonDataList(pokemonDataList)}

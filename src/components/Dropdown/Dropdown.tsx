@@ -27,8 +27,11 @@ const Dropdown: React.FC<Props> = (props: Props) => {
 
     // Reset dropdown display when choice set changes
     useEffect(() => {
-        setDisplayValue(props.placeholder);
-    }, props.options);
+        if (!props.reversed) {
+            console.log(props.options);
+            setDisplayValue(props.placeholder);
+        }
+    }, [props.options]);
 
     return (
         <div className={`${styles.dropdown} ${props.reversed ? styles.reversed : ""}`}>
