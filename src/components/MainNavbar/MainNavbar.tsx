@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import styles from "./Navbar.module.scss";
+import styles from "./MainNavbar.module.scss";
 
-const Navbar: React.FC = () => {
+const MainNavbar: React.FC = () => {
     return (
         <header className={styles["navbar-container"]}>
             <nav className={styles.navbar}>
@@ -30,4 +30,4 @@ const Navbar: React.FC = () => {
     );
 };
 
-export default Navbar;
+export default MainNavbar;

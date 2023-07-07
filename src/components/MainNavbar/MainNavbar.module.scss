@@ -4,7 +4,8 @@
     --link-size: 1.2rem;
     --logo-size: 80px;
 
-    background-color: constants.$bg-color;
+    background-color: constants.$accent-color;
+    border-bottom: 1px solid constants.$text-color;
     height: constants.$mobile-navbar-height;
     position: relative;
     width: 100%;
