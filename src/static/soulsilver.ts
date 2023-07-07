@@ -3,7 +3,7 @@ import Game from "@/models/Game";
 const SoulSilver: Game = {
     slug: "soulsilver",
     gameGroup: "hgss",
-    locations: [
+    segments: [
         {
             slug: "new-bark-town",
             name: "New Bark Town",

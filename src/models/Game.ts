@@ -1,9 +1,9 @@
-import LocalLocation from "@/models/LocalLocation";
+import LocalSegment from "@/models/LocalSegment";
 
 export default interface Game {
     slug: string;
     gameGroup: string;
-    locations: LocalLocation[];
+    segments: LocalSegment[];
     starterSlugs: string[];
     startingTown: string;
 }

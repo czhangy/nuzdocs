@@ -1,10 +1,10 @@
-import LocalLocation from "@/models/LocalLocation";
+import LocalSegment from "@/models/LocalSegment";
 import Link from "next/link";
 import styles from "./SegmentNav.module.scss";
 import { useRouter } from "next/router";
 
 type Props = {
-    segments: LocalLocation[];
+    segments: LocalSegment[];
     segmentSlug: string;
 };
 
@@ -12,7 +12,7 @@ const SegmentNav: React.FC<Props> = (props: Props) => {
     const router = useRouter();
 
     const getSegmentIndex = () => {
-        return props.segments.map((segment: LocalLocation) => segment.slug).indexOf(props.segmentSlug);
+        return props.segments.map((segment: LocalSegment) => segment.slug).indexOf(props.segmentSlug);
     };
 
     return (

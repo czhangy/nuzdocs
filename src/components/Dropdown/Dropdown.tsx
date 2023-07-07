@@ -20,10 +20,12 @@ const Dropdown: React.FC<Props> = (props: Props) => {
         props.onSelect(label);
     };
 
+    // Close dropdown on scroll
     useEffect(() => {
         window.addEventListener("scroll", () => setOpen(false));
     }, []);
 
+    // Reset dropdown display when choice set changes
     useEffect(() => {
         setDisplayValue(props.placeholder);
     }, props.options);

@@ -89,7 +89,7 @@ const RunPage: React.FC<Props> = (props) => {
 
     return (
         <div className={styles["run-page"]}>
-            <SegmentNav segments={game.locations} segmentSlug={props.locationSlug} />
+            <SegmentNav segments={game.segments} segmentSlug={props.locationSlug} />
             <div className={styles["run-info"]}>
                 {currentLocation ? (
                     <>

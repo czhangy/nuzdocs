@@ -57,7 +57,7 @@ const EncounterTable: React.FC<Props> = (props: Props) => {
             });
     };
 
-    // Fetch areas in location
+    // Fetch areas in location and nullify past location
     useEffect(() => {
         if (props.areaSlugList) {
             setCurrentArea(null);
