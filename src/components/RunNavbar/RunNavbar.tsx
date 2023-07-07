@@ -1,8 +1,11 @@
 import styles from "./RunNavbar.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const RunNavbar: React.FC = () => {
+    const router = useRouter();
+
     return (
         <header className={styles["navbar-container"]}>
             <nav className={styles.navbar}>
@@ -21,7 +24,7 @@ const RunNavbar: React.FC = () => {
                 </Link>
                 <ul className={styles.links}>
                     <li>
-                        <Link href="/">
+                        <Link href={`/overview/${router.query.runName}`}>
                             <a className={styles.link}>
                                 <div className={styles["link-icon"]}>
                                     <Image
@@ -36,7 +39,7 @@ const RunNavbar: React.FC = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/">
+                        <Link href={`/box/${router.query.runName}`}>
                             <a className={styles.link}>
                                 <div className={styles["link-icon"]}>
                                     <Image src="/assets/icons/box.svg" alt="Box" layout="fill" objectFit="contain" />
@@ -46,7 +49,7 @@ const RunNavbar: React.FC = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/">
+                        <Link href={`/rips/${router.query.runName}`}>
                             <a className={styles.link}>
                                 <div className={styles["link-icon"]}>
                                     <Image src="/assets/icons/dead.svg" alt="Dead" layout="fill" objectFit="contain" />
