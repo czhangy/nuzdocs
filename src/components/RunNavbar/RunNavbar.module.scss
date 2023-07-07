@@ -1,8 +1,9 @@
 @use "@/styles/constants";
 
 .navbar-container {
+    --link-font: 1rem;
     --link-size: 1.2rem;
-    --logo-size: 80px;
+    --icon-size: 40px;
 
     background-color: constants.$accent-color;
     border-bottom: 1px solid constants.$text-color;
@@ -21,21 +22,20 @@
         padding: 0 constants.$page-padding;
         width: 100%;
 
-        .branding {
+        .game {
             align-items: center;
             display: flex;
             gap: 0.5rem;
 
-            .logo {
-                height: var(--logo-size);
-                position: relative;
-                width: var(--logo-size);
+            .back-arrow {
+                font-size: 1.5rem;
             }
 
-            .site-name {
-                font-size: 2.5rem;
-                font-weight: bold;
-                letter-spacing: 1px;
+            .logo {
+                height: 80px;
+                margin-right: 0.5rem;
+                position: relative;
+                width: 120px;
             }
         }
 
@@ -44,9 +44,20 @@
             gap: 3rem;
 
             .link {
-                font-size: var(--link-size);
-                font-weight: bold;
-                letter-spacing: 1px;
+                align-items: center;
+                display: flex;
+
+                .link-icon {
+                    filter: constants.$svg-color;
+                    height: var(--icon-size);
+                    margin-right: 0.5rem;
+                    position: relative;
+                    width: var(--icon-size);
+                }
+
+                .link-text {
+                    font-size: var(--link-font);
+                }
             }
         }
     }
@@ -54,6 +65,7 @@
 
 @media screen and (min-width: constants.$tablet) {
     .navbar-container {
+        --link-font: 1.2rem;
         --link-size: 1.5rem;
 
         height: constants.$navbar-height;
@@ -67,7 +79,19 @@
 }
 
 @media (hover: hover) {
-    .link:hover {
-        color: constants.$hover-color;
+    .navbar-container > .navbar {
+        .game:hover > .back-arrow {
+            color: constants.$hover-color;
+        }
+
+        .links .link:hover {
+            .link-icon {
+                filter: constants.$svg-hover-color;
+            }
+
+            .link-text {
+                color: constants.$hover-color;
+            }
+        }
     }
 }

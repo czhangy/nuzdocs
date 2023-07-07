@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer/Footer";
 import MainNavbar from "@/components/MainNavbar/MainNavbar";
+import RunNavbar from "@/components/RunNavbar/RunNavbar";
 import PageWrapper from "@/components/PageWrapper/PageWrapper";
 import "@/styles/globals.scss";
 import { Analytics } from "@vercel/analytics/react";
@@ -11,7 +12,7 @@ function App({ Component, pageProps }: AppProps) {
 
     return (
         <>
-            {router.pathname === "/" ? <MainNavbar /> : ""}
+            {router.pathname === "/" ? <MainNavbar /> : <RunNavbar />}
             <PageWrapper>
                 <Component {...pageProps} />
             </PageWrapper>
