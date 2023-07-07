@@ -24,6 +24,10 @@ const Dropdown: React.FC<Props> = (props: Props) => {
         window.addEventListener("scroll", () => setOpen(false));
     }, []);
 
+    useEffect(() => {
+        setDisplayValue(props.placeholder);
+    }, props.options);
+
     return (
         <div className={`${styles.dropdown} ${props.reversed ? styles.reversed : ""}`}>
             <div

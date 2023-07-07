@@ -60,6 +60,7 @@ const EncounterTable: React.FC<Props> = (props: Props) => {
     // Fetch areas in location
     useEffect(() => {
         if (props.areaSlugList) {
+            setCurrentArea(null);
             axios
                 .get("/api/location", {
                     params: {
@@ -92,7 +93,7 @@ const EncounterTable: React.FC<Props> = (props: Props) => {
                 options={areaList.map((area: AreaData) => area.areaName).sort()}
                 onSelect={(areaName: string) => handleAreaSelect(areaName)}
             />
-            {pokemonDataList.length > 0 ? (
+            {currentArea && pokemonDataList.length > 0 ? (
                 <table className={styles.table}>
                     <thead>
                         <tr>
