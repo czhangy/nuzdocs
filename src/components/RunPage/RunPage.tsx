@@ -1,4 +1,5 @@
 import EncounterDisplay from "@/components/EncounterDisplay/EncounterDisplay";
+import SegmentNav from "@/components/SegmentNav/SegmentNav";
 import StarterSelect from "@/components/StarterSelect/StarterSelect";
 import Game from "@/models/Game";
 import LocalPokemon from "@/models/LocalPokemon";
@@ -11,7 +12,6 @@ import { useEffect, useState } from "react";
 import { getRun } from "utils";
 import EncounterTable from "../EncounterTable/EncounterTable";
 import styles from "./RunPage.module.scss";
-import SegmentNav from "@/components/SegmentNav/SegmentNav";
 
 type Props = {
     gameSlug: string;
