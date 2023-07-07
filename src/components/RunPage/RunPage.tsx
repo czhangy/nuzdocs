@@ -76,6 +76,7 @@ const RunPage: React.FC<Props> = (props) => {
     // Get data associated with current location on page load
     useEffect(() => {
         if (props.locationSlug && props.locationSlug.length > 0) {
+            setPokemonDataList([]);
             fetchLocationData();
         }
     }, [props.locationSlug]);
