@@ -14,6 +14,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { getRun } from "utils";
 import styles from "./RunPage.module.scss";
+import EncounterData from "@/models/EncounterData";
 
 type Props = {
     gameSlug: string;
@@ -23,13 +24,15 @@ type Props = {
 
 const RunPage: React.FC<Props> = (props) => {
     // States to track location areas
+    const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
     const [areaList, setAreaList] = useState<AreaData[]>([]);
     const [areaNameList, setAreaNameList] = useState<string[]>([]);
     const [currentArea, setCurrentArea] = useState<AreaData | null>(null);
 
+    // States to track encounter info in the current location
     const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | "failed" | null>(null);
-    const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
-    const [pokemonDataList, setPokemonDataList] = useState<PokemonData[]>([]);
+    const [uniquePokemonDataList, setUniquePokemonDataList] = useState<PokemonData[]>([]);
+
     const game: Game = SoulSilver;
 
     // Gets the PokemonData for the current location's encounter if it exists
@@ -77,10 +80,16 @@ const RunPage: React.FC<Props> = (props) => {
         setCurrentArea(area);
     };
 
+    // Fetch location's encounter data for encounter display
+    useEffect(() => {
+        if (props.runName && props.locationSlug) {
+            fetchCurrentLocationEncounter();
+        }
+    }, [props.runName, props.locationSlug]);
+
     // Get data associated with current location on page load
     useEffect(() => {
         if (props.locationSlug && props.locationSlug.length > 0) {
-            setPokemonDataList([]);
             axios
                 .get("/api/location", {
                     params: {
@@ -96,13 +105,6 @@ const RunPage: React.FC<Props> = (props) => {
                 });
         }
     }, [props.locationSlug]);
-
-    // Fetch location's encounter data for encounter display
-    useEffect(() => {
-        if (props.runName && props.locationSlug) {
-            fetchCurrentLocationEncounter();
-        }
-    }, [props.runName, props.locationSlug]);
 
     // Fetch areas + encounters in location on page load
     useEffect(() => {
@@ -124,11 +126,26 @@ const RunPage: React.FC<Props> = (props) => {
         }
     }, [currentLocation]);
 
-    // When area list is changed (meaning location was changed), reset current area and get new list of names
+    // When area list is changed, reset area info and fetch all encounters' PokemonData in area
     useEffect(() => {
         if (areaList.length > 0) {
             setCurrentArea(null);
             setAreaNameList(areaList.map((area: AreaData) => area.areaName).sort());
+            let pokemonSlugList: string[] = areaList
+                .map((area: AreaData) => area.encounters.map((encounter: EncounterData) => encounter.pokemonSlug))
+                .flat();
+            pokemonSlugList = pokemonSlugList.filter((pokemonSlug: string) => !game.starterSlugs.includes(pokemonSlug));
+            pokemonSlugList = [...new Set(pokemonSlugList)].sort();
+            axios
+                .get("/api/pokemon", {
+                    params: {
+                        pokemonSlugList: pokemonSlugList,
+                    },
+                })
+                .then((res) => setUniquePokemonDataList(JSON.parse(res.data.pokemon)))
+                .catch((error) => {
+                    console.log(error);
+                });
         }
     }, [areaList]);
 
@@ -163,7 +180,7 @@ const RunPage: React.FC<Props> = (props) => {
                                 currentArea={currentArea}
                                 starterSlugsList={game.starterSlugs}
                                 gameGroup={game.gameGroup}
-                                onFetch={(pokemonDataList: PokemonData[]) => setPokemonDataList(pokemonDataList)}
+                                onFetch={(pokemonDataList: PokemonData[]) => console.log("DEELTE ME")}
                             />
                         </section>
                     </>
@@ -174,7 +191,7 @@ const RunPage: React.FC<Props> = (props) => {
             <div className={styles["sticky-info"]}>
                 <EncounterDisplay
                     encounteredPokemon={encounteredPokemon}
-                    pokemonDataList={pokemonDataList}
+                    uniquePokemonDataList={uniquePokemonDataList}
                     onSelect={(pokemonSlug: string) => saveEncounter(pokemonSlug)}
                 />
             </div>
