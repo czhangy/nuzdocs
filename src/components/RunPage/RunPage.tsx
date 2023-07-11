@@ -32,41 +32,7 @@ const RunPage: React.FC<Props> = (props) => {
     const [pokemonDataList, setPokemonDataList] = useState<PokemonData[]>([]);
     const game: Game = SoulSilver;
 
-    const fetchLocationData = () => {
-        axios
-            .get("/api/location", {
-                params: {
-                    locationSlug: props.locationSlug,
-                },
-            })
-            .then((res) => {
-                const locationData = res.data;
-                setCurrentLocation(JSON.parse(locationData.location));
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
-
-    const fetchEncounteredPokemonData = () => {
-        const run: Run = getRun(props.runName);
-        run.encounterList.forEach((encounter: LocalPokemon) => {
-            if (encounter.locationSlug === props.locationSlug) {
-                axios
-                    .get("/api/pokemon", {
-                        params: {
-                            pokemonSlug: encounter.pokemonSlug,
-                        },
-                    })
-                    .then((res) => setEncounteredPokemon(JSON.parse(res.data.pokemon)))
-                    .catch((error) => {
-                        console.log(error);
-                    });
-                return;
-            }
-        });
-    };
-
+    // Save an encounter into local storage
     const saveEncounter = (pokemonSlug: string) => {
         const run: Run = getRun(props.runName);
         const newEncounter: LocalPokemon = {
@@ -90,14 +56,41 @@ const RunPage: React.FC<Props> = (props) => {
     useEffect(() => {
         if (props.locationSlug && props.locationSlug.length > 0) {
             setPokemonDataList([]);
-            fetchLocationData();
+            axios
+                .get("/api/location", {
+                    params: {
+                        locationSlug: props.locationSlug,
+                    },
+                })
+                .then((res) => {
+                    const locationData = res.data;
+                    setCurrentLocation(JSON.parse(locationData.location));
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
     }, [props.locationSlug]);
 
     // Fetch location's encounter data for encounter display
     useEffect(() => {
         if (props.runName && props.locationSlug) {
-            fetchEncounteredPokemonData();
+            const run: Run = getRun(props.runName);
+            run.encounterList.forEach((encounter: LocalPokemon) => {
+                if (encounter.locationSlug === props.locationSlug) {
+                    axios
+                        .get("/api/pokemon", {
+                            params: {
+                                pokemonSlug: encounter.pokemonSlug,
+                            },
+                        })
+                        .then((res) => setEncounteredPokemon(JSON.parse(res.data.pokemon)))
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                    return;
+                }
+            });
         }
     }, [props.runName, props.locationSlug]);
 
