@@ -4,12 +4,13 @@ import Dropdown from "@/components/Dropdown/Dropdown";
 import { useEffect, useState } from "react";
 
 type Props = {
-    encounteredPokemon: PokemonData | null;
+    encounteredPokemon: PokemonData | null | "failed";
     pokemonDataList: PokemonData[];
     onSelect: (pokemonName: string) => void;
 };
 
 const EncounterDisplay: React.FC<Props> = (props: Props) => {
+    const [displayValue, setDisplayValue] = useState<string | null>(null);
     const [uniquePokemonDataList, setUniquePokemonDataList] = useState<PokemonData[]>([]);
 
     const getPokemonNames = () => {
@@ -37,11 +38,23 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
         setUniquePokemonDataList(uniqueList);
     }, [props.pokemonDataList]);
 
+    // When props.encounteredPokemon changes, translate it into the correct display value
+    useEffect(() => {
+        if (props.encounteredPokemon) {
+            const displayString: string =
+                props.encounteredPokemon === "failed" ? "Failed" : props.encounteredPokemon.pokemonName;
+            setDisplayValue(displayString);
+        } else {
+            setDisplayValue(null);
+        }
+    }, [props.encounteredPokemon]);
+
     return (
         <div className={styles["encounter-display"]}>
             <strong className={styles.header}>Encounter:</strong>
             <Dropdown
                 placeholder="Select..."
+                value={displayValue}
                 options={getPokemonNames()}
                 onSelect={(pokemonName: string) => handlePokemonSelect(pokemonName)}
                 disabled={props.pokemonDataList.length === 0}

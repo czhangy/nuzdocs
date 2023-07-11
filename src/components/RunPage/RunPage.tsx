@@ -1,5 +1,6 @@
 import Dropdown from "@/components/Dropdown/Dropdown";
 import EncounterDisplay from "@/components/EncounterDisplay/EncounterDisplay";
+import EncounterTable from "@/components/EncounterTable/EncounterTable";
 import SegmentNav from "@/components/SegmentNav/SegmentNav";
 import StarterSelect from "@/components/StarterSelect/StarterSelect";
 import AreaData from "@/models/AreaData";
@@ -12,7 +13,6 @@ import SoulSilver from "@/static/soulsilver";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getRun } from "utils";
-import EncounterTable from "../EncounterTable/EncounterTable";
 import styles from "./RunPage.module.scss";
 
 type Props = {
@@ -27,12 +27,36 @@ const RunPage: React.FC<Props> = (props) => {
     const [areaNameList, setAreaNameList] = useState<string[]>([]);
     const [currentArea, setCurrentArea] = useState<AreaData | null>(null);
 
-    const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | null>(null);
+    const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | "failed" | null>(null);
     const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
     const [pokemonDataList, setPokemonDataList] = useState<PokemonData[]>([]);
     const game: Game = SoulSilver;
 
-    // Save an encounter into local storage
+    // Gets the PokemonData for the current location's encounter if it exists
+    const fetchCurrentLocationEncounter = () => {
+        const run: Run = getRun(props.runName);
+        run.encounterList.forEach((encounter: LocalPokemon) => {
+            if (encounter.locationSlug === props.locationSlug) {
+                if (encounter.pokemonSlug === "failed") {
+                    setEncounteredPokemon("failed");
+                } else {
+                    axios
+                        .get("/api/pokemon", {
+                            params: {
+                                pokemonSlug: encounter.pokemonSlug,
+                            },
+                        })
+                        .then((res) => setEncounteredPokemon(JSON.parse(res.data.pokemon)))
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
+                return;
+            }
+        });
+    };
+
+    // Save an encounter into local storage and then fetch its data to pass to EncounterDisplay
     const saveEncounter = (pokemonSlug: string) => {
         const run: Run = getRun(props.runName);
         const newEncounter: LocalPokemon = {
@@ -44,6 +68,7 @@ const RunPage: React.FC<Props> = (props) => {
         );
         run.encounterList.push(newEncounter);
         localStorage.setItem(props.runName, JSON.stringify(run));
+        fetchCurrentLocationEncounter();
     };
 
     // Sets the current area on dropdown select
@@ -75,22 +100,7 @@ const RunPage: React.FC<Props> = (props) => {
     // Fetch location's encounter data for encounter display
     useEffect(() => {
         if (props.runName && props.locationSlug) {
-            const run: Run = getRun(props.runName);
-            run.encounterList.forEach((encounter: LocalPokemon) => {
-                if (encounter.locationSlug === props.locationSlug) {
-                    axios
-                        .get("/api/pokemon", {
-                            params: {
-                                pokemonSlug: encounter.pokemonSlug,
-                            },
-                        })
-                        .then((res) => setEncounteredPokemon(JSON.parse(res.data.pokemon)))
-                        .catch((error) => {
-                            console.log(error);
-                        });
-                    return;
-                }
-            });
+            fetchCurrentLocationEncounter();
         }
     }, [props.runName, props.locationSlug]);
 
@@ -144,6 +154,7 @@ const RunPage: React.FC<Props> = (props) => {
                             <h3 className={styles.header}>Encounters:</h3>
                             <Dropdown
                                 placeholder="Select a zone..."
+                                value={currentArea ? currentArea.areaName : null}
                                 options={areaNameList}
                                 onSelect={(areaName: string) => handleAreaSelect(areaName)}
                             />
