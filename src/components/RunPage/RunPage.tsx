@@ -1,3 +1,4 @@
+import Dropdown from "@/components/Dropdown/Dropdown";
 import EncounterDisplay from "@/components/EncounterDisplay/EncounterDisplay";
 import SegmentNav from "@/components/SegmentNav/SegmentNav";
 import StarterSelect from "@/components/StarterSelect/StarterSelect";
@@ -21,7 +22,11 @@ type Props = {
 };
 
 const RunPage: React.FC<Props> = (props) => {
+    // States to track location areas
     const [areaList, setAreaList] = useState<AreaData[]>([]);
+    const [areaNameList, setAreaNameList] = useState<string[]>([]);
+    const [currentArea, setCurrentArea] = useState<AreaData | null>(null);
+
     const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | null>(null);
     const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
     const [pokemonDataList, setPokemonDataList] = useState<PokemonData[]>([]);
@@ -75,6 +80,12 @@ const RunPage: React.FC<Props> = (props) => {
         localStorage.setItem(props.runName, JSON.stringify(run));
     };
 
+    // Sets the current area on dropdown select
+    const handleAreaSelect = (areaName: string) => {
+        const area: AreaData = areaList.filter((area: AreaData) => area.areaName === areaName)[0];
+        setCurrentArea(area);
+    };
+
     // Get data associated with current location on page load
     useEffect(() => {
         if (props.locationSlug && props.locationSlug.length > 0) {
@@ -90,7 +101,7 @@ const RunPage: React.FC<Props> = (props) => {
         }
     }, [props.runName, props.locationSlug]);
 
-    // Fetch areas + encounters in location
+    // Fetch areas + encounters in location on page load
     useEffect(() => {
         if (currentLocation) {
             axios
@@ -110,6 +121,14 @@ const RunPage: React.FC<Props> = (props) => {
         }
     }, [currentLocation]);
 
+    // When area list is changed (meaning location was changed), reset current area and get new list of names
+    useEffect(() => {
+        if (areaList.length > 0) {
+            setCurrentArea(null);
+            setAreaNameList(areaList.map((area: AreaData) => area.areaName).sort());
+        }
+    }, [areaList]);
+
     return (
         <div className={styles["run-page"]}>
             <SegmentNav segments={game.segments} segmentSlug={props.locationSlug} />
@@ -118,21 +137,31 @@ const RunPage: React.FC<Props> = (props) => {
                     <>
                         <h2 className={styles["location-name"]}>{currentLocation.locationName}</h2>
                         {props.locationSlug === game.startingTown ? (
-                            <StarterSelect
-                                runName={props.runName}
-                                starterSlugsList={game.starterSlugs}
-                                locationName={game.startingTown}
-                            />
+                            <section className={styles.section}>
+                                <StarterSelect
+                                    runName={props.runName}
+                                    starterSlugsList={game.starterSlugs}
+                                    locationName={game.startingTown}
+                                />
+                            </section>
                         ) : (
                             ""
                         )}
-                        <EncounterTable
-                            runName={props.runName}
-                            areaList={areaList}
-                            starterSlugsList={game.starterSlugs}
-                            gameGroup={game.gameGroup}
-                            onFetch={(pokemonDataList: PokemonData[]) => setPokemonDataList(pokemonDataList)}
-                        />
+                        <section className={styles.section}>
+                            <h3 className={styles.header}>Encounters:</h3>
+                            <Dropdown
+                                placeholder="Select a zone..."
+                                options={areaNameList}
+                                onSelect={(areaName: string) => handleAreaSelect(areaName)}
+                            />
+                            <EncounterTable
+                                runName={props.runName}
+                                currentArea={currentArea}
+                                starterSlugsList={game.starterSlugs}
+                                gameGroup={game.gameGroup}
+                                onFetch={(pokemonDataList: PokemonData[]) => setPokemonDataList(pokemonDataList)}
+                            />
+                        </section>
                     </>
                 ) : (
                     ""
