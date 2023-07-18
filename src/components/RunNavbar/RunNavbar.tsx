@@ -24,7 +24,7 @@ const RunNavbar: React.FC = () => {
                 </Link>
                 <ul className={styles.links}>
                     <li>
-                        <Link href={`/overview/${router.query.runName}`}>
+                        <Link href={`/runs/${router.query.runName}/overview`}>
                             <a className={styles.link}>
                                 <div className={styles["link-icon"]}>
                                     <Image
@@ -39,7 +39,7 @@ const RunNavbar: React.FC = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link href={`/box/${router.query.runName}`}>
+                        <Link href={`/runs/${router.query.runName}/box`}>
                             <a className={styles.link}>
                                 <div className={styles["link-icon"]}>
                                     <Image src="/assets/icons/box.svg" alt="Box" layout="fill" objectFit="contain" />
@@ -49,7 +49,7 @@ const RunNavbar: React.FC = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link href={`/rips/${router.query.runName}`}>
+                        <Link href={`/runs/${router.query.runName}/rips`}>
                             <a className={styles.link}>
                                 <div className={styles["link-icon"]}>
                                     <Image src="/assets/icons/dead.svg" alt="Dead" layout="fill" objectFit="contain" />

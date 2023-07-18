@@ -12,7 +12,7 @@ function App({ Component, pageProps }: AppProps) {
 
     return (
         <>
-            {router.pathname === "/" ? <MainNavbar /> : <RunNavbar />}
+            {router.pathname.includes("/runs") ? <RunNavbar /> : <MainNavbar />}
             <PageWrapper>
                 <Component {...pageProps} />
             </PageWrapper>

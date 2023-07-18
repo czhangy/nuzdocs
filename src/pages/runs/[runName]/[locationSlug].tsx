@@ -1,9 +1,7 @@
+import RunPage from "@/components/RunPage/RunPage";
+import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-
-import RunPage from "@/components/RunPage/RunPage";
-
-import type { NextPage } from "next";
 
 const Run: NextPage = () => {
     const router = useRouter();
