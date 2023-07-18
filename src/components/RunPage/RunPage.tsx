@@ -181,7 +181,11 @@ const RunPage: React.FC<Props> = (props) => {
                                 options={areaNameList}
                                 onSelect={(areaName: string) => handleAreaSelect(areaName)}
                             />
-                            <EncounterTable currentArea={currentArea} gameGroup={game.gameGroup} />
+                            <EncounterTable
+                                uniquePokemonDataList={uniquePokemonDataList}
+                                currentArea={currentArea}
+                                gameGroup={game.gameGroup}
+                            />
                         </section>
                     </>
                 ) : (
