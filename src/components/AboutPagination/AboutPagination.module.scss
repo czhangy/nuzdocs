@@ -1,6 +1,8 @@
 @use "@/styles/constants";
 
 .about-pagination {
+    display: none;
+
     .page-entry {
         border-bottom: 2px solid constants.$bg-color;
         margin-bottom: 1rem;
@@ -14,6 +16,7 @@
             display: flex;
             gap: 1rem;
             font-size: 1.5rem;
+            font-weight: bold;
 
             .page-num {
                 position: relative;
@@ -33,7 +36,17 @@
 
         .active {
             color: constants.$hover-color;
+
+            .page-num > .underline {
+                display: none;
+            }
         }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .about-pagination {
+        display: block;
     }
 }
 

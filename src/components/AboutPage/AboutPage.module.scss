@@ -1,4 +1,25 @@
 @use "@/styles/constants";
 
 .about-page {
+    align-items: center;
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+
+    .section {
+        width: 40%;
+
+        .content {
+            font-size: 1.2rem;
+            line-height: 2rem;
+
+            .link {
+                color: constants.$hover-color;
+            }
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
 }
