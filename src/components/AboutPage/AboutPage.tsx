@@ -25,6 +25,28 @@ const AboutPage: React.FC = () => {
                 </p>
                 <br />
             </section>
+            <section className={`${styles.section} ${currentPage === 1 ? "" : styles.hidden}`}>
+                <p className={styles.content}>
+                    Nuzlockes are a fun way to make any Pokémon game more interesting with a set of self-imposed rules
+                    that make the game more challenging. The core concepts of a Nuzlocke are 1) if a Pokémon faints, it
+                    can no longer be used and 2) only one Pokémon can be caught per area. Any additional rules can be
+                    added at the player's discretion to make the run as fun as possible.
+                </p>
+                <br />
+                <p className={styles.content}>
+                    The most common (and my personal favorite) variant of Nuzlockes are "Hardcore Nuzlockes", which amp
+                    the difficulty up even more and generally add rules like the following:
+                </p>
+                <ul className={styles.list}>
+                    <li className={styles["bullet-point"]}>If you whiteout, you must restart the run</li>
+                    <li className={styles["bullet-point"]}>
+                        You cannot use Pokémon that are a higher level than the next gym leader's highest level Pokémon
+                    </li>
+                    <li className={styles["bullet-point"]}>You may not use healing items in battle</li>
+                    <li className={styles["bullet-point"]}>You must play in Set mode</li>
+                </ul>
+                <br />
+            </section>
             <section className={`${styles.section} ${currentPage === 3 ? "" : styles.hidden}`}>
                 <p className={styles.content}>
                     NuzlockeDB was developed by me,{" "}

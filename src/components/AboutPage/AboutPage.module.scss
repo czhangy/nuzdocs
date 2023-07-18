@@ -7,7 +7,8 @@
     justify-content: center;
 
     .section {
-        width: 40%;
+        max-width: 600px;
+        width: 60%;
 
         .content {
             font-size: 1.2rem;
@@ -15,6 +16,17 @@
 
             .link {
                 color: constants.$hover-color;
+            }
+        }
+
+        .list {
+            list-style: disc;
+            margin-left: 2rem;
+            margin-top: 1rem;
+
+            .bullet-point {
+                font-size: 1.2rem;
+                line-height: 2rem;
             }
         }
     }
