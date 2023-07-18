@@ -47,6 +47,79 @@ const AboutPage: React.FC = () => {
                 </ul>
                 <br />
             </section>
+            <section className={`${styles.section} ${currentPage === 2 ? "" : styles.hidden}`}>
+                <p className={styles.content}>
+                    <a
+                        href="https://www.reddit.com/r/nuzlocke/"
+                        target="_blank"
+                        rel="noreferrer"
+                        className={styles.link}
+                    >
+                        r/nuzlocke
+                    </a>
+                </p>
+                <ul className={styles.list}>
+                    <li className={styles["bullet-point"]}>
+                        A subreddit and community that you can use to get advice and share your Nuzlocke experiences
+                    </li>
+                </ul>
+                <br />
+                <p className={styles.content}>
+                    <a
+                        href="https://projectpokemon.org/home/files/file/1-pkhex/"
+                        target="_blank"
+                        rel="noreferrer"
+                        className={styles.link}
+                    >
+                        PKHeX
+                    </a>{" "}
+                    /{" "}
+                    <a
+                        href="https://youtube.com/watch?v=Jw-AiIswbLQ"
+                        target="_blank"
+                        rel="noreferrer"
+                        className={styles.link}
+                    >
+                        PKHeX Tutorial
+                    </a>
+                </p>
+                <ul className={styles.list}>
+                    <li className={styles["bullet-point"]}>
+                        A save editor that many use to add items like Rare Candies to your game to minimize grinding and
+                        maximize playing
+                    </li>
+                </ul>
+                <br />
+                <p className={styles.content}>
+                    <a
+                        href="https://www.youtube.com/pokemonchallenges"
+                        target="_blank"
+                        rel="noreferrer"
+                        className={styles.link}
+                    >
+                        Pokémon Challenges
+                    </a>
+                </p>
+                <ul className={styles.list}>
+                    <li className={styles["bullet-point"]}>
+                        My personal favorite Nuzlocke content creator that provides solid educational info
+                    </li>
+                    <li className={styles["bullet-point"]}>
+                        If you're not a fan of his style, find a creator you like instead
+                    </li>
+                </ul>
+                <br />
+                <p className={styles.content}>
+                    <a href="https://serebii.net/" target="_blank" rel="noreferrer" className={styles.link}>
+                        Serebii
+                    </a>
+                </p>
+                <ul className={styles.list}>
+                    <li className={styles["bullet-point"]}>
+                        Far more accurate for game info than I could ever hope to be
+                    </li>
+                </ul>
+            </section>
             <section className={`${styles.section} ${currentPage === 3 ? "" : styles.hidden}`}>
                 <p className={styles.content}>
                     NuzlockeDB was developed by me,{" "}
