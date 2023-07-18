@@ -27,6 +27,16 @@ const AboutPage: React.FC = () => {
             </section>
             <section className={`${styles.section} ${currentPage === 3 ? "" : styles.hidden}`}>
                 <p className={styles.content}>
+                    NuzlockeDB was developed by me,{" "}
+                    <a href="https://czhangy.io/" target="_blank" rel="noreferrer" className={styles.link}>
+                        Charles Zhang
+                    </a>
+                    . I'm a junior software engineer and a long-time Pokémon fan. Get in touch with me with the links at
+                    the bottom of the page, especially if you've got any feedback or would like to make a contribution
+                    of your own!
+                </p>
+                <br />
+                <p className={styles.content}>
                     This project was made possible thanks to the{" "}
                     <a href="https://pokeapi.co/" target="_blank" rel="noreferrer" className={styles.link}>
                         PokéAPI
