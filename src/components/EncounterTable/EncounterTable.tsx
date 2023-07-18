@@ -8,7 +8,6 @@ import { getPokemonTier } from "utils";
 import styles from "./EncounterTable.module.scss";
 
 type Props = {
-    runName: string;
     currentArea: AreaData | null;
     gameGroup: string;
 };

@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { getRun } from "utils";
 import styles from "./RunPage.module.scss";
 import EncounterData from "@/models/EncounterData";
+import { listenerCount } from "process";
 
 type Props = {
     gameSlug: string;
@@ -76,7 +77,12 @@ const RunPage: React.FC<Props> = (props) => {
 
     // Sets the current area on dropdown select
     const handleAreaSelect = (areaName: string) => {
-        const area: AreaData = areaList.filter((area: AreaData) => area.areaName === areaName)[0];
+        let area: AreaData = areaList.filter((area: AreaData) => area.areaName === areaName)[0];
+        if (props.locationSlug === game.startingTown) {
+            area.encounters = area.encounters.filter((encounter: EncounterData) => {
+                return !game.starterSlugs.includes(encounter.pokemonSlug);
+            });
+        }
         setCurrentArea(area);
     };
 
@@ -175,11 +181,7 @@ const RunPage: React.FC<Props> = (props) => {
                                 options={areaNameList}
                                 onSelect={(areaName: string) => handleAreaSelect(areaName)}
                             />
-                            <EncounterTable
-                                runName={props.runName}
-                                currentArea={currentArea}
-                                gameGroup={game.gameGroup}
-                            />
+                            <EncounterTable currentArea={currentArea} gameGroup={game.gameGroup} />
                         </section>
                     </>
                 ) : (
