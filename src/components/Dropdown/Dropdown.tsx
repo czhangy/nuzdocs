@@ -4,6 +4,7 @@ import styles from "./Dropdown.module.scss";
 
 type Props = {
     placeholder: string;
+    value: string | null;
     options: string[];
     onSelect: (label: string) => void;
     disabled?: boolean;
@@ -12,14 +13,14 @@ type Props = {
 
 const Dropdown: React.FC<Props> = (props: Props) => {
     const [open, setOpen] = useState<boolean>(false);
-    const [displayValue, setDisplayValue] = useState<string>(props.placeholder);
 
+    // Propagate selection to parent and close the dropdown
     const handleSelect = (label: string) => {
-        setDisplayValue(label);
         setOpen(false);
         props.onSelect(label);
     };
 
+    // Close dropdown on scroll
     useEffect(() => {
         window.addEventListener("scroll", () => setOpen(false));
     }, []);
@@ -35,7 +36,7 @@ const Dropdown: React.FC<Props> = (props: Props) => {
                 className={`${styles.controller} ${props.disabled ? styles.disabled : ""}`}
                 onClick={() => setOpen(true)}
             >
-                <p className={styles["display-value"]}>{displayValue}</p>
+                <p className={styles["display-value"]}>{props.value ? props.value : props.placeholder}</p>
                 <div className={`${styles.arrow} ${open ? styles.flipped : ""}`}>
                     <Image
                         src="/assets/icons/chevron.svg"

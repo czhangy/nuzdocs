@@ -1,0 +1,36 @@
+@use "@/styles/constants";
+
+.segment-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    position: relative;
+    top: 2rem;
+    width: 100%;
+
+    .nav-button {
+        font-size: 1.1rem;
+    }
+
+    .back-button {
+        left: 0;
+    }
+
+    .next-button {
+        right: 0;
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .segment-nav {
+        margin-top: 0.5rem;
+        margin-bottom: 0;
+        position: absolute;
+    }
+}
+
+@media (hover: hover) {
+    .nav-button:hover {
+        color: constants.$hover-color;
+    }
+}

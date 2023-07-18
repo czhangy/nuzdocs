@@ -1,3 +1,4 @@
+#!/bin/bash
 read -p "Component Name: " name
 mkdir src/components/"$name"
 cat << EOT >> src/components/"$name"/"$name".tsx
