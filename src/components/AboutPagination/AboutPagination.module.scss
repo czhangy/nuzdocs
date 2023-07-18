@@ -1,0 +1,46 @@
+@use "@/styles/constants";
+
+.about-pagination {
+    .page-entry {
+        border-bottom: 2px solid constants.$bg-color;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .page-button {
+            display: flex;
+            gap: 1rem;
+            font-size: 1.5rem;
+
+            .page-num {
+                position: relative;
+                width: 1rem;
+
+                .underline {
+                    background: constants.$hover-color;
+                    bottom: -2px;
+                    height: 2px;
+                    left: 0;
+                    position: absolute;
+                    transition: width 0.2s;
+                    width: 0;
+                }
+            }
+        }
+
+        .active {
+            color: constants.$hover-color;
+        }
+    }
+}
+
+@media (hover: hover) {
+    .about-pagination > .page-entry > .page-button:hover {
+        .page-num > .underline {
+            width: 100%;
+        }
+    }
+}
