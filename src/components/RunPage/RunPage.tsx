@@ -178,9 +178,7 @@ const RunPage: React.FC<Props> = (props) => {
                             <EncounterTable
                                 runName={props.runName}
                                 currentArea={currentArea}
-                                starterSlugsList={game.starterSlugs}
                                 gameGroup={game.gameGroup}
-                                onFetch={(pokemonDataList: PokemonData[]) => console.log("DEELTE ME")}
                             />
                         </section>
                     </>

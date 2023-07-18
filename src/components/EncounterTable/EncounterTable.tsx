@@ -10,9 +10,7 @@ import styles from "./EncounterTable.module.scss";
 type Props = {
     runName: string;
     currentArea: AreaData | null;
-    starterSlugsList: string[];
     gameGroup: string;
-    onFetch: (pokemonDataList: PokemonData[]) => void;
 };
 
 const EncounterTable: React.FC<Props> = (props: Props) => {
@@ -29,9 +27,6 @@ const EncounterTable: React.FC<Props> = (props: Props) => {
 
     // API call to fetch Pokemon names and sprites
     const fetchPokemonData = async () => {
-        props.currentArea!.encounters = props.currentArea!.encounters.filter(
-            (encounter: EncounterData) => !props.starterSlugsList.includes(encounter.pokemonSlug)
-        );
         const pokemonSlugList: string[] = props.currentArea!.encounters.map(
             (encounter: EncounterData) => encounter.pokemonSlug
         );
@@ -44,7 +39,6 @@ const EncounterTable: React.FC<Props> = (props: Props) => {
             .then((res) => {
                 const pokemonDataList: PokemonData[] = JSON.parse(res.data.pokemon);
                 setPokemonDataList(pokemonDataList);
-                props.onFetch(pokemonDataList);
             })
             .catch((error: any) => {
                 console.log(error);
