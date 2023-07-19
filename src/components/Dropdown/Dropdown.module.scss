@@ -72,7 +72,7 @@
         border: var(--border-size) solid constants.$text-color;
         border-radius: var(--border-radius);
         max-height: var(--menu-height);
-        overflow-y: scroll;
+        overflow-y: auto;
         position: absolute;
         top: var(--menu-spacing);
         transition: opacity var(--transition-time), transform var(--transition-time);
@@ -142,7 +142,7 @@
         }
 
         .menu > .option:hover {
-            color: constants.$hover-color;
+            background: constants.$hover-color;
         }
     }
 }
