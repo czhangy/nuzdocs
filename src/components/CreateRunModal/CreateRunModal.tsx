@@ -1,22 +1,14 @@
 import Run from "@/models/Run";
 import Router from "next/router";
 import { useState } from "react";
+import { initRun } from "utils";
 import styles from "./CreateRunModal.module.scss";
 
 const CreateRunModal: React.FC = () => {
     const [name, setName] = useState<string>("");
     const [nameError, setNameError] = useState<boolean>(false);
 
-    const newRun: Run = {
-        gameSlug: "soulsilver",
-        prevLocationSlug: "new-bark-town",
-        starterSlug: "",
-        encounterList: [],
-        caughtPokemonSlugsList: [],
-        numDead: 0,
-        numCheckpoints: 10,
-        numCheckpointsCleared: 0,
-    };
+    const newRun: Run = initRun();
 
     const onCreateRun = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
