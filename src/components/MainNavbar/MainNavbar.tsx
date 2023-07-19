@@ -6,18 +6,15 @@ import Navbar from "@/components/Navbar/Navbar";
 const MainNavbar: React.FC = () => {
     return (
         <Navbar>
-            <div className={styles.branding}>
-                <div className={styles.logo}>
-                    <Image src="/assets/images/nuzleaf.webp" alt="Logo" layout="fill" objectFit="contain" />
-                </div>
-                <h1 className={styles["site-name"]}>NuzlockeDB</h1>
-            </div>
+            <Link href="/">
+                <a className={styles.branding}>
+                    <div className={styles.logo}>
+                        <Image src="/assets/images/nuzleaf.webp" alt="Logo" layout="fill" objectFit="contain" />
+                    </div>
+                    <h1 className={styles["site-name"]}>NuzlockeDB</h1>
+                </a>
+            </Link>
             <ul className={styles.links}>
-                <li>
-                    <Link href="/">
-                        <a className={styles.link}>RUNS</a>
-                    </Link>
-                </li>
                 <li>
                     <Link href="/about">
                         <a className={styles.link}>ABOUT</a>

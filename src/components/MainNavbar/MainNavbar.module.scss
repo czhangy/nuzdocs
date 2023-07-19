@@ -43,6 +43,10 @@
 }
 
 @media (hover: hover) {
+    .branding:hover > .site-name {
+        color: constants.$hover-color;
+    }
+
     .links .link:hover {
         color: constants.$hover-color;
     }
