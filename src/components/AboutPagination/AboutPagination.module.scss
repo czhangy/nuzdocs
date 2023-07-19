@@ -38,7 +38,7 @@
             color: constants.$hover-color;
 
             .page-num > .underline {
-                display: none;
+                width: 0 !important;
             }
         }
     }
