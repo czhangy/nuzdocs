@@ -1,7 +1,21 @@
 @use "@/styles/constants";
 
 .dropdown {
+    --arrow-spacing: 1rem;
+    --border-radius: 5px;
+    --border-size: 2px;
     --chevron-size: 12px;
+    --font-size: 1.2rem;
+    --menu-height: 300px;
+    --menu-offset: 2px;
+    --menu-spacing: 3.5rem;
+    --overlay-z: 99;
+    --scrollbar-border: 2px;
+    --scrollbar-radius: 20px;
+    --scrollbar-width: 4px;
+    --transition-time: 0.2s;
+    --x-padding: 3rem;
+    --y-padding: 0.5rem;
 
     display: flex;
     justify-content: center;
@@ -14,27 +28,27 @@
         position: fixed;
         right: 0;
         top: 0;
-        z-index: 99;
+        z-index: var(--overlay-z);
     }
 
     .controller {
         align-items: center;
-        border: 2px solid constants.$text-color;
-        border-radius: 5px;
+        border: var(--border-size) solid constants.$text-color;
+        border-radius: var(--border-radius);
         cursor: pointer;
         display: flex;
-        padding: 0.5rem 3rem;
+        padding: var(--y-padding) var(--x-padding);
 
-        .display-value {
-            font-size: 1.2rem;
+        .display {
+            font-size: var(--font-size);
         }
 
         .arrow {
             filter: constants.$svg-color;
             height: var(--chevron-size);
             position: absolute;
-            transition: transform 0.2s;
-            right: 1rem;
+            transition: transform var(--transition-time);
+            right: var(--arrow-spacing);
             width: var(--chevron-size);
         }
 
@@ -53,42 +67,42 @@
         }
     }
 
-    .dropdown-options {
+    .menu {
         background-color: constants.$bg-color;
-        border: 2px solid constants.$text-color;
-        border-radius: 5px;
-        max-height: 300px;
+        border: var(--border-size) solid constants.$text-color;
+        border-radius: var(--border-radius);
+        max-height: var(--menu-height);
         overflow-y: scroll;
         position: absolute;
-        top: 3rem;
-        transition: opacity 0.2s, transform 0.2s;
+        top: var(--menu-spacing);
+        transition: opacity var(--transition-time), transform var(--transition-time);
         width: 100%;
-        z-index: 100;
+        z-index: calc(var(--overlay-z) + 1);
 
-        .dropdown-option {
+        .option {
             cursor: pointer;
-            font-size: 1.2rem;
-            padding: 0.5rem 0;
+            font-size: var(--font-size);
+            padding: var(--y-padding) 0;
             text-align: center;
             width: 100%;
         }
     }
 
+    .hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(calc(var(--menu-offset) * -1));
+    }
+
     ::-webkit-scrollbar {
         background: constants.$bg-color;
-        width: 8px;
+        width: calc(var(--scrollbar-width) + 2 * var(--scrollbar-border));
     }
 
     ::-webkit-scrollbar-thumb {
         background: constants.$text-color;
-        border: 2px solid constants.$bg-color;
-        border-radius: 20px;
-    }
-
-    .hidden {
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(-2px);
+        border: var(--scrollbar-border) solid constants.$bg-color;
+        border-radius: var(--scrollbar-radius);
     }
 }
 
@@ -103,13 +117,13 @@
         }
     }
 
-    .dropdown-options {
-        bottom: 3rem;
+    .menu {
+        bottom: var(--menu-spacing);
         top: auto;
     }
 
     .hidden {
-        transform: translateY(2px);
+        transform: translateY(var(--menu-offset));
     }
 }
 
@@ -118,7 +132,7 @@
         .controller:hover {
             border-color: constants.$hover-color;
 
-            .display-value {
+            .display {
                 color: constants.$hover-color;
             }
 
@@ -127,7 +141,7 @@
             }
         }
 
-        .dropdown-options > .dropdown-option:hover {
+        .menu > .option:hover {
             color: constants.$hover-color;
         }
     }
