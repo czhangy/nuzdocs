@@ -1,39 +1,40 @@
 @use "@/styles/constants";
 
 .about-page {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    justify-content: center;
     padding: 2rem 0;
 
-    .section {
-        width: 100%;
+    .section-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
 
-        .header {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            text-decoration: underline;
-        }
+        .section {
+            width: 100%;
 
-        .content {
-            font-size: 1.2rem;
-            line-height: 2rem;
-
-            .link {
-                color: constants.$hover-color;
+            .header {
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+                text-decoration: underline;
             }
-        }
 
-        .list {
-            list-style: disc;
-            margin-left: 2rem;
-            margin-top: 0.5rem;
-
-            .bullet-point {
+            .content {
                 font-size: 1.2rem;
                 line-height: 2rem;
+
+                .link {
+                    color: constants.$hover-color;
+                }
+            }
+
+            .list {
+                list-style: disc;
+                margin-left: 2rem;
+                margin-top: 0.5rem;
+
+                .bullet-point {
+                    font-size: 1.2rem;
+                    line-height: 2rem;
+                }
             }
         }
     }
@@ -41,20 +42,44 @@
 
 @media screen and (min-width: constants.$desktop) {
     .about-page {
+        --hidden-offset: 5rem;
+        --section-width: 600px;
+
+        align-items: center;
+        display: flex;
         flex-direction: row;
         gap: 4rem;
 
-        .section {
-            max-width: 600px;
-            width: 60%;
+        .section-container {
+            position: relative;
+            width: var(--section-width);
 
-            .header {
-                display: none;
+            .section {
+                position: absolute;
+                transform: translateY(-50%);
+                transition: transform 0.3s, opacity 0.15s;
+
+                .header {
+                    display: none;
+                }
             }
-        }
 
-        .hidden {
-            display: none;
+            .show {
+                opacity: 1;
+            }
+
+            .hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            .top {
+                transform: translateY(-55%);
+            }
+
+            .bottom {
+                transform: translateY(-45%);
+            }
         }
     }
 }
