@@ -17,11 +17,11 @@ const AboutPage: React.FC = () => {
                 </p>
                 <br />
                 <p className={styles.content}>
-                    This project will likely never finish development. There are a million things I'd like to add and
-                    only so much time for me to add them. At the end of the day, this is a passion project and I'm not a
-                    professional Nuzlocker, so, whether it's due to incompetence or missing data, there's going to be
-                    some wrong information here and there. If you find any, feel free to reach out and I'll try to fix
-                    it ASAP!
+                    This project will likely never finish development. There are a million things I&apos;d like to add
+                    and only so much time for me to add them. At the end of the day, this is a passion project and
+                    I&apos;m not a professional Nuzlocker, so, whether it&apos;s due to incompetence or missing data,
+                    there&apos;s going to be some wrong information here and there. If you find any, feel free to reach
+                    out and I&apos;ll try to fix it ASAP!
                 </p>
                 <br />
             </section>
@@ -30,7 +30,7 @@ const AboutPage: React.FC = () => {
                     Nuzlockes are a fun way to make any Pokémon game more interesting with a set of self-imposed rules
                     that make the game more challenging. The core concepts of a Nuzlocke are 1) if a Pokémon faints, it
                     can no longer be used and 2) only one Pokémon can be caught per area. Any additional rules can be
-                    added at the player's discretion to make the run as fun as possible.
+                    added at the player&apos;s discretion to make the run as fun as possible.
                 </p>
                 <br />
                 <p className={styles.content}>
@@ -40,7 +40,8 @@ const AboutPage: React.FC = () => {
                 <ul className={styles.list}>
                     <li className={styles["bullet-point"]}>If you whiteout, you must restart the run</li>
                     <li className={styles["bullet-point"]}>
-                        You cannot use Pokémon that are a higher level than the next gym leader's highest level Pokémon
+                        You cannot use Pokémon that are a higher level than the next gym leader&apos;s highest level
+                        Pokémon
                     </li>
                     <li className={styles["bullet-point"]}>You may not use healing items in battle</li>
                     <li className={styles["bullet-point"]}>You must play in Set mode</li>
@@ -105,7 +106,7 @@ const AboutPage: React.FC = () => {
                         My personal favorite Nuzlocke content creator that provides solid educational info
                     </li>
                     <li className={styles["bullet-point"]}>
-                        If you're not a fan of his style, find a creator you like instead
+                        If you&apos;re not a fan of his style, find a creator you like instead
                     </li>
                 </ul>
                 <br />
@@ -126,9 +127,9 @@ const AboutPage: React.FC = () => {
                     <a href="https://czhangy.io/" target="_blank" rel="noreferrer" className={styles.link}>
                         Charles Zhang
                     </a>
-                    . I'm a junior software engineer and a long-time Pokémon fan. Get in touch with me with the links at
-                    the bottom of the page, especially if you've got any feedback or would like to make a contribution
-                    of your own!
+                    . I&apos;m a junior software engineer and a long-time Pokémon fan. Get in touch with me with the
+                    links at the bottom of the page, especially if you&apos;ve got any feedback or would like to make a
+                    contribution of your own!
                 </p>
                 <br />
                 <p className={styles.content}>
