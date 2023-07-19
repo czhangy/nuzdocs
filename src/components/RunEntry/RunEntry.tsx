@@ -42,7 +42,9 @@ const RunEntry: React.FC<Props> = (props: Props) => {
     return (
         <li className={styles["run-entry"]}>
             <button className={styles.nav} onClick={handleNav}>
-                <p className={styles.name}>{props.runName}</p>
+                <p className={styles.name}>
+                    {run && run.numCheckpointsCleared === run.numCheckpoints ? `👑 ${props.runName}` : props.runName}
+                </p>
                 <ProgressBar complete={run ? run.numCheckpointsCleared : 0} total={run ? run.numCheckpoints : 1} />
                 <div className={styles.rips}>
                     <div className={styles.icon}>
