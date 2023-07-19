@@ -34,8 +34,8 @@ const AboutPage: React.FC = () => {
                 </p>
                 <br />
                 <p className={styles.content}>
-                    The most common (and my personal favorite) variant of Nuzlockes are "Hardcore Nuzlockes", which amp
-                    the difficulty up even more and generally add rules like the following:
+                    The most common (and my personal favorite) variant of Nuzlockes are &quot;Hardcore Nuzlockes&quot;,
+                    which amp the difficulty up even more and generally add rules like the following:
                 </p>
                 <ul className={styles.list}>
                     <li className={styles["bullet-point"]}>If you whiteout, you must restart the run</li>
