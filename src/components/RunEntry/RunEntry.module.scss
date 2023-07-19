@@ -1,8 +1,16 @@
 @use "@/styles/constants";
 
 .run-entry {
+    --button-size: 24px;
+    --button-spacing: 2rem;
+    --button-z: 0;
     --entry-padding: 0;
-    --icon-size: 32px;
+    --icon-size: 16px;
+    --indicator-size: 5px;
+    --inner-spacing: 0.3rem;
+    --name-font-size: 1.5rem;
+    --nav-padding: 2rem;
+    --transition-time: 0.3s;
 
     align-items: center;
     display: flex;
@@ -10,31 +18,53 @@
     padding: 0 var(--entry-padding);
     width: 100%;
 
-    .run-button {
-        border-left: 5px solid constants.$accent-color;
-        padding: 2rem;
+    .nav {
+        border-left: var(--indicator-size) solid constants.$bg-color;
+        display: flex;
+        flex-direction: column;
+        gap: var(--inner-spacing);
+        padding: var(--nav-padding);
         text-align: left;
-        width: 80%;
+        width: calc(100% - (2 * var(--button-size) + var(--button-spacing)));
 
         .name {
-            font-size: 1.5rem;
+            font-size: var(--name-font-size);
+            line-height: var(--name-font-size);
+        }
+
+        .rips {
+            align-items: center;
+            display: flex;
+            gap: var(--inner-spacing);
+
+            .icon {
+                filter: constants.$svg-color;
+                height: var(--icon-size);
+                position: relative;
+                width: var(--icon-size);
+            }
         }
     }
 
-    .delete-button {
-        filter: constants.$svg-color;
-        height: var(--icon-size);
-        position: relative;
-        transition: transform 0.3s;
-        width: var(--icon-size);
-        z-index: 0;
+    .buttons {
+        display: flex;
+        gap: var(--button-spacing);
+
+        .button {
+            filter: constants.$svg-color;
+            height: var(--button-size);
+            position: relative;
+            transition: transform var(--transition-time);
+            width: var(--button-size);
+            z-index: var(--button-z);
+        }
     }
 }
 
 @media screen and (min-width: constants.$tablet) {
     .run-entry {
         --entry-padding: 2rem;
-        --icon-size: 40px;
+        --button-size: 32px;
     }
 }
 
@@ -46,11 +76,11 @@
 
 @media (hover: hover) {
     .run-entry {
-        .run-button:hover {
-            border-left: 5px solid constants.$hover-color;
+        .nav:hover {
+            border-color: constants.$hover-color;
         }
 
-        .delete-button:hover {
+        .buttons > .button:hover {
             filter: constants.$svg-hover-color;
             transform: scale(1.2) rotate(5deg);
         }

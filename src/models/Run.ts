@@ -6,4 +6,6 @@ export default interface Run {
     starterSlug: string;
     encounterList: LocalPokemon[];
     caughtPokemonSlugsList: string[];
+    numDead: number;
+    numCheckpointsCleared: number;
 }

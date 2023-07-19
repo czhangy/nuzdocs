@@ -13,6 +13,8 @@ const CreateRunModal: React.FC = () => {
         starterSlug: "",
         encounterList: [],
         caughtPokemonSlugsList: [],
+        numDead: 0,
+        numCheckpointsCleared: 0,
     };
 
     const onCreateRun = (e: React.FormEvent<HTMLFormElement>) => {
