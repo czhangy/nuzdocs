@@ -1,9 +1,9 @@
 import Run from "@/models/Run";
 import Router from "next/router";
 import { useState } from "react";
-import styles from "./CreateRun.module.scss";
+import styles from "./CreateRunModal.module.scss";
 
-const CreateRun: React.FC = () => {
+const CreateRunModal: React.FC = () => {
     const [name, setName] = useState<string>("");
     const [nameError, setNameError] = useState<boolean>(false);
 
@@ -38,11 +38,11 @@ const CreateRun: React.FC = () => {
     };
 
     return (
-        <div className={styles["create-run"]}>
-            <h2 className={styles["create-header"]}>Start a New Run</h2>
-            <form id="create-form" className={styles["create-form"]} onSubmit={onCreateRun}>
+        <div className={styles["create-run-modal"]}>
+            <h2 className={styles.header}>Start a New Run</h2>
+            <form id="create-form" className={styles.form} onSubmit={onCreateRun}>
                 <input
-                    className={styles["create-input"]}
+                    className={styles.input}
                     maxLength={30}
                     placeholder="Name your run..."
                     type="text"
@@ -62,4 +62,4 @@ const CreateRun: React.FC = () => {
     );
 };
 
-export default CreateRun;
+export default CreateRunModal;

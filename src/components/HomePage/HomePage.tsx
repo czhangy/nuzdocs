@@ -1,4 +1,4 @@
-import CreateRun from "@/components/CreateRun/CreateRun";
+import CreateRunModal from "@/components/CreateRunModal/CreateRunModal";
 import Modal from "@/components/Modal/Modal";
 import RunList from "@/components/RunList/RunList";
 import { useEffect, useState } from "react";
@@ -33,7 +33,7 @@ const HomePage: React.FC = () => {
     return (
         <>
             <Modal modalID="create-run-modal" onClose={closeCreateRunModal} open={modalOpen}>
-                <CreateRun key={resetFlag} />
+                <CreateRunModal key={resetFlag} />
             </Modal>
             <div className={styles["home-page"]}>
                 <RunList runNames={runNames} onDelete={getRunNames} onOpen={() => setModalOpen(true)} />
