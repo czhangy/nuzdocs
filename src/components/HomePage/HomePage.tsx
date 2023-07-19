@@ -9,8 +9,8 @@ const HomePage: React.FC = () => {
     const [resetFlag, setResetFlag] = useState<number>(0);
     const [runs, setRuns] = useState<string[]>([]);
 
+    // Hacky way to reset the modal contents on close
     const closeCreateRunModal = () => {
-        // Hacky way to reset the modal contents on close
         setTimeout(() => {
             setResetFlag((resetFlag + 1) % 2);
         }, 500);
@@ -18,16 +18,14 @@ const HomePage: React.FC = () => {
     };
 
     // Fetch existing runs from local storage to display in list
-    const fetchRuns = () => {
+    useEffect(() => {
         const storedRuns = localStorage.getItem("runs");
         if (storedRuns) {
             let storedRunsList: string[] = JSON.parse(storedRuns);
             storedRunsList.reverse();
             setRuns(storedRunsList);
         }
-    };
-
-    useEffect(fetchRuns, []);
+    }, []);
 
     return (
         <>
