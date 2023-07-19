@@ -1,1 +1,54 @@
 @use "@/styles/constants";
+
+.run-list {
+    --alt-font-size: 1.5rem;
+    --button-border-size: 2px;
+    --button-border-rad: 4px;
+    --button-font-size: 1.5rem;
+    --button-x-padding: 2rem;
+    --button-y-padding: 0.75rem;
+    --header-size: 2rem;
+    --inner-spacing: 2rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--inner-spacing);
+    width: 100%;
+
+    .header {
+        font-size: var(--header-size);
+        font-weight: bold;
+        margin-bottom: var(--header-spacing);
+        text-align: center;
+    }
+
+    .list {
+        width: 100%;
+    }
+
+    .alt-text {
+        font-size: var(--alt-font-size);
+        text-align: center;
+    }
+
+    .new-button {
+        border: var(--button-border-size) solid constants.$text-color;
+        border-radius: var(--button-border-rad);
+        font-size: var(--button-font-size);
+        padding: var(--button-y-padding) var(--button-x-padding);
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .run-list {
+        --header-size: 2.5rem;
+    }
+}
+
+@media (hover: hover) {
+    .new-button:hover {
+        background: constants.$text-color;
+        color: constants.$bg-color;
+    }
+}
