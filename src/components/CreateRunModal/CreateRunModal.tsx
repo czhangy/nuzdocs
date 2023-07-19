@@ -14,6 +14,7 @@ const CreateRunModal: React.FC = () => {
         encounterList: [],
         caughtPokemonSlugsList: [],
         numDead: 0,
+        numCheckpoints: 10,
         numCheckpointsCleared: 0,
     };
 

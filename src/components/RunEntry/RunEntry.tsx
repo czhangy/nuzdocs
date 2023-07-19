@@ -1,9 +1,10 @@
+import ProgressBar from "@/components/ProgressBar/ProgressBar";
 import Run from "@/models/Run";
 import Image from "next/image";
 import Router from "next/router";
+import { useEffect, useState } from "react";
 import { getRun } from "utils";
 import styles from "./RunEntry.module.scss";
-import { useEffect, useState } from "react";
 
 type Props = {
     onDelete: () => void;
@@ -42,7 +43,7 @@ const RunEntry: React.FC<Props> = (props: Props) => {
         <li className={styles["run-entry"]}>
             <button className={styles.nav} onClick={handleNav}>
                 <p className={styles.name}>{props.runName}</p>
-                <div>PROGRESS BAR HERE</div>
+                <ProgressBar complete={run ? run.numCheckpointsCleared : 0} total={run ? run.numCheckpoints : 1} />
                 <div className={styles.rips}>
                     <div className={styles.icon}>
                         <Image src="/assets/icons/dead.svg" alt="Deaths" layout="fill" objectFit="contain" />
