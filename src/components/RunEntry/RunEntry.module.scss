@@ -10,6 +10,7 @@
     --inner-spacing: 0.5rem;
     --name-font-size: 1.5rem;
     --nav-padding: 2rem;
+    --rip-spacing: 0.3rem;
     --transition-time: 0.3s;
 
     align-items: center;
@@ -35,7 +36,7 @@
         .rips {
             align-items: center;
             display: flex;
-            gap: var(--inner-spacing);
+            gap: var(--rip-spacing);
 
             .icon {
                 filter: constants.$svg-color;
