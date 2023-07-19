@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer/Footer";
 import MainNavbar from "@/components/MainNavbar/MainNavbar";
-import RunNavbar from "@/components/RunNavbar/RunNavbar";
 import PageWrapper from "@/components/PageWrapper/PageWrapper";
+import RunNavbar from "@/components/RunNavbar/RunNavbar";
 import "@/styles/globals.scss";
 import { Analytics } from "@vercel/analytics/react";
 import type { AppProps } from "next/app";
@@ -12,7 +12,7 @@ function App({ Component, pageProps }: AppProps) {
 
     return (
         <>
-            {router.pathname === "/" ? <MainNavbar /> : <RunNavbar />}
+            {router.pathname.includes("/runs") ? <RunNavbar /> : <MainNavbar />}
             <PageWrapper>
                 <Component {...pageProps} />
             </PageWrapper>

@@ -154,4 +154,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 -   [PokéAPI](https://pokeapi.co/)
 -   [Pokémon Database](https://pokemondb.net/)
 -   [pokenode-ts](https://github.com/Gabb-c/pokenode-ts)
+-   [Serebii](https://www.serebii.net/)
 -   [Shields.io](https://shields.io/)

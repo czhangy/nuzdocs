@@ -1,0 +1,92 @@
+@use "@/styles/constants";
+
+.about-page {
+    --font-size: 1.2rem;
+    --inner-spacing: 0.5rem;
+    --line-height: 2rem;
+    --list-offset: 2rem;
+    --section-spacing: 2rem;
+    --v-page-padding: 2rem;
+
+    padding: var(--v-page-padding) 0;
+
+    .section-container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--section-spacing);
+
+        .section {
+            width: 100%;
+
+            .header {
+                font-weight: bold;
+                margin-bottom: var(--inner-spacing);
+                text-decoration: underline;
+            }
+
+            .content {
+                font-size: var(--font-size);
+                line-height: var(--line-height);
+
+                .link {
+                    color: constants.$hover-color;
+                }
+            }
+
+            .list {
+                list-style: disc;
+                margin-left: var(--list-offset);
+                margin-top: var(--inner-spacing);
+
+                .bullet-point {
+                    font-size: var(--font-size);
+                    line-height: var(--line-height);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$desktop) {
+    .about-page {
+        --base-offset: -50%;
+        --component-spacing: 4rem;
+        --hidden-offset: 5%;
+        --section-width: 600px;
+        --transition-time: 0.3s;
+
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        gap: var(--component-spacing);
+
+        .section-container {
+            position: relative;
+            width: var(--section-width);
+
+            .section {
+                opacity: 1;
+                position: absolute;
+                transform: translateY(var(--base-offset));
+                transition: transform var(--transition-time), opacity calc(var(--transition-time) / 2);
+
+                .header {
+                    display: none;
+                }
+            }
+
+            .hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            .top {
+                transform: translateY(calc(var(--base-offset) - var(--hidden-offset)));
+            }
+
+            .bottom {
+                transform: translateY(calc(var(--base-offset) + var(--hidden-offset)));
+            }
+        }
+    }
+}
