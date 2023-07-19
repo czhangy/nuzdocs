@@ -10,6 +10,7 @@ const AboutPage: React.FC = () => {
     return (
         <div className={styles["about-page"]}>
             <section className={`${styles.section} ${currentPage === 0 ? "" : styles.hidden}`}>
+                <h2 className={styles.header}>{pageNames[0]}</h2>
                 <p className={styles.content}>
                     NuzlockeDB is a resource intended to help players looking to complete a Nuzlocke run for any vanilla
                     Pokémon game. This app can be used to track the progress of your run, search for details on upcoming
@@ -26,6 +27,7 @@ const AboutPage: React.FC = () => {
                 <br />
             </section>
             <section className={`${styles.section} ${currentPage === 1 ? "" : styles.hidden}`}>
+                <h2 className={styles.header}>{pageNames[1]}</h2>
                 <p className={styles.content}>
                     Nuzlockes are a fun way to make any Pokémon game more interesting with a set of self-imposed rules
                     that make the game more challenging. The core concepts of a Nuzlocke are 1) if a Pokémon faints, it
@@ -49,6 +51,7 @@ const AboutPage: React.FC = () => {
                 <br />
             </section>
             <section className={`${styles.section} ${currentPage === 2 ? "" : styles.hidden}`}>
+                <h2 className={styles.header}>{pageNames[2]}</h2>
                 <p className={styles.content}>
                     <a
                         href="https://www.reddit.com/r/nuzlocke/"
@@ -122,6 +125,7 @@ const AboutPage: React.FC = () => {
                 </ul>
             </section>
             <section className={`${styles.section} ${currentPage === 3 ? "" : styles.hidden}`}>
+                <h2 className={styles.header}>{pageNames[3]}</h2>
                 <p className={styles.content}>
                     NuzlockeDB was developed by me,{" "}
                     <a href="https://czhangy.io/" target="_blank" rel="noreferrer" className={styles.link}>

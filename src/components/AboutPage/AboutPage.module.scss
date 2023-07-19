@@ -3,12 +3,19 @@
 .about-page {
     align-items: center;
     display: flex;
-    gap: 4rem;
+    flex-direction: column;
+    gap: 2rem;
     justify-content: center;
+    padding: 2rem 0;
 
     .section {
-        max-width: 600px;
-        width: 60%;
+        width: 100%;
+
+        .header {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-decoration: underline;
+        }
 
         .content {
             font-size: 1.2rem;
@@ -30,8 +37,24 @@
             }
         }
     }
+}
 
-    .hidden {
-        display: none;
+@media screen and (min-width: constants.$desktop) {
+    .about-page {
+        flex-direction: row;
+        gap: 4rem;
+
+        .section {
+            max-width: 600px;
+            width: 60%;
+
+            .header {
+                display: none;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
     }
 }
