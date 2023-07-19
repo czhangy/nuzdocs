@@ -1,25 +1,32 @@
 @use "@/styles/constants";
 
 .about-page {
-    padding: 2rem 0;
+    --font-size: 1.2rem;
+    --inner-spacing: 0.5rem;
+    --line-height: 2rem;
+    --list-offset: 2rem;
+    --section-spacing: 2rem;
+    --v-page-padding: 2rem;
+
+    padding: var(--v-page-padding) 0;
 
     .section-container {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: var(--section-spacing);
 
         .section {
             width: 100%;
 
             .header {
                 font-weight: bold;
-                margin-bottom: 0.5rem;
+                margin-bottom: var(--inner-spacing);
                 text-decoration: underline;
             }
 
             .content {
-                font-size: 1.2rem;
-                line-height: 2rem;
+                font-size: var(--font-size);
+                line-height: var(--line-height);
 
                 .link {
                     color: constants.$hover-color;
@@ -28,12 +35,12 @@
 
             .list {
                 list-style: disc;
-                margin-left: 2rem;
-                margin-top: 0.5rem;
+                margin-left: var(--list-offset);
+                margin-top: var(--inner-spacing);
 
                 .bullet-point {
-                    font-size: 1.2rem;
-                    line-height: 2rem;
+                    font-size: var(--font-size);
+                    line-height: var(--line-height);
                 }
             }
         }
@@ -42,30 +49,30 @@
 
 @media screen and (min-width: constants.$desktop) {
     .about-page {
-        --hidden-offset: 5rem;
+        --base-offset: -50%;
+        --component-spacing: 4rem;
+        --hidden-offset: 5%;
         --section-width: 600px;
+        --transition-time: 0.3s;
 
         align-items: center;
         display: flex;
         flex-direction: row;
-        gap: 4rem;
+        gap: var(--component-spacing);
 
         .section-container {
             position: relative;
             width: var(--section-width);
 
             .section {
+                opacity: 1;
                 position: absolute;
-                transform: translateY(-50%);
-                transition: transform 0.3s, opacity 0.15s;
+                transform: translateY(var(--base-offset));
+                transition: transform var(--transition-time), opacity calc(var(--transition-time) / 2);
 
                 .header {
                     display: none;
                 }
-            }
-
-            .show {
-                opacity: 1;
             }
 
             .hidden {
@@ -74,11 +81,11 @@
             }
 
             .top {
-                transform: translateY(-55%);
+                transform: translateY(calc(var(--base-offset) - var(--hidden-offset)));
             }
 
             .bottom {
-                transform: translateY(-45%);
+                transform: translateY(calc(var(--base-offset) + var(--hidden-offset)));
             }
         }
     }

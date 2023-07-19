@@ -22,9 +22,7 @@ const AboutPage: React.FC = () => {
         <div className={styles["about-page"]}>
             <div className={styles["section-container"]}>
                 <section
-                    className={`${styles.section} ${currentPage === 0 ? styles.show : styles.hidden} ${getHideDirection(
-                        0
-                    )}`}
+                    className={`${styles.section} ${currentPage === 0 ? "" : styles.hidden} ${getHideDirection(0)}`}
                 >
                     <h2 className={styles.header}>{pageNames[0]}</h2>
                     <p className={styles.content}>
@@ -43,9 +41,7 @@ const AboutPage: React.FC = () => {
                     <br />
                 </section>
                 <section
-                    className={`${styles.section} ${currentPage === 1 ? styles.show : styles.hidden} ${getHideDirection(
-                        1
-                    )}`}
+                    className={`${styles.section} ${currentPage === 1 ? "" : styles.hidden} ${getHideDirection(1)}`}
                 >
                     <h2 className={styles.header}>{pageNames[1]}</h2>
                     <p className={styles.content}>
@@ -72,9 +68,7 @@ const AboutPage: React.FC = () => {
                     <br />
                 </section>
                 <section
-                    className={`${styles.section} ${currentPage === 2 ? styles.show : styles.hidden} ${getHideDirection(
-                        2
-                    )}`}
+                    className={`${styles.section} ${currentPage === 2 ? "" : styles.hidden} ${getHideDirection(2)}`}
                 >
                     <h2 className={styles.header}>{pageNames[2]}</h2>
                     <p className={styles.content}>
@@ -150,9 +144,7 @@ const AboutPage: React.FC = () => {
                     </ul>
                 </section>
                 <section
-                    className={`${styles.section} ${currentPage === 3 ? styles.show : styles.hidden} ${getHideDirection(
-                        3
-                    )}`}
+                    className={`${styles.section} ${currentPage === 3 ? "" : styles.hidden} ${getHideDirection(3)}`}
                 >
                     <h2 className={styles.header}>{pageNames[3]}</h2>
                     <p className={styles.content}>
