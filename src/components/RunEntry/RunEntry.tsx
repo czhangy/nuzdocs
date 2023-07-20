@@ -23,9 +23,22 @@ const RunEntry: React.FC<Props> = (props: Props) => {
         props.onDelete();
     };
 
-    // TODO
-    const handleSave = () => {
-        alert("WIP");
+    // Saves run as a JSON file: https://stackoverflow.com/questions/19721439/download-json-object-as-a-file-from-browser
+    const handleSave = (runName: string) => {
+        const jsonData: string = localStorage.getItem(runName)!;
+        const filename = runName + ".json";
+        const blob = new Blob([JSON.stringify(jsonData)], { type: "text/json" });
+        const link = document.createElement("a");
+        link.download = filename;
+        link.href = window.URL.createObjectURL(blob);
+        link.dataset.downloadurl = ["text/json", link.download, link.href].join(":");
+        const evt = new MouseEvent("click", {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+        });
+        link.dispatchEvent(evt);
+        link.remove();
     };
 
     // Redirect to previous location of selected run
@@ -57,7 +70,7 @@ const RunEntry: React.FC<Props> = (props: Props) => {
                 <button className={styles.button} onClick={handleDelete}>
                     <Image src="/assets/icons/delete.svg" alt="Delete" layout="fill" objectFit="contain" />
                 </button>
-                <button className={styles.button} onClick={handleSave}>
+                <button className={styles.button} onClick={() => handleSave(props.runName)}>
                     <Image src="/assets/icons/save.svg" alt="Save" layout="fill" objectFit="contain" />
                 </button>
             </div>
