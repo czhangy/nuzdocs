@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
                 <CreateRunModal key={resetFlag} />
             </Modal>
             <div className={styles["home-page"]}>
-                <RunList runNames={runNames} onDelete={getRunNames} onOpen={() => setModalOpen(true)} />
+                <RunList runNames={runNames} onUpdate={getRunNames} onOpen={() => setModalOpen(true)} />
             </div>
         </>
     );

@@ -7,6 +7,7 @@
     --button-font-size: 1.5rem;
     --button-x-padding: 2rem;
     --button-y-padding: 0.75rem;
+    --buttons-spacing: 1rem;
     --header-size: 2rem;
     --inner-spacing: 2rem;
 
@@ -33,11 +34,21 @@
         text-align: center;
     }
 
-    .new-button {
-        border: var(--button-border-size) solid constants.$text-color;
-        border-radius: var(--button-border-rad);
-        font-size: var(--button-font-size);
-        padding: var(--button-y-padding) var(--button-x-padding);
+    .buttons {
+        display: flex;
+        gap: var(--buttons-spacing);
+
+        .button {
+            border: var(--button-border-size) solid constants.$text-color;
+            border-radius: var(--button-border-rad);
+            cursor: pointer;
+            font-size: var(--button-font-size);
+            padding: var(--button-y-padding) var(--button-x-padding);
+        }
+
+        .file-upload {
+            display: none;
+        }
     }
 }
 
@@ -48,7 +59,7 @@
 }
 
 @media (hover: hover) {
-    .new-button:hover {
+    .run-list > .buttons > .button:hover {
         background: constants.$text-color;
         color: constants.$bg-color;
     }

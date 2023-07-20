@@ -16,9 +16,9 @@ const RunEntry: React.FC<Props> = (props: Props) => {
 
     // Remove run from run list and from local storage and refresh list
     const handleDelete = () => {
-        let runs = JSON.parse(localStorage.getItem("runs") as string);
-        runs.splice(runs.indexOf(props.runName), 1);
-        localStorage.setItem("runs", JSON.stringify(runs));
+        let runNames: string[] = JSON.parse(localStorage.getItem("runs") as string);
+        runNames.splice(runNames.indexOf(props.runName), 1);
+        localStorage.setItem("runs", JSON.stringify(runNames));
         localStorage.removeItem(props.runName);
         props.onDelete();
     };
