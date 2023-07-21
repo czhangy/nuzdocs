@@ -1,7 +1,7 @@
 import Game from "@/models/Game";
 
 const SoulSilver: Game = {
-    slug: "soulsilver",
+    name: "SoulSilver",
     gameGroup: "hgss",
     segments: [
         {

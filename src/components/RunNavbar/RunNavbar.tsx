@@ -1,25 +1,44 @@
 import Navbar from "@/components/Navbar/Navbar";
+import Game from "@/models/Game";
+import LocalSegment from "@/models/LocalSegment";
+import Run from "@/models/Run";
+import Games from "@/static/games";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { getRun } from "utils";
 import styles from "./RunNavbar.module.scss";
 
 const RunNavbar: React.FC = () => {
+    const [game, setGame] = useState<Game | null>(null);
     const router = useRouter();
+
+    // Validate run and set game for valid runs
+    useEffect(() => {
+        const run: Run = getRun(router.query.runName as string);
+        if (
+            run &&
+            Games[run.gameSlug].segments
+                .map((segment: LocalSegment) => segment.slug)
+                .includes(router.query.segmentSlug as string)
+        ) {
+            setGame(Games[run.gameSlug]);
+        }
+    }, []);
 
     return (
         <Navbar>
             <Link href="/">
                 <a className={styles.game}>
                     <p className={styles["back-arrow"]}>←</p>
-                    <div className={styles.logo}>
-                        <Image
-                            src="/assets/images/soulsilver.webp"
-                            alt="SoulSilver"
-                            layout="fill"
-                            objectFit="contain"
-                        />
-                    </div>
+                    {game ? (
+                        <div className={styles.logo}>
+                            <Image src={game.iconURL} alt={game.name} layout="fill" objectFit="contain" />
+                        </div>
+                    ) : (
+                        ""
+                    )}
                 </a>
             </Link>
             <ul className={styles.links}>
