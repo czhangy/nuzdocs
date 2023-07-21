@@ -1,0 +1,36 @@
+@use "@/styles/constants";
+
+.progress-bar {
+    --bar-height: 8px;
+    --bar-width: 150px;
+    --border-rad: 10px;
+    --inner-spacing: 0.5rem;
+    --percent-size: 1.75rem;
+
+    align-items: center;
+    display: flex;
+    gap: var(--inner-spacing);
+
+    .percent {
+        width: var(--percent-size);
+    }
+
+    .bg {
+        background-color: constants.$accent-color;
+        border-radius: var(--border-rad);
+        height: var(--bar-height);
+        width: var(--bar-width);
+
+        .bar {
+            background: constants.$hover-color;
+            border-radius: var(--border-rad);
+            height: var(--bar-height);
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .progress-bar {
+        --bar-width: 200px;
+    }
+}

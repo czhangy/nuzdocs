@@ -1,0 +1,78 @@
+@use "@/styles/constants";
+
+.create-run-modal {
+    --button-border-rad: 5px;
+    --button-x-padding: 2rem;
+    --border-size: 2px;
+    --content-width: 320px;
+    --error-font-size: 0.9rem;
+    --error-spacing: 0.5rem;
+    --font-size: 1.25rem;
+    --header-size: 2rem;
+    --inner-spacing: 2rem;
+    --input-x-padding: 1rem;
+    --y-padding: 0.5rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: var(--content-width);
+
+    .header {
+        font-size: var(--header-size);
+        font-weight: bold;
+    }
+
+    .form {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: var(--inner-spacing);
+        width: 100%;
+
+        .input {
+            background: constants.$bg-color;
+            border: var(--border-size) solid constants.$accent-color;
+            font-size: var(--font-size);
+            padding: var(--y-padding) var(--input-x-padding);
+            width: 100%;
+
+            &:focus {
+                border: var(--border-size) solid constants.$hover-color;
+            }
+        }
+
+        .error {
+            color: constants.$error-color;
+            font-size: var(--error-font-size);
+            margin-top: var(--error-spacing);
+            width: 100%;
+        }
+
+        .submit-button {
+            border: var(--border-size) solid constants.$text-color;
+            border-radius: var(--button-border-rad);
+            font-size: var(--font-size);
+            margin-top: var(--inner-spacing);
+            padding: var(--y-padding) var(--button-x-padding);
+
+            &:disabled {
+                border-color: constants.$bg-color;
+                color: constants.$bg-color;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .create-run-modal {
+        --content-width: 400px;
+    }
+}
+
+@media (hover: hover) {
+    .create-run-modal > .form > .submit-button:hover {
+        background: constants.$text-color;
+        color: constants.$bg-color;
+    }
+}

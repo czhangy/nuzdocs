@@ -1,7 +1,7 @@
-import { Name, NamedAPIResource } from "pokenode-ts";
-import encounterMethods from "@/static/encounterMethods";
 import encounterConditions from "@/static/encounterConditions";
+import encounterMethods from "@/static/encounterMethods";
 import tiers from "@/static/tiers";
+import { Name, NamedAPIResource } from "pokenode-ts";
 
 export const getEnglishName: (names: Name[]) => string = (names: Name[]) => {
     const nameObj: Name = names.find((name) => name.language.name === "en")!;
@@ -30,4 +30,18 @@ export const getEncounterMethodName = (methodSlug: string, conditionValues: Name
 
 export const getPokemonTier = (pokemonSlug: string, gameGroup: string) => {
     return pokemonSlug in tiers[gameGroup] ? tiers[gameGroup][pokemonSlug] : "Untiered";
+};
+
+// Initializers
+export const initRun = () => {
+    return {
+        gameSlug: "soulsilver",
+        prevLocationSlug: "new-bark-town",
+        starterSlug: "",
+        encounterList: [],
+        caughtPokemonSlugsList: [],
+        numDead: 0,
+        numCheckpoints: 10,
+        numCheckpointsCleared: 0,
+    };
 };

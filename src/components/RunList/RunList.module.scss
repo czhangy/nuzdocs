@@ -1,0 +1,86 @@
+@use "@/styles/constants";
+
+.run-list {
+    --alt-font-size: 1.5rem;
+    --button-border-size: 2px;
+    --button-border-rad: 4px;
+    --button-font-size: 1.2rem;
+    --button-icon-size: 16px;
+    --button-inner-spacing: 0.5rem;
+    --button-x-padding: 1.5rem;
+    --button-y-padding: 0.5rem;
+    --buttons-spacing: 1rem;
+    --header-size: 2rem;
+    --inner-spacing: 2rem;
+    --list-max-width: 800px;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--inner-spacing);
+    width: 100%;
+
+    .header {
+        font-size: var(--header-size);
+        font-weight: bold;
+        margin-bottom: var(--header-spacing);
+        text-align: center;
+    }
+
+    .list {
+        max-width: var(--list-max-width);
+        width: 100%;
+    }
+
+    .alt-text {
+        font-size: var(--alt-font-size);
+        text-align: center;
+    }
+
+    .buttons {
+        display: flex;
+        gap: var(--buttons-spacing);
+
+        .button {
+            align-items: center;
+            border: var(--button-border-size) solid constants.$text-color;
+            border-radius: var(--button-border-rad);
+            cursor: pointer;
+            display: flex;
+            font-size: var(--button-font-size);
+            gap: var(--button-inner-spacing);
+            padding: var(--button-y-padding) var(--button-x-padding);
+
+            .icon {
+                filter: constants.$svg-color;
+                height: var(--button-icon-size);
+                position: relative;
+                width: var(--button-icon-size);
+            }
+        }
+
+        .file-upload {
+            display: none;
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .run-list {
+        --button-font-size: 1.5rem;
+        --button-x-padding: 2rem;
+        --button-y-padding: 0.75rem;
+        --header-size: 2.5rem;
+    }
+}
+
+@media (hover: hover) {
+    .run-list > .buttons > .button:hover {
+        background: constants.$text-color;
+        color: constants.$bg-color;
+
+        .icon {
+            filter: constants.$svg-bg-color;
+        }
+    }
+}

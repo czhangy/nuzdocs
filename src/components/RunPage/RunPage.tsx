@@ -15,7 +15,6 @@ import { useEffect, useState } from "react";
 import { getRun } from "utils";
 import styles from "./RunPage.module.scss";
 import EncounterData from "@/models/EncounterData";
-import { listenerCount } from "process";
 
 type Props = {
     gameSlug: string;
