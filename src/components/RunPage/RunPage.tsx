@@ -4,17 +4,17 @@ import EncounterTable from "@/components/EncounterTable/EncounterTable";
 import SegmentNav from "@/components/SegmentNav/SegmentNav";
 import StarterSelect from "@/components/StarterSelect/StarterSelect";
 import AreaData from "@/models/AreaData";
+import EncounterData from "@/models/EncounterData";
 import Game from "@/models/Game";
 import LocalPokemon from "@/models/LocalPokemon";
 import LocationData from "@/models/LocationData";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
-import SoulSilver from "@/static/soulsilver";
+import Games from "@/static/games";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getRun } from "utils";
 import styles from "./RunPage.module.scss";
-import EncounterData from "@/models/EncounterData";
 
 type Props = {
     gameSlug: string;
@@ -23,6 +23,8 @@ type Props = {
 };
 
 const RunPage: React.FC<Props> = (props) => {
+    const [game, setGame] = useState<Game | null>(null);
+
     // States to track location areas
     const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
     const [areaList, setAreaList] = useState<AreaData[]>([]);
@@ -32,8 +34,6 @@ const RunPage: React.FC<Props> = (props) => {
     // States to track encounter info in the current location
     const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | "failed" | null>(null);
     const [uniquePokemonDataList, setUniquePokemonDataList] = useState<PokemonData[]>([]);
-
-    const game: Game = SoulSilver;
 
     // Gets the PokemonData for the current location's encounter if it exists
     const fetchCurrentLocationEncounter = () => {
@@ -77,13 +77,20 @@ const RunPage: React.FC<Props> = (props) => {
     // Sets the current area on dropdown select
     const handleAreaSelect = (areaName: string) => {
         let area: AreaData = areaList.filter((area: AreaData) => area.areaName === areaName)[0];
-        if (props.segmentSlug === game.startingTownSlug) {
+        if (props.segmentSlug === game!.startingTownSlug) {
             area.encounters = area.encounters.filter((encounter: EncounterData) => {
-                return !game.starterSlugs.includes(encounter.pokemonSlug);
+                return !game!.starterSlugs.includes(encounter.pokemonSlug);
             });
         }
         setCurrentArea(area);
     };
+
+    // Set game info on page load
+    useEffect(() => {
+        if (props.gameSlug.length > 0) {
+            setGame(Games[props.gameSlug]);
+        }
+    }, [props.gameSlug]);
 
     // Fetch location's encounter data for encounter display
     useEffect(() => {
@@ -154,7 +161,7 @@ const RunPage: React.FC<Props> = (props) => {
         }
     }, [areaList]);
 
-    return (
+    return game ? (
         <div className={styles["run-page"]}>
             <SegmentNav segments={game.segments} segmentSlug={props.segmentSlug} />
             <div className={styles["run-info"]}>
@@ -199,6 +206,8 @@ const RunPage: React.FC<Props> = (props) => {
                 />
             </div>
         </div>
+    ) : (
+        <></>
     );
 };
 
