@@ -112,10 +112,8 @@ The most up-to-date version of NuzlockeDB is currently deployed at: [PROJECT_URL
 
 ## To-Do
 
--   [ ] Run navigation
 -   [ ] Major fights
 -   [ ] Box view
--   [ ] About page
 -   [ ] Encounter table rework
 -   [ ] Custom encounter input
 -   [ ] Location maps
