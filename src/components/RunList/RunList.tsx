@@ -1,5 +1,6 @@
-import styles from "./RunList.module.scss";
 import RunEntry from "@/components/RunEntry/RunEntry";
+import Image from "next/image";
+import styles from "./RunList.module.scss";
 
 type Props = {
     runNames: string[];
@@ -44,6 +45,9 @@ const RunList: React.FC<Props> = (props) => {
             )}
             <div className={styles.buttons}>
                 <label className={styles.button} htmlFor="file-upload">
+                    <div className={styles.icon}>
+                        <Image src="/assets/icons/upload.svg" alt="Upload" layout="fill" objectFit="contain" />
+                    </div>
                     Load Run
                 </label>
                 <input
