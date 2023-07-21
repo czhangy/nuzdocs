@@ -5,5 +5,6 @@ export default interface Game {
     gameGroup: string;
     segments: LocalSegment[];
     starterSlugs: string[];
-    startingTown: string;
+    startingTownSlug: string;
+    iconURL: string;
 }

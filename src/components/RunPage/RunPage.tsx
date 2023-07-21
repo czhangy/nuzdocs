@@ -77,7 +77,7 @@ const RunPage: React.FC<Props> = (props) => {
     // Sets the current area on dropdown select
     const handleAreaSelect = (areaName: string) => {
         let area: AreaData = areaList.filter((area: AreaData) => area.areaName === areaName)[0];
-        if (props.locationSlug === game.startingTown) {
+        if (props.locationSlug === game.startingTownSlug) {
             area.encounters = area.encounters.filter((encounter: EncounterData) => {
                 return !game.starterSlugs.includes(encounter.pokemonSlug);
             });
@@ -161,12 +161,12 @@ const RunPage: React.FC<Props> = (props) => {
                 {currentLocation ? (
                     <>
                         <h2 className={styles["location-name"]}>{currentLocation.locationName}</h2>
-                        {props.locationSlug === game.startingTown ? (
+                        {props.locationSlug === game.startingTownSlug ? (
                             <section className={styles.section}>
                                 <StarterSelect
                                     runName={props.runName}
                                     starterSlugsList={game.starterSlugs}
-                                    locationName={game.startingTown}
+                                    locationName={game.startingTownSlug}
                                 />
                             </section>
                         ) : (

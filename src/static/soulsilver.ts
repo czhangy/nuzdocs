@@ -18,7 +18,8 @@ const SoulSilver: Game = {
         },
     ],
     starterSlugs: ["chikorita", "cyndaquil", "totodile"],
-    startingTown: "new-bark-town",
+    startingTownSlug: "new-bark-town",
+    iconURL: "/assets/images/soulsilver.webp",
 };
 
 export default SoulSilver;
