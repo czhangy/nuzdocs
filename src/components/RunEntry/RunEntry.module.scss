@@ -7,8 +7,10 @@
     --entry-padding: 0;
     --icon-size: 16px;
     --indicator-size: 5px;
-    --inner-spacing: 0.5rem;
+    --info-inner-spacing: 0.5rem;
+    --logo-size: 70px;
     --name-font-size: 1.5rem;
+    --nav-inner-spacing: 2rem;
     --nav-padding: 2rem;
     --rip-spacing: 0.3rem;
     --transition-time: 0.3s;
@@ -20,29 +22,42 @@
     width: 100%;
 
     .nav {
+        align-items: center;
         border-left: var(--indicator-size) solid constants.$bg-color;
         display: flex;
-        flex-direction: column;
-        gap: var(--inner-spacing);
+        gap: var(--nav-inner-spacing);
         padding: var(--nav-padding);
-        text-align: left;
         width: calc(100% - (2 * var(--button-size) + var(--button-spacing)));
 
-        .name {
-            font-size: var(--name-font-size);
-            line-height: var(--name-font-size);
+        .logo {
+            display: none;
+            height: var(--logo-size);
+            position: relative;
+            width: calc(var(--logo-size) * 1.5);
         }
 
-        .rips {
-            align-items: center;
+        .info {
             display: flex;
-            gap: var(--rip-spacing);
+            flex-direction: column;
+            gap: var(--info-inner-spacing);
+            text-align: left;
 
-            .icon {
-                filter: constants.$svg-color;
-                height: var(--icon-size);
-                position: relative;
-                width: var(--icon-size);
+            .name {
+                font-size: var(--name-font-size);
+                line-height: var(--name-font-size);
+            }
+
+            .rips {
+                align-items: center;
+                display: flex;
+                gap: var(--rip-spacing);
+
+                .icon {
+                    filter: constants.$svg-color;
+                    height: var(--icon-size);
+                    position: relative;
+                    width: var(--icon-size);
+                }
             }
         }
     }
@@ -66,6 +81,10 @@
     .run-entry {
         --entry-padding: 2rem;
         --button-size: 32px;
+
+        .nav > .logo {
+            display: block;
+        }
     }
 }
 

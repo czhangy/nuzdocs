@@ -5,6 +5,8 @@ import Router from "next/router";
 import { useEffect, useState } from "react";
 import { getRun } from "utils";
 import styles from "./RunEntry.module.scss";
+import Game from "@/models/Game";
+import Games from "@/static/games";
 
 type Props = {
     onDelete: () => void;
@@ -13,6 +15,7 @@ type Props = {
 
 const RunEntry: React.FC<Props> = (props: Props) => {
     const [run, setRun] = useState<Run | null>(null);
+    const [gameURL, setGameURL] = useState<string>("");
 
     // Remove run from run list and from local storage and refresh list
     const handleDelete = () => {
@@ -46,24 +49,43 @@ const RunEntry: React.FC<Props> = (props: Props) => {
         Router.push(`/runs/${props.runName}/${run!.prevLocationSlug}`);
     };
 
+    // Fetch run object
     useEffect(() => {
         if (props.runName.length > 0) {
             setRun(getRun(props.runName));
         }
     }, [props.runName]);
 
+    // Set game of the run to compute icon image src
+    useEffect(() => {
+        if (run) {
+            setGameURL(Games[run!.gameSlug].iconURL);
+        }
+    }, [run]);
+
     return (
         <li className={styles["run-entry"]}>
             <button className={styles.nav} onClick={handleNav}>
-                <p className={styles.name}>
-                    {run && run.numCheckpointsCleared === run.numCheckpoints ? `👑 ${props.runName}` : props.runName}
-                </p>
-                <ProgressBar complete={run ? run.numCheckpointsCleared : 0} total={run ? run.numCheckpoints : 1} />
-                <div className={styles.rips}>
-                    <div className={styles.icon}>
-                        <Image src="/assets/icons/dead.svg" alt="Deaths" layout="fill" objectFit="contain" />
+                <div className={styles.logo}>
+                    {gameURL.length > 0 ? (
+                        <Image src={gameURL} alt="Game logo" layout="fill" objectFit="contain" />
+                    ) : (
+                        ""
+                    )}
+                </div>
+                <div className={styles.info}>
+                    <p className={styles.name}>
+                        {run && run.numCheckpointsCleared === run.numCheckpoints
+                            ? `👑 ${props.runName}`
+                            : props.runName}
+                    </p>
+                    <ProgressBar complete={run ? run.numCheckpointsCleared : 0} total={run ? run.numCheckpoints : 1} />
+                    <div className={styles.rips}>
+                        <div className={styles.icon}>
+                            <Image src="/assets/icons/dead.svg" alt="Deaths" layout="fill" objectFit="contain" />
+                        </div>
+                        {run ? <p className={styles.num}>{run.numDead}</p> : ""}
                     </div>
-                    {run ? <p className={styles.num}>{run.numDead}</p> : ""}
                 </div>
             </button>
             <div className={styles.buttons}>

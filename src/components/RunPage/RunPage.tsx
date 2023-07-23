@@ -140,7 +140,7 @@ const RunPage: React.FC<Props> = (props) => {
 
     // When area list is changed, reset area info and fetch all encounters' PokemonData in area
     useEffect(() => {
-        if (areaList.length > 0) {
+        if (areaList.length > 0 && game) {
             setCurrentArea(null);
             setAreaNameList(areaList.map((area: AreaData) => area.areaName).sort());
             let pokemonSlugList: string[] = areaList
@@ -159,7 +159,7 @@ const RunPage: React.FC<Props> = (props) => {
                     console.log(error);
                 });
         }
-    }, [areaList]);
+    }, [areaList, game]);
 
     return game ? (
         <div className={styles["run-page"]}>
