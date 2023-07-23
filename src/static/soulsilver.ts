@@ -1,7 +1,7 @@
 import Game from "@/models/Game";
 
 const SoulSilver: Game = {
-    slug: "soulsilver",
+    name: "SoulSilver",
     gameGroup: "hgss",
     segments: [
         {
@@ -18,7 +18,8 @@ const SoulSilver: Game = {
         },
     ],
     starterSlugs: ["chikorita", "cyndaquil", "totodile"],
-    startingTown: "new-bark-town",
+    startingTownSlug: "new-bark-town",
+    iconURL: "/assets/images/soulsilver.webp",
 };
 
 export default SoulSilver;

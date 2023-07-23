@@ -1,9 +1,10 @@
 import LocalSegment from "@/models/LocalSegment";
 
 export default interface Game {
-    slug: string;
+    name: string;
     gameGroup: string;
     segments: LocalSegment[];
     starterSlugs: string[];
-    startingTown: string;
+    startingTownSlug: string;
+    iconURL: string;
 }

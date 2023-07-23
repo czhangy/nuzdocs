@@ -4,25 +4,27 @@ import EncounterTable from "@/components/EncounterTable/EncounterTable";
 import SegmentNav from "@/components/SegmentNav/SegmentNav";
 import StarterSelect from "@/components/StarterSelect/StarterSelect";
 import AreaData from "@/models/AreaData";
+import EncounterData from "@/models/EncounterData";
 import Game from "@/models/Game";
 import LocalPokemon from "@/models/LocalPokemon";
 import LocationData from "@/models/LocationData";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
-import SoulSilver from "@/static/soulsilver";
+import Games from "@/static/games";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getRun } from "utils";
 import styles from "./RunPage.module.scss";
-import EncounterData from "@/models/EncounterData";
 
 type Props = {
     gameSlug: string;
     runName: string;
-    locationSlug: string;
+    segmentSlug: string;
 };
 
 const RunPage: React.FC<Props> = (props) => {
+    const [game, setGame] = useState<Game | null>(null);
+
     // States to track location areas
     const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
     const [areaList, setAreaList] = useState<AreaData[]>([]);
@@ -33,13 +35,11 @@ const RunPage: React.FC<Props> = (props) => {
     const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | "failed" | null>(null);
     const [uniquePokemonDataList, setUniquePokemonDataList] = useState<PokemonData[]>([]);
 
-    const game: Game = SoulSilver;
-
     // Gets the PokemonData for the current location's encounter if it exists
     const fetchCurrentLocationEncounter = () => {
         const run: Run = getRun(props.runName);
         run.encounterList.forEach((encounter: LocalPokemon) => {
-            if (encounter.locationSlug === props.locationSlug) {
+            if (encounter.locationSlug === props.segmentSlug) {
                 if (encounter.pokemonSlug === "failed") {
                     setEncounteredPokemon("failed");
                 } else {
@@ -64,10 +64,10 @@ const RunPage: React.FC<Props> = (props) => {
         const run: Run = getRun(props.runName);
         const newEncounter: LocalPokemon = {
             pokemonSlug: pokemonSlug,
-            locationSlug: props.locationSlug,
+            locationSlug: props.segmentSlug,
         };
         run.encounterList = run.encounterList.filter(
-            (encounter: LocalPokemon) => encounter.locationSlug !== props.locationSlug
+            (encounter: LocalPokemon) => encounter.locationSlug !== props.segmentSlug
         );
         run.encounterList.push(newEncounter);
         localStorage.setItem(props.runName, JSON.stringify(run));
@@ -77,28 +77,35 @@ const RunPage: React.FC<Props> = (props) => {
     // Sets the current area on dropdown select
     const handleAreaSelect = (areaName: string) => {
         let area: AreaData = areaList.filter((area: AreaData) => area.areaName === areaName)[0];
-        if (props.locationSlug === game.startingTown) {
+        if (props.segmentSlug === game!.startingTownSlug) {
             area.encounters = area.encounters.filter((encounter: EncounterData) => {
-                return !game.starterSlugs.includes(encounter.pokemonSlug);
+                return !game!.starterSlugs.includes(encounter.pokemonSlug);
             });
         }
         setCurrentArea(area);
     };
 
+    // Set game info on page load
+    useEffect(() => {
+        if (props.gameSlug.length > 0) {
+            setGame(Games[props.gameSlug]);
+        }
+    }, [props.gameSlug]);
+
     // Fetch location's encounter data for encounter display
     useEffect(() => {
-        if (props.runName && props.locationSlug) {
+        if (props.runName && props.segmentSlug) {
             fetchCurrentLocationEncounter();
         }
-    }, [props.runName, props.locationSlug]);
+    }, [props.runName, props.segmentSlug]);
 
     // Get data associated with current location on page load
     useEffect(() => {
-        if (props.locationSlug && props.locationSlug.length > 0) {
+        if (props.segmentSlug && props.segmentSlug.length > 0) {
             axios
                 .get("/api/location", {
                     params: {
-                        locationSlug: props.locationSlug,
+                        locationSlug: props.segmentSlug,
                     },
                 })
                 .then((res) => {
@@ -109,7 +116,7 @@ const RunPage: React.FC<Props> = (props) => {
                     console.log(error);
                 });
         }
-    }, [props.locationSlug]);
+    }, [props.segmentSlug]);
 
     // Fetch areas + encounters in location on page load
     useEffect(() => {
@@ -133,7 +140,7 @@ const RunPage: React.FC<Props> = (props) => {
 
     // When area list is changed, reset area info and fetch all encounters' PokemonData in area
     useEffect(() => {
-        if (areaList.length > 0) {
+        if (areaList.length > 0 && game) {
             setCurrentArea(null);
             setAreaNameList(areaList.map((area: AreaData) => area.areaName).sort());
             let pokemonSlugList: string[] = areaList
@@ -152,21 +159,21 @@ const RunPage: React.FC<Props> = (props) => {
                     console.log(error);
                 });
         }
-    }, [areaList]);
+    }, [areaList, game]);
 
-    return (
+    return game ? (
         <div className={styles["run-page"]}>
-            <SegmentNav segments={game.segments} segmentSlug={props.locationSlug} />
+            <SegmentNav segments={game.segments} segmentSlug={props.segmentSlug} />
             <div className={styles["run-info"]}>
                 {currentLocation ? (
                     <>
                         <h2 className={styles["location-name"]}>{currentLocation.locationName}</h2>
-                        {props.locationSlug === game.startingTown ? (
+                        {props.segmentSlug === game.startingTownSlug ? (
                             <section className={styles.section}>
                                 <StarterSelect
                                     runName={props.runName}
                                     starterSlugsList={game.starterSlugs}
-                                    locationName={game.startingTown}
+                                    locationName={game.startingTownSlug}
                                 />
                             </section>
                         ) : (
@@ -199,6 +206,8 @@ const RunPage: React.FC<Props> = (props) => {
                 />
             </div>
         </div>
+    ) : (
+        <></>
     );
 };
 

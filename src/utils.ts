@@ -9,7 +9,11 @@ export const getEnglishName: (names: Name[]) => string = (names: Name[]) => {
 };
 
 export const getRun = (runName: string) => {
-    return JSON.parse(localStorage.getItem(runName) as string);
+    if (localStorage.getItem(runName)) {
+        return JSON.parse(localStorage.getItem(runName) as string);
+    } else {
+        return null;
+    }
 };
 
 export const getEncounterMethodName = (methodSlug: string, conditionValues: NamedAPIResource[]) => {
