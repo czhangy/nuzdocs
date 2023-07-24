@@ -1,9 +1,12 @@
 @use "@/styles/constants";
 
 .encounter-display {
+    --button-adjust: 1.75rem;
+    --button-size: 16px;
     --center-size: 40%;
     --display-width: 320px;
     --font-size: 1.2rem;
+    --font-spacing: 1px;
     --inner-spacing: 0.5rem;
     --margin-bottom: 2rem;
     --outline-size: 6px;
@@ -65,11 +68,26 @@
             width: 100%;
 
             .header {
+                align-items: center;
                 border-bottom: calc(var(--outline-size) / 2) solid constants.$bg-color;
+                display: flex;
                 height: 50%;
-                letter-spacing: 1px;
-                line-height: calc(var(--sprite-size) / 2 - var(--outline-size) * 1.5);
-                padding-left: calc(var(--sprite-size) + 0.5rem);
+                justify-content: space-between;
+                padding-left: calc(var(--sprite-size) + var(--inner-spacing));
+                padding-right: var(--button-adjust);
+
+                .title {
+                    font-size: var(--font-size);
+                    letter-spacing: var(--font-spacing);
+                    line-height: calc(var(--sprite-size) / 2 - var(--outline-size) * 1.5);
+                }
+
+                .button {
+                    filter: constants.$svg-color;
+                    height: var(--button-size);
+                    position: relative;
+                    width: var(--button-size);
+                }
             }
 
             .search {
@@ -77,8 +95,15 @@
                 border-top: calc(var(--outline-size) / 2) solid constants.$bg-color;
                 font-size: var(--font-size);
                 height: 50%;
+                letter-spacing: var(--font-spacing);
                 padding-left: calc(var(--sprite-size) + 0.5rem);
             }
         }
+    }
+}
+
+@media (hover: hover) {
+    .encounter-display > .display > .text > .header > .button:hover {
+        filter: constants.$svg-hover-color;
     }
 }

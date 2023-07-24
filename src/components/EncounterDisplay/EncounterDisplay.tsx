@@ -1,7 +1,7 @@
 import PokemonData from "@/models/PokemonData";
+import Image from "next/image";
+import { useState } from "react";
 import styles from "./EncounterDisplay.module.scss";
-import Dropdown from "@/components/Dropdown/Dropdown";
-import { useEffect, useState } from "react";
 
 type Props = {
     encounteredPokemon: PokemonData | null | "failed";
@@ -10,30 +10,20 @@ type Props = {
 };
 
 const EncounterDisplay: React.FC<Props> = (props: Props) => {
-    const [displayValue, setDisplayValue] = useState<string | null>(null);
+    const [searchValue, setSearchValue] = useState<string>("");
+    const [isSelected, setIsSelected] = useState<boolean>(false);
 
-    const getPokemonNames = () => {
-        return ["Failed", ...props.uniquePokemonDataList.map((pokemonData: PokemonData) => pokemonData.pokemonName)];
+    // Set encounter display into fail state
+    const handleFail = () => {
+        setIsSelected(true);
+        setSearchValue("Failed");
     };
 
-    const handlePokemonSelect = (pokemonName: string) => {
-        const matches: PokemonData[] = props.uniquePokemonDataList.filter(
-            (pokemonData: PokemonData) => pokemonData.pokemonName === pokemonName
-        );
-        const pokemonSlug: string = matches.length > 0 ? matches[0].pokemonSlug : "failed";
-        props.onSelect(pokemonSlug);
+    // Reset display state
+    const handleReset = () => {
+        setIsSelected(false);
+        setSearchValue("");
     };
-
-    // When props.encounteredPokemon changes, translate it into the correct display value
-    useEffect(() => {
-        if (props.encounteredPokemon) {
-            const displayString: string =
-                props.encounteredPokemon === "failed" ? "Failed" : props.encounteredPokemon.pokemonName;
-            setDisplayValue(displayString);
-        } else {
-            setDisplayValue(null);
-        }
-    }, [props.encounteredPokemon]);
 
     return (
         <div className={styles["encounter-display"]}>
@@ -44,8 +34,36 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                     <div className={styles["ball-center"]} />
                 </div>
                 <div className={styles.text}>
-                    <h3 className={styles.header}>Encounter:</h3>
-                    <input className={styles.search} type="text" placeholder="Search..." />
+                    <div className={styles.header}>
+                        <h3 className={styles.title}>Encounter:</h3>
+                        {isSelected ? (
+                            <button className={styles.button} onClick={handleReset}>
+                                <Image
+                                    src="/assets/icons/reset.svg"
+                                    alt="Reset encounter"
+                                    layout="fill"
+                                    objectFit="contain"
+                                />
+                            </button>
+                        ) : (
+                            <button className={styles.button} onClick={handleFail}>
+                                <Image
+                                    src="/assets/icons/x.svg"
+                                    alt="Fail encounter"
+                                    layout="fill"
+                                    objectFit="contain"
+                                />
+                            </button>
+                        )}
+                    </div>
+                    <input
+                        className={styles.search}
+                        disabled={isSelected}
+                        type="text"
+                        placeholder="Search..."
+                        onChange={(e) => setSearchValue(e.target.value)}
+                        value={searchValue}
+                    />
                 </div>
             </div>
         </div>
