@@ -166,7 +166,7 @@
     }
 
     .minimized {
-        left: 0;
+        left: constants.$page-padding;
         width: var(--sprite-size);
     }
 }
