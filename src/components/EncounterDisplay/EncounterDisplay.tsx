@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterDisplay.module.scss";
+import LocalName from "@/models/LocalName";
 
 type Props = {
-    pokedex: string[];
+    pokedex: LocalName[];
 };
 
 const EncounterDisplay: React.FC<Props> = (props: Props) => {
@@ -35,7 +36,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
 
     // Delay close on blur to allow clicks to register
     const handleBlur = () => {
-        setTimeout(() => setIsFocused(false), 100);
+        setTimeout(() => setIsFocused(false), 1);
     };
 
     // Update state based on menu selection
@@ -48,9 +49,9 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (searchValue.length > 2) {
             let newMatches: string[] = [];
-            props.pokedex.forEach((pokemonName: string) => {
-                if (pokemonName.toLowerCase().includes(searchValue.toLowerCase())) {
-                    newMatches.push(pokemonName);
+            props.pokedex.forEach((pokemon: LocalName) => {
+                if (pokemon.name.toLowerCase().includes(searchValue.toLowerCase())) {
+                    newMatches.push(pokemon.name);
                 }
             });
             setMatches(newMatches);
