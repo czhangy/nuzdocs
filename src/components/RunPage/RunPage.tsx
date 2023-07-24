@@ -9,9 +9,9 @@ import Game from "@/models/Game";
 import LocationData from "@/models/LocationData";
 import PokemonData from "@/models/PokemonData";
 import games from "@/static/games";
+import { getRun } from "@/utils/utils";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { getRun } from "utils";
 import styles from "./RunPage.module.scss";
 
 type Props = {

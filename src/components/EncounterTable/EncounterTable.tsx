@@ -1,8 +1,8 @@
 import AreaData from "@/models/AreaData";
 import EncounterData from "@/models/EncounterData";
 import PokemonData from "@/models/PokemonData";
+import { getPokemonTier } from "@/utils/utils";
 import Image from "next/image";
-import { getPokemonTier } from "utils";
 import styles from "./EncounterTable.module.scss";
 
 type Props = {

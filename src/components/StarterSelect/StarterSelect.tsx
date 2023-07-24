@@ -1,11 +1,11 @@
+import LocalPokemon from "@/models/LocalPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
+import { getRun } from "@/utils/utils";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./StarterSelect.module.scss";
-import LocalPokemon from "@/models/LocalPokemon";
-import { getRun } from "utils";
 
 type Props = {
     runName: string;

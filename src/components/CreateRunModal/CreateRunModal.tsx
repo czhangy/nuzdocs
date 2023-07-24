@@ -1,7 +1,7 @@
 import Run from "@/models/Run";
+import { initRun } from "@/utils/utils";
 import Router from "next/router";
 import { useState } from "react";
-import { initRun } from "utils";
 import styles from "./CreateRunModal.module.scss";
 
 const CreateRunModal: React.FC = () => {

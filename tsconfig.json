@@ -20,7 +20,8 @@
             "@/styles/*": ["styles/*"],
             "@/lib/*": ["lib/*"],
             "@/models/*": ["models/*"],
-            "@/static/*": ["static/*"]
+            "@/static/*": ["static/*"],
+            "@/utils/*": ["utils/*"]
         },
         "target": "es6"
     },

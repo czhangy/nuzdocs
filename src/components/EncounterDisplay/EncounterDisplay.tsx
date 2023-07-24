@@ -1,11 +1,11 @@
 import LocalName from "@/models/LocalName";
+import LocalPokemon from "@/models/LocalPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
+import { fetchPokemon, getRun } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { fetchPokemon, getRun } from "utils";
 import styles from "./EncounterDisplay.module.scss";
-import LocalPokemon from "@/models/LocalPokemon";
 
 type Props = {
     pokedex: LocalName[];

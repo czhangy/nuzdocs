@@ -3,11 +3,11 @@ import Game from "@/models/Game";
 import LocalSegment from "@/models/LocalSegment";
 import Run from "@/models/Run";
 import games from "@/static/games";
+import { getRun } from "@/utils/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { getRun } from "utils";
 import styles from "./RunNavbar.module.scss";
 
 const RunNavbar: React.FC = () => {

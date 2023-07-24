@@ -1,12 +1,11 @@
 import ProgressBar from "@/components/ProgressBar/ProgressBar";
 import Run from "@/models/Run";
+import games from "@/static/games";
+import { getRun } from "@/utils/utils";
 import Image from "next/image";
 import Router from "next/router";
 import { useEffect, useState } from "react";
-import { getRun } from "utils";
 import styles from "./RunEntry.module.scss";
-import Game from "@/models/Game";
-import games from "@/static/games";
 
 type Props = {
     onDelete: () => void;
