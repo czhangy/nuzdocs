@@ -33,6 +33,17 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
         setIsMinimized(!isMinimized);
     };
 
+    // Delay close on blur to allow clicks to register
+    const handleBlur = () => {
+        setTimeout(() => setIsFocused(false), 100);
+    };
+
+    // Update state based on menu selection
+    const handleSelect = (pokemonName: string) => {
+        setIsSelected(true);
+        setSearchValue(pokemonName);
+    };
+
     // Search for matches in dex
     useEffect(() => {
         if (searchValue.length > 2) {
@@ -88,14 +99,16 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                             onChange={(e) => setSearchValue(e.target.value)}
                             value={searchValue}
                             onFocus={() => setIsFocused(true)}
-                            onBlur={() => setIsFocused(false)}
+                            onBlur={handleBlur}
                             spellCheck={false}
                         />
                         <ul className={`${styles.matches} ${!isFocused || matches.length === 0 ? styles.hide : ""}`}>
                             {matches.map((match: string, key: number) => {
                                 return (
                                     <li key={key}>
-                                        <button className={styles.match}>{match}</button>
+                                        <button className={styles.match} onClick={() => handleSelect(match)}>
+                                            {match}
+                                        </button>
                                     </li>
                                 );
                             })}
