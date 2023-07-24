@@ -6,10 +6,8 @@ import StarterSelect from "@/components/StarterSelect/StarterSelect";
 import AreaData from "@/models/AreaData";
 import EncounterData from "@/models/EncounterData";
 import Game from "@/models/Game";
-import LocalPokemon from "@/models/LocalPokemon";
 import LocationData from "@/models/LocationData";
 import PokemonData from "@/models/PokemonData";
-import Run from "@/models/Run";
 import games from "@/static/games";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -32,47 +30,7 @@ const RunPage: React.FC<Props> = (props) => {
     const [currentArea, setCurrentArea] = useState<AreaData | null>(null);
 
     // States to track encounter info in the current location
-    const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | "failed" | null>(null);
     const [uniquePokemonDataList, setUniquePokemonDataList] = useState<PokemonData[]>([]);
-
-    // Gets the PokemonData for the current location's encounter if it exists
-    const fetchCurrentLocationEncounter = () => {
-        const run: Run = getRun(props.runName);
-        run.encounterList.forEach((encounter: LocalPokemon) => {
-            if (encounter.locationSlug === props.segmentSlug) {
-                if (encounter.pokemonSlug === "failed") {
-                    setEncounteredPokemon("failed");
-                } else {
-                    axios
-                        .get("/api/pokemon", {
-                            params: {
-                                pokemonSlug: encounter.pokemonSlug,
-                            },
-                        })
-                        .then((res) => setEncounteredPokemon(JSON.parse(res.data.pokemon)))
-                        .catch((error) => {
-                            console.log(error);
-                        });
-                }
-                return;
-            }
-        });
-    };
-
-    // Save an encounter into local storage and then fetch its data to pass to EncounterDisplay
-    const saveEncounter = (pokemonSlug: string) => {
-        const run: Run = getRun(props.runName);
-        const newEncounter: LocalPokemon = {
-            pokemonSlug: pokemonSlug,
-            locationSlug: props.segmentSlug,
-        };
-        run.encounterList = run.encounterList.filter(
-            (encounter: LocalPokemon) => encounter.locationSlug !== props.segmentSlug
-        );
-        run.encounterList.push(newEncounter);
-        localStorage.setItem(props.runName, JSON.stringify(run));
-        fetchCurrentLocationEncounter();
-    };
 
     // Sets the current area on dropdown select
     const handleAreaSelect = (areaName: string) => {
@@ -91,13 +49,6 @@ const RunPage: React.FC<Props> = (props) => {
             setGame(games[props.gameSlug]);
         }
     }, [props.gameSlug]);
-
-    // Fetch location's encounter data for encounter display
-    useEffect(() => {
-        if (props.runName && props.segmentSlug) {
-            fetchCurrentLocationEncounter();
-        }
-    }, [props.runName, props.segmentSlug]);
 
     // Get data associated with current location on page load
     useEffect(() => {
@@ -198,7 +149,11 @@ const RunPage: React.FC<Props> = (props) => {
                     ""
                 )}
             </div>
-            <EncounterDisplay pokedex={games[props.gameSlug].pokedex} />
+            <EncounterDisplay
+                pokedex={games[props.gameSlug].pokedex}
+                runName={props.runName}
+                locationSlug={props.segmentSlug}
+            />
         </div>
     ) : (
         <></>

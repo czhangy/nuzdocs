@@ -1,12 +1,16 @@
+import LocalName from "@/models/LocalName";
+import PokemonData from "@/models/PokemonData";
+import Run from "@/models/Run";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { fetchPokemon, getRun } from "utils";
 import styles from "./EncounterDisplay.module.scss";
-import LocalName from "@/models/LocalName";
-import { fetchPokemon } from "utils";
-import PokemonData from "@/models/PokemonData";
+import LocalPokemon from "@/models/LocalPokemon";
 
 type Props = {
     pokedex: LocalName[];
+    runName: string;
+    locationSlug: string;
 };
 
 const EncounterDisplay: React.FC<Props> = (props: Props) => {
@@ -22,19 +26,6 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     // Encounter state
     const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | null>(null);
 
-    // Set encounter display into fail state
-    const handleFail = () => {
-        setIsSelected(true);
-        setSearchValue("Failed");
-    };
-
-    // Reset display state
-    const handleReset = () => {
-        setIsSelected(false);
-        setSearchValue("");
-        setEncounteredPokemon(null);
-    };
-
     // Toggle minimization state
     const toggleMinimize = () => {
         setIsMinimized(!isMinimized);
@@ -45,16 +36,77 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
         setTimeout(() => setIsFocused(false), 100);
     };
 
-    // Update state based on menu selection
-    const handleSelect = async (pokemon: LocalName) => {
-        setIsSelected(true);
-        setSearchValue(pokemon.name);
-        setEncounteredPokemon(await fetchPokemon(pokemon.slug));
+    // Save an encounter into local storage
+    const saveEncounter = (pokemonSlug: string) => {
+        const run: Run = getRun(props.runName);
+        const newEncounter: LocalPokemon = {
+            pokemonSlug: pokemonSlug,
+            locationSlug: props.locationSlug,
+        };
+        run.encounterList = run.encounterList.filter(
+            (encounter: LocalPokemon) => encounter.locationSlug !== props.locationSlug
+        );
+        run.encounterList.push(newEncounter);
+        localStorage.setItem(props.runName, JSON.stringify(run));
     };
 
-    // Search for matches in dex
+    // Remove and encounter from local storage
+    const removeEncounter = () => {
+        const run: Run = getRun(props.runName);
+        run.encounterList = run.encounterList.filter(
+            (encounter: LocalPokemon) => encounter.locationSlug !== props.locationSlug
+        );
+        localStorage.setItem(props.runName, JSON.stringify(run));
+    };
+
+    // Handler for updates to encounters
+    const updateEncounter = async (encounter: LocalName | null) => {
+        if (encounter) {
+            setIsSelected(true);
+            setSearchValue(encounter.name);
+            saveEncounter(encounter.slug);
+            if (encounter.slug !== "failed") {
+                setEncounteredPokemon(await fetchPokemon(encounter.slug));
+            }
+        } else {
+            setIsSelected(false);
+            setSearchValue("");
+            removeEncounter();
+            setEncounteredPokemon(null);
+        }
+    };
+
+    // Fetch saved encounter if it exists
     useEffect(() => {
-        if (searchValue.length > 2) {
+        if (props.runName && props.locationSlug) {
+            const run: Run = getRun(props.runName);
+            const currentEncounter: LocalPokemon[] = run.encounterList.filter(
+                (encounter: LocalPokemon) => encounter.locationSlug === props.locationSlug
+            );
+            if (currentEncounter.length === 0) {
+                updateEncounter(null);
+            } else {
+                if (currentEncounter[0].pokemonSlug === "failed") {
+                    updateEncounter({
+                        slug: "failed",
+                        name: "Failed",
+                    });
+                } else {
+                    fetchPokemon(currentEncounter[0].pokemonSlug).then((pokemon) => {
+                        updateEncounter({
+                            slug: pokemon.pokemon.slug,
+                            name: pokemon.pokemon.name,
+                        });
+                    });
+                }
+                return;
+            }
+        }
+    }, [props.runName, props.locationSlug]);
+
+    // Search for matches in dex when typing in input
+    useEffect(() => {
+        if (searchValue.length > 2 && !isSelected) {
             let newMatches: LocalName[] = [];
             props.pokedex.forEach((pokemon: LocalName) => {
                 if (pokemon.name.toLowerCase().includes(searchValue.toLowerCase())) {
@@ -90,7 +142,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                         <div className={styles.header}>
                             <h3 className={styles.title}>Encounter:</h3>
                             {isSelected ? (
-                                <button className={styles["encounter-button"]} onClick={handleReset}>
+                                <button className={styles["encounter-button"]} onClick={() => updateEncounter(null)}>
                                     <Image
                                         src="/assets/icons/reset.svg"
                                         alt="Reset encounter"
@@ -99,7 +151,10 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                                     />
                                 </button>
                             ) : (
-                                <button className={styles["encounter-button"]} onClick={handleFail}>
+                                <button
+                                    className={styles["encounter-button"]}
+                                    onClick={() => updateEncounter({ slug: "failed", name: "Failed" })}
+                                >
                                     <Image
                                         src="/assets/icons/x.svg"
                                         alt="Fail encounter"
@@ -124,7 +179,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                             {matches.map((match: LocalName, key: number) => {
                                 return (
                                     <li key={key}>
-                                        <button className={styles.match} onClick={() => handleSelect(match)}>
+                                        <button className={styles.match} onClick={() => updateEncounter(match)}>
                                             {match.name}
                                         </button>
                                     </li>
