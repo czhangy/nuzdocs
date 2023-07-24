@@ -36,6 +36,20 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
         setTimeout(() => setIsFocused(false), 100);
     };
 
+    // Highlight matching substring
+    const highlightMatch = (pokemonName: string) => {
+        const matchIdx: number = pokemonName.toLowerCase().indexOf(searchValue.toLowerCase());
+        return (
+            <p>
+                {pokemonName.substring(0, matchIdx)}
+                <span className={styles.highlight}>
+                    {pokemonName.substring(matchIdx, matchIdx + searchValue.length)}
+                </span>
+                {pokemonName.substring(matchIdx + searchValue.length, pokemonName.length)}
+            </p>
+        );
+    };
+
     // Save an encounter into local storage
     const saveEncounter = (pokemonSlug: string) => {
         const run: Run = getRun(props.runName);
@@ -180,7 +194,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                                 return (
                                     <li key={key}>
                                         <button className={styles.match} onClick={() => updateEncounter(match)}>
-                                            {match.name}
+                                            {highlightMatch(match.name)}
                                         </button>
                                     </li>
                                 );

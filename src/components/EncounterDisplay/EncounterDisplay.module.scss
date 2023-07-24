@@ -138,6 +138,10 @@
                     padding: var(--match-y-padding) var(--match-x-padding);
                     text-align: left;
                     width: 100%;
+
+                    .highlight {
+                        color: constants.$hover-color;
+                    }
                 }
             }
 
@@ -206,6 +210,10 @@
 
             .matches .match:hover {
                 background: constants.$hover-color;
+
+                .highlight {
+                    color: constants.$text-color;
+                }
             }
         }
 
