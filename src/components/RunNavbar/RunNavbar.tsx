@@ -16,16 +16,18 @@ const RunNavbar: React.FC = () => {
 
     // Validate run and set game for valid runs
     useEffect(() => {
-        const run: Run = getRun(router.query.runName as string);
-        if (
-            run &&
-            games[run.gameSlug].segments
-                .map((segment: LocalSegment) => segment.slug)
-                .includes(router.query.segmentSlug as string)
-        ) {
-            setGame(games[run.gameSlug]);
+        if (router.query.runName && router.query.segmentSlug) {
+            const run: Run = getRun(router.query.runName as string);
+            if (
+                run &&
+                games[run.gameSlug].segments
+                    .map((segment: LocalSegment) => segment.slug)
+                    .includes(router.query.segmentSlug as string)
+            ) {
+                setGame(games[run.gameSlug]);
+            }
         }
-    }, []);
+    }, [router.query.runName, router.query.segmentSlug]);
 
     return (
         <Navbar>

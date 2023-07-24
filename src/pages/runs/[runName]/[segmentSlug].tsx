@@ -14,18 +14,20 @@ const Run: NextPage = () => {
 
     // Validate route and set run for valid routes
     useEffect(() => {
-        const run: Run = getRun(router.query.runName as string);
-        if (
-            run &&
-            games[run.gameSlug].segments
-                .map((segment: LocalSegment) => segment.slug)
-                .includes(router.query.segmentSlug as string)
-        ) {
-            setRun(run);
-        } else {
-            router.push("/");
+        if (router.query.runName && router.query.segmentSlug) {
+            const run: Run = getRun(router.query.runName as string);
+            if (
+                run &&
+                games[run.gameSlug].segments
+                    .map((segment: LocalSegment) => segment.slug)
+                    .includes(router.query.segmentSlug as string)
+            ) {
+                setRun(run);
+            } else {
+                router.push("/");
+            }
         }
-    }, []);
+    }, [router.query.runName, router.query.segmentSlug]);
 
     return (
         <>
