@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { getRun } from "utils";
 import styles from "./RunEntry.module.scss";
 import Game from "@/models/Game";
-import Games from "@/static/games";
+import games from "@/static/games";
 
 type Props = {
     onDelete: () => void;
@@ -59,7 +59,7 @@ const RunEntry: React.FC<Props> = (props: Props) => {
     // Set game of the run to compute icon image src
     useEffect(() => {
         if (run) {
-            setGameURL(Games[run!.gameSlug].iconURL);
+            setGameURL(games[run!.gameSlug].iconURL);
         }
     }, [run]);
 

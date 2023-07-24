@@ -1,7 +1,7 @@
 import RunPage from "@/components/RunPage/RunPage";
 import LocalSegment from "@/models/LocalSegment";
 import Run from "@/models/Run";
-import Games from "@/static/games";
+import games from "@/static/games";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -17,7 +17,7 @@ const Run: NextPage = () => {
         const run: Run = getRun(router.query.runName as string);
         if (
             run &&
-            Games[run.gameSlug].segments
+            games[run.gameSlug].segments
                 .map((segment: LocalSegment) => segment.slug)
                 .includes(router.query.segmentSlug as string)
         ) {

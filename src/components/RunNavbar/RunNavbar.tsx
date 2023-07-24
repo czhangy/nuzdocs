@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import Game from "@/models/Game";
 import LocalSegment from "@/models/LocalSegment";
 import Run from "@/models/Run";
-import Games from "@/static/games";
+import games from "@/static/games";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -19,11 +19,11 @@ const RunNavbar: React.FC = () => {
         const run: Run = getRun(router.query.runName as string);
         if (
             run &&
-            Games[run.gameSlug].segments
+            games[run.gameSlug].segments
                 .map((segment: LocalSegment) => segment.slug)
                 .includes(router.query.segmentSlug as string)
         ) {
-            setGame(Games[run.gameSlug]);
+            setGame(games[run.gameSlug]);
         }
     }, []);
 

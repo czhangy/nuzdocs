@@ -10,7 +10,7 @@ import LocalPokemon from "@/models/LocalPokemon";
 import LocationData from "@/models/LocationData";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
-import Games from "@/static/games";
+import games from "@/static/games";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getRun } from "utils";
@@ -88,7 +88,7 @@ const RunPage: React.FC<Props> = (props) => {
     // Set game info on page load
     useEffect(() => {
         if (props.gameSlug.length > 0) {
-            setGame(Games[props.gameSlug]);
+            setGame(games[props.gameSlug]);
         }
     }, [props.gameSlug]);
 

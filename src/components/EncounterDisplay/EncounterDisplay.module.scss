@@ -65,6 +65,7 @@
             display: flex;
             flex-direction: column;
             height: var(--sprite-size);
+            letter-spacing: var(--font-spacing);
             width: 100%;
 
             .header {
@@ -78,7 +79,6 @@
 
                 .title {
                     font-size: var(--font-size);
-                    letter-spacing: var(--font-spacing);
                     line-height: calc(var(--sprite-size) / 2 - var(--outline-size) * 1.5);
                 }
 
@@ -96,7 +96,8 @@
                 font-size: var(--font-size);
                 height: 50%;
                 letter-spacing: var(--font-spacing);
-                padding-left: calc(var(--sprite-size) + 0.5rem);
+                padding-left: calc(var(--sprite-size) + var(--inner-spacing));
+                padding-right: var(--button-adjust);
             }
         }
     }
