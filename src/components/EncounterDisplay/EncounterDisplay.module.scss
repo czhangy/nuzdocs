@@ -5,17 +5,22 @@
     --button-size: 16px;
     --center-size: 40%;
     --display-width: 320px;
+    --focus-adjust: 50vh;
     --font-size: 1.2rem;
     --font-spacing: 1px;
     --inner-spacing: 0.5rem;
     --margin-bottom: 2rem;
     --outline-size: 6px;
+    --overlay-z: 99;
     --sprite-size: 100px;
+    --transition-time: 0.8s;
 
     bottom: var(--margin-bottom);
     margin-bottom: var(--margin-bottom);
     position: sticky;
+    transition: bottom var(--transition-time);
     width: 100%;
+    z-index: calc(var(--overlay-z));
 
     .display {
         background-color: constants.$bg-color;
@@ -101,6 +106,32 @@
             }
         }
     }
+}
+
+.focused {
+    bottom: var(--focus-adjust);
+}
+
+.overlay {
+    --transition-time: 0.8s;
+
+    background-color: black;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: opacity var(--transition-time);
+    z-index: var(--overlay-z);
+}
+
+.show {
+    --overlay-opacity: 0.6;
+
+    opacity: var(--overlay-opacity);
+    pointer-events: all;
 }
 
 @media (hover: hover) {
