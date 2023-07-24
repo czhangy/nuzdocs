@@ -5,7 +5,7 @@
     --display-button-x-offset: -0.75rem;
     --display-button-y-offset: -0.25rem;
     --display-button-size: 1.5rem;
-    --display-width: 320px;
+    --display-width: 360px;
     --encounter-button-adjust: 1.75rem;
     --encounter-button-size: 16px;
     --focus-adjust: 50vh;
@@ -14,9 +14,15 @@
     --font-spacing: 1px;
     --inner-spacing: 0.5rem;
     --margin-bottom: 2rem;
+    --match-x-padding: 1.5rem;
+    --match-y-padding: 1rem;
+    --matches-max-height: 150px;
     --minimize-transition-time: 0.5s;
     --outline-size: 6px;
     --overlay-z: 99;
+    --scrollbar-border: 2px;
+    --scrollbar-radius: 20px;
+    --scrollbar-width: 4px;
     --sprite-size: 100px;
 
     bottom: 0;
@@ -112,6 +118,43 @@
                 padding-left: calc(var(--sprite-size) + var(--inner-spacing));
                 padding-right: var(--button-adjust);
             }
+
+            .matches {
+                background-color: constants.$accent-color;
+                border: var(--outline-size) solid constants.$bg-color;
+                border-top: none;
+                bottom: 0;
+                left: calc(var(--sprite-size) - 2 * var(--inner-spacing));
+                max-height: var(--matches-max-height);
+                overflow-y: auto;
+                position: absolute;
+                transform: translateY(100%);
+
+                .match {
+                    cursor: pointer;
+                    font-size: var(--font-size);
+                    letter-spacing: var(--font-spacing);
+                    line-height: var(--font-size);
+                    padding: var(--match-y-padding) var(--match-x-padding);
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+
+            .hide {
+                display: none;
+            }
+
+            ::-webkit-scrollbar {
+                background: constants.$accent-color;
+                width: calc(var(--scrollbar-width) + 2 * var(--scrollbar-border));
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: constants.$text-color;
+                border: var(--scrollbar-border) solid constants.$bg-color;
+                border-radius: var(--scrollbar-radius);
+            }
         }
 
         .display-button {
@@ -156,8 +199,14 @@
 
 @media (hover: hover) {
     .encounter-display > .display {
-        .text > .header > .encounter-button:hover {
-            filter: constants.$svg-hover-color;
+        .text {
+            .header > .encounter-button:hover {
+                filter: constants.$svg-hover-color;
+            }
+
+            .matches .match:hover {
+                background: constants.$hover-color;
+            }
         }
 
         .display-button:hover {

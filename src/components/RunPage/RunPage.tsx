@@ -198,11 +198,7 @@ const RunPage: React.FC<Props> = (props) => {
                     ""
                 )}
             </div>
-            <EncounterDisplay
-                encounteredPokemon={encounteredPokemon}
-                uniquePokemonDataList={uniquePokemonDataList}
-                onSelect={(pokemonSlug: string) => saveEncounter(pokemonSlug)}
-            />
+            <EncounterDisplay pokedex={games[props.gameSlug].pokedex} />
         </div>
     ) : (
         <></>

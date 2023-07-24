@@ -1,17 +1,18 @@
-import PokemonData from "@/models/PokemonData";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./EncounterDisplay.module.scss";
 
 type Props = {
-    encounteredPokemon: PokemonData | null | "failed";
-    uniquePokemonDataList: PokemonData[];
-    onSelect: (pokemonName: string) => void;
+    pokedex: string[];
 };
 
 const EncounterDisplay: React.FC<Props> = (props: Props) => {
-    const [searchValue, setSearchValue] = useState<string>("");
+    // Input states
     const [isSelected, setIsSelected] = useState<boolean>(false);
+    const [searchValue, setSearchValue] = useState<string>("");
+    const [matches, setMatches] = useState<string[]>([]);
+
+    // Display states
     const [isFocused, setIsFocused] = useState<boolean>(false);
     const [isMinimized, setIsMinimized] = useState<boolean>(false);
 
@@ -31,6 +32,21 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     const toggleMinimize = () => {
         setIsMinimized(!isMinimized);
     };
+
+    // Search for matches in dex
+    useEffect(() => {
+        if (searchValue.length > 2) {
+            let newMatches: string[] = [];
+            props.pokedex.forEach((pokemonName: string) => {
+                if (pokemonName.toLowerCase().includes(searchValue.toLowerCase())) {
+                    newMatches.push(pokemonName);
+                }
+            });
+            setMatches(newMatches);
+        } else {
+            setMatches([]);
+        }
+    }, [searchValue]);
 
     return (
         <>
@@ -73,7 +89,17 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                             value={searchValue}
                             onFocus={() => setIsFocused(true)}
                             onBlur={() => setIsFocused(false)}
+                            spellCheck={false}
                         />
+                        <ul className={`${styles.matches} ${!isFocused || matches.length === 0 ? styles.hide : ""}`}>
+                            {matches.map((match: string, key: number) => {
+                                return (
+                                    <li key={key}>
+                                        <button className={styles.match}>{match}</button>
+                                    </li>
+                                );
+                            })}
+                        </ul>
                     </div>
                     {isFocused ? (
                         ""
