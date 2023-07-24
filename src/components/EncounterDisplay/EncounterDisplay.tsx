@@ -37,14 +37,16 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
 
     return (
         <div className={styles["encounter-display"]}>
-            <div className={styles.sprite}>
-                <div className={styles["ball-bg"]} />
-                <hr className={styles["ball-divider"]} />
-                <div className={styles["ball-center"]} />
-            </div>
-            <div className={styles.text}>
-                <h3 className={styles.header}>Encounter:</h3>
-                <input className={styles.search} type="text" placeholder="Search..." />
+            <div className={styles.display}>
+                <div className={styles.sprite}>
+                    <div className={styles["ball-bg"]} />
+                    <hr className={styles["ball-divider"]} />
+                    <div className={styles["ball-center"]} />
+                </div>
+                <div className={styles.text}>
+                    <h3 className={styles.header}>Encounter:</h3>
+                    <input className={styles.search} type="text" placeholder="Search..." />
+                </div>
             </div>
         </div>
     );

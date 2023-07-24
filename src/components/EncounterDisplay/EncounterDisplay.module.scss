@@ -9,71 +9,76 @@
     --outline-size: 6px;
     --sprite-size: 100px;
 
-    background-color: constants.$bg-color;
-    border-radius: var(--sprite-size);
     bottom: var(--margin-bottom);
     margin-bottom: var(--margin-bottom);
     position: sticky;
-    width: var(--display-width);
+    width: 100%;
 
-    .sprite {
-        align-items: center;
-        border-radius: 50%;
-        display: flex;
-        height: var(--sprite-size);
-        justify-content: center;
-        position: absolute;
-        width: var(--sprite-size);
-
-        .ball-bg {
-            background-color: constants.$accent-color;
-            border: var(--outline-size) solid constants.$bg-color;
-            border-radius: 50%;
-            height: 100%;
-            position: absolute;
-            width: 100%;
-        }
-
-        .ball-divider {
-            background-color: constants.$bg-color;
-            height: var(--outline-size);
-            position: absolute;
-            width: 100%;
-        }
-
-        .ball-center {
-            background-color: constants.$accent-color;
-            border: var(--outline-size) solid constants.$bg-color;
-            border-radius: 50%;
-            height: var(--center-size);
-            position: absolute;
-            width: var(--center-size);
-        }
-    }
-
-    .text {
-        background-color: constants.$accent-color;
-        border: var(--outline-size) solid constants.$bg-color;
+    .display {
+        background-color: constants.$bg-color;
         border-radius: var(--sprite-size);
-        display: flex;
-        flex-direction: column;
-        height: var(--sprite-size);
-        width: 100%;
+        margin: 0 auto;
+        width: var(--display-width);
 
-        .header {
-            border-bottom: calc(var(--outline-size) / 2) solid constants.$bg-color;
-            height: 50%;
-            letter-spacing: 1px;
-            line-height: calc(var(--sprite-size) / 2 - var(--outline-size) * 1.5);
-            padding-left: calc(var(--sprite-size) + 0.5rem);
+        .sprite {
+            align-items: center;
+            border-radius: 50%;
+            display: flex;
+            height: var(--sprite-size);
+            justify-content: center;
+            position: absolute;
+            width: var(--sprite-size);
+
+            .ball-bg {
+                background-color: constants.$accent-color;
+                border: var(--outline-size) solid constants.$bg-color;
+                border-radius: 50%;
+                height: 100%;
+                position: absolute;
+                width: 100%;
+            }
+
+            .ball-divider {
+                background-color: constants.$bg-color;
+                height: var(--outline-size);
+                position: absolute;
+                width: 100%;
+            }
+
+            .ball-center {
+                background-color: constants.$accent-color;
+                border: var(--outline-size) solid constants.$bg-color;
+                border-radius: 50%;
+                height: var(--center-size);
+                position: absolute;
+                width: var(--center-size);
+            }
         }
 
-        .search {
-            background: transparent;
-            border-top: calc(var(--outline-size) / 2) solid constants.$bg-color;
-            font-size: var(--font-size);
-            height: 50%;
-            padding-left: calc(var(--sprite-size) + 0.5rem);
+        .text {
+            background-color: constants.$accent-color;
+            border: var(--outline-size) solid constants.$bg-color;
+            border-radius: var(--sprite-size);
+            display: flex;
+            flex-direction: column;
+            height: var(--sprite-size);
+            width: 100%;
+
+            .header {
+                border-bottom: calc(var(--outline-size) / 2) solid constants.$bg-color;
+                height: 50%;
+                letter-spacing: 1px;
+                line-height: calc(var(--sprite-size) / 2 - var(--outline-size) * 1.5);
+                padding-left: calc(var(--sprite-size) + 0.5rem);
+            }
+
+            .search {
+                background: transparent;
+                border-top: calc(var(--outline-size) / 2) solid constants.$bg-color;
+                font-size: var(--font-size);
+                height: 50%;
+                padding-left: calc(var(--sprite-size) + 0.5rem);
+            }
         }
     }
 }
