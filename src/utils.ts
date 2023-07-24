@@ -49,3 +49,21 @@ export const initRun = () => {
         numCheckpointsCleared: 0,
     };
 };
+
+// IDK why but this errors when using import
+const axios = require("axios");
+
+// API Wrappers
+export const fetchPokemon = async (slug: string) => {
+    try {
+        const res = await axios.get("/api/pokemon", {
+            params: {
+                pokemonSlug: slug,
+            },
+        });
+        return JSON.parse(res.data.pokemon);
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+};

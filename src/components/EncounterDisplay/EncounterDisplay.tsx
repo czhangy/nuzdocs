@@ -2,6 +2,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterDisplay.module.scss";
 import LocalName from "@/models/LocalName";
+import { fetchPokemon } from "utils";
+import PokemonData from "@/models/PokemonData";
 
 type Props = {
     pokedex: LocalName[];
@@ -11,11 +13,14 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     // Input states
     const [isSelected, setIsSelected] = useState<boolean>(false);
     const [searchValue, setSearchValue] = useState<string>("");
-    const [matches, setMatches] = useState<string[]>([]);
+    const [matches, setMatches] = useState<LocalName[]>([]);
 
     // Display states
     const [isFocused, setIsFocused] = useState<boolean>(false);
     const [isMinimized, setIsMinimized] = useState<boolean>(false);
+
+    // Encounter state
+    const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | null>(null);
 
     // Set encounter display into fail state
     const handleFail = () => {
@@ -27,6 +32,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     const handleReset = () => {
         setIsSelected(false);
         setSearchValue("");
+        setEncounteredPokemon(null);
     };
 
     // Toggle minimization state
@@ -36,22 +42,23 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
 
     // Delay close on blur to allow clicks to register
     const handleBlur = () => {
-        setTimeout(() => setIsFocused(false), 1);
+        setTimeout(() => setIsFocused(false), 100);
     };
 
     // Update state based on menu selection
-    const handleSelect = (pokemonName: string) => {
+    const handleSelect = async (pokemon: LocalName) => {
         setIsSelected(true);
-        setSearchValue(pokemonName);
+        setSearchValue(pokemon.name);
+        setEncounteredPokemon(await fetchPokemon(pokemon.slug));
     };
 
     // Search for matches in dex
     useEffect(() => {
         if (searchValue.length > 2) {
-            let newMatches: string[] = [];
+            let newMatches: LocalName[] = [];
             props.pokedex.forEach((pokemon: LocalName) => {
                 if (pokemon.name.toLowerCase().includes(searchValue.toLowerCase())) {
-                    newMatches.push(pokemon.name);
+                    newMatches.push(pokemon);
                 }
             });
             setMatches(newMatches);
@@ -68,6 +75,16 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                         <div className={styles["ball-bg"]} />
                         <hr className={styles["ball-divider"]} />
                         <div className={styles["ball-center"]} />
+                        {encounteredPokemon ? (
+                            <Image
+                                src={encounteredPokemon.sprite}
+                                alt={encounteredPokemon.pokemon.name}
+                                layout="fill"
+                                objectFit="contain"
+                            />
+                        ) : (
+                            ""
+                        )}
                     </div>
                     <div className={styles.text}>
                         <div className={styles.header}>
@@ -104,11 +121,11 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                             spellCheck={false}
                         />
                         <ul className={`${styles.matches} ${!isFocused || matches.length === 0 ? styles.hide : ""}`}>
-                            {matches.map((match: string, key: number) => {
+                            {matches.map((match: LocalName, key: number) => {
                                 return (
                                     <li key={key}>
                                         <button className={styles.match} onClick={() => handleSelect(match)}>
-                                            {match}
+                                            {match.name}
                                         </button>
                                     </li>
                                 );

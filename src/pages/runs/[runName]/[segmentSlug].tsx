@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getRun } from "utils";
 
-const Run: NextPage = () => {
+const Segment: NextPage = () => {
     const [run, setRun] = useState<Run | null>(null);
     const router = useRouter();
 
@@ -47,4 +47,4 @@ const Run: NextPage = () => {
     );
 };
 
-export default Run;
+export default Segment;
