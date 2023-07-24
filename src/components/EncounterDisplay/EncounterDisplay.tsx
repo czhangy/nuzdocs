@@ -2,7 +2,8 @@ import LocalName from "@/models/LocalName";
 import LocalPokemon from "@/models/LocalPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
-import { fetchPokemon, getRun } from "@/utils/utils";
+import { fetchPokemon } from "@/utils/api";
+import { getRun } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterDisplay.module.scss";
@@ -25,11 +26,6 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
 
     // Encounter state
     const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | null>(null);
-
-    // Toggle minimization state
-    const toggleMinimize = () => {
-        setIsMinimized(!isMinimized);
-    };
 
     // Delay close on blur to allow clicks to register
     const handleBlur = () => {
@@ -204,7 +200,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                     {isFocused ? (
                         ""
                     ) : (
-                        <button className={styles["display-button"]} onClick={toggleMinimize}>
+                        <button className={styles["display-button"]} onClick={() => setIsMinimized(!isMinimized)}>
                             {isMinimized ? "+" : "-"}
                         </button>
                     )}
