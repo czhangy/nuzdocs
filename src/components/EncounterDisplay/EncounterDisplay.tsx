@@ -37,15 +37,15 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
 
     return (
         <div className={styles["encounter-display"]}>
-            <strong className={styles.header}>Encounter:</strong>
-            <Dropdown
-                placeholder="Select..."
-                value={displayValue}
-                options={getPokemonNames()}
-                onSelect={(pokemonName: string) => handlePokemonSelect(pokemonName)}
-                disabled={props.uniquePokemonDataList.length === 0}
-                reversed={true}
-            />
+            <div className={styles.sprite}>
+                <div className={styles["ball-bg"]} />
+                <hr className={styles["ball-divider"]} />
+                <div className={styles["ball-center"]} />
+            </div>
+            <div className={styles.text}>
+                <h3 className={styles.header}>Encounter:</h3>
+                <input className={styles.search} type="text" placeholder="Search..." />
+            </div>
         </div>
     );
 };

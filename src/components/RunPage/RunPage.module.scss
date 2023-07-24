@@ -35,18 +35,6 @@
             }
         }
     }
-
-    .sticky-info {
-        background: constants.$bg-color;
-        bottom: 0;
-        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
-        display: flex;
-        justify-content: center;
-        margin-left: calc(constants.$page-padding * -1);
-        padding: 2rem 0;
-        position: sticky;
-        width: 100vw;
-    }
 }
 
 @media screen and (min-width: constants.$tablet) {

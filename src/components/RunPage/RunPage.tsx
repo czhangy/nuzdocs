@@ -198,13 +198,11 @@ const RunPage: React.FC<Props> = (props) => {
                     ""
                 )}
             </div>
-            <div className={styles["sticky-info"]}>
-                <EncounterDisplay
-                    encounteredPokemon={encounteredPokemon}
-                    uniquePokemonDataList={uniquePokemonDataList}
-                    onSelect={(pokemonSlug: string) => saveEncounter(pokemonSlug)}
-                />
-            </div>
+            <EncounterDisplay
+                encounteredPokemon={encounteredPokemon}
+                uniquePokemonDataList={uniquePokemonDataList}
+                onSelect={(pokemonSlug: string) => saveEncounter(pokemonSlug)}
+            />
         </div>
     ) : (
         <></>
