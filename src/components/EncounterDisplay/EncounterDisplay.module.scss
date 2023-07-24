@@ -1,31 +1,38 @@
 @use "@/styles/constants";
 
 .encounter-display {
-    --button-adjust: 1.75rem;
-    --button-size: 16px;
     --center-size: 40%;
+    --display-button-x-offset: -0.75rem;
+    --display-button-y-offset: -0.25rem;
+    --display-button-size: 1.5rem;
     --display-width: 320px;
+    --encounter-button-adjust: 1.75rem;
+    --encounter-button-size: 16px;
     --focus-adjust: 50vh;
+    --focus-transition-time: 0.8s;
     --font-size: 1.2rem;
     --font-spacing: 1px;
     --inner-spacing: 0.5rem;
     --margin-bottom: 2rem;
+    --minimize-transition-time: 0.5s;
     --outline-size: 6px;
     --overlay-z: 99;
     --sprite-size: 100px;
-    --transition-time: 0.8s;
 
-    bottom: var(--margin-bottom);
-    margin-bottom: var(--margin-bottom);
+    bottom: 0;
     position: sticky;
-    transition: bottom var(--transition-time);
+    transition: bottom var(--focus-transition-time);
     width: 100%;
     z-index: calc(var(--overlay-z));
 
     .display {
         background-color: constants.$bg-color;
         border-radius: var(--sprite-size);
-        margin: 0 auto;
+        bottom: var(--margin-bottom);
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        transition: left var(--minimize-transition-time), width var(--minimize-transition-time);
         width: var(--display-width);
 
         .sprite {
@@ -71,6 +78,7 @@
             flex-direction: column;
             height: var(--sprite-size);
             letter-spacing: var(--font-spacing);
+            overflow-x: hidden;
             width: 100%;
 
             .header {
@@ -80,18 +88,18 @@
                 height: 50%;
                 justify-content: space-between;
                 padding-left: calc(var(--sprite-size) + var(--inner-spacing));
-                padding-right: var(--button-adjust);
+                padding-right: var(--encounter-button-adjust);
 
                 .title {
                     font-size: var(--font-size);
                     line-height: calc(var(--sprite-size) / 2 - var(--outline-size) * 1.5);
                 }
 
-                .button {
+                .encounter-button {
                     filter: constants.$svg-color;
-                    height: var(--button-size);
+                    height: var(--encounter-button-size);
                     position: relative;
-                    width: var(--button-size);
+                    width: var(--encounter-button-size);
                 }
             }
 
@@ -105,6 +113,18 @@
                 padding-right: var(--button-adjust);
             }
         }
+
+        .display-button {
+            font-size: var(--display-button-size);
+            left: var(--display-button-x-offset);
+            position: absolute;
+            top: var(--display-button-y-offset);
+        }
+    }
+
+    .minimized {
+        left: 0;
+        width: var(--sprite-size);
     }
 }
 
@@ -113,7 +133,7 @@
 }
 
 .overlay {
-    --transition-time: 0.8s;
+    --focus-transition-time: 0.8s;
 
     background-color: black;
     bottom: 0;
@@ -123,7 +143,7 @@
     position: fixed;
     right: 0;
     top: 0;
-    transition: opacity var(--transition-time);
+    transition: opacity var(--focus-transition-time);
     z-index: var(--overlay-z);
 }
 
@@ -135,7 +155,13 @@
 }
 
 @media (hover: hover) {
-    .encounter-display > .display > .text > .header > .button:hover {
-        filter: constants.$svg-hover-color;
+    .encounter-display > .display {
+        .text > .header > .encounter-button:hover {
+            filter: constants.$svg-hover-color;
+        }
+
+        .display-button:hover {
+            color: constants.$hover-color;
+        }
     }
 }
