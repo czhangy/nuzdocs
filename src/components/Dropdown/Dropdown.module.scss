@@ -9,7 +9,7 @@
     --menu-height: 300px;
     --menu-offset: 2px;
     --menu-spacing: 3.5rem;
-    --overlay-z: 99;
+    --overlay-z: 100;
     --scrollbar-border: 2px;
     --scrollbar-radius: 20px;
     --scrollbar-width: 4px;
@@ -141,7 +141,7 @@
             }
         }
 
-        .menu > .option:hover {
+        .menu .option:hover {
             background: constants.$hover-color;
         }
     }

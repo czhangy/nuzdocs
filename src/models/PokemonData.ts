@@ -1,6 +1,7 @@
+import LocalName from "@/models/LocalName";
+
 export default interface PokemonData {
-    pokemonSlug: string;
-    pokemonName: string;
+    pokemon: LocalName;
     types: string[];
     sprite: string;
 }

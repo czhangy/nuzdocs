@@ -39,7 +39,7 @@ const EncounterTable: React.FC<Props> = (props: Props) => {
                             {
                                 const pokemonData: PokemonData | undefined = props.uniquePokemonDataList.find(
                                     (pokemon: PokemonData) => {
-                                        return pokemon.pokemonSlug === encounter.pokemonSlug;
+                                        return pokemon.pokemon.slug === encounter.pokemonSlug;
                                     }
                                 );
                                 return pokemonData ? (
@@ -49,12 +49,12 @@ const EncounterTable: React.FC<Props> = (props: Props) => {
                                                 <div className={styles.sprite}>
                                                     <Image
                                                         src={pokemonData.sprite}
-                                                        alt={pokemonData.pokemonName}
+                                                        alt={pokemonData.pokemon.name}
                                                         layout="fill"
                                                         objectFit="contain"
                                                     />
                                                 </div>
-                                                {pokemonData.pokemonName}
+                                                {pokemonData.pokemon.name}
                                             </div>
                                         </td>
                                         <td className={styles["table-element"]}>{encounter.method}</td>

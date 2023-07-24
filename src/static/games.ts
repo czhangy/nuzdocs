@@ -1,8 +1,8 @@
 import Game from "@/models/Game";
-import SoulSilver from "@/static/soulsilver";
+import soulsilver from "@/static/soulsilver";
 
-const Games: { [gameSlug: string]: Game } = {
-    soulsilver: SoulSilver,
+const games: { [gameSlug: string]: Game } = {
+    soulsilver: soulsilver,
 };
 
-export default Games;
+export default games;

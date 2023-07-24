@@ -82,7 +82,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                                 <div className={styles.sprite}>
                                     <Image
                                         src={starter.sprite}
-                                        alt={starter.pokemonName}
+                                        alt={starter.pokemon.name}
                                         layout="fill"
                                         objectFit="contain"
                                     />

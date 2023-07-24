@@ -1,8 +1,10 @@
 import Game from "@/models/Game";
+import pokedex from "@/static/pokedex";
 
-const SoulSilver: Game = {
+const soulsilver: Game = {
     name: "SoulSilver",
     gameGroup: "hgss",
+    pokedex: pokedex.slice(0, 493),
     segments: [
         {
             slug: "new-bark-town",
@@ -22,4 +24,4 @@ const SoulSilver: Game = {
     iconURL: "/assets/images/soulsilver.webp",
 };
 
-export default SoulSilver;
+export default soulsilver;

@@ -1,11 +1,224 @@
 @use "@/styles/constants";
 
 .encounter-display {
-    align-items: center;
-    display: flex;
+    --center-size: 40%;
+    --display-button-x-offset: -0.75rem;
+    --display-button-y-offset: -0.25rem;
+    --display-button-size: 1.5rem;
+    --display-width: 360px;
+    --encounter-button-adjust: 1.75rem;
+    --encounter-button-size: 16px;
+    --focus-adjust: 50vh;
+    --focus-transition-time: 0.8s;
+    --font-size: 1.2rem;
+    --font-spacing: 1px;
+    --inner-spacing: 0.5rem;
+    --margin-bottom: 2rem;
+    --match-x-padding: 1.5rem;
+    --match-y-padding: 1rem;
+    --matches-max-height: 150px;
+    --minimize-transition-time: 0.5s;
+    --outline-size: 6px;
+    --overlay-z: 99;
+    --scrollbar-border: 2px;
+    --scrollbar-radius: 20px;
+    --scrollbar-width: 4px;
+    --sprite-size: 100px;
 
-    .header {
-        font-size: 1.2rem;
-        margin-right: 0.5rem;
+    bottom: 0;
+    position: sticky;
+    transition: bottom var(--focus-transition-time);
+    width: 100%;
+    z-index: calc(var(--overlay-z));
+
+    .display {
+        background-color: constants.$bg-color;
+        border-radius: var(--sprite-size);
+        bottom: var(--margin-bottom);
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        transition: left var(--minimize-transition-time), width var(--minimize-transition-time);
+        width: var(--display-width);
+
+        .sprite {
+            align-items: center;
+            border-radius: 50%;
+            display: flex;
+            height: var(--sprite-size);
+            justify-content: center;
+            position: absolute;
+            width: var(--sprite-size);
+
+            .ball-bg {
+                background-color: constants.$accent-color;
+                border: var(--outline-size) solid constants.$bg-color;
+                border-radius: 50%;
+                height: 100%;
+                position: absolute;
+                width: 100%;
+            }
+
+            .ball-divider {
+                background-color: constants.$bg-color;
+                height: var(--outline-size);
+                position: absolute;
+                width: 100%;
+            }
+
+            .ball-center {
+                background-color: constants.$accent-color;
+                border: var(--outline-size) solid constants.$bg-color;
+                border-radius: 50%;
+                height: var(--center-size);
+                position: absolute;
+                width: var(--center-size);
+            }
+        }
+
+        .text {
+            background-color: constants.$accent-color;
+            border: var(--outline-size) solid constants.$bg-color;
+            border-radius: var(--sprite-size);
+            display: flex;
+            flex-direction: column;
+            height: var(--sprite-size);
+            letter-spacing: var(--font-spacing);
+            overflow-x: hidden;
+            width: 100%;
+
+            .header {
+                align-items: center;
+                border-bottom: calc(var(--outline-size) / 2) solid constants.$bg-color;
+                display: flex;
+                height: 50%;
+                justify-content: space-between;
+                padding-left: calc(var(--sprite-size) + var(--inner-spacing));
+                padding-right: var(--encounter-button-adjust);
+
+                .title {
+                    font-size: var(--font-size);
+                    line-height: calc(var(--sprite-size) / 2 - var(--outline-size) * 1.5);
+                }
+
+                .encounter-button {
+                    filter: constants.$svg-color;
+                    height: var(--encounter-button-size);
+                    position: relative;
+                    width: var(--encounter-button-size);
+                }
+            }
+
+            .search {
+                background: transparent;
+                border-top: calc(var(--outline-size) / 2) solid constants.$bg-color;
+                font-size: var(--font-size);
+                height: 50%;
+                letter-spacing: var(--font-spacing);
+                padding-left: calc(var(--sprite-size) + var(--inner-spacing));
+                padding-right: var(--button-adjust);
+            }
+
+            .matches {
+                background-color: constants.$accent-color;
+                border: var(--outline-size) solid constants.$bg-color;
+                border-top: none;
+                bottom: 0;
+                left: calc(var(--sprite-size) - 2 * var(--inner-spacing));
+                max-height: var(--matches-max-height);
+                overflow-y: auto;
+                position: absolute;
+                transform: translateY(100%);
+
+                .match {
+                    cursor: pointer;
+                    font-size: var(--font-size);
+                    letter-spacing: var(--font-spacing);
+                    line-height: var(--font-size);
+                    padding: var(--match-y-padding) var(--match-x-padding);
+                    text-align: left;
+                    width: 100%;
+
+                    .highlight {
+                        color: constants.$hover-color;
+                    }
+                }
+            }
+
+            .hide {
+                display: none;
+            }
+
+            ::-webkit-scrollbar {
+                background: constants.$accent-color;
+                width: calc(var(--scrollbar-width) + 2 * var(--scrollbar-border));
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: constants.$text-color;
+                border: var(--scrollbar-border) solid constants.$bg-color;
+                border-radius: var(--scrollbar-radius);
+            }
+        }
+
+        .display-button {
+            font-size: var(--display-button-size);
+            left: var(--display-button-x-offset);
+            position: absolute;
+            top: var(--display-button-y-offset);
+        }
+    }
+
+    .minimized {
+        left: constants.$page-padding;
+        width: var(--sprite-size);
+    }
+}
+
+.focused {
+    bottom: var(--focus-adjust);
+}
+
+.overlay {
+    --focus-transition-time: 0.8s;
+
+    background-color: black;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: opacity var(--focus-transition-time);
+    z-index: var(--overlay-z);
+}
+
+.show {
+    --overlay-opacity: 0.6;
+
+    opacity: var(--overlay-opacity);
+    pointer-events: all;
+}
+
+@media (hover: hover) {
+    .encounter-display > .display {
+        .text {
+            .header > .encounter-button:hover {
+                filter: constants.$svg-hover-color;
+            }
+
+            .matches .match:hover {
+                background: constants.$hover-color;
+
+                .highlight {
+                    color: constants.$text-color;
+                }
+            }
+        }
+
+        .display-button:hover {
+            color: constants.$hover-color;
+        }
     }
 }
