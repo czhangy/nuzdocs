@@ -1,11 +1,11 @@
+import LocalPokemon from "@/models/LocalPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
-import axios from "axios";
+import { fetchPokemonGroup } from "@/utils/api";
+import { getRun } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./StarterSelect.module.scss";
-import LocalPokemon from "@/models/LocalPokemon";
-import { getRun } from "utils";
 
 type Props = {
     runName: string;
@@ -29,16 +29,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
 
     // Fetch starter data
     useEffect(() => {
-        axios
-            .get("/api/pokemon", {
-                params: {
-                    pokemonSlugList: props.starterSlugsList,
-                },
-            })
-            .then((res) => setStarters(JSON.parse(res.data.pokemon)))
-            .catch((error) => {
-                console.log(error);
-            });
+        fetchPokemonGroup(props.starterSlugsList).then((pokemon) => setStarters(pokemon));
     }, [props.starterSlugsList]);
 
     // Place starter in box and remove existing starter on starter change + set run's starter

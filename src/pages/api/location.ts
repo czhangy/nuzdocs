@@ -1,6 +1,7 @@
 import AreaData from "@/models/AreaData";
 import EncounterData from "@/models/EncounterData";
 import LocationData from "@/models/LocationData";
+import { getEncounterMethodName, getEnglishName } from "@/utils/utils";
 import groupBy from "lodash/groupBy";
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
@@ -11,7 +12,6 @@ import {
     PokemonEncounter,
     VersionEncounterDetail,
 } from "pokenode-ts";
-import { getEncounterMethodName, getEnglishName } from "utils";
 
 type ResData = {
     location?: string;

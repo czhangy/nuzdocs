@@ -35,35 +35,3 @@ export const getEncounterMethodName = (methodSlug: string, conditionValues: Name
 export const getPokemonTier = (pokemonSlug: string, gameGroup: string) => {
     return pokemonSlug in tiers[gameGroup] ? tiers[gameGroup][pokemonSlug] : "Untiered";
 };
-
-// Initializers
-export const initRun = () => {
-    return {
-        gameSlug: "soulsilver",
-        prevLocationSlug: "new-bark-town",
-        starterSlug: "",
-        encounterList: [],
-        caughtPokemonSlugsList: [],
-        numDead: 0,
-        numCheckpoints: 10,
-        numCheckpointsCleared: 0,
-    };
-};
-
-// IDK why but this errors when using import
-const axios = require("axios");
-
-// API Wrappers
-export const fetchPokemon = async (slug: string) => {
-    try {
-        const res = await axios.get("/api/pokemon", {
-            params: {
-                pokemonSlug: slug,
-            },
-        });
-        return JSON.parse(res.data.pokemon);
-    } catch (error) {
-        console.log(error);
-        return null;
-    }
-};

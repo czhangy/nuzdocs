@@ -2,11 +2,11 @@ import RunPage from "@/components/RunPage/RunPage";
 import LocalSegment from "@/models/LocalSegment";
 import Run from "@/models/Run";
 import games from "@/static/games";
+import { getRun } from "@/utils/utils";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { getRun } from "utils";
 
 const Segment: NextPage = () => {
     const [run, setRun] = useState<Run | null>(null);

@@ -9,9 +9,9 @@ import Game from "@/models/Game";
 import LocationData from "@/models/LocationData";
 import PokemonData from "@/models/PokemonData";
 import games from "@/static/games";
-import axios from "axios";
+import { fetchAreas, fetchLocation, fetchPokemonGroup } from "@/utils/api";
+import { getRun } from "@/utils/utils";
 import { useEffect, useState } from "react";
-import { getRun } from "utils";
 import styles from "./RunPage.module.scss";
 
 type Props = {
@@ -52,40 +52,17 @@ const RunPage: React.FC<Props> = (props) => {
 
     // Get data associated with current location on page load
     useEffect(() => {
-        if (props.segmentSlug && props.segmentSlug.length > 0) {
-            axios
-                .get("/api/location", {
-                    params: {
-                        locationSlug: props.segmentSlug,
-                    },
-                })
-                .then((res) => {
-                    const locationData = res.data;
-                    setCurrentLocation(JSON.parse(locationData.location));
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+        if (props.segmentSlug) {
+            fetchLocation(props.segmentSlug).then((location) => setCurrentLocation(location));
         }
     }, [props.segmentSlug]);
 
     // Fetch areas + encounters in location on page load
     useEffect(() => {
         if (currentLocation) {
-            axios
-                .get("/api/location", {
-                    params: {
-                        areaSlugList: currentLocation.areaSlugList,
-                        gameSlug: getRun(props.runName).gameSlug,
-                    },
-                })
-                .then((res) => {
-                    const areaList = res.data;
-                    setAreaList(JSON.parse(areaList.areaList));
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            fetchAreas(currentLocation.areaSlugList, getRun(props.runName).gameSlug).then((areaList) =>
+                setAreaList(areaList)
+            );
         }
     }, [currentLocation]);
 
@@ -99,16 +76,7 @@ const RunPage: React.FC<Props> = (props) => {
                 .flat();
             pokemonSlugList = pokemonSlugList.filter((pokemonSlug: string) => !game.starterSlugs.includes(pokemonSlug));
             pokemonSlugList = [...new Set(pokemonSlugList)].sort();
-            axios
-                .get("/api/pokemon", {
-                    params: {
-                        pokemonSlugList: pokemonSlugList,
-                    },
-                })
-                .then((res) => setUniquePokemonDataList(JSON.parse(res.data.pokemon)))
-                .catch((error) => {
-                    console.log(error);
-                });
+            fetchPokemonGroup(pokemonSlugList).then((pokemon) => setUniquePokemonDataList(pokemon));
         }
     }, [areaList, game]);
 

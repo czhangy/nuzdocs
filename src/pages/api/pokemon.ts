@@ -1,7 +1,7 @@
 import PokemonData from "@/models/PokemonData";
+import { getEnglishName } from "@/utils/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts";
-import { getEnglishName } from "utils";
 
 type ResData = {
     pokemon?: string;

@@ -1,11 +1,13 @@
 import LocalName from "@/models/LocalName";
+import LocalPokemon from "@/models/LocalPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
+import { fetchPokemon } from "@/utils/api";
+import { initLocalName, initLocalPokemon } from "@/utils/initializers";
+import { getRun } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { fetchPokemon, getRun } from "utils";
 import styles from "./EncounterDisplay.module.scss";
-import LocalPokemon from "@/models/LocalPokemon";
 
 type Props = {
     pokedex: LocalName[];
@@ -25,11 +27,6 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
 
     // Encounter state
     const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | null>(null);
-
-    // Toggle minimization state
-    const toggleMinimize = () => {
-        setIsMinimized(!isMinimized);
-    };
 
     // Delay close on blur to allow clicks to register
     const handleBlur = () => {
@@ -53,14 +50,10 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     // Save an encounter into local storage
     const saveEncounter = (pokemonSlug: string) => {
         const run: Run = getRun(props.runName);
-        const newEncounter: LocalPokemon = {
-            pokemonSlug: pokemonSlug,
-            locationSlug: props.locationSlug,
-        };
         run.encounterList = run.encounterList.filter(
             (encounter: LocalPokemon) => encounter.locationSlug !== props.locationSlug
         );
-        run.encounterList.push(newEncounter);
+        run.encounterList.push(initLocalPokemon(pokemonSlug, props.locationSlug));
         localStorage.setItem(props.runName, JSON.stringify(run));
     };
 
@@ -99,21 +92,12 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
             );
             if (currentEncounter.length === 0) {
                 updateEncounter(null);
+            } else if (currentEncounter[0].pokemonSlug === "failed") {
+                updateEncounter(initLocalName("failed", "Failed"));
             } else {
-                if (currentEncounter[0].pokemonSlug === "failed") {
-                    updateEncounter({
-                        slug: "failed",
-                        name: "Failed",
-                    });
-                } else {
-                    fetchPokemon(currentEncounter[0].pokemonSlug).then((pokemon) => {
-                        updateEncounter({
-                            slug: pokemon.pokemon.slug,
-                            name: pokemon.pokemon.name,
-                        });
-                    });
-                }
-                return;
+                fetchPokemon(currentEncounter[0].pokemonSlug).then((pokemon) => {
+                    updateEncounter(pokemon.pokemon);
+                });
             }
         }
     }, [props.runName, props.locationSlug]);
@@ -204,7 +188,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                     {isFocused ? (
                         ""
                     ) : (
-                        <button className={styles["display-button"]} onClick={toggleMinimize}>
+                        <button className={styles["display-button"]} onClick={() => setIsMinimized(!isMinimized)}>
                             {isMinimized ? "+" : "-"}
                         </button>
                     )}
