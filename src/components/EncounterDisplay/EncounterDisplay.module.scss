@@ -5,6 +5,7 @@
     --display-button-x-offset: -0.75rem;
     --display-button-y-offset: -0.25rem;
     --display-button-size: 1.5rem;
+    --display-offset: 1rem;
     --display-width: 360px;
     --encounter-button-adjust: 1.75rem;
     --encounter-button-size: 16px;
@@ -36,6 +37,7 @@
         border-radius: var(--sprite-size);
         bottom: var(--margin-bottom);
         left: 50%;
+        margin: 0 var(--display-offset);
         position: absolute;
         transform: translateX(-50%);
         transition: left var(--minimize-transition-time), width var(--minimize-transition-time);

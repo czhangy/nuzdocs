@@ -1,8 +1,15 @@
 @use "@/styles/constants";
 
 .run-page {
-    --location-size: 2rem;
+    --bottom-spacing: 10rem;
+    --header-font-size: 1.7rem;
+    --section-inner-spacing: 1rem;
+    --section-spacing: 2rem;
+    --title-font-size: 2rem;
+    --title-font-spacing: 2px;
+    --top-spacing: 2rem;
 
+    padding-top: var(--top-spacing);
     position: relative;
     width: 100%;
 
@@ -11,15 +18,14 @@
     }
 
     .run-info {
-        margin: 2rem 0;
         max-width: constants.$max-width;
         min-height: calc(100vh - constants.$mobile-navbar-height);
         width: 100%;
 
         .location-name {
-            font-size: var(--location-size);
+            font-size: var(--title-font-size);
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: var(--title-font-spacing);
             text-align: center;
         }
 
@@ -27,11 +33,15 @@
             align-items: center;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin: 2rem 0;
+            gap: var(--section-inner-spacing);
+            margin: var(--section-spacing) 0;
+
+            &:last-child {
+                margin-bottom: var(--bottom-spacing);
+            }
 
             .header {
-                font-size: 1.7rem;
+                font-size: var(--header-font-size);
             }
         }
     }
@@ -39,7 +49,7 @@
 
 @media screen and (min-width: constants.$tablet) {
     .run-page {
-        --location-size: 2.5rem;
+        --title-font-size: 2.5rem;
 
         .run-info {
             min-height: calc(100vh - constants.$navbar-height);
