@@ -17,3 +17,10 @@ export const initLocalName = (slug: string, name: string) => {
         name: name,
     };
 };
+
+export const initLocalPokemon = (pokemonSlug: string, locationSlug: string) => {
+    return {
+        pokemonSlug: pokemonSlug,
+        locationSlug: locationSlug,
+    };
+};

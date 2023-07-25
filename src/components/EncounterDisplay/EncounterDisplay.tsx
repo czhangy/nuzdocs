@@ -3,11 +3,11 @@ import LocalPokemon from "@/models/LocalPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import { fetchPokemon } from "@/utils/api";
+import { initLocalName, initLocalPokemon } from "@/utils/initializers";
 import { getRun } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterDisplay.module.scss";
-import { initLocalName } from "@/utils/initializers";
 
 type Props = {
     pokedex: LocalName[];
@@ -50,14 +50,10 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     // Save an encounter into local storage
     const saveEncounter = (pokemonSlug: string) => {
         const run: Run = getRun(props.runName);
-        const newEncounter: LocalPokemon = {
-            pokemonSlug: pokemonSlug,
-            locationSlug: props.locationSlug,
-        };
         run.encounterList = run.encounterList.filter(
             (encounter: LocalPokemon) => encounter.locationSlug !== props.locationSlug
         );
-        run.encounterList.push(newEncounter);
+        run.encounterList.push(initLocalPokemon(pokemonSlug, props.locationSlug));
         localStorage.setItem(props.runName, JSON.stringify(run));
     };
 
