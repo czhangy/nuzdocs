@@ -13,7 +13,7 @@ import { getRun } from "@/utils/utils";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from "./RunPage.module.scss";
-import { fetchLocation } from "@/utils/api";
+import { fetchAreas, fetchLocation } from "@/utils/api";
 
 type Props = {
     gameSlug: string;
@@ -61,20 +61,9 @@ const RunPage: React.FC<Props> = (props) => {
     // Fetch areas + encounters in location on page load
     useEffect(() => {
         if (currentLocation) {
-            axios
-                .get("/api/location", {
-                    params: {
-                        areaSlugList: currentLocation.areaSlugList,
-                        gameSlug: getRun(props.runName).gameSlug,
-                    },
-                })
-                .then((res) => {
-                    const areaList = res.data;
-                    setAreaList(JSON.parse(areaList.areaList));
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            fetchAreas(currentLocation.areaSlugList, getRun(props.runName).gameSlug).then((areaList) =>
+                setAreaList(areaList)
+            );
         }
     }, [currentLocation]);
 
