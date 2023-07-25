@@ -10,3 +10,10 @@ export const initRun = () => {
         numCheckpointsCleared: 0,
     };
 };
+
+export const initLocalName = (slug: string, name: string) => {
+    return {
+        slug: slug,
+        name: name,
+    };
+};

@@ -7,6 +7,7 @@ import { getRun } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterDisplay.module.scss";
+import { initLocalName } from "@/utils/initializers";
 
 type Props = {
     pokedex: LocalName[];
@@ -97,16 +98,10 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                 updateEncounter(null);
             } else {
                 if (currentEncounter[0].pokemonSlug === "failed") {
-                    updateEncounter({
-                        slug: "failed",
-                        name: "Failed",
-                    });
+                    updateEncounter(initLocalName("failed", "Failed"));
                 } else {
                     fetchPokemon(currentEncounter[0].pokemonSlug).then((pokemon) => {
-                        updateEncounter({
-                            slug: pokemon.pokemon.slug,
-                            name: pokemon.pokemon.name,
-                        });
+                        updateEncounter(pokemon.pokemon);
                     });
                 }
                 return;
