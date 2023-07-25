@@ -13,6 +13,7 @@ import { getRun } from "@/utils/utils";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from "./RunPage.module.scss";
+import { fetchLocation } from "@/utils/api";
 
 type Props = {
     gameSlug: string;
@@ -52,20 +53,8 @@ const RunPage: React.FC<Props> = (props) => {
 
     // Get data associated with current location on page load
     useEffect(() => {
-        if (props.segmentSlug && props.segmentSlug.length > 0) {
-            axios
-                .get("/api/location", {
-                    params: {
-                        locationSlug: props.segmentSlug,
-                    },
-                })
-                .then((res) => {
-                    const locationData = res.data;
-                    setCurrentLocation(JSON.parse(locationData.location));
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+        if (props.segmentSlug) {
+            fetchLocation(props.segmentSlug).then((location) => setCurrentLocation(location));
         }
     }, [props.segmentSlug]);
 

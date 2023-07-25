@@ -1,5 +1,5 @@
 import Run from "@/models/Run";
-import { initRun } from "@/utils/utils";
+import { initRun } from "@/utils/initializers";
 import Router from "next/router";
 import { useState } from "react";
 import styles from "./CreateRunModal.module.scss";

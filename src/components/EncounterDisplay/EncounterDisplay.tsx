@@ -92,15 +92,12 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
             );
             if (currentEncounter.length === 0) {
                 updateEncounter(null);
+            } else if (currentEncounter[0].pokemonSlug === "failed") {
+                updateEncounter(initLocalName("failed", "Failed"));
             } else {
-                if (currentEncounter[0].pokemonSlug === "failed") {
-                    updateEncounter(initLocalName("failed", "Failed"));
-                } else {
-                    fetchPokemon(currentEncounter[0].pokemonSlug).then((pokemon) => {
-                        updateEncounter(pokemon.pokemon);
-                    });
-                }
-                return;
+                fetchPokemon(currentEncounter[0].pokemonSlug).then((pokemon) => {
+                    updateEncounter(pokemon.pokemon);
+                });
             }
         }
     }, [props.runName, props.locationSlug]);
