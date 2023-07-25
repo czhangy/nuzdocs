@@ -16,6 +16,21 @@ export const fetchPokemon = async (pokemonSlug: string) => {
     }
 };
 
+// Fetch a list of PokemonData given Pokemon slugs
+export const fetchPokemonGroup = async (pokemonSlugs: string[]) => {
+    try {
+        const res = await axios.get("/api/pokemon", {
+            params: {
+                pokemonSlugList: pokemonSlugs,
+            },
+        });
+        return JSON.parse(res.data.pokemon);
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+};
+
 // Fetch LocationData given a location slug
 export const fetchLocation = async (locationSlug: string) => {
     try {

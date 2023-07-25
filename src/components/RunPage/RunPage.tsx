@@ -9,11 +9,10 @@ import Game from "@/models/Game";
 import LocationData from "@/models/LocationData";
 import PokemonData from "@/models/PokemonData";
 import games from "@/static/games";
+import { fetchAreas, fetchLocation, fetchPokemonGroup } from "@/utils/api";
 import { getRun } from "@/utils/utils";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from "./RunPage.module.scss";
-import { fetchAreas, fetchLocation } from "@/utils/api";
 
 type Props = {
     gameSlug: string;
@@ -77,16 +76,7 @@ const RunPage: React.FC<Props> = (props) => {
                 .flat();
             pokemonSlugList = pokemonSlugList.filter((pokemonSlug: string) => !game.starterSlugs.includes(pokemonSlug));
             pokemonSlugList = [...new Set(pokemonSlugList)].sort();
-            axios
-                .get("/api/pokemon", {
-                    params: {
-                        pokemonSlugList: pokemonSlugList,
-                    },
-                })
-                .then((res) => setUniquePokemonDataList(JSON.parse(res.data.pokemon)))
-                .catch((error) => {
-                    console.log(error);
-                });
+            fetchPokemonGroup(pokemonSlugList).then((pokemon) => setUniquePokemonDataList(pokemon));
         }
     }, [areaList, game]);
 
