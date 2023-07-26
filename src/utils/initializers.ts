@@ -24,3 +24,19 @@ export const initLocalPokemon = (pokemonSlug: string, locationSlug: string) => {
         locationSlug: locationSlug,
     };
 };
+
+export const initEncounterData = (
+    pokemonSlug: string,
+    method: string,
+    chance: number,
+    minLevel: number,
+    maxLevel: number
+) => {
+    return {
+        pokemonSlug: pokemonSlug,
+        method: method,
+        chance: chance,
+        minLevel: minLevel,
+        maxLevel: maxLevel,
+    };
+};

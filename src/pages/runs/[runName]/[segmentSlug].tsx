@@ -12,7 +12,7 @@ const Segment: NextPage = () => {
     const [run, setRun] = useState<Run | null>(null);
     const router = useRouter();
 
-    // Validate route and set run for valid routes
+    // Validate route and set run for valid routes, redirect to home for invalid addresses
     useEffect(() => {
         if (router.query.runName && router.query.segmentSlug) {
             const run: Run = getRun(router.query.runName as string);

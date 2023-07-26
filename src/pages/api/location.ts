@@ -1,6 +1,7 @@
 import AreaData from "@/models/AreaData";
 import EncounterData from "@/models/EncounterData";
 import LocationData from "@/models/LocationData";
+import { initEncounterData } from "@/utils/initializers";
 import { getEncounterMethodName, getEnglishName } from "@/utils/utils";
 import groupBy from "lodash/groupBy";
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -30,23 +31,25 @@ const getEncounterDataForSinglePokemon = (pokemonEncounter: PokemonEncounter, ga
         getEncounterMethodName(encounter.method.name, encounter.condition_values)
     );
     for (let method in groupedEncounters) {
-        encounterData.push({
-            pokemonSlug: pokemonEncounter.pokemon.name,
-            method: method,
-            chance: groupedEncounters[method].reduce((sum: number, encounter: Encounter) => sum + encounter.chance, 0),
-            minLevel: Math.min.apply(
-                null,
-                groupedEncounters[method].map((encounter: Encounter) => {
-                    return encounter.min_level;
-                })
-            ),
-            maxLevel: Math.max.apply(
-                null,
-                groupedEncounters[method].map((encounter: Encounter) => {
-                    return encounter.max_level;
-                })
-            ),
-        });
+        encounterData.push(
+            initEncounterData(
+                pokemonEncounter.pokemon.name,
+                method,
+                groupedEncounters[method].reduce((sum: number, encounter: Encounter) => sum + encounter.chance, 0),
+                Math.min.apply(
+                    null,
+                    groupedEncounters[method].map((encounter: Encounter) => {
+                        return encounter.min_level;
+                    })
+                ),
+                Math.max.apply(
+                    null,
+                    groupedEncounters[method].map((encounter: Encounter) => {
+                        return encounter.max_level;
+                    })
+                )
+            )
+        );
     }
     return encounterData;
 };
