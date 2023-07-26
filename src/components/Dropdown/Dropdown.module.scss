@@ -7,7 +7,7 @@
     --chevron-size: 12px;
     --font-size: 1.2rem;
     --menu-height: 300px;
-    --menu-offset: 2px;
+    --menu-offset: -2px;
     --menu-spacing: 3.5rem;
     --overlay-z: 100;
     --scrollbar-border: 2px;
@@ -57,16 +57,6 @@
         }
     }
 
-    .disabled {
-        border-color: constants.$accent-color;
-        color: constants.$accent-color;
-        pointer-events: none;
-
-        .arrow {
-            filter: constants.$svg-accent-color;
-        }
-    }
-
     .menu {
         background-color: constants.$bg-color;
         border: var(--border-size) solid constants.$text-color;
@@ -91,7 +81,7 @@
     .hidden {
         opacity: 0;
         pointer-events: none;
-        transform: translateY(calc(var(--menu-offset) * -1));
+        transform: translateY(var(--menu-offset));
     }
 
     ::-webkit-scrollbar {
@@ -103,27 +93,6 @@
         background: constants.$text-color;
         border: var(--scrollbar-border) solid constants.$bg-color;
         border-radius: var(--scrollbar-radius);
-    }
-}
-
-.reversed {
-    .controller {
-        .arrow {
-            transform: rotate(180deg);
-        }
-
-        .flipped {
-            transform: rotate(0);
-        }
-    }
-
-    .menu {
-        bottom: var(--menu-spacing);
-        top: auto;
-    }
-
-    .hidden {
-        transform: translateY(var(--menu-offset));
     }
 }
 

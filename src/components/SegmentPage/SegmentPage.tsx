@@ -60,7 +60,7 @@ const SegmentPage: React.FC<Props> = (props) => {
     // Fetch areas + encounters in location on page load
     useEffect(() => {
         if (currentLocation) {
-            fetchAreas(currentLocation.areaSlugList, getRun(props.runName).gameSlug).then((areaList) =>
+            fetchAreas(currentLocation.areaSlugList, getRun(props.runName)!.gameSlug).then((areaList) =>
                 setAreaList(areaList)
             );
         }

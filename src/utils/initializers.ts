@@ -5,18 +5,19 @@ import LocalPokemon from "@/models/LocalPokemon";
 import LocationData from "@/models/LocationData";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
+import games from "@/static/games";
 import { getEnglishName } from "@/utils/utils";
 import { Name } from "pokenode-ts";
 
-export const initRun = (): Run => {
+export const initRun = (gameSlug: string): Run => {
     return {
-        gameSlug: "soulsilver",
-        prevLocationSlug: "new-bark-town",
+        gameSlug: gameSlug,
+        prevLocationSlug: games[gameSlug].startingTownSlug,
         starterSlug: "",
         encounterList: [],
         caughtPokemonSlugsList: [],
         numDead: 0,
-        numCheckpoints: 10,
+        numCheckpoints: games[gameSlug].segments.length,
         numCheckpointsCleared: 0,
     };
 };
