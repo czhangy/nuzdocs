@@ -7,8 +7,6 @@ type Props = {
     value: string | null;
     options: string[];
     onSelect: (label: string) => void;
-    disabled?: boolean;
-    reversed?: boolean;
 };
 
 const Dropdown: React.FC<Props> = (props: Props) => {
@@ -26,16 +24,13 @@ const Dropdown: React.FC<Props> = (props: Props) => {
     }, []);
 
     return (
-        <div className={`${styles.dropdown} ${props.reversed ? styles.reversed : ""}`}>
+        <div className={styles.dropdown}>
             <div
                 className={`${styles.overlay} ${open ? "" : styles.hidden}`}
                 onClick={() => setOpen(false)}
                 onScroll={() => setOpen(false)}
             />
-            <div
-                className={`${styles.controller} ${props.disabled ? styles.disabled : ""}`}
-                onClick={() => setOpen(true)}
-            >
+            <div className={styles.controller} onClick={() => setOpen(true)}>
                 <p className={styles.display}>{props.value ? props.value : props.placeholder}</p>
                 <div className={`${styles.arrow} ${open ? styles.flipped : ""}`}>
                     <Image
@@ -50,7 +45,7 @@ const Dropdown: React.FC<Props> = (props: Props) => {
                 {props.options.map((option: string, key: number) => {
                     return (
                         <li key={key}>
-                            <button className={styles.option} onClick={() => handleSelect(option)}>
+                            <button className={styles.option} type="button" onClick={() => handleSelect(option)}>
                                 {option}
                             </button>
                         </li>

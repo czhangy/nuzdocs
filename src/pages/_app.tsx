@@ -10,9 +10,17 @@ import { useRouter } from "next/router";
 function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
 
+    const renderNavbar = () => {
+        if (router.pathname.includes("/runs")) {
+            return <RunNavbar />;
+        } else {
+            return <MainNavbar />;
+        }
+    };
+
     return (
         <>
-            {router.pathname.includes("/runs") ? <RunNavbar /> : <MainNavbar />}
+            {renderNavbar()}
             <PageWrapper>
                 <Component {...pageProps} />
             </PageWrapper>

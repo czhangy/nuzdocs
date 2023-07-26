@@ -73,17 +73,18 @@ const AboutPage: React.FC = () => {
                     <h2 className={styles.header}>{pageNames[2]}</h2>
                     <p className={styles.content}>
                         <a
-                            href="https://www.reddit.com/r/nuzlocke/"
+                            href="https://pokehacks.dabomstew.com/randomizer/"
                             target="_blank"
                             rel="noreferrer"
                             className={styles.link}
                         >
-                            r/nuzlocke
+                            Universal Pokémon Randomizer
                         </a>
                     </p>
                     <ul className={styles.list}>
                         <li className={styles["bullet-point"]}>
-                            A subreddit and community that you can use to get advice and share your Nuzlocke experiences
+                            A tool that can be used to change impossible evolutions (e.g., trade evos) to level-up
+                            evolutions
                         </li>
                     </ul>
                     <br />
@@ -183,7 +184,7 @@ const AboutPage: React.FC = () => {
                         <a href="https://nuzlocke.app/" target="_blank" rel="noreferrer" className={styles.link}>
                             Nuzlocke Tracker
                         </a>{" "}
-                        app for heavy inspiration ◡̈
+                        app for heavy inspiration 😊
                     </p>
                 </section>
             </div>

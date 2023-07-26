@@ -10,12 +10,27 @@
 
 html,
 body {
+    --scrollbar-border: 4px;
+    --scrollbar-radius: 20px;
+    --scrollbar-width: 8px;
+
     background: constants.$accent-color;
     color: constants.$text-color;
     font-family: constants.$main-font;
     overflow-x: clip;
     padding: 0;
     margin: 0;
+
+    ::-webkit-scrollbar {
+        background: constants.$bg-color;
+        width: calc(var(--scrollbar-width) + 2 * var(--scrollbar-border));
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: constants.$text-color;
+        border: var(--scrollbar-border) solid constants.$bg-color;
+        border-radius: var(--scrollbar-radius);
+    }
 }
 
 a {

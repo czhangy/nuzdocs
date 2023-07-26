@@ -16,6 +16,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+    gap: var(--inner-spacing);
     width: var(--content-width);
 
     .header {
@@ -27,12 +28,12 @@
         align-items: center;
         display: flex;
         flex-direction: column;
-        margin-top: var(--inner-spacing);
+        gap: var(--inner-spacing);
         width: 100%;
 
         .input {
             background: constants.$bg-color;
-            border: var(--border-size) solid constants.$accent-color;
+            border: var(--border-size) solid constants.$bg-color;
             font-size: var(--font-size);
             padding: var(--y-padding) var(--input-x-padding);
             width: 100%;
@@ -53,7 +54,6 @@
             border: var(--border-size) solid constants.$text-color;
             border-radius: var(--button-border-rad);
             font-size: var(--font-size);
-            margin-top: var(--inner-spacing);
             padding: var(--y-padding) var(--button-x-padding);
 
             &:disabled {

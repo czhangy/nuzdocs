@@ -1,4 +1,4 @@
-import RunPage from "@/components/RunPage/RunPage";
+import SegmentPage from "@/components/SegmentPage/SegmentPage";
 import LocalSegment from "@/models/LocalSegment";
 import Run from "@/models/Run";
 import games from "@/static/games";
@@ -12,30 +12,36 @@ const Segment: NextPage = () => {
     const [run, setRun] = useState<Run | null>(null);
     const router = useRouter();
 
-    // Validate route and set run for valid routes
+    // Validate route and set run for valid routes, redirect to home for invalid addresses
     useEffect(() => {
         if (router.query.runName && router.query.segmentSlug) {
-            const run: Run = getRun(router.query.runName as string);
-            if (
-                run &&
-                games[run.gameSlug].segments
-                    .map((segment: LocalSegment) => segment.slug)
-                    .includes(router.query.segmentSlug as string)
-            ) {
-                setRun(run);
-            } else {
-                router.push("/");
+            const storedRuns = localStorage.getItem("runs");
+            if (storedRuns) {
+                const runList: string[] = JSON.parse(storedRuns);
+                const runName: string = router.query.runName as string;
+                if (runList.includes(runName)) {
+                    const run: Run = getRun(runName);
+                    if (
+                        games[run.gameSlug].segments
+                            .map((segment: LocalSegment) => segment.slug)
+                            .includes(router.query.segmentSlug as string)
+                    ) {
+                        setRun(run);
+                        return;
+                    }
+                }
             }
+            router.push("/");
         }
     }, [router.query.runName, router.query.segmentSlug]);
 
     return (
         <>
             <Head>
-                <title>{`NuzlockeDB | ${router.query.runName}`}</title>
+                <title>{router.query.runName ? router.query.runName : "NuzlockeDB"}</title>
             </Head>
             {run ? (
-                <RunPage
+                <SegmentPage
                     gameSlug={run.gameSlug}
                     runName={router.query.runName as string}
                     segmentSlug={router.query.segmentSlug as string}

@@ -1,4 +1,6 @@
+import LocalName from "@/models/LocalName";
 import PokemonData from "@/models/PokemonData";
+import { initLocalName, initPokemonData } from "@/utils/initializers";
 import { getEnglishName } from "@/utils/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts";
@@ -8,7 +10,7 @@ type ResData = {
     error?: string;
 };
 
-const fetchPokemonName = async (pokemonSlug: string) => {
+const fetchPokemonName = async (pokemonSlug: string): Promise<string> => {
     const api: PokemonClient = new PokemonClient();
     try {
         const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemonSlug);
@@ -18,24 +20,20 @@ const fetchPokemonName = async (pokemonSlug: string) => {
     }
 };
 
-const fetchPokemon = async (pokemonSlug: string) => {
+const fetchPokemon = async (pokemonSlug: string): Promise<PokemonData> => {
     const api: PokemonClient = new PokemonClient();
     try {
         const pokemon: Pokemon = await api.getPokemonByName(pokemonSlug);
-        return {
-            pokemon: {
-                slug: pokemonSlug,
-                name: await fetchPokemonName(pokemon.name),
-            },
-            types: pokemon.types.map((type) => type.type.name),
-            sprite: pokemon.sprites.front_default!,
-        };
+        const localPokemonName: LocalName = initLocalName(pokemonSlug, await fetchPokemonName(pokemon.name));
+        const types: string[] = pokemon.types.map((type) => type.type.name);
+        const sprite: string = pokemon.sprites.front_default!;
+        return initPokemonData(localPokemonName, types, sprite);
     } catch (error: any) {
         throw error;
     }
 };
 
-const fetchListOfPokemon = async (pokemonSlugList: string[]) => {
+const fetchListOfPokemon = async (pokemonSlugList: string[]): Promise<PokemonData[]> => {
     let pokemonPromises: Promise<PokemonData>[] = [];
     pokemonSlugList.forEach((pokemonSlug: string) => {
         pokemonPromises.push(fetchPokemon(pokemonSlug));

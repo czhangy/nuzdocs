@@ -1,22 +1,19 @@
+import Run from "@/models/Run";
 import encounterConditions from "@/static/encounterConditions";
 import encounterMethods from "@/static/encounterMethods";
 import tiers from "@/static/tiers";
 import { Name, NamedAPIResource } from "pokenode-ts";
 
-export const getEnglishName: (names: Name[]) => string = (names: Name[]) => {
+export const getEnglishName: (names: Name[]) => string = (names: Name[]): string => {
     const nameObj: Name = names.find((name) => name.language.name === "en")!;
     return nameObj.name;
 };
 
-export const getRun = (runName: string) => {
-    if (localStorage.getItem(runName)) {
-        return JSON.parse(localStorage.getItem(runName) as string);
-    } else {
-        return null;
-    }
+export const getRun = (runName: string): Run => {
+    return JSON.parse(localStorage.getItem(runName) as string);
 };
 
-export const getEncounterMethodName = (methodSlug: string, conditionValues: NamedAPIResource[]) => {
+export const getEncounterMethodName = (methodSlug: string, conditionValues: NamedAPIResource[]): string => {
     let methodName: string = methodSlug in encounterMethods ? encounterMethods[methodSlug] : methodSlug;
     if (conditionValues.length > 0) {
         methodName += "\n(";
@@ -32,6 +29,6 @@ export const getEncounterMethodName = (methodSlug: string, conditionValues: Name
     return methodName;
 };
 
-export const getPokemonTier = (pokemonSlug: string, gameGroup: string) => {
+export const getPokemonTier = (pokemonSlug: string, gameGroup: string): string => {
     return pokemonSlug in tiers[gameGroup] ? tiers[gameGroup][pokemonSlug] : "Untiered";
 };

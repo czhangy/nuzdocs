@@ -12,7 +12,7 @@ import games from "@/static/games";
 import { fetchAreas, fetchLocation, fetchPokemonGroup } from "@/utils/api";
 import { getRun } from "@/utils/utils";
 import { useEffect, useState } from "react";
-import styles from "./RunPage.module.scss";
+import styles from "./SegmentPage.module.scss";
 
 type Props = {
     gameSlug: string;
@@ -20,7 +20,7 @@ type Props = {
     segmentSlug: string;
 };
 
-const RunPage: React.FC<Props> = (props) => {
+const SegmentPage: React.FC<Props> = (props) => {
     const [game, setGame] = useState<Game | null>(null);
 
     // States to track location areas
@@ -60,7 +60,7 @@ const RunPage: React.FC<Props> = (props) => {
     // Fetch areas + encounters in location on page load
     useEffect(() => {
         if (currentLocation) {
-            fetchAreas(currentLocation.areaSlugList, getRun(props.runName).gameSlug).then((areaList) =>
+            fetchAreas(currentLocation.areaSlugList, getRun(props.runName)!.gameSlug).then((areaList) =>
                 setAreaList(areaList)
             );
         }
@@ -81,7 +81,7 @@ const RunPage: React.FC<Props> = (props) => {
     }, [areaList, game]);
 
     return game ? (
-        <div className={styles["run-page"]}>
+        <div className={styles["segment-page"]}>
             <SegmentNav segments={game.segments} segmentSlug={props.segmentSlug} />
             <div className={styles["run-info"]}>
                 {currentLocation ? (
@@ -128,4 +128,4 @@ const RunPage: React.FC<Props> = (props) => {
     );
 };
 
-export default RunPage;
+export default SegmentPage;

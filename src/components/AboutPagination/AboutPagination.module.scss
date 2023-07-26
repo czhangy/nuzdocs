@@ -2,57 +2,60 @@
 
 .about-pagination {
     display: none;
-
-    .page-entry {
-        border-bottom: 2px solid constants.$bg-color;
-        margin-bottom: 1rem;
-        padding-bottom: 0.5rem;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-
-        .page-button {
-            display: flex;
-            gap: 1rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-
-            .page-num {
-                position: relative;
-                width: 1rem;
-
-                .underline {
-                    background: constants.$hover-color;
-                    bottom: -2px;
-                    height: 2px;
-                    left: 0;
-                    position: absolute;
-                    transition: width 0.2s;
-                    width: 0;
-                }
-            }
-        }
-
-        .active {
-            color: constants.$hover-color;
-
-            .page-num > .underline {
-                width: 0 !important;
-            }
-        }
-    }
 }
 
 @media screen and (min-width: constants.$desktop) {
     .about-pagination {
-        display: block;
+        --font-size: 1.5rem;
+        --inner-spacing: 1rem;
+        --num-size: 1rem;
+        --transition-time: 0.2s;
+        --underline-size: 2px;
+        --underline-spacing: 0.5rem;
+
+        display: flex;
+        flex-direction: column;
+        gap: var(--inner-spacing);
+
+        .entry {
+            padding-bottom: var(--underline-spacing);
+
+            .button {
+                display: flex;
+                gap: var(--inner-spacing);
+                font-size: var(--font-size);
+                font-weight: bold;
+
+                .num {
+                    position: relative;
+                    width: var(--num-size);
+
+                    .underline {
+                        background: constants.$hover-color;
+                        bottom: 0;
+                        height: var(--underline-size);
+                        left: 0;
+                        position: absolute;
+                        transition: width var(--transition-time);
+                        width: 0;
+                    }
+                }
+            }
+
+            .active {
+                color: constants.$hover-color;
+
+                .num > .underline {
+                    width: 0 !important;
+                }
+            }
+        }
     }
 }
 
 @media (hover: hover) {
-    .about-pagination > .page-entry > .page-button:hover {
-        .page-num > .underline {
+    .about-pagination > .entry > .button:hover {
+        .num > .underline {
             width: 100%;
         }
     }
