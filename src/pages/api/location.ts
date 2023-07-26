@@ -2,7 +2,7 @@ import AreaData from "@/models/AreaData";
 import EncounterData from "@/models/EncounterData";
 import LocationData from "@/models/LocationData";
 import { initAreaData, initEncounterData, initLocationData } from "@/utils/initializers";
-import { getEncounterMethodName, getEnglishName } from "@/utils/utils";
+import { getEncounterMethodName } from "@/utils/utils";
 import groupBy from "lodash/groupBy";
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
@@ -20,7 +20,7 @@ type ResData = {
     error?: any;
 };
 
-const getEncounterDataForSinglePokemon = (pokemonEncounter: PokemonEncounter, gameSlug: string) => {
+const getEncounterDataForSinglePokemon = (pokemonEncounter: PokemonEncounter, gameSlug: string): EncounterData[] => {
     let encounterData: EncounterData[] = [];
     const versionDetails = pokemonEncounter.version_details;
     const versionEncounterDetails: VersionEncounterDetail = versionDetails.filter(
@@ -31,30 +31,28 @@ const getEncounterDataForSinglePokemon = (pokemonEncounter: PokemonEncounter, ga
         getEncounterMethodName(encounter.method.name, encounter.condition_values)
     );
     for (let method in groupedEncounters) {
-        encounterData.push(
-            initEncounterData(
-                pokemonEncounter.pokemon.name,
-                method,
-                groupedEncounters[method].reduce((sum: number, encounter: Encounter) => sum + encounter.chance, 0),
-                Math.min.apply(
-                    null,
-                    groupedEncounters[method].map((encounter: Encounter) => {
-                        return encounter.min_level;
-                    })
-                ),
-                Math.max.apply(
-                    null,
-                    groupedEncounters[method].map((encounter: Encounter) => {
-                        return encounter.max_level;
-                    })
-                )
-            )
+        const chance: number = groupedEncounters[method].reduce(
+            (sum: number, encounter: Encounter) => sum + encounter.chance,
+            0
         );
+        const minLevel: number = Math.min.apply(
+            null,
+            groupedEncounters[method].map((encounter: Encounter) => {
+                return encounter.min_level;
+            })
+        );
+        const maxLevel: number = Math.max.apply(
+            null,
+            groupedEncounters[method].map((encounter: Encounter) => {
+                return encounter.max_level;
+            })
+        );
+        encounterData.push(initEncounterData(pokemonEncounter.pokemon.name, method, chance, minLevel, maxLevel));
     }
     return encounterData;
 };
 
-const getEncounterDataForAllPokemon = (pokemonEncounters: PokemonEncounter[], gameSlug: string) => {
+const getEncounterDataForAllPokemon = (pokemonEncounters: PokemonEncounter[], gameSlug: string): EncounterData[] => {
     let encounterData: EncounterData[][] = [];
     pokemonEncounters = pokemonEncounters.filter((pokemonEncounter: PokemonEncounter) =>
         pokemonEncounter.version_details.some((ved) => ved.version.name === gameSlug)
@@ -65,30 +63,29 @@ const getEncounterDataForAllPokemon = (pokemonEncounters: PokemonEncounter[], ga
     return encounterData.flat();
 };
 
-const fetchLocation = async (locationSlug: string) => {
+const fetchLocation = async (locationSlug: string): Promise<LocationData> => {
     const api: LocationClient = new LocationClient();
     try {
         const location: Location = await api.getLocationByName(locationSlug);
-        return initLocationData(
-            location.names,
-            location.areas.map((area) => area.name)
-        );
+        const areaSlugList: string[] = location.areas.map((area) => area.name);
+        return initLocationData(location.names, areaSlugList);
     } catch (error: any) {
         throw error;
     }
 };
 
-const fetchArea = async (areaSlug: string, gameSlug: string) => {
+const fetchArea = async (areaSlug: string, gameSlug: string): Promise<AreaData> => {
     const api: LocationClient = new LocationClient();
     try {
         const area: LocationArea = await api.getLocationAreaByName(areaSlug);
-        return initAreaData(area.names, getEncounterDataForAllPokemon(area.pokemon_encounters, gameSlug));
+        const encounters: EncounterData[] = getEncounterDataForAllPokemon(area.pokemon_encounters, gameSlug);
+        return initAreaData(area.names, encounters);
     } catch (error: any) {
         throw error;
     }
 };
 
-const fetchListOfAreas = async (areaSlugList: string[], gameSlug: string) => {
+const fetchListOfAreas = async (areaSlugList: string[], gameSlug: string): Promise<AreaData[]> => {
     let areaPromises: Promise<AreaData>[] = [];
     areaSlugList.forEach((areaSlug: string) => {
         areaPromises.push(fetchArea(areaSlug, gameSlug));

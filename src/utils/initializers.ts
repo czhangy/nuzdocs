@@ -3,6 +3,7 @@ import EncounterData from "@/models/EncounterData";
 import LocalName from "@/models/LocalName";
 import LocalPokemon from "@/models/LocalPokemon";
 import LocationData from "@/models/LocationData";
+import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import { getEnglishName } from "@/utils/utils";
 import { Name } from "pokenode-ts";
@@ -24,6 +25,14 @@ export const initLocalName = (slug: string, name: string): LocalName => {
     return {
         slug: slug,
         name: name,
+    };
+};
+
+export const initPokemonData = (pokemon: LocalName, types: string[], sprite: string): PokemonData => {
+    return {
+        pokemon: pokemon,
+        types: types,
+        sprite: sprite,
     };
 };
 
