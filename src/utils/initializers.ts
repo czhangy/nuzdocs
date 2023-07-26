@@ -1,4 +1,13 @@
-export const initRun = () => {
+import AreaData from "@/models/AreaData";
+import EncounterData from "@/models/EncounterData";
+import LocalName from "@/models/LocalName";
+import LocalPokemon from "@/models/LocalPokemon";
+import LocationData from "@/models/LocationData";
+import Run from "@/models/Run";
+import { getEnglishName } from "@/utils/utils";
+import { Name } from "pokenode-ts";
+
+export const initRun = (): Run => {
     return {
         gameSlug: "soulsilver",
         prevLocationSlug: "new-bark-town",
@@ -11,14 +20,14 @@ export const initRun = () => {
     };
 };
 
-export const initLocalName = (slug: string, name: string) => {
+export const initLocalName = (slug: string, name: string): LocalName => {
     return {
         slug: slug,
         name: name,
     };
 };
 
-export const initLocalPokemon = (pokemonSlug: string, locationSlug: string) => {
+export const initLocalPokemon = (pokemonSlug: string, locationSlug: string): LocalPokemon => {
     return {
         pokemonSlug: pokemonSlug,
         locationSlug: locationSlug,
@@ -31,12 +40,26 @@ export const initEncounterData = (
     chance: number,
     minLevel: number,
     maxLevel: number
-) => {
+): EncounterData => {
     return {
         pokemonSlug: pokemonSlug,
         method: method,
         chance: chance,
         minLevel: minLevel,
         maxLevel: maxLevel,
+    };
+};
+
+export const initLocationData = (names: Name[], areaSlugList: string[]): LocationData => {
+    return {
+        locationName: getEnglishName(names),
+        areaSlugList: areaSlugList,
+    };
+};
+
+export const initAreaData = (names: Name[], encounters: EncounterData[]): AreaData => {
+    return {
+        areaName: getEnglishName(names),
+        encounters: encounters,
     };
 };

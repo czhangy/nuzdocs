@@ -1,7 +1,7 @@
 import AreaData from "@/models/AreaData";
 import EncounterData from "@/models/EncounterData";
 import LocationData from "@/models/LocationData";
-import { initEncounterData } from "@/utils/initializers";
+import { initAreaData, initEncounterData, initLocationData } from "@/utils/initializers";
 import { getEncounterMethodName, getEnglishName } from "@/utils/utils";
 import groupBy from "lodash/groupBy";
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -69,10 +69,10 @@ const fetchLocation = async (locationSlug: string) => {
     const api: LocationClient = new LocationClient();
     try {
         const location: Location = await api.getLocationByName(locationSlug);
-        return {
-            locationName: getEnglishName(location.names),
-            areaSlugList: location.areas.map((area) => area.name),
-        };
+        return initLocationData(
+            location.names,
+            location.areas.map((area) => area.name)
+        );
     } catch (error: any) {
         throw error;
     }
@@ -82,10 +82,7 @@ const fetchArea = async (areaSlug: string, gameSlug: string) => {
     const api: LocationClient = new LocationClient();
     try {
         const area: LocationArea = await api.getLocationAreaByName(areaSlug);
-        return {
-            areaName: getEnglishName(area.names),
-            encounters: getEncounterDataForAllPokemon(area.pokemon_encounters, gameSlug),
-        };
+        return initAreaData(area.names, getEncounterDataForAllPokemon(area.pokemon_encounters, gameSlug));
     } catch (error: any) {
         throw error;
     }
