@@ -34,7 +34,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     };
 
     // Highlight matching substring
-    const highlightMatch = (pokemonName: string) => {
+    const renderMatch = (pokemonName: string) => {
         const matchIdx: number = pokemonName.toLowerCase().indexOf(searchValue.toLowerCase());
         return (
             <p>
@@ -178,7 +178,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                                 return (
                                     <li key={key}>
                                         <button className={styles.match} onClick={() => updateEncounter(match)}>
-                                            {highlightMatch(match.name)}
+                                            {renderMatch(match.name)}
                                         </button>
                                     </li>
                                 );
