@@ -9,12 +9,8 @@ export const getEnglishName: (names: Name[]) => string = (names: Name[]): string
     return nameObj.name;
 };
 
-export const getRun = (runName: string): Run | null => {
-    if (localStorage.getItem(runName)) {
-        return JSON.parse(localStorage.getItem(runName) as string);
-    } else {
-        return null;
-    }
+export const getRun = (runName: string): Run => {
+    return JSON.parse(localStorage.getItem(runName) as string);
 };
 
 export const getEncounterMethodName = (methodSlug: string, conditionValues: NamedAPIResource[]): string => {

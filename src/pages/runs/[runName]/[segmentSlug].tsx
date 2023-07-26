@@ -15,17 +15,23 @@ const Segment: NextPage = () => {
     // Validate route and set run for valid routes, redirect to home for invalid addresses
     useEffect(() => {
         if (router.query.runName && router.query.segmentSlug) {
-            const run: Run = getRun(router.query.runName as string)!;
-            if (
-                run &&
-                games[run.gameSlug].segments
-                    .map((segment: LocalSegment) => segment.slug)
-                    .includes(router.query.segmentSlug as string)
-            ) {
-                setRun(run);
-            } else {
-                router.push("/");
+            const storedRuns = localStorage.getItem("runs");
+            if (storedRuns) {
+                const runList: string[] = JSON.parse(storedRuns);
+                const runName: string = router.query.runName as string;
+                if (runList.includes(runName)) {
+                    const run: Run = getRun(runName);
+                    if (
+                        games[run.gameSlug].segments
+                            .map((segment: LocalSegment) => segment.slug)
+                            .includes(router.query.segmentSlug as string)
+                    ) {
+                        setRun(run);
+                        return;
+                    }
+                }
             }
+            router.push("/");
         }
     }, [router.query.runName, router.query.segmentSlug]);
 
