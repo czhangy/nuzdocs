@@ -1,4 +1,4 @@
-const tiers: { [key: string]: any } = {
+const tiers: { [key: string]: { [gameGroup: string]: string } } = {
     hgss: {
         totodile: "S",
         croconaw: "S",
