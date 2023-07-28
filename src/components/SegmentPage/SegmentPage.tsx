@@ -1,6 +1,5 @@
 import Dropdown from "@/components/Dropdown/Dropdown";
 import EncounterDisplay from "@/components/EncounterDisplay/EncounterDisplay";
-import EncounterTable from "@/components/EncounterTable/EncounterTable";
 import SegmentNav from "@/components/SegmentNav/SegmentNav";
 import StarterSelect from "@/components/StarterSelect/StarterSelect";
 import AreaData from "@/models/AreaData";
@@ -137,11 +136,6 @@ const SegmentPage: React.FC<Props> = (props) => {
                                     />
                                 );
                             })}
-                            <EncounterTable
-                                uniquePokemonDataList={uniquePokemonDataList}
-                                currentArea={currentArea}
-                                versionGroup={game.versionGroup}
-                            />
                         </section>
                     </>
                 ) : (

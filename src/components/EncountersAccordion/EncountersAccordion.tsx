@@ -16,6 +16,16 @@ const EncountersAccordion: React.FC<Props> = (props: Props) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [tier, setTier] = useState<string>("N/A");
 
+    // Formats the level range of an encounter
+    const generateLevelRange = (encounter: EncounterData) => {
+        if (encounter.minLevel === encounter.maxLevel) {
+            return encounter.minLevel;
+        } else {
+            return `${encounter.minLevel} - ${encounter.maxLevel}`;
+        }
+    };
+
+    // Gets the tier of the Pokemon on load
     useEffect(() => {
         if (props.pokemonData && props.versionGroup) {
             setTier(getPokemonTier(props.pokemonData.pokemon.slug, props.versionGroup));
@@ -64,6 +74,28 @@ const EncountersAccordion: React.FC<Props> = (props: Props) => {
                     />
                 </div>
             </button>
+            <table className={styles.body} cellSpacing="0">
+                <thead>
+                    <tr className={styles["table-row"]}>
+                        <th className={styles["table-header"]}>Method</th>
+                        <th className={styles["table-header"]}>Chance</th>
+                        <th className={styles["table-header"]}>Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.encounterData.map((encounter: EncounterData, key: number) => {
+                        {
+                            return (
+                                <tr className={styles["table-row"]} key={key}>
+                                    <td className={styles["table-element"]}>{encounter.method}</td>
+                                    <td className={styles["table-element"]}>{encounter.chance}%</td>
+                                    <td className={styles["table-element"]}>{generateLevelRange(encounter)}</td>
+                                </tr>
+                            );
+                        }
+                    })}
+                </tbody>
+            </table>
         </div>
     );
 };
