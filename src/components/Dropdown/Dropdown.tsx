@@ -45,7 +45,7 @@ const Dropdown: React.FC<Props> = (props: Props) => {
                 {props.options.map((option: string, key: number) => {
                     return (
                         <li key={key}>
-                            <button className={styles.option} type="button" onClick={() => handleSelect(option)}>
+                            <button className={styles.option} onClick={() => handleSelect(option)}>
                                 {option}
                             </button>
                         </li>
