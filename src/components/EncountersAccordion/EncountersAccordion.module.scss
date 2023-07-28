@@ -1,7 +1,6 @@
 @use "@/styles/constants";
 
 .encounters-accordion {
-    --accordion-transition-time: 0.5s;
     --accordion-width: 350px;
     --arrow-offset: 1rem;
     --arrow-size: 12px;
@@ -24,9 +23,6 @@
     --type-height: 12px;
     --x-padding: 1rem;
 
-    max-height: var(--sprite-size);
-    overflow-y: hidden;
-    transition: max-height var(--accordion-transition-time);
     width: var(--accordion-width);
 
     .header {
@@ -99,36 +95,43 @@
 
         .table-row {
             height: var(--table-row-height);
+            overflow: hidden;
 
             .table-header,
             .table-element {
-                background-color: constants.$accent-color;
+                background: constants.$accent-color;
                 font-size: var(--table-font-size);
                 padding: var(--table-el-y-padding) var(--table-el-x-padding);
                 text-align: center;
-                white-space: pre-line;
-                width: calc(100% / 3);
+                width: 20%;
+            }
+
+            .method-header {
+                text-align: left;
+            }
+
+            .method {
+                text-align: left;
+                width: 60%;
             }
         }
+    }
+
+    .hidden {
+        display: none;
     }
 }
 
 @media screen and (min-width: constants.$tablet) {
     .encounters-accordion {
-        --accordion-width: 500px;
+        --accordion-width: 750px;
         --name-font-size: 1.2rem;
         --name-spacing: 8px;
+        --sprite-size: 100px;
         --tier-font-size: 1rem;
         --tier-size: 1.4rem;
         --tier-x-padding: 0.4rem;
         --tier-y-padding: 0.2rem;
-    }
-}
-
-@media screen and (min-width: constants.$desktop) {
-    .encounters-accordion {
-        --accordion-width: 750px;
-        --sprite-size: 100px;
     }
 }
 

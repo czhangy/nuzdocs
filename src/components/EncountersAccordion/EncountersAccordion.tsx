@@ -16,11 +16,6 @@ const EncountersAccordion: React.FC<Props> = (props: Props) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [tier, setTier] = useState<string>("N/A");
 
-    // Calculates the max height of the accordion based on the # of encounter methods
-    const getMaxHeight = () => {
-        return `${100 + 50 * (props.encounterData.length + 1)}px`;
-    };
-
     // Formats the level range of an encounter
     const getLevelRange = (encounter: EncounterData) => {
         if (encounter.minLevel === encounter.maxLevel) {
@@ -30,7 +25,7 @@ const EncountersAccordion: React.FC<Props> = (props: Props) => {
         }
     };
 
-    // Gets the tier of the Pokemon on load
+    // Gets the tier of the Pokemon when new Pokemon data is given
     useEffect(() => {
         if (props.pokemonData && props.versionGroup) {
             setTier(getPokemonTier(props.pokemonData.pokemon.slug, props.versionGroup));
@@ -38,7 +33,7 @@ const EncountersAccordion: React.FC<Props> = (props: Props) => {
     }, [props.pokemonData, props.versionGroup]);
 
     return (
-        <div className={styles["encounters-accordion"]} style={isOpen ? { maxHeight: getMaxHeight() } : {}}>
+        <div className={styles["encounters-accordion"]}>
             <button className={styles.header} onClick={() => setIsOpen(!isOpen)}>
                 <div className={styles.sprite}>
                     <Image
@@ -79,10 +74,10 @@ const EncountersAccordion: React.FC<Props> = (props: Props) => {
                     />
                 </div>
             </button>
-            <table className={styles.body} cellSpacing="0">
+            <table className={`${styles.body} ${isOpen ? "" : styles.hidden}`} cellSpacing="0">
                 <thead>
                     <tr className={styles["table-row"]}>
-                        <th className={styles["table-header"]}>Method</th>
+                        <th className={`${styles["table-header"]} ${styles["method-header"]}`}>Method</th>
                         <th className={styles["table-header"]}>Chance</th>
                         <th className={styles["table-header"]}>Level</th>
                     </tr>
@@ -92,7 +87,9 @@ const EncountersAccordion: React.FC<Props> = (props: Props) => {
                         {
                             return (
                                 <tr className={styles["table-row"]} key={key}>
-                                    <td className={styles["table-element"]}>{encounter.method}</td>
+                                    <td className={`${styles["table-element"]} ${styles.method}`}>
+                                        {encounter.method}
+                                    </td>
                                     <td className={styles["table-element"]}>{encounter.chance}%</td>
                                     <td className={styles["table-element"]}>{getLevelRange(encounter)}</td>
                                 </tr>
