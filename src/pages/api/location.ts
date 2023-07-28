@@ -2,6 +2,7 @@ import AreaData from "@/models/AreaData";
 import EncounterData from "@/models/EncounterData";
 import LocationData from "@/models/LocationData";
 import games from "@/static/games";
+import translations from "@/static/translations";
 import { initAreaData, initEncounterData, initLocationData } from "@/utils/initializers";
 import groupBy from "lodash/groupBy";
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -10,11 +11,10 @@ import {
     Location,
     LocationArea,
     LocationClient,
+    NamedAPIResource,
     PokemonEncounter,
     VersionEncounterDetail,
 } from "pokenode-ts";
-import { NamedAPIResource } from "pokenode-ts";
-import translations from "@/static/translations";
 
 type ResData = {
     location?: string;

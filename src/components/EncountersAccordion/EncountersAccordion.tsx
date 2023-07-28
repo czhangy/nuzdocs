@@ -1,10 +1,10 @@
 import EncounterData from "@/models/EncounterData";
 import PokemonData from "@/models/PokemonData";
-import styles from "./EncountersAccordion.module.scss";
+import colors from "@/static/colors";
+import { getPokemonTier } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { getPokemonTier } from "@/utils/utils";
-import colors from "@/static/colors";
+import styles from "./EncountersAccordion.module.scss";
 
 type Props = {
     pokemonData: PokemonData;

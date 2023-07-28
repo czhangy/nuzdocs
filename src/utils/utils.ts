@@ -1,7 +1,6 @@
 import Run from "@/models/Run";
 import tiers from "@/static/tiers";
-import { Name, NamedAPIResource } from "pokenode-ts";
-import translations from "@/static/translations";
+import { Name } from "pokenode-ts";
 
 export const getEnglishName: (names: Name[]) => string = (names: Name[]): string => {
     const nameObj: Name = names.find((name) => name.language.name === "en")!;
