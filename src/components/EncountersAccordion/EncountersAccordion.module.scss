@@ -5,7 +5,11 @@
     --arrow-offset: 1rem;
     --arrow-size: 12px;
     --header-inner-spacing: 4px;
+    --name-font-size: 1rem;
     --sprite-size: 90px;
+    --tier-border-rad: 4px;
+    --tier-font-size: 0.8rem;
+    --tier-size: 1.2rem;
     --transition-time: 0.2s;
     --type-ratio: 8/3;
     --type-height: 12px;
@@ -15,6 +19,7 @@
     .header {
         align-items: center;
         display: flex;
+        position: relative;
         width: 100%;
 
         .sprite {
@@ -32,12 +37,30 @@
                 align-items: center;
                 display: flex;
                 gap: var(--header-inner-spacing);
-            }
 
-            .type {
-                height: var(--type-height);
-                position: relative;
-                width: calc(var(--type-height) * var(--type-ratio));
+                .name {
+                    font-size: var(--name-font-size);
+                }
+
+                .tier {
+                    align-items: center;
+                    background: black;
+                    border-radius: var(--tier-border-rad);
+                    display: flex;
+                    font-family: constants.$tier-font;
+                    font-size: var(--tier-font-size);
+                    height: var(--tier-size);
+                    justify-content: center;
+                    line-height: var(--tier-font-size);
+                    padding: var(--tier-padding);
+                    width: var(--tier-size);
+                }
+
+                .type {
+                    height: var(--type-height);
+                    position: relative;
+                    width: calc(var(--type-height) * var(--type-ratio));
+                }
             }
         }
 

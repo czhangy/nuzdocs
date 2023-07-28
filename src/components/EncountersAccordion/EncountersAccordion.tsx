@@ -3,6 +3,7 @@ import PokemonData from "@/models/PokemonData";
 import styles from "./EncountersAccordion.module.scss";
 import Image from "next/image";
 import { useState } from "react";
+import { getPokemonTier } from "@/utils/utils";
 
 type Props = {
     pokemonData: PokemonData;
@@ -27,6 +28,9 @@ const EncountersAccordion: React.FC<Props> = (props: Props) => {
                 <div className={styles.info}>
                     <div className={styles.row}>
                         <p className={styles.name}>{props.pokemonData.pokemon.name}</p>
+                        <div className={styles.tier}>
+                            {getPokemonTier(props.pokemonData.pokemon.slug, props.versionGroup)}
+                        </div>
                     </div>
                     <div className={styles.row}>
                         {props.pokemonData.types.map((type: string, key: number) => {
