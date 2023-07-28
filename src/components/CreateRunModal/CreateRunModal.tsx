@@ -8,8 +8,8 @@ import styles from "./CreateRunModal.module.scss";
 
 const CreateRunModal: React.FC = () => {
     // Form states
-    const [name, setName] = useState<string>("");
-    const [gameSlug, setGameSlug] = useState<string>("");
+    const [selectedName, setSelectedName] = useState<string>("");
+    const [selectedGameSlug, setSelectedGameSlug] = useState<string>("");
 
     // Error states
     const [nameError, setNameError] = useState<boolean>(false);
@@ -29,20 +29,20 @@ const CreateRunModal: React.FC = () => {
         let storedRuns: string | null = localStorage.getItem("runs");
         if (storedRuns) {
             let runs: string[] = JSON.parse(storedRuns);
-            if (runs.includes(name)) {
+            if (runs.includes(selectedName)) {
                 setNameError(true);
                 return;
             } else {
-                runs.push(name);
+                runs.push(selectedName);
                 localStorage.setItem("runs", JSON.stringify(runs));
             }
         } else {
             localStorage.setItem("runs", JSON.stringify([name]));
         }
 
-        const newRun: Run = initRun(gameSlug);
-        localStorage.setItem(name, JSON.stringify(newRun));
-        Router.push(`/runs/${name}/${games[gameSlug].startingTownSlug}`);
+        const newRun: Run = initRun(selectedGameSlug);
+        localStorage.setItem(selectedName, JSON.stringify(newRun));
+        Router.push(`/runs/${name}/${games[selectedGameSlug].startingTownSlug}`);
     };
 
     return (
@@ -54,8 +54,8 @@ const CreateRunModal: React.FC = () => {
                     maxLength={30}
                     placeholder="Name your run..."
                     type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={selectedName}
+                    onChange={(e) => setSelectedName(e.target.value)}
                 />
                 {nameError ? (
                     <p className={styles.error}>This name is already being used, please choose another one.</p>
@@ -66,10 +66,10 @@ const CreateRunModal: React.FC = () => {
                     {Object.keys(games).map((gameSlug: string, key: number) => {
                         return (
                             <button
-                                className={styles.game}
+                                className={`${styles.game} ${gameSlug === selectedGameSlug ? styles.active : ""}`}
                                 key={key}
                                 type="button"
-                                onClick={() => setGameSlug(gameSlug)}
+                                onClick={() => setSelectedGameSlug(gameSlug)}
                             >
                                 <Image
                                     src={games[gameSlug].iconURL}
@@ -80,33 +80,8 @@ const CreateRunModal: React.FC = () => {
                             </button>
                         );
                     })}
-                    <button className={styles.game} onClick={() => setGameSlug("")}>
-                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
-                    </button>
-                    <button className={styles.game} onClick={() => setGameSlug("")}>
-                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
-                    </button>
-                    <button className={styles.game} onClick={() => setGameSlug("")}>
-                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
-                    </button>
-                    <button className={styles.game} onClick={() => setGameSlug("")}>
-                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
-                    </button>
-                    <button className={styles.game} onClick={() => setGameSlug("")}>
-                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
-                    </button>
-                    <button className={styles.game} onClick={() => setGameSlug("")}>
-                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
-                    </button>
-
-                    <button className={styles.game} onClick={() => setGameSlug("")}>
-                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
-                    </button>
-                    <button className={styles.game} onClick={() => setGameSlug("")}>
-                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
-                    </button>
                 </div>
-                <button className={styles.submit} disabled={name.length === 0 || gameSlug.length === 0}>
+                <button className={styles.submit} disabled={selectedName.length === 0 || selectedGameSlug.length === 0}>
                     Start!
                 </button>
             </form>
