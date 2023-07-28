@@ -11,9 +11,12 @@
     --field-y-padding: 0.5rem;
     --font-size: 1.25rem;
     --game-icon-size: 64px;
+    --games-max-height: 200px;
+    --games-num-columns: 3;
     --games-y-padding: 1rem;
     --header-size: 2rem;
     --inner-spacing: 2rem;
+    --transition-time: 0.2s;
 
     align-items: center;
     display: flex;
@@ -50,8 +53,8 @@
             background-color: constants.$bg-color;
             display: grid;
             gap: 1rem;
-            grid-template-columns: repeat(3, 1fr);
-            max-height: 400px;
+            grid-template-columns: repeat(var(--games-num-columns), 1fr);
+            max-height: var(--games-max-height);
             overflow: auto;
             padding: var(--games-y-padding) var(--field-x-padding);
             width: 100%;
@@ -60,6 +63,7 @@
                 height: var(--game-icon-size);
                 margin: 0 auto;
                 position: relative;
+                transition: transform var(--transition-time);
                 width: calc(var(--game-icon-size) * 1.5);
             }
         }
@@ -92,8 +96,14 @@
 }
 
 @media (hover: hover) {
-    .create-run-modal > .form > .submit:hover {
-        background: constants.$text-color;
-        color: constants.$bg-color;
+    .create-run-modal > .form {
+        .games > .game:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .submit:hover {
+            background: constants.$text-color;
+            color: constants.$bg-color;
+        }
     }
 }

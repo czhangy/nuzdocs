@@ -80,6 +80,31 @@ const CreateRunModal: React.FC = () => {
                             </button>
                         );
                     })}
+                    <button className={styles.game} onClick={() => setGameSlug("")}>
+                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
+                    </button>
+                    <button className={styles.game} onClick={() => setGameSlug("")}>
+                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
+                    </button>
+                    <button className={styles.game} onClick={() => setGameSlug("")}>
+                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
+                    </button>
+                    <button className={styles.game} onClick={() => setGameSlug("")}>
+                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
+                    </button>
+                    <button className={styles.game} onClick={() => setGameSlug("")}>
+                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
+                    </button>
+                    <button className={styles.game} onClick={() => setGameSlug("")}>
+                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
+                    </button>
+
+                    <button className={styles.game} onClick={() => setGameSlug("")}>
+                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
+                    </button>
+                    <button className={styles.game} onClick={() => setGameSlug("")}>
+                        <Image src="/assets/images/soulsilver.webp" layout="fill" objectFit="contain" />
+                    </button>
                 </div>
                 <button className={styles.submit} disabled={name.length === 0 || gameSlug.length === 0}>
                     Start!
