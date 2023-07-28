@@ -1,24 +1,19 @@
 import Run from "@/models/Run";
+import games from "@/static/games";
 import { initRun } from "@/utils/initializers";
+import Image from "next/image";
 import Router from "next/router";
 import { useState } from "react";
 import styles from "./CreateRunModal.module.scss";
-import Dropdown from "@/components/Dropdown/Dropdown";
-import games from "@/static/games";
 
 const CreateRunModal: React.FC = () => {
     // Form states
     const [name, setName] = useState<string>("");
-    const [gameName, setGameName] = useState<string>("");
+    const [gameSlug, setGameSlug] = useState<string>("");
 
     // Error states
     const [nameError, setNameError] = useState<boolean>(false);
     const [formError, setFormError] = useState<boolean>(false);
-
-    // Static data
-    const gameNames: string[] = Object.keys(games).map((gameSlug: string) => {
-        return games[gameSlug].name;
-    });
 
     // Removes all error states
     const resetErrors = () => {
@@ -45,9 +40,6 @@ const CreateRunModal: React.FC = () => {
             localStorage.setItem("runs", JSON.stringify([name]));
         }
 
-        const gameSlug: string = Object.keys(games).filter((gameSlug: string) => {
-            return games[gameSlug].name === gameName;
-        })[0];
         const newRun: Run = initRun(gameSlug);
         localStorage.setItem(name, JSON.stringify(newRun));
         Router.push(`/runs/${name}/${games[gameSlug].startingTownSlug}`);
@@ -70,13 +62,26 @@ const CreateRunModal: React.FC = () => {
                 ) : (
                     ""
                 )}
-                <Dropdown
-                    placeholder="Select a game..."
-                    value={gameName}
-                    options={gameNames}
-                    onSelect={(gameName: string) => setGameName(gameName)}
-                />
-                <button className={styles["submit-button"]} disabled={name.length === 0 || gameName.length === 0}>
+                <div className={styles.games}>
+                    {Object.keys(games).map((gameSlug: string, key: number) => {
+                        return (
+                            <button
+                                className={styles.game}
+                                key={key}
+                                type="button"
+                                onClick={() => setGameSlug(gameSlug)}
+                            >
+                                <Image
+                                    src={games[gameSlug].iconURL}
+                                    alt={games[gameSlug].name}
+                                    layout="fill"
+                                    objectFit="contain"
+                                />
+                            </button>
+                        );
+                    })}
+                </div>
+                <button className={styles.submit} disabled={name.length === 0 || gameSlug.length === 0}>
                     Start!
                 </button>
             </form>

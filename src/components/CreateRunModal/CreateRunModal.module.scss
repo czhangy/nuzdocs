@@ -3,15 +3,17 @@
 .create-run-modal {
     --button-border-rad: 5px;
     --button-x-padding: 2rem;
-    --border-size: 2px;
     --content-width: 320px;
     --error-font-size: 0.9rem;
     --error-spacing: 0.5rem;
+    --field-border-size: 2px;
+    --field-x-padding: 1rem;
+    --field-y-padding: 0.5rem;
     --font-size: 1.25rem;
+    --game-icon-size: 64px;
+    --games-y-padding: 1rem;
     --header-size: 2rem;
     --inner-spacing: 2rem;
-    --input-x-padding: 1rem;
-    --y-padding: 0.5rem;
 
     align-items: center;
     display: flex;
@@ -32,14 +34,33 @@
         width: 100%;
 
         .input {
-            background: constants.$bg-color;
-            border: var(--border-size) solid constants.$bg-color;
+            background-color: constants.$bg-color;
+            border: var(--field-border-size) solid constants.$bg-color;
             font-size: var(--font-size);
-            padding: var(--y-padding) var(--input-x-padding);
+            padding: var(--field-y-padding) var(--field-x-padding);
             width: 100%;
 
             &:focus {
-                border: var(--border-size) solid constants.$hover-color;
+                border: var(--field-border-size) solid constants.$hover-color;
+                padding: var(--field-y-padding) var(--field-x-padding);
+            }
+        }
+
+        .games {
+            background-color: constants.$bg-color;
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(3, 1fr);
+            max-height: 400px;
+            overflow: auto;
+            padding: var(--games-y-padding) var(--field-x-padding);
+            width: 100%;
+
+            .game {
+                height: var(--game-icon-size);
+                margin: 0 auto;
+                position: relative;
+                width: calc(var(--game-icon-size) * 1.5);
             }
         }
 
@@ -50,11 +71,11 @@
             width: 100%;
         }
 
-        .submit-button {
-            border: var(--border-size) solid constants.$text-color;
+        .submit {
+            border: var(--field-border-size) solid constants.$text-color;
             border-radius: var(--button-border-rad);
             font-size: var(--font-size);
-            padding: var(--y-padding) var(--button-x-padding);
+            padding: var(--field-y-padding) var(--button-x-padding);
 
             &:disabled {
                 border-color: constants.$bg-color;
@@ -71,7 +92,7 @@
 }
 
 @media (hover: hover) {
-    .create-run-modal > .form > .submit-button:hover {
+    .create-run-modal > .form > .submit:hover {
         background: constants.$text-color;
         color: constants.$bg-color;
     }
