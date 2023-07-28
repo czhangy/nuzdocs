@@ -29,6 +29,6 @@ export const getEncounterMethodName = (methodSlug: string, conditionValues: Name
     return methodName;
 };
 
-export const getPokemonTier = (pokemonSlug: string, gameGroup: string): string => {
-    return pokemonSlug in tiers[gameGroup] ? tiers[gameGroup][pokemonSlug] : "Untiered";
+export const getPokemonTier = (pokemonSlug: string, versionGroup: string): string => {
+    return pokemonSlug in tiers[versionGroup] ? tiers[versionGroup][pokemonSlug] : "N/A";
 };

@@ -8,7 +8,7 @@ import styles from "./EncounterTable.module.scss";
 type Props = {
     uniquePokemonDataList: PokemonData[];
     currentArea: AreaData | null;
-    gameGroup: string;
+    versionGroup: string;
 };
 
 const EncounterTable: React.FC<Props> = (props: Props) => {
@@ -61,7 +61,7 @@ const EncounterTable: React.FC<Props> = (props: Props) => {
                                         <td className={styles["table-element"]}>{encounter.chance}%</td>
                                         <td className={styles["table-element"]}>{generateLevelRange(encounter)}</td>
                                         <td className={styles["table-element"]}>
-                                            {getPokemonTier(encounter.pokemonSlug, props.gameGroup)}
+                                            {getPokemonTier(encounter.pokemonSlug, props.versionGroup)}
                                         </td>
                                     </tr>
                                 ) : (

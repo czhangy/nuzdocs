@@ -7,6 +7,7 @@ import { useState } from "react";
 type Props = {
     pokemonData: PokemonData;
     encounterData: EncounterData[];
+    versionGroup: string;
 };
 
 const EncountersAccordion: React.FC<Props> = (props: Props) => {
@@ -30,7 +31,7 @@ const EncountersAccordion: React.FC<Props> = (props: Props) => {
                     <div className={styles.row}>
                         {props.pokemonData.types.map((type: string, key: number) => {
                             return (
-                                <div className={styles.type}>
+                                <div className={styles.type} key={key}>
                                     <Image
                                         src={`https://www.serebii.net/pokedex-bw/type/${type}.gif`}
                                         alt={type}

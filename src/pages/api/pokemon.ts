@@ -10,6 +10,14 @@ type ResData = {
     error?: string;
 };
 
+const isPokemonRequest = (req: NextApiRequest): boolean => {
+    return req.method === "GET" && "pokemonSlug" in req.query && typeof req.query.pokemonSlug === "string";
+};
+
+const isPokemonListRequest = (req: NextApiRequest): boolean => {
+    return req.method === "GET" && "pokemonSlugList[]" in req.query && Array.isArray(req.query["pokemonSlugList[]"]);
+};
+
 const fetchPokemonName = async (pokemonSlug: string): Promise<string> => {
     const api: PokemonClient = new PokemonClient();
     try {
@@ -46,22 +54,20 @@ const fetchListOfPokemon = async (pokemonSlugList: string[]): Promise<PokemonDat
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<ResData>) {
-    if (req.method === "GET" && "pokemonSlug" in req.query && typeof req.query.pokemonSlug === "string") {
+    if (isPokemonRequest(req)) {
         try {
-            const pokemon: void | PokemonData = await fetchPokemon(req.query.pokemonSlug);
+            const pokemon: void | PokemonData = await fetchPokemon(req.query.pokemonSlug as string);
             return res.status(200).json({ pokemon: JSON.stringify(pokemon) });
         } catch (error: any) {
             return res.status(500).json({
                 error: error,
             });
         }
-    } else if (
-        req.method === "GET" &&
-        "pokemonSlugList[]" in req.query &&
-        Array.isArray(req.query["pokemonSlugList[]"])
-    ) {
+    } else if (isPokemonListRequest(req)) {
         try {
-            const pokemonDataList: void | PokemonData[] = await fetchListOfPokemon(req.query["pokemonSlugList[]"]);
+            const pokemonDataList: void | PokemonData[] = await fetchListOfPokemon(
+                req.query["pokemonSlugList[]"] as string[]
+            );
             return res.status(200).json({ pokemon: JSON.stringify(pokemonDataList) });
         } catch (error: any) {
             return res.status(500).json({
@@ -70,7 +76,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         }
     } else if (req.method === "GET") {
         return res.status(400).json({
-            error: "A Pokemon name must be specified",
+            error: "The request is missing required params",
         });
     } else {
         return res.status(405).json({

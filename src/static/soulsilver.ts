@@ -3,7 +3,7 @@ import pokedex from "@/static/pokedex";
 
 const soulsilver: Game = {
     name: "SoulSilver",
-    gameGroup: "hgss",
+    versionGroup: "heartgold-soulsilver",
     pokedex: pokedex.slice(0, 493),
     segments: [
         {

@@ -3,7 +3,7 @@ import LocalName from "@/models/LocalName";
 
 export default interface Game {
     name: string;
-    gameGroup: string;
+    versionGroup: string;
     pokedex: LocalName[];
     segments: LocalSegment[];
     starterSlugs: string[];

@@ -133,13 +133,14 @@ const SegmentPage: React.FC<Props> = (props) => {
                                         key={key}
                                         pokemonData={pokemonData}
                                         encounterData={getEncounterData(pokemonData.pokemon.slug)}
+                                        versionGroup={game.versionGroup}
                                     />
                                 );
                             })}
                             <EncounterTable
                                 uniquePokemonDataList={uniquePokemonDataList}
                                 currentArea={currentArea}
-                                gameGroup={game.gameGroup}
+                                versionGroup={game.versionGroup}
                             />
                         </section>
                     </>

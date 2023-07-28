@@ -1,5 +1,5 @@
-const tiers: { [key: string]: { [gameGroup: string]: string } } = {
-    hgss: {
+const tiers: { [key: string]: { [versionGroup: string]: string } } = {
+    "heartgold-soulsilver": {
         totodile: "S",
         croconaw: "S",
         feraligatr: "S",
