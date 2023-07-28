@@ -13,6 +13,7 @@ import { getRun } from "@/utils/utils";
 import { useEffect, useState } from "react";
 import styles from "./SegmentPage.module.scss";
 import EncountersAccordion from "@/components/EncountersAccordion/EncountersAccordion";
+import translations from "@/static/translations";
 
 type Props = {
     gameSlug: string;
@@ -28,6 +29,7 @@ const SegmentPage: React.FC<Props> = (props) => {
     const [areaList, setAreaList] = useState<AreaData[]>([]);
     const [areaNameList, setAreaNameList] = useState<string[]>([]);
     const [currentArea, setCurrentArea] = useState<AreaData | null>(null);
+    const [areaEncounters, setAreaEncounters] = useState<PokemonData[]>([]);
 
     // States to track encounter info in the current location
     const [uniquePokemonDataList, setUniquePokemonDataList] = useState<PokemonData[]>([]);
@@ -43,24 +45,18 @@ const SegmentPage: React.FC<Props> = (props) => {
         setCurrentArea(area);
     };
 
-    // Gets a list of PokemonData for the current area
-    const getAreaPokemonData = (): PokemonData[] => {
+    // Gets the EncounterData from currentArea for a Pokemon
+    const getEncounterData = (pokemonSlug: string): EncounterData[] => {
         if (currentArea) {
-            return uniquePokemonDataList.filter((pokemonData: PokemonData) => {
-                return currentArea.encounters
-                    .map((encounter: EncounterData) => {
-                        return encounter.pokemonSlug;
-                    })
-                    .includes(pokemonData.pokemon.slug);
-            });
+            return currentArea!.encounters
+                .filter((encounter: EncounterData) => encounter.pokemonSlug === pokemonSlug)
+                .sort((a: EncounterData, b: EncounterData) => {
+                    const priority: string[] = Object.values(translations.encounter_methods);
+                    return priority.indexOf(a.method) - priority.indexOf(b.method);
+                });
         } else {
             return [];
         }
-    };
-
-    // Gets the EncounterData from currentArea for a Pokemon
-    const getEncounterData = (pokemonSlug: string): EncounterData[] => {
-        return currentArea!.encounters.filter((encounter: EncounterData) => encounter.pokemonSlug === pokemonSlug);
     };
 
     // Set game info on page load
@@ -90,6 +86,7 @@ const SegmentPage: React.FC<Props> = (props) => {
     useEffect(() => {
         if (areaList.length > 0 && game) {
             setCurrentArea(null);
+            setAreaEncounters([]);
             setAreaNameList(areaList.map((area: AreaData) => area.areaName).sort());
             let pokemonSlugList: string[] = areaList
                 .map((area: AreaData) => area.encounters.map((encounter: EncounterData) => encounter.pokemonSlug))
@@ -99,6 +96,26 @@ const SegmentPage: React.FC<Props> = (props) => {
             fetchPokemonGroup(pokemonSlugList).then((pokemon) => setUniquePokemonDataList(pokemon));
         }
     }, [areaList, game]);
+
+    // When the area is changed, get a list of the unique encounters in the area, sorted by ease of access
+    useEffect(() => {
+        if (currentArea) {
+            let newAreaEncounters: PokemonData[] = uniquePokemonDataList.filter((pokemonData: PokemonData) => {
+                return currentArea.encounters
+                    .map((encounter: EncounterData) => {
+                        return encounter.pokemonSlug;
+                    })
+                    .includes(pokemonData.pokemon.slug);
+            });
+            newAreaEncounters = newAreaEncounters.sort((a: PokemonData, b: PokemonData) => {
+                const priority: string[] = Object.values(translations.encounter_methods);
+                const ed1: EncounterData[] = getEncounterData(a.pokemon.slug);
+                const ed2: EncounterData[] = getEncounterData(b.pokemon.slug);
+                return priority.indexOf(ed1[0].method) - priority.indexOf(ed2[0].method);
+            });
+            setAreaEncounters(newAreaEncounters);
+        }
+    }, [currentArea]);
 
     return game ? (
         <div className={styles["segment-page"]}>
@@ -126,7 +143,7 @@ const SegmentPage: React.FC<Props> = (props) => {
                                 options={areaNameList}
                                 onSelect={(areaName: string) => handleAreaSelect(areaName)}
                             />
-                            {getAreaPokemonData().map((pokemonData: PokemonData, key: number) => {
+                            {areaEncounters.map((pokemonData: PokemonData, key: number) => {
                                 return (
                                     <EncountersAccordion
                                         key={key}
