@@ -2,8 +2,9 @@ import EncounterData from "@/models/EncounterData";
 import PokemonData from "@/models/PokemonData";
 import styles from "./EncountersAccordion.module.scss";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getPokemonTier } from "@/utils/utils";
+import colors from "@/static/colors";
 
 type Props = {
     pokemonData: PokemonData;
@@ -13,6 +14,13 @@ type Props = {
 
 const EncountersAccordion: React.FC<Props> = (props: Props) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [tier, setTier] = useState<string>("N/A");
+
+    useEffect(() => {
+        if (props.pokemonData && props.versionGroup) {
+            setTier(getPokemonTier(props.pokemonData.pokemon.slug, props.versionGroup));
+        }
+    }, [props.pokemonData, props.versionGroup]);
 
     return (
         <div className={styles["encounters-accordion"]}>
@@ -28,8 +36,8 @@ const EncountersAccordion: React.FC<Props> = (props: Props) => {
                 <div className={styles.info}>
                     <div className={styles.row}>
                         <p className={styles.name}>{props.pokemonData.pokemon.name}</p>
-                        <div className={styles.tier}>
-                            {getPokemonTier(props.pokemonData.pokemon.slug, props.versionGroup)}
+                        <div className={styles.tier} style={{ backgroundColor: colors.tiers[tier] }}>
+                            {tier}
                         </div>
                     </div>
                     <div className={styles.row}>
