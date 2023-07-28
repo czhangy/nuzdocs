@@ -34,7 +34,7 @@ const EncountersAccordion: React.FC<Props> = (props: Props) => {
                     />
                 </div>
                 <div className={styles.info}>
-                    <div className={styles.row}>
+                    <div className={`${styles.row} ${styles["top-row"]}`}>
                         <p className={styles.name}>{props.pokemonData.pokemon.name}</p>
                         <div className={styles.tier} style={{ backgroundColor: colors.tiers[tier] }}>
                             {tier}
