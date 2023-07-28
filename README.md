@@ -84,9 +84,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
     <a href="https://nextjs.org/">
         <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" alt="NextJS" />
     </a>
-    <a href="https://www.postgresql.org/">
-        <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
-    </a>
 </details>
     
 <details>
@@ -110,12 +107,11 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 
 <!-- To-Do -->
 
-## To-Do
+## To-Dos
 
+-   [ ] Encounter table rework
 -   [ ] Major fights
 -   [ ] Box view
--   [ ] Encounter table rework
--   [ ] Custom encounter input
 -   [ ] Location maps
 -   [ ] Tier list page
 -   [ ] Game data
