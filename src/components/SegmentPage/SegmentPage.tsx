@@ -13,6 +13,7 @@ import { fetchAreas, fetchLocation, fetchPokemonGroup } from "@/utils/api";
 import { getRun } from "@/utils/utils";
 import { useEffect, useState } from "react";
 import styles from "./SegmentPage.module.scss";
+import EncountersAccordion from "@/components/EncountersAccordion/EncountersAccordion";
 
 type Props = {
     gameSlug: string;
@@ -33,7 +34,7 @@ const SegmentPage: React.FC<Props> = (props) => {
     const [uniquePokemonDataList, setUniquePokemonDataList] = useState<PokemonData[]>([]);
 
     // Sets the current area on dropdown select
-    const handleAreaSelect = (areaName: string) => {
+    const handleAreaSelect = (areaName: string): void => {
         let area: AreaData = areaList.filter((area: AreaData) => area.areaName === areaName)[0];
         if (props.segmentSlug === game!.startingTownSlug) {
             area.encounters = area.encounters.filter((encounter: EncounterData) => {
@@ -41,6 +42,26 @@ const SegmentPage: React.FC<Props> = (props) => {
             });
         }
         setCurrentArea(area);
+    };
+
+    // Gets a list of PokemonData for the current area
+    const getAreaPokemonData = (): PokemonData[] => {
+        if (currentArea) {
+            return uniquePokemonDataList.filter((pokemonData: PokemonData) => {
+                return currentArea.encounters
+                    .map((encounter: EncounterData) => {
+                        return encounter.pokemonSlug;
+                    })
+                    .includes(pokemonData.pokemon.slug);
+            });
+        } else {
+            return [];
+        }
+    };
+
+    // Gets the EncounterData from currentArea for a Pokemon
+    const getEncounterData = (pokemonSlug: string): EncounterData[] => {
+        return currentArea!.encounters.filter((encounter: EncounterData) => encounter.pokemonSlug === pokemonSlug);
     };
 
     // Set game info on page load
@@ -106,6 +127,15 @@ const SegmentPage: React.FC<Props> = (props) => {
                                 options={areaNameList}
                                 onSelect={(areaName: string) => handleAreaSelect(areaName)}
                             />
+                            {getAreaPokemonData().map((pokemonData: PokemonData, key: number) => {
+                                return (
+                                    <EncountersAccordion
+                                        key={key}
+                                        pokemonData={pokemonData}
+                                        encounterData={getEncounterData(pokemonData.pokemon.slug)}
+                                    />
+                                );
+                            })}
                             <EncounterTable
                                 uniquePokemonDataList={uniquePokemonDataList}
                                 currentArea={currentArea}
