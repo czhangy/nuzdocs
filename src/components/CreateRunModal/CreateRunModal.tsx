@@ -3,7 +3,7 @@ import games from "@/static/games";
 import { initRun } from "@/utils/initializers";
 import Image from "next/image";
 import Router from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import styles from "./CreateRunModal.module.scss";
 
 const CreateRunModal: React.FC = () => {
@@ -13,18 +13,16 @@ const CreateRunModal: React.FC = () => {
 
     // Error states
     const [nameError, setNameError] = useState<boolean>(false);
-    const [formError, setFormError] = useState<boolean>(false);
 
-    // Removes all error states
-    const resetErrors = () => {
-        setNameError(false);
-        setFormError(false);
+    // Checks field inputs for validity
+    const handleValidate = () => {
+        return selectedName.length > 0 && selectedGameSlug.length > 0;
     };
 
     // Creates a run in local storage and adds the run to the run list, then redirects
     const handleCreate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        resetErrors();
+        setNameError(false);
 
         let storedRuns: string | null = localStorage.getItem("runs");
         if (storedRuns) {
@@ -42,7 +40,7 @@ const CreateRunModal: React.FC = () => {
 
         const newRun: Run = initRun(selectedGameSlug);
         localStorage.setItem(selectedName, JSON.stringify(newRun));
-        Router.push(`/runs/${name}/${games[selectedGameSlug].startingTownSlug}`);
+        Router.push(`/runs/${selectedName}/${games[selectedGameSlug].startingTownSlug}`);
     };
 
     return (
@@ -55,7 +53,7 @@ const CreateRunModal: React.FC = () => {
                     placeholder="Name your run..."
                     type="text"
                     value={selectedName}
-                    onChange={(e) => setSelectedName(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setSelectedName(e.target.value)}
                 />
                 {nameError ? (
                     <p className={styles.error}>This name is already being used, please choose another one.</p>
@@ -81,7 +79,7 @@ const CreateRunModal: React.FC = () => {
                         );
                     })}
                 </div>
-                <button className={styles.submit} disabled={selectedName.length === 0 || selectedGameSlug.length === 0}>
+                <button className={styles.submit} disabled={!handleValidate()}>
                     Start!
                 </button>
             </form>
