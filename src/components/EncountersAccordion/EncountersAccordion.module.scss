@@ -1,1 +1,57 @@
 @use "@/styles/constants";
+
+.encounters-accordion {
+    --accordion-width: 350px;
+    --arrow-offset: 1rem;
+    --arrow-size: 12px;
+    --header-inner-spacing: 4px;
+    --sprite-size: 90px;
+    --transition-time: 0.2s;
+    --type-ratio: 8/3;
+    --type-height: 12px;
+
+    width: var(--accordion-width);
+
+    .header {
+        align-items: center;
+        display: flex;
+        width: 100%;
+
+        .sprite {
+            height: var(--sprite-size);
+            position: relative;
+            width: var(--sprite-size);
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--header-inner-spacing);
+
+            .row {
+                align-items: center;
+                display: flex;
+                gap: var(--header-inner-spacing);
+            }
+
+            .type {
+                height: var(--type-height);
+                position: relative;
+                width: calc(var(--type-height) * var(--type-ratio));
+            }
+        }
+
+        .arrow {
+            filter: constants.$svg-color;
+            height: var(--arrow-size);
+            position: absolute;
+            transition: transform var(--transition-time);
+            right: var(--arrow-offset);
+            width: var(--arrow-size);
+        }
+
+        .reversed {
+            transform: rotate(180deg);
+        }
+    }
+}
