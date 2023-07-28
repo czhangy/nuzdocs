@@ -22,6 +22,7 @@ const soulsilver: Game = {
     starterSlugs: ["chikorita", "cyndaquil", "totodile"],
     startingTownSlug: "new-bark-town",
     iconURL: "/assets/images/soulsilver.webp",
+    postgameMethods: ["Hoenn Radio", "Sinnoh Radio"],
 };
 
 export default soulsilver;

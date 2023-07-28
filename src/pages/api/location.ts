@@ -1,8 +1,8 @@
 import AreaData from "@/models/AreaData";
 import EncounterData from "@/models/EncounterData";
 import LocationData from "@/models/LocationData";
+import games from "@/static/games";
 import { initAreaData, initEncounterData, initLocationData } from "@/utils/initializers";
-import { getEncounterMethodName } from "@/utils/utils";
 import groupBy from "lodash/groupBy";
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
@@ -13,11 +13,31 @@ import {
     PokemonEncounter,
     VersionEncounterDetail,
 } from "pokenode-ts";
+import { NamedAPIResource } from "pokenode-ts";
+import translations from "@/static/translations";
 
 type ResData = {
     location?: string;
     areaList?: string;
     error?: any;
+};
+
+export const getEncounterMethodName = (methodSlug: string, conditionValues: NamedAPIResource[]): string => {
+    let methodName: string =
+        methodSlug in translations.encounter_methods ? translations.encounter_methods[methodSlug] : methodSlug;
+    if (conditionValues.length > 0) {
+        methodName += " (";
+        conditionValues.forEach((cv: NamedAPIResource, i: number) => {
+            if (i > 0) {
+                methodName += " + ";
+            }
+            methodName +=
+                cv.name in translations.encounter_conditions ? translations.encounter_conditions[cv.name] : cv.name;
+        });
+        methodName += ")";
+    }
+
+    return methodName;
 };
 
 const getEncounterDataForSinglePokemon = (pokemonEncounter: PokemonEncounter, gameSlug: string): EncounterData[] => {
@@ -31,6 +51,10 @@ const getEncounterDataForSinglePokemon = (pokemonEncounter: PokemonEncounter, ga
         getEncounterMethodName(encounter.method.name, encounter.condition_values)
     );
     for (let method in groupedEncounters) {
+        console.log(method);
+        if (games[gameSlug].postgameMethods.some((pgMethod) => method.includes(pgMethod))) {
+            continue;
+        }
         const chance: number = groupedEncounters[method].reduce(
             (sum: number, encounter: Encounter) => sum + encounter.chance,
             0
