@@ -16,8 +16,13 @@ const EncountersAccordion: React.FC<Props> = (props: Props) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [tier, setTier] = useState<string>("N/A");
 
+    // Calculates the max height of the accordion based on the # of encounter methods
+    const getMaxHeight = () => {
+        return `${100 + 50 * (props.encounterData.length + 1)}px`;
+    };
+
     // Formats the level range of an encounter
-    const generateLevelRange = (encounter: EncounterData) => {
+    const getLevelRange = (encounter: EncounterData) => {
         if (encounter.minLevel === encounter.maxLevel) {
             return encounter.minLevel;
         } else {
@@ -33,7 +38,7 @@ const EncountersAccordion: React.FC<Props> = (props: Props) => {
     }, [props.pokemonData, props.versionGroup]);
 
     return (
-        <div className={styles["encounters-accordion"]}>
+        <div className={styles["encounters-accordion"]} style={isOpen ? { maxHeight: getMaxHeight() } : {}}>
             <button className={styles.header} onClick={() => setIsOpen(!isOpen)}>
                 <div className={styles.sprite}>
                     <Image
@@ -89,7 +94,7 @@ const EncountersAccordion: React.FC<Props> = (props: Props) => {
                                 <tr className={styles["table-row"]} key={key}>
                                     <td className={styles["table-element"]}>{encounter.method}</td>
                                     <td className={styles["table-element"]}>{encounter.chance}%</td>
-                                    <td className={styles["table-element"]}>{generateLevelRange(encounter)}</td>
+                                    <td className={styles["table-element"]}>{getLevelRange(encounter)}</td>
                                 </tr>
                             );
                         }

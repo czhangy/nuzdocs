@@ -1,9 +1,11 @@
 @use "@/styles/constants";
 
 .encounters-accordion {
+    --accordion-transition-time: 0.5s;
     --accordion-width: 350px;
     --arrow-offset: 1rem;
     --arrow-size: 12px;
+    --arrow-transition-time: 0.2s;
     --header-inner-spacing: 4px;
     --name-font-size: 1rem;
     --name-spacing: 4px;
@@ -12,16 +14,19 @@
     --table-el-x-padding: 1rem;
     --table-el-y-padding: 0.5rem;
     --table-font-size: 1rem;
+    --table-row-height: 50px;
     --tier-border-rad: 2px;
     --tier-font-size: 0.8rem;
     --tier-x-padding: 0.2rem;
     --tier-y-padding: 0.1rem;
     --tier-size: 1.2rem;
-    --transition-time: 0.2s;
     --type-ratio: 8/3;
     --type-height: 12px;
     --x-padding: 1rem;
 
+    max-height: var(--sprite-size);
+    overflow-y: hidden;
+    transition: max-height var(--accordion-transition-time);
     width: var(--accordion-width);
 
     .header {
@@ -77,7 +82,7 @@
             filter: constants.$svg-color;
             height: var(--arrow-size);
             position: absolute;
-            transition: transform var(--transition-time);
+            transition: transform var(--arrow-transition-time);
             right: var(--arrow-offset);
             width: var(--arrow-size);
         }
@@ -93,6 +98,8 @@
         width: 100%;
 
         .table-row {
+            height: var(--table-row-height);
+
             .table-header,
             .table-element {
                 background-color: constants.$accent-color;
@@ -122,5 +129,13 @@
     .encounters-accordion {
         --accordion-width: 750px;
         --sprite-size: 100px;
+    }
+}
+
+@media (hover: hover) {
+    .encounters-accordion > .header:hover {
+        .arrow {
+            filter: constants.$svg-hover-color;
+        }
     }
 }
