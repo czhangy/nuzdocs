@@ -16,7 +16,6 @@
     --games-y-padding: 1rem;
     --header-size: 2rem;
     --inner-spacing: 2rem;
-    --transition-time: 0.2s;
 
     align-items: center;
     display: flex;
@@ -64,7 +63,6 @@
                 height: var(--game-icon-size);
                 margin: 0 auto;
                 position: relative;
-                transition: transform var(--transition-time);
                 width: calc(var(--game-icon-size) * 1.5);
             }
 
@@ -105,7 +103,6 @@
     .create-run-modal > .form {
         .games > .game:hover {
             filter: grayscale(0%);
-            transform: scale(1.1) rotate(5deg);
         }
 
         .submit:hover {

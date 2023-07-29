@@ -34,12 +34,13 @@
 
     .display {
         background-color: constants.$bg-color;
+        border: 3px solid white;
         border-radius: var(--sprite-size);
         bottom: var(--margin-bottom);
         left: 50%;
         margin: 0 var(--display-offset);
         position: absolute;
-        transform: translateX(-50%);
+        transform: translateX(-54%);
         transition: left var(--minimize-transition-time), width var(--minimize-transition-time);
         width: var(--display-width);
 

@@ -18,6 +18,7 @@
     }
 
     .run-info {
+        margin-bottom: var(--bottom-spacing);
         max-width: constants.$max-width;
         min-height: calc(100vh - constants.$mobile-navbar-height);
         width: 100%;
@@ -35,10 +36,6 @@
             flex-direction: column;
             gap: var(--section-inner-spacing);
             margin: var(--section-spacing) 0;
-
-            &:last-child {
-                margin-bottom: var(--bottom-spacing);
-            }
 
             .header {
                 font-size: var(--header-font-size);
