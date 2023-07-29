@@ -1,22 +1,23 @@
 @use "@/styles/constants";
 
 .encounter-accordion {
+    --accordion-transition-time: 0.3s;
     --accordion-width: 350px;
     --accordion-x-padding: 2rem;
     --accordion-y-padding: 1.5rem;
     --arrow-size: 12px;
     --arrow-transition-time: 0.2s;
-    --cell-extra-padding: 2rem;
+    --body-border-size: 1px;
+    --body-extra-padding: 2rem;
     --cell-font-size: 1rem;
     --cell-x-padding: 1rem;
     --cell-y-padding: 1rem;
     --category-font-size: 1.2rem;
     --category-y-padding: 1.5rem;
-    --info-inner-spacing: 0.25rem;
     --method-font-size: 1.4rem;
     --name-font-size: 1rem;
+    --pokemon-inner-spacing: 0.25rem;
     --sprite-size: 90px;
-    --table-border-size: 1px;
     --tier-border-rad: 2px;
     --tier-font-size: 0.8rem;
     --tier-size: 1.5rem;
@@ -24,6 +25,9 @@
     --type-height: 12px;
     --types-inner-spacing: 4px;
 
+    max-height: calc(var(--method-font-size) + 2 * var(--accordion-y-padding));
+    overflow-y: hidden;
+    transition: max-height var(--accordion-transition-time);
     width: var(--accordion-width);
 
     .header {
@@ -36,6 +40,7 @@
 
         .method {
             font-size: var(--method-font-size);
+            line-height: var(--method-font-size);
         }
 
         .arrow {
@@ -52,7 +57,7 @@
     }
 
     .body {
-        border-top: var(--table-border-size) solid constants.$text-color;
+        border-top: var(--body-border-size) solid constants.$text-color;
         padding: none;
         width: 100%;
 
@@ -61,6 +66,7 @@
 
             .category {
                 font-size: var(--category-font-size);
+                line-height: var(--category-font-size);
                 padding: var(--category-y-padding) var(--cell-x-padding);
             }
 
@@ -73,7 +79,7 @@
                     align-items: center;
                     display: flex;
                     flex-direction: column;
-                    gap: var(--info-inner-spacing);
+                    gap: var(--pokemon-inner-spacing);
 
                     .sprite {
                         height: var(--sprite-size);
@@ -83,6 +89,7 @@
 
                     .name {
                         font-size: var(--name-font-size);
+                        line-height: var(--name-font-size);
                     }
 
                     .types {
@@ -112,14 +119,10 @@
 
             &:last-child {
                 .cell {
-                    padding-bottom: var(--cell-extra-padding);
+                    padding-bottom: var(--body-extra-padding);
                 }
             }
         }
-    }
-
-    .hidden {
-        display: none;
     }
 }
 
