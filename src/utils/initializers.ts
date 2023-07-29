@@ -68,8 +68,13 @@ export const initLocationData = (names: Name[], areaSlugList: string[]): Locatio
 };
 
 export const initAreaData = (names: Name[], encounters: EncounterData[]): AreaData => {
+    // IDK why the English translation for route areas is "Road" => change it here
+    let areaName = getEnglishName(names);
+    if (areaName.startsWith("Road")) {
+        areaName = "Route" + areaName.substring(4);
+    }
     return {
-        areaName: getEnglishName(names),
+        areaName: areaName,
         encounters: encounters,
     };
 };
