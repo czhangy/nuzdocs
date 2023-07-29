@@ -22,10 +22,18 @@ type ResData = {
     error?: any;
 };
 
-export const getEncounterMethodName = (methodSlug: string, conditionValues: NamedAPIResource[]): string => {
+export const getEncounterMethodName = (
+    methodSlug: string,
+    conditionValues: NamedAPIResource[],
+    gameSlug: string
+): string => {
     let methodName: string =
         methodSlug in translations.encounter_methods ? translations.encounter_methods[methodSlug] : methodSlug;
     if (conditionValues.length > 0) {
+        // Ignore compounding conditions that are trivial and shouldn't be split on
+        conditionValues = conditionValues.filter((cv: NamedAPIResource) => {
+            return !games[gameSlug].ignoredConditions.includes(cv.name);
+        });
         methodName += " (";
         conditionValues.forEach((cv: NamedAPIResource, i: number) => {
             if (i > 0) {
@@ -48,11 +56,11 @@ const getEncounterDataForSinglePokemon = (pokemonEncounter: PokemonEncounter, ga
     )[0];
     const encounters: Encounter[] = versionEncounterDetails.encounter_details;
     const groupedEncounters = groupBy(encounters, (encounter: Encounter) =>
-        getEncounterMethodName(encounter.method.name, encounter.condition_values)
+        getEncounterMethodName(encounter.method.name, encounter.condition_values, gameSlug)
     );
     for (let method in groupedEncounters) {
-        console.log(method);
-        if (games[gameSlug].postgameMethods.some((pgMethod) => method.includes(pgMethod))) {
+        // Skip specified methods for version group
+        if (games[gameSlug].invalidConditions.some((pgMethod) => method.includes(pgMethod))) {
             continue;
         }
         const chance: number = groupedEncounters[method].reduce(

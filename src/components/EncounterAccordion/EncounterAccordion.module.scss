@@ -1,0 +1,147 @@
+@use "@/styles/constants";
+
+.encounter-accordion {
+    --accordion-transition-time: 0.3s;
+    --accordion-width: 350px;
+    --accordion-x-padding: 2rem;
+    --accordion-y-padding: 1.5rem;
+    --arrow-size: 12px;
+    --arrow-transition-time: 0.2s;
+    --body-border-size: 1px;
+    --body-extra-padding: 2rem;
+    --cell-font-size: 1rem;
+    --cell-x-padding: 1rem;
+    --cell-y-padding: 1rem;
+    --category-font-size: 1.2rem;
+    --category-y-padding: 1.5rem;
+    --method-font-size: 1.4rem;
+    --name-font-size: 1rem;
+    --pokemon-inner-spacing: 0.25rem;
+    --sprite-size: 90px;
+    --tier-border-rad: 2px;
+    --tier-font-size: 0.8rem;
+    --tier-size: 1.5rem;
+    --type-ratio: 8/3;
+    --type-height: 12px;
+    --types-inner-spacing: 4px;
+
+    max-height: calc(var(--method-font-size) + 2 * var(--accordion-y-padding));
+    overflow-y: hidden;
+    transition: max-height var(--accordion-transition-time);
+    width: var(--accordion-width);
+
+    .header {
+        align-items: center;
+        background: constants.$accent-color;
+        display: flex;
+        justify-content: space-between;
+        padding: var(--accordion-y-padding) var(--accordion-x-padding);
+        width: 100%;
+
+        .method {
+            font-size: var(--method-font-size);
+            line-height: var(--method-font-size);
+        }
+
+        .arrow {
+            filter: constants.$svg-color;
+            height: var(--arrow-size);
+            position: relative;
+            transition: transform var(--arrow-transition-time);
+            width: var(--arrow-size);
+        }
+
+        .reversed {
+            transform: rotate(180deg);
+        }
+    }
+
+    .body {
+        border-top: var(--body-border-size) solid constants.$text-color;
+        padding: none;
+        width: 100%;
+
+        .row {
+            background: constants.$accent-color;
+
+            .category {
+                font-size: var(--category-font-size);
+                line-height: var(--category-font-size);
+                padding: var(--category-y-padding) var(--cell-x-padding);
+            }
+
+            .cell {
+                font-size: var(--cell-font-size);
+                padding: var(--cell-y-padding) var(--cell-x-padding);
+                text-align: center;
+
+                .pokemon {
+                    align-items: center;
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--pokemon-inner-spacing);
+
+                    .sprite {
+                        height: var(--sprite-size);
+                        position: relative;
+                        width: var(--sprite-size);
+                    }
+
+                    .name {
+                        font-size: var(--name-font-size);
+                        line-height: var(--name-font-size);
+                    }
+
+                    .types {
+                        display: flex;
+                        gap: var(--types-inner-spacing);
+
+                        .type {
+                            height: var(--type-height);
+                            position: relative;
+                            width: calc(var(--type-height) * var(--type-ratio));
+                        }
+                    }
+                }
+
+                .tier {
+                    align-items: center;
+                    border-radius: var(--tier-border-rad);
+                    display: flex;
+                    font-size: var(--tier-font-size);
+                    font-weight: bold;
+                    height: var(--tier-size);
+                    justify-content: center;
+                    margin: 0 auto;
+                    width: var(--tier-size);
+                }
+            }
+
+            &:last-child {
+                .cell {
+                    padding-bottom: var(--body-extra-padding);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .encounter-accordion {
+        --accordion-width: 750px;
+        --cell-font-size: 1.2rem;
+        --cell-x-padding: 3rem;
+        --name-font-size: 1.2rem;
+        --sprite-size: 100px;
+        --tier-font-size: 1.2rem;
+        --tier-size: 2rem;
+    }
+}
+
+@media (hover: hover) {
+    .encounter-accordion > .header:hover {
+        .arrow {
+            filter: constants.$svg-hover-color;
+        }
+    }
+}

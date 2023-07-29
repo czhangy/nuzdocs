@@ -12,5 +12,5 @@ export const getRun = (runName: string): Run => {
 };
 
 export const getPokemonTier = (pokemonSlug: string, versionGroup: string): string => {
-    return pokemonSlug in tiers[versionGroup] ? tiers[versionGroup][pokemonSlug] : "N/A";
+    return pokemonSlug in tiers[versionGroup] ? tiers[versionGroup][pokemonSlug] : "?";
 };

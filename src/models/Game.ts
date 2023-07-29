@@ -9,5 +9,6 @@ export default interface Game {
     segments: LocalSegment[];
     starterSlugs: string[];
     startingTownSlug: string;
-    postgameMethods: string[];
+    ignoredConditions: string[];
+    invalidConditions: string[];
 }
