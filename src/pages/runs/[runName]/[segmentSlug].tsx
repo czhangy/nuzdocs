@@ -22,7 +22,7 @@ const Segment: NextPage = () => {
                 if (runList.includes(runName)) {
                     const run: Run = getRun(runName);
                     if (
-                        games[run.gameSlug].segments
+                        games[run.gameSlug].gameGroup.segments
                             .map((segment: LocalSegment) => segment.slug)
                             .includes(router.query.segmentSlug as string)
                     ) {

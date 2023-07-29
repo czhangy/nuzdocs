@@ -12,12 +12,12 @@ import { Name } from "pokenode-ts";
 export const initRun = (gameSlug: string): Run => {
     return {
         gameSlug: gameSlug,
-        prevLocationSlug: games[gameSlug].startingTownSlug,
+        prevLocationSlug: games[gameSlug].gameGroup.startingTownSlug,
         starterSlug: "",
         encounterList: [],
         caughtPokemonSlugsList: [],
         numDead: 0,
-        numCheckpoints: games[gameSlug].segments.length,
+        numCheckpoints: games[gameSlug].gameGroup.segments.length,
         numCheckpointsCleared: 0,
     };
 };
