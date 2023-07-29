@@ -51,7 +51,6 @@ const getEncounterDataForSinglePokemon = (pokemonEncounter: PokemonEncounter, ga
         getEncounterMethodName(encounter.method.name, encounter.condition_values)
     );
     for (let method in groupedEncounters) {
-        console.log(method);
         if (games[gameSlug].postgameMethods.some((pgMethod) => method.includes(pgMethod))) {
             continue;
         }
