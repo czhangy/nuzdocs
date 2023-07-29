@@ -11,11 +11,9 @@
     --cell-x-padding: 1rem;
     --cell-y-padding: 1rem;
     --category-font-size: 1.2rem;
-    --category-left-offset: 2.5rem;
     --category-y-padding: 1.5rem;
     --info-inner-spacing: 0.25rem;
     --method-font-size: 1.4rem;
-    --main-inner-spacing: 4px;
     --name-font-size: 1rem;
     --sprite-size: 90px;
     --table-border-size: 1px;
@@ -128,9 +126,10 @@
 @media screen and (min-width: constants.$tablet) {
     .encounter-accordion {
         --accordion-width: 750px;
+        --cell-font-size: 1.2rem;
+        --cell-x-padding: 3rem;
         --name-font-size: 1.2rem;
         --sprite-size: 100px;
-        --cell-x-padding: 3rem;
         --tier-font-size: 1.2rem;
         --tier-size: 2rem;
     }
