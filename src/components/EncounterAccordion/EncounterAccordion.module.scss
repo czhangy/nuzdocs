@@ -21,9 +21,7 @@
     --table-border-size: 1px;
     --tier-border-rad: 2px;
     --tier-font-size: 0.8rem;
-    --tier-x-padding: 0.2rem;
-    --tier-y-padding: 0.1rem;
-    --tier-size: 1.2rem;
+    --tier-size: 1.5rem;
     --type-ratio: 8/3;
     --type-height: 12px;
     --types-inner-spacing: 4px;
@@ -102,10 +100,15 @@
                 }
 
                 .tier {
+                    align-items: center;
                     border-radius: var(--tier-border-rad);
+                    display: flex;
                     font-size: var(--tier-font-size);
                     font-weight: bold;
-                    padding: var(--tier-y-padding) var(--tier-x-padding);
+                    height: var(--tier-size);
+                    justify-content: center;
+                    margin: 0 auto;
+                    width: var(--tier-size);
                 }
             }
 
@@ -125,13 +128,11 @@
 @media screen and (min-width: constants.$tablet) {
     .encounter-accordion {
         --accordion-width: 750px;
-        --main-inner-spacing: 8px;
         --name-font-size: 1.2rem;
         --sprite-size: 100px;
-        --table-el-x-padding: 3rem;
-        --tier-font-size: 1rem;
-        --tier-size: 1.4rem;
-        --tier-x-padding: 0.5rem;
+        --cell-x-padding: 3rem;
+        --tier-font-size: 1.2rem;
+        --tier-size: 2rem;
     }
 }
 

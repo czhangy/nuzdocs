@@ -51,7 +51,7 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
                     />
                 </div>
             </button>
-            <table className={`${styles.body} ${!isOpen ? "" : styles.hidden}`} cellSpacing="0">
+            <table className={`${styles.body} ${isOpen ? "" : styles.hidden}`} cellSpacing="0">
                 <thead>
                     <tr className={styles.row}>
                         <th className={`${styles.category} ${styles.left}`}>Pokémon</th>

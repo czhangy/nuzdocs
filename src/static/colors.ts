@@ -6,7 +6,7 @@ const colors: { [category: string]: { [identifier: string]: string } } = {
         C: "#e3bf52",
         D: "#db9335",
         F: "#c44343",
-        "N/A": "#111111",
+        "?": "#111111",
     },
 };
 
