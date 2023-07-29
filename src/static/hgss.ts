@@ -1,8 +1,7 @@
-import Game from "@/models/Game";
+import GameGroup from "@/models/GameGroup";
 import pokedex from "@/static/pokedex";
 
-const soulsilver: Game = {
-    name: "SoulSilver",
+const hgss: GameGroup = {
     versionGroup: "heartgold-soulsilver",
     pokedex: pokedex.slice(0, 493),
     segments: [
@@ -21,9 +20,8 @@ const soulsilver: Game = {
     ],
     starterSlugs: ["chikorita", "cyndaquil", "totodile"],
     startingTownSlug: "new-bark-town",
-    iconURL: "/assets/images/soulsilver.webp",
     ignoredConditions: ["radio-off"],
     invalidConditions: ["Hoenn Radio", "Sinnoh Radio"],
 };
 
-export default soulsilver;
+export default hgss;
