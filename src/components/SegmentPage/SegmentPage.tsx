@@ -7,7 +7,6 @@ import AreaData from "@/models/AreaData";
 import EncounterData from "@/models/EncounterData";
 import Game from "@/models/Game";
 import LocationData from "@/models/LocationData";
-import PokemonData from "@/models/PokemonData";
 import games from "@/static/games";
 import translations from "@/static/translations";
 import { fetchAreas, fetchLocation, fetchPokemonGroup } from "@/utils/api";
@@ -29,9 +28,6 @@ const SegmentPage: React.FC<Props> = (props) => {
     const [areaList, setAreaList] = useState<AreaData[]>([]);
     const [currentArea, setCurrentArea] = useState<AreaData | null>(null);
 
-    // States to track encounter info in the current location
-    const [uniquePokemonDataList, setUniquePokemonDataList] = useState<PokemonData[]>([]);
-
     // Translates areas into area names for the dropdown
     const getAreaNames = (): string[] => {
         return areaList.map((area: AreaData) => area.areaName).sort();
@@ -48,7 +44,7 @@ const SegmentPage: React.FC<Props> = (props) => {
         setCurrentArea(area);
     };
 
-    // Get a list of the encounter methods available on the route, sorted by availability
+    // Get a list of the encounter methods available in the current area, sorted by availability
     const getEncounterMethods = (): string[] => {
         if (currentArea) {
             let methods: string[] = currentArea.encounters.map((encounter: EncounterData) => encounter.method);
@@ -62,15 +58,13 @@ const SegmentPage: React.FC<Props> = (props) => {
         }
     };
 
-    // Gets the EncounterData from currentArea for a Pokemon
-    const getEncounterData = (pokemonSlug: string): EncounterData[] => {
+    // Get a list of Pokemon slugs for encounters in the current area, sorted by chance
+    const getEncounters = (method: string): EncounterData[] => {
         if (currentArea) {
-            return currentArea!.encounters
-                .filter((encounter: EncounterData) => encounter.pokemonSlug === pokemonSlug)
-                .sort((a: EncounterData, b: EncounterData) => {
-                    const priority: string[] = Object.values(translations.encounter_methods);
-                    return priority.indexOf(a.method) - priority.indexOf(b.method);
-                });
+            let encounters: EncounterData[] = currentArea.encounters.filter(
+                (encounter: EncounterData) => encounter.method === method
+            );
+            return encounters.sort((a: EncounterData, b: EncounterData) => b.chance - a.chance);
         } else {
             return [];
         }
@@ -93,6 +87,7 @@ const SegmentPage: React.FC<Props> = (props) => {
     // Fetch areas + encounters in location on page load
     useEffect(() => {
         if (currentLocation) {
+            setAreaList([]);
             fetchAreas(currentLocation.areaSlugList, getRun(props.runName)!.gameSlug).then((areaList) =>
                 setAreaList(areaList)
             );
@@ -103,12 +98,6 @@ const SegmentPage: React.FC<Props> = (props) => {
     useEffect(() => {
         if (areaList.length > 0 && game) {
             setCurrentArea(null);
-            let pokemonSlugList: string[] = areaList
-                .map((area: AreaData) => area.encounters.map((encounter: EncounterData) => encounter.pokemonSlug))
-                .flat();
-            pokemonSlugList = pokemonSlugList.filter((pokemonSlug: string) => !game.starterSlugs.includes(pokemonSlug));
-            pokemonSlugList = [...new Set(pokemonSlugList)].sort();
-            fetchPokemonGroup(pokemonSlugList).then((pokemon) => setUniquePokemonDataList(pokemon));
         }
     }, [areaList, game]);
 
@@ -145,8 +134,7 @@ const SegmentPage: React.FC<Props> = (props) => {
                                     <EncounterAccordion
                                         key={key}
                                         method={method}
-                                        // pokemonData={pokemonData}
-                                        // encounterData={getEncounterData(pokemonData.pokemon.slug)}
+                                        encounters={getEncounters(method)}
                                         versionGroup={game.versionGroup}
                                     />
                                 );

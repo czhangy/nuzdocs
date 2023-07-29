@@ -4,7 +4,6 @@
     --accordion-width: 350px;
     --accordion-x-padding: 2rem;
     --accordion-y-padding: 1.5rem;
-    --arrow-offset: 1rem;
     --arrow-size: 12px;
     --arrow-transition-time: 0.2s;
     --method-font-size: 1.4rem;
@@ -56,7 +55,7 @@
         width: 100%;
 
         .row {
-            .table-header,
+            .column-name,
             .table-element {
                 background: constants.$accent-color;
                 font-size: var(--table-font-size);

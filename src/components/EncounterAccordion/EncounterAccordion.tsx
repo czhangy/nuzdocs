@@ -8,8 +8,7 @@ import styles from "./EncounterAccordion.module.scss";
 
 type Props = {
     method: string;
-    // pokemonData: PokemonData;
-    // encounterData: EncounterData[];
+    encounters: EncounterData[];
     versionGroup: string;
 };
 
@@ -76,15 +75,15 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
                     />
                 </div>
             </button>
-            {/* <table className={`${styles.body} ${isOpen ? "" : styles.hidden}`} cellSpacing="0">
+            <table className={`${styles.body} ${isOpen ? "" : styles.hidden}`} cellSpacing="0">
                 <thead>
                     <tr className={styles.row}>
-                        <th className={`${styles["table-header"]} ${styles["method-header"]}`}>Pokemon</th>
-                        <th className={styles["table-header"]}>Chance</th>
-                        <th className={styles["table-header"]}>Level</th>
+                        <th className={styles["column-name"]}>Pokémon</th>
+                        <th className={styles["column-name"]}>Chance</th>
+                        <th className={styles["column-name"]}>Level</th>
                     </tr>
                 </thead>
-                <tbody>
+                {/* <tbody>
                     {props.encounterData.map((encounter: EncounterData, key: number) => {
                         {
                             return (
@@ -96,8 +95,8 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
                             );
                         }
                     })}
-                </tbody>
-            </table> */}
+                </tbody> */}
+            </table>
         </div>
     );
 };
