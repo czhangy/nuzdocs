@@ -21,7 +21,7 @@ const hgss: GameGroup = {
     starterSlugs: ["chikorita", "cyndaquil", "totodile"],
     startingTownSlug: "new-bark-town",
     ignoredConditions: ["radio-off"],
-    invalidConditions: ["Hoenn Radio", "Sinnoh Radio"],
+    invalidConditions: ["hoenn-radio", "sinnoh-radio"],
 };
 
 export default hgss;

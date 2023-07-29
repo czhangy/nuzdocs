@@ -1,8 +1,12 @@
 import Game from "@/models/Game";
-import soulsilver from "@/static/soulsilver";
+import hgss from "@/static/hgss";
 
 const games: { [gameSlug: string]: Game } = {
-    soulsilver: soulsilver,
+    soulsilver: {
+        name: "SoulSilver",
+        logoURL: "/assets/images/soulsilver.webp",
+        gameGroup: hgss,
+    },
 };
 
 export default games;
