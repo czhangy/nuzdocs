@@ -1,4 +1,5 @@
 import Dropdown from "@/components/Dropdown/Dropdown";
+import EncounterAccordion from "@/components/EncounterAccordion/EncounterAccordion";
 import EncounterDisplay from "@/components/EncounterDisplay/EncounterDisplay";
 import SegmentNav from "@/components/SegmentNav/SegmentNav";
 import StarterSelect from "@/components/StarterSelect/StarterSelect";
@@ -8,12 +9,11 @@ import Game from "@/models/Game";
 import LocationData from "@/models/LocationData";
 import PokemonData from "@/models/PokemonData";
 import games from "@/static/games";
+import translations from "@/static/translations";
 import { fetchAreas, fetchLocation, fetchPokemonGroup } from "@/utils/api";
 import { getRun } from "@/utils/utils";
 import { useEffect, useState } from "react";
 import styles from "./SegmentPage.module.scss";
-import EncountersAccordion from "@/components/EncountersAccordion/EncountersAccordion";
-import translations from "@/static/translations";
 
 type Props = {
     gameSlug: string;
@@ -48,21 +48,14 @@ const SegmentPage: React.FC<Props> = (props) => {
         setCurrentArea(area);
     };
 
-    // Get a list of the encounters' PokemonData in the current area, sorted by ease of access
-    const getAreaEncounters = (): PokemonData[] => {
+    // Get a list of the encounter methods available on the route, sorted by availability
+    const getEncounterMethods = (): string[] => {
         if (currentArea) {
-            let newAreaEncounters: PokemonData[] = uniquePokemonDataList.filter((pokemonData: PokemonData) => {
-                return currentArea.encounters
-                    .map((encounter: EncounterData) => {
-                        return encounter.pokemonSlug;
-                    })
-                    .includes(pokemonData.pokemon.slug);
-            });
-            return newAreaEncounters.sort((a: PokemonData, b: PokemonData) => {
+            let methods: string[] = currentArea.encounters.map((encounter: EncounterData) => encounter.method);
+            methods = [...new Set(methods)];
+            return methods.sort((a: string, b: string) => {
                 const priority: string[] = Object.values(translations.encounter_methods);
-                const ed1: EncounterData[] = getEncounterData(a.pokemon.slug);
-                const ed2: EncounterData[] = getEncounterData(b.pokemon.slug);
-                return priority.indexOf(ed1[0].method) - priority.indexOf(ed2[0].method);
+                return priority.indexOf(a) - priority.indexOf(b);
             });
         } else {
             return [];
@@ -147,12 +140,13 @@ const SegmentPage: React.FC<Props> = (props) => {
                                 options={getAreaNames()}
                                 onSelect={(areaName: string) => handleAreaSelect(areaName)}
                             />
-                            {getAreaEncounters().map((pokemonData: PokemonData, key: number) => {
+                            {getEncounterMethods().map((method: string, key: number) => {
                                 return (
-                                    <EncountersAccordion
+                                    <EncounterAccordion
                                         key={key}
-                                        pokemonData={pokemonData}
-                                        encounterData={getEncounterData(pokemonData.pokemon.slug)}
+                                        method={method}
+                                        // pokemonData={pokemonData}
+                                        // encounterData={getEncounterData(pokemonData.pokemon.slug)}
                                         versionGroup={game.versionGroup}
                                     />
                                 );

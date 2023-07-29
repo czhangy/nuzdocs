@@ -1,11 +1,13 @@
 @use "@/styles/constants";
 
-.encounters-accordion {
+.encounter-accordion {
     --accordion-width: 350px;
+    --accordion-x-padding: 2rem;
+    --accordion-y-padding: 1.5rem;
     --arrow-offset: 1rem;
     --arrow-size: 12px;
     --arrow-transition-time: 0.2s;
-    --header-inner-spacing: 4px;
+    --method-font-size: 1.4rem;
     --name-font-size: 1rem;
     --name-spacing: 4px;
     --sprite-size: 90px;
@@ -13,7 +15,6 @@
     --table-el-x-padding: 1rem;
     --table-el-y-padding: 0.5rem;
     --table-font-size: 1rem;
-    --table-row-height: 50px;
     --tier-border-rad: 2px;
     --tier-font-size: 0.8rem;
     --tier-x-padding: 0.2rem;
@@ -21,7 +22,6 @@
     --tier-size: 1.2rem;
     --type-ratio: 8/3;
     --type-height: 12px;
-    --x-padding: 1rem;
 
     width: var(--accordion-width);
 
@@ -29,57 +29,19 @@
         align-items: center;
         background: constants.$accent-color;
         display: flex;
-        padding: 0 var(--x-padding);
-        position: relative;
+        justify-content: space-between;
+        padding: var(--accordion-y-padding) var(--accordion-x-padding);
         width: 100%;
 
-        .sprite {
-            height: var(--sprite-size);
-            position: relative;
-            width: var(--sprite-size);
-        }
-
-        .info {
-            display: flex;
-            flex-direction: column;
-            gap: var(--header-inner-spacing);
-
-            .row {
-                align-items: center;
-                display: flex;
-                gap: var(--header-inner-spacing);
-
-                .name {
-                    font-size: var(--name-font-size);
-                }
-
-                .tier {
-                    border-radius: var(--tier-border-rad);
-                    font-family: constants.$tier-font;
-                    font-size: var(--tier-font-size);
-                    font-weight: bold;
-                    line-height: var(--tier-font-size);
-                    padding: var(--tier-y-padding) var(--tier-x-padding);
-                }
-
-                .type {
-                    height: var(--type-height);
-                    position: relative;
-                    width: calc(var(--type-height) * var(--type-ratio));
-                }
-            }
-
-            .top-row {
-                gap: var(--name-spacing);
-            }
+        .method {
+            font-size: var(--method-font-size);
         }
 
         .arrow {
             filter: constants.$svg-color;
             height: var(--arrow-size);
-            position: absolute;
+            position: relative;
             transition: transform var(--arrow-transition-time);
-            right: var(--arrow-offset);
             width: var(--arrow-size);
         }
 
@@ -93,10 +55,7 @@
         padding: none;
         width: 100%;
 
-        .table-row {
-            height: var(--table-row-height);
-            overflow: hidden;
-
+        .row {
             .table-header,
             .table-element {
                 background: constants.$accent-color;
@@ -104,15 +63,12 @@
                 padding: var(--table-el-y-padding) var(--table-el-x-padding);
                 text-align: center;
                 width: 20%;
-            }
 
-            .method-header {
-                text-align: left;
-            }
-
-            .method {
-                text-align: left;
-                width: 60%;
+                .sprite {
+                    height: var(--sprite-size);
+                    position: relative;
+                    width: var(--sprite-size);
+                }
             }
         }
     }
@@ -123,7 +79,7 @@
 }
 
 @media screen and (min-width: constants.$tablet) {
-    .encounters-accordion {
+    .encounter-accordion {
         --accordion-width: 750px;
         --name-font-size: 1.2rem;
         --name-spacing: 8px;
@@ -137,7 +93,7 @@
 }
 
 @media (hover: hover) {
-    .encounters-accordion > .header:hover {
+    .encounter-accordion > .header:hover {
         .arrow {
             filter: constants.$svg-hover-color;
         }
