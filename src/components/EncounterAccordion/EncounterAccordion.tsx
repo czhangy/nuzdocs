@@ -5,6 +5,7 @@ import { getPokemonTier } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterAccordion.module.scss";
+import { fetchPokemonGroup } from "@/utils/api";
 
 type Props = {
     method: string;
@@ -13,8 +14,11 @@ type Props = {
 };
 
 const EncounterAccordion: React.FC<Props> = (props: Props) => {
+    // Display state
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [tier, setTier] = useState<string>("N/A");
+
+    // Data state
+    const [pokemonData, setPokemonData] = useState<PokemonData[]>([]);
 
     // Formats the level range of an encounter
     const getLevelRange = (encounter: EncounterData) => {
@@ -27,10 +31,12 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
 
     // Gets the tier of the Pokemon when new Pokemon data is given
     useEffect(() => {
-        if (props.pokemonData && props.versionGroup) {
-            setTier(getPokemonTier(props.pokemonData.pokemon.slug, props.versionGroup));
+        if (props.encounters) {
+            fetchPokemonGroup(props.encounters.map((encounter: EncounterData) => encounter.pokemonSlug)).then(
+                (pokemon) => setPokemonData(pokemon)
+            );
         }
-    }, [props.pokemonData, props.versionGroup]);
+    }, [props.encounters]);
 
     return (
         <div className={styles["encounter-accordion"]}>
@@ -83,19 +89,19 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
                         <th className={styles["column-name"]}>Level</th>
                     </tr>
                 </thead>
-                {/* <tbody>
-                    {props.encounterData.map((encounter: EncounterData, key: number) => {
+                <tbody>
+                    {pokemonData.map((pokemon: PokemonData, key: number) => {
                         {
                             return (
                                 <tr className={styles.row} key={key}>
-                                    <td className={`${styles["table-element"]} ${styles.method}`}></td>
-                                    <td className={styles["table-element"]}>{encounter.chance}%</td>
-                                    <td className={styles["table-element"]}>{getLevelRange(encounter)}</td>
+                                    <td className={styles["table-element"]}>{pokemon.pokemon.name}</td>
+                                    <td className={styles["table-element"]}>{props.encounters[key].chance}%</td>
+                                    <td className={styles["table-element"]}>{getLevelRange(props.encounters[key])}</td>
                                 </tr>
                             );
                         }
                     })}
-                </tbody> */}
+                </tbody>
             </table>
         </div>
     );
