@@ -40,7 +40,7 @@ const CreateRunModal: React.FC = () => {
 
         const newRun: Run = initRun(selectedGameSlug);
         localStorage.setItem(selectedName, JSON.stringify(newRun));
-        Router.push(`/runs/${selectedName}/${games[selectedGameSlug].startingTownSlug}`);
+        Router.push(`/runs/${selectedName}/${games[selectedGameSlug].gameGroup.startingTownSlug}`);
     };
 
     return (
@@ -70,7 +70,7 @@ const CreateRunModal: React.FC = () => {
                                 onClick={() => setSelectedGameSlug(gameSlug)}
                             >
                                 <Image
-                                    src={games[gameSlug].iconURL}
+                                    src={games[gameSlug].logoURL}
                                     alt={games[gameSlug].name}
                                     layout="fill"
                                     objectFit="contain"

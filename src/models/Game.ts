@@ -1,14 +1,7 @@
-import LocalSegment from "@/models/LocalSegment";
-import LocalName from "@/models/LocalName";
+import GameGroup from "@/models/GameGroup";
 
 export default interface Game {
     name: string;
-    iconURL: string;
-    versionGroup: string;
-    pokedex: LocalName[];
-    segments: LocalSegment[];
-    starterSlugs: string[];
-    startingTownSlug: string;
-    ignoredConditions: string[];
-    invalidConditions: string[];
+    logoURL: string;
+    gameGroup: GameGroup;
 }

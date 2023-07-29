@@ -20,7 +20,7 @@ const RunNavbar: React.FC = () => {
             const run: Run = getRun(router.query.runName as string);
             if (
                 run &&
-                games[run.gameSlug].segments
+                games[run.gameSlug].gameGroup.segments
                     .map((segment: LocalSegment) => segment.slug)
                     .includes(router.query.segmentSlug as string)
             ) {
@@ -36,7 +36,7 @@ const RunNavbar: React.FC = () => {
                     <p className={styles["back-arrow"]}>←</p>
                     {game ? (
                         <div className={styles.logo}>
-                            <Image src={game.iconURL} alt={game.name} layout="fill" objectFit="contain" />
+                            <Image src={game.logoURL} alt={game.name} layout="fill" objectFit="contain" />
                         </div>
                     ) : (
                         ""

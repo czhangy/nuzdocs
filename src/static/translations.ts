@@ -3,9 +3,6 @@ const translations: { [translation: string]: { [slug: string]: string } } = {
         "time-morning": "Morning",
         "time-day": "Day",
         "time-night": "Night",
-        "radio-off": "Radio Off",
-        "radio-hoenn": "Hoenn Radio",
-        "radio-sinnoh": "Sinnoh Radio",
     },
     encounter_methods: {
         walk: "Walking",

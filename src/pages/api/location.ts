@@ -32,7 +32,7 @@ export const getEncounterMethodName = (
     if (conditionValues.length > 0) {
         // Ignore compounding conditions that are trivial and shouldn't be split on
         conditionValues = conditionValues.filter((cv: NamedAPIResource) => {
-            return !games[gameSlug].ignoredConditions.includes(cv.name);
+            return !games[gameSlug].gameGroup.ignoredConditions.includes(cv.name);
         });
         methodName += " (";
         conditionValues.forEach((cv: NamedAPIResource, i: number) => {
@@ -60,7 +60,7 @@ const getEncounterDataForSinglePokemon = (pokemonEncounter: PokemonEncounter, ga
     );
     for (let method in groupedEncounters) {
         // Skip specified methods for version group
-        if (games[gameSlug].invalidConditions.some((pgMethod) => method.includes(pgMethod))) {
+        if (games[gameSlug].gameGroup.invalidConditions.some((condition: string) => method.includes(condition))) {
             continue;
         }
         const chance: number = groupedEncounters[method].reduce(

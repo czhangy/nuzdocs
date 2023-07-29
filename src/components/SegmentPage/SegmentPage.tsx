@@ -36,9 +36,9 @@ const SegmentPage: React.FC<Props> = (props) => {
     // Sets the current area on dropdown select
     const handleAreaSelect = (areaName: string): void => {
         let area: AreaData = areaList.filter((area: AreaData) => area.areaName === areaName)[0];
-        if (props.segmentSlug === game!.startingTownSlug) {
+        if (props.segmentSlug === game!.gameGroup.startingTownSlug) {
             area.encounters = area.encounters.filter((encounter: EncounterData) => {
-                return !game!.starterSlugs.includes(encounter.pokemonSlug);
+                return !game!.gameGroup.starterSlugs.includes(encounter.pokemonSlug);
             });
         }
         setCurrentArea(area);
@@ -105,17 +105,17 @@ const SegmentPage: React.FC<Props> = (props) => {
 
     return game ? (
         <div className={styles["segment-page"]}>
-            <SegmentNav segments={game.segments} segmentSlug={props.segmentSlug} />
+            <SegmentNav segments={game.gameGroup.segments} segmentSlug={props.segmentSlug} />
             <div className={styles["run-info"]}>
                 {currentLocation ? (
                     <>
                         <h2 className={styles["location-name"]}>{currentLocation.locationName}</h2>
-                        {props.segmentSlug === game.startingTownSlug ? (
+                        {props.segmentSlug === game.gameGroup.startingTownSlug ? (
                             <section className={styles.section}>
                                 <StarterSelect
                                     runName={props.runName}
-                                    starterSlugsList={game.starterSlugs}
-                                    locationName={game.startingTownSlug}
+                                    starterSlugsList={game.gameGroup.starterSlugs}
+                                    locationName={game.gameGroup.startingTownSlug}
                                 />
                             </section>
                         ) : (
@@ -135,7 +135,7 @@ const SegmentPage: React.FC<Props> = (props) => {
                                         key={key}
                                         method={method}
                                         encounters={getEncounters(method)}
-                                        versionGroup={game.versionGroup}
+                                        versionGroup={game.gameGroup.versionGroup}
                                     />
                                 );
                             })}
@@ -146,7 +146,7 @@ const SegmentPage: React.FC<Props> = (props) => {
                 )}
             </div>
             <EncounterDisplay
-                pokedex={games[props.gameSlug].pokedex}
+                pokedex={games[props.gameSlug].gameGroup.pokedex}
                 runName={props.runName}
                 locationSlug={props.segmentSlug}
             />
