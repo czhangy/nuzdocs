@@ -110,7 +110,11 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 ## To-Dos
 
 -   [ ] Major fights
+-   [ ] Progress tracking
+-   [ ] Duplicate detection
 -   [ ] Box view
+-   [ ] Pokemon data
+-   [ ] Evolutions
 -   [ ] Location maps
 -   [ ] Tier list page
 -   [ ] Game data
