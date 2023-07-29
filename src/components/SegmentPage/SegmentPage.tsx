@@ -9,7 +9,7 @@ import Game from "@/models/Game";
 import LocationData from "@/models/LocationData";
 import games from "@/static/games";
 import translations from "@/static/translations";
-import { fetchAreas, fetchLocation, fetchPokemonGroup } from "@/utils/api";
+import { fetchAreas, fetchLocation } from "@/utils/api";
 import { getRun } from "@/utils/utils";
 import { useEffect, useState } from "react";
 import styles from "./SegmentPage.module.scss";

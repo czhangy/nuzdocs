@@ -42,36 +42,6 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
         <div className={styles["encounter-accordion"]}>
             <button className={styles.header} onClick={() => setIsOpen(!isOpen)}>
                 <h3 className={styles.method}>{props.method}</h3>
-                {/* <div className={styles.sprite}>
-                    <Image
-                        src={props.pokemonData.sprite}
-                        alt={props.pokemonData.pokemon.name}
-                        layout="fill"
-                        objectFit="contain"
-                    />
-                </div> */}
-                {/* <div className={styles.info}>
-                    <div className={`${styles.row} ${styles["top-row"]}`}>
-                        <p className={styles.name}>{props.pokemonData.pokemon.name}</p>
-                        <div className={styles.tier} style={{ backgroundColor: colors.tiers[tier] }}>
-                            {tier}
-                        </div>
-                    </div>
-                    <div className={styles.row}>
-                        {props.pokemonData.types.map((type: string, key: number) => {
-                            return (
-                                <div className={styles.type} key={key}>
-                                    <Image
-                                        src={`https://www.serebii.net/pokedex-bw/type/${type}.gif`}
-                                        alt={type}
-                                        layout="fill"
-                                        objectFit="contain"
-                                    />
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div> */}
                 <div className={`${styles.arrow} ${isOpen ? styles.reversed : ""}`}>
                     <Image
                         src="/assets/icons/arrow.svg"
@@ -81,22 +51,61 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
                     />
                 </div>
             </button>
-            <table className={`${styles.body} ${isOpen ? "" : styles.hidden}`} cellSpacing="0">
+            <table className={`${styles.body} ${!isOpen ? "" : styles.hidden}`} cellSpacing="0">
                 <thead>
                     <tr className={styles.row}>
-                        <th className={styles["column-name"]}>Pokémon</th>
-                        <th className={styles["column-name"]}>Chance</th>
-                        <th className={styles["column-name"]}>Level</th>
+                        <th className={`${styles.category} ${styles.left}`}>Pokémon</th>
+                        <th className={styles.category}>%</th>
+                        <th className={styles.category}>Level</th>
+                        <th className={styles.category}>Tier</th>
                     </tr>
                 </thead>
                 <tbody>
                     {pokemonData.map((pokemon: PokemonData, key: number) => {
                         {
+                            const tier: string = getPokemonTier(pokemon.pokemon.slug, props.versionGroup);
                             return (
                                 <tr className={styles.row} key={key}>
-                                    <td className={styles["table-element"]}>{pokemon.pokemon.name}</td>
-                                    <td className={styles["table-element"]}>{props.encounters[key].chance}%</td>
-                                    <td className={styles["table-element"]}>{getLevelRange(props.encounters[key])}</td>
+                                    <td className={styles.cell}>
+                                        <div className={styles.pokemon}>
+                                            <div className={styles.sprite}>
+                                                <Image
+                                                    src={pokemon.sprite}
+                                                    alt={pokemon.pokemon.name}
+                                                    layout="fill"
+                                                    objectFit="contain"
+                                                />
+                                            </div>
+                                            <p className={styles.name}>{pokemon.pokemon.name}</p>
+
+                                            <div className={styles.types}>
+                                                {pokemon.types.map((type: string, key: number) => {
+                                                    return (
+                                                        <div className={styles.type} key={key}>
+                                                            <Image
+                                                                src={`https://www.serebii.net/pokedex-bw/type/${type}.gif`}
+                                                                alt={type}
+                                                                layout="fill"
+                                                                objectFit="contain"
+                                                            />
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td className={styles.cell}>{props.encounters[key].chance}%</td>
+                                    <td className={styles.cell}>{getLevelRange(props.encounters[key])}</td>
+                                    <td className={styles.cell}>
+                                        {
+                                            <div
+                                                className={styles.tier}
+                                                style={{ backgroundColor: colors.tiers[tier] }}
+                                            >
+                                                {tier}
+                                            </div>
+                                        }
+                                    </td>
                                 </tr>
                             );
                         }
