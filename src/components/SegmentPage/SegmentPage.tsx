@@ -27,12 +27,15 @@ const SegmentPage: React.FC<Props> = (props) => {
     // States to track location areas
     const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
     const [areaList, setAreaList] = useState<AreaData[]>([]);
-    const [areaNameList, setAreaNameList] = useState<string[]>([]);
     const [currentArea, setCurrentArea] = useState<AreaData | null>(null);
-    const [areaEncounters, setAreaEncounters] = useState<PokemonData[]>([]);
 
     // States to track encounter info in the current location
     const [uniquePokemonDataList, setUniquePokemonDataList] = useState<PokemonData[]>([]);
+
+    // Translates areas into area names for the dropdown
+    const getAreaNames = (): string[] => {
+        return areaList.map((area: AreaData) => area.areaName).sort();
+    };
 
     // Sets the current area on dropdown select
     const handleAreaSelect = (areaName: string): void => {
@@ -43,6 +46,27 @@ const SegmentPage: React.FC<Props> = (props) => {
             });
         }
         setCurrentArea(area);
+    };
+
+    // Get a list of the encounters' PokemonData in the current area, sorted by ease of access
+    const getAreaEncounters = (): PokemonData[] => {
+        if (currentArea) {
+            let newAreaEncounters: PokemonData[] = uniquePokemonDataList.filter((pokemonData: PokemonData) => {
+                return currentArea.encounters
+                    .map((encounter: EncounterData) => {
+                        return encounter.pokemonSlug;
+                    })
+                    .includes(pokemonData.pokemon.slug);
+            });
+            return newAreaEncounters.sort((a: PokemonData, b: PokemonData) => {
+                const priority: string[] = Object.values(translations.encounter_methods);
+                const ed1: EncounterData[] = getEncounterData(a.pokemon.slug);
+                const ed2: EncounterData[] = getEncounterData(b.pokemon.slug);
+                return priority.indexOf(ed1[0].method) - priority.indexOf(ed2[0].method);
+            });
+        } else {
+            return [];
+        }
     };
 
     // Gets the EncounterData from currentArea for a Pokemon
@@ -86,8 +110,6 @@ const SegmentPage: React.FC<Props> = (props) => {
     useEffect(() => {
         if (areaList.length > 0 && game) {
             setCurrentArea(null);
-            setAreaEncounters([]);
-            setAreaNameList(areaList.map((area: AreaData) => area.areaName).sort());
             let pokemonSlugList: string[] = areaList
                 .map((area: AreaData) => area.encounters.map((encounter: EncounterData) => encounter.pokemonSlug))
                 .flat();
@@ -97,25 +119,7 @@ const SegmentPage: React.FC<Props> = (props) => {
         }
     }, [areaList, game]);
 
-    // When the area is changed, get a list of the unique encounters in the area, sorted by ease of access
-    useEffect(() => {
-        if (currentArea) {
-            let newAreaEncounters: PokemonData[] = uniquePokemonDataList.filter((pokemonData: PokemonData) => {
-                return currentArea.encounters
-                    .map((encounter: EncounterData) => {
-                        return encounter.pokemonSlug;
-                    })
-                    .includes(pokemonData.pokemon.slug);
-            });
-            newAreaEncounters = newAreaEncounters.sort((a: PokemonData, b: PokemonData) => {
-                const priority: string[] = Object.values(translations.encounter_methods);
-                const ed1: EncounterData[] = getEncounterData(a.pokemon.slug);
-                const ed2: EncounterData[] = getEncounterData(b.pokemon.slug);
-                return priority.indexOf(ed1[0].method) - priority.indexOf(ed2[0].method);
-            });
-            setAreaEncounters(newAreaEncounters);
-        }
-    }, [currentArea]);
+    useEffect(() => {}, [currentArea]);
 
     return game ? (
         <div className={styles["segment-page"]}>
@@ -140,10 +144,10 @@ const SegmentPage: React.FC<Props> = (props) => {
                             <Dropdown
                                 placeholder="Select a zone..."
                                 value={currentArea ? currentArea.areaName : null}
-                                options={areaNameList}
+                                options={getAreaNames()}
                                 onSelect={(areaName: string) => handleAreaSelect(areaName)}
                             />
-                            {areaEncounters.map((pokemonData: PokemonData, key: number) => {
+                            {getAreaEncounters().map((pokemonData: PokemonData, key: number) => {
                                 return (
                                     <EncountersAccordion
                                         key={key}
