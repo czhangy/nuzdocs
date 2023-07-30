@@ -1,7 +1,7 @@
+import Navbar from "@/components/Navbar/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./MainNavbar.module.scss";
-import Navbar from "@/components/Navbar/Navbar";
 
 const MainNavbar: React.FC = () => {
     return (
@@ -15,6 +15,11 @@ const MainNavbar: React.FC = () => {
                 </a>
             </Link>
             <ul className={styles.links}>
+                <li>
+                    <Link href="/bugs">
+                        <a className={styles.link}>BUGS</a>
+                    </Link>
+                </li>
                 <li>
                     <Link href="/about">
                         <a className={styles.link}>ABOUT</a>
