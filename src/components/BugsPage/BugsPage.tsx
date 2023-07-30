@@ -11,8 +11,8 @@ const BugsPage: React.FC = () => {
             {Object.keys(bugs).map((priority: string, sectionKey: number) => {
                 return (
                     <section className={styles.section} key={sectionKey}>
-                        <h3 className={styles.priority} style={{ color: "constants.$medium-priority-color" }}>
-                            <div className={styles.icon}>
+                        <h3 className={styles.priority} style={{ color: colors.priorities[priority] }}>
+                            <div className={styles.icon} style={{ filter: colors.priorities_svg[priority] }}>
                                 <Image src="/assets/icons/alert.svg" alt="" layout="fill" objectFit="contain" />
                             </div>
                             {priority} Priority
