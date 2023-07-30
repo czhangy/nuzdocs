@@ -6,7 +6,7 @@ const About: NextPage = () => {
     return (
         <>
             <Head>
-                <title>NuzlockeDB | About</title>
+                <title>NuzlockeDB // About</title>
             </Head>
             <AboutPage />
         </>

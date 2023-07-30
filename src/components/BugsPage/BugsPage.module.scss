@@ -1,0 +1,82 @@
+@use "@/styles/constants";
+
+.bugs-page {
+    --bug-inner-spacing: 0.3rem;
+    --button-border-rad: 4px;
+    --button-font-size: 1.2rem;
+    --button-x-padding: 2rem;
+    --button-y-padding: 1rem;
+    --header-font-size: 2rem;
+    --header-letter-spacing: 1px;
+    --icon-size: 1.5rem;
+    --list-offset: 2rem;
+    --page-inner-spacing: 2rem;
+    --page-top-spacing: 2rem;
+    --priority-font-size: 1.5rem;
+    --priority-inner-spacing: 1rem;
+    --priority-spacing: 1rem;
+    --section-max-width: 750px;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--page-inner-spacing);
+    min-height: calc(100vh - constants.$mobile-navbar-height);
+    padding-top: var(--page-top-spacing);
+    width: 100%;
+
+    .header {
+        font-size: var(--header-font-size);
+        font-weight: bold;
+        letter-spacing: var(--header-letter-spacing);
+        margin-bottom: var(--inner-spacing);
+        text-align: center;
+    }
+
+    .report {
+        background-color: constants.$text-color;
+        border-radius: var(--button-border-rad);
+        color: constants.$bg-color;
+        font-size: var(--button-font-size);
+        font-weight: bold;
+        padding: var(--button-y-padding) var(--button-x-padding);
+    }
+
+    .section {
+        max-width: var(--section-max-width);
+        width: 100%;
+
+        .priority {
+            align-items: center;
+            display: flex;
+            font-size: var(--priority-font-size);
+            font-weight: bold;
+            gap: var(--priority-inner-spacing);
+            margin-bottom: var(--priority-spacing);
+
+            .icon {
+                height: var(--icon-size);
+                position: relative;
+                width: var(--icon-size);
+            }
+        }
+
+        .list {
+            list-style: disc;
+            margin-left: var(--list-offset);
+            width: 100%;
+
+            .bug {
+                .group {
+                    font-weight: bold;
+                    margin-right: var(--bug-inner-spacing);
+                }
+
+                .link {
+                    color: constants.$hover-color;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
