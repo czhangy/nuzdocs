@@ -38,6 +38,7 @@
         cursor: pointer;
         display: flex;
         padding: var(--y-padding) var(--x-padding);
+        position: relative;
 
         .display {
             font-size: var(--font-size);

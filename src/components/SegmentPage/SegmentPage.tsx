@@ -106,7 +106,7 @@ const SegmentPage: React.FC<Props> = (props) => {
     return game ? (
         <div className={styles["segment-page"]}>
             <SegmentNav segments={game.gameGroup.segments} segmentSlug={props.segmentSlug} />
-            <div className={styles["run-info"]}>
+            <div className={styles.info}>
                 {currentLocation ? (
                     <>
                         <h2 className={styles["location-name"]}>{currentLocation.locationName}</h2>

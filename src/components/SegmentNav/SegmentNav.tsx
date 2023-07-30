@@ -1,7 +1,7 @@
 import LocalSegment from "@/models/LocalSegment";
 import Link from "next/link";
-import styles from "./SegmentNav.module.scss";
 import { useRouter } from "next/router";
+import styles from "./SegmentNav.module.scss";
 
 type Props = {
     segments: LocalSegment[];
@@ -11,7 +11,8 @@ type Props = {
 const SegmentNav: React.FC<Props> = (props: Props) => {
     const router = useRouter();
 
-    const getSegmentIndex = () => {
+    // Finds the index of the current segment in the game's segments list
+    const getSegmentIndex = (): number => {
         return props.segments.map((segment: LocalSegment) => segment.slug).indexOf(props.segmentSlug);
     };
 

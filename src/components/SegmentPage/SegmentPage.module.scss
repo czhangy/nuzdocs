@@ -2,18 +2,22 @@
 
 .segment-page {
     --bottom-spacing: 10rem;
-    --header-font-size: 1.7rem;
+    --header-font-size: 1.4rem;
+    --info-inner-spacing: 4rem;
+    --page-width: 350px;
     --section-inner-spacing: 2rem;
-    --section-spacing: 2rem;
     --title-font-size: 2rem;
     --title-font-spacing: 2px;
     --top-spacing: 2rem;
 
     padding-top: var(--top-spacing);
     position: relative;
-    width: 100%;
+    width: var(--page-width);
 
-    .run-info {
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--info-inner-spacing);
         max-width: constants.$max-width;
         min-height: calc(100vh - constants.$mobile-navbar-height);
         width: 100%;
@@ -31,11 +35,6 @@
             flex-direction: column;
             gap: var(--section-inner-spacing);
             margin: var(--section-spacing) 0;
-
-            .header {
-                font-size: var(--header-font-size);
-                line-height: var(--header-font-size);
-            }
         }
     }
 }
@@ -44,14 +43,5 @@
     .segment-page {
         --page-width: 750px;
         --title-font-size: 2.5rem;
-
-        max-width: var(--page-width);
-    }
-}
-
-@media screen and (min-width: constants.$max-width) {
-    .run-page > .sticky-info {
-        // Account for max size
-        margin-left: calc((100vw - constants.$max-width) / -2 - constants.$page-padding);
     }
 }

@@ -57,7 +57,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["starter-select"]}>
             <h3 className={styles.header}>Starter:</h3>
-            <ul className={styles["starter-list"]}>
+            <ul className={styles.starters}>
                 {starters.map((starter: PokemonData, key: number) => {
                     return (
                         <li
@@ -67,7 +67,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                             key={key}
                         >
                             <button
-                                className={styles["select-button"]}
+                                className={styles.button}
                                 onClick={() => setSelectedStarterSlug(props.starterSlugsList[key])}
                             >
                                 <div className={styles.sprite}>
@@ -75,7 +75,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                                         src={starter.sprite}
                                         alt={starter.pokemon.name}
                                         layout="fill"
-                                        objectFit="contain"
+                                        objectFit="cover"
                                     />
                                 </div>
                             </button>

@@ -2,7 +2,6 @@
 
 .encounter-accordion {
     --accordion-transition-time: 0.3s;
-    --accordion-width: 350px;
     --accordion-x-padding: 2rem;
     --accordion-y-padding: 1.5rem;
     --arrow-size: 12px;
@@ -28,7 +27,7 @@
     max-height: calc(var(--method-font-size) + 2 * var(--accordion-y-padding));
     overflow-y: hidden;
     transition: max-height var(--accordion-transition-time);
-    width: var(--accordion-width);
+    width: 100%;
 
     .header {
         align-items: center;
@@ -128,7 +127,6 @@
 
 @media screen and (min-width: constants.$tablet) {
     .encounter-accordion {
-        --accordion-width: 750px;
         --cell-font-size: 1.2rem;
         --cell-x-padding: 3rem;
         --name-font-size: 1.2rem;
