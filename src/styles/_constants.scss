@@ -10,7 +10,7 @@ $svg-color: invert(100%) sepia(0%) saturate(7500%) hue-rotate(208deg) brightness
 $svg-bg-color: invert(20%) sepia(10%) saturate(0%) hue-rotate(170deg) brightness(94%) contrast(103%);
 $svg-accent-color: invert(7%) sepia(95%) saturate(0%) hue-rotate(258deg) brightness(87%) contrast(81%);
 $svg-hover-color: invert(41%) sepia(10%) saturate(3132%) hue-rotate(68deg) brightness(116%) contrast(88%);
-$text-color: #ffffff;
+$text-color: white;
 
 // Dimensions
 $mobile-navbar-height: 150px;
@@ -24,3 +24,4 @@ $tablet: 768px;
 
 // Misc. colors
 $error-color: red;
+$disabled-color: rgb(63, 63, 63);

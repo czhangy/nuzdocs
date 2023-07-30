@@ -5,9 +5,9 @@
     --header-inner-spacing: 1rem;
     --icon-size: 20px;
     --info-inner-spacing: 0.2rem;
-    --info-offset: -2rem;
     --inner-spacing: 1rem;
     --name-font-size: 1.25rem;
+    --sprite-offset: -1.5rem;
     --sprite-size: 150px;
     --title-font-size: 1.5rem;
     --top-inner-spacing: 0.5rem;
@@ -33,7 +33,7 @@
             gap: var(--type-select-inner-spacing);
 
             .button {
-                background: black;
+                background-color: constants.$disabled-color;
                 border-radius: 50%;
                 overflow: hidden;
                 padding: var(--button-padding);
@@ -50,10 +50,10 @@
     .starter {
         align-items: center;
         display: flex;
-        margin-left: var(--info-offset);
 
         .sprite {
             height: var(--sprite-size);
+            margin: 0 var(--sprite-offset);
             position: relative;
             width: var(--sprite-size);
         }
@@ -81,5 +81,11 @@
                 }
             }
         }
+    }
+}
+
+@media (hover: hover) {
+    .starter-select > .header > .type-select .button:hover {
+        background-color: constants.$hover-color;
     }
 }

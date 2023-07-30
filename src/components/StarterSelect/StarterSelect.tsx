@@ -6,6 +6,7 @@ import { getRun } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./StarterSelect.module.scss";
+import colors from "@/static/colors";
 
 type Props = {
     runName: string;
@@ -72,7 +73,17 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                     {starters.map((starter: PokemonData, key: number) => {
                         return (
                             <li key={key}>
-                                <button className={styles.button} onClick={() => setSelectedStarter(starter)}>
+                                <button
+                                    className={styles.button}
+                                    style={
+                                        selectedStarter && starter === selectedStarter
+                                            ? {
+                                                  backgroundColor: colors.types[selectedStarter.types[0]],
+                                              }
+                                            : {}
+                                    }
+                                    onClick={() => setSelectedStarter(starter)}
+                                >
                                     <div className={styles.icon}>
                                         <Image
                                             src={`/assets/types/${starter.types[0]}.svg`}
