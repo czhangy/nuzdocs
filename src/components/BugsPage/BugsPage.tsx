@@ -22,11 +22,23 @@ const BugsPage: React.FC = () => {
                                 return (
                                     <li className={styles.bug} key={listKey}>
                                         <span className={styles.group}>[{bug.group}]</span>
-                                        {bug.desc} (
-                                        <a className={styles.link} href={bug.link} target="_blank" rel="noreferrer">
-                                            Thread
-                                        </a>
-                                        )
+                                        {bug.desc}{" "}
+                                        {bug.link ? (
+                                            <span>
+                                                (
+                                                <a
+                                                    className={styles.link}
+                                                    href={bug.link}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                >
+                                                    Thread
+                                                </a>
+                                                )
+                                            </span>
+                                        ) : (
+                                            ""
+                                        )}
                                     </li>
                                 );
                             })}
