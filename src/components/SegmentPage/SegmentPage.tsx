@@ -115,7 +115,7 @@ const SegmentPage: React.FC<Props> = (props) => {
                                 <StarterSelect
                                     runName={props.runName}
                                     starterSlugsList={game.gameGroup.starterSlugs}
-                                    locationName={game.gameGroup.startingTownSlug}
+                                    gameGroup={game.gameGroup}
                                 />
                             </section>
                         ) : (

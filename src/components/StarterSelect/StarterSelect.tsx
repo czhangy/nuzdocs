@@ -1,17 +1,19 @@
+import GameGroup from "@/models/GameGroup";
 import LocalPokemon from "@/models/LocalPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
+import colors from "@/static/colors";
 import { fetchPokemonGroup } from "@/utils/api";
-import { getRun } from "@/utils/utils";
+import { getPokemonTier, getRun } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import TierCard from "../TierCard/TierCard";
 import styles from "./StarterSelect.module.scss";
-import colors from "@/static/colors";
 
 type Props = {
     runName: string;
     starterSlugsList: string[];
-    locationName: string;
+    gameGroup: GameGroup;
 };
 
 const StarterSelect: React.FC<Props> = (props: Props) => {
@@ -20,9 +22,6 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
 
     // User data state
     const [selectedStarter, setSelectedStarter] = useState<PokemonData | null>(null);
-
-    // Persist selected starter on page load or initialize starter for fresh runs
-    useEffect(() => {}, []);
 
     // Fetch starter data on load
     useEffect(() => {
@@ -111,6 +110,9 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                     <div className={styles.info}>
                         <div className={styles.top}>
                             <p className={styles.name}>{selectedStarter.pokemon.name}</p>
+                            <TierCard
+                                tier={getPokemonTier(selectedStarter.pokemon.slug, props.gameGroup.versionGroup)}
+                            />
                         </div>
                         <ul className={styles.types}>
                             {selectedStarter.types.map((type: string, key: number) => {
