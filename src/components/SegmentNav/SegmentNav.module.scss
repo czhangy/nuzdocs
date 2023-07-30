@@ -1,30 +1,33 @@
 @use "@/styles/constants";
 
 .segment-nav {
+    --nav-font-size: 1rem;
+    --nav-spacing: 1.5rem;
+
     display: flex;
     justify-content: space-between;
-    margin-bottom: 3rem;
+    margin-bottom: var(--nav-spacing);
     position: relative;
-    top: 2rem;
     width: 100%;
 
-    .nav-button {
-        font-size: 1.1rem;
+    .nav {
+        font-size: var(--nav-font-size);
     }
 
-    .back-button {
+    .back {
         left: 0;
     }
 
-    .next-button {
+    .next {
         right: 0;
     }
 }
 
 @media screen and (min-width: constants.$tablet) {
     .segment-nav {
-        margin-top: 0.5rem;
-        margin-bottom: 0;
+        --nav-offset: 1.1rem;
+
+        margin-top: var(--nav-offset);
         position: absolute;
     }
 }

@@ -16,26 +16,22 @@ const SegmentNav: React.FC<Props> = (props: Props) => {
     };
 
     return (
-        <div className={styles["segment-nav"]}>
+        <nav className={styles["segment-nav"]}>
             {getSegmentIndex() > 0 ? (
                 <Link href={`/runs/${router.query.runName}/${props.segments[getSegmentIndex() - 1].slug}`}>
-                    <a className={`${styles["nav-button"]} ${styles["back-button"]}`}>
-                        ← {props.segments[getSegmentIndex() - 1].name}
-                    </a>
+                    <a className={`${styles.nav} ${styles.back}`}>← {props.segments[getSegmentIndex() - 1].name}</a>
                 </Link>
             ) : (
                 <div />
             )}
             {getSegmentIndex() + 1 < props.segments.length ? (
                 <Link href={`/runs/${router.query.runName}/${props.segments[getSegmentIndex() + 1].slug}`}>
-                    <a className={`${styles["nav-button"]} ${styles["next-button"]}`}>
-                        {props.segments[getSegmentIndex() + 1].name} →
-                    </a>
+                    <a className={`${styles.nav} ${styles.next}`}>{props.segments[getSegmentIndex() + 1].name} →</a>
                 </Link>
             ) : (
                 ""
             )}
-        </div>
+        </nav>
     );
 };
 

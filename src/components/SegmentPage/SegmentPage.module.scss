@@ -13,12 +13,7 @@
     position: relative;
     width: 100%;
 
-    .nav-button {
-        position: absolute;
-    }
-
     .run-info {
-        margin-bottom: var(--bottom-spacing);
         max-width: constants.$max-width;
         min-height: calc(100vh - constants.$mobile-navbar-height);
         width: 100%;
@@ -46,12 +41,11 @@
 }
 
 @media screen and (min-width: constants.$tablet) {
-    .run-page {
+    .segment-page {
+        --page-width: 750px;
         --title-font-size: 2.5rem;
 
-        .run-info {
-            min-height: calc(100vh - constants.$navbar-height);
-        }
+        max-width: var(--page-width);
     }
 }
 
