@@ -1,13 +1,21 @@
-import bugs from "@/static/bugs";
-import styles from "./BugsPage.module.scss";
 import Bug from "@/models/Bug";
-import Image from "next/image";
+import bugs from "@/static/bugs";
 import colors from "@/static/colors";
+import Image from "next/image";
+import styles from "./BugsPage.module.scss";
 
 const BugsPage: React.FC = () => {
     return (
         <div className={styles["bugs-page"]}>
             <h2 className={styles.header}>KNOWN BUGS</h2>
+            <a
+                className={styles.report}
+                href="https://github.com/czhangy/nuzlocke-db/issues"
+                target="_blank"
+                rel="noreferrer"
+            >
+                Report a Bug!
+            </a>
             {Object.keys(bugs).map((priority: string, sectionKey: number) => {
                 return (
                     <section className={styles.section} key={sectionKey}>

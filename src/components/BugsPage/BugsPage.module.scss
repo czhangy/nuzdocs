@@ -2,6 +2,10 @@
 
 .bugs-page {
     --bug-inner-spacing: 0.3rem;
+    --button-border-rad: 4px;
+    --button-font-size: 1.2rem;
+    --button-x-padding: 2rem;
+    --button-y-padding: 1rem;
     --header-font-size: 2rem;
     --header-letter-spacing: 1px;
     --icon-size: 1.5rem;
@@ -27,6 +31,15 @@
         letter-spacing: var(--header-letter-spacing);
         margin-bottom: var(--inner-spacing);
         text-align: center;
+    }
+
+    .report {
+        background-color: constants.$text-color;
+        border-radius: var(--button-border-rad);
+        color: constants.$bg-color;
+        font-size: var(--button-font-size);
+        font-weight: bold;
+        padding: var(--button-y-padding) var(--button-x-padding);
     }
 
     .section {
