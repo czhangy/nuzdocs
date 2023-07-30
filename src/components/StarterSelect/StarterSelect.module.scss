@@ -7,7 +7,8 @@
     --info-inner-spacing: 0.2rem;
     --inner-spacing: 1rem;
     --name-font-size: 1.25rem;
-    --sprite-offset: -1.5rem;
+    --sprite-left-offset: -2rem;
+    --sprite-right-offset: -1.5rem;
     --sprite-size: 150px;
     --title-font-size: 1.5rem;
     --top-inner-spacing: 0.5rem;
@@ -16,6 +17,9 @@
     --type-select-inner-spacing: 1rem;
     --types-inner-spacing: 4px;
 
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     width: 100%;
 
     .header {
@@ -53,7 +57,8 @@
 
         .sprite {
             height: var(--sprite-size);
-            margin: 0 var(--sprite-offset);
+            margin-left: var(--sprite-left-offset);
+            margin-right: var(--sprite-right-offset);
             position: relative;
             width: var(--sprite-size);
         }
