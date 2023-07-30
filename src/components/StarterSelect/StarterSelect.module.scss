@@ -1,98 +1,85 @@
 @use "@/styles/constants";
 
 .starter-select {
-    --button-border-rad: 5px;
-    --button-border-size: 2px;
-    --button-size: 100px;
-    --header-font-size: 1.4rem;
-    --header-spacing: 1rem;
-    --name-size: 1.7rem;
-    --sprite-size: 120px;
+    --button-padding: 0.4rem;
+    --header-inner-spacing: 1rem;
+    --icon-size: 20px;
+    --info-inner-spacing: 0.2rem;
+    --info-offset: -2rem;
     --inner-spacing: 1rem;
+    --name-font-size: 1.25rem;
+    --sprite-size: 150px;
+    --title-font-size: 1.5rem;
+    --top-inner-spacing: 0.5rem;
+    --type-height: 12px;
+    --type-ratio: 8/3;
+    --type-select-inner-spacing: 1rem;
+    --types-inner-spacing: 4px;
 
     width: 100%;
 
     .header {
-        font-size: var(--header-font-size);
-        line-height: var(--header-font-size);
-        margin-bottom: var(--header-spacing);
-        text-align: center;
-        width: 100%;
-    }
-
-    .starters {
         align-items: center;
         display: flex;
-        gap: var(--inner-spacing);
-        justify-content: center;
+        gap: var(--header-inner-spacing);
 
-        .starter {
+        .title {
+            font-size: var(--title-font-size);
+            line-height: var(--title-font-size);
+        }
+
+        .type-select {
+            display: flex;
+            gap: var(--type-select-inner-spacing);
+
             .button {
-                align-items: center;
-                border: var(--button-border-size) solid constants.$text-color;
-                border-radius: var(--button-border-rad);
-                display: flex;
-                height: var(--button-size);
-                justify-content: center;
+                background: black;
+                border-radius: 50%;
                 overflow: hidden;
-                width: var(--button-size);
+                padding: var(--button-padding);
 
-                .sprite {
-                    height: var(--sprite-size);
+                .icon {
+                    height: var(--icon-size);
                     position: relative;
-                    width: var(--sprite-size);
+                    width: var(--icon-size);
                 }
             }
         }
-
-        .selected > .button {
-            background-color: constants.$accent-color;
-            border-color: constants.$hover-color;
-        }
     }
-}
 
-@media screen and (min-width: constants.$tablet) {
-    .starter-select {
-        --button-size: 120px;
-        --sprite-size: 150px;
+    .starter {
+        align-items: center;
+        display: flex;
+        margin-left: var(--info-offset);
 
-        .header {
-            text-align: left;
+        .sprite {
+            height: var(--sprite-size);
+            position: relative;
+            width: var(--sprite-size);
         }
 
-        .starters {
-            justify-content: flex-start;
+        .info {
+            .top {
+                align-items: center;
+                display: flex;
+                gap: var(--top-inner-spacing);
+                margin-bottom: var(--info-inner-spacing);
+
+                .name {
+                    font-size: var(--name-font-size);
+                }
+            }
+
+            .types {
+                display: flex;
+                gap: var(--types-inner-spacing);
+
+                .type {
+                    height: var(--type-height);
+                    position: relative;
+                    width: calc(var(--type-height) * var(--type-ratio));
+                }
+            }
         }
-    }
-}
-
-@media (hover: hover) {
-    .starter-select {
-        --animation-time: 1s;
-
-        .starters > .starter:hover > .button > .sprite {
-            animation: shake var(--animation-time);
-            animation-iteration-count: infinite;
-        }
-    }
-}
-
-// https://unused-css.com/blog/css-shake-animation/
-@keyframes shake {
-    0% {
-        transform: translate(0, 0) rotate(0deg);
-    }
-    25% {
-        transform: translate(5px, 5px) rotate(5deg);
-    }
-    50% {
-        transform: translate(0, 0) rotate(0eg);
-    }
-    75% {
-        transform: translate(-5px, 5px) rotate(-5deg);
-    }
-    100% {
-        transform: translate(0, 0) rotate(0deg);
     }
 }

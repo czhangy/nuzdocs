@@ -150,6 +150,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 -   [Nuzlocke Tracker](https://nuzlocke.app/)
 -   [PokéAPI](https://pokeapi.co/)
 -   [Pokémon Database](https://pokemondb.net/)
+-   [pokemon-type-svg-icons](https://github.com/duiker101/pokemon-type-svg-icons)
 -   [pokenode-ts](https://github.com/Gabb-c/pokenode-ts)
 -   [Serebii](https://www.serebii.net/)
 -   [Shields.io](https://shields.io/)
