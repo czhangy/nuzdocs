@@ -1,0 +1,11 @@
+#!/bin/bash
+branch=$(git symbolic-ref --short HEAD)
+if [ "$branch" == "master" ]; then
+    echo "Currently on master."
+    git pull
+else
+    git checkout master &&
+    git pull &&
+    git branch -d "$branch"
+fi
+
