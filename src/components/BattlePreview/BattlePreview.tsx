@@ -1,5 +1,5 @@
 import Battle from "@/models/Battle";
-import { completeSegment, getRun } from "@/utils/utils";
+import { completeBattle, getRun, resetBattle } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./BattlePreview.module.scss";
@@ -18,10 +18,16 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
         return getRun(props.runName).battlesCleared.includes(props.battleSlug);
     };
 
-    // Sets component state and updates local storage
+    // Sets component state and updates local storage when defeat is clicked
     const handleDefeat = () => {
         setDefeated(true);
-        completeSegment(props.runName, props.battleSlug);
+        completeBattle(props.runName, props.battleSlug);
+    };
+
+    // Sets component state and updates local storage when undo is clicked
+    const handleUndo = () => {
+        setDefeated(false);
+        resetBattle(props.runName, props.battleSlug);
     };
 
     useEffect(() => {
@@ -42,9 +48,18 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
             </div>
             <div className={styles.info}>
                 <p className={styles.name}>{props.battle.trainer.name}</p>
-                <button className={styles.defeat} onClick={handleDefeat} disabled={defeated}>
-                    {defeated ? "Defeated!" : "Defeat!"}
-                </button>
+                <div className={styles.buttons}>
+                    <button className={styles.defeat} onClick={handleDefeat} disabled={defeated}>
+                        {defeated ? "Defeated!" : "Defeat!"}
+                    </button>
+                    {defeated ? (
+                        <button className={styles.undo} onClick={handleUndo}>
+                            <Image src="/assets/icons/reset.svg" alt="Undo defeat" layout="fill" objectFit="contain" />
+                        </button>
+                    ) : (
+                        ""
+                    )}
+                </div>
             </div>
         </div>
     );

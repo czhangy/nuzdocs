@@ -1,13 +1,16 @@
 @use "@/styles/constants";
 
 .battle-preview {
-    --button-border-radius: 5px;
-    --button-font-size: 1rem;
-    --button-x-padding: 1.25rem;
-    --button-y-padding: 0.5rem;
+    --buttons-inner-spacing: 1rem;
+    --defeat-border-radius: 5px;
+    --defeat-font-size: 1rem;
+    --defeat-x-padding: 1.25rem;
+    --defeat-y-padding: 0.5rem;
     --info-inner-spacing: 0.5rem;
     --name-font-size: 1.5rem;
     --sprite-size: 120px;
+    --sprite-transition-time: 0.5s;
+    --undo-button-size: 1rem;
 
     align-items: center;
     display: flex;
@@ -17,6 +20,7 @@
     .sprite {
         height: var(--sprite-size);
         position: relative;
+        transition: filter var(--sprite-transition-time);
         width: var(--sprite-size);
     }
 
@@ -31,20 +35,39 @@
             margin-bottom: var(--info-inner-spacing);
         }
 
-        .defeat {
-            background-color: constants.$text-color;
-            border-radius: var(--button-border-radius);
-            color: constants.$bg-color;
-            font-size: var(--button-font-size);
-            font-weight: bold;
-            padding: var(--button-y-padding) var(--button-x-padding);
+        .buttons {
+            align-items: center;
+            display: flex;
+            gap: var(--buttons-inner-spacing);
+
+            .defeat {
+                background-color: constants.$text-color;
+                border-radius: var(--defeat-border-radius);
+                color: constants.$bg-color;
+                font-size: var(--defeat-font-size);
+                font-weight: bold;
+                padding: var(--defeat-y-padding) var(--defeat-x-padding);
+            }
+
+            .undo {
+                filter: constants.$svg-color;
+                height: var(--undo-button-size);
+                position: relative;
+                width: var(--undo-button-size);
+            }
         }
     }
 }
 
 @media (hover: hover) {
-    .battle-preview > .info > .defeat:hover {
-        background-color: constants.$hover-color;
-        color: constants.$text-color;
+    .battle-preview > .info > .buttons {
+        .defeat:hover {
+            background-color: constants.$hover-color;
+            color: constants.$text-color;
+        }
+
+        .undo:hover {
+            filter: constants.$svg-hover-color;
+        }
     }
 }
