@@ -1,6 +1,7 @@
 @use "@/styles/constants";
 
 .segment-page {
+    --bottom-spacing: 10rem;
     --info-inner-spacing: 4rem;
     --location-font-size: 2rem;
     --location-font-spacing: 2px;
@@ -16,6 +17,7 @@
         flex-direction: column;
         gap: var(--info-inner-spacing);
         max-width: constants.$max-width;
+        margin-bottom: var(--bottom-spacing);
         min-height: calc(100vh - constants.$mobile-navbar-height);
         width: 100%;
 
