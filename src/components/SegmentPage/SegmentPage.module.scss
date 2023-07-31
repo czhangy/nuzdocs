@@ -1,13 +1,10 @@
 @use "@/styles/constants";
 
 .segment-page {
-    --bottom-spacing: 10rem;
-    --header-font-size: 1.4rem;
     --info-inner-spacing: 4rem;
+    --location-font-size: 2rem;
+    --location-font-spacing: 2px;
     --page-width: 350px;
-    --section-inner-spacing: 2rem;
-    --title-font-size: 2rem;
-    --title-font-spacing: 2px;
     --top-spacing: 2rem;
 
     padding-top: var(--top-spacing);
@@ -23,18 +20,10 @@
         width: 100%;
 
         .location-name {
-            font-size: var(--title-font-size);
+            font-size: var(--location-font-size);
             font-weight: bold;
-            letter-spacing: var(--title-font-spacing);
+            letter-spacing: var(--location-font-spacing);
             text-align: center;
-        }
-
-        .section {
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-            gap: var(--section-inner-spacing);
-            margin: var(--section-spacing) 0;
         }
     }
 }

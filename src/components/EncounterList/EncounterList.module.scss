@@ -1,0 +1,25 @@
+@use "@/styles/constants";
+
+.encounter-list {
+    --encounters-inner-spacing: 1rem;
+    --header-spacing: 1.5rem;
+    --title-font-size: 1.5rem;
+
+    .header {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: var(--header-spacing);
+
+        .title {
+            font-size: var(--title-font-size);
+            line-height: var(--title-font-size);
+        }
+    }
+
+    .encounters {
+        display: flex;
+        flex-direction: column;
+        gap: var(--encounters-inner-spacing);
+    }
+}
