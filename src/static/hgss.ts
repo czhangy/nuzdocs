@@ -6,16 +6,46 @@ const hgss: GameGroup = {
     pokedex: pokedex.slice(0, 493),
     segments: [
         {
-            slug: "new-bark-town",
-            name: "New Bark Town",
+            type: "location",
+            segment: {
+                slug: "new-bark-town",
+                name: "New Bark Town",
+            },
         },
         {
-            slug: "johto-route-29",
-            name: "Route 29",
+            type: "location",
+            segment: {
+                slug: "johto-route-29",
+                name: "Route 29",
+            },
         },
         {
-            slug: "johto-route-46",
-            name: "Route 46",
+            type: "location",
+            segment: {
+                slug: "johto-route-46",
+                name: "Route 46",
+            },
+        },
+        {
+            type: "location",
+            segment: {
+                slug: "cherrygrove-city",
+                name: "Cherrygrove City",
+            },
+        },
+        {
+            type: "location",
+            segment: {
+                slug: "johto-route-30",
+                name: "Route 30",
+            },
+        },
+        {
+            type: "battle",
+            segment: {
+                slug: "rival-1",
+                name: "Rival 1",
+            },
         },
     ],
     starterSlugs: ["chikorita", "cyndaquil", "totodile"],

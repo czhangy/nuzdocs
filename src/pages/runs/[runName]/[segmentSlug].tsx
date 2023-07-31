@@ -1,5 +1,5 @@
 import SegmentPage from "@/components/SegmentPage/SegmentPage";
-import LocalSegment from "@/models/LocalSegment";
+import Segment from "@/models/Segment";
 import Run from "@/models/Run";
 import games from "@/static/games";
 import { getRun } from "@/utils/utils";
@@ -9,8 +9,17 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const Segment: NextPage = () => {
-    const [run, setRun] = useState<Run | null>(null);
     const router = useRouter();
+
+    // Data state
+    const [run, setRun] = useState<Run | null>(null);
+
+    // Get the segment type for conditional rendering
+    const getSegmentType = (): string => {
+        return games[getRun(router.query.runName as string).gameSlug].gameGroup.segments.find(
+            (segment: Segment) => segment.segment.slug === (router.query.segmentSlug as string)
+        )!.type;
+    };
 
     // Validate route and set run for valid routes, redirect to home for invalid addresses
     useEffect(() => {
@@ -23,7 +32,7 @@ const Segment: NextPage = () => {
                     const run: Run = getRun(runName);
                     if (
                         games[run.gameSlug].gameGroup.segments
-                            .map((segment: LocalSegment) => segment.slug)
+                            .map((segment: Segment) => segment.segment.slug)
                             .includes(router.query.segmentSlug as string)
                     ) {
                         setRun(run);
@@ -41,11 +50,15 @@ const Segment: NextPage = () => {
                 <title>{router.query.runName ? router.query.runName : "NuzlockeDB"}</title>
             </Head>
             {run ? (
-                <SegmentPage
-                    gameSlug={run.gameSlug}
-                    runName={router.query.runName as string}
-                    segmentSlug={router.query.segmentSlug as string}
-                />
+                getSegmentType() === "location" ? (
+                    <SegmentPage
+                        gameSlug={run.gameSlug}
+                        runName={router.query.runName as string}
+                        segmentSlug={router.query.segmentSlug as string}
+                    />
+                ) : (
+                    ""
+                )
             ) : (
                 ""
             )}

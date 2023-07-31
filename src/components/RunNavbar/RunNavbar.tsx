@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar/Navbar";
 import Game from "@/models/Game";
-import LocalSegment from "@/models/LocalSegment";
 import Run from "@/models/Run";
+import Segment from "@/models/Segment";
 import games from "@/static/games";
 import { getRun } from "@/utils/utils";
 import Image from "next/image";
@@ -21,7 +21,7 @@ const RunNavbar: React.FC = () => {
             if (
                 run &&
                 games[run.gameSlug].gameGroup.segments
-                    .map((segment: LocalSegment) => segment.slug)
+                    .map((segment: Segment) => segment.segment.slug)
                     .includes(router.query.segmentSlug as string)
             ) {
                 setGame(games[run.gameSlug]);
