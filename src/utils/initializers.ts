@@ -1,8 +1,9 @@
 import AreaData from "@/models/AreaData";
+import CaughtPokemon from "@/models/CaughtPokemon";
 import EncounterData from "@/models/EncounterData";
 import LocalName from "@/models/LocalName";
-import LocalPokemon from "@/models/LocalPokemon";
 import LocationData from "@/models/LocationData";
+import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import games from "@/static/games";
@@ -17,7 +18,7 @@ export const initRun = (gameSlug: string): Run => {
         encounterList: [],
         caughtPokemonSlugsList: [],
         numDead: 0,
-        numCheckpoints: games[gameSlug].gameGroup.segments.length,
+        numCheckpoints: Object.keys(games[gameSlug].gameGroup.segments).length,
         numCheckpointsCleared: 0,
     };
 };
@@ -37,9 +38,19 @@ export const initPokemonData = (pokemon: LocalName, types: string[], sprite: str
     };
 };
 
-export const initLocalPokemon = (pokemonSlug: string, locationSlug: string): LocalPokemon => {
+export const initPokemon = (slug: string, level: number | null = null): Pokemon => {
+    let pokemon: Pokemon = {
+        slug: slug,
+    };
+    if (level) {
+        pokemon.level = level;
+    }
+    return pokemon;
+};
+
+export const initCaughtPokemon = (pokemon: Pokemon, locationSlug: string): CaughtPokemon => {
     return {
-        pokemonSlug: pokemonSlug,
+        pokemon: pokemon,
         locationSlug: locationSlug,
     };
 };

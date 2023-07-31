@@ -1,4 +1,6 @@
+import Battle from "@/models/Battle";
+
 export default interface BattleSegment {
-    slug: string;
     name: string;
+    battle: Battle;
 }

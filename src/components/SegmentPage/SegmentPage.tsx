@@ -2,7 +2,6 @@ import BattlePage from "@/components/BattlePage/BattlePage";
 import LocationPage from "@/components/LocationPage/LocationPage";
 import SegmentNav from "@/components/SegmentNav/SegmentNav";
 import Run from "@/models/Run";
-import Segment from "@/models/Segment";
 import games from "@/static/games";
 import { getRun } from "@/utils/utils";
 import { useEffect } from "react";
@@ -17,9 +16,7 @@ type Props = {
 const SegmentPage: React.FC<Props> = (props) => {
     // Get the segment type for conditional rendering
     const getSegmentType = (): string => {
-        return games[props.gameSlug].gameGroup.segments.find(
-            (segment: Segment) => segment.segment.slug === (props.segmentSlug as string)
-        )!.type;
+        return games[props.gameSlug].gameGroup.segments[props.segmentSlug].type;
     };
 
     useEffect(() => {

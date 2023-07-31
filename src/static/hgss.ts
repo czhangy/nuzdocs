@@ -1,53 +1,49 @@
 import GameGroup from "@/models/GameGroup";
+import battles from "@/static/battles";
 import pokedex from "@/static/pokedex";
 
 const hgss: GameGroup = {
     versionGroup: "heartgold-soulsilver",
     pokedex: pokedex.slice(0, 493),
-    segments: [
-        {
+    segments: {
+        "new-bark-town": {
             type: "location",
             segment: {
-                slug: "new-bark-town",
                 name: "New Bark Town",
             },
         },
-        {
+        "johto-route-29": {
             type: "location",
             segment: {
-                slug: "johto-route-29",
                 name: "Route 29",
             },
         },
-        {
+        "johto-route-46": {
             type: "location",
             segment: {
-                slug: "johto-route-46",
                 name: "Route 46",
             },
         },
-        {
+        "cherrygrove-city": {
             type: "location",
             segment: {
-                slug: "cherrygrove-city",
                 name: "Cherrygrove City",
             },
         },
-        {
+        "johto-route-30": {
             type: "location",
             segment: {
-                slug: "johto-route-30",
                 name: "Route 30",
             },
         },
-        {
+        "rival-1": {
             type: "battle",
             segment: {
-                slug: "rival-1",
                 name: "Rival 1",
+                battle: battles["heartgold-soulsilver"].rival_1,
             },
         },
-    ],
+    },
     starterSlugs: ["chikorita", "cyndaquil", "totodile"],
     startingTownSlug: "new-bark-town",
     ignoredConditions: ["radio-off"],

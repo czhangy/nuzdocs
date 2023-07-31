@@ -1,9 +1,9 @@
+import CaughtPokemon from "@/models/CaughtPokemon";
 import LocalName from "@/models/LocalName";
-import LocalPokemon from "@/models/LocalPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import { fetchPokemon } from "@/utils/api";
-import { initLocalName, initLocalPokemon } from "@/utils/initializers";
+import { initCaughtPokemon, initLocalName, initPokemon } from "@/utils/initializers";
 import { getRun } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -51,9 +51,9 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     const saveEncounter = (pokemonSlug: string) => {
         const run: Run = getRun(props.runName);
         run.encounterList = run.encounterList.filter(
-            (encounter: LocalPokemon) => encounter.locationSlug !== props.locationSlug
+            (encounter: CaughtPokemon) => encounter.locationSlug !== props.locationSlug
         );
-        run.encounterList.push(initLocalPokemon(pokemonSlug, props.locationSlug));
+        run.encounterList.push(initCaughtPokemon(initPokemon(pokemonSlug), props.locationSlug));
         localStorage.setItem(props.runName, JSON.stringify(run));
     };
 
@@ -61,7 +61,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     const removeEncounter = () => {
         const run: Run = getRun(props.runName);
         run.encounterList = run.encounterList.filter(
-            (encounter: LocalPokemon) => encounter.locationSlug !== props.locationSlug
+            (encounter: CaughtPokemon) => encounter.locationSlug !== props.locationSlug
         );
         localStorage.setItem(props.runName, JSON.stringify(run));
     };
@@ -87,15 +87,15 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (props.runName && props.locationSlug) {
             const run: Run = getRun(props.runName);
-            const currentEncounter: LocalPokemon[] = run.encounterList.filter(
-                (encounter: LocalPokemon) => encounter.locationSlug === props.locationSlug
+            const currentEncounter: CaughtPokemon[] = run.encounterList.filter(
+                (encounter: CaughtPokemon) => encounter.locationSlug === props.locationSlug
             );
             if (currentEncounter.length === 0) {
                 updateEncounter(null);
-            } else if (currentEncounter[0].pokemonSlug === "failed") {
+            } else if (currentEncounter[0].pokemon.slug === "failed") {
                 updateEncounter(initLocalName("failed", "Failed"));
             } else {
-                fetchPokemon(currentEncounter[0].pokemonSlug).then((pokemon) => {
+                fetchPokemon(currentEncounter[0].pokemon.slug).then((pokemon: PokemonData) => {
                     updateEncounter(pokemon.pokemon);
                 });
             }

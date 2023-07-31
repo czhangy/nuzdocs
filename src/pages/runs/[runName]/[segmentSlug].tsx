@@ -1,5 +1,4 @@
 import SegmentPage from "@/components/SegmentPage/SegmentPage";
-import Segment from "@/models/Segment";
 import Run from "@/models/Run";
 import games from "@/static/games";
 import { getRun } from "@/utils/utils";
@@ -24,9 +23,7 @@ const Segment: NextPage = () => {
                 if (runList.includes(runName)) {
                     const run: Run = getRun(runName);
                     if (
-                        games[run.gameSlug].gameGroup.segments
-                            .map((segment: Segment) => segment.segment.slug)
-                            .includes(router.query.segmentSlug as string)
+                        Object.keys(games[run.gameSlug].gameGroup.segments).includes(router.query.segmentSlug as string)
                     ) {
                         setRun(run);
                         return;

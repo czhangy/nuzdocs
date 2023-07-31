@@ -1,9 +1,10 @@
+import CaughtPokemon from "@/models/CaughtPokemon";
 import GameGroup from "@/models/GameGroup";
-import LocalPokemon from "@/models/LocalPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import colors from "@/static/colors";
 import { fetchPokemonGroup } from "@/utils/api";
+import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import { getPokemonTier, getRun } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -54,10 +55,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                     break;
                 }
             }
-            const starter: LocalPokemon = {
-                pokemonSlug: slug,
-                locationSlug: "starter",
-            };
+            const starter: CaughtPokemon = initCaughtPokemon(initPokemon(slug, 5), "starter");
             run.encounterList.push(starter);
             run.caughtPokemonSlugsList.push(slug);
             localStorage.setItem(props.runName, JSON.stringify(run));

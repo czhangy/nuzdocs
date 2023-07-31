@@ -1,4 +1,5 @@
 import styles from "./BattlePage.module.scss";
+import games from "@/static/games";
 
 type Props = {
     gameSlug: string;

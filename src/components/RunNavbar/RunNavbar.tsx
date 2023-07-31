@@ -20,9 +20,7 @@ const RunNavbar: React.FC = () => {
             const run: Run = getRun(router.query.runName as string);
             if (
                 run &&
-                games[run.gameSlug].gameGroup.segments
-                    .map((segment: Segment) => segment.segment.slug)
-                    .includes(router.query.segmentSlug as string)
+                Object.keys(games[run.gameSlug].gameGroup.segments).includes(router.query.segmentSlug as string)
             ) {
                 setGame(games[run.gameSlug]);
             }
