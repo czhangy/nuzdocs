@@ -5,8 +5,7 @@ export default interface Run {
     prevLocationSlug: string;
     starterSlug: string;
     encounterList: CaughtPokemon[];
-    caughtPokemonSlugsList: string[];
     numDead: number;
-    numCheckpoints: number;
-    numCheckpointsCleared: number;
+    numBattles: number;
+    battlesCleared: string[];
 }

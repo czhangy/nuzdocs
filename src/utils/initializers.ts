@@ -11,15 +11,20 @@ import { getEnglishName } from "@/utils/utils";
 import { Name } from "pokenode-ts";
 
 export const initRun = (gameSlug: string): Run => {
+    let numBattles = 0;
+    for (let key of Object.keys(games[gameSlug].gameGroup.segments)) {
+        if (games[gameSlug].gameGroup.segments[key].type === "battle") {
+            numBattles++;
+        }
+    }
     return {
         gameSlug: gameSlug,
         prevLocationSlug: games[gameSlug].gameGroup.startingTownSlug,
         starterSlug: "",
         encounterList: [],
-        caughtPokemonSlugsList: [],
         numDead: 0,
-        numCheckpoints: Object.keys(games[gameSlug].gameGroup.segments).length,
-        numCheckpointsCleared: 0,
+        numBattles: numBattles,
+        battlesCleared: [],
     };
 };
 

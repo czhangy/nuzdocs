@@ -57,7 +57,6 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
             }
             const starter: CaughtPokemon = initCaughtPokemon(initPokemon(slug, 5), "starter");
             run.encounterList.push(starter);
-            run.caughtPokemonSlugsList.push(slug);
             localStorage.setItem(props.runName, JSON.stringify(run));
         }
     }, [selectedStarter]);

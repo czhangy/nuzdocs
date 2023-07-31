@@ -37,7 +37,9 @@ const SegmentPage: React.FC<Props> = (props) => {
                 <LocationPage gameSlug={props.gameSlug} runName={props.runName} segmentSlug={props.segmentSlug} />
             ) : (
                 <BattlePage
+                    battleSlug={props.segmentSlug}
                     segment={games[props.gameSlug].gameGroup.segments[props.segmentSlug].segment as BattleSegment}
+                    runName={props.runName}
                 />
             )}
         </div>

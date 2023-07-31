@@ -20,6 +20,10 @@
         width: var(--sprite-size);
     }
 
+    .defeated {
+        filter: grayscale(100%);
+    }
+
     .info {
         .name {
             font-size: var(--name-font-size);
