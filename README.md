@@ -112,6 +112,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Major fights
 -   [ ] Progress tracking
 -   [ ] Duplicate detection
+-   [ ] Deaths
 -   [ ] Box view
 -   [ ] Pokemon data
 -   [ ] Evolutions
@@ -119,6 +120,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Tier list page
 -   [ ] Game data
 -   [ ] Game select
+-   [ ] Time of day encounter filter
 -   [ ] Coverage calculator
 -   [ ] Damage calculator
 
