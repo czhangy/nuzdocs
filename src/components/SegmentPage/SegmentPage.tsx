@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import styles from "./SegmentPage.module.scss";
 import { getRun } from "@/utils/utils";
 import Run from "@/models/Run";
+import Segment from "@/models/Segment";
+import LocationPage from "@/components/LocationPage/LocationPage";
 
 type Props = {
     gameSlug: string;
@@ -17,15 +19,18 @@ type Props = {
 };
 
 const SegmentPage: React.FC<Props> = (props) => {
-    // States to track location areas
-    const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
-
-    // Get data associated with current location on page load
-    useEffect(() => {
-        if (props.segmentSlug) {
-            fetchLocation(props.segmentSlug).then((location) => setCurrentLocation(location));
-        }
-    }, [props.segmentSlug]);
+    // Get the name of the current segment
+    const getSegmentName = (): string => {
+        return games[props.gameSlug].gameGroup.segments.find(
+            (segment: Segment) => segment.segment.slug === (props.segmentSlug as string)
+        )!.segment.name;
+    };
+    // Get the segment type for conditional rendering
+    const getSegmentType = (): string => {
+        return games[props.gameSlug].gameGroup.segments.find(
+            (segment: Segment) => segment.segment.slug === (props.segmentSlug as string)
+        )!.type;
+    };
 
     useEffect(() => {
         const run: Run = getRun(props.runName);
@@ -35,41 +40,12 @@ const SegmentPage: React.FC<Props> = (props) => {
 
     return (
         <div className={styles["segment-page"]}>
-            <SegmentNav segments={games[props.gameSlug].gameGroup.segments} segmentSlug={props.segmentSlug} />
-            {currentLocation ? (
-                <div className={styles.info}>
-                    <h2 className={styles["location-name"]}>{currentLocation.locationName}</h2>
-                    {props.segmentSlug === games[props.gameSlug].gameGroup.startingTownSlug ? (
-                        <section className={styles.section}>
-                            <StarterSelect
-                                runName={props.runName}
-                                starterSlugsList={games[props.gameSlug].gameGroup.starterSlugs}
-                                gameGroup={games[props.gameSlug].gameGroup}
-                            />
-                        </section>
-                    ) : (
-                        ""
-                    )}
-                    <section className={styles.section}>
-                        {currentLocation ? (
-                            <EncounterList
-                                currentLocation={currentLocation}
-                                gameSlug={props.gameSlug}
-                                segmentSlug={props.segmentSlug}
-                            />
-                        ) : (
-                            ""
-                        )}
-                    </section>
-                </div>
-            ) : (
-                ""
-            )}
-            <EncounterDisplay
-                pokedex={games[props.gameSlug].gameGroup.pokedex}
+            <SegmentNav
+                segments={games[props.gameSlug].gameGroup.segments}
+                segmentSlug={props.segmentSlug}
                 runName={props.runName}
-                locationSlug={props.segmentSlug}
             />
+            <LocationPage gameSlug={props.gameSlug} runName={props.runName} segmentSlug={props.segmentSlug} />
         </div>
     );
 };

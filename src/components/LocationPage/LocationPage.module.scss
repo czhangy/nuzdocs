@@ -1,0 +1,20 @@
+@use "@/styles/constants";
+
+.location-page {
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--info-inner-spacing);
+        max-width: constants.$max-width;
+        margin-bottom: var(--bottom-spacing);
+        min-height: calc(100vh - constants.$mobile-navbar-height);
+        width: 100%;
+
+        .location-name {
+            font-size: var(--location-font-size);
+            font-weight: bold;
+            letter-spacing: var(--location-font-spacing);
+            text-align: center;
+        }
+    }
+}

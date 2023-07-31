@@ -14,13 +14,6 @@ const Segment: NextPage = () => {
     // Data state
     const [run, setRun] = useState<Run | null>(null);
 
-    // Get the segment type for conditional rendering
-    const getSegmentType = (): string => {
-        return games[getRun(router.query.runName as string).gameSlug].gameGroup.segments.find(
-            (segment: Segment) => segment.segment.slug === (router.query.segmentSlug as string)
-        )!.type;
-    };
-
     // Validate route and set run for valid routes, redirect to home for invalid addresses
     useEffect(() => {
         if (router.query.runName && router.query.segmentSlug) {
@@ -50,15 +43,11 @@ const Segment: NextPage = () => {
                 <title>{router.query.runName ? router.query.runName : "NuzlockeDB"}</title>
             </Head>
             {run ? (
-                getSegmentType() === "location" ? (
-                    <SegmentPage
-                        gameSlug={run.gameSlug}
-                        runName={router.query.runName as string}
-                        segmentSlug={router.query.segmentSlug as string}
-                    />
-                ) : (
-                    ""
-                )
+                <SegmentPage
+                    gameSlug={run.gameSlug}
+                    runName={router.query.runName as string}
+                    segmentSlug={router.query.segmentSlug as string}
+                />
             ) : (
                 ""
             )}
