@@ -1,5 +1,11 @@
-const tiers: { [key: string]: { [versionGroup: string]: string } } = {
+const tiers: { [versionGroup: string]: { [pokemonSlug: string]: string } } = {
     "heartgold-soulsilver": {
+        chikorita: "B",
+        bayleef: "B",
+        meganium: "B",
+        cyndaquil: "B",
+        quilava: "B",
+        typhlosion: "B",
         totodile: "S",
         croconaw: "S",
         feraligatr: "S",

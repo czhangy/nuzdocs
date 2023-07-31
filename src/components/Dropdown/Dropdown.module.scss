@@ -1,20 +1,19 @@
 @use "@/styles/constants";
 
 .dropdown {
-    --arrow-spacing: 1rem;
+    --arrow-spacing: 0.5rem;
     --border-radius: 5px;
     --border-size: 2px;
     --chevron-size: 12px;
-    --font-size: 1.2rem;
+    --font-size: 1rem;
+    --max-width: 175px;
     --menu-height: 300px;
     --menu-offset: -2px;
     --menu-spacing: 3.5rem;
     --overlay-z: 100;
-    --scrollbar-border: 2px;
-    --scrollbar-radius: 20px;
-    --scrollbar-width: 4px;
+    --right-padding: 2rem;
     --transition-time: 0.2s;
-    --x-padding: 3rem;
+    --x-padding: 1rem;
     --y-padding: 0.5rem;
 
     display: flex;
@@ -38,9 +37,16 @@
         cursor: pointer;
         display: flex;
         padding: var(--y-padding) var(--x-padding);
+        padding-right: var(--right-padding);
+        position: relative;
+        width: var(--max-width);
 
         .display {
             font-size: var(--font-size);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
         }
 
         .arrow {
@@ -83,16 +89,11 @@
         pointer-events: none;
         transform: translateY(var(--menu-offset));
     }
+}
 
-    ::-webkit-scrollbar {
-        background: constants.$bg-color;
-        width: calc(var(--scrollbar-width) + 2 * var(--scrollbar-border));
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: constants.$text-color;
-        border: var(--scrollbar-border) solid constants.$bg-color;
-        border-radius: var(--scrollbar-radius);
+@media screen and (min-width: constants.$tablet) {
+    .dropdown {
+        --max-width: none;
     }
 }
 

@@ -2,7 +2,6 @@
 
 .encounter-accordion {
     --accordion-transition-time: 0.3s;
-    --accordion-width: 350px;
     --accordion-x-padding: 2rem;
     --accordion-y-padding: 1.5rem;
     --arrow-size: 12px;
@@ -18,17 +17,14 @@
     --name-font-size: 1rem;
     --pokemon-inner-spacing: 0.25rem;
     --sprite-size: 90px;
-    --tier-border-rad: 2px;
-    --tier-font-size: 0.8rem;
-    --tier-size: 1.5rem;
-    --type-ratio: 8/3;
     --type-height: 12px;
+    --type-ratio: 8/3;
     --types-inner-spacing: 4px;
 
     max-height: calc(var(--method-font-size) + 2 * var(--accordion-y-padding));
     overflow-y: hidden;
     transition: max-height var(--accordion-transition-time);
-    width: var(--accordion-width);
+    width: 100%;
 
     .header {
         align-items: center;
@@ -103,18 +99,6 @@
                         }
                     }
                 }
-
-                .tier {
-                    align-items: center;
-                    border-radius: var(--tier-border-rad);
-                    display: flex;
-                    font-size: var(--tier-font-size);
-                    font-weight: bold;
-                    height: var(--tier-size);
-                    justify-content: center;
-                    margin: 0 auto;
-                    width: var(--tier-size);
-                }
             }
 
             &:last-child {
@@ -128,13 +112,10 @@
 
 @media screen and (min-width: constants.$tablet) {
     .encounter-accordion {
-        --accordion-width: 750px;
         --cell-font-size: 1.2rem;
         --cell-x-padding: 3rem;
         --name-font-size: 1.2rem;
         --sprite-size: 100px;
-        --tier-font-size: 1.2rem;
-        --tier-size: 2rem;
     }
 }
 

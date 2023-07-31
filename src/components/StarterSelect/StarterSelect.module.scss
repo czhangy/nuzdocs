@@ -1,81 +1,101 @@
 @use "@/styles/constants";
 
 .starter-select {
-    --name-size: 1.7rem;
-    --sprite-size: 120px;
+    --button-padding: 0.4rem;
+    --header-inner-spacing: 1rem;
+    --icon-size: 20px;
+    --info-inner-spacing: 0.2rem;
     --inner-spacing: 1rem;
+    --name-font-size: 1.25rem;
+    --sprite-left-offset: -2rem;
+    --sprite-right-offset: -1.5rem;
+    --sprite-size: 150px;
+    --title-font-size: 1.5rem;
+    --top-inner-spacing: 0.5rem;
+    --type-height: 12px;
+    --type-ratio: 8/3;
+    --type-select-inner-spacing: 1rem;
+    --types-inner-spacing: 4px;
 
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: var(--inner-spacing);
-    justify-content: center;
+    width: 100%;
 
     .header {
-        font-size: 1.7rem;
-    }
-
-    .starter-list {
         align-items: center;
         display: flex;
-        gap: 1rem;
-        justify-content: center;
+        gap: var(--header-inner-spacing);
 
-        .starter {
-            .select-button {
-                align-items: center;
-                border: 2px solid constants.$text-color;
-                border-radius: 10px;
-                display: flex;
-                justify-content: center;
-                width: 100%;
+        .title {
+            font-size: var(--title-font-size);
+            line-height: var(--title-font-size);
+        }
 
-                .sprite {
-                    height: var(--sprite-size);
-                    margin: -1rem;
+        .type-select {
+            display: flex;
+            gap: var(--type-select-inner-spacing);
+
+            .button {
+                background-color: constants.$disabled-color;
+                border-radius: 50%;
+                overflow: hidden;
+                padding: var(--button-padding);
+
+                .icon {
+                    filter: constants.$svg-color;
+                    height: var(--icon-size);
                     position: relative;
-                    width: var(--sprite-size);
+                    width: var(--icon-size);
                 }
             }
         }
-
-        .selected > .select-button {
-            background-color: constants.$accent-color;
-            border-color: constants.$hover-color;
-        }
     }
-}
 
-@media screen and (min-width: constants.$tablet) {
-    .starter-select {
-        --component-spacing: 4rem;
-        --sprite-size: 160px;
-        --inner-spacing: 2rem;
+    .starter {
+        align-items: center;
+        display: flex;
+
+        .sprite {
+            height: var(--sprite-size);
+            margin-left: var(--sprite-left-offset);
+            margin-right: var(--sprite-right-offset);
+            position: relative;
+            width: var(--sprite-size);
+        }
+
+        .info {
+            .top {
+                align-items: center;
+                display: flex;
+                gap: var(--top-inner-spacing);
+                margin-bottom: var(--info-inner-spacing);
+
+                .name {
+                    font-size: var(--name-font-size);
+                }
+            }
+
+            .types {
+                display: flex;
+                gap: var(--types-inner-spacing);
+
+                .type {
+                    height: var(--type-height);
+                    position: relative;
+                    width: calc(var(--type-height) * var(--type-ratio));
+                }
+            }
+        }
     }
 }
 
 @media (hover: hover) {
-    .starter-select > .starter-list > .starter:hover > .select-button > .sprite {
-        animation: shake 1s;
-        animation-iteration-count: infinite;
-    }
-}
+    .starter-select > .header > .type-select .button:hover {
+        background-color: constants.$text-color;
 
-// https://unused-css.com/blog/css-shake-animation/
-@keyframes shake {
-    0% {
-        transform: translate(0, 0) rotate(0deg);
-    }
-    25% {
-        transform: translate(5px, 5px) rotate(5deg);
-    }
-    50% {
-        transform: translate(0, 0) rotate(0eg);
-    }
-    75% {
-        transform: translate(-5px, 5px) rotate(-5deg);
-    }
-    100% {
-        transform: translate(0, 0) rotate(0deg);
+        .icon {
+            filter: constants.$svg-disabled-color;
+        }
     }
 }

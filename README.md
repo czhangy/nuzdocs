@@ -112,6 +112,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Major fights
 -   [ ] Progress tracking
 -   [ ] Duplicate detection
+-   [ ] Deaths
 -   [ ] Box view
 -   [ ] Pokemon data
 -   [ ] Evolutions
@@ -119,6 +120,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Tier list page
 -   [ ] Game data
 -   [ ] Game select
+-   [ ] Time of day encounter filter
 -   [ ] Coverage calculator
 -   [ ] Damage calculator
 
@@ -150,6 +152,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 -   [Nuzlocke Tracker](https://nuzlocke.app/)
 -   [PokéAPI](https://pokeapi.co/)
 -   [Pokémon Database](https://pokemondb.net/)
+-   [pokemon-type-svg-icons](https://github.com/duiker101/pokemon-type-svg-icons)
 -   [pokenode-ts](https://github.com/Gabb-c/pokenode-ts)
 -   [Serebii](https://www.serebii.net/)
 -   [Shields.io](https://shields.io/)

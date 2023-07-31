@@ -2,62 +2,37 @@
 
 .segment-page {
     --bottom-spacing: 10rem;
-    --header-font-size: 1.7rem;
-    --section-inner-spacing: 2rem;
-    --section-spacing: 2rem;
-    --title-font-size: 2rem;
-    --title-font-spacing: 2px;
+    --info-inner-spacing: 4rem;
+    --location-font-size: 2rem;
+    --location-font-spacing: 2px;
+    --page-width: 350px;
     --top-spacing: 2rem;
 
     padding-top: var(--top-spacing);
     position: relative;
-    width: 100%;
+    width: var(--page-width);
 
-    .nav-button {
-        position: absolute;
-    }
-
-    .run-info {
-        margin-bottom: var(--bottom-spacing);
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--info-inner-spacing);
         max-width: constants.$max-width;
+        margin-bottom: var(--bottom-spacing);
         min-height: calc(100vh - constants.$mobile-navbar-height);
         width: 100%;
 
         .location-name {
-            font-size: var(--title-font-size);
+            font-size: var(--location-font-size);
             font-weight: bold;
-            letter-spacing: var(--title-font-spacing);
+            letter-spacing: var(--location-font-spacing);
             text-align: center;
-        }
-
-        .section {
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-            gap: var(--section-inner-spacing);
-            margin: var(--section-spacing) 0;
-
-            .header {
-                font-size: var(--header-font-size);
-                line-height: var(--header-font-size);
-            }
         }
     }
 }
 
 @media screen and (min-width: constants.$tablet) {
-    .run-page {
+    .segment-page {
+        --page-width: 750px;
         --title-font-size: 2.5rem;
-
-        .run-info {
-            min-height: calc(100vh - constants.$navbar-height);
-        }
-    }
-}
-
-@media screen and (min-width: constants.$max-width) {
-    .run-page > .sticky-info {
-        // Account for max size
-        margin-left: calc((100vw - constants.$max-width) / -2 - constants.$page-padding);
     }
 }

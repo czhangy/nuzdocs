@@ -1,11 +1,11 @@
+import TierCard from "@/components/TierCard/TierCard";
 import EncounterData from "@/models/EncounterData";
 import PokemonData from "@/models/PokemonData";
-import colors from "@/static/colors";
+import { fetchPokemonGroup } from "@/utils/api";
 import { getPokemonTier } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterAccordion.module.scss";
-import { fetchPokemonGroup } from "@/utils/api";
 
 type Props = {
     method: string;
@@ -102,14 +102,7 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
                                     <td className={styles.cell}>{props.encounters[key].chance}%</td>
                                     <td className={styles.cell}>{getLevelRange(props.encounters[key])}</td>
                                     <td className={styles.cell}>
-                                        {
-                                            <div
-                                                className={styles.tier}
-                                                style={{ backgroundColor: colors.tiers[tier] }}
-                                            >
-                                                {tier}
-                                            </div>
-                                        }
+                                        <TierCard tier={tier} />
                                     </td>
                                 </tr>
                             );

@@ -13,6 +13,10 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Accordion arrow icon is loading too slow",
             group: "General",
         },
+        {
+            desc: "SegmentNav exposes itself by overlapping with the location name in SegmentPage",
+            group: "General",
+        },
     ],
 };
 
