@@ -24,4 +24,5 @@ $tablet: 768px;
 
 // Misc. colors
 $error-color: red;
-$disabled-color: rgb(63, 63, 63);
+$disabled-color: #3f3f3f;
+$svg-disabled-color: invert(19%) sepia(0%) saturate(139%) hue-rotate(222deg) brightness(100%) contrast(82%);

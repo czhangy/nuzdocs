@@ -78,6 +78,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                                         selectedStarter && starter === selectedStarter
                                             ? {
                                                   backgroundColor: colors.types[selectedStarter.types[0]],
+                                                  pointerEvents: "none",
                                               }
                                             : {}
                                     }

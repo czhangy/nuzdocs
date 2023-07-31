@@ -43,6 +43,7 @@
                 padding: var(--button-padding);
 
                 .icon {
+                    filter: constants.$svg-color;
                     height: var(--icon-size);
                     position: relative;
                     width: var(--icon-size);
@@ -91,6 +92,10 @@
 
 @media (hover: hover) {
     .starter-select > .header > .type-select .button:hover {
-        background-color: constants.$hover-color;
+        background-color: constants.$text-color;
+
+        .icon {
+            filter: constants.$svg-disabled-color;
+        }
     }
 }
