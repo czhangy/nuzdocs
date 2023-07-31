@@ -1,12 +1,11 @@
-import styles from "./LocationPage.module.scss";
-import { useState } from "react";
-import { useEffect } from "react";
-import LocationData from "@/models/LocationData";
-import { fetchLocation } from "@/utils/api";
-import games from "@/static/games";
-import StarterSelect from "@/components/StarterSelect/StarterSelect";
-import EncounterList from "@/components/EncounterList/EncounterList";
 import EncounterDisplay from "@/components/EncounterDisplay/EncounterDisplay";
+import EncounterList from "@/components/EncounterList/EncounterList";
+import StarterSelect from "@/components/StarterSelect/StarterSelect";
+import LocationData from "@/models/LocationData";
+import games from "@/static/games";
+import { fetchLocation } from "@/utils/api";
+import { useEffect, useState } from "react";
+import styles from "./LocationPage.module.scss";
 
 type Props = {
     gameSlug: string;

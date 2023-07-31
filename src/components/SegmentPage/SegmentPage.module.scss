@@ -5,6 +5,7 @@
     --top-spacing: 2rem;
 
     margin-top: var(--top-spacing);
+    min-height: calc(100vh - constants.$mobile-navbar-height - var(--top-spacing));
     position: relative;
     width: var(--page-width);
 }

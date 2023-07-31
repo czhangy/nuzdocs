@@ -1,16 +1,12 @@
-import EncounterDisplay from "@/components/EncounterDisplay/EncounterDisplay";
-import EncounterList from "@/components/EncounterList/EncounterList";
+import BattlePage from "@/components/BattlePage/BattlePage";
+import LocationPage from "@/components/LocationPage/LocationPage";
 import SegmentNav from "@/components/SegmentNav/SegmentNav";
-import StarterSelect from "@/components/StarterSelect/StarterSelect";
-import LocationData from "@/models/LocationData";
-import games from "@/static/games";
-import { fetchLocation } from "@/utils/api";
-import { useEffect, useState } from "react";
-import styles from "./SegmentPage.module.scss";
-import { getRun } from "@/utils/utils";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
-import LocationPage from "@/components/LocationPage/LocationPage";
+import games from "@/static/games";
+import { getRun } from "@/utils/utils";
+import { useEffect } from "react";
+import styles from "./SegmentPage.module.scss";
 
 type Props = {
     gameSlug: string;
@@ -19,12 +15,6 @@ type Props = {
 };
 
 const SegmentPage: React.FC<Props> = (props) => {
-    // Get the name of the current segment
-    const getSegmentName = (): string => {
-        return games[props.gameSlug].gameGroup.segments.find(
-            (segment: Segment) => segment.segment.slug === (props.segmentSlug as string)
-        )!.segment.name;
-    };
     // Get the segment type for conditional rendering
     const getSegmentType = (): string => {
         return games[props.gameSlug].gameGroup.segments.find(
@@ -45,7 +35,11 @@ const SegmentPage: React.FC<Props> = (props) => {
                 segmentSlug={props.segmentSlug}
                 runName={props.runName}
             />
-            <LocationPage gameSlug={props.gameSlug} runName={props.runName} segmentSlug={props.segmentSlug} />
+            {getSegmentType() === "location" ? (
+                <LocationPage gameSlug={props.gameSlug} runName={props.runName} segmentSlug={props.segmentSlug} />
+            ) : (
+                <BattlePage gameSlug={props.gameSlug} segmentSlug={props.segmentSlug} />
+            )}
         </div>
     );
 };
