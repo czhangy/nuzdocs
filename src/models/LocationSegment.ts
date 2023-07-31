@@ -1,3 +1,1 @@
-export default interface LocationSegment {
-    name: string;
-}
+export default interface LocationSegment {}

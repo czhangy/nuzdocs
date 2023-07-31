@@ -7,39 +7,34 @@ const hgss: GameGroup = {
     pokedex: pokedex.slice(0, 493),
     segments: {
         "new-bark-town": {
+            name: "New Bark Town",
             type: "location",
-            segment: {
-                name: "New Bark Town",
-            },
+            segment: {},
         },
         "johto-route-29": {
+            name: "Route 29",
             type: "location",
-            segment: {
-                name: "Route 29",
-            },
+            segment: {},
         },
         "johto-route-46": {
+            name: "Route 46",
             type: "location",
-            segment: {
-                name: "Route 46",
-            },
+            segment: {},
         },
         "cherrygrove-city": {
+            name: "Cherrygrove City",
             type: "location",
-            segment: {
-                name: "Cherrygrove City",
-            },
+            segment: {},
         },
         "johto-route-30": {
+            name: "Route 30",
             type: "location",
-            segment: {
-                name: "Route 30",
-            },
+            segment: {},
         },
         "rival-1": {
+            name: "Rival 1",
             type: "battle",
             segment: {
-                name: "Rival 1",
                 battle: battles["heartgold-soulsilver"].rival_1,
             },
         },

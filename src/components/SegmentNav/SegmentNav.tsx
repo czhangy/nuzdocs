@@ -22,7 +22,7 @@ const SegmentNav: React.FC<Props> = (props: Props) => {
 
     // Returns the name at a given index of segments for nav display
     const getNameAtIndex = (idx: number): string => {
-        return props.segments[Object.keys(props.segments)[idx]].segment.name;
+        return props.segments[Object.keys(props.segments)[idx]].name;
     };
 
     return (
@@ -43,7 +43,7 @@ const SegmentNav: React.FC<Props> = (props: Props) => {
                     ""
                 )}
             </nav>
-            <h2 className={styles.header}>{props.segments[props.segmentSlug].segment.name}</h2>
+            <h2 className={styles.header}>{props.segments[props.segmentSlug].name}</h2>
         </div>
     );
 };
