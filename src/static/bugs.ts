@@ -3,6 +3,10 @@ import Bug from "@/models/Bug";
 const bugs: { [priority: string]: Bug[] } = {
     High: [
         {
+            desc: "Encounter conditions are blowing up",
+            group: "HeartGold/SoulSilver",
+        },
+        {
             desc: "Headbutt encounters are missing",
             group: "HeartGold/SoulSilver",
             link: "https://github.com/czhangy/nuzlocke-db/issues/25",
@@ -14,7 +18,7 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "General",
         },
         {
-            desc: "SegmentNav exposes itself by overlapping with the location name in SegmentPage",
+            desc: "Navigation on segment pages exposes itself by overlapping segment names",
             group: "General",
         },
     ],
