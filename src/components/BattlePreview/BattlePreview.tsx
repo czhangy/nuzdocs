@@ -1,11 +1,11 @@
-import Battle from "@/models/Battle";
+import Trainer from "@/models/Trainer";
 import { completeBattle, getRun, resetBattle } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./BattlePreview.module.scss";
 
 type Props = {
-    battle: Battle;
+    trainer: Trainer;
     battleSlug: string;
     runName: string;
 };
@@ -39,15 +39,10 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["battle-preview"]}>
             <div className={`${styles.sprite} ${defeated ? styles.defeated : ""}`}>
-                <Image
-                    src={props.battle.trainer.sprite}
-                    alt={props.battle.trainer.name}
-                    layout="fill"
-                    objectFit="contain"
-                />
+                <Image src={props.trainer.sprite} alt={props.trainer.name} layout="fill" objectFit="contain" />
             </div>
             <div className={styles.info}>
-                <p className={styles.name}>{props.battle.trainer.name}</p>
+                <p className={styles.name}>{props.trainer.name}</p>
                 <div className={styles.buttons}>
                     <button className={styles.defeat} onClick={handleDefeat} disabled={defeated}>
                         {defeated ? "Defeated!" : "Defeat!"}

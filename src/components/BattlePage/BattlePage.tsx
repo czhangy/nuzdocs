@@ -11,7 +11,11 @@ type Props = {
 const BattlePage: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["battle-page"]}>
-            <BattlePreview battle={props.segment.battle} battleSlug={props.battleSlug} runName={props.runName} />
+            <BattlePreview
+                trainer={props.segment.battle.trainer}
+                battleSlug={props.battleSlug}
+                runName={props.runName}
+            />
         </div>
     );
 };
