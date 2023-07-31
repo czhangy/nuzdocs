@@ -1,0 +1,46 @@
+@use "@/styles/constants";
+
+.battle-preview {
+    --button-border-radius: 5px;
+    --button-font-size: 1rem;
+    --button-x-padding: 1.25rem;
+    --button-y-padding: 0.5rem;
+    --info-inner-spacing: 0.5rem;
+    --name-font-size: 1.5rem;
+    --sprite-size: 120px;
+
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+
+    .sprite {
+        height: var(--sprite-size);
+        position: relative;
+        width: var(--sprite-size);
+    }
+
+    .info {
+        .name {
+            font-size: var(--name-font-size);
+            line-height: var(--name-font-size);
+            margin-bottom: var(--info-inner-spacing);
+        }
+
+        .defeat {
+            background-color: constants.$text-color;
+            border-radius: var(--button-border-radius);
+            color: constants.$bg-color;
+            font-size: var(--button-font-size);
+            font-weight: bold;
+            padding: var(--button-y-padding) var(--button-x-padding);
+        }
+    }
+}
+
+@media (hover: hover) {
+    .battle-preview > .info > .defeat:hover {
+        background-color: constants.$hover-color;
+        color: constants.$text-color;
+    }
+}
