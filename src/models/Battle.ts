@@ -4,4 +4,5 @@ import Pokemon from "@/models/Pokemon";
 export default interface Battle {
     trainer: Trainer;
     team: Pokemon[];
+    levelCap?: number;
 }

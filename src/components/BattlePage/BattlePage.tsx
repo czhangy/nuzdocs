@@ -30,7 +30,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
 
     return battle ? (
         <div className={styles["battle-page"]}>
-            <BattlePreview trainer={battle.trainer} battleSlug={props.battleSlug} runName={props.runName} />
+            <BattlePreview battle={battle} battleSlug={props.battleSlug} runName={props.runName} />
             <div className={styles.team}>
                 {battle.team.map((pokemon: Pokemon) => (
                     <PokemonCard pokemon={pokemon} />

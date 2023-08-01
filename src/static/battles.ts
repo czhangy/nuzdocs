@@ -3,8 +3,8 @@ import trainers from "@/static/trainers";
 
 const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
     "heartgold-soulsilver": {
-        rival_1_chikorita: {
-            trainer: trainers.hgss_rival,
+        silver_1_chikorita: {
+            trainer: trainers.silver,
             team: [
                 {
                     slug: "cyndaquil",
@@ -14,8 +14,8 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                 },
             ],
         },
-        rival_1_cyndaquil: {
-            trainer: trainers.hgss_rival,
+        silver_1_cyndaquil: {
+            trainer: trainers.silver,
             team: [
                 {
                     slug: "totodile",
@@ -25,8 +25,8 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                 },
             ],
         },
-        rival_1_totodile: {
-            trainer: trainers.hgss_rival,
+        silver_1_totodile: {
+            trainer: trainers.silver,
             team: [
                 {
                     slug: "chikorita",

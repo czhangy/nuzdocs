@@ -1,0 +1,36 @@
+@use "@/styles/constants";
+
+.level-cap {
+    --bg-border-rad: 5px;
+    --bg-size: 4rem;
+    --inner-spacing: 0.5rem;
+    --level-font-size: 2rem;
+    --text-font-size: 1rem;
+    --text-letter-spacing: 1px;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    .text {
+        font-size: var(--text-font-size);
+        letter-spacing: var(--text-letter-spacing);
+        line-height: var(--text-font-size);
+        margin-bottom: var(--inner-spacing);
+    }
+
+    .bg {
+        align-items: center;
+        background-color: constants.$accent-color;
+        border-radius: var(--bg-border-rad);
+        display: flex;
+        height: var(--bg-size);
+        justify-content: center;
+        width: var(--bg-size);
+
+        .level {
+            font-size: var(--level-font-size);
+            font-weight: bold;
+        }
+    }
+}

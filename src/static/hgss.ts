@@ -31,14 +31,14 @@ const hgss: GameGroup = {
             type: "location",
             segment: {},
         },
-        "rival-1": {
-            name: "Rival 1",
+        "silver-1": {
+            name: "Silver 1",
             type: "battle",
             segment: {
                 battle: {
-                    chikorita: battles["heartgold-soulsilver"].rival_1_chikorita,
-                    cyndaquil: battles["heartgold-soulsilver"].rival_1_cyndaquil,
-                    totodile: battles["heartgold-soulsilver"].rival_1_totodile,
+                    chikorita: battles["heartgold-soulsilver"].silver_1_chikorita,
+                    cyndaquil: battles["heartgold-soulsilver"].silver_1_cyndaquil,
+                    totodile: battles["heartgold-soulsilver"].silver_1_totodile,
                 },
             },
         },

@@ -1,8 +1,8 @@
 import Trainer from "@/models/Trainer";
 
 const trainers: { [trainerSlug: string]: Trainer } = {
-    hgss_rival: {
-        name: "Rival",
+    silver: {
+        name: "Silver",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/silver.png",
     },
 };
