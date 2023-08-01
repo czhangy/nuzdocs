@@ -6,12 +6,12 @@
     --card-x-padding: 2rem;
     --card-y-padding: 1rem;
     --category-height: 12px;
-    --category-inner-spacing: 0.25rem;
     --category-ratio: 2;
     --name-font-size: 1.25rem;
     --name-letter-spacing: 2px;
     --row-inner-spacing: 1rem;
     --text-font-size: 1rem;
+    --text-inner-spacing: 0.25rem;
     --text-letter-spacing: 0;
 
     background: constants.$bg-color;
@@ -42,7 +42,7 @@
         .category {
             align-items: center;
             display: flex;
-            gap: var(--category-inner-spacing);
+            gap: var(--text-inner-spacing);
 
             .icon {
                 height: var(--category-height);
@@ -52,9 +52,22 @@
         }
 
         .text {
+            display: flex;
             font-size: var(--text-font-size);
+            gap: var(--text-inner-spacing);
             letter-spacing: var(--text-letter-spacing);
             line-height: var(--text-font-size);
+
+            .stab-text {
+                color: constants.$hover-color;
+            }
+
+            .stab-icon {
+                filter: constants.$svg-hover-color;
+                height: var(--text-font-size);
+                position: relative;
+                width: var(--text-font-size);
+            }
         }
     }
 }

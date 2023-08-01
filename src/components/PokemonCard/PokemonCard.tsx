@@ -47,7 +47,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
             {pokemonMoves.length > 0 ? (
                 <div className={styles.moves}>
                     {pokemonMoves.map((move: MoveData, key: number) => {
-                        return <MoveCard move={move} key={key} />;
+                        return <MoveCard move={move} isSTAB={pokemonData.types.includes(move.type)} key={key} />;
                     })}
                 </div>
             ) : (

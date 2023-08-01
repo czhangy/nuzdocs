@@ -21,6 +21,10 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Navigation on segment pages exposes itself by overlapping segment names",
             group: "General",
         },
+        {
+            desc: "Sprites with negative margins overlap surrounding content",
+            group: "General",
+        },
     ],
 };
 
