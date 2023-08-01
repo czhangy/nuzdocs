@@ -1,3 +1,4 @@
+import PokemonDisplay from "@/components/PokemonDisplay/PokemonDisplay";
 import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemon } from "@/utils/api";
@@ -21,8 +22,12 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
     return pokemonData ? (
         <div className={styles["pokemon-card"]}>
             <div className={styles.header}>
-                <div className={styles.sprite}></div>
-                <p className={styles.name}>{pokemonData.pokemon.name}</p>
+                <PokemonDisplay pokemonSlug={props.pokemon.slug} />
+                <div className={styles.info}>
+                    <p className={styles.level}>Lv. {props.pokemon.level ? props.pokemon.level : "?"}</p>
+                    <p className={styles["info-text"]}>Torrent</p>
+                    <p className={styles["info-text"]}>Oran Berry</p>
+                </div>
             </div>
         </div>
     ) : (

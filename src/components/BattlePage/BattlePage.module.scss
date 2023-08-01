@@ -9,7 +9,7 @@
     .team {
         display: grid;
         gap: var(--team-inner-spacing);
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         margin-top: var(--team-spacing);
         width: 100%;
     }

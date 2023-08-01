@@ -2,9 +2,46 @@
 
 .pokemon-card {
     --card-border-rad: 10px;
-    --card-padding: 1rem;
+    --header-border-size: 3px;
+    --header-x-padding: 1rem;
+    --info-font-size: 1rem;
+    --info-inner-spacing: 0.5rem;
+    --level-font-size: 1.25rem;
 
     background-color: constants.$accent-color;
     border-radius: var(--card-border-rad);
-    padding: var(--card-padding);
+
+    .header {
+        align-items: center;
+        border-bottom: var(--header-border-size) solid constants.$text-color;
+        display: flex;
+        padding: 0 var(--header-x-padding);
+        justify-content: space-between;
+
+        .info {
+            align-items: flex-end;
+            display: flex;
+            flex-direction: column;
+            gap: var(--info-inner-spacing);
+
+            .level {
+                font-size: var(--level-font-size);
+                font-weight: bold;
+                line-height: var(--level-font-size);
+            }
+
+            .info-text {
+                font-size: var(--info-font-size);
+                line-height: var(--info-font-size);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .pokemon-card {
+        --header-x-padding: 4rem;
+        --info-font-size: 1.25rem;
+        --level-font-size: 1.5rem;
+    }
 }
