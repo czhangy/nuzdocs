@@ -1,5 +1,4 @@
 import SegmentPage from "@/components/SegmentPage/SegmentPage";
-import LocalSegment from "@/models/LocalSegment";
 import Run from "@/models/Run";
 import games from "@/static/games";
 import { getRun } from "@/utils/utils";
@@ -9,8 +8,10 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const Segment: NextPage = () => {
-    const [run, setRun] = useState<Run | null>(null);
     const router = useRouter();
+
+    // Data state
+    const [run, setRun] = useState<Run | null>(null);
 
     // Validate route and set run for valid routes, redirect to home for invalid addresses
     useEffect(() => {
@@ -22,9 +23,7 @@ const Segment: NextPage = () => {
                 if (runList.includes(runName)) {
                     const run: Run = getRun(runName);
                     if (
-                        games[run.gameSlug].gameGroup.segments
-                            .map((segment: LocalSegment) => segment.slug)
-                            .includes(router.query.segmentSlug as string)
+                        Object.keys(games[run.gameSlug].gameGroup.segments).includes(router.query.segmentSlug as string)
                     ) {
                         setRun(run);
                         return;

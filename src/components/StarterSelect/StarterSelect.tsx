@@ -1,9 +1,11 @@
+import PokemonDisplay from "@/components/PokemonDisplay/PokemonDisplay";
+import CaughtPokemon from "@/models/CaughtPokemon";
 import GameGroup from "@/models/GameGroup";
-import LocalPokemon from "@/models/LocalPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import colors from "@/static/colors";
 import { fetchPokemonGroup } from "@/utils/api";
+import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import { getPokemonTier, getRun } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -21,7 +23,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     const [starters, setStarters] = useState<PokemonData[]>([]);
 
     // User data state
-    const [selectedStarter, setSelectedStarter] = useState<PokemonData | null>(null);
+    const [selectedStarterSlug, setSelectedStarterSlug] = useState<string>("");
 
     // Fetch starter data on load
     useEffect(() => {
@@ -33,36 +35,29 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
         if (starters.length > 0) {
             const run: Run = getRun(props.runName);
             if (run.starterSlug === "") {
-                setSelectedStarter(starters[0]);
+                setSelectedStarterSlug(props.starterSlugsList[0]);
             } else {
-                setSelectedStarter(
-                    starters.filter((starter: PokemonData) => starter.pokemon.slug === run.starterSlug)[0]
-                );
+                setSelectedStarterSlug(run.starterSlug);
             }
         }
     }, [starters]);
 
     // Place starter in box and remove existing starter on starter change + set run's starter
     useEffect(() => {
-        if (selectedStarter) {
-            const slug: string = selectedStarter.pokemon.slug;
+        if (selectedStarterSlug.length > 0) {
             const run: Run = getRun(props.runName);
-            run.starterSlug = slug;
+            run.starterSlug = selectedStarterSlug;
             for (let i = 0; i < run.encounterList.length; i++) {
                 if (run.encounterList[i].locationSlug === "starter") {
                     run.encounterList.splice(i, 1);
                     break;
                 }
             }
-            const starter: LocalPokemon = {
-                pokemonSlug: slug,
-                locationSlug: "starter",
-            };
+            const starter: CaughtPokemon = initCaughtPokemon(initPokemon(selectedStarterSlug, 5), "starter");
             run.encounterList.push(starter);
-            run.caughtPokemonSlugsList.push(slug);
             localStorage.setItem(props.runName, JSON.stringify(run));
         }
-    }, [selectedStarter]);
+    }, [selectedStarterSlug]);
 
     return (
         <div className={styles["starter-select"]}>
@@ -75,14 +70,14 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                                 <button
                                     className={styles.button}
                                     style={
-                                        selectedStarter && starter === selectedStarter
+                                        starter.pokemon.slug === selectedStarterSlug
                                             ? {
-                                                  backgroundColor: colors.types[selectedStarter.types[0]],
+                                                  backgroundColor: colors.types[starter.types[0]],
                                                   pointerEvents: "none",
                                               }
                                             : {}
                                     }
-                                    onClick={() => setSelectedStarter(starter)}
+                                    onClick={() => setSelectedStarterSlug(starter.pokemon.slug)}
                                 >
                                     <div className={styles.icon}>
                                         <Image
@@ -98,38 +93,10 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                     })}
                 </ul>
             </div>
-            {selectedStarter ? (
+            {selectedStarterSlug.length > 0 ? (
                 <div className={styles.starter}>
-                    <div className={styles.sprite}>
-                        <Image
-                            src={selectedStarter.sprite}
-                            alt={selectedStarter.pokemon.name}
-                            layout="fill"
-                            objectFit="contain"
-                        />
-                    </div>
-                    <div className={styles.info}>
-                        <div className={styles.top}>
-                            <p className={styles.name}>{selectedStarter.pokemon.name}</p>
-                            <TierCard
-                                tier={getPokemonTier(selectedStarter.pokemon.slug, props.gameGroup.versionGroup)}
-                            />
-                        </div>
-                        <ul className={styles.types}>
-                            {selectedStarter.types.map((type: string, key: number) => {
-                                return (
-                                    <div className={styles.type} key={key}>
-                                        <Image
-                                            src={`https://www.serebii.net/pokedex-bw/type/${type}.gif`}
-                                            alt={type}
-                                            layout="fill"
-                                            objectFit="contain"
-                                        />
-                                    </div>
-                                );
-                            })}
-                        </ul>
-                    </div>
+                    <PokemonDisplay pokemonSlug={selectedStarterSlug} />
+                    <TierCard tier={getPokemonTier(selectedStarterSlug, props.gameGroup.versionGroup)} />
                 </div>
             ) : (
                 ""

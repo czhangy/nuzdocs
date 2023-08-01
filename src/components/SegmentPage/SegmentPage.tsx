@@ -1,11 +1,11 @@
-import EncounterDisplay from "@/components/EncounterDisplay/EncounterDisplay";
-import EncounterList from "@/components/EncounterList/EncounterList";
+import BattlePage from "@/components/BattlePage/BattlePage";
+import LocationPage from "@/components/LocationPage/LocationPage";
 import SegmentNav from "@/components/SegmentNav/SegmentNav";
-import StarterSelect from "@/components/StarterSelect/StarterSelect";
-import LocationData from "@/models/LocationData";
+import BattleSegment from "@/models/BattleSegment";
+import Run from "@/models/Run";
 import games from "@/static/games";
-import { fetchLocation } from "@/utils/api";
-import { useEffect, useState } from "react";
+import { getRun } from "@/utils/utils";
+import { useEffect } from "react";
 import styles from "./SegmentPage.module.scss";
 
 type Props = {
@@ -15,53 +15,33 @@ type Props = {
 };
 
 const SegmentPage: React.FC<Props> = (props) => {
-    // States to track location areas
-    const [currentLocation, setCurrentLocation] = useState<LocationData | null>(null);
+    // Get the segment type for conditional rendering
+    const getSegmentType = (): string => {
+        return games[props.gameSlug].gameGroup.segments[props.segmentSlug].type;
+    };
 
-    // Get data associated with current location on page load
     useEffect(() => {
-        if (props.segmentSlug) {
-            fetchLocation(props.segmentSlug).then((location) => setCurrentLocation(location));
-        }
+        const run: Run = getRun(props.runName);
+        run.prevLocationSlug = props.segmentSlug;
+        localStorage.setItem(props.runName, JSON.stringify(run));
     }, [props.segmentSlug]);
 
     return (
         <div className={styles["segment-page"]}>
-            <SegmentNav segments={games[props.gameSlug].gameGroup.segments} segmentSlug={props.segmentSlug} />
-            {currentLocation ? (
-                <div className={styles.info}>
-                    <h2 className={styles["location-name"]}>{currentLocation.locationName}</h2>
-                    {props.segmentSlug === games[props.gameSlug].gameGroup.startingTownSlug ? (
-                        <section className={styles.section}>
-                            <StarterSelect
-                                runName={props.runName}
-                                starterSlugsList={games[props.gameSlug].gameGroup.starterSlugs}
-                                gameGroup={games[props.gameSlug].gameGroup}
-                            />
-                        </section>
-                    ) : (
-                        ""
-                    )}
-                    <section className={styles.section}>
-                        {currentLocation ? (
-                            <EncounterList
-                                currentLocation={currentLocation}
-                                gameSlug={props.gameSlug}
-                                segmentSlug={props.segmentSlug}
-                            />
-                        ) : (
-                            ""
-                        )}
-                    </section>
-                </div>
-            ) : (
-                ""
-            )}
-            <EncounterDisplay
-                pokedex={games[props.gameSlug].gameGroup.pokedex}
+            <SegmentNav
+                segments={games[props.gameSlug].gameGroup.segments}
+                segmentSlug={props.segmentSlug}
                 runName={props.runName}
-                locationSlug={props.segmentSlug}
             />
+            {getSegmentType() === "location" ? (
+                <LocationPage gameSlug={props.gameSlug} runName={props.runName} segmentSlug={props.segmentSlug} />
+            ) : (
+                <BattlePage
+                    battleSlug={props.segmentSlug}
+                    segment={games[props.gameSlug].gameGroup.segments[props.segmentSlug].segment as BattleSegment}
+                    runName={props.runName}
+                />
+            )}
         </div>
     );
 };

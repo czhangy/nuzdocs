@@ -1,0 +1,15 @@
+@use "@/styles/constants";
+
+.type-icon {
+    --icon-padding: 0.4rem;
+
+    background-color: constants.$disabled-color;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: var(--icon-padding);
+
+    .icon {
+        filter: constants.$svg-color;
+        position: relative;
+    }
+}

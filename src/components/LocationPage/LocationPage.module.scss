@@ -1,0 +1,18 @@
+@use "@/styles/constants";
+
+.location-page {
+    --bottom-spacing: 10rem;
+    --info-inner-spacing: 2rem;
+
+    min-height: inherit;
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--info-inner-spacing);
+        margin-bottom: var(--bottom-spacing);
+        min-height: inherit;
+        max-width: constants.$max-width;
+        width: 100%;
+    }
+}

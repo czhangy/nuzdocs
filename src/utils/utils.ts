@@ -14,3 +14,15 @@ export const getRun = (runName: string): Run => {
 export const getPokemonTier = (pokemonSlug: string, versionGroup: string): string => {
     return pokemonSlug in tiers[versionGroup] ? tiers[versionGroup][pokemonSlug] : "?";
 };
+
+export const completeBattle = (runName: string, battleSlug: string): void => {
+    const run: Run = getRun(runName);
+    run.battlesCleared.push(battleSlug);
+    localStorage.setItem(runName, JSON.stringify(run));
+};
+
+export const resetBattle = (runName: string, battleSlug: string): void => {
+    const run: Run = getRun(runName);
+    run.battlesCleared.splice(run.battlesCleared.indexOf(battleSlug), 1);
+    localStorage.setItem(runName, JSON.stringify(run));
+};

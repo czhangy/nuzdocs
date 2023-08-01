@@ -66,11 +66,9 @@ const RunEntry: React.FC<Props> = (props: Props) => {
                 </div>
                 <div className={styles.info}>
                     <p className={styles.name}>
-                        {run && run.numCheckpointsCleared === run.numCheckpoints
-                            ? `👑 ${props.runName}`
-                            : props.runName}
+                        {run && run.battlesCleared.length === run.numBattles ? `👑 ${props.runName}` : props.runName}
                     </p>
-                    <ProgressBar complete={run ? run.numCheckpointsCleared : 0} total={run ? run.numCheckpoints : 1} />
+                    <ProgressBar complete={run ? run.battlesCleared.length : 0} total={run ? run.numBattles : 1} />
                     <div className={styles.rips}>
                         <div className={styles.icon}>
                             <Image src="/assets/icons/dead.svg" alt="Deaths" layout="fill" objectFit="contain" />

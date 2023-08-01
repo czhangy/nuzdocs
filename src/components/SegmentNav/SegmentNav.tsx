@@ -1,38 +1,50 @@
-import LocalSegment from "@/models/LocalSegment";
+import Segment from "@/models/Segment";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import styles from "./SegmentNav.module.scss";
 
 type Props = {
-    segments: LocalSegment[];
+    segments: { [segmentSlug: string]: Segment };
     segmentSlug: string;
+    runName: string;
 };
 
 const SegmentNav: React.FC<Props> = (props: Props) => {
-    const router = useRouter();
-
     // Finds the index of the current segment in the game's segments list
     const getSegmentIndex = (): number => {
-        return props.segments.map((segment: LocalSegment) => segment.slug).indexOf(props.segmentSlug);
+        const slugs = Object.keys(props.segments);
+        return slugs.indexOf(props.segmentSlug);
+    };
+
+    // Returns the slug at a given index of segments for nav routing
+    const getSlugAtIndex = (idx: number): string => {
+        return Object.keys(props.segments)[idx];
+    };
+
+    // Returns the name at a given index of segments for nav display
+    const getNameAtIndex = (idx: number): string => {
+        return props.segments[Object.keys(props.segments)[idx]].name;
     };
 
     return (
-        <nav className={styles["segment-nav"]}>
-            {getSegmentIndex() > 0 ? (
-                <Link href={`/runs/${router.query.runName}/${props.segments[getSegmentIndex() - 1].slug}`}>
-                    <a className={`${styles.nav} ${styles.back}`}>← {props.segments[getSegmentIndex() - 1].name}</a>
-                </Link>
-            ) : (
-                <div />
-            )}
-            {getSegmentIndex() + 1 < props.segments.length ? (
-                <Link href={`/runs/${router.query.runName}/${props.segments[getSegmentIndex() + 1].slug}`}>
-                    <a className={`${styles.nav} ${styles.next}`}>{props.segments[getSegmentIndex() + 1].name} →</a>
-                </Link>
-            ) : (
-                ""
-            )}
-        </nav>
+        <div className={styles["segment-nav"]}>
+            <nav className={styles.nav}>
+                {getSegmentIndex() > 0 ? (
+                    <Link href={`/runs/${props.runName}/${getSlugAtIndex(getSegmentIndex() - 1)}`}>
+                        <a className={styles.arrow}>← {getNameAtIndex(getSegmentIndex() - 1)}</a>
+                    </Link>
+                ) : (
+                    <div />
+                )}
+                {getSegmentIndex() + 1 < Object.keys(props.segments).length ? (
+                    <Link href={`/runs/${props.runName}/${getSlugAtIndex(getSegmentIndex() + 1)}`}>
+                        <a className={styles.arrow}>{getNameAtIndex(getSegmentIndex() + 1)} →</a>
+                    </Link>
+                ) : (
+                    ""
+                )}
+            </nav>
+            <h2 className={styles.header}>{props.segments[props.segmentSlug].name}</h2>
+        </div>
     );
 };
 

@@ -1,0 +1,87 @@
+@use "@/styles/constants";
+
+.pokemon-card {
+    --body-estimate: 15rem;
+    --card-border-rad: 10px;
+    --display-size: 150px;
+    --header-border-size: 3px;
+    --header-x-padding: 1rem;
+    --info-font-size: 1rem;
+    --info-inner-spacing: 0.5rem;
+    --level-font-size: 1.25rem;
+    --minimize-font-size: 2rem;
+    --minimize-offset: 0.5rem;
+    --moves-inner-spacing: 1rem;
+    --transition-time: 0.3s;
+
+    background-color: constants.$accent-color;
+    border-radius: var(--card-border-rad);
+    max-height: calc(var(--display-size) + var(--header-border-size) + var(--body-estimate));
+    overflow-y: hidden;
+    position: relative;
+    transition: max-height var(--transition-time);
+
+    .toggle {
+        font-size: var(--minimize-font-size);
+        left: var(--minimize-offset);
+        position: absolute;
+        top: 0;
+    }
+
+    .header {
+        align-items: center;
+        border-bottom: var(--header-border-size) solid constants.$text-color;
+        display: flex;
+        padding: 0 var(--header-x-padding);
+        justify-content: space-between;
+
+        .info {
+            align-items: flex-end;
+            display: flex;
+            flex-direction: column;
+            gap: var(--info-inner-spacing);
+
+            .level {
+                font-size: var(--level-font-size);
+                font-weight: bold;
+                line-height: var(--level-font-size);
+            }
+
+            .info-text {
+                font-size: var(--info-font-size);
+                line-height: var(--info-font-size);
+            }
+        }
+    }
+
+    .moves {
+        display: grid;
+        gap: var(--moves-inner-spacing);
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        padding: var(--moves-inner-spacing);
+    }
+}
+
+.minimized {
+    max-height: var(--display-size);
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .pokemon-card {
+        --header-x-padding: 4rem;
+        --info-font-size: 1.25rem;
+        --level-font-size: 1.5rem;
+
+        .moves {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+    }
+}
+
+@media (hover: hover) {
+    .pokemon-card > .toggle:hover {
+        color: constants.$hover-color;
+    }
+}

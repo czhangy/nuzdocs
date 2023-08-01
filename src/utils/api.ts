@@ -61,3 +61,33 @@ export const fetchAreas = async (areaSlugs: string[], gameSlug: string) => {
         return [];
     }
 };
+
+// Fetch AbilityData given slug
+export const fetchAbility = async (abilitySlug: string) => {
+    try {
+        const res = await axios.get("/api/abilities", {
+            params: {
+                abilitySlug: abilitySlug,
+            },
+        });
+        return JSON.parse(res.data.ability);
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+};
+
+// Fetch a list of MoveData given slugs
+export const fetchMoves = async (moveSlugs: string[]) => {
+    try {
+        const res = await axios.get("/api/moves", {
+            params: {
+                moveSlugs: moveSlugs,
+            },
+        });
+        return JSON.parse(res.data.moves);
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+};

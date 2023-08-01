@@ -32,10 +32,10 @@ const fetchPokemon = async (pokemonSlug: string): Promise<PokemonData> => {
     const api: PokemonClient = new PokemonClient();
     try {
         const pokemon: Pokemon = await api.getPokemonByName(pokemonSlug);
-        const localPokemonName: LocalName = initLocalName(pokemonSlug, await fetchPokemonName(pokemon.name));
+        const pokemonName: LocalName = initLocalName(pokemonSlug, await fetchPokemonName(pokemon.name));
         const types: string[] = pokemon.types.map((type) => type.type.name);
         const sprite: string = pokemon.sprites.front_default!;
-        return initPokemonData(localPokemonName, types, sprite);
+        return initPokemonData(pokemonName, types, sprite);
     } catch (error: any) {
         throw error;
     }

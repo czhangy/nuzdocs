@@ -1,24 +1,32 @@
+import AbilityData from "@/models/AbilityData";
 import AreaData from "@/models/AreaData";
+import CaughtPokemon from "@/models/CaughtPokemon";
 import EncounterData from "@/models/EncounterData";
 import LocalName from "@/models/LocalName";
-import LocalPokemon from "@/models/LocalPokemon";
 import LocationData from "@/models/LocationData";
+import MoveData from "@/models/MoveData";
+import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import games from "@/static/games";
 import { getEnglishName } from "@/utils/utils";
-import { Name } from "pokenode-ts";
+import { Name, NamedAPIResource } from "pokenode-ts";
 
 export const initRun = (gameSlug: string): Run => {
+    let numBattles = 0;
+    for (let key of Object.keys(games[gameSlug].gameGroup.segments)) {
+        if (games[gameSlug].gameGroup.segments[key].type === "battle") {
+            numBattles++;
+        }
+    }
     return {
         gameSlug: gameSlug,
         prevLocationSlug: games[gameSlug].gameGroup.startingTownSlug,
         starterSlug: "",
         encounterList: [],
-        caughtPokemonSlugsList: [],
         numDead: 0,
-        numCheckpoints: games[gameSlug].gameGroup.segments.length,
-        numCheckpointsCleared: 0,
+        numBattles: numBattles,
+        battlesCleared: [],
     };
 };
 
@@ -37,9 +45,20 @@ export const initPokemonData = (pokemon: LocalName, types: string[], sprite: str
     };
 };
 
-export const initLocalPokemon = (pokemonSlug: string, locationSlug: string): LocalPokemon => {
+export const initPokemon = (slug: string, level: number | null = null): Pokemon => {
+    let pokemon: Pokemon = {
+        slug: slug,
+        moveSlugs: [],
+    };
+    if (level) {
+        pokemon.level = level;
+    }
+    return pokemon;
+};
+
+export const initCaughtPokemon = (pokemon: Pokemon, locationSlug: string): CaughtPokemon => {
     return {
-        pokemonSlug: pokemonSlug,
+        pokemon: pokemon,
         locationSlug: locationSlug,
     };
 };
@@ -76,5 +95,27 @@ export const initAreaData = (names: Name[], encounters: EncounterData[]): AreaDa
     return {
         areaName: areaName,
         encounters: encounters,
+    };
+};
+
+export const initAbilityData = (names: Name[]): AbilityData => {
+    return {
+        name: getEnglishName(names),
+    };
+};
+
+export const initMoveData = (
+    names: Name[],
+    type: NamedAPIResource,
+    power: number | null,
+    category: NamedAPIResource,
+    pp: number
+): MoveData => {
+    return {
+        name: getEnglishName(names),
+        type: type.name,
+        power: power ? power : 0,
+        category: category.name === "status" ? "other" : category.name,
+        pp: pp,
     };
 };

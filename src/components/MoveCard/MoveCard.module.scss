@@ -1,0 +1,80 @@
+@use "@/styles/constants";
+
+.move-card {
+    --card-border-rad: 5px;
+    --card-inner-spacing: 1rem;
+    --card-x-padding: 2rem;
+    --card-y-padding: 1rem;
+    --category-height: 12px;
+    --category-ratio: 2;
+    --name-font-size: 1.25rem;
+    --name-letter-spacing: 2px;
+    --row-inner-spacing: 1rem;
+    --text-font-size: 1rem;
+    --text-inner-spacing: 0.25rem;
+    --text-letter-spacing: 0;
+
+    background: constants.$bg-color;
+    border-radius: var(--card-border-rad);
+    display: flex;
+    flex-direction: column;
+    gap: var(--card-inner-spacing);
+    padding: var(--card-y-padding) var(--card-x-padding);
+
+    .row {
+        align-items: center;
+        display: flex;
+        gap: var(--row-inner-spacing);
+
+        .type {
+            height: var(--type-icon-size);
+            position: relative;
+            width: var(--type-icon-size);
+        }
+
+        .name {
+            font-size: var(--name-font-size);
+            font-weight: bold;
+            letter-spacing: var(--name-letter-spacing);
+            line-height: var(--name-font-size);
+        }
+
+        .category {
+            align-items: center;
+            display: flex;
+            gap: var(--text-inner-spacing);
+
+            .icon {
+                height: var(--category-height);
+                position: relative;
+                width: calc(var(--category-height) * var(--category-ratio));
+            }
+        }
+
+        .text {
+            display: flex;
+            font-size: var(--text-font-size);
+            gap: var(--text-inner-spacing);
+            letter-spacing: var(--text-letter-spacing);
+            line-height: var(--text-font-size);
+
+            .stab-text {
+                color: constants.$hover-color;
+            }
+
+            .stab-icon {
+                filter: constants.$svg-hover-color;
+                height: var(--text-font-size);
+                position: relative;
+                width: var(--text-font-size);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .move-card {
+        --category-height: 16px;
+        --text-letter-spacing: 1px;
+    }
+}

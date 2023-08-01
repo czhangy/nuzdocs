@@ -1,0 +1,16 @@
+@use "@/styles/constants";
+
+.battle-page {
+    --team-inner-spacing: 1rem;
+    --team-spacing: 2rem;
+
+    min-height: inherit;
+
+    .team {
+        display: grid;
+        gap: var(--team-inner-spacing);
+        grid-template-columns: 1fr;
+        margin-top: var(--team-spacing);
+        width: 100%;
+    }
+}
