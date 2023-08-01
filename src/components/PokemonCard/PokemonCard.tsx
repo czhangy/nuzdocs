@@ -33,7 +33,9 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                     <div className={styles.info}>
                         <p className={styles.level}>Lv. {props.pokemon.level ? props.pokemon.level : "?"}</p>
                         <p className={styles["info-text"]}>{pokemonAbility.name}</p>
-                        <p className={styles["info-text"]}>No held item</p>
+                        <p className={styles["info-text"]}>
+                            {props.pokemon.heldItemSlug ? props.pokemon.heldItemSlug : "No held item"}
+                        </p>
                     </div>
                 ) : (
                     ""
