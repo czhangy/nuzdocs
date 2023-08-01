@@ -10,7 +10,7 @@ import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import games from "@/static/games";
 import { getEnglishName } from "@/utils/utils";
-import { Name } from "pokenode-ts";
+import { Name, NamedAPIResource } from "pokenode-ts";
 
 export const initRun = (gameSlug: string): Run => {
     let numBattles = 0;
@@ -104,8 +104,18 @@ export const initAbilityData = (names: Name[]): AbilityData => {
     };
 };
 
-export const initMoveData = (names: Name[]): MoveData => {
+export const initMoveData = (
+    names: Name[],
+    type: NamedAPIResource,
+    power: number | null,
+    category: NamedAPIResource,
+    pp: number
+): MoveData => {
     return {
         name: getEnglishName(names),
+        type: type.name,
+        power: power ? power : 0,
+        category: category.name === "status" ? "other" : category.name,
+        pp: pp,
     };
 };

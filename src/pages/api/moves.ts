@@ -1,7 +1,7 @@
 import MoveData from "@/models/MoveData";
 import { initMoveData } from "@/utils/initializers";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Move, MoveClient } from "pokenode-ts";
+import { Move, MoveClient, NamedAPIResource } from "pokenode-ts";
 
 type ResData = {
     moves?: string;
@@ -16,7 +16,13 @@ const fetchMove = async (moveSlug: string): Promise<MoveData> => {
     const api: MoveClient = new MoveClient();
     try {
         const move: Move = await api.getMoveByName(moveSlug);
-        return initMoveData(move.names);
+        return initMoveData(
+            move.names,
+            move.type,
+            move.power,
+            move.damage_class as NamedAPIResource,
+            move.pp as number
+        );
     } catch (error: any) {
         throw error;
     }
