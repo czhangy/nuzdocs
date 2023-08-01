@@ -35,7 +35,11 @@ const hgss: GameGroup = {
             name: "Rival 1",
             type: "battle",
             segment: {
-                battle: battles["heartgold-soulsilver"].rival_1,
+                battle: {
+                    chikorita: battles["heartgold-soulsilver"].rival_1_chikorita,
+                    cyndaquil: battles["heartgold-soulsilver"].rival_1_cyndaquil,
+                    totodile: battles["heartgold-soulsilver"].rival_1_totodile,
+                },
             },
         },
     },
