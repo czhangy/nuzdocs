@@ -7,6 +7,7 @@
     --info-font-size: 1rem;
     --info-inner-spacing: 0.5rem;
     --level-font-size: 1.25rem;
+    --moves-inner-spacing: 1rem;
 
     background-color: constants.$accent-color;
     border-radius: var(--card-border-rad);
@@ -35,6 +36,14 @@
                 line-height: var(--info-font-size);
             }
         }
+    }
+
+    .moves {
+        display: grid;
+        gap: var(--moves-inner-spacing);
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        padding: var(--moves-inner-spacing);
     }
 }
 

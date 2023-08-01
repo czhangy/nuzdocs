@@ -1,0 +1,11 @@
+@use "@/styles/constants";
+
+.move-card {
+    --card-border-rad: 10px;
+    --card-x-padding: 2rem;
+    --card-y-padding: 1rem;
+
+    background: constants.$bg-color;
+    border-radius: var(--card-border-rad);
+    padding: var(--card-y-padding) var(--card-x-padding);
+}
