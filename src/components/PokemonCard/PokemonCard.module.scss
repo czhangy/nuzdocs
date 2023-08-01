@@ -1,0 +1,10 @@
+@use "@/styles/constants";
+
+.pokemon-card {
+    --card-border-rad: 10px;
+    --card-padding: 1rem;
+
+    background-color: constants.$accent-color;
+    border-radius: var(--card-border-rad);
+    padding: var(--card-padding);
+}

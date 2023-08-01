@@ -4,18 +4,10 @@
     --button-padding: 0.4rem;
     --header-inner-spacing: 1rem;
     --icon-size: 20px;
-    --info-inner-spacing: 0.2rem;
     --inner-spacing: 1rem;
-    --name-font-size: 1.25rem;
-    --sprite-left-offset: -2rem;
-    --sprite-right-offset: -1.5rem;
-    --sprite-size: 150px;
+    --starter-inner-spacing: 1rem;
     --title-font-size: 1.5rem;
-    --top-inner-spacing: 0.5rem;
-    --type-height: 12px;
-    --type-ratio: 8/3;
     --type-select-inner-spacing: 1rem;
-    --types-inner-spacing: 4px;
 
     align-items: center;
     display: flex;
@@ -55,38 +47,7 @@
     .starter {
         align-items: center;
         display: flex;
-
-        .sprite {
-            height: var(--sprite-size);
-            margin-left: var(--sprite-left-offset);
-            margin-right: var(--sprite-right-offset);
-            position: relative;
-            width: var(--sprite-size);
-        }
-
-        .info {
-            .top {
-                align-items: center;
-                display: flex;
-                gap: var(--top-inner-spacing);
-                margin-bottom: var(--info-inner-spacing);
-
-                .name {
-                    font-size: var(--name-font-size);
-                }
-            }
-
-            .types {
-                display: flex;
-                gap: var(--types-inner-spacing);
-
-                .type {
-                    height: var(--type-height);
-                    position: relative;
-                    width: calc(var(--type-height) * var(--type-ratio));
-                }
-            }
-        }
+        gap: var(--starter-inner-spacing);
     }
 }
 
