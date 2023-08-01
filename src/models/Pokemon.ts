@@ -3,4 +3,5 @@ export default interface Pokemon {
     level?: number;
     abilitySlug?: string;
     heldItemSlug?: string;
+    moveSlugs: string[];
 }

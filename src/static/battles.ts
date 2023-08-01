@@ -10,6 +10,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     slug: "totodile",
                     level: 5,
                     abilitySlug: "torrent",
+                    moveSlugs: ["scratch", "growl"],
                 },
             ],
         },

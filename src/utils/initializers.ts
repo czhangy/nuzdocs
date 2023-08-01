@@ -4,6 +4,7 @@ import CaughtPokemon from "@/models/CaughtPokemon";
 import EncounterData from "@/models/EncounterData";
 import LocalName from "@/models/LocalName";
 import LocationData from "@/models/LocationData";
+import MoveData from "@/models/MoveData";
 import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
@@ -47,6 +48,7 @@ export const initPokemonData = (pokemon: LocalName, types: string[], sprite: str
 export const initPokemon = (slug: string, level: number | null = null): Pokemon => {
     let pokemon: Pokemon = {
         slug: slug,
+        moveSlugs: [],
     };
     if (level) {
         pokemon.level = level;
@@ -96,7 +98,13 @@ export const initAreaData = (names: Name[], encounters: EncounterData[]): AreaDa
     };
 };
 
-export const initAbility = (names: Name[]): AbilityData => {
+export const initAbilityData = (names: Name[]): AbilityData => {
+    return {
+        name: getEnglishName(names),
+    };
+};
+
+export const initMoveData = (names: Name[]): MoveData => {
     return {
         name: getEnglishName(names),
     };

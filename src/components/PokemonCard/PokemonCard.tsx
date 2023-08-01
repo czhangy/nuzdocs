@@ -1,11 +1,11 @@
 import PokemonDisplay from "@/components/PokemonDisplay/PokemonDisplay";
 import AbilityData from "@/models/AbilityData";
+import MoveData from "@/models/MoveData";
 import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
-import { fetchPokemon } from "@/utils/api";
+import { fetchAbility, fetchMoves, fetchPokemon } from "@/utils/api";
 import { useEffect, useState } from "react";
 import styles from "./PokemonCard.module.scss";
-import { fetchAbility } from "@/utils/api";
 
 type Props = {
     pokemon: Pokemon;
@@ -15,6 +15,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
     // Fetched data state
     const [pokemonData, setPokemonData] = useState<PokemonData | null>(null);
     const [pokemonAbility, setPokemonAbility] = useState<AbilityData | null>(null);
+    const [pokemonMoves, setPokemonMoves] = useState<MoveData[]>([]);
 
     useEffect(() => {
         if (props.pokemon) {
@@ -22,6 +23,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
             fetchAbility(props.pokemon.abilitySlug as string).then((abilityData: AbilityData) =>
                 setPokemonAbility(abilityData)
             );
+            fetchMoves(props.pokemon.moveSlugs).then((moveDataList: MoveData[]) => setPokemonMoves(moveDataList));
         }
     }, [props.pokemon]);
 
@@ -41,6 +43,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                     ""
                 )}
             </div>
+            {pokemonMoves.length > 0 ? <div className={styles.moves}>{pokemonMoves[0].name}</div> : ""}
         </div>
     ) : (
         <></>

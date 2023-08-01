@@ -1,6 +1,5 @@
 import AbilityData from "@/models/AbilityData";
-import { initAbility } from "@/utils/initializers";
-import { getEnglishName } from "@/utils/utils";
+import { initAbilityData } from "@/utils/initializers";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Ability, PokemonClient } from "pokenode-ts";
 
@@ -17,7 +16,7 @@ const fetchAbility = async (abilitySlug: string): Promise<AbilityData> => {
     const api: PokemonClient = new PokemonClient();
     try {
         const ability: Ability = await api.getAbilityByName(abilitySlug);
-        return initAbility(ability.names);
+        return initAbilityData(ability.names);
     } catch (error: any) {
         throw error;
     }
