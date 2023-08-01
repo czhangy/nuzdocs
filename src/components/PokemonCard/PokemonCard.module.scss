@@ -41,8 +41,8 @@
     .moves {
         display: grid;
         gap: var(--moves-inner-spacing);
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
         padding: var(--moves-inner-spacing);
     }
 }
@@ -52,5 +52,10 @@
         --header-x-padding: 4rem;
         --info-font-size: 1.25rem;
         --level-font-size: 1.5rem;
+
+        .moves {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
     }
 }

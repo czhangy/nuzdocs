@@ -1,10 +1,12 @@
 @use "@/styles/constants";
 
 .segment-page {
+    --bottom-spacing: 2rem;
     --page-width: 350px;
     --top-spacing: 2rem;
 
     margin-top: var(--top-spacing);
+    margin-bottom: var(--bottom-spacing);
     min-height: calc(100vh - constants.$mobile-navbar-height - var(--top-spacing));
     position: relative;
     width: var(--page-width);

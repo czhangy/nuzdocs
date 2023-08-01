@@ -2,16 +2,17 @@
 
 .move-card {
     --card-border-rad: 5px;
-    --card-inner-spacing: 0.75rem;
+    --card-inner-spacing: 1rem;
     --card-x-padding: 2rem;
     --card-y-padding: 1rem;
-    --category-height: 0.9rem;
+    --category-height: 12px;
+    --category-inner-spacing: 0.25rem;
     --category-ratio: 2;
     --name-font-size: 1.25rem;
     --name-letter-spacing: 2px;
     --row-inner-spacing: 1rem;
     --text-font-size: 1rem;
-    --text-letter-spacing: 1px;
+    --text-letter-spacing: 0;
 
     background: constants.$bg-color;
     border-radius: var(--card-border-rad);
@@ -39,9 +40,15 @@
         }
 
         .category {
-            height: var(--category-height);
-            position: relative;
-            width: calc(var(--category-height) * var(--category-ratio));
+            align-items: center;
+            display: flex;
+            gap: var(--category-inner-spacing);
+
+            .icon {
+                height: var(--category-height);
+                position: relative;
+                width: calc(var(--category-height) * var(--category-ratio));
+            }
         }
 
         .text {
@@ -49,5 +56,12 @@
             letter-spacing: var(--text-letter-spacing);
             line-height: var(--text-font-size);
         }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .move-card {
+        --category-height: 16px;
+        --text-letter-spacing: 1px;
     }
 }

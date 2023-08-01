@@ -17,12 +17,15 @@ const MoveCard: React.FC<Props> = (props: Props) => {
             </div>
             <div className={styles.row}>
                 <div className={styles.category}>
-                    <Image
-                        src={`https://www.serebii.net/pokedex-bw/type/${props.move.category}.png`}
-                        alt={styles.category}
-                        layout="fill"
-                        objectFit="contain"
-                    />
+                    <p className={styles.text}>Class: </p>
+                    <div className={styles.icon}>
+                        <Image
+                            src={`https://www.serebii.net/pokedex-bw/type/${props.move.category}.png`}
+                            alt={styles.category}
+                            layout="fill"
+                            objectFit="contain"
+                        />
+                    </div>
                 </div>
                 <p className={styles.text}>
                     Power: <strong>{props.move.power === 0 ? "--" : props.move.power}</strong>
