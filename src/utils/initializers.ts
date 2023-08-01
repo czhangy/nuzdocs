@@ -1,3 +1,4 @@
+import AbilityData from "@/models/AbilityData";
 import AreaData from "@/models/AreaData";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import EncounterData from "@/models/EncounterData";
@@ -92,5 +93,11 @@ export const initAreaData = (names: Name[], encounters: EncounterData[]): AreaDa
     return {
         areaName: areaName,
         encounters: encounters,
+    };
+};
+
+export const initAbility = (names: Name[]): AbilityData => {
+    return {
+        name: getEnglishName(names),
     };
 };

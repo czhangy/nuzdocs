@@ -61,3 +61,18 @@ export const fetchAreas = async (areaSlugs: string[], gameSlug: string) => {
         return [];
     }
 };
+
+// Fetch AbilityData given slug
+export const fetchAbility = async (abilitySlug: string) => {
+    try {
+        const res = await axios.get("/api/abilities", {
+            params: {
+                abilitySlug: abilitySlug,
+            },
+        });
+        return JSON.parse(res.data.ability);
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+};
