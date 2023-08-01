@@ -18,6 +18,9 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
     const [pokemonAbility, setPokemonAbility] = useState<AbilityData | null>(null);
     const [pokemonMoves, setPokemonMoves] = useState<MoveData[]>([]);
 
+    // Component state
+    const [isMinimized, setIsMinimized] = useState<boolean>(true);
+
     useEffect(() => {
         if (props.pokemon) {
             fetchPokemon(props.pokemon.slug).then((pokemonData: PokemonData) => setPokemonData(pokemonData));
@@ -29,7 +32,10 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
     }, [props.pokemon]);
 
     return pokemonData ? (
-        <div className={styles["pokemon-card"]}>
+        <div className={`${styles["pokemon-card"]} ${isMinimized ? styles.minimized : ""}`}>
+            <button className={styles.toggle} onClick={() => setIsMinimized(!isMinimized)}>
+                {isMinimized ? "+" : "-"}
+            </button>
             <div className={styles.header}>
                 <PokemonDisplay pokemonSlug={props.pokemon.slug} />
                 {pokemonAbility ? (
