@@ -3,6 +3,7 @@
 .pokemon-display {
     --info-inner-spacing: 0.2rem;
     --name-font-size: 1.25rem;
+    --name-z: 2;
     --sprite-left-offset: -2rem;
     --sprite-right-offset: -1.5rem;
     --sprite-size: 150px;
@@ -31,6 +32,7 @@
 
             .name {
                 font-size: var(--name-font-size);
+                z-index: var(--name-z);
             }
         }
 

@@ -9,9 +9,10 @@
     --info-font-size: 1rem;
     --info-inner-spacing: 0.5rem;
     --level-font-size: 1.25rem;
-    --minimize-font-size: 2rem;
-    --minimize-offset: 0.5rem;
     --moves-inner-spacing: 1rem;
+    --toggle-font-size: 2rem;
+    --toggle-offset: 0.5rem;
+    --toggle-z: 2;
     --transition-time: 0.3s;
 
     background-color: constants.$accent-color;
@@ -22,10 +23,11 @@
     transition: max-height var(--transition-time);
 
     .toggle {
-        font-size: var(--minimize-font-size);
-        left: var(--minimize-offset);
+        font-size: var(--toggle-font-size);
+        left: var(--toggle-offset);
         position: absolute;
         top: 0;
+        z-index: var(--toggle-z);
     }
 
     .header {

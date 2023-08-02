@@ -40,6 +40,7 @@ const hgss: GameGroup = {
                     cyndaquil: battles["heartgold-soulsilver"].silver_1_cyndaquil,
                     totodile: battles["heartgold-soulsilver"].silver_1_totodile,
                 },
+                levelCap: 5,
             },
         },
     },
