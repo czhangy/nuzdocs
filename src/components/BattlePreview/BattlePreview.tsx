@@ -7,6 +7,7 @@ import LevelCap from "@/components/LevelCap/LevelCap";
 
 type Props = {
     battle: Battle;
+    levelCap: number | undefined;
     battleSlug: string;
     runName: string;
 };
@@ -69,7 +70,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                     </div>
                 </div>
             </div>
-            {props.battle.levelCap ? <LevelCap level={props.battle.levelCap} /> : ""}
+            {props.levelCap ? <LevelCap level={props.levelCap} /> : ""}
         </div>
     );
 };

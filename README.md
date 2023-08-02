@@ -109,6 +109,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 
 ## To-Dos
 
+-   [ ] Next level cap display
 -   [ ] Duplicate detection
 -   [ ] Deaths
 -   [ ] Box view
@@ -117,6 +118,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Overview
 -   [ ] Location maps
 -   [ ] Tier list page
+-   [ ] Loading screens
 -   [ ] Game data
 -   [ ] Game select
 -   [ ] Time of day encounter filter
