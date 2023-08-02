@@ -1,0 +1,11 @@
+@use "@/styles/constants";
+
+.box {
+    --box-border-rad: 10px;
+    --box-x-padding: 2rem;
+    --box-y-padding: 2rem;
+
+    background-color: constants.$bg-color;
+    border-radius: var(--box-border-rad);
+    padding: var(--box-y-padding) var(--box-x-padding);
+}

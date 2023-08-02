@@ -34,6 +34,10 @@ export const getCompletedBattles = (runName: string): string[] => {
     return getRun(runName).battlesCleared;
 };
 
+export const getBox = (runName: string): CaughtPokemon[] => {
+    return getRun(runName).box;
+};
+
 export const getEncounter = (runName: string, locationSlug: string): CaughtPokemon | null => {
     const encounter: CaughtPokemon | undefined = getRun(runName).box.find(
         (encounter: CaughtPokemon) => encounter.locationSlug === locationSlug
