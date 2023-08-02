@@ -1,0 +1,29 @@
+@use "@/styles/constants";
+
+.box-menu {
+    --border-rad: 2px;
+    --border-size: 2px;
+    --option-font-size: 1rem;
+    --option-x-padding: 1.25rem;
+    --option-y-padding: 0.75rem;
+
+    background-color: constants.$bg-color;
+    border: var(--border-size) solid constants.$text-color;
+    border-radius: var(--border-rad);
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+
+    .option {
+        font-size: var(--option-font-size);
+        line-height: var(--option-font-size);
+        padding: var(--option-y-padding) var(--option-x-padding);
+        text-align: left;
+    }
+}
+
+@media (hover: hover) {
+    .box-menu > .option:hover {
+        background-color: constants.$hover-color;
+    }
+}

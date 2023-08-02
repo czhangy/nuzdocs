@@ -1,9 +1,10 @@
+import BoxMenu from "@/components/BoxMenu/BoxMenu";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemonGroup } from "@/utils/api";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./Box.module.scss";
-import Image from "next/image";
 
 type Props = {
     box: CaughtPokemon[];
@@ -12,6 +13,9 @@ type Props = {
 const Box: React.FC<Props> = (props: Props) => {
     // Fetched data state
     const [boxData, setBoxData] = useState<PokemonData[]>([]);
+
+    // Component state
+    const [menuOpen, setMenuOpen] = useState<boolean>(true);
 
     // Use box to fetch data for all Pokemon in box, ignoring failed encounters
     useEffect(() => {
@@ -25,13 +29,16 @@ const Box: React.FC<Props> = (props: Props) => {
     }, [props.box]);
 
     return (
-        <div className={styles.box}>
-            {boxData.map((pokemon: PokemonData) => (
-                <button className={styles.pokemon}>
-                    <Image src={pokemon.sprite} alt={pokemon.pokemon.name} layout="fill" objectFit="contain" />
-                </button>
-            ))}
-        </div>
+        <>
+            <div className={styles.box}>
+                {boxData.map((pokemon: PokemonData) => (
+                    <button className={styles.pokemon} onClick={() => setMenuOpen(true)}>
+                        <Image src={pokemon.sprite} alt={pokemon.pokemon.name} layout="fill" objectFit="contain" />
+                    </button>
+                ))}
+            </div>
+            <BoxMenu open={menuOpen} />
+        </>
     );
 };
 

@@ -124,6 +124,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Damage calculator
 -   [ ] Add way to still show duplicates, but mark them
 -   [ ] Fix `starterSlug` since it's unnecessary
+-   [ ] Box filters
 
 ## License
 

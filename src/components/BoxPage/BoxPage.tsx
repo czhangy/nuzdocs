@@ -1,8 +1,8 @@
 import Box from "@/components/Box/Box";
-import { getBox } from "@/utils/utils";
-import styles from "./BoxPage.module.scss";
-import { useEffect, useState } from "react";
 import CaughtPokemon from "@/models/CaughtPokemon";
+import { getBox } from "@/utils/utils";
+import { useEffect, useState } from "react";
+import styles from "./BoxPage.module.scss";
 
 type Props = {
     runName: string;
