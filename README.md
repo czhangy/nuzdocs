@@ -109,7 +109,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 
 ## To-Dos
 
--   [ ] Duplicate detection
 -   [ ] Deaths
 -   [ ] Box view
 -   [ ] Pokemon data
@@ -123,6 +122,8 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Time of day encounter filter
 -   [ ] Coverage calculator
 -   [ ] Damage calculator
+-   [ ] Add way to still show duplicates, but mark them
+-   [ ] Fix `starterSlug` since it's unnecessary
 
 ## License
 
