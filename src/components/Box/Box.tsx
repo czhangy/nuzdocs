@@ -3,6 +3,7 @@ import PokemonData from "@/models/PokemonData";
 import { fetchPokemonGroup } from "@/utils/api";
 import { useEffect, useState } from "react";
 import styles from "./Box.module.scss";
+import Image from "next/image";
 
 type Props = {
     box: CaughtPokemon[];
@@ -23,7 +24,15 @@ const Box: React.FC<Props> = (props: Props) => {
         }
     }, [props.box]);
 
-    return <div className={styles.box}>{boxData.map((pokemon: PokemonData) => pokemon.pokemon.name)}</div>;
+    return (
+        <div className={styles.box}>
+            {boxData.map((pokemon: PokemonData) => (
+                <button className={styles.pokemon}>
+                    <Image src={pokemon.sprite} alt={pokemon.pokemon.name} layout="fill" objectFit="contain" />
+                </button>
+            ))}
+        </div>
+    );
 };
 
 export default Box;
