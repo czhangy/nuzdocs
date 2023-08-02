@@ -1,0 +1,20 @@
+@use "@/styles/constants";
+
+.next-level-cap {
+    --border-rad: 5px;
+    --font-size: 1.25rem;
+    --letter-spacing: 1px;
+    --x-padding: 1.5rem;
+    --y-padding: 1rem;
+
+    background-color: constants.$accent-color;
+    border-radius: var(--border-rad);
+    padding: var(--y-padding) var(--x-padding);
+
+    .text {
+        font-size: var(--font-size);
+        letter-spacing: var(--letter-spacing);
+        line-height: var(--font-size);
+        text-align: center;
+    }
+}
