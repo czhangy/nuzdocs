@@ -80,7 +80,8 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
         if (props.runName && props.locationSlug) {
             const currentEncounter: CaughtPokemon | null = getEncounter(props.runName, props.locationSlug);
             if (!currentEncounter) {
-                return;
+                handleDisplay(false, "");
+                setEncounteredPokemon(null);
             } else if (currentEncounter.pokemon.slug === "failed") {
                 handleDisplay(true, "Failed");
             } else {
