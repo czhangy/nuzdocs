@@ -2,7 +2,14 @@ import CaughtPokemon from "@/models/CaughtPokemon";
 import LocalName from "@/models/LocalName";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemon } from "@/utils/api";
-import { addCaughtPokemon, addEncounter, getEncounter, removeCaughtPokemon, removeEncounter } from "@/utils/utils";
+import {
+    addCaughtPokemon,
+    addEncounter,
+    getCaughtPokemon,
+    getEncounter,
+    removeCaughtPokemon,
+    removeEncounter,
+} from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterDisplay.module.scss";
@@ -90,7 +97,10 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
         if (searchValue.length > 2 && !isSelected) {
             let newMatches: LocalName[] = [];
             props.pokedex.forEach((pokemon: LocalName) => {
-                if (pokemon.name.toLowerCase().includes(searchValue.toLowerCase())) {
+                if (
+                    pokemon.name.toLowerCase().includes(searchValue.toLowerCase()) &&
+                    !getCaughtPokemon(props.runName).includes(pokemon.slug)
+                ) {
                     newMatches.push(pokemon);
                 }
             });

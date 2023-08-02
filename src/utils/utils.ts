@@ -54,6 +54,10 @@ export const addEncounter = (runName: string, locationSlug: string, pokemonSlug:
     localStorage.setItem(runName, JSON.stringify(run));
 };
 
+export const getCaughtPokemon = (runName: string): string[] => {
+    return getRun(runName).caughtPokemonSlugs;
+};
+
 export const addCaughtPokemon = (runName: string, pokemonSlug: string): void => {
     let run: Run = getRun(runName);
     console.log(run.caughtPokemonSlugs);
