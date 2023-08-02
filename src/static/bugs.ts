@@ -25,6 +25,18 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Sprites with negative margins overlap surrounding content",
             group: "General",
         },
+        {
+            desc: "Pokémon with forms can crash API calls",
+            group: "General",
+        },
+        {
+            desc: "Pokémon with forms only exist in their default forms",
+            group: "General",
+        },
+        {
+            desc: "Pokémon with forms only exist in their default forms",
+            group: "General",
+        },
     ],
 };
 

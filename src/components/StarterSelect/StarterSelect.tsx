@@ -1,12 +1,17 @@
 import PokemonDisplay from "@/components/PokemonDisplay/PokemonDisplay";
-import CaughtPokemon from "@/models/CaughtPokemon";
 import GameGroup from "@/models/GameGroup";
 import PokemonData from "@/models/PokemonData";
-import Run from "@/models/Run";
 import colors from "@/static/colors";
 import { fetchPokemonGroup } from "@/utils/api";
-import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
-import { getPokemonTier, getRun } from "@/utils/utils";
+import {
+    addCaughtPokemon,
+    addEncounter,
+    getEncounter,
+    getPokemonTier,
+    getStarterSlug,
+    removeCaughtPokemon,
+    setStarterSlug,
+} from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import TierCard from "../TierCard/TierCard";
@@ -33,11 +38,11 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     // Persist starter selection on subsequent loads
     useEffect(() => {
         if (starters.length > 0) {
-            const run: Run = getRun(props.runName);
-            if (run.starterSlug === "") {
+            const starterSlug: string = getStarterSlug(props.runName);
+            if (starterSlug === "") {
                 setSelectedStarterSlug(props.starterSlugsList[0]);
             } else {
-                setSelectedStarterSlug(run.starterSlug);
+                setSelectedStarterSlug(starterSlug);
             }
         }
     }, [starters]);
@@ -45,17 +50,10 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     // Place starter in box and remove existing starter on starter change + set run's starter
     useEffect(() => {
         if (selectedStarterSlug.length > 0) {
-            const run: Run = getRun(props.runName);
-            run.starterSlug = selectedStarterSlug;
-            for (let i = 0; i < run.encounterList.length; i++) {
-                if (run.encounterList[i].locationSlug === "starter") {
-                    run.encounterList.splice(i, 1);
-                    break;
-                }
-            }
-            const starter: CaughtPokemon = initCaughtPokemon(initPokemon(selectedStarterSlug, 5), "starter");
-            run.encounterList.push(starter);
-            localStorage.setItem(props.runName, JSON.stringify(run));
+            removeCaughtPokemon(props.runName, getEncounter(props.runName, "starter")!.pokemon.slug);
+            setStarterSlug(props.runName, selectedStarterSlug);
+            addEncounter(props.runName, "starter", selectedStarterSlug);
+            addCaughtPokemon(props.runName, selectedStarterSlug);
         }
     }, [selectedStarterSlug]);
 
