@@ -4,6 +4,7 @@ import { initLocalName, initPokemonData } from "@/utils/initializers";
 import { getEnglishName } from "@/utils/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts";
+import forms from "@/static/forms";
 
 type ResData = {
     pokemon?: string;
@@ -21,6 +22,9 @@ const isPokemonListRequest = (req: NextApiRequest): boolean => {
 const fetchPokemonName = async (pokemonSlug: string): Promise<string> => {
     const api: PokemonClient = new PokemonClient();
     try {
+        if (Object.keys(forms).includes(pokemonSlug)) {
+            pokemonSlug = forms[pokemonSlug];
+        }
         const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemonSlug);
         return getEnglishName(species.names);
     } catch (error: any) {

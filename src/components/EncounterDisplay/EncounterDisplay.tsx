@@ -1,10 +1,15 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 import LocalName from "@/models/LocalName";
 import PokemonData from "@/models/PokemonData";
-import Run from "@/models/Run";
 import { fetchPokemon } from "@/utils/api";
-import { initCaughtPokemon, initLocalName, initPokemon } from "@/utils/initializers";
-import { getRun } from "@/utils/utils";
+import {
+    addCaughtPokemon,
+    addEncounter,
+    getCaughtPokemon,
+    getEncounter,
+    removeCaughtPokemon,
+    removeEncounter,
+} from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterDisplay.module.scss";
@@ -47,38 +52,25 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
         );
     };
 
-    // Save an encounter into local storage
-    const saveEncounter = (pokemonSlug: string) => {
-        const run: Run = getRun(props.runName);
-        run.encounterList = run.encounterList.filter(
-            (encounter: CaughtPokemon) => encounter.locationSlug !== props.locationSlug
-        );
-        run.encounterList.push(initCaughtPokemon(initPokemon(pokemonSlug), props.locationSlug));
-        localStorage.setItem(props.runName, JSON.stringify(run));
+    // Update display on reloads
+    const handleDisplay = (selected: boolean, value: string) => {
+        setIsSelected(selected);
+        setSearchValue(value);
     };
 
-    // Remove and encounter from local storage
-    const removeEncounter = () => {
-        const run: Run = getRun(props.runName);
-        run.encounterList = run.encounterList.filter(
-            (encounter: CaughtPokemon) => encounter.locationSlug !== props.locationSlug
-        );
-        localStorage.setItem(props.runName, JSON.stringify(run));
-    };
-
-    // Handler for updates to encounters
-    const updateEncounter = async (encounter: LocalName | null) => {
+    // Update display and local storage on select
+    const handleUpdate = async (encounter: LocalName | null) => {
         if (encounter) {
-            setIsSelected(true);
-            setSearchValue(encounter.name);
-            saveEncounter(encounter.slug);
+            handleDisplay(true, encounter.name);
+            addEncounter(props.runName, props.locationSlug, encounter.slug);
             if (encounter.slug !== "failed") {
                 setEncounteredPokemon(await fetchPokemon(encounter.slug));
+                addCaughtPokemon(props.runName, encounter.slug);
             }
         } else {
-            setIsSelected(false);
-            setSearchValue("");
-            removeEncounter();
+            handleDisplay(false, "");
+            removeCaughtPokemon(props.runName, getEncounter(props.runName, props.locationSlug)!.pokemon.slug);
+            removeEncounter(props.runName, props.locationSlug);
             setEncounteredPokemon(null);
         }
     };
@@ -86,17 +78,15 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     // Fetch saved encounter if it exists
     useEffect(() => {
         if (props.runName && props.locationSlug) {
-            const run: Run = getRun(props.runName);
-            const currentEncounter: CaughtPokemon[] = run.encounterList.filter(
-                (encounter: CaughtPokemon) => encounter.locationSlug === props.locationSlug
-            );
-            if (currentEncounter.length === 0) {
-                updateEncounter(null);
-            } else if (currentEncounter[0].pokemon.slug === "failed") {
-                updateEncounter(initLocalName("failed", "Failed"));
+            const currentEncounter: CaughtPokemon | null = getEncounter(props.runName, props.locationSlug);
+            if (!currentEncounter) {
+                return;
+            } else if (currentEncounter.pokemon.slug === "failed") {
+                handleDisplay(true, "Failed");
             } else {
-                fetchPokemon(currentEncounter[0].pokemon.slug).then((pokemon: PokemonData) => {
-                    updateEncounter(pokemon.pokemon);
+                fetchPokemon(currentEncounter.pokemon.slug).then((pokemon: PokemonData) => {
+                    handleDisplay(true, pokemon.pokemon.name);
+                    setEncounteredPokemon(pokemon);
                 });
             }
         }
@@ -107,7 +97,10 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
         if (searchValue.length > 2 && !isSelected) {
             let newMatches: LocalName[] = [];
             props.pokedex.forEach((pokemon: LocalName) => {
-                if (pokemon.name.toLowerCase().includes(searchValue.toLowerCase())) {
+                if (
+                    pokemon.name.toLowerCase().includes(searchValue.toLowerCase()) &&
+                    !getCaughtPokemon(props.runName).includes(pokemon.slug)
+                ) {
                     newMatches.push(pokemon);
                 }
             });
@@ -140,7 +133,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                         <div className={styles.header}>
                             <h3 className={styles.title}>Encounter:</h3>
                             {isSelected ? (
-                                <button className={styles["encounter-button"]} onClick={() => updateEncounter(null)}>
+                                <button className={styles["encounter-button"]} onClick={() => handleUpdate(null)}>
                                     <Image
                                         src="/assets/icons/reset.svg"
                                         alt="Reset encounter"
@@ -151,7 +144,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                             ) : (
                                 <button
                                     className={styles["encounter-button"]}
-                                    onClick={() => updateEncounter({ slug: "failed", name: "Failed" })}
+                                    onClick={() => handleUpdate({ slug: "failed", name: "Failed" })}
                                 >
                                     <Image
                                         src="/assets/icons/x.svg"
@@ -177,7 +170,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                             {matches.map((match: LocalName, key: number) => {
                                 return (
                                     <li key={key}>
-                                        <button className={styles.match} onClick={() => updateEncounter(match)}>
+                                        <button className={styles.match} onClick={() => handleUpdate(match)}>
                                             {renderMatch(match.name)}
                                         </button>
                                     </li>
