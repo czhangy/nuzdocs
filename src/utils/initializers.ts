@@ -67,6 +67,7 @@ export const initCaughtPokemon = (pokemon: Pokemon, locationSlug: string): Caugh
     return {
         pokemon: pokemon,
         locationSlug: locationSlug,
+        originalSlug: pokemon.slug,
     };
 };
 
