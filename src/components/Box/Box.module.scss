@@ -27,6 +27,10 @@
         position: relative;
         width: var(--sprite-size);
     }
+
+    .active {
+        background-color: constants.$hover-color;
+    }
 }
 
 @media screen and (min-width: constants.$tablet) {

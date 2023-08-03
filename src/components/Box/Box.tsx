@@ -16,17 +16,17 @@ const Box: React.FC<Props> = (props: Props) => {
 
     // Component state
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
-    const [mouseLocation, setMouseLocation] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+    const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
-    // When a Pokemon is clicked, locate the menu and open it
-    const handleClick = (e: React.MouseEvent) => {
-        setMouseLocation({ x: e.clientX, y: e.clientY });
-        console.log({ x: e.clientX, y: e.clientY });
+    // Set Pokemon to active and open its menu
+    const handleClick = (idx: number): void => {
+        setActiveIdx(idx);
         setMenuOpen(true);
     };
 
     // Delay menu close to allow clicks to register
-    const handleClose = () => {
+    const handleClose = (): void => {
+        setActiveIdx(null);
         setTimeout(() => {
             setMenuOpen(false);
         }, 100);
@@ -46,13 +46,17 @@ const Box: React.FC<Props> = (props: Props) => {
     return (
         <>
             <div className={styles.box}>
-                {boxData.map((pokemon: PokemonData) => (
-                    <button className={styles.pokemon} onClick={(e: React.MouseEvent) => handleClick(e)}>
+                {boxData.map((pokemon: PokemonData, key: number) => (
+                    <button
+                        className={`${styles.pokemon} ${key === activeIdx ? styles.active : ""}`}
+                        onClick={() => handleClick(key)}
+                        key={key}
+                    >
                         <Image src={pokemon.sprite} alt={pokemon.pokemon.name} layout="fill" objectFit="contain" />
                     </button>
                 ))}
             </div>
-            <BoxMenu open={menuOpen} onClose={handleClose} location={mouseLocation} />
+            <BoxMenu open={menuOpen} onClose={handleClose} />
         </>
     );
 };
