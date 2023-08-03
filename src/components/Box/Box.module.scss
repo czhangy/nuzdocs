@@ -22,14 +22,18 @@
     width: var(--box-width);
 
     .pokemon {
-        border-radius: var(--pokemon-border-rad);
-        height: var(--sprite-size);
         position: relative;
-        width: var(--sprite-size);
-    }
 
-    .active {
-        background-color: constants.$hover-color;
+        .button {
+            border-radius: var(--pokemon-border-rad);
+            height: var(--sprite-size);
+            position: relative;
+            width: var(--sprite-size);
+        }
+
+        .active {
+            background-color: constants.$hover-color;
+        }
     }
 }
 
@@ -48,7 +52,7 @@
 }
 
 @media (hover: hover) {
-    .box > .pokemon:hover {
+    .box > .pokemon > .button:hover {
         background-color: constants.$hover-color;
     }
 }
