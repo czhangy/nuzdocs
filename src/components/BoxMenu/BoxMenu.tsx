@@ -18,6 +18,7 @@ const BoxMenu: React.FC<Props> = (props: Props) => {
                 </Link>
                 <button className={styles.option}>Evolve</button>
                 <button className={styles.option}>RIP</button>
+                <div className={styles.arrow} />
             </div>
         </div>
     );

@@ -25,7 +25,6 @@ const Box: React.FC<Props> = (props: Props) => {
         for (let p of pokemon) {
             inverted.push(p.getBoundingClientRect().right > window.innerWidth / 2);
         }
-        console.log(inverted);
         setIsInverted(inverted);
     };
 

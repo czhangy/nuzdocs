@@ -1,6 +1,8 @@
 @use "@/styles/constants";
 
 .box-menu {
+    --arrow-height: 8px;
+    --arrow-length: 12px;
     --border-rad: 2px;
     --border-size: 2px;
     --hidden-offset: -10px;
@@ -19,7 +21,7 @@
         display: flex;
         flex-direction: column;
         position: absolute;
-        left: 100%;
+        left: calc(100% + var(--arrow-length));
         top: 50%;
         z-index: calc(var(--overlay-z) + 1);
 
@@ -29,11 +31,27 @@
             padding: var(--option-y-padding) var(--option-x-padding);
             text-align: left;
         }
+
+        .arrow {
+            border-bottom: var(--arrow-height) solid transparent;
+            border-right: var(--arrow-length) solid constants.$text-color;
+            border-top: var(--arrow-height) solid transparent;
+            left: calc((var(--arrow-length) + var(--border-size) / 2) * -1);
+            position: absolute;
+            top: calc(var(--border-size) * -1);
+        }
     }
 
     .inverted {
         left: auto;
-        right: 100%;
+        right: calc(100% + var(--arrow-length));
+
+        .arrow {
+            border-left: var(--arrow-length) solid constants.$text-color;
+            border-right: none;
+            left: auto;
+            right: calc((var(--arrow-length) + var(--border-size) / 2) * -1);
+        }
     }
 
     .overlay {
