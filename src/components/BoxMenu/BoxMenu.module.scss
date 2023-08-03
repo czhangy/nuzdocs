@@ -5,14 +5,13 @@
     --arrow-length: 12px;
     --border-rad: 2px;
     --border-size: 2px;
+    --fade-offset: 5px;
     --hidden-offset: -10px;
     --option-font-size: 1rem;
     --option-x-padding: 1.25rem;
     --option-y-padding: 0.75rem;
     --overlay-z: 99;
     --transition-time: 0.1s;
-
-    transition: opacity var(--transition-time);
 
     .menu {
         background-color: constants.$bg-color;
@@ -23,6 +22,7 @@
         position: absolute;
         left: calc(100% + var(--arrow-length));
         top: 50%;
+        transition: opacity var(--transition-time), transform var(--transition-time);
         z-index: calc(var(--overlay-z) + 1);
 
         .option {
@@ -65,8 +65,16 @@
 }
 
 .hide {
-    opacity: 0;
     pointer-events: none;
+
+    .menu {
+        opacity: 0;
+        transform: translateX(calc(var(--fade-offset) * -1));
+    }
+
+    .inverted {
+        transform: translateX(var(--fade-offset));
+    }
 }
 
 @media (hover: hover) {
