@@ -15,10 +15,11 @@ const BoxMenu: React.FC<Props> = (props: Props) => {
     const isFinalStage = () => {
         if (props.pokemon) {
             for (let chain of props.pokemon.evolutions) {
-                if (chain.indexOf(props.pokemon.pokemon.slug) !== chain.length - 1) {
-                    return false;
+                if (chain.indexOf(props.pokemon.pokemon.slug) === chain.length - 1) {
+                    return true;
                 }
             }
+            return false;
         }
         return true;
     };

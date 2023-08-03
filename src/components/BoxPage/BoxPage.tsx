@@ -58,6 +58,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
     // Open modal when a Pokemon is trying to evolve
     useEffect(() => {
         if (evolvingPokemon) {
+            console.log(evolvingPokemon);
             setEvolveModalOpen(true);
         }
     }, [evolvingPokemon]);
