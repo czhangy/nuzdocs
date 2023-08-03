@@ -8,6 +8,7 @@ import styles from "./Box.module.scss";
 
 type Props = {
     box: CaughtPokemon[];
+    onEvolve: (pokemon: PokemonData, idx: number) => void;
 };
 
 const Box: React.FC<Props> = (props: Props) => {
@@ -33,11 +34,10 @@ const Box: React.FC<Props> = (props: Props) => {
         setActiveIdx(idx);
     };
 
-    // Delay menu close to allow clicks to register
-    const handleClose = (): void => {
-        setTimeout(() => {
-            setActiveIdx(null);
-        }, 100);
+    // Close menu and propagate up
+    const handleEvolve = (pokemon: PokemonData, idx: number): void => {
+        setActiveIdx(null);
+        props.onEvolve(pokemon, idx);
     };
 
     // Listen for window resizes to recompute inverted menus
@@ -75,7 +75,13 @@ const Box: React.FC<Props> = (props: Props) => {
                             <Image src={pokemon.sprite} alt={pokemon.pokemon.name} layout="fill" objectFit="contain" />
                         </button>
                         {isInverted.length > 0 ? (
-                            <BoxMenu open={key === activeIdx} onClose={handleClose} inverted={isInverted[key]} />
+                            <BoxMenu
+                                open={key === activeIdx}
+                                pokemon={pokemon}
+                                onClose={() => setActiveIdx(null)}
+                                onEvolve={() => handleEvolve(pokemon, key)}
+                                inverted={isInverted[key]}
+                            />
                         ) : (
                             ""
                         )}

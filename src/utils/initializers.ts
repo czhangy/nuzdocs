@@ -38,11 +38,17 @@ export const initLocalName = (slug: string, name: string): LocalName => {
     };
 };
 
-export const initPokemonData = (pokemon: LocalName, types: string[], sprite: string): PokemonData => {
+export const initPokemonData = (
+    pokemon: LocalName,
+    types: string[],
+    sprite: string,
+    evolutions: string[][]
+): PokemonData => {
     return {
         pokemon: pokemon,
         types: types,
         sprite: sprite,
+        evolutions: evolutions,
     };
 };
 
@@ -61,6 +67,7 @@ export const initCaughtPokemon = (pokemon: Pokemon, locationSlug: string): Caugh
     return {
         pokemon: pokemon,
         locationSlug: locationSlug,
+        originalSlug: pokemon.slug,
     };
 };
 

@@ -1,0 +1,112 @@
+@use "@/styles/constants";
+
+.evolve-modal {
+    --arrow-font-size: 2rem;
+    --button-border-rad: 5px;
+    --button-border-size: 2px;
+    --button-font-size: 1rem;
+    --button-letter-spacing: 1px;
+    --button-padding: 1rem;
+    --buttons-inner-spacing: 1.5rem;
+    --chain-inner-spacing: 2rem;
+    --chains-inner-spacing: 1rem;
+    --chains-spacing: 1.5rem;
+    --header-font-size: 1.25rem;
+    --modal-width: 325px;
+    --sprite-border-rad: 10px;
+    --sprite-size: 100px;
+
+    width: var(--modal-width);
+
+    .header {
+        font-size: var(--header-font-size);
+        line-height: var(--header-font-size);
+        text-align: center;
+    }
+
+    .chains {
+        display: flex;
+        flex-direction: column;
+        gap: var(--chains-inner-spacing);
+        margin: var(--chains-spacing) 0;
+        max-height: calc(3 * var(--sprite-size) + 2 * var(--chains-inner-spacing));
+        overflow-y: auto;
+
+        .chain {
+            align-items: center;
+            display: flex;
+            gap: var(--chain-inner-spacing);
+            justify-content: center;
+
+            .sprite {
+                border-radius: var(--sprite-border-rad);
+                height: var(--sprite-size);
+                position: relative;
+                width: var(--sprite-size);
+            }
+
+            .arrow {
+                font-size: var(--arrow-font-size);
+                line-height: var(--arrow-font-size);
+            }
+
+            .active {
+                background: constants.$hover-color;
+            }
+        }
+    }
+
+    ::-webkit-scrollbar {
+        background: constants.$accent-color;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-color: constants.$accent-color;
+    }
+
+    .buttons {
+        display: flex;
+        gap: var(--buttons-inner-spacing);
+        justify-content: center;
+
+        .button {
+            border: var(--button-border-size) solid constants.$text-color;
+            border-radius: var(--button-border-rad);
+            font-size: var(--button-font-size);
+            font-weight: bold;
+            letter-spacing: var(--button-letter-spacing);
+            line-height: var(--button-font-size);
+            padding: var(--button-padding);
+        }
+
+        .evolve {
+            background-color: constants.$text-color;
+            color: constants.$bg-color;
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .evolve-modal {
+        --arrow-font-size: 3rem;
+        --chains-spacing: 2rem;
+        --header-font-size: 1.5rem;
+        --modal-width: 500px;
+        --sprite-size: 120px;
+    }
+}
+
+@media (hover: hover) {
+    .evolve-modal > .buttons {
+        .cancel:hover {
+            border-color: constants.$hover-color;
+            color: constants.$hover-color;
+        }
+
+        .evolve:hover {
+            background-color: constants.$hover-color;
+            border-color: constants.$hover-color;
+            color: constants.$text-color;
+        }
+    }
+}

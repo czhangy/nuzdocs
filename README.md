@@ -109,10 +109,11 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 
 ## To-Dos
 
--   [ ] Box view
+-   [ ] Refactor API calls to use species as an intermediary
 -   [ ] Overview
 -   [ ] Deaths
 -   [ ] Evolutions
+-   [ ] Forms
 -   [ ] Pokemon data
 -   [ ] Location maps
 -   [ ] Tier list page

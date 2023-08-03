@@ -85,7 +85,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
             } else if (currentEncounter.pokemon.slug === "failed") {
                 handleDisplay(true, "Failed");
             } else {
-                fetchPokemon(currentEncounter.pokemon.slug).then((pokemon: PokemonData) => {
+                fetchPokemon(currentEncounter.originalSlug).then((pokemon: PokemonData) => {
                     handleDisplay(true, pokemon.pokemon.name);
                     setEncounteredPokemon(pokemon);
                 });
