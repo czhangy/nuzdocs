@@ -3,8 +3,15 @@ import PokemonData from "@/models/PokemonData";
 import { initLocalName, initPokemonData } from "@/utils/initializers";
 import { getEnglishName } from "@/utils/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { ChainLink, EvolutionChain, EvolutionClient, Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts";
-import forms from "@/static/forms";
+import {
+    ChainLink,
+    EvolutionChain,
+    EvolutionClient,
+    Pokemon,
+    PokemonClient,
+    PokemonSpecies,
+    PokemonSpeciesVariety,
+} from "pokenode-ts";
 
 type ResData = {
     pokemon?: string;
@@ -31,19 +38,6 @@ const createEvolutionChains = (stage: ChainLink, chain: string[], chains: string
     chain.pop();
 };
 
-const fetchPokemonName = async (pokemonSlug: string): Promise<string> => {
-    const api: PokemonClient = new PokemonClient();
-    try {
-        if (Object.keys(forms).includes(pokemonSlug)) {
-            pokemonSlug = forms[pokemonSlug];
-        }
-        const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemonSlug);
-        return getEnglishName(species.names);
-    } catch (error: any) {
-        throw error;
-    }
-};
-
 const fetchPokemonEvolutionChains = async (pokemon: Pokemon): Promise<string[][]> => {
     const pokemonAPI: PokemonClient = new PokemonClient();
     const evolutionAPI: EvolutionClient = new EvolutionClient();
@@ -64,8 +58,11 @@ const fetchPokemonEvolutionChains = async (pokemon: Pokemon): Promise<string[][]
 const fetchPokemon = async (pokemonSlug: string): Promise<PokemonData> => {
     const api: PokemonClient = new PokemonClient();
     try {
-        const pokemon: Pokemon = await api.getPokemonByName(pokemonSlug);
-        const pokemonName: LocalName = initLocalName(pokemonSlug, await fetchPokemonName(pokemon.name));
+        const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemonSlug);
+        const pokemon: Pokemon = await api.getPokemonByName(
+            species.varieties.find((variety: PokemonSpeciesVariety) => variety.is_default)!.pokemon.name
+        );
+        const pokemonName: LocalName = initLocalName(pokemonSlug, getEnglishName(species.names));
         const types: string[] = pokemon.types.map((type) => type.type.name);
         const sprite: string = pokemon.sprites.front_default!;
         const evolutions: string[][] = await fetchPokemonEvolutionChains(pokemon);

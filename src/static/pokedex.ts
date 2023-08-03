@@ -1542,7 +1542,7 @@ const pokedex: LocalName[] = [
         name: "Jirachi",
     },
     {
-        slug: "deoxys-normal",
+        slug: "deoxys",
         name: "Deoxys",
     },
     {
@@ -1650,7 +1650,7 @@ const pokedex: LocalName[] = [
         name: "Burmy",
     },
     {
-        slug: "wormadam-plant",
+        slug: "wormadam",
         name: "Wormadam",
     },
     {
@@ -1946,7 +1946,7 @@ const pokedex: LocalName[] = [
         name: "Regigigas",
     },
     {
-        slug: "giratina-altered",
+        slug: "giratina",
         name: "Giratina",
     },
     {
@@ -1966,7 +1966,7 @@ const pokedex: LocalName[] = [
         name: "Darkrai",
     },
     {
-        slug: "shaymin-land",
+        slug: "shaymin",
         name: "Shaymin",
     },
     {
