@@ -18,6 +18,17 @@ const Box: React.FC<Props> = (props: Props) => {
     const [activeIdx, setActiveIdx] = useState<number | null>(null);
     const [isInverted, setIsInverted] = useState<boolean[]>([]);
 
+    // Compute inverted indices for menu display
+    const getInvertedMenus = () => {
+        const pokemon: HTMLCollectionOf<Element> = document.getElementsByClassName(styles.pokemon);
+        const inverted: boolean[] = [];
+        for (let p of pokemon) {
+            inverted.push(p.getBoundingClientRect().right > window.innerWidth / 2);
+        }
+        console.log(inverted);
+        setIsInverted(inverted);
+    };
+
     // Set Pokemon to active and open its menu
     const handleClick = (idx: number): void => {
         setActiveIdx(idx);
@@ -30,16 +41,16 @@ const Box: React.FC<Props> = (props: Props) => {
         }, 100);
     };
 
-    // Compute which indices are inverted menus
+    // Listen for window resizes to recompute inverted menus
     useEffect(() => {
-        const pokemon: HTMLCollectionOf<Element> = document.getElementsByClassName(styles.pokemon);
-        const inverted: boolean[] = [];
-        for (let p of pokemon) {
-            console.log(p.getBoundingClientRect());
-            inverted.push(p.getBoundingClientRect().right > window.innerWidth / 2);
-        }
-        setIsInverted(inverted);
+        window.addEventListener("resize", getInvertedMenus);
+        return () => {
+            window.removeEventListener("resize", getInvertedMenus);
+        };
     }, []);
+
+    // Compute which indices are inverted menus after box data is fetched
+    useEffect(getInvertedMenus, [boxData]);
 
     // Use box to fetch data for all Pokemon in box, ignoring failed encounters
     useEffect(() => {
