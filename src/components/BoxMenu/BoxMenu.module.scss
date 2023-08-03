@@ -3,27 +3,46 @@
 .box-menu {
     --border-rad: 2px;
     --border-size: 2px;
+    --hidden-offset: -10px;
     --option-font-size: 1rem;
     --option-x-padding: 1.25rem;
     --option-y-padding: 0.75rem;
+    --transition-time: 0.1s;
 
-    background-color: constants.$bg-color;
-    border: var(--border-size) solid constants.$text-color;
-    border-radius: var(--border-rad);
-    display: flex;
-    flex-direction: column;
-    position: absolute;
+    transition: opacity var(--transition-time);
 
-    .option {
-        font-size: var(--option-font-size);
-        line-height: var(--option-font-size);
-        padding: var(--option-y-padding) var(--option-x-padding);
-        text-align: left;
+    .menu {
+        background-color: constants.$bg-color;
+        border: var(--border-size) solid constants.$text-color;
+        border-radius: var(--border-rad);
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+
+        .option {
+            font-size: var(--option-font-size);
+            line-height: var(--option-font-size);
+            padding: var(--option-y-padding) var(--option-x-padding);
+            text-align: left;
+        }
+    }
+
+    .overlay {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
     }
 }
 
+.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
 @media (hover: hover) {
-    .box-menu > .option:hover {
+    .box-menu > .menu > .option:hover {
         background-color: constants.$hover-color;
     }
 }
