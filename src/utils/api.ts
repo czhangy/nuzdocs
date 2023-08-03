@@ -19,6 +19,9 @@ export const fetchPokemon = async (pokemonSlug: string) => {
 // Fetch a list of PokemonData given Pokemon slugs
 export const fetchPokemonGroup = async (pokemonSlugs: string[]) => {
     try {
+        if (pokemonSlugs.length === 1) {
+            return [await fetchPokemon(pokemonSlugs[0])];
+        }
         const res = await axios.get("/api/pokemon", {
             params: {
                 pokemonSlugList: pokemonSlugs,

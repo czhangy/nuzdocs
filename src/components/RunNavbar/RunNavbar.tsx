@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar/Navbar";
 import Game from "@/models/Game";
 import Run from "@/models/Run";
-import Segment from "@/models/Segment";
 import games from "@/static/games";
 import { getRun } from "@/utils/utils";
 import Image from "next/image";
@@ -16,16 +15,13 @@ const RunNavbar: React.FC = () => {
 
     // Validate run and set game for valid runs
     useEffect(() => {
-        if (router.query.runName && router.query.segmentSlug) {
+        if (router.query.runName) {
             const run: Run = getRun(router.query.runName as string);
-            if (
-                run &&
-                Object.keys(games[run.gameSlug].gameGroup.segments).includes(router.query.segmentSlug as string)
-            ) {
+            if (run) {
                 setGame(games[run.gameSlug]);
             }
         }
-    }, [router.query.runName, router.query.segmentSlug]);
+    }, [router.query.runName]);
 
     return (
         <Navbar>

@@ -1,0 +1,58 @@
+@use "@/styles/constants";
+
+.box {
+    --box-border-rad: 10px;
+    --box-inner-spacing: 1rem;
+    --box-x-padding: 2rem;
+    --box-y-padding: 2rem;
+    --box-width: 360px;
+    --num-cols: 3;
+    --pokemon-border-rad: 5px;
+    --sprite-size: calc(
+        (var(--box-width) - 2 * var(--box-x-padding) - (var(--num-cols) - 1) * var(--box-inner-spacing)) /
+            var(--num-cols)
+    );
+
+    background-color: constants.$accent-color;
+    border-radius: var(--box-border-rad);
+    display: grid;
+    gap: var(--box-inner-spacing);
+    grid-template-columns: repeat(var(--num-cols), 1fr);
+    padding: var(--box-y-padding) var(--box-x-padding);
+    width: var(--box-width);
+
+    .pokemon {
+        position: relative;
+
+        .button {
+            border-radius: var(--pokemon-border-rad);
+            height: var(--sprite-size);
+            position: relative;
+            width: var(--sprite-size);
+        }
+
+        .active {
+            background-color: constants.$hover-color;
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .box {
+        --box-width: 720px;
+        --num-cols: 6;
+    }
+}
+
+@media screen and (min-width: constants.$desktop) {
+    .box {
+        --box-width: 960px;
+        --num-cols: 8;
+    }
+}
+
+@media (hover: hover) {
+    .box > .pokemon > .button:hover {
+        background-color: constants.$hover-color;
+    }
+}

@@ -16,6 +16,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import TierCard from "../TierCard/TierCard";
 import styles from "./StarterSelect.module.scss";
+import CaughtPokemon from "@/models/CaughtPokemon";
 
 type Props = {
     runName: string;
@@ -50,10 +51,13 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     // Place starter in box and remove existing starter on starter change + set run's starter
     useEffect(() => {
         if (selectedStarterSlug.length > 0) {
-            removeCaughtPokemon(props.runName, getEncounter(props.runName, "starter")!.pokemon.slug);
-            setStarterSlug(props.runName, selectedStarterSlug);
-            addEncounter(props.runName, "starter", selectedStarterSlug);
-            addCaughtPokemon(props.runName, selectedStarterSlug);
+            const prevStarter: CaughtPokemon | null = getEncounter(props.runName, "starter");
+            if (prevStarter && prevStarter.pokemon.slug !== selectedStarterSlug) {
+                removeCaughtPokemon(props.runName, prevStarter.pokemon.slug);
+                setStarterSlug(props.runName, selectedStarterSlug);
+                addEncounter(props.runName, "starter", selectedStarterSlug);
+                addCaughtPokemon(props.runName, selectedStarterSlug);
+            }
         }
     }, [selectedStarterSlug]);
 

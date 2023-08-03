@@ -1,0 +1,84 @@
+@use "@/styles/constants";
+
+.box-menu {
+    --arrow-height: 8px;
+    --arrow-length: 12px;
+    --border-rad: 2px;
+    --border-size: 2px;
+    --fade-offset: 5px;
+    --hidden-offset: -10px;
+    --option-font-size: 1rem;
+    --option-x-padding: 1.25rem;
+    --option-y-padding: 0.75rem;
+    --overlay-z: 99;
+    --transition-time: 0.1s;
+
+    .menu {
+        background-color: constants.$bg-color;
+        border: var(--border-size) solid constants.$text-color;
+        border-radius: var(--border-rad);
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: calc(100% + var(--arrow-length));
+        top: 50%;
+        transition: opacity var(--transition-time), transform var(--transition-time);
+        z-index: calc(var(--overlay-z) + 1);
+
+        .option {
+            font-size: var(--option-font-size);
+            line-height: var(--option-font-size);
+            padding: var(--option-y-padding) var(--option-x-padding);
+            text-align: left;
+        }
+
+        .arrow {
+            border-bottom: var(--arrow-height) solid transparent;
+            border-right: var(--arrow-length) solid constants.$text-color;
+            border-top: var(--arrow-height) solid transparent;
+            left: calc((var(--arrow-length) + var(--border-size) / 2) * -1);
+            position: absolute;
+            top: calc(var(--border-size) * -1);
+        }
+    }
+
+    .inverted {
+        left: auto;
+        right: calc(100% + var(--arrow-length));
+
+        .arrow {
+            border-left: var(--arrow-length) solid constants.$text-color;
+            border-right: none;
+            left: auto;
+            right: calc((var(--arrow-length) + var(--border-size) / 2) * -1);
+        }
+    }
+
+    .overlay {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: var(--overlay-z);
+    }
+}
+
+.hide {
+    pointer-events: none;
+
+    .menu {
+        opacity: 0;
+        transform: translateX(calc(var(--fade-offset) * -1));
+    }
+
+    .inverted {
+        transform: translateX(var(--fade-offset));
+    }
+}
+
+@media (hover: hover) {
+    .box-menu > .menu > .option:hover {
+        background-color: constants.$hover-color;
+    }
+}
