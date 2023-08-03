@@ -113,6 +113,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Overview
 -   [ ] Deaths
 -   [ ] Evolutions
+-   [ ] Forms
 -   [ ] Pokemon data
 -   [ ] Location maps
 -   [ ] Tier list page

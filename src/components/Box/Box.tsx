@@ -78,6 +78,7 @@ const Box: React.FC<Props> = (props: Props) => {
                         {isInverted.length > 0 ? (
                             <BoxMenu
                                 open={key === activeIdx}
+                                pokemon={pokemon}
                                 onClose={handleClose}
                                 onEvolve={() => props.onEvolve(pokemon)}
                                 inverted={isInverted[key]}

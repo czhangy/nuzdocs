@@ -32,6 +32,11 @@
             text-align: left;
         }
 
+        .disabled {
+            color: constants.$disabled-color;
+            pointer-events: none;
+        }
+
         .arrow {
             border-bottom: var(--arrow-height) solid transparent;
             border-right: var(--arrow-length) solid constants.$text-color;
