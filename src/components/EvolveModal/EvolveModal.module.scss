@@ -1,17 +1,18 @@
 @use "@/styles/constants";
 
 .evolve-modal {
-    --arrow-font-size: 3rem;
+    --arrow-font-size: 2rem;
     --chain-inner-spacing: 2rem;
     --chains-inner-spacing: 1rem;
-    --chains-spacing: 2rem;
-    --header-font-size: 1.5rem;
+    --chains-spacing: 1.5rem;
+    --header-font-size: 1.25rem;
     --sprite-border-rad: 10px;
-    --sprite-size: 120px;
+    --sprite-size: 100px;
 
     .header {
         font-size: var(--header-font-size);
         line-height: var(--header-font-size);
+        text-align: center;
     }
 
     .chains {
@@ -42,5 +43,14 @@
                 background: constants.$hover-color;
             }
         }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .evolve-modal {
+        --arrow-font-size: 3rem;
+        --chains-spacing: 2rem;
+        --header-font-size: 1.5rem;
+        --sprite-size: 120px;
     }
 }
