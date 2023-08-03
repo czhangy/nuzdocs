@@ -3,7 +3,7 @@ import PokemonData from "@/models/PokemonData";
 import { initLocalName, initPokemonData } from "@/utils/initializers";
 import { getEnglishName } from "@/utils/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts";
+import { ChainLink, EvolutionChain, EvolutionClient, Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts";
 import forms from "@/static/forms";
 
 type ResData = {
@@ -19,6 +19,18 @@ const isPokemonListRequest = (req: NextApiRequest): boolean => {
     return req.method === "GET" && "pokemonSlugList[]" in req.query && Array.isArray(req.query["pokemonSlugList[]"]);
 };
 
+const createEvolutionChains = (stage: ChainLink, chain: string[], chains: string[][]): void => {
+    chain.push(stage.species.name);
+    if (stage.evolves_to.length === 0) {
+        chains.push([...chain]);
+    } else {
+        for (let link of stage.evolves_to) {
+            createEvolutionChains(link, chain, chains);
+        }
+    }
+    chain.pop();
+};
+
 const fetchPokemonName = async (pokemonSlug: string): Promise<string> => {
     const api: PokemonClient = new PokemonClient();
     try {
@@ -32,6 +44,23 @@ const fetchPokemonName = async (pokemonSlug: string): Promise<string> => {
     }
 };
 
+const fetchPokemonEvolutionChains = async (pokemon: Pokemon): Promise<string[][]> => {
+    const pokemonAPI: PokemonClient = new PokemonClient();
+    const evolutionAPI: EvolutionClient = new EvolutionClient();
+    try {
+        const species: PokemonSpecies = await pokemonAPI.getPokemonSpeciesByName(pokemon.species.name);
+        const id: number = Number(
+            (species.evolution_chain.url.match(/\/evolution-chain\/(\d+)\//) as RegExpMatchArray)[1]
+        );
+        const chain: EvolutionChain = await evolutionAPI.getEvolutionChainById(id);
+        let chains: string[][] = [];
+        createEvolutionChains(chain.chain, [], chains);
+        return chains;
+    } catch (error: any) {
+        throw error;
+    }
+};
+
 const fetchPokemon = async (pokemonSlug: string): Promise<PokemonData> => {
     const api: PokemonClient = new PokemonClient();
     try {
@@ -39,7 +68,8 @@ const fetchPokemon = async (pokemonSlug: string): Promise<PokemonData> => {
         const pokemonName: LocalName = initLocalName(pokemonSlug, await fetchPokemonName(pokemon.name));
         const types: string[] = pokemon.types.map((type) => type.type.name);
         const sprite: string = pokemon.sprites.front_default!;
-        return initPokemonData(pokemonName, types, sprite);
+        const evolutions: string[][] = await fetchPokemonEvolutionChains(pokemon);
+        return initPokemonData(pokemonName, types, sprite, evolutions);
     } catch (error: any) {
         throw error;
     }

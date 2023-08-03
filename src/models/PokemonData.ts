@@ -4,4 +4,5 @@ export default interface PokemonData {
     pokemon: LocalName;
     types: string[];
     sprite: string;
+    evolutions: string[][];
 }
