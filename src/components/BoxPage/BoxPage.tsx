@@ -4,6 +4,8 @@ import { getBox } from "@/utils/utils";
 import { useEffect, useState } from "react";
 import styles from "./BoxPage.module.scss";
 import PokemonData from "@/models/PokemonData";
+import Modal from "@/components/Modal/Modal";
+import EvolveModal from "@/components/EvolveModal/EvolveModal";
 
 type Props = {
     runName: string;
@@ -29,12 +31,15 @@ const BoxPage: React.FC<Props> = (props: Props) => {
     // Open modal when a Pokemon is trying to evolve
     useEffect(() => {
         if (evolvingPokemon) {
-            console.log(evolvingPokemon);
+            setEvolveModalOpen(true);
         }
-    });
+    }, [evolvingPokemon]);
 
     return (
         <div className={styles["box-page"]}>
+            <Modal modalID="evolve-modal" open={evolveModalOpen} onClose={() => setEvolveModalOpen(false)}>
+                <EvolveModal />
+            </Modal>
             <h2 className={styles.header}>Your Box</h2>
             <Box box={box} onEvolve={(pokemon: PokemonData) => setEvolvingPokemon(pokemon)} />
         </div>

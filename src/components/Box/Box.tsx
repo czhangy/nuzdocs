@@ -34,11 +34,10 @@ const Box: React.FC<Props> = (props: Props) => {
         setActiveIdx(idx);
     };
 
-    // Delay menu close to allow clicks to register
-    const handleClose = (): void => {
-        setTimeout(() => {
-            setActiveIdx(null);
-        }, 100);
+    // Close menu and propagate up
+    const handleEvolve = (pokemon: PokemonData): void => {
+        setActiveIdx(null);
+        props.onEvolve(pokemon);
     };
 
     // Listen for window resizes to recompute inverted menus
@@ -79,8 +78,8 @@ const Box: React.FC<Props> = (props: Props) => {
                             <BoxMenu
                                 open={key === activeIdx}
                                 pokemon={pokemon}
-                                onClose={handleClose}
-                                onEvolve={() => props.onEvolve(pokemon)}
+                                onClose={() => setActiveIdx(null)}
+                                onEvolve={() => handleEvolve(pokemon)}
                                 inverted={isInverted[key]}
                             />
                         ) : (
