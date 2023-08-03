@@ -7,6 +7,8 @@ import Image from "next/image";
 type Props = {
     pokemon: PokemonData;
     chains: string[][];
+    onClose: () => void;
+    onEvolve: (selection: PokemonData) => void;
 };
 
 const EvolveModal: React.FC<Props> = (props: Props) => {
@@ -39,15 +41,11 @@ const EvolveModal: React.FC<Props> = (props: Props) => {
         }
     }, [evolutions]);
 
-    return (
+    return selection ? (
         <div className={styles["evolve-modal"]}>
-            {selection ? (
-                <p className={styles.header}>
-                    Evolve <strong>{props.pokemon.pokemon.name}</strong> into <strong>{selection.pokemon.name}</strong>?
-                </p>
-            ) : (
-                "Loading..."
-            )}
+            <p className={styles.header}>
+                Evolve <strong>{props.pokemon.pokemon.name}</strong> into <strong>{selection.pokemon.name}</strong>?
+            </p>
             <div className={styles.chains}>
                 {evolutions.map((evolution: PokemonData, key: number) => (
                     <div className={styles.chain} key={key}>
@@ -75,9 +73,17 @@ const EvolveModal: React.FC<Props> = (props: Props) => {
                 ))}
             </div>
             <div className={styles.buttons}>
-                <button className={`${styles.button} ${styles.cancel}`}>Cancel</button>
-                <button className={`${styles.button} ${styles.evolve}`}>Evolve</button>
+                <button className={`${styles.button} ${styles.cancel}`} onClick={props.onClose}>
+                    Cancel
+                </button>
+                <button className={`${styles.button} ${styles.evolve}`} onClick={() => props.onEvolve(selection)}>
+                    Evolve
+                </button>
             </div>
+        </div>
+    ) : (
+        <div className={styles["evolve-modal"]}>
+            <p className={styles.header}>Loading...</p>
         </div>
     );
 };

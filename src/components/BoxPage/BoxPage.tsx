@@ -28,11 +28,18 @@ const BoxPage: React.FC<Props> = (props: Props) => {
         setEvolveIdx(idx);
     };
 
-    // Reset internal state on close
+    // Reset internal state on close, delaying state change to allow modal to transition out smoothly
     const handleClose = () => {
-        setEvolvingPokemon(null);
-        setEvolveIdx(null);
         setEvolveModalOpen(false);
+        setTimeout(() => {
+            setEvolvingPokemon(null);
+            setEvolveIdx(null);
+        }, 200);
+    };
+
+    // Evolve the Pokemon, updating local storage and closing the modal
+    const handleConfirm = (selection: PokemonData) => {
+        handleClose();
     };
 
     // Access local storage on component load
@@ -52,7 +59,16 @@ const BoxPage: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["box-page"]}>
             <Modal modalID="evolve-modal" open={evolveModalOpen} onClose={handleClose}>
-                {evolvingPokemon ? <EvolveModal pokemon={evolvingPokemon} chains={evolvingPokemon.evolutions} /> : ""}
+                {evolvingPokemon ? (
+                    <EvolveModal
+                        pokemon={evolvingPokemon}
+                        chains={evolvingPokemon.evolutions}
+                        onClose={handleClose}
+                        onEvolve={(selection: PokemonData) => handleConfirm(selection)}
+                    />
+                ) : (
+                    ""
+                )}
             </Modal>
             <h2 className={styles.header}>Your Box</h2>
             <Box box={box} onEvolve={(pokemon: PokemonData, idx: number) => handleEvolve(pokemon, idx)} />
