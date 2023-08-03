@@ -4,4 +4,5 @@ export default interface CaughtPokemon {
     pokemon: Pokemon;
     locationSlug: string;
     originalSlug: string;
+    isDead: boolean;
 }
