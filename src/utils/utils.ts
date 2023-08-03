@@ -20,6 +20,10 @@ export const getRun = (runName: string): Run => {
     return JSON.parse(localStorage.getItem(runName) as string);
 };
 
+export const setRun = (runName: string, run: Run): void => {
+    localStorage.setItem(runName, JSON.stringify(run));
+};
+
 export const getStarterSlug = (runName: string): string => {
     return getRun(runName).starterSlug;
 };
@@ -27,7 +31,7 @@ export const getStarterSlug = (runName: string): string => {
 export const setStarterSlug = (runName: string, starterSlug: string): void => {
     let run: Run = getRun(runName);
     run.starterSlug = starterSlug;
-    localStorage.setItem(runName, JSON.stringify(run));
+    setRun(runName, run);
 };
 
 export const getCompletedBattles = (runName: string): string[] => {
@@ -36,6 +40,12 @@ export const getCompletedBattles = (runName: string): string[] => {
 
 export const getBox = (runName: string): CaughtPokemon[] => {
     return getRun(runName).box;
+};
+
+export const setBox = (runName: string, box: CaughtPokemon[]): void => {
+    let run: Run = getRun(runName);
+    run.box = box;
+    setRun(runName, run);
 };
 
 export const getEncounter = (runName: string, locationSlug: string): CaughtPokemon | null => {
@@ -48,14 +58,14 @@ export const getEncounter = (runName: string, locationSlug: string): CaughtPokem
 export const removeEncounter = (runName: string, locationSlug: string): void => {
     const run: Run = getRun(runName);
     run.box = run.box.filter((encounter: CaughtPokemon) => encounter.locationSlug !== locationSlug);
-    localStorage.setItem(runName, JSON.stringify(run));
+    setRun(runName, run);
 };
 
 export const addEncounter = (runName: string, locationSlug: string, pokemonSlug: string): void => {
     removeEncounter(runName, locationSlug);
     let run: Run = getRun(runName);
     run.box.push(initCaughtPokemon(initPokemon(pokemonSlug), locationSlug));
-    localStorage.setItem(runName, JSON.stringify(run));
+    setRun(runName, run);
 };
 
 export const getCaughtPokemon = (runName: string): string[] => {
@@ -64,29 +74,27 @@ export const getCaughtPokemon = (runName: string): string[] => {
 
 export const addCaughtPokemon = (runName: string, pokemonSlug: string): void => {
     let run: Run = getRun(runName);
-    console.log(run.caughtPokemonSlugs);
     run.caughtPokemonSlugs.push(pokemonSlug);
-    console.log(run.caughtPokemonSlugs);
-    localStorage.setItem(runName, JSON.stringify(run));
+    setRun(runName, run);
 };
 
 export const removeCaughtPokemon = (runName: string, pokemonSlug: string): void => {
     let run: Run = getRun(runName);
     const idx: number = run.caughtPokemonSlugs.indexOf(pokemonSlug);
     run.caughtPokemonSlugs.splice(idx, 1);
-    localStorage.setItem(runName, JSON.stringify(run));
+    setRun(runName, run);
 };
 
 export const completeBattle = (runName: string, battleSlug: string): void => {
     const run: Run = getRun(runName);
     run.battlesCleared.push(battleSlug);
-    localStorage.setItem(runName, JSON.stringify(run));
+    setRun(runName, run);
 };
 
 export const resetBattle = (runName: string, battleSlug: string): void => {
     const run: Run = getRun(runName);
     run.battlesCleared.splice(run.battlesCleared.indexOf(battleSlug), 1);
-    localStorage.setItem(runName, JSON.stringify(run));
+    setRun(runName, run);
 };
 
 // Game access

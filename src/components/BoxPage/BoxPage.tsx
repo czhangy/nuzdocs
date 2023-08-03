@@ -3,9 +3,10 @@ import EvolveModal from "@/components/EvolveModal/EvolveModal";
 import Modal from "@/components/Modal/Modal";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
-import { getBox } from "@/utils/utils";
+import { getBox, setBox } from "@/utils/utils";
 import { useEffect, useState } from "react";
 import styles from "./BoxPage.module.scss";
+import update from "immutability-helper";
 
 type Props = {
     runName: string;
@@ -13,7 +14,7 @@ type Props = {
 
 const BoxPage: React.FC<Props> = (props: Props) => {
     // LocalStorage data state
-    const [box, setBox] = useState<CaughtPokemon[]>([]);
+    const [boxPokemon, setBoxPokemon] = useState<CaughtPokemon[]>([]);
 
     // Component state
     const [evolveModalOpen, setEvolveModalOpen] = useState<boolean>(false);
@@ -37,15 +38,20 @@ const BoxPage: React.FC<Props> = (props: Props) => {
         }, 200);
     };
 
-    // Evolve the Pokemon, updating local storage and closing the modal
+    // Evolve the Pokemon, updating component + local storage and closing the modal
     const handleConfirm = (selection: PokemonData) => {
+        let evolvedPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[evolveIdx!]));
+        evolvedPokemon.pokemon.slug = selection.pokemon.slug;
+        const updatedBox: CaughtPokemon[] = update(boxPokemon, { $splice: [[evolveIdx!, 1, evolvedPokemon]] });
+        setBoxPokemon(updatedBox);
+        setBox(props.runName, updatedBox);
         handleClose();
     };
 
     // Access local storage on component load
     useEffect(() => {
         if (props.runName) {
-            setBox(getBox(props.runName));
+            setBoxPokemon(getBox(props.runName));
         }
     }, [props.runName]);
 
@@ -71,7 +77,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
                 )}
             </Modal>
             <h2 className={styles.header}>Your Box</h2>
-            <Box box={box} onEvolve={(pokemon: PokemonData, idx: number) => handleEvolve(pokemon, idx)} />
+            <Box box={boxPokemon} onEvolve={(pokemon: PokemonData, idx: number) => handleEvolve(pokemon, idx)} />
         </div>
     );
 };
