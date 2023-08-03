@@ -112,7 +112,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Refactor API calls to use species as an intermediary
 -   [ ] Overview
 -   [ ] Deaths
--   [ ] Evolutions
+-   [ ] Run progression as route/link + fix `prevLocationSlug` update
 -   [ ] Forms
 -   [ ] Pokemon data
 -   [ ] Location maps
