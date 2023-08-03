@@ -1,10 +1,10 @@
 import Link from "next/link";
 import styles from "./BoxMenu.module.scss";
-import { useEffect } from "react";
 
 type Props = {
     open: boolean;
     onClose: () => void;
+    onEvolve: () => void;
     inverted: boolean;
 };
 
@@ -16,7 +16,9 @@ const BoxMenu: React.FC<Props> = (props: Props) => {
                 <Link href="/">
                     <a className={styles.option}>Summary</a>
                 </Link>
-                <button className={styles.option}>Evolve</button>
+                <button className={styles.option} onClick={props.onEvolve}>
+                    Evolve
+                </button>
                 <button className={styles.option}>RIP</button>
                 <div className={styles.arrow} />
             </div>

@@ -8,6 +8,7 @@ import styles from "./Box.module.scss";
 
 type Props = {
     box: CaughtPokemon[];
+    onEvolve: (pokemon: PokemonData) => void;
 };
 
 const Box: React.FC<Props> = (props: Props) => {
@@ -75,7 +76,12 @@ const Box: React.FC<Props> = (props: Props) => {
                             <Image src={pokemon.sprite} alt={pokemon.pokemon.name} layout="fill" objectFit="contain" />
                         </button>
                         {isInverted.length > 0 ? (
-                            <BoxMenu open={key === activeIdx} onClose={handleClose} inverted={isInverted[key]} />
+                            <BoxMenu
+                                open={key === activeIdx}
+                                onClose={handleClose}
+                                onEvolve={() => props.onEvolve(pokemon)}
+                                inverted={isInverted[key]}
+                            />
                         ) : (
                             ""
                         )}
