@@ -74,6 +74,10 @@ const EvolveModal: React.FC<Props> = (props: Props) => {
                     </div>
                 ))}
             </div>
+            <div className={styles.buttons}>
+                <button className={`${styles.button} ${styles.cancel}`}>Cancel</button>
+                <button className={`${styles.button} ${styles.evolve}`}>Evolve</button>
+            </div>
         </div>
     );
 };
