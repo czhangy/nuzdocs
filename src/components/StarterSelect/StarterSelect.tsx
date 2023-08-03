@@ -52,11 +52,12 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (selectedStarterSlug.length > 0) {
             const prevStarter: CaughtPokemon | null = getEncounter(props.runName, "starter");
+            console.log(prevStarter);
             if (!prevStarter) {
                 setStarterSlug(props.runName, selectedStarterSlug);
                 addEncounter(props.runName, "starter", selectedStarterSlug);
                 addCaughtPokemon(props.runName, selectedStarterSlug);
-            } else if (prevStarter && prevStarter.pokemon.slug !== selectedStarterSlug) {
+            } else if (prevStarter && prevStarter.originalSlug !== selectedStarterSlug) {
                 removeCaughtPokemon(props.runName, prevStarter.pokemon.slug);
                 setStarterSlug(props.runName, selectedStarterSlug);
                 addEncounter(props.runName, "starter", selectedStarterSlug);

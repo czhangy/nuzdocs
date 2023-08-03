@@ -29,6 +29,8 @@
         flex-direction: column;
         gap: var(--chains-inner-spacing);
         margin: var(--chains-spacing) 0;
+        max-height: calc(3 * var(--sprite-size) + 2 * var(--chains-inner-spacing));
+        overflow-y: auto;
 
         .chain {
             align-items: center;
@@ -52,6 +54,14 @@
                 background: constants.$hover-color;
             }
         }
+    }
+
+    ::-webkit-scrollbar {
+        background: constants.$accent-color;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-color: constants.$accent-color;
     }
 
     .buttons {
