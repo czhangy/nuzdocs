@@ -1,12 +1,13 @@
 import Box from "@/components/Box/Box";
 import EvolveModal from "@/components/EvolveModal/EvolveModal";
 import Modal from "@/components/Modal/Modal";
+import RIPModal from "@/components/RIPModal/RIPModal";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import { getBox, setBox } from "@/utils/utils";
+import update from "immutability-helper";
 import { useEffect, useState } from "react";
 import styles from "./BoxPage.module.scss";
-import update from "immutability-helper";
 
 type Props = {
     runName: string;
@@ -18,7 +19,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
 
     // Component state
     const [evolveModalOpen, setEvolveModalOpen] = useState<boolean>(false);
-    const [RIPModalOpen, setRIPModalOpen] = useState<boolean>(false);
+    const [ripModalOpen, setRIPModalOpen] = useState<boolean>(false);
 
     // Internal data state
     const [selectedPokemon, setSelectedPokemon] = useState<PokemonData | null>(null);
@@ -66,6 +67,16 @@ const BoxPage: React.FC<Props> = (props: Props) => {
         handleClose();
     };
 
+    // RIP the Pokemon, updating component + local storage and closing the modal
+    const handleRIP = () => {
+        let ripPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
+        ripPokemon.isDead = true;
+        const updatedBox: CaughtPokemon[] = update(boxPokemon, { $splice: [[selectedIdx!, 1, ripPokemon]] });
+        setBoxPokemon(updatedBox);
+        setBox(props.runName, updatedBox);
+        handleClose();
+    };
+
     // Access local storage on component load
     useEffect(() => {
         if (props.runName) {
@@ -87,8 +98,12 @@ const BoxPage: React.FC<Props> = (props: Props) => {
                     ""
                 )}
             </Modal>
-            <Modal modalID="rip-modal" open={RIPModalOpen} onClose={handleClose}>
-                {selectedPokemon && RIPModalOpen ? "" : ""}
+            <Modal modalID="rip-modal" open={ripModalOpen} onClose={handleClose}>
+                {selectedPokemon && ripModalOpen ? (
+                    <RIPModal pokemon={selectedPokemon} onClose={handleClose} onRIP={handleRIP} />
+                ) : (
+                    ""
+                )}
             </Modal>
             <h2 className={styles.header}>Your Box</h2>
             <Box

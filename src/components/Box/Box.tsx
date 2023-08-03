@@ -63,8 +63,8 @@ const Box: React.FC<Props> = (props: Props) => {
         if (props.box.length > 0) {
             fetchPokemonGroup(
                 props.box
+                    .filter((pokemon: CaughtPokemon) => pokemon.originalSlug !== "failed" && !pokemon.isDead)
                     .map((pokemon: CaughtPokemon) => pokemon.pokemon.slug)
-                    .filter((slug: string) => slug !== "failed")
             ).then((pokemonData: PokemonData[]) => setBoxData(pokemonData));
         }
     }, [props.box]);

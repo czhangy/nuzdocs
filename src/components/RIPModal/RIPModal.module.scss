@@ -1,0 +1,76 @@
+@use "@/styles/constants";
+
+.rip-modal {
+    --button-border-rad: 5px;
+    --button-border-size: 2px;
+    --button-font-size: 1rem;
+    --button-letter-spacing: 1px;
+    --button-x-padding: 1.5rem;
+    --button-y-padding: 1rem;
+    --buttons-inner-spacing: 1.5rem;
+    --header-font-size: 1.25rem;
+    --modal-width: 325px;
+    --sprite-border-rad: 10px;
+    --sprite-size: 100px;
+    --sprite-spacing: 2rem;
+
+    width: var(--modal-width);
+
+    .header {
+        font-size: var(--header-font-size);
+        line-height: var(--header-font-size);
+        text-align: center;
+    }
+
+    .sprite {
+        border-radius: var(--sprite-border-rad);
+        height: var(--sprite-size);
+        margin: var(--sprite-spacing) auto;
+        position: relative;
+        width: var(--sprite-size);
+    }
+
+    .buttons {
+        display: flex;
+        gap: var(--buttons-inner-spacing);
+        justify-content: center;
+
+        .button {
+            border: var(--button-border-size) solid constants.$text-color;
+            border-radius: var(--button-border-rad);
+            font-size: var(--button-font-size);
+            font-weight: bold;
+            letter-spacing: var(--button-letter-spacing);
+            line-height: var(--button-font-size);
+            padding: var(--button-y-padding) var(--button-x-padding);
+        }
+
+        .rip {
+            background-color: constants.$text-color;
+            color: constants.$bg-color;
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .rip-modal {
+        --header-font-size: 1.5rem;
+        --modal-width: 500px;
+        --sprite-size: 120px;
+    }
+}
+
+@media (hover: hover) {
+    .rip-modal > .buttons {
+        .cancel:hover {
+            border-color: constants.$hover-color;
+            color: constants.$hover-color;
+        }
+
+        .rip:hover {
+            background-color: constants.$hover-color;
+            border-color: constants.$hover-color;
+            color: constants.$text-color;
+        }
+    }
+}
