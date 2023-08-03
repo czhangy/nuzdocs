@@ -7,6 +7,7 @@ type Props = {
     pokemon: PokemonData;
     onClose: () => void;
     onEvolve: () => void;
+    onRIP: () => void;
     inverted: boolean;
 };
 
@@ -37,7 +38,9 @@ const BoxMenu: React.FC<Props> = (props: Props) => {
                 >
                     Evolve
                 </button>
-                <button className={styles.option}>RIP</button>
+                <button className={styles.option} onClick={props.onRIP}>
+                    RIP
+                </button>
                 <div className={styles.arrow} />
             </div>
         </div>

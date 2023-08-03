@@ -9,6 +9,7 @@ import styles from "./Box.module.scss";
 type Props = {
     box: CaughtPokemon[];
     onEvolve: (pokemon: PokemonData, idx: number) => void;
+    onRIP: (pokemon: PokemonData, idx: number) => void;
 };
 
 const Box: React.FC<Props> = (props: Props) => {
@@ -38,6 +39,12 @@ const Box: React.FC<Props> = (props: Props) => {
     const handleEvolve = (pokemon: PokemonData, idx: number): void => {
         setActiveIdx(null);
         props.onEvolve(pokemon, idx);
+    };
+
+    // Close menu and propagate up
+    const handleRIP = (pokemon: PokemonData, idx: number): void => {
+        setActiveIdx(null);
+        props.onRIP(pokemon, idx);
     };
 
     // Listen for window resizes to recompute inverted menus
@@ -80,6 +87,7 @@ const Box: React.FC<Props> = (props: Props) => {
                                 pokemon={pokemon}
                                 onClose={() => setActiveIdx(null)}
                                 onEvolve={() => handleEvolve(pokemon, key)}
+                                onRIP={() => handleRIP(pokemon, key)}
                                 inverted={isInverted[key]}
                             />
                         ) : (
