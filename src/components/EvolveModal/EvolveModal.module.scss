@@ -1,1 +1,46 @@
 @use "@/styles/constants";
+
+.evolve-modal {
+    --arrow-font-size: 3rem;
+    --chain-inner-spacing: 2rem;
+    --chains-inner-spacing: 1rem;
+    --chains-spacing: 2rem;
+    --header-font-size: 1.5rem;
+    --sprite-border-rad: 10px;
+    --sprite-size: 120px;
+
+    .header {
+        font-size: var(--header-font-size);
+        line-height: var(--header-font-size);
+    }
+
+    .chains {
+        display: flex;
+        flex-direction: column;
+        gap: var(--chains-inner-spacing);
+        margin-top: var(--chains-spacing);
+
+        .chain {
+            align-items: center;
+            display: flex;
+            gap: var(--chain-inner-spacing);
+            justify-content: center;
+
+            .sprite {
+                border-radius: var(--sprite-border-rad);
+                height: var(--sprite-size);
+                position: relative;
+                width: var(--sprite-size);
+            }
+
+            .arrow {
+                font-size: var(--arrow-font-size);
+                line-height: var(--arrow-font-size);
+            }
+
+            .active {
+                background: constants.$hover-color;
+            }
+        }
+    }
+}
