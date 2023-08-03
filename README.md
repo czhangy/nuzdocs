@@ -109,7 +109,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 
 ## To-Dos
 
--   [ ] Refactor API calls to use species as an intermediary
 -   [ ] Overview
 -   [ ] Deaths
 -   [ ] Run progression as route/link + fix `prevLocationSlug` update

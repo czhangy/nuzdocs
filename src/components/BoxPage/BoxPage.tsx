@@ -1,12 +1,13 @@
 import Box from "@/components/Box/Box";
 import EvolveModal from "@/components/EvolveModal/EvolveModal";
 import Modal from "@/components/Modal/Modal";
+import RIPModal from "@/components/RIPModal/RIPModal";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import { getBox, setBox } from "@/utils/utils";
+import update from "immutability-helper";
 import { useEffect, useState } from "react";
 import styles from "./BoxPage.module.scss";
-import update from "immutability-helper";
 
 type Props = {
     runName: string;
@@ -18,31 +19,59 @@ const BoxPage: React.FC<Props> = (props: Props) => {
 
     // Component state
     const [evolveModalOpen, setEvolveModalOpen] = useState<boolean>(false);
+    const [ripModalOpen, setRIPModalOpen] = useState<boolean>(false);
 
     // Internal data state
-    const [evolvingPokemon, setEvolvingPokemon] = useState<PokemonData | null>(null);
-    const [evolveIdx, setEvolveIdx] = useState<number | null>(null);
+    const [selectedPokemon, setSelectedPokemon] = useState<PokemonData | null>(null);
+    const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
-    // Set internal state on evolve
-    const handleEvolve = (pokemon: PokemonData, idx: number) => {
-        setEvolvingPokemon(pokemon);
-        setEvolveIdx(idx);
+    const closeModals = () => {
+        setEvolveModalOpen(false);
+        setRIPModalOpen(false);
+    };
+
+    // Set internal state
+    const handleSelect = (pokemon: PokemonData, idx: number) => {
+        setSelectedPokemon(pokemon);
+        setSelectedIdx(idx);
+    };
+
+    // Update state and open evolve modal
+    const handleEvolveAttempt = (pokemon: PokemonData, idx: number) => {
+        handleSelect(pokemon, idx);
+        setEvolveModalOpen(true);
+    };
+
+    // Update state and open RIP modal
+    const handleRIPAttempt = (pokemon: PokemonData, idx: number) => {
+        handleSelect(pokemon, idx);
+        setRIPModalOpen(true);
     };
 
     // Reset internal state on close, delaying state change to allow modal to transition out smoothly
     const handleClose = () => {
-        setEvolveModalOpen(false);
+        closeModals();
         setTimeout(() => {
-            setEvolvingPokemon(null);
-            setEvolveIdx(null);
+            setSelectedPokemon(null);
+            setSelectedIdx(null);
         }, 200);
     };
 
     // Evolve the Pokemon, updating component + local storage and closing the modal
-    const handleConfirm = (selection: PokemonData) => {
-        let evolvedPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[evolveIdx!]));
+    const handleEvolve = (selection: PokemonData) => {
+        let evolvedPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
         evolvedPokemon.pokemon.slug = selection.pokemon.slug;
-        const updatedBox: CaughtPokemon[] = update(boxPokemon, { $splice: [[evolveIdx!, 1, evolvedPokemon]] });
+        const updatedBox: CaughtPokemon[] = update(boxPokemon, { $splice: [[selectedIdx!, 1, evolvedPokemon]] });
+        setBoxPokemon(updatedBox);
+        setBox(props.runName, updatedBox);
+        handleClose();
+    };
+
+    // RIP the Pokemon, updating component + local storage and closing the modal
+    const handleRIP = () => {
+        let ripPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
+        ripPokemon.isDead = true;
+        const updatedBox: CaughtPokemon[] = update(boxPokemon, { $splice: [[selectedIdx!, 1, ripPokemon]] });
         setBoxPokemon(updatedBox);
         setBox(props.runName, updatedBox);
         handleClose();
@@ -55,30 +84,33 @@ const BoxPage: React.FC<Props> = (props: Props) => {
         }
     }, [props.runName]);
 
-    // Open modal when a Pokemon is trying to evolve
-    useEffect(() => {
-        if (evolvingPokemon) {
-            console.log(evolvingPokemon);
-            setEvolveModalOpen(true);
-        }
-    }, [evolvingPokemon]);
-
     return (
         <div className={styles["box-page"]}>
             <Modal modalID="evolve-modal" open={evolveModalOpen} onClose={handleClose}>
-                {evolvingPokemon ? (
+                {selectedPokemon && evolveModalOpen ? (
                     <EvolveModal
-                        pokemon={evolvingPokemon}
-                        chains={evolvingPokemon.evolutions}
+                        pokemon={selectedPokemon}
+                        chains={selectedPokemon.evolutions}
                         onClose={handleClose}
-                        onEvolve={(selection: PokemonData) => handleConfirm(selection)}
+                        onEvolve={(selection: PokemonData) => handleEvolve(selection)}
                     />
                 ) : (
                     ""
                 )}
             </Modal>
+            <Modal modalID="rip-modal" open={ripModalOpen} onClose={handleClose}>
+                {selectedPokemon && ripModalOpen ? (
+                    <RIPModal pokemon={selectedPokemon} onClose={handleClose} onRIP={handleRIP} />
+                ) : (
+                    ""
+                )}
+            </Modal>
             <h2 className={styles.header}>Your Box</h2>
-            <Box box={boxPokemon} onEvolve={(pokemon: PokemonData, idx: number) => handleEvolve(pokemon, idx)} />
+            <Box
+                box={boxPokemon}
+                onEvolve={(pokemon: PokemonData, idx: number) => handleEvolveAttempt(pokemon, idx)}
+                onRIP={(pokemon: PokemonData, idx: number) => handleRIPAttempt(pokemon, idx)}
+            />
         </div>
     );
 };

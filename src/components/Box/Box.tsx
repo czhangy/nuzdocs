@@ -9,6 +9,7 @@ import styles from "./Box.module.scss";
 type Props = {
     box: CaughtPokemon[];
     onEvolve: (pokemon: PokemonData, idx: number) => void;
+    onRIP: (pokemon: PokemonData, idx: number) => void;
 };
 
 const Box: React.FC<Props> = (props: Props) => {
@@ -40,6 +41,12 @@ const Box: React.FC<Props> = (props: Props) => {
         props.onEvolve(pokemon, idx);
     };
 
+    // Close menu and propagate up
+    const handleRIP = (pokemon: PokemonData, idx: number): void => {
+        setActiveIdx(null);
+        props.onRIP(pokemon, idx);
+    };
+
     // Listen for window resizes to recompute inverted menus
     useEffect(() => {
         window.addEventListener("resize", getInvertedMenus);
@@ -56,39 +63,40 @@ const Box: React.FC<Props> = (props: Props) => {
         if (props.box.length > 0) {
             fetchPokemonGroup(
                 props.box
+                    .filter((pokemon: CaughtPokemon) => pokemon.originalSlug !== "failed" && !pokemon.isDead)
                     .map((pokemon: CaughtPokemon) => pokemon.pokemon.slug)
-                    .filter((slug: string) => slug !== "failed")
             ).then((pokemonData: PokemonData[]) => setBoxData(pokemonData));
         }
     }, [props.box]);
 
-    return (
-        <>
-            <div className={styles.box}>
-                {boxData.map((pokemon: PokemonData, key: number) => (
-                    <div className={styles.pokemon} key={key}>
-                        <button
-                            className={`${styles.button} ${key === activeIdx ? styles.active : ""}`}
-                            onClick={() => handleClick(key)}
-                            key={key}
-                        >
-                            <Image src={pokemon.sprite} alt={pokemon.pokemon.name} layout="fill" objectFit="contain" />
-                        </button>
-                        {isInverted.length > 0 ? (
-                            <BoxMenu
-                                open={key === activeIdx}
-                                pokemon={pokemon}
-                                onClose={() => setActiveIdx(null)}
-                                onEvolve={() => handleEvolve(pokemon, key)}
-                                inverted={isInverted[key]}
-                            />
-                        ) : (
-                            ""
-                        )}
-                    </div>
-                ))}
-            </div>
-        </>
+    return boxData.length > 0 ? (
+        <div className={styles.box}>
+            {boxData.map((pokemon: PokemonData, key: number) => (
+                <div className={styles.pokemon} key={key}>
+                    <button
+                        className={`${styles.button} ${key === activeIdx ? styles.active : ""}`}
+                        onClick={() => handleClick(key)}
+                        key={key}
+                    >
+                        <Image src={pokemon.sprite} alt={pokemon.pokemon.name} layout="fill" objectFit="contain" />
+                    </button>
+                    {isInverted.length > 0 ? (
+                        <BoxMenu
+                            open={key === activeIdx}
+                            pokemon={pokemon}
+                            onClose={() => setActiveIdx(null)}
+                            onEvolve={() => handleEvolve(pokemon, key)}
+                            onRIP={() => handleRIP(pokemon, key)}
+                            inverted={isInverted[key]}
+                        />
+                    ) : (
+                        ""
+                    )}
+                </div>
+            ))}
+        </div>
+    ) : (
+        <p className={styles.text}>No Pokémon left!</p>
     );
 };
 
