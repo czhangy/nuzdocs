@@ -49,9 +49,10 @@ export const initPokemonData = (pokemon: Pokemon, species: PokemonSpecies, evolu
     };
 };
 
-export const initPokemon = (slug: string, level: number | null = null): MyPokemon => {
+export const initPokemon = (slug: string, form: string, level: number | null = null): MyPokemon => {
     let pokemon: MyPokemon = {
         slug: slug,
+        form: form,
         moveSlugs: [],
     };
     if (level) {
