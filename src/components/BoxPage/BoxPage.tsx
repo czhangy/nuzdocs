@@ -4,7 +4,7 @@ import Modal from "@/components/Modal/Modal";
 import RIPModal from "@/components/RIPModal/RIPModal";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
-import { getBox, setBox } from "@/utils/utils";
+import { addCaughtPokemon, getBox, setBox } from "@/utils/utils";
 import update from "immutability-helper";
 import { useEffect, useState } from "react";
 import styles from "./BoxPage.module.scss";
@@ -64,6 +64,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
         const updatedBox: CaughtPokemon[] = update(boxPokemon, { $splice: [[selectedIdx!, 1, evolvedPokemon]] });
         setBoxPokemon(updatedBox);
         setBox(props.runName, updatedBox);
+        addCaughtPokemon(props.runName, evolvedPokemon.pokemon.slug);
         handleClose();
     };
 

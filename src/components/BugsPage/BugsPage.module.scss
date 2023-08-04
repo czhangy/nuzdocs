@@ -87,3 +87,10 @@
         justify-content: flex-start;
     }
 }
+
+@media (hover: hover) {
+    .bugs-page > .report:hover {
+        background-color: constants.$hover-color;
+        color: constants.$text-color;
+    }
+}
