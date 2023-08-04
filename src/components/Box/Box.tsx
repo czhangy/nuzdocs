@@ -1,7 +1,7 @@
 import BoxMenu from "@/components/BoxMenu/BoxMenu";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
-import { fetchPokemonGroup } from "@/utils/api";
+import { fetchSpeciesGroup } from "@/utils/api";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./Box.module.scss";
@@ -63,7 +63,7 @@ const Box: React.FC<Props> = (props: Props) => {
     // Use box to fetch data for all Pokemon in box, ignoring failed encounters
     useEffect(() => {
         if (props.box.length > 0) {
-            fetchPokemonGroup(
+            fetchSpeciesGroup(
                 props.box
                     .filter((pokemon: CaughtPokemon) => pokemon.originalSlug !== "failed")
                     .map((pokemon: CaughtPokemon) => pokemon.pokemon.slug)

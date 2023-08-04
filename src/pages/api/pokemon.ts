@@ -38,7 +38,7 @@ const createEvolutionChains = (stage: ChainLink, chain: string[], chains: string
     chain.pop();
 };
 
-const fetchPokemonEvolutionChains = async (pokemon: Pokemon): Promise<string[][]> => {
+const fetchSpeciesEvolutionChains = async (pokemon: Pokemon): Promise<string[][]> => {
     const pokemonAPI: PokemonClient = new PokemonClient();
     const evolutionAPI: EvolutionClient = new EvolutionClient();
     try {
@@ -55,7 +55,7 @@ const fetchPokemonEvolutionChains = async (pokemon: Pokemon): Promise<string[][]
     }
 };
 
-const fetchPokemon = async (pokemonSlug: string): Promise<PokemonData> => {
+const fetchSpecies = async (pokemonSlug: string): Promise<PokemonData> => {
     const api: PokemonClient = new PokemonClient();
     try {
         const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemonSlug);
@@ -65,7 +65,7 @@ const fetchPokemon = async (pokemonSlug: string): Promise<PokemonData> => {
         const pokemonName: LocalName = initLocalName(pokemonSlug, getEnglishName(species.names));
         const types: string[] = pokemon.types.map((type) => type.type.name);
         const sprite: string = pokemon.sprites.front_default!;
-        const evolutions: string[][] = await fetchPokemonEvolutionChains(pokemon);
+        const evolutions: string[][] = await fetchSpeciesEvolutionChains(pokemon);
         return initPokemonData(pokemonName, types, sprite, evolutions);
     } catch (error: any) {
         throw error;
@@ -75,7 +75,7 @@ const fetchPokemon = async (pokemonSlug: string): Promise<PokemonData> => {
 const fetchListOfPokemon = async (pokemonSlugList: string[]): Promise<PokemonData[]> => {
     let pokemonPromises: Promise<PokemonData>[] = [];
     pokemonSlugList.forEach((pokemonSlug: string) => {
-        pokemonPromises.push(fetchPokemon(pokemonSlug));
+        pokemonPromises.push(fetchSpecies(pokemonSlug));
     });
     try {
         return await Promise.all(pokemonPromises);
@@ -87,7 +87,7 @@ const fetchListOfPokemon = async (pokemonSlugList: string[]): Promise<PokemonDat
 export default async function handler(req: NextApiRequest, res: NextApiResponse<ResData>) {
     if (isPokemonRequest(req)) {
         try {
-            const pokemon: void | PokemonData = await fetchPokemon(req.query.pokemonSlug as string);
+            const pokemon: void | PokemonData = await fetchSpecies(req.query.pokemonSlug as string);
             return res.status(200).json({ pokemon: JSON.stringify(pokemon) });
         } catch (error: any) {
             return res.status(500).json({

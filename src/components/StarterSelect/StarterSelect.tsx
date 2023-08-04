@@ -2,7 +2,7 @@ import PokemonDisplay from "@/components/PokemonDisplay/PokemonDisplay";
 import GameGroup from "@/models/GameGroup";
 import PokemonData from "@/models/PokemonData";
 import colors from "@/static/colors";
-import { fetchPokemonGroup } from "@/utils/api";
+import { fetchSpeciesGroup } from "@/utils/api";
 import {
     addCaughtPokemon,
     addEncounter,
@@ -33,7 +33,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
 
     // Fetch starter data on load
     useEffect(() => {
-        fetchPokemonGroup(props.starterSlugsList).then((pokemon) => setStarters(pokemon));
+        fetchSpeciesGroup(props.starterSlugsList).then((pokemon) => setStarters(pokemon));
     }, [props.starterSlugsList]);
 
     // Persist starter selection on subsequent loads

@@ -2,7 +2,7 @@
 const axios = require("axios");
 
 // Fetch PokemonData for a single Pokemon given a Pokemon slug
-export const fetchPokemon = async (pokemonSlug: string) => {
+export const fetchSpecies = async (pokemonSlug: string) => {
     try {
         const res = await axios.get("/api/pokemon", {
             params: {
@@ -17,10 +17,10 @@ export const fetchPokemon = async (pokemonSlug: string) => {
 };
 
 // Fetch a list of PokemonData given Pokemon slugs
-export const fetchPokemonGroup = async (pokemonSlugs: string[]) => {
+export const fetchSpeciesGroup = async (pokemonSlugs: string[]) => {
     try {
         if (pokemonSlugs.length === 1) {
-            return [await fetchPokemon(pokemonSlugs[0])];
+            return [await fetchSpecies(pokemonSlugs[0])];
         }
         const res = await axios.get("/api/pokemon", {
             params: {

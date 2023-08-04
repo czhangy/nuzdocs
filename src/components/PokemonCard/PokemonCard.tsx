@@ -4,7 +4,7 @@ import AbilityData from "@/models/AbilityData";
 import MoveData from "@/models/MoveData";
 import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
-import { fetchAbility, fetchMoves, fetchPokemon } from "@/utils/api";
+import { fetchAbility, fetchMoves, fetchSpecies } from "@/utils/api";
 import { useEffect, useState } from "react";
 import styles from "./PokemonCard.module.scss";
 
@@ -23,7 +23,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
 
     useEffect(() => {
         if (props.pokemon) {
-            fetchPokemon(props.pokemon.slug).then((pokemonData: PokemonData) => setPokemonData(pokemonData));
+            fetchSpecies(props.pokemon.slug).then((pokemonData: PokemonData) => setPokemonData(pokemonData));
             fetchAbility(props.pokemon.abilitySlug as string).then((abilityData: AbilityData) =>
                 setPokemonAbility(abilityData)
             );

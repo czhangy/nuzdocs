@@ -43,11 +43,9 @@ const RIPsPage: React.FC<Props> = (props: Props) => {
         let updatedBox: CaughtPokemon[] = getBox(props.runName);
         updatedBox.push(ripsPokemon[selectedIdx!]);
         setBox(props.runName, updatedBox);
-        console.log(updatedBox);
         const updatedRIPs: CaughtPokemon[] = ripsPokemon.filter((_, i: number) => i !== selectedIdx);
         setRIPsPokemon(updatedRIPs);
         setRIPs(props.runName, updatedRIPs);
-        console.log(updatedRIPs);
         handleClose();
     };
 
