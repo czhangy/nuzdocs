@@ -5,12 +5,12 @@ import EncounterData from "@/models/EncounterData";
 import LocalName from "@/models/LocalName";
 import LocationData from "@/models/LocationData";
 import MoveData from "@/models/MoveData";
-import Pokemon from "@/models/Pokemon";
+import MyPokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import games from "@/static/games";
 import { getEnglishName } from "@/utils/utils";
-import { Name, NamedAPIResource } from "pokenode-ts";
+import { Name, NamedAPIResource, Pokemon, PokemonSpecies, PokemonSpeciesVariety } from "pokenode-ts";
 
 export const initRun = (gameSlug: string): Run => {
     let numBattles = 0;
@@ -39,22 +39,18 @@ export const initLocalName = (slug: string, name: string): LocalName => {
     };
 };
 
-export const initPokemonData = (
-    pokemon: LocalName,
-    types: string[],
-    sprite: string,
-    evolutions: string[][]
-): PokemonData => {
+export const initPokemonData = (pokemon: Pokemon, species: PokemonSpecies, evolutions: string[][]): PokemonData => {
     return {
-        pokemon: pokemon,
-        types: types,
-        sprite: sprite,
+        pokemon: initLocalName(species.name, getEnglishName(species.names)),
+        types: pokemon.types.map((type) => type.type.name),
+        sprite: pokemon.sprites.front_default!,
         evolutions: evolutions,
+        forms: species.varieties.map((form: PokemonSpeciesVariety) => form.pokemon.name),
     };
 };
 
-export const initPokemon = (slug: string, level: number | null = null): Pokemon => {
-    let pokemon: Pokemon = {
+export const initPokemon = (slug: string, level: number | null = null): MyPokemon => {
+    let pokemon: MyPokemon = {
         slug: slug,
         moveSlugs: [],
     };
@@ -64,7 +60,7 @@ export const initPokemon = (slug: string, level: number | null = null): Pokemon 
     return pokemon;
 };
 
-export const initCaughtPokemon = (pokemon: Pokemon, locationSlug: string): CaughtPokemon => {
+export const initCaughtPokemon = (pokemon: MyPokemon, locationSlug: string): CaughtPokemon => {
     return {
         pokemon: pokemon,
         locationSlug: locationSlug,

@@ -5,4 +5,5 @@ export default interface PokemonData {
     types: string[];
     sprite: string;
     evolutions: string[][];
+    forms: string[];
 }

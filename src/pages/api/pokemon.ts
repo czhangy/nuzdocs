@@ -68,11 +68,8 @@ const fetchSpecies = async (speciesSlug: string): Promise<PokemonData> => {
         const pokemon: Pokemon = await api.getPokemonByName(
             species.varieties.find((variety: PokemonSpeciesVariety) => variety.is_default)!.pokemon.name
         );
-        const pokemonName: LocalName = initLocalName(speciesSlug, getEnglishName(species.names));
-        const types: string[] = pokemon.types.map((type) => type.type.name);
-        const sprite: string = pokemon.sprites.front_default!;
         const evolutions: string[][] = await fetchSpeciesEvolutionChains(species);
-        return initPokemonData(pokemonName, types, sprite, evolutions);
+        return initPokemonData(pokemon, species, evolutions);
     } catch (error: any) {
         throw error;
     }
@@ -95,11 +92,8 @@ const fetchPokemon = async (pokemonSlug: string): Promise<PokemonData> => {
     try {
         const pokemon: Pokemon = await api.getPokemonByName(pokemonSlug);
         const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemon.name);
-        const pokemonName: LocalName = initLocalName(pokemonSlug, getEnglishName(species.names));
-        const types: string[] = pokemon.types.map((type) => type.type.name);
-        const sprite: string = pokemon.sprites.front_default!;
         const evolutions: string[][] = await fetchSpeciesEvolutionChains(species);
-        return initPokemonData(pokemonName, types, sprite, evolutions);
+        return initPokemonData(pokemon, species, evolutions);
     } catch (error: any) {
         throw error;
     }
