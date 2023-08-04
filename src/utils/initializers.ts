@@ -42,6 +42,7 @@ export const initLocalName = (slug: string, name: string): LocalName => {
 export const initPokemonData = (pokemon: Pokemon, species: PokemonSpecies, evolutions: string[][]): PokemonData => {
     return {
         pokemon: initLocalName(species.name, getEnglishName(species.names)),
+        form: pokemon.name,
         types: pokemon.types.map((type) => type.type.name),
         sprite: pokemon.sprites.front_default!,
         evolutions: evolutions,

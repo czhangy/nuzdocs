@@ -80,7 +80,13 @@ const BoxPage: React.FC<Props> = (props: Props) => {
 
     // Change the form of the Pokemon, updating component + local storage and closing the modal
     const handleFormChange = (selection: PokemonData) => {
-        console.log(selection);
+        let updatedPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
+        updatedPokemon.pokemon.form = selection.form;
+        const updatedBox: CaughtPokemon[] = update(boxPokemon, { $splice: [[selectedIdx!, 1, updatedPokemon]] });
+        setBoxPokemon(updatedBox);
+        setBox(props.runName, updatedBox);
+        addCaughtPokemon(props.runName, updatedPokemon.pokemon.slug);
+        handleClose();
     };
 
     // RIP the Pokemon, updating component + local storage and closing the modal
