@@ -25,6 +25,7 @@ export const initRun = (gameSlug: string): Run => {
         starterSlug: "",
         box: [],
         caughtPokemonSlugs: [],
+        rips: [],
         numDead: 0,
         numBattles: numBattles,
         battlesCleared: [],
@@ -68,7 +69,6 @@ export const initCaughtPokemon = (pokemon: Pokemon, locationSlug: string): Caugh
         pokemon: pokemon,
         locationSlug: locationSlug,
         originalSlug: pokemon.slug,
-        isDead: false,
     };
 };
 

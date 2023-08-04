@@ -48,6 +48,16 @@ export const setBox = (runName: string, box: CaughtPokemon[]): void => {
     setRun(runName, run);
 };
 
+export const getRIPs = (runName: string): CaughtPokemon[] => {
+    return getRun(runName).rips;
+};
+
+export const setRIPs = (runName: string, rips: CaughtPokemon[]): void => {
+    let run: Run = getRun(runName);
+    run.rips = rips;
+    setRun(runName, run);
+};
+
 export const getEncounter = (runName: string, locationSlug: string): CaughtPokemon | null => {
     const encounter: CaughtPokemon | undefined = getRun(runName).box.find(
         (encounter: CaughtPokemon) => encounter.locationSlug === locationSlug

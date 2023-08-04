@@ -4,7 +4,7 @@ import Modal from "@/components/Modal/Modal";
 import RIPModal from "@/components/RIPModal/RIPModal";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
-import { addCaughtPokemon, getBox, setBox } from "@/utils/utils";
+import { addCaughtPokemon, getBox, getRIPs, setBox, setRIPs } from "@/utils/utils";
 import update from "immutability-helper";
 import { useEffect, useState } from "react";
 import styles from "./BoxPage.module.scss";
@@ -70,9 +70,10 @@ const BoxPage: React.FC<Props> = (props: Props) => {
 
     // RIP the Pokemon, updating component + local storage and closing the modal
     const handleRIP = () => {
-        let ripPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
-        ripPokemon.isDead = true;
-        const updatedBox: CaughtPokemon[] = update(boxPokemon, { $splice: [[selectedIdx!, 1, ripPokemon]] });
+        let updatedRIPs: CaughtPokemon[] = getRIPs(props.runName);
+        updatedRIPs.push(boxPokemon[selectedIdx!]);
+        setRIPs(props.runName, updatedRIPs);
+        const updatedBox: CaughtPokemon[] = boxPokemon.filter((_, i: number) => i !== selectedIdx);
         setBoxPokemon(updatedBox);
         setBox(props.runName, updatedBox);
         handleClose();
