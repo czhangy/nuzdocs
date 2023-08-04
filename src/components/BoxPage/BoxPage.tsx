@@ -8,6 +8,7 @@ import { addCaughtPokemon, getBox, getRIPs, setBox, setRIPs } from "@/utils/util
 import update from "immutability-helper";
 import { useEffect, useState } from "react";
 import styles from "./BoxPage.module.scss";
+import FormChangeModal from "@/components/FormChangeModal/FormChangeModal";
 
 type Props = {
     runName: string;
@@ -19,14 +20,17 @@ const BoxPage: React.FC<Props> = (props: Props) => {
 
     // Component state
     const [evolveModalOpen, setEvolveModalOpen] = useState<boolean>(false);
+    const [formChangeModalOpen, setFormChangeModalOpen] = useState<boolean>(false);
     const [ripModalOpen, setRIPModalOpen] = useState<boolean>(false);
 
     // Internal data state
     const [selectedPokemon, setSelectedPokemon] = useState<PokemonData | null>(null);
     const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
+    // Close all modals
     const closeModals = () => {
         setEvolveModalOpen(false);
+        setFormChangeModalOpen(false);
         setRIPModalOpen(false);
     };
 
@@ -45,7 +49,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
     // Update state and open evolve modal
     const handleFormChangeAttempt = (pokemon: PokemonData, idx: number) => {
         handleSelect(pokemon, idx);
-        setEvolveModalOpen(true);
+        setFormChangeModalOpen(true);
     };
 
     // Update state and open RIP modal
@@ -72,6 +76,11 @@ const BoxPage: React.FC<Props> = (props: Props) => {
         setBox(props.runName, updatedBox);
         addCaughtPokemon(props.runName, evolvedPokemon.pokemon.slug);
         handleClose();
+    };
+
+    // Change the form of the Pokemon, updating component + local storage and closing the modal
+    const handleFormChange = (selection: PokemonData) => {
+        console.log(selection);
     };
 
     // RIP the Pokemon, updating component + local storage and closing the modal
@@ -103,6 +112,17 @@ const BoxPage: React.FC<Props> = (props: Props) => {
                         chains={selectedPokemon.evolutions}
                         onClose={handleClose}
                         onEvolve={(selection: PokemonData) => handleEvolve(selection)}
+                    />
+                ) : (
+                    ""
+                )}
+            </Modal>
+            <Modal modalID="form-change-modal" open={formChangeModalOpen} onClose={handleClose}>
+                {selectedPokemon && formChangeModalOpen ? (
+                    <FormChangeModal
+                        forms={selectedPokemon.forms}
+                        onClose={handleClose}
+                        onFormChange={(selection: PokemonData) => handleFormChange(selection)}
                     />
                 ) : (
                     ""

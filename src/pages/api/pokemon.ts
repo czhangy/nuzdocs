@@ -91,7 +91,7 @@ const fetchPokemon = async (pokemonSlug: string): Promise<PokemonData> => {
     const api: PokemonClient = new PokemonClient();
     try {
         const pokemon: Pokemon = await api.getPokemonByName(pokemonSlug);
-        const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemon.name);
+        const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemon.species.name);
         const evolutions: string[][] = await fetchSpeciesEvolutionChains(species);
         return initPokemonData(pokemon, species, evolutions);
     } catch (error: any) {

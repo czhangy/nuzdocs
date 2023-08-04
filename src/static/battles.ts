@@ -8,6 +8,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             team: [
                 {
                     slug: "cyndaquil",
+                    form: "cyndaquil",
                     level: 5,
                     abilitySlug: "blaze",
                     moveSlugs: ["tackle", "leer"],
@@ -19,6 +20,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             team: [
                 {
                     slug: "totodile",
+                    form: "totodile",
                     level: 5,
                     abilitySlug: "torrent",
                     moveSlugs: ["scratch", "leer"],
@@ -30,6 +32,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             team: [
                 {
                     slug: "chikorita",
+                    form: "chikorita",
                     level: 5,
                     abilitySlug: "overgrow",
                     moveSlugs: ["tackle", "growl"],
