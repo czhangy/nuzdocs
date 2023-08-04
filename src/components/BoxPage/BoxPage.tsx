@@ -42,6 +42,12 @@ const BoxPage: React.FC<Props> = (props: Props) => {
         setEvolveModalOpen(true);
     };
 
+    // Update state and open evolve modal
+    const handleFormChangeAttempt = (pokemon: PokemonData, idx: number) => {
+        handleSelect(pokemon, idx);
+        setEvolveModalOpen(true);
+    };
+
     // Update state and open RIP modal
     const handleRIPAttempt = (pokemon: PokemonData, idx: number) => {
         handleSelect(pokemon, idx);
@@ -113,6 +119,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
             <Box
                 box={boxPokemon}
                 onEvolve={(pokemon: PokemonData, idx: number) => handleEvolveAttempt(pokemon, idx)}
+                onFormChange={(pokemon: PokemonData, idx: number) => handleFormChangeAttempt(pokemon, idx)}
                 onRIP={(pokemon: PokemonData, idx: number) => handleRIPAttempt(pokemon, idx)}
             />
         </div>
