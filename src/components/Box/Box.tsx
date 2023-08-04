@@ -68,6 +68,8 @@ const Box: React.FC<Props> = (props: Props) => {
                     .filter((pokemon: CaughtPokemon) => pokemon.originalSlug !== "failed")
                     .map((pokemon: CaughtPokemon) => pokemon.pokemon.slug)
             ).then((pokemonData: PokemonData[]) => setBoxData(pokemonData));
+        } else {
+            setBoxData([]);
         }
     }, [props.box]);
 

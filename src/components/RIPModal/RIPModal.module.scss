@@ -45,7 +45,7 @@
             padding: var(--button-y-padding) var(--button-x-padding);
         }
 
-        .rip {
+        .confirm {
             background-color: constants.$text-color;
             color: constants.$bg-color;
         }
@@ -67,7 +67,7 @@
             color: constants.$hover-color;
         }
 
-        .rip:hover {
+        .confirm:hover {
             background-color: constants.$hover-color;
             border-color: constants.$hover-color;
             color: constants.$text-color;

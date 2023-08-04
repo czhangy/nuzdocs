@@ -73,9 +73,11 @@ const BoxPage: React.FC<Props> = (props: Props) => {
         let updatedRIPs: CaughtPokemon[] = getRIPs(props.runName);
         updatedRIPs.push(boxPokemon[selectedIdx!]);
         setRIPs(props.runName, updatedRIPs);
+        console.log(updatedRIPs);
         const updatedBox: CaughtPokemon[] = boxPokemon.filter((_, i: number) => i !== selectedIdx);
         setBoxPokemon(updatedBox);
         setBox(props.runName, updatedBox);
+        console.log(updatedBox);
         handleClose();
     };
 
@@ -102,7 +104,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
             </Modal>
             <Modal modalID="rip-modal" open={ripModalOpen} onClose={handleClose}>
                 {selectedPokemon && ripModalOpen ? (
-                    <RIPModal pokemon={selectedPokemon} onClose={handleClose} onRIP={handleRIP} />
+                    <RIPModal pokemon={selectedPokemon} onClose={handleClose} onConfirm={handleRIP} isRevive={false} />
                 ) : (
                     ""
                 )}
