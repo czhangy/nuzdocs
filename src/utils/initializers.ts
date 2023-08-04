@@ -26,7 +26,6 @@ export const initRun = (gameSlug: string): Run => {
         box: [],
         caughtPokemonSlugs: [],
         rips: [],
-        numDead: 0,
         numBattles: numBattles,
         battlesCleared: [],
     };
