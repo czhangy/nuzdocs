@@ -4,7 +4,7 @@ import Modal from "@/components/Modal/Modal";
 import RIPModal from "@/components/RIPModal/RIPModal";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
-import { getBox, setBox } from "@/utils/utils";
+import { addCaughtPokemon, getBox, getRIPs, setBox, setRIPs } from "@/utils/utils";
 import update from "immutability-helper";
 import { useEffect, useState } from "react";
 import styles from "./BoxPage.module.scss";
@@ -64,16 +64,20 @@ const BoxPage: React.FC<Props> = (props: Props) => {
         const updatedBox: CaughtPokemon[] = update(boxPokemon, { $splice: [[selectedIdx!, 1, evolvedPokemon]] });
         setBoxPokemon(updatedBox);
         setBox(props.runName, updatedBox);
+        addCaughtPokemon(props.runName, evolvedPokemon.pokemon.slug);
         handleClose();
     };
 
     // RIP the Pokemon, updating component + local storage and closing the modal
     const handleRIP = () => {
-        let ripPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
-        ripPokemon.isDead = true;
-        const updatedBox: CaughtPokemon[] = update(boxPokemon, { $splice: [[selectedIdx!, 1, ripPokemon]] });
+        let updatedRIPs: CaughtPokemon[] = getRIPs(props.runName);
+        updatedRIPs.push(boxPokemon[selectedIdx!]);
+        setRIPs(props.runName, updatedRIPs);
+        console.log(updatedRIPs);
+        const updatedBox: CaughtPokemon[] = boxPokemon.filter((_, i: number) => i !== selectedIdx);
         setBoxPokemon(updatedBox);
         setBox(props.runName, updatedBox);
+        console.log(updatedBox);
         handleClose();
     };
 
@@ -100,7 +104,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
             </Modal>
             <Modal modalID="rip-modal" open={ripModalOpen} onClose={handleClose}>
                 {selectedPokemon && ripModalOpen ? (
-                    <RIPModal pokemon={selectedPokemon} onClose={handleClose} onRIP={handleRIP} />
+                    <RIPModal pokemon={selectedPokemon} onClose={handleClose} onConfirm={handleRIP} isRevive={false} />
                 ) : (
                     ""
                 )}

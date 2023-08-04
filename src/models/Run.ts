@@ -5,6 +5,7 @@ export default interface Run {
     prevLocationSlug: string;
     starterSlug: string;
     box: CaughtPokemon[];
+    rips: CaughtPokemon[];
     caughtPokemonSlugs: string[];
     numDead: number;
     numBattles: number;

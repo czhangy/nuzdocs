@@ -26,14 +26,6 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "General",
         },
         {
-            desc: "Pokémon with forms can crash API calls",
-            group: "General",
-        },
-        {
-            desc: "Pokémon with forms may cause 500 error codes",
-            group: "General",
-        },
-        {
             desc: "Pokémon with forms only exist in their default forms",
             group: "General",
         },

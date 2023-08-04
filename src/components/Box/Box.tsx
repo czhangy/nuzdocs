@@ -8,8 +8,9 @@ import styles from "./Box.module.scss";
 
 type Props = {
     box: CaughtPokemon[];
-    onEvolve: (pokemon: PokemonData, idx: number) => void;
-    onRIP: (pokemon: PokemonData, idx: number) => void;
+    onEvolve?: (pokemon: PokemonData, idx: number) => void;
+    onRIP?: (pokemon: PokemonData, idx: number) => void;
+    onRevive?: (pokemon: PokemonData, idx: number) => void;
 };
 
 const Box: React.FC<Props> = (props: Props) => {
@@ -30,21 +31,22 @@ const Box: React.FC<Props> = (props: Props) => {
         setIsInverted(inverted);
     };
 
-    // Set Pokemon to active and open its menu
-    const handleClick = (idx: number): void => {
-        setActiveIdx(idx);
-    };
-
     // Close menu and propagate up
     const handleEvolve = (pokemon: PokemonData, idx: number): void => {
         setActiveIdx(null);
-        props.onEvolve(pokemon, idx);
+        props.onEvolve!(pokemon, idx);
     };
 
     // Close menu and propagate up
     const handleRIP = (pokemon: PokemonData, idx: number): void => {
         setActiveIdx(null);
-        props.onRIP(pokemon, idx);
+        props.onRIP!(pokemon, idx);
+    };
+
+    // Close menu and propagate up
+    const handleRevive = (pokemon: PokemonData, idx: number): void => {
+        setActiveIdx(null);
+        props.onRevive!(pokemon, idx);
     };
 
     // Listen for window resizes to recompute inverted menus
@@ -63,9 +65,11 @@ const Box: React.FC<Props> = (props: Props) => {
         if (props.box.length > 0) {
             fetchPokemonGroup(
                 props.box
-                    .filter((pokemon: CaughtPokemon) => pokemon.originalSlug !== "failed" && !pokemon.isDead)
+                    .filter((pokemon: CaughtPokemon) => pokemon.originalSlug !== "failed")
                     .map((pokemon: CaughtPokemon) => pokemon.pokemon.slug)
             ).then((pokemonData: PokemonData[]) => setBoxData(pokemonData));
+        } else {
+            setBoxData([]);
         }
     }, [props.box]);
 
@@ -75,20 +79,30 @@ const Box: React.FC<Props> = (props: Props) => {
                 <div className={styles.pokemon} key={key}>
                     <button
                         className={`${styles.button} ${key === activeIdx ? styles.active : ""}`}
-                        onClick={() => handleClick(key)}
+                        onClick={() => setActiveIdx(key)}
                         key={key}
                     >
                         <Image src={pokemon.sprite} alt={pokemon.pokemon.name} layout="fill" objectFit="contain" />
                     </button>
                     {isInverted.length > 0 ? (
-                        <BoxMenu
-                            open={key === activeIdx}
-                            pokemon={pokemon}
-                            onClose={() => setActiveIdx(null)}
-                            onEvolve={() => handleEvolve(pokemon, key)}
-                            onRIP={() => handleRIP(pokemon, key)}
-                            inverted={isInverted[key]}
-                        />
+                        props.onEvolve ? (
+                            <BoxMenu
+                                open={key === activeIdx}
+                                pokemon={pokemon}
+                                onClose={() => setActiveIdx(null)}
+                                onEvolve={() => handleEvolve(pokemon, key)}
+                                onRIP={() => handleRIP(pokemon, key)}
+                                inverted={isInverted[key]}
+                            />
+                        ) : (
+                            <BoxMenu
+                                open={key === activeIdx}
+                                pokemon={pokemon}
+                                onClose={() => setActiveIdx(null)}
+                                onRevive={() => handleRevive(pokemon, key)}
+                                inverted={isInverted[key]}
+                            />
+                        )
                     ) : (
                         ""
                     )}
@@ -96,7 +110,7 @@ const Box: React.FC<Props> = (props: Props) => {
             ))}
         </div>
     ) : (
-        <p className={styles.text}>No Pokémon left!</p>
+        <p className={styles.text}>{props.onEvolve ? "No Pokémon left!" : "No RIPs yet!"}</p>
     );
 };
 
