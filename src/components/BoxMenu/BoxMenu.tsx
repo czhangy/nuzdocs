@@ -7,6 +7,7 @@ type Props = {
     pokemon: PokemonData;
     onClose: () => void;
     onEvolve?: () => void;
+    onFormChange?: () => void;
     onRIP?: () => void;
     onRevive?: () => void;
     inverted: boolean;
@@ -39,6 +40,16 @@ const BoxMenu: React.FC<Props> = (props: Props) => {
                         onClick={props.onEvolve}
                     >
                         Evolve
+                    </button>
+                ) : (
+                    ""
+                )}
+                {props.onFormChange ? (
+                    <button
+                        className={`${styles.option} ${props.pokemon.forms.length === 1 ? styles.disabled : ""}`}
+                        onClick={props.onFormChange}
+                    >
+                        Forms
                     </button>
                 ) : (
                     ""

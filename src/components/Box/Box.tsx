@@ -9,6 +9,7 @@ import styles from "./Box.module.scss";
 type Props = {
     box: CaughtPokemon[];
     onEvolve?: (pokemon: PokemonData, idx: number) => void;
+    onFormChange?: (pokemon: PokemonData, idx: number) => void;
     onRIP?: (pokemon: PokemonData, idx: number) => void;
     onRevive?: (pokemon: PokemonData, idx: number) => void;
 };
@@ -35,6 +36,12 @@ const Box: React.FC<Props> = (props: Props) => {
     const handleEvolve = (pokemon: PokemonData, idx: number): void => {
         setActiveIdx(null);
         props.onEvolve!(pokemon, idx);
+    };
+
+    // Close menu and propagate up
+    const handleFormChange = (pokemon: PokemonData, idx: number): void => {
+        setActiveIdx(null);
+        props.onFormChange!(pokemon, idx);
     };
 
     // Close menu and propagate up
@@ -66,7 +73,7 @@ const Box: React.FC<Props> = (props: Props) => {
             fetchPokemonGroup(
                 props.box
                     .filter((pokemon: CaughtPokemon) => pokemon.originalSlug !== "failed")
-                    .map((pokemon: CaughtPokemon) => pokemon.pokemon.slug)
+                    .map((pokemon: CaughtPokemon) => pokemon.pokemon.form)
             ).then((pokemonData: PokemonData[]) => setBoxData(pokemonData));
         } else {
             setBoxData([]);
@@ -91,6 +98,7 @@ const Box: React.FC<Props> = (props: Props) => {
                                 pokemon={pokemon}
                                 onClose={() => setActiveIdx(null)}
                                 onEvolve={() => handleEvolve(pokemon, key)}
+                                onFormChange={() => handleFormChange(pokemon, key)}
                                 onRIP={() => handleRIP(pokemon, key)}
                                 inverted={isInverted[key]}
                             />

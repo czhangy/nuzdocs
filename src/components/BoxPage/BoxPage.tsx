@@ -8,6 +8,7 @@ import { addCaughtPokemon, getBox, getRIPs, setBox, setRIPs } from "@/utils/util
 import update from "immutability-helper";
 import { useEffect, useState } from "react";
 import styles from "./BoxPage.module.scss";
+import FormChangeModal from "@/components/FormChangeModal/FormChangeModal";
 
 type Props = {
     runName: string;
@@ -19,14 +20,17 @@ const BoxPage: React.FC<Props> = (props: Props) => {
 
     // Component state
     const [evolveModalOpen, setEvolveModalOpen] = useState<boolean>(false);
+    const [formChangeModalOpen, setFormChangeModalOpen] = useState<boolean>(false);
     const [ripModalOpen, setRIPModalOpen] = useState<boolean>(false);
 
     // Internal data state
     const [selectedPokemon, setSelectedPokemon] = useState<PokemonData | null>(null);
     const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
+    // Close all modals
     const closeModals = () => {
         setEvolveModalOpen(false);
+        setFormChangeModalOpen(false);
         setRIPModalOpen(false);
     };
 
@@ -40,6 +44,12 @@ const BoxPage: React.FC<Props> = (props: Props) => {
     const handleEvolveAttempt = (pokemon: PokemonData, idx: number) => {
         handleSelect(pokemon, idx);
         setEvolveModalOpen(true);
+    };
+
+    // Update state and open evolve modal
+    const handleFormChangeAttempt = (pokemon: PokemonData, idx: number) => {
+        handleSelect(pokemon, idx);
+        setFormChangeModalOpen(true);
     };
 
     // Update state and open RIP modal
@@ -65,6 +75,17 @@ const BoxPage: React.FC<Props> = (props: Props) => {
         setBoxPokemon(updatedBox);
         setBox(props.runName, updatedBox);
         addCaughtPokemon(props.runName, evolvedPokemon.pokemon.slug);
+        handleClose();
+    };
+
+    // Change the form of the Pokemon, updating component + local storage and closing the modal
+    const handleFormChange = (selection: PokemonData) => {
+        let updatedPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
+        updatedPokemon.pokemon.form = selection.form;
+        const updatedBox: CaughtPokemon[] = update(boxPokemon, { $splice: [[selectedIdx!, 1, updatedPokemon]] });
+        setBoxPokemon(updatedBox);
+        setBox(props.runName, updatedBox);
+        addCaughtPokemon(props.runName, updatedPokemon.pokemon.slug);
         handleClose();
     };
 
@@ -102,6 +123,17 @@ const BoxPage: React.FC<Props> = (props: Props) => {
                     ""
                 )}
             </Modal>
+            <Modal modalID="form-change-modal" open={formChangeModalOpen} onClose={handleClose}>
+                {selectedPokemon && formChangeModalOpen ? (
+                    <FormChangeModal
+                        forms={selectedPokemon.forms}
+                        onClose={handleClose}
+                        onFormChange={(selection: PokemonData) => handleFormChange(selection)}
+                    />
+                ) : (
+                    ""
+                )}
+            </Modal>
             <Modal modalID="rip-modal" open={ripModalOpen} onClose={handleClose}>
                 {selectedPokemon && ripModalOpen ? (
                     <RIPModal pokemon={selectedPokemon} onClose={handleClose} onConfirm={handleRIP} isRevive={false} />
@@ -113,6 +145,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
             <Box
                 box={boxPokemon}
                 onEvolve={(pokemon: PokemonData, idx: number) => handleEvolveAttempt(pokemon, idx)}
+                onFormChange={(pokemon: PokemonData, idx: number) => handleFormChangeAttempt(pokemon, idx)}
                 onRIP={(pokemon: PokemonData, idx: number) => handleRIPAttempt(pokemon, idx)}
             />
         </div>

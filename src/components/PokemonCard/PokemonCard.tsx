@@ -23,7 +23,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
 
     useEffect(() => {
         if (props.pokemon) {
-            fetchPokemon(props.pokemon.slug).then((pokemonData: PokemonData) => setPokemonData(pokemonData));
+            fetchPokemon(props.pokemon.form).then((pokemonData: PokemonData) => setPokemonData(pokemonData));
             fetchAbility(props.pokemon.abilitySlug as string).then((abilityData: AbilityData) =>
                 setPokemonAbility(abilityData)
             );

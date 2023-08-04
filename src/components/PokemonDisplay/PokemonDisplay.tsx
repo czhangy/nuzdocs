@@ -1,5 +1,5 @@
 import PokemonData from "@/models/PokemonData";
-import { fetchPokemon } from "@/utils/api";
+import { fetchSpecies } from "@/utils/api";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./PokemonDisplay.module.scss";
@@ -15,7 +15,7 @@ const PokemonDisplay: React.FC<Props> = (props: Props) => {
     // Fetch Pokemon data from PokeAPI on component load
     useEffect(() => {
         if (props.pokemonSlug) {
-            fetchPokemon(props.pokemonSlug).then((pokemonData: PokemonData) => setPokemonData(pokemonData));
+            fetchSpecies(props.pokemonSlug).then((pokemonData: PokemonData) => setPokemonData(pokemonData));
         }
     }, [props.pokemonSlug]);
 

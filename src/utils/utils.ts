@@ -5,6 +5,7 @@ import tiers from "@/static/tiers";
 import { Name } from "pokenode-ts";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import { initCaughtPokemon, initPokemon } from "./initializers";
+import PokemonData from "@/models/PokemonData";
 
 export const getEnglishName: (names: Name[]) => string = (names: Name[]): string => {
     const nameObj: Name = names.find((name) => name.language.name === "en")!;
@@ -71,10 +72,10 @@ export const removeEncounter = (runName: string, locationSlug: string): void => 
     setRun(runName, run);
 };
 
-export const addEncounter = (runName: string, locationSlug: string, pokemonSlug: string): void => {
+export const addEncounter = (runName: string, locationSlug: string, speciesSlug: string, form: string): void => {
     removeEncounter(runName, locationSlug);
     let run: Run = getRun(runName);
-    run.box.push(initCaughtPokemon(initPokemon(pokemonSlug), locationSlug));
+    run.box.push(initCaughtPokemon(initPokemon(speciesSlug, form), locationSlug));
     setRun(runName, run);
 };
 

@@ -1,7 +1,7 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 import LocalName from "@/models/LocalName";
 import PokemonData from "@/models/PokemonData";
-import { fetchPokemon } from "@/utils/api";
+import { fetchSpecies } from "@/utils/api";
 import {
     addCaughtPokemon,
     addEncounter,
@@ -62,10 +62,13 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     const handleUpdate = async (encounter: LocalName | null) => {
         if (encounter) {
             handleDisplay(true, encounter.name);
-            addEncounter(props.runName, props.locationSlug, encounter.slug);
             if (encounter.slug !== "failed") {
-                setEncounteredPokemon(await fetchPokemon(encounter.slug));
+                const encounterData: PokemonData = await fetchSpecies(encounter.slug);
+                setEncounteredPokemon(encounterData);
+                addEncounter(props.runName, props.locationSlug, encounter.slug, encounterData.forms[0]);
                 addCaughtPokemon(props.runName, encounter.slug);
+            } else {
+                addEncounter(props.runName, props.locationSlug, "failed", "failed");
             }
         } else {
             handleDisplay(false, "");
@@ -85,7 +88,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
             } else if (currentEncounter.pokemon.slug === "failed") {
                 handleDisplay(true, "Failed");
             } else {
-                fetchPokemon(currentEncounter.originalSlug).then((pokemon: PokemonData) => {
+                fetchSpecies(currentEncounter.originalSlug).then((pokemon: PokemonData) => {
                     handleDisplay(true, pokemon.pokemon.name);
                     setEncounteredPokemon(pokemon);
                 });

@@ -1,12 +1,12 @@
 // IDK why but this errors when using import
 const axios = require("axios");
 
-// Fetch PokemonData for a single Pokemon given a Pokemon slug
-export const fetchPokemon = async (pokemonSlug: string) => {
+// Fetch PokemonData for a single Pokemon given a species slug
+export const fetchSpecies = async (speciesSlug: string) => {
     try {
         const res = await axios.get("/api/pokemon", {
             params: {
-                pokemonSlug: pokemonSlug,
+                speciesSlug: speciesSlug,
             },
         });
         return JSON.parse(res.data.pokemon);
@@ -16,15 +16,15 @@ export const fetchPokemon = async (pokemonSlug: string) => {
     }
 };
 
-// Fetch a list of PokemonData given Pokemon slugs
-export const fetchPokemonGroup = async (pokemonSlugs: string[]) => {
+// Fetch a list of PokemonData given species slugs
+export const fetchSpeciesGroup = async (speciesSlugList: string[]) => {
     try {
-        if (pokemonSlugs.length === 1) {
-            return [await fetchPokemon(pokemonSlugs[0])];
+        if (speciesSlugList.length === 1) {
+            return [await fetchSpecies(speciesSlugList[0])];
         }
         const res = await axios.get("/api/pokemon", {
             params: {
-                pokemonSlugList: pokemonSlugs,
+                speciesSlugList: speciesSlugList,
             },
         });
         return JSON.parse(res.data.pokemon);
@@ -89,6 +89,39 @@ export const fetchMoves = async (moveSlugs: string[]) => {
             },
         });
         return JSON.parse(res.data.moves);
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+};
+
+// Fetch a Pokemon by their Pokemon slug
+export const fetchPokemon = async (pokemonSlug: string) => {
+    try {
+        const res = await axios.get("/api/pokemon", {
+            params: {
+                pokemonSlug: pokemonSlug,
+            },
+        });
+        return JSON.parse(res.data.pokemon);
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+};
+
+// Fetch a list of PokemonData given Pokemon slugs
+export const fetchPokemonGroup = async (pokemonSlugList: string[]) => {
+    try {
+        if (pokemonSlugList.length === 1) {
+            return [await fetchSpecies(pokemonSlugList[0])];
+        }
+        const res = await axios.get("/api/pokemon", {
+            params: {
+                pokemonSlugList: pokemonSlugList,
+            },
+        });
+        return JSON.parse(res.data.pokemon);
     } catch (error) {
         console.log(error);
         return [];
