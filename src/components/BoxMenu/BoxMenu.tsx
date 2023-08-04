@@ -6,8 +6,9 @@ type Props = {
     open: boolean;
     pokemon: PokemonData;
     onClose: () => void;
-    onEvolve: () => void;
-    onRIP: () => void;
+    onEvolve?: () => void;
+    onRIP?: () => void;
+    onRevive?: () => void;
     inverted: boolean;
 };
 
@@ -32,15 +33,30 @@ const BoxMenu: React.FC<Props> = (props: Props) => {
                 <Link href="/">
                     <a className={styles.option}>Summary</a>
                 </Link>
-                <button
-                    className={`${styles.option} ${isFinalStage() ? styles.disabled : ""}`}
-                    onClick={props.onEvolve}
-                >
-                    Evolve
-                </button>
-                <button className={styles.option} onClick={props.onRIP}>
-                    RIP
-                </button>
+                {props.onEvolve ? (
+                    <button
+                        className={`${styles.option} ${isFinalStage() ? styles.disabled : ""}`}
+                        onClick={props.onEvolve}
+                    >
+                        Evolve
+                    </button>
+                ) : (
+                    ""
+                )}
+                {props.onRIP ? (
+                    <button className={styles.option} onClick={props.onRIP}>
+                        RIP
+                    </button>
+                ) : (
+                    ""
+                )}
+                {props.onRevive ? (
+                    <button className={styles.option} onClick={props.onRevive}>
+                        Revive
+                    </button>
+                ) : (
+                    ""
+                )}
                 <div className={styles.arrow} />
             </div>
         </div>
