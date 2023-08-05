@@ -3,9 +3,9 @@ import LocationOverview from "@/components/LocationOverview/LocationOverview";
 import Segment from "@/models/Segment";
 import { getSegments } from "@/utils/game";
 import { getRun } from "@/utils/run";
+import { isLocationSegment } from "@/utils/segment";
 import { useEffect, useState } from "react";
 import styles from "./OverviewPage.module.scss";
-import { getSegmentSlugs, isLocationSegment } from "@/utils/segment";
 
 type Props = {
     runName: string;
@@ -24,7 +24,7 @@ const OverviewPage: React.FC<Props> = (props: Props) => {
         <div className={styles["overview-page"]}>
             <h2 className={styles.header}>Overview</h2>
             <ul className={styles.segments}>
-                {getSegmentSlugs(getRun(props.runName).gameSlug).map((segmentSlug: string, key: number) => {
+                {Object.keys(segments).map((segmentSlug: string, key: number) => {
                     return (
                         <li className={styles.segment} key={key}>
                             {isLocationSegment(getRun(props.runName).gameSlug, segmentSlug) ? (
