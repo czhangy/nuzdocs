@@ -7,29 +7,8 @@ import LocationData from "@/models/LocationData";
 import MoveData from "@/models/MoveData";
 import MyPokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
-import Run from "@/models/Run";
-import games from "@/static/games";
 import { getEnglishName } from "@/utils/utils";
 import { Name, NamedAPIResource, Pokemon, PokemonSpecies, PokemonSpeciesVariety } from "pokenode-ts";
-
-export const initRun = (gameSlug: string): Run => {
-    let numBattles = 0;
-    for (let key of Object.keys(games[gameSlug].gameGroup.segments)) {
-        if (games[gameSlug].gameGroup.segments[key].type === "battle") {
-            numBattles++;
-        }
-    }
-    return {
-        gameSlug: gameSlug,
-        prevLocationSlug: games[gameSlug].gameGroup.startingTownSlug,
-        starterSlug: "",
-        box: [],
-        caughtPokemonSlugs: [],
-        rips: [],
-        numBattles: numBattles,
-        battlesCleared: [],
-    };
-};
 
 export const initLocalName = (slug: string, name: string): LocalName => {
     return {
