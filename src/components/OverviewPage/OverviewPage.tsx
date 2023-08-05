@@ -25,7 +25,7 @@ const OverviewPage: React.FC<Props> = (props: Props) => {
                     if (segments[locationSlug].type === "location") {
                         return (
                             <li className={styles.segment} key={key}>
-                                <LocationOverview key={key} />
+                                <LocationOverview locationSlug={locationSlug} runName={props.runName} key={key} />
                             </li>
                         );
                     }

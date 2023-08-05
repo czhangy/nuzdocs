@@ -4,12 +4,11 @@
     --header-font-size: 2rem;
     --header-letter-spacing: 2px;
     --header-spacing: 2rem;
+    --page-spacing: 2rem;
     --page-width: 350px;
     --segments-inner-spacing: 1rem;
-    --top-spacing: 2rem;
 
-    margin-top: var(--top-spacing);
-    min-height: calc(100vh - constants.$mobile-navbar-height - var(--top-spacing));
+    margin: var(--page-spacing) 0;
     width: var(--page-width);
 
     .header {
@@ -32,8 +31,6 @@
     .overview-page {
         --header-font-size: 2.5rem;
         --page-width: 750px;
-        --top-spacing: 4rem;
-
-        min-height: calc(100vh - constants.$navbar-height - var(--top-spacing));
+        --page-spacing: 4rem;
     }
 }

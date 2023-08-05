@@ -120,3 +120,7 @@ export const getSegments = (gameSlug: string): Segment[] => {
 export const getSegmentsObject = (gameSlug: string): { [segmentSlug: string]: Segment } => {
     return games[gameSlug].gameGroup.segments;
 };
+
+export const getSegmentName = (gameSlug: string, locationSlug: string): string => {
+    return getSegmentsObject(gameSlug)[locationSlug].name;
+};
