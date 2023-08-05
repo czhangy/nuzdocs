@@ -1,11 +1,13 @@
+import Battle from "@/models/Battle";
+import BattleSegment from "@/models/BattleSegment";
+import CaughtPokemon from "@/models/CaughtPokemon";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
+import Trainer from "@/models/Trainer";
 import games from "@/static/games";
 import tiers from "@/static/tiers";
 import { Name } from "pokenode-ts";
-import CaughtPokemon from "@/models/CaughtPokemon";
 import { initCaughtPokemon, initPokemon } from "./initializers";
-import PokemonData from "@/models/PokemonData";
 
 export const getEnglishName: (names: Name[]) => string = (names: Name[]): string => {
     const nameObj: Name = names.find((name) => name.language.name === "en")!;
@@ -108,7 +110,38 @@ export const resetBattle = (runName: string, battleSlug: string): void => {
     setRun(runName, run);
 };
 
+export const getGameSlug = (runName: string): string => {
+    return getRun(runName).gameSlug;
+};
+
 // Game access
 export const getSegments = (gameSlug: string): Segment[] => {
     return Object.values(games[gameSlug].gameGroup.segments);
+};
+
+export const getSegmentsObject = (gameSlug: string): { [segmentSlug: string]: Segment } => {
+    return games[gameSlug].gameGroup.segments;
+};
+
+export const getSegmentName = (gameSlug: string, locationSlug: string): string => {
+    return getSegmentsObject(gameSlug)[locationSlug].name;
+};
+
+// Trainer access
+export const getTrainer = (gameSlug: string, battleSlug: string, starterSlug: string): Trainer => {
+    const segments: { [segmentSlug: string]: Segment } = getSegmentsObject(gameSlug);
+    const battleSegment: BattleSegment = segments[battleSlug].segment as BattleSegment;
+    if ("trainer" in battleSegment.battle) {
+        return (battleSegment.battle as Battle).trainer;
+    } else {
+        return (battleSegment.battle[starterSlug] as Battle).trainer;
+    }
+};
+
+export const getTrainerName = (gameSlug: string, battleSlug: string, starterSlug: string): string => {
+    return getTrainer(gameSlug, battleSlug, starterSlug).name;
+};
+
+export const getTrainerSprite = (gameSlug: string, battleSlug: string, starterSlug: string): string => {
+    return getTrainer(gameSlug, battleSlug, starterSlug).sprite;
 };

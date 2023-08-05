@@ -111,7 +111,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 
 -   [ ] Overview
 -   [ ] Run progression as route/link + fix `prevLocationSlug` update
--   [ ] Forms
 -   [ ] Pokemon data
 -   [ ] Location maps
 -   [ ] Tier list page

@@ -1,0 +1,36 @@
+@use "@/styles/constants";
+
+.overview-page {
+    --header-font-size: 2rem;
+    --header-letter-spacing: 2px;
+    --header-spacing: 2rem;
+    --page-spacing: 2rem;
+    --page-width: 350px;
+    --segments-inner-spacing: 1rem;
+
+    margin: var(--page-spacing) 0;
+    width: var(--page-width);
+
+    .header {
+        font-size: var(--header-font-size);
+        font-weight: bold;
+        letter-spacing: var(--header-letter-spacing);
+        line-height: var(--header-font-size);
+        margin-bottom: var(--header-spacing);
+        text-align: center;
+    }
+
+    .segments {
+        display: flex;
+        flex-direction: column;
+        gap: var(--segments-inner-spacing);
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .overview-page {
+        --header-font-size: 2.5rem;
+        --page-width: 750px;
+        --page-spacing: 4rem;
+    }
+}

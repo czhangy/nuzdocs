@@ -7,7 +7,6 @@ export default interface Run {
     box: CaughtPokemon[];
     rips: CaughtPokemon[];
     caughtPokemonSlugs: string[];
-    numDead: number;
     numBattles: number;
     battlesCleared: string[];
 }

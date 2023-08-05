@@ -73,7 +73,7 @@ const RunEntry: React.FC<Props> = (props: Props) => {
                         <div className={styles.icon}>
                             <Image src="/assets/icons/dead.svg" alt="Deaths" layout="fill" objectFit="contain" />
                         </div>
-                        {run ? <p className={styles.num}>{run.numDead}</p> : ""}
+                        {run ? <p className={styles.num}>{run.rips.length}</p> : ""}
                     </div>
                 </div>
             </button>
