@@ -1,0 +1,29 @@
+@use "@/styles/constants";
+
+.overview-page {
+    --header-font-size: 2rem;
+    --header-letter-spacing: 2px;
+    --header-spacing: 2rem;
+    --top-spacing: 2rem;
+
+    margin-top: var(--top-spacing);
+    min-height: calc(100vh - constants.$mobile-navbar-height - var(--top-spacing));
+
+    .header {
+        font-size: var(--header-font-size);
+        font-weight: bold;
+        letter-spacing: var(--header-letter-spacing);
+        line-height: var(--header-font-size);
+        margin-bottom: var(--header-spacing);
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .overview-page {
+        --header-font-size: 2.5rem;
+        --top-spacing: 4rem;
+
+        min-height: calc(100vh - constants.$navbar-height - var(--top-spacing));
+    }
+}
