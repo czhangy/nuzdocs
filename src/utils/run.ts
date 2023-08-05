@@ -4,12 +4,6 @@ import games from "@/static/games";
 
 // Constructor
 export const initRun = (gameSlug: string): Run => {
-    let numBattles = 0;
-    for (let key of Object.keys(games[gameSlug].gameGroup.segments)) {
-        if (games[gameSlug].gameGroup.segments[key].type === "battle") {
-            numBattles++;
-        }
-    }
     return {
         gameSlug: gameSlug,
         prevLocationSlug: games[gameSlug].gameGroup.startingTownSlug,
