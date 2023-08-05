@@ -1,0 +1,21 @@
+@use "@/styles/constants";
+
+.location-overview {
+    --border-rad: 10px;
+    --location-font-size: 1.25rem;
+    --location-letter-spacing: 1px;
+    --x-padding: 2rem;
+    --y-padding: 1rem;
+
+    background-color: constants.$accent-color;
+    border-radius: var(--border-rad);
+    padding: var(--y-padding) var(--x-padding);
+    width: 100%;
+
+    .location {
+        font-size: var(--location-font-size);
+        font-weight: bold;
+        letter-spacing: var(--location-letter-spacing);
+        line-height: var(--location-font-size);
+    }
+}

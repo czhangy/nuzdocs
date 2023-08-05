@@ -108,7 +108,15 @@ export const resetBattle = (runName: string, battleSlug: string): void => {
     setRun(runName, run);
 };
 
+export const getGameSlug = (runName: string): string => {
+    return getRun(runName).gameSlug;
+};
+
 // Game access
 export const getSegments = (gameSlug: string): Segment[] => {
     return Object.values(games[gameSlug].gameGroup.segments);
+};
+
+export const getSegmentsObject = (gameSlug: string): { [segmentSlug: string]: Segment } => {
+    return games[gameSlug].gameGroup.segments;
 };
