@@ -12,11 +12,13 @@ type Props = {
 const RunList: React.FC<Props> = (props) => {
     // Extracts JSON string from file input
     const handleFileRead = (inputEvt: React.ChangeEvent<HTMLInputElement>) => {
-        const fileReader = new FileReader();
-        fileReader.readAsText(inputEvt.target.files![0], "UTF-8");
-        fileReader.onload = (loadEvt: ProgressEvent<FileReader>) => {
-            handleLoad(inputEvt.target.files![0].name, loadEvt.target!.result as string);
-        };
+        if (inputEvt.target.files && inputEvt.target.files.length > 0) {
+            const fileReader = new FileReader();
+            fileReader.readAsText(inputEvt.target.files[0], "UTF-8");
+            fileReader.onload = (loadEvt: ProgressEvent<FileReader>) => {
+                handleLoad(inputEvt.target.files![0].name, loadEvt.target!.result as string);
+            };
+        }
     };
 
     // Loads data from JSON files into local storage
