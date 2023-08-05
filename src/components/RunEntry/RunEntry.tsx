@@ -24,7 +24,7 @@ const RunEntry: React.FC<Props> = (props: Props) => {
 
     // Saves run as a JSON file: https://stackoverflow.com/questions/19721439/download-json-object-as-a-file-from-browser
     const handleSave = (runName: string) => {
-        const jsonData: string = localStorage.getItem(runName)!;
+        const jsonData: string = JSON.stringify(getRun(runName));
         const filename = runName + ".json";
         const blob = new Blob([JSON.stringify(jsonData)], { type: "text/json" });
         const link = document.createElement("a");

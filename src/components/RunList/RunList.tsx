@@ -1,6 +1,7 @@
 import RunEntry from "@/components/RunEntry/RunEntry";
 import Image from "next/image";
 import styles from "./RunList.module.scss";
+import { deleteRun, loadRun } from "@/utils/run";
 
 type Props = {
     runNames: string[];
@@ -21,13 +22,8 @@ const RunList: React.FC<Props> = (props) => {
     // Loads data from JSON files into local storage
     const handleLoad = (filename: string, jsonStr: string) => {
         const runName = filename.substring(0, filename.length - 5);
-        let runNames: string[] = JSON.parse(localStorage.getItem("runs") as string);
-        if (runNames.includes(runName)) {
-            runNames.splice(runNames.indexOf(runName), 1);
-        }
-        runNames.push(runName);
-        localStorage.setItem("runs", JSON.stringify(runNames));
-        localStorage.setItem(runName, JSON.parse(jsonStr));
+        deleteRun(runName);
+        loadRun(runName, JSON.parse(jsonStr));
         props.onUpdate();
     };
 

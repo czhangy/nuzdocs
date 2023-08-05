@@ -34,6 +34,18 @@ export const createRun = (runName: string, gameSlug: string): boolean => {
     return true;
 };
 
+export const loadRun = (runName: string, run: string): void => {
+    let storedRuns: string | null = localStorage.getItem("runs");
+    if (storedRuns) {
+        let runs: string[] = JSON.parse(storedRuns);
+        runs.push(runName);
+        localStorage.setItem("runs", JSON.stringify(runs));
+    } else {
+        localStorage.setItem("runs", JSON.stringify([runName]));
+    }
+    localStorage.setItem(runName, run);
+};
+
 // Destructor
 export const deleteRun = (runName: string): void => {
     let runNames: string[] = JSON.parse(localStorage.getItem("runs") as string);
@@ -43,6 +55,17 @@ export const deleteRun = (runName: string): void => {
 };
 
 // Getters
+export const getRunNamesList = (): string[] => {
+    const storedRunNames: string | null = localStorage.getItem("runs");
+    if (storedRunNames) {
+        let runNamesList: string[] = JSON.parse(storedRunNames);
+        runNamesList.reverse();
+        return runNamesList;
+    } else {
+        return [];
+    }
+};
+
 export const getRun = (runName: string): Run => {
     return JSON.parse(localStorage.getItem(runName)!);
 };
