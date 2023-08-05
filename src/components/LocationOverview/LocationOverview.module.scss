@@ -2,13 +2,13 @@
 
 .location-overview {
     --border-rad: 5px;
+    --encounter-inner-spacing: 0.5rem;
     --location-font-size: 1rem;
     --location-letter-spacing: 0;
     --sprite-size: 75px;
     --text-font-size: 1.25rem;
     --text-letter-spacing: 1px;
     --title-font-size: 1rem;
-    --title-inner-spacing: 1rem;
     --x-padding: 2rem;
     --y-padding: 1rem;
 
@@ -39,8 +39,8 @@
         justify-content: center;
 
         .title {
-            font-size: var(--encounter-font-size);
-            line-height: var(--encounter-font-size);
+            font-size: var(--title-font-size);
+            line-height: var(--title-font-size);
         }
 
         .sprite {

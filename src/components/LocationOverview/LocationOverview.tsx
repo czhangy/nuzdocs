@@ -1,11 +1,11 @@
-import { getEncounter, getGameSlug, getSegmentName, getSegmentsObject } from "@/utils/utils";
-import styles from "./LocationOverview.module.scss";
-import Link from "next/link";
-import { useEffect, useState } from "react";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
-import Image from "next/image";
 import { fetchPokemon } from "@/utils/api";
+import { getEncounter, getGameSlug, getSegmentName } from "@/utils/utils";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import styles from "./LocationOverview.module.scss";
 
 type Props = {
     locationSlug: string;

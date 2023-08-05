@@ -1,3 +1,4 @@
+import BattleOverview from "@/components/BattleOverview/BattleOverview";
 import LocationOverview from "@/components/LocationOverview/LocationOverview";
 import Segment from "@/models/Segment";
 import { getGameSlug, getSegmentsObject } from "@/utils/utils";
@@ -21,14 +22,16 @@ const OverviewPage: React.FC<Props> = (props: Props) => {
         <div className={styles["overview-page"]}>
             <h2 className={styles.header}>Overview</h2>
             <ul className={styles.segments}>
-                {Object.keys(segments).map((locationSlug: string, key: number) => {
-                    if (segments[locationSlug].type === "location") {
-                        return (
-                            <li className={styles.segment} key={key}>
-                                <LocationOverview locationSlug={locationSlug} runName={props.runName} key={key} />
-                            </li>
-                        );
-                    }
+                {Object.keys(segments).map((segmentSlug: string, key: number) => {
+                    return (
+                        <li className={styles.segment} key={key}>
+                            {segments[segmentSlug].type === "location" ? (
+                                <LocationOverview locationSlug={segmentSlug} runName={props.runName} key={key} />
+                            ) : (
+                                <BattleOverview battleSlug={segmentSlug} runName={props.runName} key={key} />
+                            )}
+                        </li>
+                    );
                 })}
             </ul>
         </div>
