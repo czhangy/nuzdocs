@@ -1927,7 +1927,7 @@ const pokedex: PokemonName[] = [
         species: "jirachi",
     },
     {
-        slug: "deoxys",
+        slug: "deoxys-normal",
         name: "Deoxys",
         species: "deoxys",
     },
@@ -2062,7 +2062,7 @@ const pokedex: PokemonName[] = [
         species: "burmy",
     },
     {
-        slug: "wormadam",
+        slug: "wormadam-plant",
         name: "Wormadam",
         species: "wormadam",
     },
@@ -2432,7 +2432,7 @@ const pokedex: PokemonName[] = [
         species: "regigigas",
     },
     {
-        slug: "giratina",
+        slug: "giratina-altered",
         name: "Giratina",
         species: "giratina",
     },
@@ -2457,7 +2457,7 @@ const pokedex: PokemonName[] = [
         species: "darkrai",
     },
     {
-        slug: "shaymin",
+        slug: "shaymin-land",
         name: "Shaymin",
         species: "shaymin",
     },

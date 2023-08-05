@@ -1,7 +1,15 @@
 import PokemonData from "@/models/PokemonData";
 import { initPokemonData } from "@/utils/initializers";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { ChainLink, EvolutionChain, EvolutionClient, Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts";
+import {
+    ChainLink,
+    EvolutionChain,
+    EvolutionClient,
+    Pokemon,
+    PokemonClient,
+    PokemonSpecies,
+    PokemonSpeciesVariety,
+} from "pokenode-ts";
 
 type ResData = {
     pokemon?: string;
@@ -16,16 +24,21 @@ const isPokemonListRequest = (req: NextApiRequest): boolean => {
     return req.method === "GET" && "pokemonSlugList[]" in req.query && Array.isArray(req.query["pokemonSlugList[]"]);
 };
 
-const createEvolutionChains = (stage: ChainLink, chain: string[], chains: string[][]): void => {
-    chain.push(stage.species.name);
-    if (stage.evolves_to.length === 0) {
-        chains.push([...chain]);
-    } else {
-        for (let link of stage.evolves_to) {
-            createEvolutionChains(link, chain, chains);
+const createEvolutionChains = async (stage: ChainLink, chain: string[], chains: string[][]): Promise<void> => {
+    const api: PokemonClient = new PokemonClient();
+    const species: PokemonSpecies = await api.getPokemonSpeciesByName(stage.species.name);
+
+    for (const form of species.varieties) {
+        chain.push(form.pokemon.name);
+        if (stage.evolves_to.length === 0) {
+            chains.push([...chain]);
+        } else {
+            for (const link of stage.evolves_to) {
+                await createEvolutionChains(link, chain, chains);
+            }
         }
+        chain.pop();
     }
-    chain.pop();
 };
 
 const fetchPokemonEvolutionChains = async (species: PokemonSpecies): Promise<string[][]> => {
@@ -36,7 +49,7 @@ const fetchPokemonEvolutionChains = async (species: PokemonSpecies): Promise<str
         );
         const chain: EvolutionChain = await evolutionAPI.getEvolutionChainById(id);
         let chains: string[][] = [];
-        createEvolutionChains(chain.chain, [], chains);
+        await createEvolutionChains(chain.chain, [], chains);
         return chains;
     } catch (error: any) {
         throw error;

@@ -71,6 +71,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
     const handleEvolve = (selection: PokemonData) => {
         let evolvedPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
         evolvedPokemon.pokemon.slug = selection.pokemon.slug;
+        evolvedPokemon.pokemon.species = selection.pokemon.species;
         updateBox(props.runName, evolvedPokemon, selectedIdx!);
         addToCaughtPokemonSlugs(props.runName, selection.pokemon.slug);
         setBoxPokemon(getBox(props.runName));
@@ -80,7 +81,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
     // Change the form of the Pokemon, updating component + local storage and closing the modal
     const handleFormChange = (selection: PokemonData) => {
         let updatedPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
-        updatedPokemon.pokemon.species = selection.pokemon.species;
+        updatedPokemon.pokemon.slug = selection.pokemon.slug;
         updateBox(props.runName, updatedPokemon, selectedIdx!);
         setBoxPokemon(getBox(props.runName));
         handleClose();
