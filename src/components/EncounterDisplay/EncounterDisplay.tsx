@@ -77,10 +77,9 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
             }
         } else {
             handleDisplay(false, "");
-            removeFromCaughtPokemonSlugs(
-                props.runName,
-                getLocationEncounter(props.runName, props.locationSlug)!.pokemon.slug
-            );
+            for (const slug of getLocationEncounter(props.runName, props.locationSlug)!.pastSlugs) {
+                removeFromCaughtPokemonSlugs(props.runName, slug);
+            }
             removeFromBox(props.runName, props.locationSlug);
             setEncounteredPokemon(null);
         }
@@ -93,10 +92,10 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
             if (!currentEncounter) {
                 handleDisplay(false, "");
                 setEncounteredPokemon(null);
-            } else if (currentEncounter.originalSlug === "failed") {
+            } else if (currentEncounter.pastSlugs[0] === "failed") {
                 handleDisplay(true, "Failed");
             } else {
-                fetchPokemon(currentEncounter.originalSlug).then((pokemon: PokemonData) => {
+                fetchPokemon(currentEncounter.pastSlugs[0]).then((pokemon: PokemonData) => {
                     handleDisplay(true, pokemon.pokemon.name);
                     setEncounteredPokemon(pokemon);
                 });

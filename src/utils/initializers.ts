@@ -44,7 +44,7 @@ export const initCaughtPokemon = (pokemon: MyPokemon, locationSlug: string): Cau
     return {
         pokemon: pokemon,
         locationSlug: locationSlug,
-        originalSlug: pokemon.slug,
+        pastSlugs: [pokemon.slug],
     };
 };
 

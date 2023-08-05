@@ -72,6 +72,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
         let evolvedPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
         evolvedPokemon.pokemon.slug = selection.pokemon.slug;
         evolvedPokemon.pokemon.species = selection.pokemon.species;
+        evolvedPokemon.pastSlugs.push(selection.pokemon.slug);
         updateBox(props.runName, evolvedPokemon, selectedIdx!);
         addToCaughtPokemonSlugs(props.runName, selection.pokemon.slug);
         setBoxPokemon(getBox(props.runName));

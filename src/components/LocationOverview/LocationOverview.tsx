@@ -22,10 +22,10 @@ const LocationOverview: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         const pokemon: CaughtPokemon | null = getLocationEncounter(props.runName, props.locationSlug);
         if (pokemon) {
-            if (pokemon.originalSlug === "failed") {
+            if (pokemon.pastSlugs[0] === "failed") {
                 setEncounterText("Failed");
             } else {
-                fetchPokemon(pokemon.originalSlug).then((pokemonData: PokemonData) => setEncounter(pokemonData));
+                fetchPokemon(pokemon.pastSlugs[0]).then((pokemonData: PokemonData) => setEncounter(pokemonData));
             }
         }
     }, []);

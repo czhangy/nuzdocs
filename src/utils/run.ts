@@ -190,6 +190,6 @@ export const getNumRIPs = (runName: string): number => {
 
 export const getPokemonSlugsFromBox = (box: CaughtPokemon[]): string[] => {
     return box
-        .filter((pokemon: CaughtPokemon) => pokemon.originalSlug !== "failed")
+        .filter((pokemon: CaughtPokemon) => pokemon.pastSlugs[0] !== "failed")
         .map((pokemon: CaughtPokemon) => pokemon.pokemon.slug);
 };
