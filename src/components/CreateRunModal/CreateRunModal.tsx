@@ -1,6 +1,5 @@
-import Run from "@/models/Run";
 import games from "@/static/games";
-import { initRun } from "@/utils/initializers";
+import { createRun } from "@/utils/run";
 import Image from "next/image";
 import Router from "next/router";
 import { ChangeEvent, useState } from "react";
@@ -23,24 +22,11 @@ const CreateRunModal: React.FC = () => {
     const handleCreate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setNameError(false);
-
-        let storedRuns: string | null = localStorage.getItem("runs");
-        if (storedRuns) {
-            let runs: string[] = JSON.parse(storedRuns);
-            if (runs.includes(selectedName)) {
-                setNameError(true);
-                return;
-            } else {
-                runs.push(selectedName);
-                localStorage.setItem("runs", JSON.stringify(runs));
-            }
+        if (!createRun(selectedName, selectedGameSlug)) {
+            setNameError(true);
         } else {
-            localStorage.setItem("runs", JSON.stringify([name]));
+            Router.push(`/runs/${selectedName}/${games[selectedGameSlug].gameGroup.startingTownSlug}`);
         }
-
-        const newRun: Run = initRun(selectedGameSlug);
-        localStorage.setItem(selectedName, JSON.stringify(newRun));
-        Router.push(`/runs/${selectedName}/${games[selectedGameSlug].gameGroup.startingTownSlug}`);
     };
 
     return (

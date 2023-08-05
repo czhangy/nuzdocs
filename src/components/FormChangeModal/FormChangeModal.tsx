@@ -1,8 +1,8 @@
 import PokemonData from "@/models/PokemonData";
-import styles from "./FormChangeModal.module.scss";
-import { useEffect, useState } from "react";
-import { fetchPokemonGroup, fetchSpeciesGroup } from "@/utils/api";
+import { fetchPokemonGroup } from "@/utils/api";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import styles from "./FormChangeModal.module.scss";
 
 type Props = {
     forms: string[];

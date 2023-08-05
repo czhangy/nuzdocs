@@ -3,8 +3,10 @@ import { useState } from "react";
 import styles from "./AboutPage.module.scss";
 
 const AboutPage: React.FC = () => {
+    // Static data
     const pageNames: string[] = ["What is NuzlockeDB?", "What is a Nuzlocke?", "Resources", "Credits"];
 
+    // User state
     const [currentPage, setCurrentPage] = useState<number>(0);
 
     // Get styling to fade in right direction based off of current page

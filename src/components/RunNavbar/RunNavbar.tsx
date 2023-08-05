@@ -2,24 +2,26 @@ import Navbar from "@/components/Navbar/Navbar";
 import Game from "@/models/Game";
 import Run from "@/models/Run";
 import games from "@/static/games";
-import { getRun } from "@/utils/utils";
+import { getRun } from "@/utils/run";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "./RunNavbar.module.scss";
+import { getGame } from "@/utils/game";
 
 const RunNavbar: React.FC = () => {
-    const [game, setGame] = useState<Game | null>(null);
     const router = useRouter();
+
+    // Internal state
+    const [game, setGame] = useState<Game | null>(null);
 
     // Validate run and set game for valid runs
     useEffect(() => {
         if (router.query.runName) {
-            const run: Run = getRun(router.query.runName as string);
-            if (run) {
-                setGame(games[run.gameSlug]);
-            }
+            const runName: string = router.query.runName as string;
+            const run: Run = getRun(runName);
+            if (run) setGame(getGame(getRun(runName).gameSlug));
         }
     }, [router.query.runName]);
 

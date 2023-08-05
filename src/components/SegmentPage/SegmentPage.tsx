@@ -2,9 +2,9 @@ import BattlePage from "@/components/BattlePage/BattlePage";
 import LocationPage from "@/components/LocationPage/LocationPage";
 import SegmentNav from "@/components/SegmentNav/SegmentNav";
 import BattleSegment from "@/models/BattleSegment";
-import Run from "@/models/Run";
-import games from "@/static/games";
-import { getRun } from "@/utils/utils";
+import { getSegments } from "@/utils/game";
+import { setPrevSegmentSlug } from "@/utils/run";
+import { getSegment, isLocationSegment } from "@/utils/segment";
 import { useEffect } from "react";
 import styles from "./SegmentPage.module.scss";
 
@@ -15,30 +15,24 @@ type Props = {
 };
 
 const SegmentPage: React.FC<Props> = (props) => {
-    // Get the segment type for conditional rendering
-    const getSegmentType = (): string => {
-        return games[props.gameSlug].gameGroup.segments[props.segmentSlug].type;
-    };
-
+    // Save segment as previous segment on nav
     useEffect(() => {
-        const run: Run = getRun(props.runName);
-        run.prevLocationSlug = props.segmentSlug;
-        localStorage.setItem(props.runName, JSON.stringify(run));
+        if (props.segmentSlug) setPrevSegmentSlug(props.runName, props.segmentSlug);
     }, [props.segmentSlug]);
 
     return (
         <div className={styles["segment-page"]}>
             <SegmentNav
-                segments={games[props.gameSlug].gameGroup.segments}
+                segments={getSegments(props.gameSlug)}
                 segmentSlug={props.segmentSlug}
                 runName={props.runName}
             />
-            {getSegmentType() === "location" ? (
+            {isLocationSegment(props.gameSlug, props.segmentSlug) ? (
                 <LocationPage gameSlug={props.gameSlug} runName={props.runName} segmentSlug={props.segmentSlug} />
             ) : (
                 <BattlePage
                     battleSlug={props.segmentSlug}
-                    segment={games[props.gameSlug].gameGroup.segments[props.segmentSlug].segment as BattleSegment}
+                    segment={getSegment(props.gameSlug, props.segmentSlug).segment as BattleSegment}
                     runName={props.runName}
                 />
             )}

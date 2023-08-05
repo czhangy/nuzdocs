@@ -1,9 +1,9 @@
+import LevelCap from "@/components/LevelCap/LevelCap";
 import Battle from "@/models/Battle";
-import { completeBattle, getRun, resetBattle } from "@/utils/utils";
+import { addToClearedBattles, isCleared, removeFromClearedBattles } from "@/utils/run";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./BattlePreview.module.scss";
-import LevelCap from "@/components/LevelCap/LevelCap";
 
 type Props = {
     battle: Battle;
@@ -13,28 +13,24 @@ type Props = {
 };
 
 const BattlePreview: React.FC<Props> = (props: Props) => {
+    // Component state
     const [defeated, setDefeated] = useState<boolean>(false);
-
-    // Checks local storage to see if the current battle has been cleared
-    const isDefeated = () => {
-        return getRun(props.runName).battlesCleared.includes(props.battleSlug);
-    };
 
     // Sets component state and updates local storage when defeat is clicked
     const handleDefeat = () => {
         setDefeated(true);
-        completeBattle(props.runName, props.battleSlug);
+        addToClearedBattles(props.runName, props.battleSlug);
     };
 
     // Sets component state and updates local storage when undo is clicked
     const handleUndo = () => {
         setDefeated(false);
-        resetBattle(props.runName, props.battleSlug);
+        removeFromClearedBattles(props.runName, props.battleSlug);
     };
 
     useEffect(() => {
         if (props.battleSlug && props.runName) {
-            setDefeated(isDefeated());
+            setDefeated(isCleared(props.runName, props.battleSlug));
         }
     }, [props.battleSlug, props.runName]);
 

@@ -1,6 +1,7 @@
 import RunEntry from "@/components/RunEntry/RunEntry";
 import Image from "next/image";
 import styles from "./RunList.module.scss";
+import { deleteRun, loadRun } from "@/utils/run";
 
 type Props = {
     runNames: string[];
@@ -11,23 +12,20 @@ type Props = {
 const RunList: React.FC<Props> = (props) => {
     // Extracts JSON string from file input
     const handleFileRead = (inputEvt: React.ChangeEvent<HTMLInputElement>) => {
-        const fileReader = new FileReader();
-        fileReader.readAsText(inputEvt.target.files![0], "UTF-8");
-        fileReader.onload = (loadEvt: ProgressEvent<FileReader>) => {
-            handleLoad(inputEvt.target.files![0].name, loadEvt.target!.result as string);
-        };
+        if (inputEvt.target.files && inputEvt.target.files.length > 0) {
+            const fileReader = new FileReader();
+            fileReader.readAsText(inputEvt.target.files[0], "UTF-8");
+            fileReader.onload = (loadEvt: ProgressEvent<FileReader>) => {
+                handleLoad(inputEvt.target.files![0].name, loadEvt.target!.result as string);
+            };
+        }
     };
 
     // Loads data from JSON files into local storage
     const handleLoad = (filename: string, jsonStr: string) => {
         const runName = filename.substring(0, filename.length - 5);
-        let runNames: string[] = JSON.parse(localStorage.getItem("runs") as string);
-        if (runNames.includes(runName)) {
-            runNames.splice(runNames.indexOf(runName), 1);
-        }
-        runNames.push(runName);
-        localStorage.setItem("runs", JSON.stringify(runNames));
-        localStorage.setItem(runName, JSON.parse(jsonStr));
+        deleteRun(runName);
+        loadRun(runName, JSON.parse(jsonStr));
         props.onUpdate();
     };
 

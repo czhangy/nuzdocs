@@ -1,7 +1,9 @@
 import BattleOverview from "@/components/BattleOverview/BattleOverview";
 import LocationOverview from "@/components/LocationOverview/LocationOverview";
 import Segment from "@/models/Segment";
-import { getGameSlug, getSegmentsObject } from "@/utils/utils";
+import { getSegments } from "@/utils/game";
+import { getRun } from "@/utils/run";
+import { isLocationSegment } from "@/utils/segment";
 import { useEffect, useState } from "react";
 import styles from "./OverviewPage.module.scss";
 
@@ -15,7 +17,7 @@ const OverviewPage: React.FC<Props> = (props: Props) => {
 
     // Get segments of current run
     useEffect(() => {
-        if (props.runName) setSegments(getSegmentsObject(getGameSlug(props.runName)));
+        if (props.runName) setSegments(getSegments(getRun(props.runName).gameSlug));
     }, [props.runName]);
 
     return (
@@ -25,7 +27,7 @@ const OverviewPage: React.FC<Props> = (props: Props) => {
                 {Object.keys(segments).map((segmentSlug: string, key: number) => {
                     return (
                         <li className={styles.segment} key={key}>
-                            {segments[segmentSlug].type === "location" ? (
+                            {isLocationSegment(getRun(props.runName).gameSlug, segmentSlug) ? (
                                 <LocationOverview locationSlug={segmentSlug} runName={props.runName} key={key} />
                             ) : (
                                 <BattleOverview battleSlug={segmentSlug} runName={props.runName} key={key} />

@@ -1,22 +1,24 @@
 import PokemonDisplay from "@/components/PokemonDisplay/PokemonDisplay";
+import CaughtPokemon from "@/models/CaughtPokemon";
 import GameGroup from "@/models/GameGroup";
 import PokemonData from "@/models/PokemonData";
 import colors from "@/static/colors";
-import { fetchSpeciesGroup } from "@/utils/api";
+import { fetchPokemonGroup } from "@/utils/api";
+import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import {
-    addCaughtPokemon,
-    addEncounter,
-    getEncounter,
-    getPokemonTier,
-    getStarterSlug,
-    removeCaughtPokemon,
+    addToBox,
+    addToCaughtPokemonSlugs,
+    getLocationEncounter,
+    getRun,
+    removeFromBox,
+    removeFromCaughtPokemonSlugs,
     setStarterSlug,
-} from "@/utils/utils";
+} from "@/utils/run";
+import { getPokemonTier } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import TierCard from "../TierCard/TierCard";
 import styles from "./StarterSelect.module.scss";
-import CaughtPokemon from "@/models/CaughtPokemon";
 
 type Props = {
     runName: string;
@@ -33,13 +35,15 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
 
     // Fetch starter data on load
     useEffect(() => {
-        fetchSpeciesGroup(props.starterSlugsList).then((pokemon) => setStarters(pokemon));
+        if (props.starterSlugsList.length > 0) {
+            fetchPokemonGroup(props.starterSlugsList).then((pokemon) => setStarters(pokemon));
+        }
     }, [props.starterSlugsList]);
 
     // Persist starter selection on subsequent loads
     useEffect(() => {
         if (starters.length > 0) {
-            const starterSlug: string = getStarterSlug(props.runName);
+            const starterSlug: string = getRun(props.runName).starterSlug;
             if (starterSlug === "") {
                 setSelectedStarterSlug(props.starterSlugsList[0]);
             } else {
@@ -51,16 +55,18 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     // Place starter in box and remove existing starter on starter change + set run's starter
     useEffect(() => {
         if (selectedStarterSlug.length > 0) {
-            const prevStarter: CaughtPokemon | null = getEncounter(props.runName, "starter");
-            if (!prevStarter) {
+            const prevStarter: CaughtPokemon | null = getLocationEncounter(props.runName, "starter");
+            if (prevStarter && prevStarter.pastSlugs[0] !== selectedStarterSlug) {
+                removeFromBox(props.runName, "starter");
+                removeFromCaughtPokemonSlugs(props.runName, prevStarter.pokemon.slug);
+            }
+            if (!prevStarter || prevStarter.pastSlugs[0] !== selectedStarterSlug) {
                 setStarterSlug(props.runName, selectedStarterSlug);
-                addEncounter(props.runName, "starter", selectedStarterSlug, selectedStarterSlug);
-                addCaughtPokemon(props.runName, selectedStarterSlug);
-            } else if (prevStarter && prevStarter.originalSlug !== selectedStarterSlug) {
-                removeCaughtPokemon(props.runName, prevStarter.pokemon.slug);
-                setStarterSlug(props.runName, selectedStarterSlug);
-                addEncounter(props.runName, "starter", selectedStarterSlug, selectedStarterSlug);
-                addCaughtPokemon(props.runName, selectedStarterSlug);
+                addToBox(
+                    props.runName,
+                    initCaughtPokemon(initPokemon(selectedStarterSlug, selectedStarterSlug), "starter")
+                );
+                addToCaughtPokemonSlugs(props.runName, selectedStarterSlug);
             }
         }
     }, [selectedStarterSlug]);

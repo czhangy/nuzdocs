@@ -3,7 +3,8 @@ import PokemonCard from "@/components/PokemonCard/PokemonCard";
 import Battle from "@/models/Battle";
 import BattleSegment from "@/models/BattleSegment";
 import Pokemon from "@/models/Pokemon";
-import { getStarterSlug } from "@/utils/utils";
+import { getBattle } from "@/utils/battle";
+import { getRun } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./BattlePage.module.scss";
 
@@ -20,11 +21,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
     // Extract battle from segment, checking if it's an object (multiple battle variants) or a Battle
     useEffect(() => {
         if (props.segment) {
-            if ("trainer" in props.segment.battle) {
-                setBattle(props.segment.battle as Battle);
-            } else {
-                setBattle(props.segment.battle[getStarterSlug(props.runName)] as Battle);
-            }
+            setBattle(getBattle(getRun(props.runName).gameSlug, props.battleSlug, getRun(props.runName).starterSlug));
         }
     });
 

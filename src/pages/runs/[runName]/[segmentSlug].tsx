@@ -1,7 +1,7 @@
 import SegmentPage from "@/components/SegmentPage/SegmentPage";
 import Run from "@/models/Run";
-import games from "@/static/games";
-import { getRun } from "@/utils/utils";
+import { getRun, isRun } from "@/utils/run";
+import { isSegment } from "@/utils/segment";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -16,21 +16,12 @@ const Segment: NextPage = () => {
     // Validate route and set run for valid routes, redirect to home for invalid addresses
     useEffect(() => {
         if (router.query.runName && router.query.segmentSlug) {
-            const storedRuns = localStorage.getItem("runs");
-            if (storedRuns) {
-                const runList: string[] = JSON.parse(storedRuns);
-                const runName: string = router.query.runName as string;
-                if (runList.includes(runName)) {
-                    const run: Run = getRun(runName);
-                    if (
-                        Object.keys(games[run.gameSlug].gameGroup.segments).includes(router.query.segmentSlug as string)
-                    ) {
-                        setRun(run);
-                        return;
-                    }
-                }
+            const runName: string = router.query.runName as string;
+            if (isRun(runName) && isSegment(getRun(runName).gameSlug, router.query.segmentSlug as string)) {
+                setRun(getRun(runName));
+            } else {
+                router.push("/");
             }
-            router.push("/");
         }
     }, [router.query.runName, router.query.segmentSlug]);
 

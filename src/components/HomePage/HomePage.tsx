@@ -3,6 +3,7 @@ import Modal from "@/components/Modal/Modal";
 import RunList from "@/components/RunList/RunList";
 import { useEffect, useState } from "react";
 import styles from "./HomePage.module.scss";
+import { getRunNamesList } from "@/utils/run";
 
 const HomePage: React.FC = () => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -17,18 +18,8 @@ const HomePage: React.FC = () => {
         setModalOpen(false);
     };
 
-    // Fetch run names from local storage
-    const getRunNames = () => {
-        const storedRunNamesString: string | null = localStorage.getItem("runs");
-        if (storedRunNamesString) {
-            let storedRunNamesList: string[] = JSON.parse(storedRunNamesString);
-            storedRunNamesList.reverse();
-            setRunNames(storedRunNamesList);
-        }
-    };
-
     // Fetch existing runs from local storage to display in list
-    useEffect(getRunNames, []);
+    useEffect(() => setRunNames(getRunNamesList), []);
 
     return (
         <>
@@ -36,7 +27,11 @@ const HomePage: React.FC = () => {
                 <CreateRunModal key={resetFlag} />
             </Modal>
             <div className={styles["home-page"]}>
-                <RunList runNames={runNames} onUpdate={getRunNames} onOpen={() => setModalOpen(true)} />
+                <RunList
+                    runNames={runNames}
+                    onUpdate={() => setRunNames(getRunNamesList)}
+                    onOpen={() => setModalOpen(true)}
+                />
             </div>
         </>
     );

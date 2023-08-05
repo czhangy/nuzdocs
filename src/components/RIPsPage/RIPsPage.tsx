@@ -3,7 +3,7 @@ import Modal from "@/components/Modal/Modal";
 import RIPModal from "@/components/RIPModal/RIPModal";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
-import { getBox, getRIPs, setBox, setRIPs } from "@/utils/utils";
+import { addToBox, getRIPs, removeFromRIPs } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./RIPsPage.module.scss";
 
@@ -40,12 +40,9 @@ const RIPsPage: React.FC<Props> = (props: Props) => {
 
     // Revive the Pokemon, updating component + local storage and closing the modal
     const handleRevive = () => {
-        let updatedBox: CaughtPokemon[] = getBox(props.runName);
-        updatedBox.push(ripsPokemon[selectedIdx!]);
-        setBox(props.runName, updatedBox);
-        const updatedRIPs: CaughtPokemon[] = ripsPokemon.filter((_, i: number) => i !== selectedIdx);
-        setRIPsPokemon(updatedRIPs);
-        setRIPs(props.runName, updatedRIPs);
+        addToBox(props.runName, ripsPokemon[selectedIdx!]);
+        removeFromRIPs(props.runName, ripsPokemon[selectedIdx!].locationSlug);
+        setRIPsPokemon(getRIPs(props.runName));
         handleClose();
     };
 
