@@ -1,9 +1,10 @@
-import { getTrainer } from "@/utils/battle";
+import { getTrainer, hasLevelCap } from "@/utils/battle";
 import { getRun } from "@/utils/run";
 import { getSegment } from "@/utils/segment";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./BattleOverview.module.scss";
+import BattleSegment from "@/models/BattleSegment";
 
 type Props = {
     battleSlug: string;
@@ -15,6 +16,7 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
         <Link href={`/runs/${props.runName}/${props.battleSlug}`}>
             <a className={styles["battle-overview"]}>
                 <div className={styles.battle}>
+                    <p className={styles.name}>{getSegment(getRun(props.runName).gameSlug, props.battleSlug).name}</p>
                     <div className={styles.trainer}>
                         <Image
                             src={
@@ -35,11 +37,23 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
                             objectFit="contain"
                         />
                     </div>
-                    <p className={styles.name}>{getSegment(getRun(props.runName).gameSlug, props.battleSlug).name}</p>
                 </div>
                 <div className={styles["level-cap"]}>
-                    <p className={styles.title}>Level Cap</p>
-                    <p className={styles.level}>5</p>
+                    {hasLevelCap(getRun(props.runName).gameSlug, props.battleSlug) ? (
+                        <>
+                            <p className={styles.title}>Level Cap</p>
+                            <p className={styles.level}>
+                                {
+                                    (
+                                        getSegment(getRun(props.runName).gameSlug, props.battleSlug)
+                                            .segment as BattleSegment
+                                    ).levelCap
+                                }
+                            </p>
+                        </>
+                    ) : (
+                        ""
+                    )}
                 </div>
             </a>
         </Link>
