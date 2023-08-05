@@ -1,7 +1,7 @@
-import { getSegments } from "@/utils/game";
-import Segment from "@/models/Segment";
-import LocationSegment from "@/models/LocationSegment";
 import BattleSegment from "@/models/BattleSegment";
+import LocationSegment from "@/models/LocationSegment";
+import Segment from "@/models/Segment";
+import { getSegments } from "@/utils/game";
 
 // Getters
 export const getSegmentSlugs = (gameSlug: string): string[] => {
