@@ -38,20 +38,20 @@ const LocationOverview: React.FC<Props> = (props: Props) => {
                 </p>
                 <div className={styles.encounter}>
                     <p className={styles.title}>Encounter</p>
-                    <div className={styles.sprite}>
-                        {encounter ? (
+                    {encounter ? (
+                        <div className={styles.sprite}>
                             <Image
                                 src={encounter.sprite}
                                 alt={encounter.pokemon.name}
                                 layout="fill"
                                 objectFit="contain"
                             />
-                        ) : (
-                            <p className={`${styles.text} ${encounterText === "Failed" ? styles.failed : ""}`}>
-                                {encounterText}
-                            </p>
-                        )}
-                    </div>
+                        </div>
+                    ) : (
+                        <p className={`${styles.text} ${encounterText === "Failed" ? styles.failed : ""}`}>
+                            {encounterText}
+                        </p>
+                    )}
                 </div>
             </a>
         </Link>

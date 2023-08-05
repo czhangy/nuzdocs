@@ -2,7 +2,8 @@
 
 .location-overview {
     --border-rad: 5px;
-    --encounter-inner-spacing: 0.5rem;
+    --encounter-height: calc(var(--title-font-size) + var(--sprite-size) + var(--encounter-inner-spacing));
+    --encounter-inner-spacing: 1rem;
     --location-font-size: 1rem;
     --location-letter-spacing: 0;
     --sprite-size: 75px;
@@ -36,6 +37,7 @@
         display: flex;
         flex-direction: column;
         gap: var(--encounter-inner-spacing);
+        height: var(--encounter-height);
         justify-content: center;
 
         .title {
@@ -50,17 +52,17 @@
             justify-content: center;
             position: relative;
             width: var(--sprite-size);
+        }
 
-            .text {
-                font-size: var(--text-font-size);
-                font-weight: bold;
-                letter-spacing: var(--text-letter-spacing);
-                line-height: var(--text-font-size);
-            }
+        .text {
+            font-size: var(--text-font-size);
+            font-weight: bold;
+            letter-spacing: var(--text-letter-spacing);
+            line-height: var(--text-font-size);
+        }
 
-            .failed {
-                color: constants.$error-color;
-            }
+        .failed {
+            color: constants.$error-color;
         }
     }
 }
