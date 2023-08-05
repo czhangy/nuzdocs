@@ -1,6 +1,6 @@
 export default interface Pokemon {
     slug: string;
-    form: string;
+    species: string;
     level?: number;
     abilitySlug?: string;
     heldItemSlug?: string;

@@ -1,7 +1,7 @@
 import TierCard from "@/components/TierCard/TierCard";
 import EncounterData from "@/models/EncounterData";
 import PokemonData from "@/models/PokemonData";
-import { fetchSpeciesGroup } from "@/utils/api";
+import { fetchPokemonGroup } from "@/utils/api";
 import { getPokemonTier } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -37,7 +37,7 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
     // Gets the tier of the Pokemon when new Pokemon data is given
     useEffect(() => {
         if (props.encounters) {
-            fetchSpeciesGroup(props.encounters.map((encounter: EncounterData) => encounter.pokemonSlug)).then(
+            fetchPokemonGroup(props.encounters.map((encounter: EncounterData) => encounter.pokemonSlug)).then(
                 (pokemon) => setPokemonData(pokemon)
             );
         }

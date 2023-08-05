@@ -1,8 +1,7 @@
-import LocalName from "@/models/LocalName";
+import PokemonName from "@/models/PokemonName";
 
 export default interface PokemonData {
-    pokemon: LocalName;
-    form: string;
+    pokemon: PokemonName;
     types: string[];
     sprite: string;
     evolutions: string[][];

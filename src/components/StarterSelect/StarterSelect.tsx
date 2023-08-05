@@ -3,7 +3,7 @@ import CaughtPokemon from "@/models/CaughtPokemon";
 import GameGroup from "@/models/GameGroup";
 import PokemonData from "@/models/PokemonData";
 import colors from "@/static/colors";
-import { fetchSpeciesGroup } from "@/utils/api";
+import { fetchPokemonGroup } from "@/utils/api";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import {
     addToBox,
@@ -36,7 +36,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     // Fetch starter data on load
     useEffect(() => {
         if (props.starterSlugsList.length > 0) {
-            fetchSpeciesGroup(props.starterSlugsList).then((pokemon) => setStarters(pokemon));
+            fetchPokemonGroup(props.starterSlugsList).then((pokemon) => setStarters(pokemon));
         }
     }, [props.starterSlugsList]);
 

@@ -168,5 +168,5 @@ export const getNumRIPs = (runName: string): number => {
 export const getPokemonSlugsFromBox = (box: CaughtPokemon[]): string[] => {
     return box
         .filter((pokemon: CaughtPokemon) => pokemon.originalSlug !== "failed")
-        .map((pokemon: CaughtPokemon) => pokemon.pokemon.form);
+        .map((pokemon: CaughtPokemon) => pokemon.pokemon.slug);
 };

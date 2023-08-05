@@ -2,7 +2,7 @@ import AbilityData from "@/models/AbilityData";
 import AreaData from "@/models/AreaData";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import EncounterData from "@/models/EncounterData";
-import LocalName from "@/models/LocalName";
+import PokemonName from "@/models/PokemonName";
 import LocationData from "@/models/LocationData";
 import MoveData from "@/models/MoveData";
 import MyPokemon from "@/models/Pokemon";
@@ -10,17 +10,17 @@ import PokemonData from "@/models/PokemonData";
 import { getEnglishName } from "@/utils/utils";
 import { Name, NamedAPIResource, Pokemon, PokemonSpecies, PokemonSpeciesVariety } from "pokenode-ts";
 
-export const initLocalName = (slug: string, name: string): LocalName => {
+export const initPokemonName = (slug: string, name: string, species: string): PokemonName => {
     return {
         slug: slug,
         name: name,
+        species: species,
     };
 };
 
 export const initPokemonData = (pokemon: Pokemon, species: PokemonSpecies, evolutions: string[][]): PokemonData => {
     return {
-        pokemon: initLocalName(species.name, getEnglishName(species.names)),
-        form: pokemon.name,
+        pokemon: initPokemonName(pokemon.name, getEnglishName(species.names), species.name),
         types: pokemon.types.map((type) => type.type.name),
         sprite: pokemon.sprites.front_default!,
         evolutions: evolutions,
@@ -28,10 +28,10 @@ export const initPokemonData = (pokemon: Pokemon, species: PokemonSpecies, evolu
     };
 };
 
-export const initPokemon = (slug: string, form: string, level: number | null = null): MyPokemon => {
+export const initPokemon = (slug: string, species: string, level: number | null = null): MyPokemon => {
     let pokemon: MyPokemon = {
         slug: slug,
-        form: form,
+        species: species,
         moveSlugs: [],
     };
     if (level) {

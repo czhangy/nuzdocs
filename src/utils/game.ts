@@ -1,6 +1,6 @@
 import Game from "@/models/Game";
 import GameGroup from "@/models/GameGroup";
-import LocalName from "@/models/LocalName";
+import PokemonName from "@/models/PokemonName";
 import Segment from "@/models/Segment";
 import games from "@/static/games";
 
@@ -13,7 +13,7 @@ export const getGameGroup = (gameSlug: string): GameGroup => {
     return getGame(gameSlug).gameGroup;
 };
 
-export const getPokedex = (gameSlug: string): LocalName[] => {
+export const getPokedex = (gameSlug: string): PokemonName[] => {
     return getGameGroup(gameSlug).pokedex;
 };
 

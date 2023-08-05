@@ -80,7 +80,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
     // Change the form of the Pokemon, updating component + local storage and closing the modal
     const handleFormChange = (selection: PokemonData) => {
         let updatedPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
-        updatedPokemon.pokemon.form = selection.form;
+        updatedPokemon.pokemon.species = selection.pokemon.species;
         updateBox(props.runName, updatedPokemon, selectedIdx!);
         setBoxPokemon(getBox(props.runName));
         handleClose();
