@@ -1,6 +1,6 @@
-import styles from "./TypeIcon.module.scss";
-import Image from "next/image";
 import colors from "@/static/colors";
+import Image from "next/image";
+import styles from "./TypeIcon.module.scss";
 
 type Props = {
     type: string;

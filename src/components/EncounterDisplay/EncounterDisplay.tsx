@@ -2,14 +2,16 @@ import CaughtPokemon from "@/models/CaughtPokemon";
 import LocalName from "@/models/LocalName";
 import PokemonData from "@/models/PokemonData";
 import { fetchSpecies } from "@/utils/api";
+import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import {
-    addCaughtPokemon,
-    addEncounter,
-    getCaughtPokemon,
-    getEncounter,
-    removeCaughtPokemon,
-    removeEncounter,
-} from "@/utils/utils";
+    addFailedEncounter,
+    addToBox,
+    addToCaughtPokemonSlugs,
+    getLocationEncounter,
+    getRun,
+    removeFromBox,
+    removeFromCaughtPokemonSlugs,
+} from "@/utils/run";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterDisplay.module.scss";
@@ -65,15 +67,21 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
             if (encounter.slug !== "failed") {
                 const encounterData: PokemonData = await fetchSpecies(encounter.slug);
                 setEncounteredPokemon(encounterData);
-                addEncounter(props.runName, props.locationSlug, encounter.slug, encounterData.forms[0]);
-                addCaughtPokemon(props.runName, encounter.slug);
+                addToBox(
+                    props.runName,
+                    initCaughtPokemon(initPokemon(encounter.slug, encounterData.forms[0]), props.locationSlug)
+                );
+                addToCaughtPokemonSlugs(props.runName, encounter.slug);
             } else {
-                addEncounter(props.runName, props.locationSlug, "failed", "failed");
+                addFailedEncounter(props.runName, props.locationSlug);
             }
         } else {
             handleDisplay(false, "");
-            removeCaughtPokemon(props.runName, getEncounter(props.runName, props.locationSlug)!.pokemon.slug);
-            removeEncounter(props.runName, props.locationSlug);
+            removeFromCaughtPokemonSlugs(
+                props.runName,
+                getLocationEncounter(props.runName, props.locationSlug)!.pokemon.slug
+            );
+            removeFromBox(props.runName, props.locationSlug);
             setEncounteredPokemon(null);
         }
     };
@@ -81,11 +89,11 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     // Fetch saved encounter if it exists
     useEffect(() => {
         if (props.runName && props.locationSlug) {
-            const currentEncounter: CaughtPokemon | null = getEncounter(props.runName, props.locationSlug);
+            const currentEncounter: CaughtPokemon | null = getLocationEncounter(props.runName, props.locationSlug);
             if (!currentEncounter) {
                 handleDisplay(false, "");
                 setEncounteredPokemon(null);
-            } else if (currentEncounter.pokemon.slug === "failed") {
+            } else if (currentEncounter.originalSlug === "failed") {
                 handleDisplay(true, "Failed");
             } else {
                 fetchSpecies(currentEncounter.originalSlug).then((pokemon: PokemonData) => {
@@ -103,7 +111,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
             props.pokedex.forEach((pokemon: LocalName) => {
                 if (
                     pokemon.name.toLowerCase().includes(searchValue.toLowerCase()) &&
-                    !getCaughtPokemon(props.runName).includes(pokemon.slug)
+                    !getRun(props.runName).caughtPokemonSlugs.includes(pokemon.slug)
                 ) {
                     newMatches.push(pokemon);
                 }

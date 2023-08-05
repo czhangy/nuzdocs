@@ -1,14 +1,14 @@
 import Box from "@/components/Box/Box";
 import EvolveModal from "@/components/EvolveModal/EvolveModal";
+import FormChangeModal from "@/components/FormChangeModal/FormChangeModal";
 import Modal from "@/components/Modal/Modal";
 import RIPModal from "@/components/RIPModal/RIPModal";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
-import { addCaughtPokemon, getBox, getRIPs, setBox, setRIPs } from "@/utils/utils";
 import update from "immutability-helper";
 import { useEffect, useState } from "react";
 import styles from "./BoxPage.module.scss";
-import FormChangeModal from "@/components/FormChangeModal/FormChangeModal";
+import { addToCaughtPokemonSlugs, addToRIPs, getBox, removeFromBox, updateBox } from "@/utils/run";
 
 type Props = {
     runName: string;
@@ -71,10 +71,9 @@ const BoxPage: React.FC<Props> = (props: Props) => {
     const handleEvolve = (selection: PokemonData) => {
         let evolvedPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
         evolvedPokemon.pokemon.slug = selection.pokemon.slug;
-        const updatedBox: CaughtPokemon[] = update(boxPokemon, { $splice: [[selectedIdx!, 1, evolvedPokemon]] });
-        setBoxPokemon(updatedBox);
-        setBox(props.runName, updatedBox);
-        addCaughtPokemon(props.runName, evolvedPokemon.pokemon.slug);
+        updateBox(props.runName, evolvedPokemon, selectedIdx!);
+        addToCaughtPokemonSlugs(props.runName, selection.pokemon.slug);
+        setBoxPokemon(getBox(props.runName));
         handleClose();
     };
 
@@ -82,23 +81,16 @@ const BoxPage: React.FC<Props> = (props: Props) => {
     const handleFormChange = (selection: PokemonData) => {
         let updatedPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
         updatedPokemon.pokemon.form = selection.form;
-        const updatedBox: CaughtPokemon[] = update(boxPokemon, { $splice: [[selectedIdx!, 1, updatedPokemon]] });
-        setBoxPokemon(updatedBox);
-        setBox(props.runName, updatedBox);
-        addCaughtPokemon(props.runName, updatedPokemon.pokemon.slug);
+        updateBox(props.runName, updatedPokemon, selectedIdx!);
+        setBoxPokemon(getBox(props.runName));
         handleClose();
     };
 
     // RIP the Pokemon, updating component + local storage and closing the modal
     const handleRIP = () => {
-        let updatedRIPs: CaughtPokemon[] = getRIPs(props.runName);
-        updatedRIPs.push(boxPokemon[selectedIdx!]);
-        setRIPs(props.runName, updatedRIPs);
-        console.log(updatedRIPs);
-        const updatedBox: CaughtPokemon[] = boxPokemon.filter((_, i: number) => i !== selectedIdx);
-        setBoxPokemon(updatedBox);
-        setBox(props.runName, updatedBox);
-        console.log(updatedBox);
+        addToRIPs(props.runName, boxPokemon[selectedIdx!]);
+        removeFromBox(props.runName, boxPokemon[selectedIdx!].locationSlug);
+        setBoxPokemon(getBox(props.runName));
         handleClose();
     };
 

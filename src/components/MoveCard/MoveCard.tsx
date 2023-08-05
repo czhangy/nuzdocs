@@ -1,7 +1,7 @@
 import TypeIcon from "@/components/TypeIcon/TypeIcon";
 import MoveData from "@/models/MoveData";
-import styles from "./MoveCard.module.scss";
 import Image from "next/image";
+import styles from "./MoveCard.module.scss";
 
 type Props = {
     move: MoveData;

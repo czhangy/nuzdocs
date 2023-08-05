@@ -1,8 +1,7 @@
 import Battle from "@/models/Battle";
 import BattleSegment from "@/models/BattleSegment";
-import Pokemon from "@/models/Pokemon";
 import Trainer from "@/models/Trainer";
-import { getSegmentData } from "./segment";
+import { getSegment, getSegmentData } from "@/utils/segment";
 
 // Getters
 export const getBattle = (gameSlug: string, battleSlug: string, starterSlug: string): Battle => {
@@ -21,11 +20,11 @@ export const getTrainer = (gameSlug: string, battleSlug: string, starterSlug: st
     return getBattle(gameSlug, battleSlug, starterSlug).trainer;
 };
 
-export const getTeam = (gameSlug: string, battleSlug: string, starterSlug: string): Pokemon[] => {
-    return getBattle(gameSlug, battleSlug, starterSlug).team;
-};
-
 // Predicates
 export const hasVariants = (gameSlug: string, battleSlug: string): boolean => {
     return !("trainer" in (getSegmentData(gameSlug, battleSlug) as BattleSegment));
+};
+
+export const hasLevelCap = (gameSlug: string, battleSlug: string): boolean => {
+    return (getSegment(gameSlug, battleSlug).segment as BattleSegment).levelCap !== undefined;
 };

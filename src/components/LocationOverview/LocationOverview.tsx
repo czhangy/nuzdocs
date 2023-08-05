@@ -1,7 +1,8 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemon } from "@/utils/api";
-import { getEncounter, getGameSlug, getSegmentName } from "@/utils/utils";
+import { getLocationEncounter, getRun } from "@/utils/run";
+import { getSegment } from "@/utils/segment";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -19,7 +20,7 @@ const LocationOverview: React.FC<Props> = (props: Props) => {
 
     // Get encounter for location on component load
     useEffect(() => {
-        const pokemon: CaughtPokemon | null = getEncounter(props.runName, props.locationSlug);
+        const pokemon: CaughtPokemon | null = getLocationEncounter(props.runName, props.locationSlug);
         if (pokemon) {
             if (pokemon.originalSlug === "failed") {
                 setEncounterText("Failed");
@@ -33,7 +34,7 @@ const LocationOverview: React.FC<Props> = (props: Props) => {
         <Link href={`/runs/${props.runName}/${props.locationSlug}`}>
             <a className={styles["location-overview"]}>
                 <p className={`${styles.location} ${encounter || encounterText !== "None" ? styles.done : ""}`}>
-                    {getSegmentName(getGameSlug(props.runName), props.locationSlug)}
+                    {getSegment(getRun(props.runName).gameSlug, props.locationSlug).name}
                 </p>
                 <div className={styles.encounter}>
                     <p className={styles.title}>Encounter</p>

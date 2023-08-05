@@ -1,9 +1,9 @@
-import styles from "./BattleOverview.module.scss";
-import Link from "next/link";
-import { getSegmentName, getStarterSlug, getTrainerSprite } from "@/utils/utils";
-import { getGameSlug } from "@/utils/utils";
+import { getTrainer } from "@/utils/battle";
+import { getRun } from "@/utils/run";
+import { getSegment } from "@/utils/segment";
 import Image from "next/image";
-import { getTrainerName } from "@/utils/utils";
+import Link from "next/link";
+import styles from "./BattleOverview.module.scss";
 
 type Props = {
     battleSlug: string;
@@ -17,21 +17,25 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
                 <div className={styles.battle}>
                     <div className={styles.trainer}>
                         <Image
-                            src={getTrainerSprite(
-                                getGameSlug(props.runName),
-                                props.battleSlug,
-                                getStarterSlug(props.runName)
-                            )}
-                            alt={getTrainerName(
-                                getGameSlug(props.runName),
-                                props.battleSlug,
-                                getStarterSlug(props.runName)
-                            )}
+                            src={
+                                getTrainer(
+                                    getRun(props.runName).gameSlug,
+                                    props.battleSlug,
+                                    getRun(props.runName).starterSlug
+                                ).sprite
+                            }
+                            alt={
+                                getTrainer(
+                                    getRun(props.runName).gameSlug,
+                                    props.battleSlug,
+                                    getRun(props.runName).starterSlug
+                                ).name
+                            }
                             layout="fill"
                             objectFit="contain"
                         />
                     </div>
-                    <p className={styles.name}>{getSegmentName(getGameSlug(props.runName), props.battleSlug)}</p>
+                    <p className={styles.name}>{getSegment(getRun(props.runName).gameSlug, props.battleSlug).name}</p>
                 </div>
                 <div className={styles["level-cap"]}>
                     <p className={styles.title}>Level Cap</p>

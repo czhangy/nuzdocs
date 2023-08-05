@@ -1,6 +1,5 @@
-import styles from "./Modal.module.scss";
-
 import { ReactNode } from "react";
+import styles from "./Modal.module.scss";
 
 type Props = {
     modalID: string;

@@ -11,8 +11,7 @@ type Props = {
 const SegmentNav: React.FC<Props> = (props: Props) => {
     // Finds the index of the current segment in the game's segments list
     const getSegmentIndex = (): number => {
-        const slugs = Object.keys(props.segments);
-        return slugs.indexOf(props.segmentSlug);
+        return Object.keys(props.segments).indexOf(props.segmentSlug);
     };
 
     // Returns the slug at a given index of segments for nav routing

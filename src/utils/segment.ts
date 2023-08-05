@@ -16,19 +16,24 @@ export const getSegment = (gameSlug: string, segmentSlug: string): Segment => {
     return getSegments(gameSlug)[segmentSlug];
 };
 
-export const getSegmentName = (gameSlug: string, segmentSlug: string): string => {
-    return getSegment(gameSlug, segmentSlug).name;
-};
-
-export const getSegmentType = (gameSlug: string, segmentSlug: string): string => {
-    return getSegment(gameSlug, segmentSlug).type;
-};
-
 export const getSegmentData = (gameSlug: string, segmentSlug: string): LocationSegment | BattleSegment => {
     return getSegment(gameSlug, segmentSlug).segment;
 };
 
 // Predicates
+export const isSegment = (gameSlug: string, segmentSlug: string): boolean => {
+    return getSegmentSlugs(gameSlug).includes(segmentSlug);
+};
+
 export const isLocationSegment = (gameSlug: string, segmentSlug: string): boolean => {
-    return getSegmentType(gameSlug, segmentSlug) === "location";
+    return getSegment(gameSlug, segmentSlug).type === "location";
+};
+
+export const isBattleSegment = (gameSlug: string, segmentSlug: string): boolean => {
+    return getSegment(gameSlug, segmentSlug).type === "battle";
+};
+
+// Queries
+export const getNumBattles = (gameSlug: string) => {
+    return getSegmentObjects(gameSlug).filter((segment: Segment) => segment.type === "battle").length;
 };

@@ -1,8 +1,8 @@
 import PokemonData from "@/models/PokemonData";
-import styles from "./EvolveModal.module.scss";
-import { useEffect, useState } from "react";
 import { fetchSpeciesGroup } from "@/utils/api";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import styles from "./EvolveModal.module.scss";
 
 type Props = {
     pokemon: PokemonData;

@@ -1,7 +1,8 @@
 import ProgressBar from "@/components/ProgressBar/ProgressBar";
 import Run from "@/models/Run";
 import games from "@/static/games";
-import { getRun } from "@/utils/utils";
+import { deleteRun, getNumClearedBattles, getNumRIPs, getRun } from "@/utils/run";
+import { getNumBattles } from "@/utils/segment";
 import Image from "next/image";
 import Router from "next/router";
 import { useEffect, useState } from "react";
@@ -17,10 +18,7 @@ const RunEntry: React.FC<Props> = (props: Props) => {
 
     // Remove run from run list and from local storage and refresh list
     const handleDelete = () => {
-        let runNames: string[] = JSON.parse(localStorage.getItem("runs") as string);
-        runNames.splice(runNames.indexOf(props.runName), 1);
-        localStorage.setItem("runs", JSON.stringify(runNames));
-        localStorage.removeItem(props.runName);
+        deleteRun(props.runName);
         props.onDelete();
     };
 
@@ -44,7 +42,7 @@ const RunEntry: React.FC<Props> = (props: Props) => {
 
     // Redirect to previous location of selected run
     const handleNav = () => {
-        Router.push(`/runs/${props.runName}/${run!.prevLocationSlug}`);
+        Router.push(`/runs/${props.runName}/${run!.prevSegmentSlug}`);
     };
 
     // Get run object from local storage
@@ -66,14 +64,19 @@ const RunEntry: React.FC<Props> = (props: Props) => {
                 </div>
                 <div className={styles.info}>
                     <p className={styles.name}>
-                        {run && run.battlesCleared.length === run.numBattles ? `👑 ${props.runName}` : props.runName}
+                        {run && getNumClearedBattles(props.runName) === getNumBattles(getRun(props.runName).gameSlug)
+                            ? `👑 ${props.runName}`
+                            : props.runName}
                     </p>
-                    <ProgressBar complete={run ? run.battlesCleared.length : 0} total={run ? run.numBattles : 1} />
+                    <ProgressBar
+                        complete={run ? getNumClearedBattles(props.runName) : 0}
+                        total={run ? getNumBattles(getRun(props.runName).gameSlug) : 1}
+                    />
                     <div className={styles.rips}>
                         <div className={styles.icon}>
                             <Image src="/assets/icons/dead.svg" alt="Deaths" layout="fill" objectFit="contain" />
                         </div>
-                        {run ? <p className={styles.num}>{run.rips.length}</p> : ""}
+                        {run ? <p className={styles.num}>{getNumRIPs(props.runName)}</p> : ""}
                     </div>
                 </div>
             </button>
