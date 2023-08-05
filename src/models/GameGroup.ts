@@ -4,7 +4,7 @@ import Segment from "@/models/Segment";
 export default interface GameGroup {
     versionGroup: string;
     pokedex: PokemonName[];
-    segments: { [segmentSlug: string]: Segment };
+    segments: { [splitSlug: string]: { [segmentSlug: string]: Segment } };
     starterSlugs: string[];
     startingTownSlug: string;
     ignoredConditions: string[];

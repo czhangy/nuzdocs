@@ -18,5 +18,6 @@ export const getPokedex = (gameSlug: string): PokemonName[] => {
 };
 
 export const getSegments = (gameSlug: string): { [segmentSlug: string]: Segment } => {
-    return getGameGroup(gameSlug).segments;
+    const segmentObjs: { [segmentSlug: string]: Segment }[] = Object.values(getGameGroup(gameSlug).segments);
+    return Object.assign({}, ...segmentObjs);
 };

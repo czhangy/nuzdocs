@@ -27,12 +27,6 @@
         display: flex;
         gap: var(--battle-inner-spacing);
 
-        .trainer {
-            height: var(--trainer-size);
-            position: relative;
-            width: var(--trainer-size);
-        }
-
         .name {
             font-size: var(--battle-font-size);
             font-weight: bold;
@@ -40,8 +34,20 @@
             line-height: var(--battle-font-size);
         }
 
-        .done {
+        .trainer {
+            height: var(--trainer-size);
+            position: relative;
+            width: var(--trainer-size);
+        }
+    }
+
+    .done {
+        .name {
             text-decoration: line-through;
+        }
+
+        .trainer {
+            filter: grayscale(100%);
         }
     }
 

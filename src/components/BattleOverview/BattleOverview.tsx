@@ -1,5 +1,5 @@
 import { getTrainer, hasLevelCap } from "@/utils/battle";
-import { getRun } from "@/utils/run";
+import { getRun, isCleared } from "@/utils/run";
 import { getSegment } from "@/utils/segment";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,7 +15,7 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
     return (
         <Link href={`/runs/${props.runName}/${props.battleSlug}`}>
             <a className={styles["battle-overview"]}>
-                <div className={styles.battle}>
+                <div className={`${styles.battle} ${isCleared(props.runName, props.battleSlug) ? styles.done : ""}`}>
                     <p className={styles.name}>{getSegment(getRun(props.runName).gameSlug, props.battleSlug).name}</p>
                     <div className={styles.trainer}>
                         <Image
