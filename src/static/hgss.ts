@@ -5,7 +5,7 @@ import pokedex from "@/static/pokedex";
 const hgss: GameGroup = {
     versionGroup: "heartgold-soulsilver",
     pokedex: pokedex,
-    segments: {
+    splits: {
         "Falkner Split": {
             "new-bark-town": {
                 name: "New Bark Town",
