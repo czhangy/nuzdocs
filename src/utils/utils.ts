@@ -15,19 +15,6 @@ export const getPokemonTier = (pokemonSlug: string, versionGroup: string): strin
     return pokemonSlug in tiers[versionGroup] ? tiers[versionGroup][pokemonSlug] : "?";
 };
 
-// Game access
-export const getSegments = (gameSlug: string): Segment[] => {
-    return Object.values(games[gameSlug].gameGroup.segments);
-};
-
-export const getSegmentsObject = (gameSlug: string): { [segmentSlug: string]: Segment } => {
-    return games[gameSlug].gameGroup.segments;
-};
-
-export const getSegmentName = (gameSlug: string, locationSlug: string): string => {
-    return getSegmentsObject(gameSlug)[locationSlug].name;
-};
-
 // Trainer access
 export const getTrainer = (gameSlug: string, battleSlug: string, starterSlug: string): Trainer => {
     const segments: { [segmentSlug: string]: Segment } = getSegmentsObject(gameSlug);
