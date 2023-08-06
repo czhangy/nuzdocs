@@ -3,6 +3,7 @@ import EncounterData from "@/models/EncounterData";
 import LocationData from "@/models/LocationData";
 import games from "@/static/games";
 import translations from "@/static/translations";
+import { getGameGroup } from "@/utils/game";
 import { initAreaData, initEncounterData, initLocationData } from "@/utils/initializers";
 import groupBy from "lodash/groupBy";
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -44,16 +45,15 @@ export const getEncounterMethodName = (
         });
         methodName += ")";
     }
-
     return methodName;
 };
 
 const getEncounterDataForSinglePokemon = (pokemonEncounter: PokemonEncounter, gameSlug: string): EncounterData[] => {
     let encounterData: EncounterData[] = [];
     const versionDetails = pokemonEncounter.version_details;
-    const versionEncounterDetails: VersionEncounterDetail = versionDetails.filter(
+    const versionEncounterDetails: VersionEncounterDetail = versionDetails.find(
         (ved: VersionEncounterDetail) => ved.version.name === gameSlug
-    )[0];
+    )!;
     const encounters: Encounter[] = versionEncounterDetails.encounter_details;
     const groupedEncounters = groupBy(encounters, (encounter: Encounter) =>
         getEncounterMethodName(encounter.method.name, encounter.condition_values, gameSlug)
@@ -106,11 +106,96 @@ const fetchLocation = async (locationSlug: string): Promise<LocationData> => {
     }
 };
 
+const handleTimeBasedEncounter = (
+    timeCondition: string,
+    pokemonSlug: string,
+    encounterDetail: Encounter,
+    encounterData: { [conditionValue: string]: { [method: string]: EncounterData[] } }
+): void => {
+    if (!(encounterDetail.method.name in encounterData[timeCondition])) {
+        encounterData[timeCondition][encounterDetail.method.name] = [];
+    }
+    const encounter: EncounterData | undefined = encounterData[timeCondition][encounterDetail.method.name].find(
+        (ed: EncounterData) => ed.pokemonSlug === pokemonSlug
+    );
+    if (encounter) {
+        encounter.chance += encounterDetail.chance;
+        encounter.minLevel = Math.min(encounter.minLevel, encounterDetail.min_level);
+        encounter.maxLevel = Math.min(encounter.maxLevel, encounterDetail.max_level);
+    } else {
+        encounterData[timeCondition][encounterDetail.method.name].push(
+            initEncounterData(
+                pokemonSlug,
+                encounterDetail.method.name,
+                encounterDetail.chance,
+                encounterDetail.min_level,
+                encounterDetail.max_level
+            )
+        );
+    }
+};
+
+const handleConstantEncounter = (
+    gameSlug: string,
+    pokemonSlug: string,
+    encounterDetail: Encounter,
+    encounterData: { [conditionValue: string]: { [method: string]: EncounterData[] } }
+): void => {
+    if (
+        encounterDetail.condition_values.some((cv: NamedAPIResource) =>
+            getGameGroup(gameSlug).invalidConditions.includes(cv.name)
+        )
+    ) {
+        return;
+    }
+    for (const tc of Object.keys(encounterData)) {
+        handleTimeBasedEncounter(tc, pokemonSlug, encounterDetail, encounterData);
+    }
+};
+
+const getEncounterData = (
+    pokemonEncounters: PokemonEncounter[],
+    gameSlug: string
+): { [conditionValue: string]: { [method: string]: EncounterData[] } } => {
+    const encounterData: { [conditionValue: string]: { [method: string]: EncounterData[] } } = {
+        "time-morning": {},
+        "time-day": {},
+        "time-night": {},
+    };
+    for (const pokemonEncounter of pokemonEncounters) {
+        const versionDetail: VersionEncounterDetail | undefined = pokemonEncounter.version_details.find(
+            (vd: VersionEncounterDetail) => vd.version.name === gameSlug
+        );
+        if (versionDetail) {
+            for (const encounterDetail of versionDetail.encounter_details) {
+                const timeCondition: NamedAPIResource | undefined = encounterDetail.condition_values.find(
+                    (cv: NamedAPIResource) => Object.keys(encounterData).includes(cv.name)
+                );
+                if (timeCondition) {
+                    handleTimeBasedEncounter(
+                        timeCondition.name,
+                        pokemonEncounter.pokemon.name,
+                        encounterDetail,
+                        encounterData
+                    );
+                } else {
+                    handleConstantEncounter(gameSlug, pokemonEncounter.pokemon.name, encounterDetail, encounterData);
+                }
+            }
+        }
+    }
+    console.log(encounterData["time-night"]);
+    return encounterData;
+};
+
 const fetchArea = async (areaSlug: string, gameSlug: string): Promise<AreaData> => {
     const api: LocationClient = new LocationClient();
     try {
         const area: LocationArea = await api.getLocationAreaByName(areaSlug);
-        const encounters: EncounterData[] = getEncounterDataForAllPokemon(area.pokemon_encounters, gameSlug);
+        const encounters: { [conditionValue: string]: { [method: string]: EncounterData[] } } = getEncounterData(
+            area.pokemon_encounters,
+            gameSlug
+        );
         return initAreaData(area.names, encounters);
     } catch (error: any) {
         throw error;

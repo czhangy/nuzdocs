@@ -6,9 +6,9 @@ import LocationData from "@/models/LocationData";
 import games from "@/static/games";
 import translations from "@/static/translations";
 import { fetchAreas } from "@/utils/api";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterList.module.scss";
-import Image from "next/image";
 
 type Props = {
     currentLocation: LocationData;
@@ -35,38 +35,12 @@ const EncounterList: React.FC<Props> = (props: Props) => {
     const handleAreaSelect = (areaName: string): void => {
         let area: AreaData = areaList.filter((area: AreaData) => area.areaName === areaName)[0];
         // Strip starters out of encounters in starting town
-        if (props.segmentSlug === games[props.gameSlug].gameGroup.startingTownSlug) {
-            area.encounters = area.encounters.filter((encounter: EncounterData) => {
-                return !games[props.gameSlug].gameGroup.starterSlugs.includes(encounter.pokemonSlug);
-            });
-        }
+        // if (props.segmentSlug === games[props.gameSlug].gameGroup.startingTownSlug) {
+        //     area.encounters = area.encounters.filter((encounter: EncounterData) => {
+        //         return !games[props.gameSlug].gameGroup.starterSlugs.includes(encounter.pokemonSlug);
+        //     });
+        // }
         setCurrentArea(area);
-    };
-
-    // Get a list of the encounter methods available in the current area, sorted by availability
-    const getEncounterMethods = (): string[] => {
-        if (currentArea) {
-            let methods: string[] = currentArea.encounters.map((encounter: EncounterData) => encounter.method);
-            methods = [...new Set(methods)];
-            return methods.sort((a: string, b: string) => {
-                const priority: string[] = Object.values(translations.encounter_methods);
-                return priority.indexOf(a) - priority.indexOf(b);
-            });
-        } else {
-            return [];
-        }
-    };
-
-    // Get a list of Pokemon slugs for encounters in the current area, sorted by chance
-    const getEncounters = (method: string): EncounterData[] => {
-        if (currentArea) {
-            let encounters: EncounterData[] = currentArea.encounters.filter(
-                (encounter: EncounterData) => encounter.method === method
-            );
-            return encounters.sort((a: EncounterData, b: EncounterData) => b.chance - a.chance);
-        } else {
-            return [];
-        }
     };
 
     // Fetch areas + encounters in location on component load
@@ -110,7 +84,6 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                         </button>
                     </div>
                 </div>
-
                 <Dropdown
                     placeholder="Select a zone..."
                     value={currentArea ? currentArea.areaName : null}
@@ -118,18 +91,22 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                     onSelect={(areaName: string) => handleAreaSelect(areaName)}
                 />
             </div>
-            <div className={styles.encounters}>
-                {getEncounterMethods().map((method: string, key: number) => {
-                    return (
-                        <EncounterAccordion
-                            key={key}
-                            method={method}
-                            encounters={getEncounters(method)}
-                            versionGroup={games[props.gameSlug].gameGroup.versionGroup}
-                        />
-                    );
-                })}
-            </div>
+            {currentArea ? (
+                <div className={styles.encounters}>
+                    {Object.keys(currentArea.encounters["time-day"]).map((method: string, key: number) => {
+                        return (
+                            <EncounterAccordion
+                                key={key}
+                                method={method}
+                                encounters={currentArea.encounters["time-day"][method]}
+                                versionGroup={games[props.gameSlug].gameGroup.versionGroup}
+                            />
+                        );
+                    })}
+                </div>
+            ) : (
+                ""
+            )}
         </div>
     );
 };
