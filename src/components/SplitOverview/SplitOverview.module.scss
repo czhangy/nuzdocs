@@ -1,9 +1,61 @@
 @use "@/styles/constants";
 
 .split-overview {
-    --splits-inner-spacing: 1rem;
+    --arrow-size: 16px;
+    --line-height: 2px;
+    --segments-inner-spacing: 1rem;
+    --split-font-size: 1.5rem;
+    --split-letter-spacing: 1px;
+    --splits-inner-spacing: 2rem;
 
-    display: flex;
-    flex-direction: column;
-    gap: var(--splits-inner-spacing);
+    .header {
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        margin-bottom: var(--splits-inner-spacing);
+        width: 100%;
+
+        .split {
+            font-size: var(--split-font-size);
+            font-weight: bold;
+            letter-spacing: var(--split-letter-spacing);
+            line-height: var(--split-font-size);
+        }
+
+        .line {
+            background-color: constants.$text-color;
+            flex-grow: 1;
+            height: var(--line-height);
+        }
+
+        .arrow {
+            filter: constants.$svg-color;
+            height: var(--arrow-size);
+            position: relative;
+            width: var(--arrow-size);
+        }
+    }
+
+    .segments {
+        display: flex;
+        flex-direction: column;
+        gap: var(--segments-inner-spacing);
+    }
+}
+
+@media (hover: hover) {
+    .split-overview > .header:hover {
+        .split {
+            color: constants.$hover-color;
+        }
+
+        .line {
+            background-color: constants.$hover-color;
+        }
+
+        .arrow {
+            filter: constants.$svg-hover-color;
+        }
+    }
 }

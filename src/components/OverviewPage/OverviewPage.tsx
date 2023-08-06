@@ -25,6 +25,7 @@ const OverviewPage: React.FC<Props> = (props: Props) => {
                 {Object.keys(splits).map((split: string, key: number) => (
                     <li key={key}>
                         <SplitOverview
+                            split={split}
                             segments={getSegmentsInSplit(getRun(props.runName).gameSlug, split)}
                             runName={props.runName}
                         />
