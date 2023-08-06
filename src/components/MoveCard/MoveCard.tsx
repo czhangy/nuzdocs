@@ -39,7 +39,7 @@ const MoveCard: React.FC<Props> = (props: Props) => {
                     </div>
                 </div>
                 <p className={styles.text}>
-                    Power:{" "}
+                    BP:{" "}
                     <strong className={props.isSTAB && props.move.power ? styles["stab-text"] : ""}>
                         {getMovePower()}
                     </strong>

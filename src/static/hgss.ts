@@ -43,12 +43,50 @@ const hgss: GameGroup = {
                     },
                 },
             },
-        },
-        "Bugsy Split": {
             "johto-route-31": {
                 name: "Route 31",
                 type: "location",
                 segment: {},
+            },
+            "dark-cave": {
+                name: "Dark Cave",
+                type: "location",
+                segment: {},
+            },
+            "violet-city": {
+                name: "Violet City",
+                type: "location",
+                segment: {},
+            },
+            "johto-route-32": {
+                name: "Route 32",
+                type: "location",
+                segment: {},
+            },
+            "ruins-of-alph": {
+                name: "Ruins of Alph",
+                type: "location",
+                segment: {},
+            },
+            "sprout-tower": {
+                name: "Sprout Tower",
+                type: "location",
+                segment: {},
+            },
+            "elder-li": {
+                name: "Elder Li",
+                type: "battle",
+                segment: {
+                    battle: battles["heartgold-soulsilver"].elder_li,
+                },
+            },
+            "gym-leader-falkner": {
+                name: "Gym Leader Falkner",
+                type: "battle",
+                segment: {
+                    battle: battles["heartgold-soulsilver"].falkner,
+                    levelCap: 13,
+                },
             },
         },
     },

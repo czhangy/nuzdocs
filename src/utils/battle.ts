@@ -22,7 +22,7 @@ export const getTrainer = (gameSlug: string, battleSlug: string, starterSlug: st
 
 // Predicates
 export const hasVariants = (gameSlug: string, battleSlug: string): boolean => {
-    return !("trainer" in (getSegmentData(gameSlug, battleSlug) as BattleSegment));
+    return !("trainer" in (getSegmentData(gameSlug, battleSlug) as BattleSegment).battle);
 };
 
 export const hasLevelCap = (gameSlug: string, battleSlug: string): boolean => {

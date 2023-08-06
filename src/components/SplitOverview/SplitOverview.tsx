@@ -6,6 +6,7 @@ import { isLocationSegment } from "@/utils/segment";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "./SplitOverview.module.scss";
+import BattleSegment from "@/models/BattleSegment";
 
 type Props = {
     split: string;
@@ -27,13 +28,20 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
 
     // Check if split has been completed
     const isComplete = (): boolean => {
-        return isCleared(props.runName, Object.keys(props.segments).at(-1) as string);
+        return isCleared(props.runName, Object.keys(props.segments).at(-1)!);
+    };
+
+    // Get the level cap from the segment's final fight
+    const getLevelCap = (): number => {
+        return (Object.values(props.segments).at(-1)!.segment as BattleSegment).levelCap!;
     };
 
     return (
         <div className={styles["split-overview"]} style={open ? { maxHeight: getExpandedHeight() } : {}}>
             <button className={styles.header} onClick={() => setOpen(!open)}>
-                <p className={styles.split}>{isComplete() ? `👑 ${props.split}` : props.split}</p>
+                <p className={styles.split}>
+                    {isComplete() ? `👑 ${props.split}` : props.split} [{getLevelCap()}]
+                </p>
                 <hr className={styles.line} />
                 <div className={`${styles.arrow} ${open ? styles.reversed : ""}`}>
                     <Image src="/assets/icons/arrow.svg" alt="Open split" layout="fill" objectFit="contain" />
