@@ -37,6 +37,7 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
     // Gets the tier of the Pokemon when new Pokemon data is given
     useEffect(() => {
         if (props.encounters) {
+            setPokemonData([]);
             fetchPokemonGroup(props.encounters.map((encounter: EncounterData) => encounter.pokemonSlug)).then(
                 (pokemon) => setPokemonData(pokemon)
             );
@@ -56,60 +57,64 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
                     />
                 </div>
             </button>
-            <table className={styles.body} cellSpacing="0">
-                <thead>
-                    <tr className={styles.row}>
-                        <th className={`${styles.category} ${styles.left}`}>Pokémon</th>
-                        <th className={styles.category}>%</th>
-                        <th className={styles.category}>Level</th>
-                        <th className={styles.category}>Tier</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {pokemonData.map((pokemon: PokemonData, key: number) => {
-                        {
-                            const tier: string = getPokemonTier(pokemon.pokemon.slug, props.versionGroup);
-                            return (
-                                <tr className={styles.row} key={key}>
-                                    <td className={styles.cell}>
-                                        <div className={styles.pokemon}>
-                                            <div className={styles.sprite}>
-                                                <Image
-                                                    src={pokemon.sprite}
-                                                    alt={pokemon.pokemon.name}
-                                                    layout="fill"
-                                                    objectFit="contain"
-                                                />
-                                            </div>
-                                            <p className={styles.name}>{pokemon.pokemon.name}</p>
+            {props.encounters.length === pokemonData.length ? (
+                <table className={styles.body} cellSpacing="0">
+                    <thead>
+                        <tr className={styles.row}>
+                            <th className={`${styles.category} ${styles.left}`}>Pokémon</th>
+                            <th className={styles.category}>%</th>
+                            <th className={styles.category}>Level</th>
+                            <th className={styles.category}>Tier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {pokemonData.map((pokemon: PokemonData, key: number) => {
+                            {
+                                const tier: string = getPokemonTier(pokemon.pokemon.slug, props.versionGroup);
+                                return (
+                                    <tr className={styles.row} key={key}>
+                                        <td className={styles.cell}>
+                                            <div className={styles.pokemon}>
+                                                <div className={styles.sprite}>
+                                                    <Image
+                                                        src={pokemon.sprite}
+                                                        alt={pokemon.pokemon.name}
+                                                        layout="fill"
+                                                        objectFit="contain"
+                                                    />
+                                                </div>
+                                                <p className={styles.name}>{pokemon.pokemon.name}</p>
 
-                                            <div className={styles.types}>
-                                                {pokemon.types.map((type: string, key: number) => {
-                                                    return (
-                                                        <div className={styles.type} key={key}>
-                                                            <Image
-                                                                src={`https://www.serebii.net/pokedex-bw/type/${type}.gif`}
-                                                                alt={type}
-                                                                layout="fill"
-                                                                objectFit="contain"
-                                                            />
-                                                        </div>
-                                                    );
-                                                })}
+                                                <div className={styles.types}>
+                                                    {pokemon.types.map((type: string, key: number) => {
+                                                        return (
+                                                            <div className={styles.type} key={key}>
+                                                                <Image
+                                                                    src={`https://www.serebii.net/pokedex-bw/type/${type}.gif`}
+                                                                    alt={type}
+                                                                    layout="fill"
+                                                                    objectFit="contain"
+                                                                />
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td className={styles.cell}>{props.encounters[key].chance}%</td>
-                                    <td className={styles.cell}>{getLevelRange(props.encounters[key])}</td>
-                                    <td className={styles.cell}>
-                                        <TierCard tier={tier} />
-                                    </td>
-                                </tr>
-                            );
-                        }
-                    })}
-                </tbody>
-            </table>
+                                        </td>
+                                        <td className={styles.cell}>{props.encounters[key].chance}%</td>
+                                        <td className={styles.cell}>{getLevelRange(props.encounters[key])}</td>
+                                        <td className={styles.cell}>
+                                            <TierCard tier={tier} />
+                                        </td>
+                                    </tr>
+                                );
+                            }
+                        })}
+                    </tbody>
+                </table>
+            ) : (
+                <p className={styles.loading}>Loading...</p>
+            )}
         </div>
     );
 };

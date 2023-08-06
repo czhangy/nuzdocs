@@ -13,6 +13,8 @@
     --cell-y-padding: 1rem;
     --category-font-size: 1.2rem;
     --category-y-padding: 1.5rem;
+    --loading-font-size: 1.5rem;
+    --loading-y-padding: 2rem;
     --method-font-size: 1.4rem;
     --name-font-size: 1rem;
     --pokemon-inner-spacing: 0.25rem;
@@ -68,6 +70,7 @@
 
             .cell {
                 font-size: var(--cell-font-size);
+                line-height: var(--cell-font-size);
                 padding: var(--cell-y-padding) var(--cell-x-padding);
                 text-align: center;
 
@@ -107,6 +110,14 @@
                 }
             }
         }
+    }
+
+    .loading {
+        background: constants.$accent-color;
+        font-size: var(--loading-font-size);
+        line-height: var(--loading-font-size);
+        padding: var(--loading-y-padding) 0;
+        text-align: center;
     }
 }
 

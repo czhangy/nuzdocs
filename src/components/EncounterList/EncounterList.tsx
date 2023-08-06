@@ -24,7 +24,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
     const [currentArea, setCurrentArea] = useState<AreaData | null>(null);
 
     // Component state
-    const [time, setTime] = useState<"morning" | "day" | "night">("morning");
+    const [time, setTime] = useState<"time-morning" | "time-day" | "time-night">("time-morning");
 
     // Translates areas into area names for the dropdown
     const getAreaNames = (): string[] => {
@@ -65,22 +65,22 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                     <h3 className={styles.title}>Encounters:</h3>
                     <div className={styles.times}>
                         <button
-                            className={`${styles.time} ${time === "morning" ? styles.active : ""}`}
-                            onClick={() => setTime("morning")}
+                            className={`${styles.time} ${time === "time-morning" ? styles.active : ""}`}
+                            onClick={() => setTime("time-morning")}
                         >
                             <Image src="/assets/icons/morning.svg" alt="Morning" layout="fill" objectFit="contain" />
                         </button>
                         <button
-                            className={`${styles.time} ${time === "day" ? styles.active : ""}`}
-                            onClick={() => setTime("day")}
+                            className={`${styles.time} ${time === "time-day" ? styles.active : ""}`}
+                            onClick={() => setTime("time-day")}
                         >
-                            <Image src="/assets/icons/day.svg" alt="Morning" layout="fill" objectFit="contain" />
+                            <Image src="/assets/icons/day.svg" alt="Day" layout="fill" objectFit="contain" />
                         </button>
                         <button
-                            className={`${styles.time} ${time === "night" ? styles.active : ""}`}
-                            onClick={() => setTime("night")}
+                            className={`${styles.time} ${time === "time-night" ? styles.active : ""}`}
+                            onClick={() => setTime("time-night")}
                         >
-                            <Image src="/assets/icons/night.svg" alt="Morning" layout="fill" objectFit="contain" />
+                            <Image src="/assets/icons/night.svg" alt="Night" layout="fill" objectFit="contain" />
                         </button>
                     </div>
                 </div>
@@ -93,12 +93,12 @@ const EncounterList: React.FC<Props> = (props: Props) => {
             </div>
             {currentArea ? (
                 <div className={styles.encounters}>
-                    {Object.keys(currentArea.encounters["time-day"]).map((method: string, key: number) => {
+                    {Object.keys(currentArea.encounters[time]).map((method: string, key: number) => {
                         return (
                             <EncounterAccordion
                                 key={key}
                                 method={method}
-                                encounters={currentArea.encounters["time-day"][method]}
+                                encounters={currentArea.encounters[time][method]}
                                 versionGroup={games[props.gameSlug].gameGroup.versionGroup}
                             />
                         );
