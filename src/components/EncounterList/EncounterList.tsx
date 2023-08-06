@@ -35,11 +35,11 @@ const EncounterList: React.FC<Props> = (props: Props) => {
     const handleAreaSelect = (areaName: string): void => {
         let area: AreaData = areaList.filter((area: AreaData) => area.areaName === areaName)[0];
         // Strip starters out of encounters in starting town
-        // if (props.segmentSlug === games[props.gameSlug].gameGroup.startingTownSlug) {
-        //     area.encounters = area.encounters.filter((encounter: EncounterData) => {
-        //         return !games[props.gameSlug].gameGroup.starterSlugs.includes(encounter.pokemonSlug);
-        //     });
-        // }
+        if (props.segmentSlug === games[props.gameSlug].gameGroup.startingTownSlug) {
+            delete area.encounters["time-morning"].gift;
+            delete area.encounters["time-day"].gift;
+            delete area.encounters["time-night"].gift;
+        }
         setCurrentArea(area);
     };
 
