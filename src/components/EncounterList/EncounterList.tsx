@@ -8,6 +8,7 @@ import translations from "@/static/translations";
 import { fetchAreas } from "@/utils/api";
 import { useEffect, useState } from "react";
 import styles from "./EncounterList.module.scss";
+import Image from "next/image";
 
 type Props = {
     currentLocation: LocationData;
@@ -21,6 +22,9 @@ const EncounterList: React.FC<Props> = (props: Props) => {
 
     // User data state
     const [currentArea, setCurrentArea] = useState<AreaData | null>(null);
+
+    // Component state
+    const [time, setTime] = useState<"morning" | "day" | "night">("morning");
 
     // Translates areas into area names for the dropdown
     const getAreaNames = (): string[] => {
@@ -83,7 +87,30 @@ const EncounterList: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["encounter-list"]}>
             <div className={styles.header}>
-                <h3 className={styles.title}>Encounters:</h3>
+                <div className={styles.left}>
+                    <h3 className={styles.title}>Encounters:</h3>
+                    <div className={styles.times}>
+                        <button
+                            className={`${styles.time} ${time === "morning" ? styles.active : ""}`}
+                            onClick={() => setTime("morning")}
+                        >
+                            <Image src="/assets/icons/morning.svg" alt="Morning" layout="fill" objectFit="contain" />
+                        </button>
+                        <button
+                            className={`${styles.time} ${time === "day" ? styles.active : ""}`}
+                            onClick={() => setTime("day")}
+                        >
+                            <Image src="/assets/icons/day.svg" alt="Morning" layout="fill" objectFit="contain" />
+                        </button>
+                        <button
+                            className={`${styles.time} ${time === "night" ? styles.active : ""}`}
+                            onClick={() => setTime("night")}
+                        >
+                            <Image src="/assets/icons/night.svg" alt="Morning" layout="fill" objectFit="contain" />
+                        </button>
+                    </div>
+                </div>
+
                 <Dropdown
                     placeholder="Select a zone..."
                     value={currentArea ? currentArea.areaName : null}
