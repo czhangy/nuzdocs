@@ -9,6 +9,7 @@ import { fetchAreas } from "@/utils/api";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterList.module.scss";
+import { isEqual } from "lodash";
 
 type Props = {
     currentLocation: LocationData;
@@ -33,7 +34,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
 
     // Sets the current area on dropdown select
     const handleAreaSelect = (areaName: string): void => {
-        let area: AreaData = areaList.filter((area: AreaData) => area.areaName === areaName)[0];
+        let area: AreaData = areaList.find((area: AreaData) => area.areaName === areaName)!;
         // Strip starters out of encounters in starting town
         if (props.segmentSlug === games[props.gameSlug].gameGroup.startingTownSlug) {
             delete area.encounters["time-morning"].gift;
@@ -63,26 +64,35 @@ const EncounterList: React.FC<Props> = (props: Props) => {
             <div className={styles.header}>
                 <div className={styles.left}>
                     <h3 className={styles.title}>Encounters:</h3>
-                    <div className={styles.times}>
-                        <button
-                            className={`${styles.time} ${time === "time-morning" ? styles.active : ""}`}
-                            onClick={() => setTime("time-morning")}
-                        >
-                            <Image src="/assets/icons/morning.svg" alt="Morning" layout="fill" objectFit="contain" />
-                        </button>
-                        <button
-                            className={`${styles.time} ${time === "time-day" ? styles.active : ""}`}
-                            onClick={() => setTime("time-day")}
-                        >
-                            <Image src="/assets/icons/day.svg" alt="Day" layout="fill" objectFit="contain" />
-                        </button>
-                        <button
-                            className={`${styles.time} ${time === "time-night" ? styles.active : ""}`}
-                            onClick={() => setTime("time-night")}
-                        >
-                            <Image src="/assets/icons/night.svg" alt="Night" layout="fill" objectFit="contain" />
-                        </button>
-                    </div>
+                    {currentArea && currentArea.usesTime ? (
+                        <div className={styles.times}>
+                            <button
+                                className={`${styles.time} ${time === "time-morning" ? styles.active : ""}`}
+                                onClick={() => setTime("time-morning")}
+                            >
+                                <Image
+                                    src="/assets/icons/morning.svg"
+                                    alt="Morning"
+                                    layout="fill"
+                                    objectFit="contain"
+                                />
+                            </button>
+                            <button
+                                className={`${styles.time} ${time === "time-day" ? styles.active : ""}`}
+                                onClick={() => setTime("time-day")}
+                            >
+                                <Image src="/assets/icons/day.svg" alt="Day" layout="fill" objectFit="contain" />
+                            </button>
+                            <button
+                                className={`${styles.time} ${time === "time-night" ? styles.active : ""}`}
+                                onClick={() => setTime("time-night")}
+                            >
+                                <Image src="/assets/icons/night.svg" alt="Night" layout="fill" objectFit="contain" />
+                            </button>
+                        </div>
+                    ) : (
+                        ""
+                    )}
                 </div>
                 <Dropdown
                     placeholder="Select a zone..."

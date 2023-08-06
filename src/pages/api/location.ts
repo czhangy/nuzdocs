@@ -1,11 +1,8 @@
 import AreaData from "@/models/AreaData";
 import EncounterData from "@/models/EncounterData";
 import LocationData from "@/models/LocationData";
-import games from "@/static/games";
-import translations from "@/static/translations";
 import { getGameGroup } from "@/utils/game";
 import { initAreaData, initEncounterData, initLocationData } from "@/utils/initializers";
-import groupBy from "lodash/groupBy";
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
     Encounter,
@@ -21,78 +18,6 @@ type ResData = {
     location?: string;
     areaList?: string;
     error?: any;
-};
-
-export const getEncounterMethodName = (
-    methodSlug: string,
-    conditionValues: NamedAPIResource[],
-    gameSlug: string
-): string => {
-    let methodName: string =
-        methodSlug in translations.encounter_methods ? translations.encounter_methods[methodSlug] : methodSlug;
-    if (conditionValues.length > 0) {
-        // Ignore compounding conditions that are trivial and shouldn't be split on
-        conditionValues = conditionValues.filter((cv: NamedAPIResource) => {
-            return !games[gameSlug].gameGroup.ignoredConditions.includes(cv.name);
-        });
-        methodName += " (";
-        conditionValues.forEach((cv: NamedAPIResource, i: number) => {
-            if (i > 0) {
-                methodName += " + ";
-            }
-            methodName +=
-                cv.name in translations.encounter_conditions ? translations.encounter_conditions[cv.name] : cv.name;
-        });
-        methodName += ")";
-    }
-    return methodName;
-};
-
-const getEncounterDataForSinglePokemon = (pokemonEncounter: PokemonEncounter, gameSlug: string): EncounterData[] => {
-    let encounterData: EncounterData[] = [];
-    const versionDetails = pokemonEncounter.version_details;
-    const versionEncounterDetails: VersionEncounterDetail = versionDetails.find(
-        (ved: VersionEncounterDetail) => ved.version.name === gameSlug
-    )!;
-    const encounters: Encounter[] = versionEncounterDetails.encounter_details;
-    const groupedEncounters = groupBy(encounters, (encounter: Encounter) =>
-        getEncounterMethodName(encounter.method.name, encounter.condition_values, gameSlug)
-    );
-    for (let method in groupedEncounters) {
-        // Skip specified methods for version group
-        if (games[gameSlug].gameGroup.invalidConditions.some((condition: string) => method.includes(condition))) {
-            continue;
-        }
-        const chance: number = groupedEncounters[method].reduce(
-            (sum: number, encounter: Encounter) => sum + encounter.chance,
-            0
-        );
-        const minLevel: number = Math.min.apply(
-            null,
-            groupedEncounters[method].map((encounter: Encounter) => {
-                return encounter.min_level;
-            })
-        );
-        const maxLevel: number = Math.max.apply(
-            null,
-            groupedEncounters[method].map((encounter: Encounter) => {
-                return encounter.max_level;
-            })
-        );
-        encounterData.push(initEncounterData(pokemonEncounter.pokemon.name, method, chance, minLevel, maxLevel));
-    }
-    return encounterData;
-};
-
-const getEncounterDataForAllPokemon = (pokemonEncounters: PokemonEncounter[], gameSlug: string): EncounterData[] => {
-    let encounterData: EncounterData[][] = [];
-    pokemonEncounters = pokemonEncounters.filter((pokemonEncounter: PokemonEncounter) =>
-        pokemonEncounter.version_details.some((ved) => ved.version.name === gameSlug)
-    );
-    pokemonEncounters.forEach((pokemonEncounter: PokemonEncounter) => {
-        encounterData.push(getEncounterDataForSinglePokemon(pokemonEncounter, gameSlug));
-    });
-    return encounterData.flat();
 };
 
 const fetchLocation = async (locationSlug: string): Promise<LocationData> => {
@@ -155,13 +80,10 @@ const handleConstantEncounter = (
 
 const getEncounterData = (
     pokemonEncounters: PokemonEncounter[],
-    gameSlug: string
-): { [conditionValue: string]: { [method: string]: EncounterData[] } } => {
-    const encounterData: { [conditionValue: string]: { [method: string]: EncounterData[] } } = {
-        "time-morning": {},
-        "time-day": {},
-        "time-night": {},
-    };
+    gameSlug: string,
+    encounterData: { [conditionValue: string]: { [method: string]: EncounterData[] } }
+): boolean => {
+    let usesTime = false;
     for (const pokemonEncounter of pokemonEncounters) {
         const versionDetail: VersionEncounterDetail | undefined = pokemonEncounter.version_details.find(
             (vd: VersionEncounterDetail) => vd.version.name === gameSlug
@@ -172,6 +94,7 @@ const getEncounterData = (
                     (cv: NamedAPIResource) => Object.keys(encounterData).includes(cv.name)
                 );
                 if (timeCondition) {
+                    usesTime = true;
                     handleTimeBasedEncounter(
                         timeCondition.name,
                         pokemonEncounter.pokemon.name,
@@ -184,19 +107,20 @@ const getEncounterData = (
             }
         }
     }
-    console.log(encounterData["time-night"]);
-    return encounterData;
+    return usesTime;
 };
 
 const fetchArea = async (areaSlug: string, gameSlug: string): Promise<AreaData> => {
     const api: LocationClient = new LocationClient();
     try {
         const area: LocationArea = await api.getLocationAreaByName(areaSlug);
-        const encounters: { [conditionValue: string]: { [method: string]: EncounterData[] } } = getEncounterData(
-            area.pokemon_encounters,
-            gameSlug
-        );
-        return initAreaData(area.names, encounters);
+        const encounterData: { [conditionValue: string]: { [method: string]: EncounterData[] } } = {
+            "time-morning": {},
+            "time-day": {},
+            "time-night": {},
+        };
+        const usesTime: boolean = getEncounterData(area.pokemon_encounters, gameSlug, encounterData);
+        return initAreaData(area.names, encounterData, usesTime);
     } catch (error: any) {
         throw error;
     }
