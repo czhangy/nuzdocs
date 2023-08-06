@@ -39,6 +39,51 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                 },
             ],
         },
+        elder_li: {
+            trainer: trainers.elder_li,
+            team: [
+                {
+                    slug: "bellsprout",
+                    species: "bellsprout",
+                    level: 7,
+                    abilitySlug: "chlorophyll",
+                    moveSlugs: ["vine-whip", "growth"],
+                },
+                {
+                    slug: "bellsprout",
+                    species: "bellsprout",
+                    level: 7,
+                    abilitySlug: "chlorophyll",
+                    moveSlugs: ["vine-whip", "growth"],
+                },
+                {
+                    slug: "hoothoot",
+                    species: "hoothoot",
+                    level: 10,
+                    abilitySlug: "insomnia",
+                    moveSlugs: ["growl", "hypnosis", "peck"],
+                },
+            ],
+        },
+        falkner: {
+            trainer: trainers.falkner,
+            team: [
+                {
+                    slug: "pidgey",
+                    species: "pidgey",
+                    level: 9,
+                    abilitySlug: "keen-eye",
+                    moveSlugs: ["tackle", "sand-attack"],
+                },
+                {
+                    slug: "pidgeotto",
+                    species: "pidgeotto",
+                    level: 13,
+                    abilitySlug: "keen-eye",
+                    moveSlugs: ["tackle", "roost", "gust"],
+                },
+            ],
+        },
     },
 };
 

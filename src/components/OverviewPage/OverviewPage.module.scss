@@ -3,12 +3,14 @@
 .overview-page {
     --header-font-size: 2rem;
     --header-letter-spacing: 2px;
-    --header-spacing: 2rem;
+    --header-spacing: 1rem;
+    --notice-spacing: 3rem;
     --page-spacing: 2rem;
     --page-width: 350px;
-    --segments-inner-spacing: 1rem;
+    --splits-inner-spacing: 3rem;
 
     margin: var(--page-spacing) 0;
+    min-height: calc(100vh - constants.$mobile-navbar-height - var(--page-spacing));
     width: var(--page-width);
 
     .header {
@@ -20,10 +22,15 @@
         text-align: center;
     }
 
-    .segments {
+    .notice {
+        margin-bottom: var(--notice-spacing);
+        text-align: center;
+    }
+
+    .splits {
         display: flex;
         flex-direction: column;
-        gap: var(--segments-inner-spacing);
+        gap: var(--splits-inner-spacing);
     }
 }
 
@@ -32,5 +39,7 @@
         --header-font-size: 2.5rem;
         --page-width: 750px;
         --page-spacing: 4rem;
+
+        min-height: calc(100vh - constants.$navbar-height - var(--page-spacing));
     }
 }

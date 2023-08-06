@@ -17,6 +17,15 @@ export const getPokedex = (gameSlug: string): PokemonName[] => {
     return getGameGroup(gameSlug).pokedex;
 };
 
+export const getSplits = (gameSlug: string): { [split: string]: { [segmentSlug: string]: Segment } } => {
+    return getGameGroup(gameSlug).splits;
+};
+
+export const getSegmentsInSplit = (gameSlug: string, split: string): { [segmentSlug: string]: Segment } => {
+    return getGameGroup(gameSlug).splits[split];
+};
+
 export const getSegments = (gameSlug: string): { [segmentSlug: string]: Segment } => {
-    return getGameGroup(gameSlug).segments;
+    const segmentObjs: { [segmentSlug: string]: Segment }[] = Object.values(getGameGroup(gameSlug).splits);
+    return Object.assign({}, ...segmentObjs);
 };

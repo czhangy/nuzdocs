@@ -1,0 +1,80 @@
+@use "@/styles/constants";
+
+.split-overview {
+    --arrow-size: 12px;
+    --arrow-transition-time: 0.2s;
+    --line-height: 2px;
+    --segments-inner-spacing: 1rem;
+    --split-font-size: 1.25rem;
+    --split-letter-spacing: 0;
+    --splits-inner-spacing: 2rem;
+    --splits-transition-time: 0.5s;
+
+    max-height: calc(var(--split-font-size) + 0.5rem);
+    overflow-y: hidden;
+    transition: max-height var(--splits-transition-time);
+
+    .header {
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        margin-bottom: var(--splits-inner-spacing);
+        width: 100%;
+
+        .split {
+            font-size: var(--split-font-size);
+            font-weight: bold;
+            letter-spacing: var(--split-letter-spacing);
+            line-height: var(--split-font-size);
+        }
+
+        .line {
+            background-color: constants.$text-color;
+            flex-grow: 1;
+            height: var(--line-height);
+        }
+
+        .arrow {
+            filter: constants.$svg-color;
+            height: var(--arrow-size);
+            position: relative;
+            transition: transform var(--arrow-transition-time);
+            width: var(--arrow-size);
+        }
+
+        .reversed {
+            transform: rotate(-180deg);
+        }
+    }
+
+    .segments {
+        display: flex;
+        flex-direction: column;
+        gap: var(--segments-inner-spacing);
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .split-overview {
+        --arrow-size: 16px;
+        --split-font-size: 1.5rem;
+        --split-letter-spacing: 1px;
+    }
+}
+
+@media (hover: hover) {
+    .split-overview > .header:hover {
+        .split {
+            color: constants.$hover-color;
+        }
+
+        .line {
+            background-color: constants.$hover-color;
+        }
+
+        .arrow {
+            filter: constants.$svg-hover-color;
+        }
+    }
+}
