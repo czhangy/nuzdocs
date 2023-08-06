@@ -2,6 +2,7 @@
 
 .location-overview {
     --border-rad: 5px;
+    --border-size: 2px;
     --encounter-height: calc(var(--title-font-size) + var(--sprite-size) + var(--encounter-inner-spacing));
     --encounter-inner-spacing: 1rem;
     --location-font-size: 1rem;
@@ -15,6 +16,7 @@
 
     align-items: center;
     background-color: constants.$accent-color;
+    border: var(--border-size) solid constants.$accent-color;
     border-radius: var(--border-rad);
     display: flex;
     justify-content: space-between;
@@ -73,5 +75,11 @@
         --location-letter-spacing: 1px;
         --text-font-size: 1.5rem;
         --text-letter-spacing: 2px;
+    }
+}
+
+@media (hover: hover) {
+    .location-overview:hover {
+        border-color: constants.$hover-color;
     }
 }
