@@ -2,11 +2,17 @@
 
 .split-overview {
     --arrow-size: 16px;
+    --arrow-transition-time: 0.2s;
     --line-height: 2px;
     --segments-inner-spacing: 1rem;
     --split-font-size: 1.5rem;
     --split-letter-spacing: 1px;
     --splits-inner-spacing: 2rem;
+    --splits-transition-time: 0.5s;
+
+    max-height: calc(var(--split-font-size) + 0.5rem);
+    overflow-y: hidden;
+    transition: max-height var(--splits-transition-time);
 
     .header {
         align-items: center;
@@ -33,7 +39,12 @@
             filter: constants.$svg-color;
             height: var(--arrow-size);
             position: relative;
+            transition: transform var(--arrow-transition-time);
             width: var(--arrow-size);
+        }
+
+        .reversed {
+            transform: rotate(-180deg);
         }
     }
 

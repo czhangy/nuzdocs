@@ -3,8 +3,9 @@ import LocationOverview from "@/components/LocationOverview/LocationOverview";
 import Segment from "@/models/Segment";
 import { getRun } from "@/utils/run";
 import { isLocationSegment } from "@/utils/segment";
-import styles from "./SplitOverview.module.scss";
 import Image from "next/image";
+import { useState } from "react";
+import styles from "./SplitOverview.module.scss";
 
 type Props = {
     split: string;
@@ -13,12 +14,23 @@ type Props = {
 };
 
 const SplitOverview: React.FC<Props> = (props: Props) => {
+    // Component state
+    const [open, setOpen] = useState<boolean>(false);
+
+    // Calculate the height of the expanded container
+    const getExpandedHeight = (): string => {
+        const numSegments: number = Object.keys(props.segments).length;
+        return `calc(var(--split-font-size) + var(--splits-inner-spacing) + ${numSegments} * (4rem + 81px) + ${
+            numSegments - 1
+        } * var(--segments-inner-spacing))`;
+    };
+
     return (
-        <div className={styles["split-overview"]}>
-            <button className={styles.header}>
+        <div className={styles["split-overview"]} style={open ? { maxHeight: getExpandedHeight() } : {}}>
+            <button className={styles.header} onClick={() => setOpen(!open)}>
                 <p className={styles.split}>{props.split}</p>
                 <hr className={styles.line} />
-                <div className={styles.arrow}>
+                <div className={`${styles.arrow} ${open ? styles.reversed : ""}`}>
                     <Image src="/assets/icons/arrow.svg" alt="Open split" layout="fill" objectFit="contain" />
                 </div>
             </button>
