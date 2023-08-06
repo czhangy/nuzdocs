@@ -3,7 +3,8 @@
 .overview-page {
     --header-font-size: 2rem;
     --header-letter-spacing: 2px;
-    --header-spacing: 2rem;
+    --header-spacing: 1rem;
+    --notice-spacing: 3rem;
     --page-spacing: 2rem;
     --page-width: 350px;
     --splits-inner-spacing: 3rem;
@@ -18,6 +19,11 @@
         letter-spacing: var(--header-letter-spacing);
         line-height: var(--header-font-size);
         margin-bottom: var(--header-spacing);
+        text-align: center;
+    }
+
+    .notice {
+        margin-bottom: var(--notice-spacing);
         text-align: center;
     }
 
