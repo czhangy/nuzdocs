@@ -89,6 +89,13 @@ const hgss: GameGroup = {
                 },
             },
         },
+        "Bugsy Split": {
+            "union-cave": {
+                name: "Union Cave",
+                type: "location",
+                segment: {},
+            },
+        },
     },
     starterSlugs: ["chikorita", "cyndaquil", "totodile"],
     startingTownSlug: "new-bark-town",

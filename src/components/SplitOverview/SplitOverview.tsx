@@ -1,17 +1,18 @@
 import BattleOverview from "@/components/BattleOverview/BattleOverview";
 import LocationOverview from "@/components/LocationOverview/LocationOverview";
+import BattleSegment from "@/models/BattleSegment";
 import Segment from "@/models/Segment";
 import { getRun, isCleared } from "@/utils/run";
 import { isLocationSegment } from "@/utils/segment";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./SplitOverview.module.scss";
-import BattleSegment from "@/models/BattleSegment";
 
 type Props = {
     split: string;
     segments: { [segmentSlug: string]: Segment };
     runName: string;
+    isOpen: boolean;
 };
 
 const SplitOverview: React.FC<Props> = (props: Props) => {
@@ -35,6 +36,9 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
     const getLevelCap = (): number => {
         return (Object.values(props.segments).at(-1)!.segment as BattleSegment).levelCap!;
     };
+
+    // Open the split if it's the user's current active split
+    useEffect(() => setOpen(props.isOpen), [props.isOpen]);
 
     return (
         <div className={styles["split-overview"]} style={open ? { maxHeight: getExpandedHeight() } : {}}>
