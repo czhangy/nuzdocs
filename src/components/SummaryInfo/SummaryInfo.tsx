@@ -1,9 +1,9 @@
-import CaughtPokemon from "@/models/CaughtPokemon";
-import styles from "./SummaryInfo.module.scss";
-import { useEffect, useState } from "react";
 import AbilityData from "@/models/AbilityData";
+import CaughtPokemon from "@/models/CaughtPokemon";
 import { fetchAbility } from "@/utils/api";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import styles from "./SummaryInfo.module.scss";
 
 type Props = {
     pokemon: CaughtPokemon;

@@ -2,7 +2,8 @@
 
 .summary-info {
     --border-rad: 5px;
-    --header-y-padding: 0.25rem;
+    --font-size: 1rem;
+    --header-y-padding: 0.5rem;
     --inner-spacing: 1rem;
     --num-cols: 2;
     --type-height: 12px;
@@ -22,14 +23,14 @@
         text-align: center;
 
         .header {
-            background: constants.$hover-color;
+            background-color: constants.$hover-color;
             font-weight: bold;
             padding: var(--header-y-padding);
         }
 
         .value {
             align-items: center;
-            background: constants.$accent-color;
+            background-color: constants.$accent-color;
             display: flex;
             gap: var(--value-inner-spacing);
             height: var(--value-height);

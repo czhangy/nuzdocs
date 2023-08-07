@@ -1,5 +1,6 @@
 import SummaryHeader from "@/components/SummaryHeader/SummaryHeader";
 import SummaryInfo from "@/components/SummaryInfo/SummaryInfo";
+import SummaryMoves from "@/components/SummaryMoves/SummaryMoves";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemon } from "@/utils/api";
@@ -47,6 +48,12 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 runName={props.runName}
             />
             <SummaryInfo pokemon={caughtPokemon} types={pokemonData.types} />
+            <SummaryMoves
+                moves={caughtPokemon.pokemon.moveSlugs}
+                types={pokemonData.types}
+                runName={props.runName}
+                nickname={props.nickname}
+            />
         </div>
     ) : (
         <div className={styles["summary-page"]}>

@@ -31,6 +31,10 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Sprites with negative margins overlap surrounding content",
             group: "General",
         },
+        {
+            desc: "Damaging moves with no BP (ex: Grass Knot) don't display a STAB bonus",
+            group: "General",
+        },
     ],
 };
 

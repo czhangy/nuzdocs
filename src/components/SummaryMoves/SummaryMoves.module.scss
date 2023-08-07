@@ -1,0 +1,36 @@
+@use "@/styles/constants";
+
+.summary-moves {
+    --border-rad: 5px;
+    --font-size: 1rem;
+    --header-y-padding: 0.5rem;
+    --moves-inner-spacing: 1rem;
+    --moves-padding: 1rem;
+    --num-cols: 1;
+
+    border-radius: var(--border-rad);
+    overflow: hidden;
+
+    .header {
+        background-color: constants.$hover-color;
+        font-size: var(--font-size);
+        font-weight: bold;
+        line-height: var(--font-size);
+        padding: var(--header-y-padding);
+        text-align: center;
+    }
+
+    .moves {
+        background-color: constants.$accent-color;
+        display: grid;
+        gap: var(--moves-inner-spacing);
+        grid-template-columns: repeat(var(--num-cols), 1fr);
+        padding: var(--moves-padding);
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .summary-moves {
+        --num-cols: 2;
+    }
+}
