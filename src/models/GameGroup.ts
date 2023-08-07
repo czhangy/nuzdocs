@@ -7,6 +7,5 @@ export default interface GameGroup {
     splits: { [split: string]: { [segmentSlug: string]: Segment } };
     starterSlugs: string[];
     startingTownSlug: string;
-    ignoredConditions: string[];
     invalidConditions: string[];
 }
