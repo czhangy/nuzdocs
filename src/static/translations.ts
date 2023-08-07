@@ -3,9 +3,10 @@ const translations: { [translation: string]: { [slug: string]: string } } = {
         walk: "Walking",
         "old-rod": "Old Rod",
         "good-rod": "Good Rod",
-        surf: "Surf",
         "super-rod": "Super Rod",
+        surf: "Surf",
         "gift-egg": "Egg",
+        "rock-smash": "Rock Smash",
     },
 };
 

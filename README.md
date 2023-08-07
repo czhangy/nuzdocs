@@ -109,8 +109,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 
 ## To-Dos
 
--   [ ] Time of day encounter filter
--   [ ] Run progression as route/link
 -   [ ] Pokemon data
 -   [ ] Location maps
 -   [ ] Tier list page
@@ -118,6 +116,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Game data
 -   [ ] Coverage calculator
 -   [ ] Damage calculator
+-   [ ] Run progression as route/link
 -   [ ] Add way to still show duplicates, but mark them
 -   [ ] Fix `starterSlug` since it's unnecessary
 -   [ ] Box filters

@@ -3,13 +3,19 @@ import Bug from "@/models/Bug";
 const bugs: { [priority: string]: Bug[] } = {
     High: [
         {
-            desc: "Encounter conditions are blowing up",
-            group: "HeartGold/SoulSilver",
+            desc: "Encounter data is slightly off (compared to Serebii)",
+            group: "General",
         },
         {
             desc: "Headbutt encounters are missing",
             group: "HeartGold/SoulSilver",
             link: "https://github.com/czhangy/nuzlocke-db/issues/25",
+        },
+    ],
+    Medium: [
+        {
+            desc: "Loading occasionally crashes between locations",
+            group: "General",
         },
     ],
     Low: [
@@ -23,10 +29,6 @@ const bugs: { [priority: string]: Bug[] } = {
         },
         {
             desc: "Sprites with negative margins overlap surrounding content",
-            group: "General",
-        },
-        {
-            desc: "Pokémon with forms only exist in their default forms",
             group: "General",
         },
     ],
