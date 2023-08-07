@@ -4,10 +4,10 @@
     --header-font-size: 2rem;
     --header-letter-spacing: 2px;
     --header-spacing: 2rem;
-    --top-spacing: 2rem;
+    --page-spacing: 2rem;
 
-    margin-top: var(--top-spacing);
-    min-height: calc(100vh - constants.$mobile-navbar-height - var(--top-spacing));
+    margin: var(--page-spacing) 0;
+    min-height: calc(100vh - constants.$mobile-navbar-height - 2 * var(--page-spacing));
 
     .header {
         font-size: var(--header-font-size);
@@ -22,8 +22,8 @@
 @media screen and (min-width: constants.$tablet) {
     .box-page {
         --header-font-size: 2.5rem;
-        --top-spacing: 4rem;
+        --page-spacing: 4rem;
 
-        min-height: calc(100vh - constants.$navbar-height - var(--top-spacing));
+        min-height: calc(100vh - constants.$navbar-height - 2 * var(--page-spacing));
     }
 }

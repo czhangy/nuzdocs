@@ -1,1 +1,45 @@
 @use "@/styles/constants";
+
+.summary-page {
+    --main-font-size: 1.5rem;
+    --main-inner-spacing: 0.5rem;
+    --page-spacing: 2rem;
+    --page-width: 350px;
+    --sprite-size: 200px;
+
+    margin: var(--page-spacing) 0;
+    min-height: calc(100vh - constants.$mobile-navbar-height - 2 * var(--page-spacing));
+    width: var(--page-width);
+
+    .main {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+
+        .sprite {
+            height: var(--sprite-size);
+            position: relative;
+            width: var(--sprite-size);
+        }
+
+        .main-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--main-inner-spacing);
+
+            .main-text {
+                font-size: var(--main-font-size);
+                line-height: var(--main-font-size);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .summary-page {
+        --page-spacing: 4rem;
+        --page-width: 750px;
+
+        min-height: calc(100vh - constants.$navbar-height - 2 * var(--page-spacing));
+    }
+}
