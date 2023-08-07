@@ -1,12 +1,11 @@
+import SummaryHeader from "@/components/SummaryHeader/SummaryHeader";
+import SummaryInfo from "@/components/SummaryInfo/SummaryInfo";
+import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import styles from "./SummaryPage.module.scss";
 import { fetchPokemon } from "@/utils/api";
 import { getRun, isAlive } from "@/utils/run";
-import CaughtPokemon from "@/models/CaughtPokemon";
-import { getSegment } from "@/utils/segment";
-import SummaryHeader from "@/components/SummaryHeader/SummaryHeader";
+import { useEffect, useState } from "react";
+import styles from "./SummaryPage.module.scss";
 
 type Props = {
     runName: string;
@@ -39,20 +38,19 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
         }
     }, [caughtPokemon]);
 
-    return (
+    return caughtPokemon && pokemonData ? (
         <div className={styles["summary-page"]}>
-            {caughtPokemon && pokemonData ? (
-                <div className={styles.main}>
-                    <SummaryHeader
-                        pokemonData={pokemonData}
-                        nickname={props.nickname}
-                        metLocation={caughtPokemon.locationSlug}
-                        runName={props.runName}
-                    />
-                </div>
-            ) : (
-                ""
-            )}
+            <SummaryHeader
+                pokemonData={pokemonData}
+                nickname={props.nickname}
+                metLocation={caughtPokemon.locationSlug}
+                runName={props.runName}
+            />
+            <SummaryInfo pokemon={caughtPokemon} types={pokemonData.types} />
+        </div>
+    ) : (
+        <div className={styles["summary-page"]}>
+            <p>Loading...</p>
         </div>
     );
 };

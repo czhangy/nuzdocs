@@ -3,6 +3,7 @@ export default interface Pokemon {
     species: string;
     nickname: string;
     level?: number;
+    nature?: string;
     abilitySlug?: string;
     heldItemSlug?: string;
     moveSlugs: string[];

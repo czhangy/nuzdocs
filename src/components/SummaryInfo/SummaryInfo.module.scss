@@ -1,0 +1,51 @@
+@use "@/styles/constants";
+
+.summary-info {
+    --border-rad: 5px;
+    --header-y-padding: 0.25rem;
+    --inner-spacing: 1rem;
+    --num-cols: 2;
+    --type-height: 12px;
+    --type-ratio: 8/3;
+    --value-height: 3rem;
+    --value-inner-spacing: 4px;
+
+    display: grid;
+    gap: var(--inner-spacing);
+    grid-template-columns: repeat(var(--num-cols), 1fr);
+
+    .card {
+        border-radius: var(--border-rad);
+        font-size: var(--font-size);
+        line-height: var(--font-size);
+        overflow: hidden;
+        text-align: center;
+
+        .header {
+            background: constants.$hover-color;
+            font-weight: bold;
+            padding: var(--header-y-padding);
+        }
+
+        .value {
+            align-items: center;
+            background: constants.$accent-color;
+            display: flex;
+            gap: var(--value-inner-spacing);
+            height: var(--value-height);
+            justify-content: center;
+
+            .type {
+                height: var(--type-height);
+                position: relative;
+                width: calc(var(--type-height) * var(--type-ratio));
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .summary-info {
+        --num-cols: 4;
+    }
+}

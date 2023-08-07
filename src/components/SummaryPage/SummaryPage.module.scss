@@ -1,9 +1,13 @@
 @use "@/styles/constants";
 
 .summary-page {
+    --page-inner-spacing: 2rem;
     --page-spacing: 2rem;
     --page-width: 350px;
 
+    display: flex;
+    flex-direction: column;
+    gap: var(--page-inner-spacing);
     margin: var(--page-spacing) 0;
     min-height: calc(100vh - constants.$mobile-navbar-height - 2 * var(--page-spacing));
     width: var(--page-width);
