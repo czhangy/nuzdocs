@@ -1,11 +1,10 @@
 import Dropdown from "@/components/Dropdown/Dropdown";
 import EncounterAccordion from "@/components/EncounterAccordion/EncounterAccordion";
 import AreaData from "@/models/AreaData";
-import EncounterData from "@/models/EncounterData";
 import LocationData from "@/models/LocationData";
-import games from "@/static/games";
-import translations from "@/static/translations";
 import { fetchAreas } from "@/utils/api";
+import { getGameGroup } from "@/utils/game";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterList.module.scss";
 
@@ -22,6 +21,9 @@ const EncounterList: React.FC<Props> = (props: Props) => {
     // User data state
     const [currentArea, setCurrentArea] = useState<AreaData | null>(null);
 
+    // Component state
+    const [time, setTime] = useState<"time-morning" | "time-day" | "time-night">("time-morning");
+
     // Translates areas into area names for the dropdown
     const getAreaNames = (): string[] => {
         return areaList.map((area: AreaData) => area.areaName).sort();
@@ -29,40 +31,14 @@ const EncounterList: React.FC<Props> = (props: Props) => {
 
     // Sets the current area on dropdown select
     const handleAreaSelect = (areaName: string): void => {
-        let area: AreaData = areaList.filter((area: AreaData) => area.areaName === areaName)[0];
+        let area: AreaData = areaList.find((area: AreaData) => area.areaName === areaName)!;
         // Strip starters out of encounters in starting town
-        if (props.segmentSlug === games[props.gameSlug].gameGroup.startingTownSlug) {
-            area.encounters = area.encounters.filter((encounter: EncounterData) => {
-                return !games[props.gameSlug].gameGroup.starterSlugs.includes(encounter.pokemonSlug);
-            });
+        if (props.segmentSlug === getGameGroup(props.gameSlug).startingTownSlug) {
+            delete area.encounters["time-morning"].gift;
+            delete area.encounters["time-day"].gift;
+            delete area.encounters["time-night"].gift;
         }
         setCurrentArea(area);
-    };
-
-    // Get a list of the encounter methods available in the current area, sorted by availability
-    const getEncounterMethods = (): string[] => {
-        if (currentArea) {
-            let methods: string[] = currentArea.encounters.map((encounter: EncounterData) => encounter.method);
-            methods = [...new Set(methods)];
-            return methods.sort((a: string, b: string) => {
-                const priority: string[] = Object.values(translations.encounter_methods);
-                return priority.indexOf(a) - priority.indexOf(b);
-            });
-        } else {
-            return [];
-        }
-    };
-
-    // Get a list of Pokemon slugs for encounters in the current area, sorted by chance
-    const getEncounters = (method: string): EncounterData[] => {
-        if (currentArea) {
-            let encounters: EncounterData[] = currentArea.encounters.filter(
-                (encounter: EncounterData) => encounter.method === method
-            );
-            return encounters.sort((a: EncounterData, b: EncounterData) => b.chance - a.chance);
-        } else {
-            return [];
-        }
     };
 
     // Fetch areas + encounters in location on component load
@@ -83,7 +59,38 @@ const EncounterList: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["encounter-list"]}>
             <div className={styles.header}>
-                <h3 className={styles.title}>Encounters:</h3>
+                <div className={styles.left}>
+                    <h3 className={styles.title}>Encounters:</h3>
+                    {currentArea && currentArea.usesTime ? (
+                        <div className={styles.times}>
+                            <button
+                                className={`${styles.time} ${time === "time-morning" ? styles.active : ""}`}
+                                onClick={() => setTime("time-morning")}
+                            >
+                                <Image
+                                    src="/assets/icons/morning.svg"
+                                    alt="Morning"
+                                    layout="fill"
+                                    objectFit="contain"
+                                />
+                            </button>
+                            <button
+                                className={`${styles.time} ${time === "time-day" ? styles.active : ""}`}
+                                onClick={() => setTime("time-day")}
+                            >
+                                <Image src="/assets/icons/day.svg" alt="Day" layout="fill" objectFit="contain" />
+                            </button>
+                            <button
+                                className={`${styles.time} ${time === "time-night" ? styles.active : ""}`}
+                                onClick={() => setTime("time-night")}
+                            >
+                                <Image src="/assets/icons/night.svg" alt="Night" layout="fill" objectFit="contain" />
+                            </button>
+                        </div>
+                    ) : (
+                        ""
+                    )}
+                </div>
                 <Dropdown
                     placeholder="Select a zone..."
                     value={currentArea ? currentArea.areaName : null}
@@ -91,18 +98,46 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                     onSelect={(areaName: string) => handleAreaSelect(areaName)}
                 />
             </div>
-            <div className={styles.encounters}>
-                {getEncounterMethods().map((method: string, key: number) => {
-                    return (
-                        <EncounterAccordion
-                            key={key}
-                            method={method}
-                            encounters={getEncounters(method)}
-                            versionGroup={games[props.gameSlug].gameGroup.versionGroup}
-                        />
-                    );
-                })}
-            </div>
+            {currentArea && currentArea.usesTime ? (
+                <div className={styles.times}>
+                    <button
+                        className={`${styles.time} ${time === "time-morning" ? styles.active : ""}`}
+                        onClick={() => setTime("time-morning")}
+                    >
+                        <Image src="/assets/icons/morning.svg" alt="Morning" layout="fill" objectFit="contain" />
+                    </button>
+                    <button
+                        className={`${styles.time} ${time === "time-day" ? styles.active : ""}`}
+                        onClick={() => setTime("time-day")}
+                    >
+                        <Image src="/assets/icons/day.svg" alt="Day" layout="fill" objectFit="contain" />
+                    </button>
+                    <button
+                        className={`${styles.time} ${time === "time-night" ? styles.active : ""}`}
+                        onClick={() => setTime("time-night")}
+                    >
+                        <Image src="/assets/icons/night.svg" alt="Night" layout="fill" objectFit="contain" />
+                    </button>
+                </div>
+            ) : (
+                ""
+            )}
+            {currentArea ? (
+                <div className={styles.encounters}>
+                    {Object.keys(currentArea.encounters[time]).map((method: string, key: number) => {
+                        return (
+                            <EncounterAccordion
+                                key={key}
+                                method={method}
+                                encounters={currentArea.encounters[time][method]}
+                                versionGroup={getGameGroup(props.gameSlug).versionGroup}
+                            />
+                        );
+                    })}
+                </div>
+            ) : (
+                ""
+            )}
         </div>
     );
 };

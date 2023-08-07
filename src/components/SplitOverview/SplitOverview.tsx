@@ -51,7 +51,7 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
                     <Image src="/assets/icons/arrow.svg" alt="Open split" layout="fill" objectFit="contain" />
                 </div>
             </button>
-            <div className={styles.segments}>
+            <ul className={styles.segments}>
                 {Object.keys(props.segments).map((segmentSlug: string, key: number) => {
                     return (
                         <li className={styles.segment} key={key}>
@@ -63,7 +63,7 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
                         </li>
                     );
                 })}
-            </div>
+            </ul>
         </div>
     );
 };

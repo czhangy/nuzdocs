@@ -1,15 +1,7 @@
 import PokemonData from "@/models/PokemonData";
 import { initPokemonData } from "@/utils/initializers";
 import type { NextApiRequest, NextApiResponse } from "next";
-import {
-    ChainLink,
-    EvolutionChain,
-    EvolutionClient,
-    Pokemon,
-    PokemonClient,
-    PokemonSpecies,
-    PokemonSpeciesVariety,
-} from "pokenode-ts";
+import { ChainLink, EvolutionChain, EvolutionClient, Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts";
 
 type ResData = {
     pokemon?: string;

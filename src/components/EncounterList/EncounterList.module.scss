@@ -3,6 +3,9 @@
 .encounter-list {
     --encounters-inner-spacing: 1rem;
     --header-spacing: 1.5rem;
+    --icon-size: 24px;
+    --left-inner-spacing: 1rem;
+    --times-inner-spacing: 0.5rem;
     --title-font-size: 1.5rem;
 
     .header {
@@ -11,9 +14,39 @@
         justify-content: space-between;
         margin-bottom: var(--header-spacing);
 
-        .title {
-            font-size: var(--title-font-size);
-            line-height: var(--title-font-size);
+        .left {
+            align-items: center;
+            display: flex;
+            gap: var(--left-inner-spacing);
+
+            .title {
+                font-size: var(--title-font-size);
+                line-height: var(--title-font-size);
+            }
+
+            .times {
+                display: none;
+            }
+        }
+    }
+
+    .times {
+        display: flex;
+        gap: var(--times-inner-spacing);
+        justify-content: center;
+        margin-bottom: var(--header-spacing);
+        width: 100%;
+
+        .time {
+            filter: constants.$svg-disabled-color;
+            height: var(--icon-size);
+            position: relative;
+            width: var(--icon-size);
+        }
+
+        .active {
+            filter: constants.$svg-color;
+            pointer-events: none;
         }
     }
 
@@ -21,5 +54,30 @@
         display: flex;
         flex-direction: column;
         gap: var(--encounters-inner-spacing);
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .encounter-list {
+        .header > .left > .times {
+            display: flex;
+            margin-bottom: 0;
+        }
+
+        .times {
+            display: none;
+        }
+    }
+}
+
+@media (hover: hover) {
+    .encounter-list {
+        .header > .left > .times > .time:hover {
+            filter: constants.$svg-hover-color;
+        }
+
+        .times > .time:hover {
+            filter: constants.$svg-hover-color;
+        }
     }
 }

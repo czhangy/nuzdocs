@@ -99,8 +99,7 @@ const hgss: GameGroup = {
     },
     starterSlugs: ["chikorita", "cyndaquil", "totodile"],
     startingTownSlug: "new-bark-town",
-    ignoredConditions: ["radio-off"],
-    invalidConditions: ["radio-hoenn", "radio-sinnoh"],
+    invalidConditions: ["radio-hoenn", "radio-sinnoh", "swarm-yes"],
 };
 
 export default hgss;
