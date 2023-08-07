@@ -2,10 +2,10 @@ import BoxMenu from "@/components/BoxMenu/BoxMenu";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemonGroup } from "@/utils/api";
+import { getPokemonSlugsFromBox } from "@/utils/run";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./Box.module.scss";
-import { getPokemonSlugsFromBox } from "@/utils/run";
 
 type Props = {
     box: CaughtPokemon[];

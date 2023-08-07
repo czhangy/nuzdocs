@@ -17,6 +17,10 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Loading occasionally crashes between locations",
             group: "General",
         },
+        {
+            desc: "Pokemon with regional forms show up in all games' evolutions, even when not accessible",
+            group: "General",
+        },
     ],
     Low: [
         {

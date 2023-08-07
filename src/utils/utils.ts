@@ -1,8 +1,4 @@
-import Battle from "@/models/Battle";
-import BattleSegment from "@/models/BattleSegment";
-import Segment from "@/models/Segment";
-import Trainer from "@/models/Trainer";
-import games from "@/static/games";
+import PokemonData from "@/models/PokemonData";
 import tiers from "@/static/tiers";
 import { Name } from "pokenode-ts";
 
@@ -13,4 +9,14 @@ export const getEnglishName: (names: Name[]) => string = (names: Name[]): string
 
 export const getPokemonTier = (pokemonSlug: string, versionGroup: string): string => {
     return pokemonSlug in tiers[versionGroup] ? tiers[versionGroup][pokemonSlug] : "?";
+};
+
+// Check if the Pokemon is in its final stage
+export const isFinalStage = (pokemon: PokemonData) => {
+    for (let chain of pokemon.evolutions) {
+        if (chain.indexOf(pokemon.pokemon.slug) === chain.length - 1) {
+            return true;
+        }
+    }
+    return false;
 };

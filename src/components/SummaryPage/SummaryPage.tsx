@@ -1,3 +1,4 @@
+import SummaryEvolutions from "@/components/SummaryEvolutions/SummaryEvolutions";
 import SummaryHeader from "@/components/SummaryHeader/SummaryHeader";
 import SummaryInfo from "@/components/SummaryInfo/SummaryInfo";
 import SummaryMoves from "@/components/SummaryMoves/SummaryMoves";
@@ -7,6 +8,7 @@ import { fetchPokemon } from "@/utils/api";
 import { getRun, isAlive } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./SummaryPage.module.scss";
+import { isFinalStage } from "@/utils/utils";
 
 type Props = {
     runName: string;
@@ -54,6 +56,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 runName={props.runName}
                 nickname={props.nickname}
             />
+            {!isFinalStage(pokemonData) ? <SummaryEvolutions pokemon={pokemonData} /> : ""}
         </div>
     ) : (
         <div className={styles["summary-page"]}>

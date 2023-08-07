@@ -1,0 +1,44 @@
+@use "@/styles/constants";
+
+.summary-evolutions {
+    --border-rad: 5px;
+    --chain-inner-spacing: 1rem;
+    --evolutions-inner-spacing: 1rem;
+    --evolutions-padding: 1rem;
+    --font-size: 1rem;
+    --header-y-padding: 0.5rem;
+    --sprite-size: 100px;
+
+    border-radius: var(--border-rad);
+    overflow: hidden;
+
+    .header {
+        background-color: constants.$hover-color;
+        font-size: var(--font-size);
+        font-weight: bold;
+        line-height: var(--font-size);
+        padding: var(--header-y-padding);
+        text-align: center;
+    }
+
+    .evolutions {
+        background-color: constants.$accent-color;
+        display: flex;
+        flex-direction: column;
+        gap: var(--evolutions-inner-spacing);
+        padding: var(--evolutions-padding);
+
+        .chain {
+            align-items: center;
+            display: flex;
+            gap: var(--chain-inner-spacing);
+            justify-content: center;
+
+            .sprite {
+                height: var(--sprite-size);
+                position: relative;
+                width: var(--sprite-size);
+            }
+        }
+    }
+}

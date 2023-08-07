@@ -1,7 +1,8 @@
 import PokemonData from "@/models/PokemonData";
+import { isFinalStage } from "@/utils/utils";
 import Link from "next/link";
-import styles from "./BoxMenu.module.scss";
 import { useRouter } from "next/router";
+import styles from "./BoxMenu.module.scss";
 
 type Props = {
     open: boolean;
@@ -18,19 +19,6 @@ type Props = {
 const BoxMenu: React.FC<Props> = (props: Props) => {
     const router = useRouter();
 
-    // Check if the Pokemon is in its final stage
-    const isFinalStage = () => {
-        if (props.pokemon) {
-            for (let chain of props.pokemon.evolutions) {
-                if (chain.indexOf(props.pokemon.pokemon.slug) === chain.length - 1) {
-                    return true;
-                }
-            }
-            return false;
-        }
-        return true;
-    };
-
     return (
         <div className={`${styles["box-menu"]} ${props.open ? "" : styles.hide}`}>
             <div className={styles.overlay} onClick={props.onClose} />
@@ -40,7 +28,7 @@ const BoxMenu: React.FC<Props> = (props: Props) => {
                 </Link>
                 {props.onEvolve ? (
                     <button
-                        className={`${styles.option} ${isFinalStage() ? styles.disabled : ""}`}
+                        className={`${styles.option} ${isFinalStage(props.pokemon) ? styles.disabled : ""}`}
                         onClick={props.onEvolve}
                     >
                         Evolve

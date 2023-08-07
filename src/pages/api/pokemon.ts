@@ -19,8 +19,21 @@ const isPokemonListRequest = (req: NextApiRequest): boolean => {
 const createEvolutionChains = async (stage: ChainLink, chain: string[], chains: string[][]): Promise<void> => {
     const api: PokemonClient = new PokemonClient();
     const species: PokemonSpecies = await api.getPokemonSpeciesByName(stage.species.name);
-
+    const invalidForms: string[] = [
+        "-starter",
+        "-gmax",
+        "-mega",
+        "-cap",
+        "-belle",
+        "-cosplay",
+        "-libre",
+        "-phd",
+        "-star",
+    ];
     for (const form of species.varieties) {
+        if (invalidForms.some((suffix: string) => form.pokemon.name.endsWith(suffix))) {
+            continue;
+        }
         chain.push(form.pokemon.name);
         if (stage.evolves_to.length === 0) {
             chains.push([...chain]);
