@@ -2,8 +2,8 @@ import Dropdown from "@/components/Dropdown/Dropdown";
 import EncounterAccordion from "@/components/EncounterAccordion/EncounterAccordion";
 import AreaData from "@/models/AreaData";
 import LocationData from "@/models/LocationData";
-import games from "@/static/games";
 import { fetchAreas } from "@/utils/api";
+import { getGameGroup } from "@/utils/game";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterList.module.scss";
@@ -33,7 +33,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
     const handleAreaSelect = (areaName: string): void => {
         let area: AreaData = areaList.find((area: AreaData) => area.areaName === areaName)!;
         // Strip starters out of encounters in starting town
-        if (props.segmentSlug === games[props.gameSlug].gameGroup.startingTownSlug) {
+        if (props.segmentSlug === getGameGroup(props.gameSlug).startingTownSlug) {
             delete area.encounters["time-morning"].gift;
             delete area.encounters["time-day"].gift;
             delete area.encounters["time-night"].gift;
@@ -106,7 +106,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                                 key={key}
                                 method={method}
                                 encounters={currentArea.encounters[time][method]}
-                                versionGroup={games[props.gameSlug].gameGroup.versionGroup}
+                                versionGroup={getGameGroup(props.gameSlug).versionGroup}
                             />
                         );
                     })}

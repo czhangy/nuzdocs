@@ -85,7 +85,13 @@ const handleConstantEncounter = (
 
 const sortEncounterData = (encounterData: {
     [conditionValue: string]: { [method: string]: EncounterData[] };
-}): void => {};
+}): void => {
+    for (const methodGroup of Object.values(encounterData)) {
+        for (const encounters of Object.values(methodGroup)) {
+            encounters.sort((a: EncounterData, b: EncounterData) => b.chance - a.chance);
+        }
+    }
+};
 
 const getEncounterData = (
     pokemonEncounters: PokemonEncounter[],
