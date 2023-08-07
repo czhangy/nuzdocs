@@ -1,15 +1,12 @@
 import Dropdown from "@/components/Dropdown/Dropdown";
 import EncounterAccordion from "@/components/EncounterAccordion/EncounterAccordion";
 import AreaData from "@/models/AreaData";
-import EncounterData from "@/models/EncounterData";
 import LocationData from "@/models/LocationData";
 import games from "@/static/games";
-import translations from "@/static/translations";
 import { fetchAreas } from "@/utils/api";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterList.module.scss";
-import { isEqual } from "lodash";
 
 type Props = {
     currentLocation: LocationData;

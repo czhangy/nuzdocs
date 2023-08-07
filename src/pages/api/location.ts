@@ -13,6 +13,7 @@ import {
     PokemonEncounter,
     VersionEncounterDetail,
 } from "pokenode-ts";
+import translations from "@/static/translations";
 
 type ResData = {
     location?: string;
@@ -37,10 +38,14 @@ const handleTimeBasedEncounter = (
     encounterDetail: Encounter,
     encounterData: { [conditionValue: string]: { [method: string]: EncounterData[] } }
 ): void => {
-    if (!(encounterDetail.method.name in encounterData[timeCondition])) {
-        encounterData[timeCondition][encounterDetail.method.name] = [];
+    const methodName: string =
+        encounterDetail.method.name in translations.encounter_methods
+            ? translations.encounter_methods[encounterDetail.method.name]
+            : encounterDetail.method.name;
+    if (!(methodName in encounterData[timeCondition])) {
+        encounterData[timeCondition][methodName] = [];
     }
-    const encounter: EncounterData | undefined = encounterData[timeCondition][encounterDetail.method.name].find(
+    const encounter: EncounterData | undefined = encounterData[timeCondition][methodName].find(
         (ed: EncounterData) => ed.pokemonSlug === pokemonSlug
     );
     if (encounter) {
@@ -48,10 +53,10 @@ const handleTimeBasedEncounter = (
         encounter.minLevel = Math.min(encounter.minLevel, encounterDetail.min_level);
         encounter.maxLevel = Math.min(encounter.maxLevel, encounterDetail.max_level);
     } else {
-        encounterData[timeCondition][encounterDetail.method.name].push(
+        encounterData[timeCondition][methodName].push(
             initEncounterData(
                 pokemonSlug,
-                encounterDetail.method.name,
+                methodName,
                 encounterDetail.chance,
                 encounterDetail.min_level,
                 encounterDetail.max_level
@@ -77,6 +82,10 @@ const handleConstantEncounter = (
         handleTimeBasedEncounter(tc, pokemonSlug, encounterDetail, encounterData);
     }
 };
+
+const sortEncounterData = (encounterData: {
+    [conditionValue: string]: { [method: string]: EncounterData[] };
+}): void => {};
 
 const getEncounterData = (
     pokemonEncounters: PokemonEncounter[],
@@ -107,6 +116,7 @@ const getEncounterData = (
             }
         }
     }
+    sortEncounterData(encounterData);
     return usesTime;
 };
 
