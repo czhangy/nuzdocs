@@ -32,6 +32,7 @@ export const initPokemon = (slug: string, species: string, level: number | null 
     let pokemon: MyPokemon = {
         slug: slug,
         species: species,
+        nickname: species,
         moveSlugs: [],
     };
     if (level) {
