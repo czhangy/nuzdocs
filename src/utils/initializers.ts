@@ -10,6 +10,7 @@ import PokemonData from "@/models/PokemonData";
 import { getEnglishName } from "@/utils/utils";
 import { Name, NamedAPIResource, Pokemon, PokemonSpecies, PokemonSpeciesVariety, PokemonStat } from "pokenode-ts";
 import translations from "@/static/translations";
+import Stat from "@/models/Stat";
 
 export const initPokemonName = (slug: string, name: string, species: string): PokemonName => {
     return {
@@ -20,13 +21,15 @@ export const initPokemonName = (slug: string, name: string, species: string): Po
 };
 
 export const initPokemonData = (pokemon: Pokemon, species: PokemonSpecies, evolutions: string[][]): PokemonData => {
+    let stats: Stat[] = pokemon.stats.map((stat: PokemonStat) => {
+        return { name: translations.stats[stat.stat.name], base: stat.base_stat };
+    });
+    stats = stats.splice(0, 3).concat(stats.reverse());
     return {
         pokemon: initPokemonName(pokemon.name, getEnglishName(species.names), species.name),
         types: pokemon.types.map((type) => type.type.name),
         sprite: pokemon.sprites.front_default!,
-        stats: pokemon.stats.map((stat: PokemonStat) => {
-            return { name: translations.stats[stat.stat.name], base: stat.base_stat };
-        }),
+        stats: stats,
         evolutions: evolutions,
         forms: species.varieties.map((form: PokemonSpeciesVariety) => form.pokemon.name),
     };
