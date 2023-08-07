@@ -7,7 +7,7 @@
     --evolutions-padding: 1rem;
     --font-size: 1rem;
     --header-y-padding: 0.5rem;
-    --sprite-size: 100px;
+    --sprite-size: 75px;
 
     border-radius: var(--border-rad);
     overflow: hidden;
@@ -34,11 +34,23 @@
             gap: var(--chain-inner-spacing);
             justify-content: center;
 
-            .sprite {
-                height: var(--sprite-size);
-                position: relative;
-                width: var(--sprite-size);
+            .link {
+                align-items: center;
+                display: flex;
+                gap: var(--chain-inner-spacing);
+
+                .sprite {
+                    height: var(--sprite-size);
+                    position: relative;
+                    width: var(--sprite-size);
+                }
             }
         }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .summary-evolutions {
+        --sprite-size: 100px;
     }
 }

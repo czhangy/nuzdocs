@@ -20,12 +20,11 @@ const SummaryEvolutions: React.FC<Props> = (props: Props) => {
             [...new Set(props.pokemon.evolutions.flat())].filter((slug: string) => slug !== props.pokemon.pokemon.slug)
         ).then((pokemonData: PokemonData[]) => {
             for (const pokemon of pokemonData) newPokemonMap[pokemon.pokemon.slug] = pokemon;
-            console.log(newPokemonMap);
             setPokemonMap(newPokemonMap);
         });
     }, [props.pokemon]);
 
-    return Object.keys(pokemonMap).length > 0 ? (
+    return Object.keys(pokemonMap).length > 1 ? (
         <div className={styles["summary-evolutions"]}>
             <p className={styles.header}>Evolutions</p>
             <div className={styles.evolutions}>
@@ -34,9 +33,9 @@ const SummaryEvolutions: React.FC<Props> = (props: Props) => {
                         <div className={styles.chain} key={chainKey}>
                             {chain.map((slug: string, slugKey: number) => {
                                 return (
-                                    <>
+                                    <div className={styles.link} key={slugKey}>
                                         {slugKey > 0 ? <p className={styles.arrow}>→</p> : ""}
-                                        <div className={styles.sprite} key={slugKey}>
+                                        <div className={styles.sprite}>
                                             <Image
                                                 src={pokemonMap[slug].sprite}
                                                 alt={pokemonMap[slug].pokemon.name}
@@ -44,7 +43,7 @@ const SummaryEvolutions: React.FC<Props> = (props: Props) => {
                                                 objectFit="contain"
                                             />
                                         </div>
-                                    </>
+                                    </div>
                                 );
                             })}
                         </div>

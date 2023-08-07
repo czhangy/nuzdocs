@@ -9,6 +9,7 @@ import { getRun, isAlive } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./SummaryPage.module.scss";
 import { isFinalStage } from "@/utils/utils";
+import SummaryStats from "../SummaryStats/SummaryStats";
 
 type Props = {
     runName: string;
@@ -56,6 +57,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 runName={props.runName}
                 nickname={props.nickname}
             />
+            <SummaryStats pokemonData={pokemonData} caughtPokemon={caughtPokemon} />
             {!isFinalStage(pokemonData) ? <SummaryEvolutions pokemon={pokemonData} /> : ""}
         </div>
     ) : (

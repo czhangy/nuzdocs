@@ -8,6 +8,14 @@ const translations: { [translation: string]: { [slug: string]: string } } = {
         "gift-egg": "Egg",
         "rock-smash": "Rock Smash",
     },
+    stats: {
+        attack: "ATK",
+        defense: "DEF",
+        "special-attack": "SPA",
+        "special-defense": "SPD",
+        speed: "SPE",
+        hp: "HP",
+    },
 };
 
 export default translations;

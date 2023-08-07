@@ -8,7 +8,8 @@ import MoveData from "@/models/MoveData";
 import MyPokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import { getEnglishName } from "@/utils/utils";
-import { Name, NamedAPIResource, Pokemon, PokemonSpecies, PokemonSpeciesVariety } from "pokenode-ts";
+import { Name, NamedAPIResource, Pokemon, PokemonSpecies, PokemonSpeciesVariety, PokemonStat } from "pokenode-ts";
+import translations from "@/static/translations";
 
 export const initPokemonName = (slug: string, name: string, species: string): PokemonName => {
     return {
@@ -23,6 +24,9 @@ export const initPokemonData = (pokemon: Pokemon, species: PokemonSpecies, evolu
         pokemon: initPokemonName(pokemon.name, getEnglishName(species.names), species.name),
         types: pokemon.types.map((type) => type.type.name),
         sprite: pokemon.sprites.front_default!,
+        stats: pokemon.stats.map((stat: PokemonStat) => {
+            return { name: translations.stats[stat.stat.name], base: stat.base_stat };
+        }),
         evolutions: evolutions,
         forms: species.varieties.map((form: PokemonSpeciesVariety) => form.pokemon.name),
     };

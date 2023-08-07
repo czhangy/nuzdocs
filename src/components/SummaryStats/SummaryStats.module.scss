@@ -1,0 +1,65 @@
+@use "@/styles/constants";
+
+.summary-stats {
+    --border-rad: 5px;
+    --header-font-size: 1rem;
+    --header-y-padding: 0.5rem;
+    --nature-inner-spacing: 0.5rem;
+    --radar-size: 250px;
+    --stats-font-size: 1.25rem;
+    --stats-padding: 1rem;
+
+    border-radius: var(--border-rad);
+    overflow: hidden;
+
+    .header {
+        background-color: constants.$hover-color;
+        font-size: var(--header-font-size);
+        font-weight: bold;
+        line-height: var(--header-font-size);
+        padding: var(--header-y-padding);
+        text-align: center;
+    }
+
+    .stats {
+        align-items: center;
+        background-color: constants.$accent-color;
+        display: flex;
+        justify-content: space-around;
+        padding: var(--stats-padding);
+
+        .chart {
+            .bst {
+                font-size: var(--stats-font-size);
+                font-weight: bold;
+                line-height: var(--stats-font-size);
+                text-align: center;
+            }
+
+            .radar {
+                height: var(--radar-size);
+                width: var(--radar-size);
+            }
+        }
+
+        .nature {
+            font-size: var(--stats-font-size);
+            line-height: var(--stats-font-size);
+
+            .changes {
+                display: flex;
+                gap: var(--nature-inner-spacing);
+                justify-content: center;
+                margin-top: var(--nature-inner-spacing);
+
+                .increase {
+                    color: constants.$hover-color;
+                }
+
+                .decrease {
+                    color: constants.$error-color;
+                }
+            }
+        }
+    }
+}
