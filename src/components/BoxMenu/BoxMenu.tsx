@@ -1,10 +1,12 @@
 import PokemonData from "@/models/PokemonData";
 import Link from "next/link";
 import styles from "./BoxMenu.module.scss";
+import { useRouter } from "next/router";
 
 type Props = {
     open: boolean;
     pokemon: PokemonData;
+    nickname: string;
     onClose: () => void;
     onEvolve?: () => void;
     onFormChange?: () => void;
@@ -14,6 +16,8 @@ type Props = {
 };
 
 const BoxMenu: React.FC<Props> = (props: Props) => {
+    const router = useRouter();
+
     // Check if the Pokemon is in its final stage
     const isFinalStage = () => {
         if (props.pokemon) {
@@ -31,7 +35,7 @@ const BoxMenu: React.FC<Props> = (props: Props) => {
         <div className={`${styles["box-menu"]} ${props.open ? "" : styles.hide}`}>
             <div className={styles.overlay} onClick={props.onClose} />
             <div className={`${styles.menu} ${props.inverted ? styles.inverted : ""}`}>
-                <Link href="/">
+                <Link href={`/runs/${router.query.runName}/summary/${props.nickname}`}>
                     <a className={styles.option}>Summary</a>
                 </Link>
                 {props.onEvolve ? (

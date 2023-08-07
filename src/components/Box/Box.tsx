@@ -95,6 +95,7 @@ const Box: React.FC<Props> = (props: Props) => {
                             <BoxMenu
                                 open={key === activeIdx}
                                 pokemon={pokemon}
+                                nickname={props.box[key].pokemon.slug}
                                 onClose={() => setActiveIdx(null)}
                                 onEvolve={() => handleEvolve(pokemon, key)}
                                 onFormChange={() => handleFormChange(pokemon, key)}
@@ -105,6 +106,7 @@ const Box: React.FC<Props> = (props: Props) => {
                             <BoxMenu
                                 open={key === activeIdx}
                                 pokemon={pokemon}
+                                nickname={props.box[key].pokemon.slug}
                                 onClose={() => setActiveIdx(null)}
                                 onRevive={() => handleRevive(pokemon, key)}
                                 inverted={isInverted[key]}
