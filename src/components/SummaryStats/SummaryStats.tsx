@@ -1,9 +1,10 @@
-import PokemonData from "@/models/PokemonData";
-import styles from "./SummaryStats.module.scss";
 import CaughtPokemon from "@/models/CaughtPokemon";
+import PokemonData from "@/models/PokemonData";
+import Stat from "@/models/Stat";
+import { getNature, isNeutralNature } from "@/utils/natures";
 import { Chart } from "chart.js/auto";
 import { useEffect } from "react";
-import Stat from "@/models/Stat";
+import styles from "./SummaryStats.module.scss";
 
 type Props = {
     pokemonData: PokemonData;
@@ -73,15 +74,27 @@ const SummaryStats: React.FC<Props> = (props: Props) => {
         <div className={styles["summary-stats"]}>
             <p className={styles.header}>Stats</p>
             <div className={styles.stats}>
-                <div className={styles.nature}>
-                    <div className={styles["nature-header"]}>
-                        Nature: <strong>Adamant</strong>
+                {props.caughtPokemon.pokemon.nature ? (
+                    <div className={styles.nature}>
+                        <div className={styles["nature-header"]}>
+                            Nature: <strong>{props.caughtPokemon.pokemon.nature}</strong>
+                        </div>
+                        {!isNeutralNature(props.caughtPokemon.pokemon.nature) ? (
+                            <div className={styles.changes}>
+                                <p className={styles.increase}>
+                                    ↑{getNature(props.caughtPokemon.pokemon.nature).increase}
+                                </p>
+                                <p className={styles.decrease}>
+                                    ↓{getNature(props.caughtPokemon.pokemon.nature).decrease}
+                                </p>
+                            </div>
+                        ) : (
+                            ""
+                        )}
                     </div>
-                    <div className={styles.changes}>
-                        <p className={styles.increase}>↑ATK</p>
-                        <p className={styles.decrease}>↓SPA</p>
-                    </div>
-                </div>
+                ) : (
+                    ""
+                )}
                 <div className={styles.chart}>
                     <p className={styles.bst}>
                         BST: {props.pokemonData.stats.reduce((bst: number, stat: Stat) => bst + stat.base, 0)}
