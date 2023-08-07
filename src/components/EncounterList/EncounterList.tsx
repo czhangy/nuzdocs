@@ -98,6 +98,30 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                     onSelect={(areaName: string) => handleAreaSelect(areaName)}
                 />
             </div>
+            {currentArea && currentArea.usesTime ? (
+                <div className={styles.times}>
+                    <button
+                        className={`${styles.time} ${time === "time-morning" ? styles.active : ""}`}
+                        onClick={() => setTime("time-morning")}
+                    >
+                        <Image src="/assets/icons/morning.svg" alt="Morning" layout="fill" objectFit="contain" />
+                    </button>
+                    <button
+                        className={`${styles.time} ${time === "time-day" ? styles.active : ""}`}
+                        onClick={() => setTime("time-day")}
+                    >
+                        <Image src="/assets/icons/day.svg" alt="Day" layout="fill" objectFit="contain" />
+                    </button>
+                    <button
+                        className={`${styles.time} ${time === "time-night" ? styles.active : ""}`}
+                        onClick={() => setTime("time-night")}
+                    >
+                        <Image src="/assets/icons/night.svg" alt="Night" layout="fill" objectFit="contain" />
+                    </button>
+                </div>
+            ) : (
+                ""
+            )}
             {currentArea ? (
                 <div className={styles.encounters}>
                     {Object.keys(currentArea.encounters[time]).map((method: string, key: number) => {
