@@ -52,7 +52,6 @@ export const initPokemon = (slug: string, species: string, level: number | null 
     let pokemon: MyPokemon = {
         slug: slug,
         species: species,
-        nickname: species,
         moveSlugs: [],
     };
     if (level) {
@@ -64,6 +63,7 @@ export const initPokemon = (slug: string, species: string, level: number | null 
 export const initCaughtPokemon = (pokemon: MyPokemon, locationSlug: string): CaughtPokemon => {
     return {
         pokemon: pokemon,
+        nickname: pokemon.species,
         locationSlug: locationSlug,
         pastSlugs: [pokemon.slug],
     };
