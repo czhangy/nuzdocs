@@ -6,7 +6,7 @@ import { fetchAbilities, fetchAbility } from "@/utils/api";
 import { getListOfNatures } from "@/utils/natures";
 import { getBox, getRIPs, isAlive, updateBox, updateRIPs } from "@/utils/run";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import styles from "./SummaryInfo.module.scss";
 
 type Props = {
@@ -19,6 +19,19 @@ type Props = {
 const SummaryInfo: React.FC<Props> = (props: Props) => {
     // Fetched data state
     const [abilityData, setAbilityData] = useState<AbilityData[]>([]);
+
+    // Internal data state
+    const [level, setLevel] = useState<string>("");
+
+    // Save level when clicked off
+    const handleBlur = () => {
+        const levelNum: number = Number(level);
+        if (!isNaN(levelNum) && levelNum > 0 && levelNum <= 100) {
+            handleUpdate(levelNum, "level");
+        } else {
+            setLevel(props.caughtPokemon.pokemon.level ? String(props.caughtPokemon.pokemon.level) : "");
+        }
+    };
 
     // Get the names of all abilities
     const getAbilityNames = (): string[] => {
@@ -36,7 +49,7 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
     };
 
     // Save CaughtPokemon data to local storage
-    const handleUpdate = (selection: string, property: string) => {
+    const handleUpdate = (selection: string | number, property: string) => {
         // @ts-expect-error
         props.caughtPokemon.pokemon[property] = selection;
         if (isAlive(props.runName, props.caughtPokemon.nickname)) {
@@ -52,6 +65,11 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
         }
         props.onUpdate();
     };
+
+    // Set the level of the current Pokemon if it exists on component load
+    useEffect(() => {
+        if (props.caughtPokemon.pokemon.level) setLevel(String(props.caughtPokemon.pokemon.level));
+    }, [props.caughtPokemon]);
 
     // Fetch the ability data for the given Pokemon on component load
     useEffect(() => {
@@ -82,9 +100,16 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
             <div className={styles.card}>
                 <p className={styles.header}>Level</p>
                 <div className={styles.value}>
-                    <p className={styles.text}>
-                        {props.caughtPokemon.pokemon.level ? props.caughtPokemon.pokemon.level : "???"}
-                    </p>
+                    <input
+                        className={styles.level}
+                        type="number"
+                        min="1"
+                        max="100"
+                        placeholder="???"
+                        value={level}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setLevel(e.target.value)}
+                        onBlur={handleBlur}
+                    />
                 </div>
             </div>
             <div className={styles.card}>
