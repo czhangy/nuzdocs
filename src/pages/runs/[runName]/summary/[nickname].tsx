@@ -9,11 +9,13 @@ const Summary: NextPage = () => {
     const router = useRouter();
 
     useEffect(() => {
-        if (
-            !isRun(router.query.runName as string) ||
-            !isPokemon(router.query.runName as string, router.query.nickname as string)
-        ) {
-            router.push("/");
+        if (router.isReady) {
+            if (
+                !isRun(router.query.runName as string) ||
+                !isPokemon(router.query.runName as string, router.query.nickname as string)
+            ) {
+                router.push("/");
+            }
         }
     }, [router.isReady]);
 

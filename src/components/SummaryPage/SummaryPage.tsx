@@ -9,7 +9,7 @@ import { getGameGroup } from "@/utils/game";
 import { getRun, isAlive } from "@/utils/run";
 import { isFinalStage } from "@/utils/utils";
 import { useEffect, useState } from "react";
-import SummaryStats from "../SummaryStats/SummaryStats";
+import SummaryStats from "@/components/SummaryStats/SummaryStats";
 import styles from "./SummaryPage.module.scss";
 
 type Props = {
@@ -30,9 +30,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
             const pokemonList: CaughtPokemon[] = isAlive(props.runName, props.nickname)
                 ? getRun(props.runName).box
                 : getRun(props.runName).rips;
-            setCaughtPokemon(
-                pokemonList.find((pokemon: CaughtPokemon) => pokemon.pokemon.nickname === props.nickname)!
-            );
+            setCaughtPokemon(pokemonList.find((pokemon: CaughtPokemon) => pokemon.nickname === props.nickname)!);
         }
     }, [props.runName, props.nickname]);
 
