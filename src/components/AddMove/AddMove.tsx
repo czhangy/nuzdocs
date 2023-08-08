@@ -1,9 +1,6 @@
 import styles from "./AddMove.module.scss";
 
-type Props = {
-    runName: string;
-    nickname: string;
-};
+type Props = {};
 
 const AddMove: React.FC<Props> = (props: Props) => {
     return (

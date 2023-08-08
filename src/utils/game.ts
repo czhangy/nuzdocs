@@ -1,3 +1,4 @@
+import BattleSegment from "@/models/BattleSegment";
 import Game from "@/models/Game";
 import GameGroup from "@/models/GameGroup";
 import PokemonName from "@/models/PokemonName";
@@ -21,11 +22,15 @@ export const getPokedex = (gameSlug: string): PokemonName[] => {
     return getGameGroup(gameSlug).pokedex;
 };
 
+export const getSplitNames = (gameSlug: string) => {
+    return Object.keys(getSplits(gameSlug));
+};
+
 export const getSplits = (gameSlug: string): { [split: string]: { [segmentSlug: string]: Segment } } => {
     return getGameGroup(gameSlug).splits;
 };
 
-export const getSegmentsInSplit = (gameSlug: string, split: string): { [segmentSlug: string]: Segment } => {
+export const getSegmentsInSplit = (split: string, gameSlug: string): { [segmentSlug: string]: Segment } => {
     return getGameGroup(gameSlug).splits[split];
 };
 

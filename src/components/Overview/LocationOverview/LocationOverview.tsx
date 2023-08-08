@@ -1,8 +1,9 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
+import Run from "@/models/Run";
 import { fetchPokemon } from "@/utils/api";
 import { getGameGroup } from "@/utils/game";
-import { getLocationEncounter, getRun } from "@/utils/run";
+import { getLocationEncounter } from "@/utils/run";
 import { getSegment } from "@/utils/segment";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +12,7 @@ import styles from "./LocationOverview.module.scss";
 
 type Props = {
     locationSlug: string;
-    runName: string;
+    run: Run;
 };
 
 const LocationOverview: React.FC<Props> = (props: Props) => {
@@ -21,23 +22,23 @@ const LocationOverview: React.FC<Props> = (props: Props) => {
 
     // Get encounter for location on component load
     useEffect(() => {
-        const pokemon: CaughtPokemon | null = getLocationEncounter(props.runName, props.locationSlug);
+        const pokemon: CaughtPokemon | null = getLocationEncounter(props.run.id, props.locationSlug);
         if (pokemon) {
             if (pokemon.pastSlugs[0] === "failed") {
                 setEncounterText("Failed");
             } else {
-                fetchPokemon(pokemon.pastSlugs[0], getGameGroup(getRun(props.runName).gameSlug)).then(
-                    (pokemonData: PokemonData) => setEncounter(pokemonData)
+                fetchPokemon(pokemon.pastSlugs[0], getGameGroup(props.run.gameSlug)).then((pokemonData: PokemonData) =>
+                    setEncounter(pokemonData)
                 );
             }
         }
-    }, []);
+    }, [props.locationSlug, props.run]);
 
     return (
-        <Link href={`/runs/${props.runName}/${props.locationSlug}`}>
+        <Link href={`/runs/${props.run.id}/${props.locationSlug}`}>
             <a className={styles["location-overview"]}>
                 <p className={`${styles.location} ${encounter || encounterText !== "None" ? styles.done : ""}`}>
-                    {getSegment(getRun(props.runName).gameSlug, props.locationSlug).name}
+                    {getSegment(props.run.gameSlug, props.locationSlug).name}
                 </p>
                 <div className={styles.encounter}>
                     <p className={styles.title}>Encounter</p>

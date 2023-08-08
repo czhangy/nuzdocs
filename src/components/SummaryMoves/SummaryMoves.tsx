@@ -37,7 +37,7 @@ const SummaryMoves: React.FC<Props> = (props: Props) => {
                             />
                         );
                     } else {
-                        return <AddMove runName={props.runName} nickname={props.nickname} key={key} />;
+                        return <AddMove key={key} />;
                     }
                 })}
             </div>

@@ -63,12 +63,12 @@ export const initPokemon = (slug: string, species: string, level: number | null 
     return pokemon;
 };
 
-export const initCaughtPokemon = (pokemon: MyPokemon, locationSlug: string, runName: string): CaughtPokemon => {
+export const initCaughtPokemon = (pokemon: MyPokemon, locationSlug: string, runID: string): CaughtPokemon => {
     return {
         id: generateID(
-            getBox(runName)
+            getBox(runID)
                 .map((pokemon: CaughtPokemon) => pokemon.id)
-                .concat(getRIPs(runName).map((pokemon: CaughtPokemon) => pokemon.id))
+                .concat(getRIPs(runID).map((pokemon: CaughtPokemon) => pokemon.id))
         ),
         pokemon: pokemon,
         nickname: pokemon.species,

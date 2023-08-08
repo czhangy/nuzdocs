@@ -125,6 +125,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Trades
 -   [ ] Key items
 -   [ ] Tooltips
+-   [ ] Check `BattleOverview` to see if the level cap structure is optimal
 
 ## License
 
