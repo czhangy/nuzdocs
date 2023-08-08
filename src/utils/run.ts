@@ -1,15 +1,16 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 import Run from "@/models/Run";
-import games from "@/static/games";
+import { getGameGroup } from "@/utils/game";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import { generateID } from "@/utils/utils";
 
 // Constructors
-export const initRun = (gameSlug: string): Run => {
+export const initRun = (name: string, gameSlug: string): Run => {
     return {
-        id: generateID(getRunNamesList()),
+        id: generateID(getRunIDs()),
+        name: name,
         gameSlug: gameSlug,
-        prevSegmentSlug: games[gameSlug].gameGroup.startingTownSlug,
+        prevSegmentSlug: getGameGroup(gameSlug).startingTownSlug,
         starterSlug: "",
         box: [],
         rips: [],
@@ -18,187 +19,188 @@ export const initRun = (gameSlug: string): Run => {
     };
 };
 
-export const createRun = (runName: string, gameSlug: string): boolean => {
+export const createRun = (runID: string, name: string, gameSlug: string): boolean => {
     let storedRuns: string | null = localStorage.getItem("runs");
     if (storedRuns) {
         let runs: string[] = JSON.parse(storedRuns);
-        if (runs.includes(runName)) {
+        if (runs.includes(runID)) {
             return false;
         } else {
-            runs.push(runName);
+            runs.push(runID);
             localStorage.setItem("runs", JSON.stringify(runs));
         }
     } else {
-        localStorage.setItem("runs", JSON.stringify([runName]));
+        localStorage.setItem("runs", JSON.stringify([runID]));
     }
-    const newRun: Run = initRun(gameSlug);
-    localStorage.setItem(runName, JSON.stringify(newRun));
+    const newRun: Run = initRun(name, gameSlug);
+    localStorage.setItem(runID, JSON.stringify(newRun));
     return true;
 };
 
-export const loadRun = (runName: string, run: string): void => {
-    let storedRuns: string | null = localStorage.getItem("runs");
+export const loadRun = (runStr: string): void => {
+    const run: Run = JSON.parse(runStr);
+    const storedRuns: string | null = localStorage.getItem("runs");
     if (storedRuns) {
         let runs: string[] = JSON.parse(storedRuns);
-        runs.push(runName);
+        runs.push(run.id);
         localStorage.setItem("runs", JSON.stringify(runs));
     } else {
-        localStorage.setItem("runs", JSON.stringify([runName]));
+        localStorage.setItem("runs", JSON.stringify([run.id]));
     }
-    localStorage.setItem(runName, run);
+    localStorage.setItem(run.id, runStr);
 };
 
 // Destructor
-export const deleteRun = (runName: string): void => {
-    let runNames: string[] = JSON.parse(localStorage.getItem("runs") as string);
-    runNames = runNames.filter((name: string) => name !== runName);
-    localStorage.setItem("runs", JSON.stringify(runNames));
-    localStorage.removeItem(runName);
+export const deleteRun = (runID: string): void => {
+    let runIDs: string[] = JSON.parse(localStorage.getItem("runs") as string);
+    runIDs = runIDs.filter((name: string) => name !== runID);
+    localStorage.setItem("runs", JSON.stringify(runIDs));
+    localStorage.removeItem(runID);
 };
 
 // Getters
-export const getRunNamesList = (): string[] => {
-    const storedRunNames: string | null = localStorage.getItem("runs");
-    if (storedRunNames) {
-        let runNamesList: string[] = JSON.parse(storedRunNames);
-        runNamesList.reverse();
-        return runNamesList;
+export const getRunIDs = (): string[] => {
+    const storedRunIDs: string | null = localStorage.getItem("runs");
+    if (storedRunIDs) {
+        let runIDs: string[] = JSON.parse(storedRunIDs);
+        runIDs.reverse();
+        return runIDs;
     } else {
         return [];
     }
 };
 
-export const getRun = (runName: string): Run => {
-    return JSON.parse(localStorage.getItem(runName)!);
+export const getRun = (runID: string): Run => {
+    return JSON.parse(localStorage.getItem(runID)!);
 };
 
-export const getBox = (runName: string): CaughtPokemon[] => {
-    return getRun(runName).box;
+export const getBox = (runID: string): CaughtPokemon[] => {
+    return getRun(runID).box;
 };
 
-export const getRIPs = (runName: string): CaughtPokemon[] => {
-    return getRun(runName).rips;
+export const getRIPs = (runID: string): CaughtPokemon[] => {
+    return getRun(runID).rips;
 };
 
 // Setters
-export const setRun = (runName: string, run: Run): void => {
-    localStorage.setItem(runName, JSON.stringify(run));
+export const setRun = (runID: string, run: Run): void => {
+    localStorage.setItem(runID, JSON.stringify(run));
 };
 
-export const setPrevSegmentSlug = (runName: string, locationSlug: string): void => {
-    let run: Run = getRun(runName);
+export const setPrevSegmentSlug = (runID: string, locationSlug: string): void => {
+    let run: Run = getRun(runID);
     run.prevSegmentSlug = locationSlug;
-    setRun(runName, run);
+    setRun(runID, run);
 };
 
-export const setStarterSlug = (runName: string, starterSlug: string): void => {
-    let run: Run = getRun(runName);
+export const setStarterSlug = (runID: string, starterSlug: string): void => {
+    let run: Run = getRun(runID);
     run.starterSlug = starterSlug;
-    setRun(runName, run);
+    setRun(runID, run);
 };
 
 // Mutators
-export const updateBox = (runName: string, pokemon: CaughtPokemon, idx: number): void => {
-    let run: Run = getRun(runName);
+export const updateBox = (runID: string, pokemon: CaughtPokemon, idx: number): void => {
+    let run: Run = getRun(runID);
     run.box[idx] = pokemon;
-    setRun(runName, run);
+    setRun(runID, run);
 };
 
-export const addFailedEncounter = (runName: string, locationSlug: string): void => {
-    let run: Run = getRun(runName);
-    run.box.push(initCaughtPokemon(initPokemon("failed", "failed"), locationSlug, runName));
-    setRun(runName, run);
+export const addFailedEncounter = (runID: string, locationSlug: string): void => {
+    let run: Run = getRun(runID);
+    run.box.push(initCaughtPokemon(initPokemon("failed", "failed"), locationSlug, runID));
+    setRun(runID, run);
 };
 
-export const addToBox = (runName: string, pokemon: CaughtPokemon): void => {
-    let run: Run = getRun(runName);
+export const addToBox = (runID: string, pokemon: CaughtPokemon): void => {
+    let run: Run = getRun(runID);
     run.box.push(pokemon);
-    setRun(runName, run);
+    setRun(runID, run);
 };
 
-export const removeFromBox = (runName: string, locationSlug: string): void => {
-    let run: Run = getRun(runName);
+export const removeFromBox = (runID: string, locationSlug: string): void => {
+    let run: Run = getRun(runID);
     run.box = run.box.filter((encounter: CaughtPokemon) => encounter.locationSlug !== locationSlug);
-    setRun(runName, run);
+    setRun(runID, run);
 };
 
-export const updateRIPs = (runName: string, pokemon: CaughtPokemon, idx: number): void => {
-    let run: Run = getRun(runName);
+export const updateRIPs = (runID: string, pokemon: CaughtPokemon, idx: number): void => {
+    let run: Run = getRun(runID);
     run.rips[idx] = pokemon;
-    setRun(runName, run);
+    setRun(runID, run);
 };
 
-export const addToRIPs = (runName: string, pokemon: CaughtPokemon): void => {
-    let run: Run = getRun(runName);
+export const addToRIPs = (runID: string, pokemon: CaughtPokemon): void => {
+    let run: Run = getRun(runID);
     run.rips.push(pokemon);
-    setRun(runName, run);
+    setRun(runID, run);
 };
 
-export const removeFromRIPs = (runName: string, locationSlug: string): void => {
-    let run: Run = getRun(runName);
+export const removeFromRIPs = (runID: string, locationSlug: string): void => {
+    let run: Run = getRun(runID);
     run.rips = run.rips.filter((encounter: CaughtPokemon) => encounter.locationSlug !== locationSlug);
-    setRun(runName, run);
+    setRun(runID, run);
 };
 
-export const addToCaughtPokemonSlugs = (runName: string, pokemonSlug: string): void => {
-    let run: Run = getRun(runName);
+export const addToCaughtPokemonSlugs = (runID: string, pokemonSlug: string): void => {
+    let run: Run = getRun(runID);
     run.caughtPokemonSlugs.push(pokemonSlug);
-    setRun(runName, run);
+    setRun(runID, run);
 };
 
-export const removeFromCaughtPokemonSlugs = (runName: string, pokemonSlug: string): void => {
-    let run: Run = getRun(runName);
+export const removeFromCaughtPokemonSlugs = (runID: string, pokemonSlug: string): void => {
+    let run: Run = getRun(runID);
     run.caughtPokemonSlugs.splice(run.caughtPokemonSlugs.indexOf(pokemonSlug), 1);
-    setRun(runName, run);
+    setRun(runID, run);
 };
 
-export const addToClearedBattles = (runName: string, battleSlug: string): void => {
-    let run: Run = getRun(runName);
+export const addToClearedBattles = (runID: string, battleSlug: string): void => {
+    let run: Run = getRun(runID);
     run.clearedBattles.push(battleSlug);
-    setRun(runName, run);
+    setRun(runID, run);
 };
 
-export const removeFromClearedBattles = (runName: string, battleSlug: string): void => {
-    let run: Run = getRun(runName);
+export const removeFromClearedBattles = (runID: string, battleSlug: string): void => {
+    let run: Run = getRun(runID);
     run.clearedBattles = run.clearedBattles.filter((clearedBattle: string) => clearedBattle !== battleSlug);
-    setRun(runName, run);
+    setRun(runID, run);
 };
 
 // Predicates
-export const isRun = (runName: string): boolean => {
-    const run: string | null = localStorage.getItem(runName);
+export const isRun = (runID: string): boolean => {
+    const run: string | null = localStorage.getItem(runID);
     return run !== null;
 };
 
-export const isCleared = (runName: string, battleSlug: string): boolean => {
-    return getRun(runName).clearedBattles.includes(battleSlug);
+export const isCleared = (runID: string, battleSlug: string): boolean => {
+    return getRun(runID).clearedBattles.includes(battleSlug);
 };
 
-export const isAlive = (runName: string, nickname: string): boolean => {
-    return getBox(runName).find((pokemon: CaughtPokemon) => pokemon.nickname === nickname) !== undefined;
+export const isAlive = (runID: string, nickname: string): boolean => {
+    return getBox(runID).find((pokemon: CaughtPokemon) => pokemon.nickname === nickname) !== undefined;
 };
 
-export const isPokemon = (runName: string, nickname: string): boolean => {
+export const isPokemon = (runID: string, nickname: string): boolean => {
     return (
-        getBox(runName).find((pokemon: CaughtPokemon) => pokemon.nickname === nickname) !== undefined ||
-        getRIPs(runName).find((pokemon: CaughtPokemon) => pokemon.nickname === nickname) !== undefined
+        getBox(runID).find((pokemon: CaughtPokemon) => pokemon.nickname === nickname) !== undefined ||
+        getRIPs(runID).find((pokemon: CaughtPokemon) => pokemon.nickname === nickname) !== undefined
     );
 };
 
 // Queries
-export const getLocationEncounter = (runName: string, locationSlug: string): CaughtPokemon | null => {
-    const encounter: CaughtPokemon | undefined = getRun(runName).box.find(
+export const getLocationEncounter = (runID: string, locationSlug: string): CaughtPokemon | null => {
+    const encounter: CaughtPokemon | undefined = getRun(runID).box.find(
         (pokemon: CaughtPokemon) => pokemon.locationSlug === locationSlug
     );
     return encounter ? encounter : null;
 };
 
-export const getNumClearedBattles = (runName: string): number => {
-    return getRun(runName).clearedBattles.length;
+export const getNumClearedBattles = (runID: string): number => {
+    return getRun(runID).clearedBattles.length;
 };
 
-export const getNumRIPs = (runName: string): number => {
-    return getRIPs(runName).length;
+export const getNumRIPs = (runID: string): number => {
+    return getRIPs(runID).length;
 };
 
 export const getPokemonSlugsFromBox = (box: CaughtPokemon[]): string[] => {

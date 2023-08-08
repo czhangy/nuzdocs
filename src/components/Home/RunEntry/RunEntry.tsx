@@ -1,31 +1,22 @@
 import ProgressBar from "@/components/ProgressBar/ProgressBar";
 import Run from "@/models/Run";
-import games from "@/static/games";
-import { deleteRun, getNumClearedBattles, getNumRIPs, getRun } from "@/utils/run";
+import { getGame } from "@/utils/game";
+import { getNumClearedBattles, getNumRIPs, getRun } from "@/utils/run";
 import { getNumBattles } from "@/utils/segment";
 import Image from "next/image";
 import Router from "next/router";
-import { useEffect, useState } from "react";
 import styles from "./RunEntry.module.scss";
 
 type Props = {
+    run: Run;
     onDelete: () => void;
-    runName: string;
 };
 
 const RunEntry: React.FC<Props> = (props: Props) => {
-    const [run, setRun] = useState<Run | null>(null);
-
-    // Remove run from run list and from local storage and refresh list
-    const handleDelete = () => {
-        deleteRun(props.runName);
-        props.onDelete();
-    };
-
     // Saves run as a JSON file: https://stackoverflow.com/questions/19721439/download-json-object-as-a-file-from-browser
-    const handleSave = (runName: string) => {
-        const jsonData: string = JSON.stringify(getRun(runName));
-        const filename = runName + ".json";
+    const handleSave = () => {
+        const jsonData: string = JSON.stringify(getRun(props.run.id));
+        const filename = props.run.name + ".json";
         const blob = new Blob([JSON.stringify(jsonData)], { type: "text/json" });
         const link = document.createElement("a");
         link.download = filename;
@@ -42,49 +33,43 @@ const RunEntry: React.FC<Props> = (props: Props) => {
 
     // Redirect to previous location of selected run
     const handleNav = () => {
-        Router.push(`/runs/${props.runName}/${run!.prevSegmentSlug}`);
+        Router.push(`/runs/${props.run.name}/${props.run.prevSegmentSlug}`);
     };
-
-    // Get run object from local storage
-    useEffect(() => {
-        if (props.runName.length > 0) {
-            setRun(getRun(props.runName));
-        }
-    }, [props.runName]);
 
     return (
         <li className={styles["run-entry"]}>
             <button className={styles.nav} onClick={handleNav}>
                 <div className={styles.logo}>
-                    {run ? (
-                        <Image src={games[run.gameSlug].logoURL} alt="Game logo" layout="fill" objectFit="contain" />
-                    ) : (
-                        ""
-                    )}
+                    <Image
+                        src={getGame(props.run.gameSlug).logoURL}
+                        alt="Game logo"
+                        layout="fill"
+                        objectFit="contain"
+                    />
                 </div>
                 <div className={styles.info}>
                     <p className={styles.name}>
-                        {run && getNumClearedBattles(props.runName) === getNumBattles(getRun(props.runName).gameSlug)
-                            ? `👑 ${props.runName}`
-                            : props.runName}
+                        {getNumClearedBattles(props.run.name) === getNumBattles(getRun(props.run.id).gameSlug)
+                            ? `👑 ${props.run.name}`
+                            : props.run.name}
                     </p>
                     <ProgressBar
-                        complete={run ? getNumClearedBattles(props.runName) : 0}
-                        total={run ? getNumBattles(getRun(props.runName).gameSlug) : 1}
+                        complete={getNumClearedBattles(props.run.name)}
+                        total={getNumBattles(getRun(props.run.name).gameSlug)}
                     />
                     <div className={styles.rips}>
                         <div className={styles.icon}>
                             <Image src="/assets/icons/dead.svg" alt="Deaths" layout="fill" objectFit="contain" />
                         </div>
-                        {run ? <p className={styles.num}>{getNumRIPs(props.runName)}</p> : ""}
+                        <p className={styles.num}>{getNumRIPs(props.run.name)}</p>
                     </div>
                 </div>
             </button>
             <div className={styles.buttons}>
-                <button className={styles.button} onClick={handleDelete}>
+                <button className={styles.button} onClick={props.onDelete}>
                     <Image src="/assets/icons/delete.svg" alt="Delete" layout="fill" objectFit="contain" />
                 </button>
-                <button className={styles.button} onClick={() => handleSave(props.runName)}>
+                <button className={styles.button} onClick={handleSave}>
                     <Image src="/assets/icons/save.svg" alt="Save" layout="fill" objectFit="contain" />
                 </button>
             </div>

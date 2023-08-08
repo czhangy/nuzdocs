@@ -1,4 +1,4 @@
-import HomePage from "@/components/HomePage/HomePage";
+import HomePage from "@/components/Home/HomePage/HomePage";
 import type { NextPage } from "next";
 import Head from "next/head";
 
