@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import styles from "./Dropdown.module.scss";
 
 type Props = {
@@ -7,15 +7,29 @@ type Props = {
     value: string | null;
     options: string[];
     onSelect: (label: string) => void;
+    border: boolean;
+    minWidth?: number;
 };
 
 const Dropdown: React.FC<Props> = (props: Props) => {
+    // Component state
     const [open, setOpen] = useState<boolean>(false);
 
     // Propagate selection to parent and close the dropdown
     const handleSelect = (label: string) => {
         setOpen(false);
         props.onSelect(label);
+    };
+
+    // Get any styling from props
+    const getStyling = (): CSSProperties => {
+        const style: CSSProperties = {
+            border: props.border ? "" : "none",
+        };
+        if (props.minWidth) {
+            style.minWidth = props.minWidth;
+        }
+        return style;
     };
 
     // Close dropdown on scroll
@@ -30,7 +44,7 @@ const Dropdown: React.FC<Props> = (props: Props) => {
                 onClick={() => setOpen(false)}
                 onScroll={() => setOpen(false)}
             />
-            <div className={styles.controller} onClick={() => setOpen(true)}>
+            <div className={styles.controller} onClick={() => setOpen(true)} style={getStyling()}>
                 <p className={styles.display}>{props.value ? props.value : props.placeholder}</p>
                 <div className={`${styles.arrow} ${open ? styles.flipped : ""}`}>
                     <Image

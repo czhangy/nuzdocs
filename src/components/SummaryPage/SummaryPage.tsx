@@ -24,14 +24,17 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
     // Fetched data state
     const [pokemonData, setPokemonData] = useState<PokemonData | null>(null);
 
+    // Get Pokemon from local storage
+    const handleUpdate = () => {
+        const pokemonList: CaughtPokemon[] = isAlive(props.runName, props.nickname)
+            ? getRun(props.runName).box
+            : getRun(props.runName).rips;
+        setCaughtPokemon(pokemonList.find((pokemon: CaughtPokemon) => pokemon.nickname === props.nickname)!);
+    };
+
     // Find Pokemon on page load
     useEffect(() => {
-        if (props.runName && props.nickname) {
-            const pokemonList: CaughtPokemon[] = isAlive(props.runName, props.nickname)
-                ? getRun(props.runName).box
-                : getRun(props.runName).rips;
-            setCaughtPokemon(pokemonList.find((pokemon: CaughtPokemon) => pokemon.nickname === props.nickname)!);
-        }
+        if (props.runName && props.nickname) handleUpdate();
     }, [props.runName, props.nickname]);
 
     // Fetch Pokemon's data on page load
@@ -51,7 +54,12 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 metLocation={caughtPokemon.locationSlug}
                 runName={props.runName}
             />
-            <SummaryInfo pokemon={caughtPokemon} types={pokemonData.types} runName={props.runName} />
+            <SummaryInfo
+                pokemon={caughtPokemon}
+                types={pokemonData.types}
+                runName={props.runName}
+                onUpdate={handleUpdate}
+            />
             <SummaryMoves
                 moves={caughtPokemon.pokemon.moveSlugs}
                 types={pokemonData.types}

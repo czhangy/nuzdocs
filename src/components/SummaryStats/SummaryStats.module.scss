@@ -59,6 +59,10 @@
                 .decrease {
                     color: constants.$error-color;
                 }
+
+                .neutral {
+                    color: constants.$disabled-color;
+                }
             }
         }
     }

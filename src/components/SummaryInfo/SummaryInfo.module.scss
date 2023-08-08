@@ -16,14 +16,13 @@
     grid-template-columns: repeat(var(--num-cols), 1fr);
 
     .card {
-        border-radius: var(--border-rad);
         font-size: var(--font-size);
         line-height: var(--font-size);
-        overflow: hidden;
         text-align: center;
 
         .header {
             background-color: constants.$hover-color;
+            border-radius: var(--border-rad) var(--border-rad) 0 0;
             font-weight: bold;
             padding: var(--header-y-padding);
         }
@@ -31,6 +30,7 @@
         .value {
             align-items: center;
             background-color: constants.$accent-color;
+            border-radius: 0 0 var(--border-rad) var(--border-rad);
             display: flex;
             gap: var(--value-inner-spacing);
             height: var(--value-height);

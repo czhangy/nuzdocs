@@ -89,7 +89,9 @@ const SummaryStats: React.FC<Props> = (props: Props) => {
                                 </p>
                             </div>
                         ) : (
-                            ""
+                            <div className={styles.changes}>
+                                <p className={styles.neutral}>Neutral</p>
+                            </div>
                         )}
                     </div>
                 ) : (

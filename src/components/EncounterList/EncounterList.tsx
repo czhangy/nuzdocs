@@ -99,6 +99,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                     value={currentArea ? currentArea.areaName : null}
                     options={getAreaNames()}
                     onSelect={(areaName: string) => handleAreaSelect(areaName)}
+                    border={true}
                 />
             </div>
             {currentArea && currentArea.usesTime ? (
