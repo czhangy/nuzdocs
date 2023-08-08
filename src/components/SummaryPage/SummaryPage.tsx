@@ -5,11 +5,12 @@ import SummaryMoves from "@/components/SummaryMoves/SummaryMoves";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemon } from "@/utils/api";
+import { getGameGroup } from "@/utils/game";
 import { getRun, isAlive } from "@/utils/run";
-import { useEffect, useState } from "react";
-import styles from "./SummaryPage.module.scss";
 import { isFinalStage } from "@/utils/utils";
+import { useEffect, useState } from "react";
 import SummaryStats from "../SummaryStats/SummaryStats";
+import styles from "./SummaryPage.module.scss";
 
 type Props = {
     runName: string;
@@ -38,7 +39,9 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
     // Fetch Pokemon's data on page load
     useEffect(() => {
         if (caughtPokemon) {
-            fetchPokemon(caughtPokemon.pokemon.slug).then((pokemon: PokemonData) => setPokemonData(pokemon));
+            fetchPokemon(caughtPokemon.pokemon.slug, getGameGroup(getRun(props.runName).gameSlug)).then(
+                (pokemon: PokemonData) => setPokemonData(pokemon)
+            );
         }
     }, [caughtPokemon]);
 
@@ -58,7 +61,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 nickname={props.nickname}
             />
             <SummaryStats pokemonData={pokemonData} caughtPokemon={caughtPokemon} />
-            {!isFinalStage(pokemonData) ? <SummaryEvolutions pokemon={pokemonData} /> : ""}
+            {!isFinalStage(pokemonData) ? <SummaryEvolutions pokemon={pokemonData} runName={props.runName} /> : ""}
         </div>
     ) : (
         <div className={styles["summary-page"]}>

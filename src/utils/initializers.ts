@@ -20,7 +20,20 @@ export const initPokemonName = (slug: string, name: string, species: string): Po
     };
 };
 
-export const initPokemonData = (pokemon: Pokemon, species: PokemonSpecies, evolutions: string[][]): PokemonData => {
+export const initPokemonData = (
+    pokemon: Pokemon,
+    species: PokemonSpecies,
+    evolutions: string[][],
+    generation: string,
+    versionGroup: string
+): PokemonData => {
+    // Discover most correct sprite for requested game
+    let sprite: string = pokemon.sprites.front_default!;
+    // @ts-expect-error
+    if (generation in pokemon.sprites.versions && versionGroup in pokemon.sprites.versions[generation]) {
+        // @ts-expect-error
+        sprite = pokemon.sprites.versions[generation][versionGroup].front_default;
+    }
     let stats: Stat[] = pokemon.stats.map((stat: PokemonStat) => {
         return { name: translations.stats[stat.stat.name], base: stat.base_stat };
     });
@@ -28,7 +41,7 @@ export const initPokemonData = (pokemon: Pokemon, species: PokemonSpecies, evolu
     return {
         pokemon: initPokemonName(pokemon.name, getEnglishName(species.names), species.name),
         types: pokemon.types.map((type) => type.type.name),
-        sprite: pokemon.sprites.front_default!,
+        sprite: sprite,
         stats: stats,
         evolutions: evolutions,
         forms: species.varieties.map((form: PokemonSpeciesVariety) => form.pokemon.name),

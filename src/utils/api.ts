@@ -1,3 +1,5 @@
+import GameGroup from "@/models/GameGroup";
+
 // IDK why but this errors when using import
 const axios = require("axios");
 
@@ -63,11 +65,13 @@ export const fetchMoves = async (moveSlugs: string[]) => {
 };
 
 // Fetch a Pokemon by their Pokemon slug
-export const fetchPokemon = async (pokemonSlug: string) => {
+export const fetchPokemon = async (pokemonSlug: string, gameGroup: GameGroup) => {
     try {
         const res = await axios.get("/api/pokemon", {
             params: {
                 pokemonSlug: pokemonSlug,
+                generation: gameGroup.generation,
+                versionGroup: gameGroup.versionGroup,
             },
         });
         return JSON.parse(res.data.pokemon);
@@ -78,14 +82,16 @@ export const fetchPokemon = async (pokemonSlug: string) => {
 };
 
 // Fetch a list of PokemonData given Pokemon slugs
-export const fetchPokemonGroup = async (pokemonSlugList: string[]) => {
+export const fetchPokemonGroup = async (pokemonSlugList: string[], gameGroup: GameGroup) => {
     try {
         if (pokemonSlugList.length === 1) {
-            return [await fetchPokemon(pokemonSlugList[0])];
+            return [await fetchPokemon(pokemonSlugList[0], gameGroup)];
         }
         const res = await axios.get("/api/pokemon", {
             params: {
                 pokemonSlugList: pokemonSlugList,
+                generation: gameGroup.generation,
+                versionGroup: gameGroup.versionGroup,
             },
         });
         return JSON.parse(res.data.pokemon);

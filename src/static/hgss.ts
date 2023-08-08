@@ -3,6 +3,7 @@ import battles from "@/static/battles";
 import pokedex from "@/static/pokedex";
 
 const hgss: GameGroup = {
+    generation: "generation-iv",
     versionGroup: "heartgold-soulsilver",
     pokedex: pokedex,
     splits: {

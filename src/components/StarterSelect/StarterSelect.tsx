@@ -1,9 +1,11 @@
 import PokemonDisplay from "@/components/PokemonDisplay/PokemonDisplay";
+import TierCard from "@/components/TierCard/TierCard";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import GameGroup from "@/models/GameGroup";
 import PokemonData from "@/models/PokemonData";
 import colors from "@/static/colors";
 import { fetchPokemonGroup } from "@/utils/api";
+import { getGameGroup } from "@/utils/game";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import {
     addToBox,
@@ -17,7 +19,6 @@ import {
 import { getPokemonTier } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import TierCard from "../TierCard/TierCard";
 import styles from "./StarterSelect.module.scss";
 
 type Props = {
@@ -36,7 +37,9 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     // Fetch starter data on load
     useEffect(() => {
         if (props.starterSlugsList.length > 0) {
-            fetchPokemonGroup(props.starterSlugsList).then((pokemon) => setStarters(pokemon));
+            fetchPokemonGroup(props.starterSlugsList, getGameGroup(getRun(props.runName).gameSlug)).then((pokemon) =>
+                setStarters(pokemon)
+            );
         }
     }, [props.starterSlugsList]);
 
@@ -107,7 +110,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
             </div>
             {selectedStarterSlug.length > 0 ? (
                 <div className={styles.starter}>
-                    <PokemonDisplay pokemonSlug={selectedStarterSlug} />
+                    <PokemonDisplay pokemonSlug={selectedStarterSlug} runName={props.runName} />
                     <TierCard tier={getPokemonTier(selectedStarterSlug, props.gameGroup.versionGroup)} />
                 </div>
             ) : (

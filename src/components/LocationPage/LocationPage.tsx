@@ -45,7 +45,7 @@ const LocationPage: React.FC<Props> = (props: Props) => {
                         {currentLocation ? (
                             <EncounterList
                                 currentLocation={currentLocation}
-                                gameSlug={props.gameSlug}
+                                runName={props.runName}
                                 segmentSlug={props.segmentSlug}
                             />
                         ) : (

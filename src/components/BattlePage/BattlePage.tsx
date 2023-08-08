@@ -35,7 +35,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
             />
             <div className={styles.team}>
                 {battle.team.map((pokemon: Pokemon, key: number) => (
-                    <PokemonCard pokemon={pokemon} key={key} />
+                    <PokemonCard pokemon={pokemon} runName={props.runName} key={key} />
                 ))}
             </div>
         </div>

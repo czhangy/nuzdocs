@@ -2,13 +2,15 @@ import BoxMenu from "@/components/BoxMenu/BoxMenu";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemonGroup } from "@/utils/api";
-import { getPokemonSlugsFromBox } from "@/utils/run";
+import { getGameGroup } from "@/utils/game";
+import { getPokemonSlugsFromBox, getRun } from "@/utils/run";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./Box.module.scss";
 
 type Props = {
     box: CaughtPokemon[];
+    runName: string;
     onEvolve?: (pokemon: PokemonData, idx: number) => void;
     onFormChange?: (pokemon: PokemonData, idx: number) => void;
     onRIP?: (pokemon: PokemonData, idx: number) => void;
@@ -71,8 +73,8 @@ const Box: React.FC<Props> = (props: Props) => {
     // Use box to fetch data for all Pokemon in box, ignoring failed encounters
     useEffect(() => {
         if (props.box.length > 0) {
-            fetchPokemonGroup(getPokemonSlugsFromBox(props.box)).then((pokemonData: PokemonData[]) =>
-                setBoxData(pokemonData)
+            fetchPokemonGroup(getPokemonSlugsFromBox(props.box), getGameGroup(getRun(props.runName).gameSlug)).then(
+                (pokemonData: PokemonData[]) => setBoxData(pokemonData)
             );
         } else {
             setBoxData([]);

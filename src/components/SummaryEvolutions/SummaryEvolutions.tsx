@@ -1,11 +1,14 @@
 import PokemonData from "@/models/PokemonData";
-import styles from "./SummaryEvolutions.module.scss";
-import { useEffect, useState } from "react";
 import { fetchPokemonGroup } from "@/utils/api";
+import { getGameGroup } from "@/utils/game";
+import { getRun } from "@/utils/run";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import styles from "./SummaryEvolutions.module.scss";
 
 type Props = {
     pokemon: PokemonData;
+    runName: string;
 };
 
 const SummaryEvolutions: React.FC<Props> = (props: Props) => {
@@ -17,7 +20,8 @@ const SummaryEvolutions: React.FC<Props> = (props: Props) => {
         const newPokemonMap: { [slug: string]: PokemonData } = {};
         newPokemonMap[props.pokemon.pokemon.slug] = props.pokemon;
         fetchPokemonGroup(
-            [...new Set(props.pokemon.evolutions.flat())].filter((slug: string) => slug !== props.pokemon.pokemon.slug)
+            [...new Set(props.pokemon.evolutions.flat())].filter((slug: string) => slug !== props.pokemon.pokemon.slug),
+            getGameGroup(getRun(props.runName).gameSlug)
         ).then((pokemonData: PokemonData[]) => {
             for (const pokemon of pokemonData) newPokemonMap[pokemon.pokemon.slug] = pokemon;
             setPokemonMap(newPokemonMap);

@@ -1,7 +1,8 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
-import PokemonName from "@/models/PokemonName";
 import PokemonData from "@/models/PokemonData";
+import PokemonName from "@/models/PokemonName";
 import { fetchPokemon } from "@/utils/api";
+import { getGameGroup } from "@/utils/game";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import {
     addFailedEncounter,
@@ -65,7 +66,10 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
         if (encounter) {
             handleDisplay(true, encounter.name);
             if (encounter.slug !== "failed") {
-                const encounterData: PokemonData = await fetchPokemon(encounter.slug);
+                const encounterData: PokemonData = await fetchPokemon(
+                    encounter.slug,
+                    getGameGroup(getRun(props.runName).gameSlug)
+                );
                 setEncounteredPokemon(encounterData);
                 addToBox(
                     props.runName,
@@ -95,10 +99,12 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
             } else if (currentEncounter.pastSlugs[0] === "failed") {
                 handleDisplay(true, "Failed");
             } else {
-                fetchPokemon(currentEncounter.pastSlugs[0]).then((pokemon: PokemonData) => {
-                    handleDisplay(true, pokemon.pokemon.name);
-                    setEncounteredPokemon(pokemon);
-                });
+                fetchPokemon(currentEncounter.pastSlugs[0], getGameGroup(getRun(props.runName).gameSlug)).then(
+                    (pokemon: PokemonData) => {
+                        handleDisplay(true, pokemon.pokemon.name);
+                        setEncounteredPokemon(pokemon);
+                    }
+                );
             }
         }
     }, [props.runName, props.locationSlug]);

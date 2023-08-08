@@ -1,6 +1,7 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemon } from "@/utils/api";
+import { getGameGroup } from "@/utils/game";
 import { getLocationEncounter, getRun } from "@/utils/run";
 import { getSegment } from "@/utils/segment";
 import Image from "next/image";
@@ -25,7 +26,9 @@ const LocationOverview: React.FC<Props> = (props: Props) => {
             if (pokemon.pastSlugs[0] === "failed") {
                 setEncounterText("Failed");
             } else {
-                fetchPokemon(pokemon.pastSlugs[0]).then((pokemonData: PokemonData) => setEncounter(pokemonData));
+                fetchPokemon(pokemon.pastSlugs[0], getGameGroup(getRun(props.runName).gameSlug)).then(
+                    (pokemonData: PokemonData) => setEncounter(pokemonData)
+                );
             }
         }
     }, []);
