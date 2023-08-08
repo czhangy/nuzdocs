@@ -2,15 +2,15 @@ import AbilityData from "@/models/AbilityData";
 import AreaData from "@/models/AreaData";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import EncounterData from "@/models/EncounterData";
-import PokemonName from "@/models/PokemonName";
 import LocationData from "@/models/LocationData";
 import MoveData from "@/models/MoveData";
 import MyPokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
+import PokemonName from "@/models/PokemonName";
+import Stat from "@/models/Stat";
+import translations from "@/static/translations";
 import { getEnglishName } from "@/utils/utils";
 import { Name, NamedAPIResource, Pokemon, PokemonSpecies, PokemonSpeciesVariety, PokemonStat } from "pokenode-ts";
-import translations from "@/static/translations";
-import Stat from "@/models/Stat";
 
 export const initPokemonName = (slug: string, name: string, species: string): PokemonName => {
     return {
