@@ -24,6 +24,7 @@ export const initPokemonData = (
     pokemon: Pokemon,
     species: PokemonSpecies,
     evolutions: string[][],
+    abilities: string[],
     generation: string,
     versionGroup: string
 ): PokemonData => {
@@ -45,6 +46,7 @@ export const initPokemonData = (
         stats: stats,
         evolutions: evolutions,
         forms: species.varieties.map((form: PokemonSpeciesVariety) => form.pokemon.name),
+        abilities: abilities,
     };
 };
 
@@ -109,8 +111,9 @@ export const initAreaData = (
     };
 };
 
-export const initAbilityData = (names: Name[]): AbilityData => {
+export const initAbilityData = (slug: string, names: Name[]): AbilityData => {
     return {
+        slug: slug,
         name: getEnglishName(names),
     };
 };

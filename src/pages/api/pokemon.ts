@@ -1,7 +1,17 @@
+import AbilityData from "@/models/AbilityData";
 import PokemonData from "@/models/PokemonData";
+import { fetchAbilities } from "@/utils/api";
 import { initPokemonData } from "@/utils/initializers";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { ChainLink, EvolutionChain, EvolutionClient, Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts";
+import {
+    ChainLink,
+    EvolutionChain,
+    EvolutionClient,
+    Pokemon,
+    PokemonAbility,
+    PokemonClient,
+    PokemonSpecies,
+} from "pokenode-ts";
 
 type ResData = {
     pokemon?: string;
@@ -83,7 +93,8 @@ const fetchPokemon = async (pokemonSlug: string, generation: string, versionGrou
         const pokemon: Pokemon = await api.getPokemonByName(pokemonSlug);
         const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemon.species.name);
         const evolutions: string[][] = await fetchPokemonEvolutionChains(species);
-        return initPokemonData(pokemon, species, evolutions, generation, versionGroup);
+        const abilities: string[] = pokemon.abilities.map((ability: PokemonAbility) => ability.ability.name);
+        return initPokemonData(pokemon, species, evolutions, abilities, generation, versionGroup);
     } catch (error: any) {
         throw error;
     }

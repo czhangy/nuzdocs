@@ -55,8 +55,8 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 runName={props.runName}
             />
             <SummaryInfo
-                pokemon={caughtPokemon}
-                types={pokemonData.types}
+                caughtPokemon={caughtPokemon}
+                pokemonData={pokemonData}
                 runName={props.runName}
                 onUpdate={handleUpdate}
             />

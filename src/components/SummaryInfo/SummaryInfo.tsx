@@ -1,54 +1,71 @@
+import Dropdown from "@/components/Dropdown/Dropdown";
 import AbilityData from "@/models/AbilityData";
 import CaughtPokemon from "@/models/CaughtPokemon";
-import { fetchAbility } from "@/utils/api";
+import PokemonData from "@/models/PokemonData";
+import { fetchAbilities, fetchAbility } from "@/utils/api";
+import { getListOfNatures } from "@/utils/natures";
+import { getBox, getRIPs, isAlive, updateBox, updateRIPs } from "@/utils/run";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./SummaryInfo.module.scss";
-import Dropdown from "@/components/Dropdown/Dropdown";
-import { getListOfNatures } from "@/utils/natures";
-import { getBox, getRIPs, isAlive, updateBox, updateRIPs } from "@/utils/run";
 
 type Props = {
-    pokemon: CaughtPokemon;
-    types: string[];
+    caughtPokemon: CaughtPokemon;
+    pokemonData: PokemonData;
     runName: string;
     onUpdate: () => void;
 };
 
 const SummaryInfo: React.FC<Props> = (props: Props) => {
     // Fetched data state
-    const [ability, setAbility] = useState<AbilityData | null>(null);
+    const [abilityData, setAbilityData] = useState<AbilityData[]>([]);
+
+    // Get the names of all abilities
+    const getAbilityNames = (): string[] => {
+        return abilityData.map((ability: AbilityData) => ability.name);
+    };
+
+    // Convert an ability name to slug
+    const getAbilitySlug = (name: string): string => {
+        return abilityData.find((ability: AbilityData) => ability.name === name)!.slug;
+    };
+
+    // Convert an ability slug to name
+    const getAbilityName = (slug: string): string => {
+        return abilityData.find((ability: AbilityData) => ability.slug === slug)!.name;
+    };
 
     // Save CaughtPokemon data to local storage
     const handleUpdate = (selection: string, property: string) => {
-        props.pokemon.pokemon.nature = selection;
-        if (isAlive(props.runName, props.pokemon.nickname)) {
+        // @ts-expect-error
+        props.caughtPokemon.pokemon[property] = selection;
+        if (isAlive(props.runName, props.caughtPokemon.nickname)) {
             const updateIdx: number = getBox(props.runName)
-                .map((caughtPokemon: CaughtPokemon) => caughtPokemon.nickname)
-                .indexOf(props.pokemon.nickname);
-            updateBox(props.runName, props.pokemon, updateIdx);
+                .map((cp: CaughtPokemon) => cp.nickname)
+                .indexOf(props.caughtPokemon.nickname);
+            updateBox(props.runName, props.caughtPokemon, updateIdx);
         } else {
             const updateIdx: number = getRIPs(props.runName)
-                .map((caughtPokemon: CaughtPokemon) => caughtPokemon.nickname)
-                .indexOf(props.pokemon.nickname);
-            updateRIPs(props.runName, props.pokemon, updateIdx);
+                .map((cp: CaughtPokemon) => cp.nickname)
+                .indexOf(props.caughtPokemon.nickname);
+            updateRIPs(props.runName, props.caughtPokemon, updateIdx);
         }
         props.onUpdate();
     };
 
     // Fetch the ability data for the given Pokemon on component load
     useEffect(() => {
-        if (props.pokemon && props.pokemon.pokemon.abilitySlug) {
-            fetchAbility(props.pokemon.pokemon.abilitySlug).then((ability: AbilityData) => setAbility(ability));
+        if (props.pokemonData) {
+            fetchAbilities(props.pokemonData.abilities).then((abilities: AbilityData[]) => setAbilityData(abilities));
         }
-    }, [props.pokemon]);
+    }, [props.pokemonData]);
 
     return (
         <div className={styles["summary-info"]}>
             <div className={styles.card}>
                 <p className={styles.header}>Typing</p>
                 <div className={styles.value}>
-                    {props.types.map((type: string, key: number) => {
+                    {props.pokemonData.types.map((type: string, key: number) => {
                         return (
                             <div className={styles.type} key={key}>
                                 <Image
@@ -65,13 +82,26 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
             <div className={styles.card}>
                 <p className={styles.header}>Level</p>
                 <div className={styles.value}>
-                    <p className={styles.text}>{props.pokemon.pokemon.level ? props.pokemon.pokemon.level : "???"}</p>
+                    <p className={styles.text}>
+                        {props.caughtPokemon.pokemon.level ? props.caughtPokemon.pokemon.level : "???"}
+                    </p>
                 </div>
             </div>
             <div className={styles.card}>
                 <p className={styles.header}>Ability</p>
                 <div className={styles.value}>
-                    <p className={styles.text}>{ability ? ability.name : "???"}</p>
+                    <Dropdown
+                        placeholder="???"
+                        value={
+                            abilityData.length > 0 && props.caughtPokemon.pokemon.abilitySlug
+                                ? getAbilityName(props.caughtPokemon.pokemon.abilitySlug)
+                                : null
+                        }
+                        options={getAbilityNames()}
+                        onSelect={(label: string) => handleUpdate(getAbilitySlug(label), "abilitySlug")}
+                        border={false}
+                        minWidth={150}
+                    />
                 </div>
             </div>
             <div className={styles.card}>
@@ -79,7 +109,7 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
                 <div className={styles.value}>
                     <Dropdown
                         placeholder="???"
-                        value={props.pokemon.pokemon.nature ? props.pokemon.pokemon.nature : null}
+                        value={props.caughtPokemon.pokemon.nature ? props.caughtPokemon.pokemon.nature : null}
                         options={getListOfNatures()}
                         onSelect={(label: string) => handleUpdate(label, "nature")}
                         border={false}

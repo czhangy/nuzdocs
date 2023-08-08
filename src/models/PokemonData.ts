@@ -8,4 +8,5 @@ export default interface PokemonData {
     stats: Stat[];
     evolutions: string[][];
     forms: string[];
+    abilities: string[];
 }

@@ -1,3 +1,4 @@
+import AbilityData from "@/models/AbilityData";
 import GameGroup from "@/models/GameGroup";
 
 // IDK why but this errors when using import
@@ -46,6 +47,20 @@ export const fetchAbility = async (abilitySlug: string) => {
     } catch (error) {
         console.log(error);
         return null;
+    }
+};
+
+export const fetchAbilities = async (abilitySlugs: string[]): Promise<AbilityData[]> => {
+    try {
+        const res = await axios.get("/api/abilities", {
+            params: {
+                abilitySlug: abilitySlugs,
+            },
+        });
+        return JSON.parse(res.data.ability);
+    } catch (error) {
+        console.log(error);
+        return [];
     }
 };
 

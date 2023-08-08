@@ -31,6 +31,7 @@ const SummaryStats: React.FC<Props> = (props: Props) => {
                 type: "radar",
                 data: stats,
                 options: {
+                    animation: false,
                     events: [],
                     plugins: {
                         legend: {
