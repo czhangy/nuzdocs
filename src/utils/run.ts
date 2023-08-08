@@ -33,17 +33,17 @@ export const createRun = (name: string, gameSlug: string): void => {
     localStorage.setItem(id, JSON.stringify(newRun));
 };
 
-export const loadRun = (runStr: string): void => {
-    const run: Run = JSON.parse(runStr);
-    const storedRuns: string | null = localStorage.getItem("runs");
-    if (storedRuns) {
-        let runs: string[] = JSON.parse(storedRuns);
-        runs.push(run.id);
-        localStorage.setItem("runs", JSON.stringify(runs));
+export const loadRun = (runStr: string): boolean => {
+    const id: string = JSON.parse(runStr).id;
+    const runIDs = getRunIDs();
+    if (runIDs.includes(id)) {
+        return false;
     } else {
-        localStorage.setItem("runs", JSON.stringify([run.id]));
+        runIDs.push(id);
+        localStorage.setItem("runs", JSON.stringify([id]));
+        localStorage.setItem(id, runStr);
+        return true;
     }
-    localStorage.setItem(run.id, runStr);
 };
 
 // Destructor

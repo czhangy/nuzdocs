@@ -26,8 +26,11 @@ const RunList: React.FC<Props> = (props) => {
 
     // Loads data from JSON files into local storage
     const handleLoad = (jsonStr: string) => {
-        loadRun(JSON.parse(jsonStr));
-        setRuns(getRunIDs().map((runID: string) => getRun(runID)));
+        if (loadRun(JSON.parse(jsonStr))) {
+            setRuns(getRunIDs().map((runID: string) => getRun(runID)));
+        } else {
+            alert("That run has already been saved!");
+        }
     };
 
     // Deletes a run from local storage and refreshes the list to update the view

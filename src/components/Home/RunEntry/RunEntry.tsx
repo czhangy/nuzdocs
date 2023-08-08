@@ -49,19 +49,19 @@ const RunEntry: React.FC<Props> = (props: Props) => {
                 </div>
                 <div className={styles.info}>
                     <p className={styles.name}>
-                        {getNumClearedBattles(props.run.name) === getNumBattles(getRun(props.run.id).gameSlug)
+                        {getNumClearedBattles(props.run.id) === getNumBattles(getRun(props.run.id).gameSlug)
                             ? `👑 ${props.run.name}`
                             : props.run.name}
                     </p>
                     <ProgressBar
-                        complete={getNumClearedBattles(props.run.name)}
-                        total={getNumBattles(getRun(props.run.name).gameSlug)}
+                        complete={getNumClearedBattles(props.run.id)}
+                        total={getNumBattles(getRun(props.run.id).gameSlug)}
                     />
                     <div className={styles.rips}>
                         <div className={styles.icon}>
                             <Image src="/assets/icons/dead.svg" alt="Deaths" layout="fill" objectFit="contain" />
                         </div>
-                        <p className={styles.num}>{getNumRIPs(props.run.name)}</p>
+                        <p className={styles.num}>{getNumRIPs(props.run.id)}</p>
                     </div>
                 </div>
             </button>
