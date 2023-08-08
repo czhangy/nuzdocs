@@ -5,6 +5,10 @@ import Segment from "@/models/Segment";
 import games from "@/static/games";
 
 // Getters
+export const getGameSlugs = (): string[] => {
+    return Object.keys(games);
+};
+
 export const getGame = (gameSlug: string): Game => {
     return games[gameSlug];
 };

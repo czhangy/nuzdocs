@@ -1,4 +1,4 @@
-import Dropdown from "@/components/Dropdown/Dropdown";
+import Dropdown from "@/components/Global/Dropdown/Dropdown";
 import AbilityData from "@/models/AbilityData";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";

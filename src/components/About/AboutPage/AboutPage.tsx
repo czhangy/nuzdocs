@@ -1,4 +1,4 @@
-import AboutPagination from "@/components/AboutPagination/AboutPagination";
+import AboutPagination from "@/components/About/AboutPagination/AboutPagination";
 import { useState } from "react";
 import styles from "./AboutPage.module.scss";
 

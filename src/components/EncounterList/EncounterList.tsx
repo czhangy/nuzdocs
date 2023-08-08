@@ -1,4 +1,4 @@
-import Dropdown from "@/components/Dropdown/Dropdown";
+import Dropdown from "@/components/Global/Dropdown/Dropdown";
 import EncounterAccordion from "@/components/EncounterAccordion/EncounterAccordion";
 import AreaData from "@/models/AreaData";
 import LocationData from "@/models/LocationData";

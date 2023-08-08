@@ -72,13 +72,6 @@
             }
         }
 
-        .error {
-            color: constants.$error-color;
-            font-size: var(--error-font-size);
-            margin-top: var(--error-spacing);
-            width: 100%;
-        }
-
         .submit {
             border: var(--field-border-size) solid constants.$text-color;
             border-radius: var(--button-border-rad);

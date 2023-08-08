@@ -1,14 +1,13 @@
-import Navbar from "@/components/Navbar/Navbar";
+import Navbar from "@/components/Global/Navbar/Navbar";
 import Game from "@/models/Game";
 import Run from "@/models/Run";
-import games from "@/static/games";
+import { getGame } from "@/utils/game";
 import { getRun } from "@/utils/run";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "./RunNavbar.module.scss";
-import { getGame } from "@/utils/game";
 
 const RunNavbar: React.FC = () => {
     const router = useRouter();

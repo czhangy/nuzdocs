@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar/Navbar";
+import Navbar from "@/components/Global/Navbar/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./MainNavbar.module.scss";

@@ -1,4 +1,4 @@
-import TierCard from "@/components/TierCard/TierCard";
+import TierCard from "@/components/Global/TierCard/TierCard";
 import EncounterData from "@/models/EncounterData";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemonGroup } from "@/utils/api";

@@ -1,5 +1,5 @@
+import TierCard from "@/components/Global/TierCard/TierCard";
 import PokemonDisplay from "@/components/PokemonDisplay/PokemonDisplay";
-import TierCard from "@/components/TierCard/TierCard";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import GameGroup from "@/models/GameGroup";
 import PokemonData from "@/models/PokemonData";

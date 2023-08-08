@@ -1,4 +1,4 @@
-import BugsPage from "@/components/BugsPage/BugsPage";
+import BugsPage from "@/components/Bugs/BugsPage/BugsPage";
 import type { NextPage } from "next";
 import Head from "next/head";
 

@@ -1,4 +1,4 @@
-import games from "@/static/games";
+import { getGame, getGameGroup, getGameSlugs } from "@/utils/game";
 import { createRun } from "@/utils/run";
 import Image from "next/image";
 import Router from "next/router";
@@ -10,23 +10,11 @@ const CreateRunModal: React.FC = () => {
     const [selectedName, setSelectedName] = useState<string>("");
     const [selectedGameSlug, setSelectedGameSlug] = useState<string>("");
 
-    // Error states
-    const [nameError, setNameError] = useState<boolean>(false);
-
-    // Checks field inputs for validity
-    const handleValidate = () => {
-        return selectedName.length > 0 && selectedGameSlug.length > 0;
-    };
-
     // Creates a run in local storage and adds the run to the run list, then redirects
-    const handleCreate = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleCreate = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        setNameError(false);
-        if (!createRun(selectedName, selectedGameSlug)) {
-            setNameError(true);
-        } else {
-            Router.push(`/runs/${selectedName}/${games[selectedGameSlug].gameGroup.startingTownSlug}`);
-        }
+        createRun(selectedName, selectedGameSlug);
+        Router.push(`/runs/${selectedName}/${getGameGroup(selectedGameSlug).startingTownSlug}`);
     };
 
     return (
@@ -41,13 +29,8 @@ const CreateRunModal: React.FC = () => {
                     value={selectedName}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setSelectedName(e.target.value)}
                 />
-                {nameError ? (
-                    <p className={styles.error}>This name is already being used, please choose another one.</p>
-                ) : (
-                    ""
-                )}
                 <div className={styles.games}>
-                    {Object.keys(games).map((gameSlug: string, key: number) => {
+                    {getGameSlugs().map((gameSlug: string, key: number) => {
                         return (
                             <button
                                 className={`${styles.game} ${gameSlug === selectedGameSlug ? styles.active : ""}`}
@@ -56,8 +39,8 @@ const CreateRunModal: React.FC = () => {
                                 onClick={() => setSelectedGameSlug(gameSlug)}
                             >
                                 <Image
-                                    src={games[gameSlug].logoURL}
-                                    alt={games[gameSlug].name}
+                                    src={getGame(gameSlug).logoURL}
+                                    alt={getGame(gameSlug).name}
                                     layout="fill"
                                     objectFit="contain"
                                 />
@@ -65,7 +48,7 @@ const CreateRunModal: React.FC = () => {
                         );
                     })}
                 </div>
-                <button className={styles.submit} disabled={!handleValidate()}>
+                <button className={styles.submit} disabled={selectedName.length === 0 || selectedGameSlug.length === 0}>
                     Start!
                 </button>
             </form>

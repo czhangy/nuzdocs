@@ -1,5 +1,5 @@
-import Box from "@/components/Box/Box";
-import Modal from "@/components/Modal/Modal";
+import Box from "@/components/Global/Box/Box";
+import Modal from "@/components/Global/Modal/Modal";
 import RIPModal from "@/components/RIPModal/RIPModal";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";

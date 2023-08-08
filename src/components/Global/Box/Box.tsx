@@ -1,4 +1,4 @@
-import BoxMenu from "@/components/BoxMenu/BoxMenu";
+import BoxMenu from "@/components/Global/BoxMenu/BoxMenu";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemonGroup } from "@/utils/api";

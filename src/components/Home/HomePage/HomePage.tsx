@@ -1,6 +1,6 @@
+import Modal from "@/components/Global/Modal/Modal";
 import CreateRunModal from "@/components/Home/CreateRunModal/CreateRunModal";
 import RunList from "@/components/Home/RunList/RunList";
-import Modal from "@/components/Modal/Modal";
 import { useState } from "react";
 import styles from "./HomePage.module.scss";
 

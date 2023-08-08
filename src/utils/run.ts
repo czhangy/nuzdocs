@@ -5,9 +5,9 @@ import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import { generateID } from "@/utils/utils";
 
 // Constructors
-export const initRun = (name: string, gameSlug: string): Run => {
+export const initRun = (id: string, name: string, gameSlug: string): Run => {
     return {
-        id: generateID(getRunIDs()),
+        id: id,
         name: name,
         gameSlug: gameSlug,
         prevSegmentSlug: getGameGroup(gameSlug).startingTownSlug,
@@ -19,22 +19,18 @@ export const initRun = (name: string, gameSlug: string): Run => {
     };
 };
 
-export const createRun = (runID: string, name: string, gameSlug: string): boolean => {
-    let storedRuns: string | null = localStorage.getItem("runs");
+export const createRun = (name: string, gameSlug: string): void => {
+    const id: string = generateID(getRunIDs());
+    const storedRuns: string | null = localStorage.getItem("runs");
     if (storedRuns) {
         let runs: string[] = JSON.parse(storedRuns);
-        if (runs.includes(runID)) {
-            return false;
-        } else {
-            runs.push(runID);
-            localStorage.setItem("runs", JSON.stringify(runs));
-        }
+        runs.push(id);
+        localStorage.setItem("runs", JSON.stringify(runs));
     } else {
-        localStorage.setItem("runs", JSON.stringify([runID]));
+        localStorage.setItem("runs", JSON.stringify([id]));
     }
-    const newRun: Run = initRun(name, gameSlug);
-    localStorage.setItem(runID, JSON.stringify(newRun));
-    return true;
+    const newRun: Run = initRun(id, name, gameSlug);
+    localStorage.setItem(id, JSON.stringify(newRun));
 };
 
 export const loadRun = (runStr: string): void => {
