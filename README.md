@@ -126,6 +126,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Key items
 -   [ ] Tooltips
 -   [ ] Check `BattleOverview` to see if the level cap structure is optimal
+-   [ ] Fix issue where `NextLevelCap` always computes the first level cap
 
 ## License
 

@@ -3,15 +3,14 @@ import LocationOverview from "@/components/Overview/LocationOverview/LocationOve
 import BattleSegment from "@/models/BattleSegment";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
-import { getSegmentsInSplit } from "@/utils/game";
+import Split from "@/models/Split";
 import { isCleared } from "@/utils/run";
-import { isLocationSegment } from "@/utils/segment";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./SplitOverview.module.scss";
 
 type Props = {
-    split: string;
+    split: Split;
     run: Run;
 };
 
@@ -19,39 +18,26 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
     // Component state
     const [open, setOpen] = useState<boolean>(false);
 
-    // Internal data state
-    const [segments, setSegments] = useState<{ [segmentSlug: string]: Segment }>({});
-
     // Calculate the height of the expanded container
     const getExpandedHeight = (): string => {
-        const numSegments: number = Object.keys(segments).length;
-        return `calc(var(--split-font-size) + var(--splits-inner-spacing) + ${numSegments} * (4rem + 81px) + ${
-            numSegments - 1
-        } * var(--segments-inner-spacing))`;
-    };
-
-    // Check if split has been completed
-    const isComplete = (): boolean => {
-        return isCleared(props.run.id, Object.keys(segments).at(-1)!);
+        return `calc(var(--split-font-size) + var(--splits-inner-spacing) + ${
+            props.split.segments.length
+        } * (4rem + 81px) + ${props.split.segments.length - 1} * var(--segments-inner-spacing))`;
     };
 
     // Get the level cap from the segment's final fight
     const getLevelCap = (): number => {
-        return (Object.values(segments).at(-1)!.segment as BattleSegment).levelCap!;
+        return (props.split.segments.at(-1)!.segment as BattleSegment).levelCap!;
     };
-
-    // Open the split if it's the user's current active split
-    useEffect(() => {
-        if (props.split && props.run) {
-            setSegments(getSegmentsInSplit(props.split, props.run.gameSlug));
-        }
-    }, [props.split, props.run]);
 
     return (
         <div className={styles["split-overview"]} style={open ? { maxHeight: getExpandedHeight() } : {}}>
             <button className={styles.header} onClick={() => setOpen(!open)}>
                 <p className={styles.split}>
-                    {isComplete() ? `👑 ${props.split}` : props.split} [{getLevelCap()}]
+                    {isCleared(props.run.id, props.split.segments.at(-1)!.slug)
+                        ? `👑 ${props.split.name}`
+                        : props.split.name}{" "}
+                    [{getLevelCap()}]
                 </p>
                 <hr className={styles.line} />
                 <div className={`${styles.arrow} ${open ? styles.reversed : ""}`}>
@@ -59,13 +45,13 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
                 </div>
             </button>
             <ul className={styles.segments}>
-                {Object.keys(segments).map((segmentSlug: string, key: number) => {
+                {props.split.segments.map((segment: Segment, key: number) => {
                     return (
                         <li className={styles.segment} key={key}>
-                            {isLocationSegment(props.run.gameSlug, segmentSlug) ? (
-                                <LocationOverview locationSlug={segmentSlug} run={props.run} key={key} />
+                            {segment.type === "location" ? (
+                                <LocationOverview location={segment} run={props.run} key={key} />
                             ) : (
-                                <BattleOverview battleSlug={segmentSlug} run={props.run} key={key} />
+                                <BattleOverview battle={segment} run={props.run} key={key} />
                             )}
                         </li>
                     );

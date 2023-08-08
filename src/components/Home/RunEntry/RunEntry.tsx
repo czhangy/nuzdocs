@@ -1,4 +1,4 @@
-import ProgressBar from "@/components/ProgressBar/ProgressBar";
+import ProgressBar from "@/components/Home/ProgressBar/ProgressBar";
 import Run from "@/models/Run";
 import { getGame } from "@/utils/game";
 import { getNumClearedBattles, getNumRIPs, getRun } from "@/utils/run";

@@ -6,6 +6,7 @@ type Props = {
 };
 
 const ProgressBar: React.FC<Props> = (props) => {
+    // Compute percent of total that is complete
     const calculatePercentage = () => {
         return Math.round((props.complete / props.total) * 100);
     };

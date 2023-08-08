@@ -1,6 +1,6 @@
 import OverviewPage from "@/components/Overview/OverviewPage/OverviewPage";
 import Run from "@/models/Run";
-import { getRun } from "@/utils/run";
+import { getRun, isRun } from "@/utils/run";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -15,7 +15,12 @@ const Overview: NextPage = () => {
     // Get run object on page load from URL param
     useEffect(() => {
         if (router.isReady) {
-            setRun(getRun(router.query.runID as string));
+            const runID: string = router.query.runID as string;
+            if (isRun(runID)) {
+                setRun(getRun(runID));
+            } else {
+                router.push("/");
+            }
         }
     }, [router.isReady]);
     return (

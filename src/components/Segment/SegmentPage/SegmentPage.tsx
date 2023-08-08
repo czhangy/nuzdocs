@@ -1,32 +1,27 @@
 import BattlePage from "@/components/BattlePage/BattlePage";
 import LocationPage from "@/components/LocationPage/LocationPage";
-import SegmentNav from "@/components/SegmentNav/SegmentNav";
+import SegmentNav from "@/components/Segment/SegmentNav/SegmentNav";
 import BattleSegment from "@/models/BattleSegment";
-import { getSegments } from "@/utils/game";
+import Run from "@/models/Run";
 import { setPrevSegmentSlug } from "@/utils/run";
-import { getSegment, isLocationSegment } from "@/utils/segment";
+import { getSegment } from "@/utils/segment";
 import { useEffect } from "react";
 import styles from "./SegmentPage.module.scss";
 
 type Props = {
-    gameSlug: string;
-    runName: string;
     segmentSlug: string;
+    run: Run;
 };
 
 const SegmentPage: React.FC<Props> = (props) => {
     // Save segment as previous segment on nav
     useEffect(() => {
-        if (props.segmentSlug) setPrevSegmentSlug(props.runName, props.segmentSlug);
+        if (props.segmentSlug) setPrevSegmentSlug(props.run.id, props.segmentSlug);
     }, [props.segmentSlug]);
 
     return (
         <div className={styles["segment-page"]}>
-            <SegmentNav
-                segments={getSegments(props.gameSlug)}
-                segmentSlug={props.segmentSlug}
-                runName={props.runName}
-            />
+            <SegmentNav segmentSlug={props.segmentSlug} run={props.run} />
             {isLocationSegment(props.gameSlug, props.segmentSlug) ? (
                 <LocationPage gameSlug={props.gameSlug} runName={props.runName} segmentSlug={props.segmentSlug} />
             ) : (

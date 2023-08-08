@@ -1,9 +1,8 @@
 import BattleSegment from "@/models/BattleSegment";
 import Segment from "@/models/Segment";
-import { hasLevelCap } from "@/utils/battle";
 import { getSegments } from "@/utils/game";
 import { isCleared } from "@/utils/run";
-import { isBattleSegment } from "@/utils/segment";
+import { hasLevelCap } from "@/utils/segment";
 import styles from "./NextLevelCap.module.scss";
 
 type Props = {
@@ -12,15 +11,12 @@ type Props = {
 };
 
 const NextLevelCap: React.FC<Props> = (props: Props) => {
+    // Scan segments for the next
     const getNextLevelCap = (): number | string => {
-        const segments: { [segmentSlug: string]: Segment } = getSegments(props.gameSlug);
-        for (const [slug, segment] of Object.entries(segments)) {
-            if (
-                isBattleSegment(props.gameSlug, slug) &&
-                hasLevelCap(props.gameSlug, slug) &&
-                !isCleared(props.runName, slug)
-            ) {
-                return (segment.segment as BattleSegment).levelCap as number;
+        const segments: Segment[] = getSegments(props.gameSlug);
+        for (const segment of segments) {
+            if (hasLevelCap(segment) && !isCleared(props.runName, segment.slug)) {
+                return (segment.segment as BattleSegment).levelCap!;
             }
         }
         return "None";
