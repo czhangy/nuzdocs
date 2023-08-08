@@ -1,10 +1,6 @@
-import TierCard from "@/components/TierCard/TierCard";
 import AbilityData from "@/models/AbilityData";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import { fetchAbility } from "@/utils/api";
-import { getGameGroup } from "@/utils/game";
-import { getRun } from "@/utils/run";
-import { getPokemonTier } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./SummaryInfo.module.scss";
@@ -58,16 +54,9 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
                 </div>
             </div>
             <div className={styles.card}>
-                <p className={styles.header}>Tier</p>
+                <p className={styles.header}>Nature</p>
                 <div className={styles.value}>
-                    <p className={styles.text}>
-                        <TierCard
-                            tier={getPokemonTier(
-                                props.pokemon.pokemon.species,
-                                getGameGroup(getRun(props.runName).gameSlug).versionGroup
-                            )}
-                        />
-                    </p>
+                    <p className={styles.text}>{props.pokemon.pokemon.nature ? props.pokemon.pokemon.nature : "???"}</p>
                 </div>
             </div>
         </div>

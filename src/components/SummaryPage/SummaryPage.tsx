@@ -2,6 +2,7 @@ import SummaryEvolutions from "@/components/SummaryEvolutions/SummaryEvolutions"
 import SummaryHeader from "@/components/SummaryHeader/SummaryHeader";
 import SummaryInfo from "@/components/SummaryInfo/SummaryInfo";
 import SummaryMoves from "@/components/SummaryMoves/SummaryMoves";
+import SummaryStats from "@/components/SummaryStats/SummaryStats";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemon } from "@/utils/api";
@@ -9,7 +10,6 @@ import { getGameGroup } from "@/utils/game";
 import { getRun, isAlive } from "@/utils/run";
 import { isFinalStage } from "@/utils/utils";
 import { useEffect, useState } from "react";
-import SummaryStats from "@/components/SummaryStats/SummaryStats";
 import styles from "./SummaryPage.module.scss";
 
 type Props = {
