@@ -1,11 +1,13 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 import Run from "@/models/Run";
 import games from "@/static/games";
-import { initCaughtPokemon, initPokemon } from "./initializers";
+import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
+import { generateID } from "@/utils/utils";
 
 // Constructors
 export const initRun = (gameSlug: string): Run => {
     return {
+        id: generateID(getRunNamesList()),
         gameSlug: gameSlug,
         prevSegmentSlug: games[gameSlug].gameGroup.startingTownSlug,
         starterSlug: "",
@@ -104,7 +106,7 @@ export const updateBox = (runName: string, pokemon: CaughtPokemon, idx: number):
 
 export const addFailedEncounter = (runName: string, locationSlug: string): void => {
     let run: Run = getRun(runName);
-    run.box.push(initCaughtPokemon(initPokemon("failed", "failed"), locationSlug));
+    run.box.push(initCaughtPokemon(initPokemon("failed", "failed"), locationSlug, runName));
     setRun(runName, run);
 };
 

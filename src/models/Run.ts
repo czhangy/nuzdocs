@@ -1,6 +1,7 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 
 export default interface Run {
+    id: string;
     gameSlug: string;
     prevSegmentSlug: string;
     starterSlug: string;

@@ -20,3 +20,11 @@ export const isFinalStage = (pokemon: PokemonData) => {
     }
     return false;
 };
+
+export const generateID = (usedIDs: string[]): string => {
+    let id = Date.now().toString(36) + Math.random().toString(36).substring(2);
+    while (usedIDs.includes(id)) {
+        id = Date.now().toString(36) + Math.random().toString(36).substring(2);
+    }
+    return id;
+};

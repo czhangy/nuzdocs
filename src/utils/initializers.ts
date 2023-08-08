@@ -9,7 +9,8 @@ import PokemonData from "@/models/PokemonData";
 import PokemonName from "@/models/PokemonName";
 import Stat from "@/models/Stat";
 import translations from "@/static/translations";
-import { getEnglishName } from "@/utils/utils";
+import { getBox, getRIPs } from "@/utils/run";
+import { generateID, getEnglishName } from "@/utils/utils";
 import { Name, NamedAPIResource, Pokemon, PokemonSpecies, PokemonSpeciesVariety, PokemonStat } from "pokenode-ts";
 
 export const initPokemonName = (slug: string, name: string, species: string): PokemonName => {
@@ -62,8 +63,13 @@ export const initPokemon = (slug: string, species: string, level: number | null 
     return pokemon;
 };
 
-export const initCaughtPokemon = (pokemon: MyPokemon, locationSlug: string): CaughtPokemon => {
+export const initCaughtPokemon = (pokemon: MyPokemon, locationSlug: string, runName: string): CaughtPokemon => {
     return {
+        id: generateID(
+            getBox(runName)
+                .map((pokemon: CaughtPokemon) => pokemon.id)
+                .concat(getRIPs(runName).map((pokemon: CaughtPokemon) => pokemon.id))
+        ),
         pokemon: pokemon,
         nickname: pokemon.species,
         locationSlug: locationSlug,

@@ -67,7 +67,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                 setStarterSlug(props.runName, selectedStarterSlug);
                 addToBox(
                     props.runName,
-                    initCaughtPokemon(initPokemon(selectedStarterSlug, selectedStarterSlug), "starter")
+                    initCaughtPokemon(initPokemon(selectedStarterSlug, selectedStarterSlug), "starter", props.runName)
                 );
                 addToCaughtPokemonSlugs(props.runName, selectedStarterSlug);
             }

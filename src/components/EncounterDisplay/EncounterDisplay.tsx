@@ -73,7 +73,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                 setEncounteredPokemon(encounterData);
                 addToBox(
                     props.runName,
-                    initCaughtPokemon(initPokemon(encounter.slug, encounter.species), props.locationSlug)
+                    initCaughtPokemon(initPokemon(encounter.slug, encounter.species), props.locationSlug, props.runName)
                 );
                 addToCaughtPokemonSlugs(props.runName, encounter.slug);
             } else {
