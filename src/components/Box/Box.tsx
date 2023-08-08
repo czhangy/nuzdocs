@@ -50,12 +50,14 @@ const Box: React.FC<Props> = (props: Props) => {
     // Close menu and propagate up
     const handleRIP = (pokemon: PokemonData, idx: number): void => {
         setActiveIdx(null);
+        setBoxData([]);
         props.onRIP!(pokemon, idx);
     };
 
     // Close menu and propagate up
     const handleRevive = (pokemon: PokemonData, idx: number): void => {
         setActiveIdx(null);
+        setBoxData([]);
         props.onRevive!(pokemon, idx);
     };
 
@@ -76,8 +78,6 @@ const Box: React.FC<Props> = (props: Props) => {
             fetchPokemonGroup(getPokemonSlugsFromBox(props.box), getGameGroup(getRun(props.runName).gameSlug)).then(
                 (pokemonData: PokemonData[]) => setBoxData(pokemonData)
             );
-        } else {
-            setBoxData([]);
         }
     }, [props.box]);
 
