@@ -1,0 +1,79 @@
+import SummaryEvolutions from "@/components/SummaryEvolutions/SummaryEvolutions";
+import SummaryHeader from "@/components/SummaryHeader/SummaryHeader";
+import SummaryInfo from "@/components/SummaryInfo/SummaryInfo";
+import SummaryMoves from "@/components/SummaryMoves/SummaryMoves";
+import SummaryStats from "@/components/SummaryStats/SummaryStats";
+import CaughtPokemon from "@/models/CaughtPokemon";
+import PokemonData from "@/models/PokemonData";
+import { fetchPokemon } from "@/utils/api";
+import { getGameGroup } from "@/utils/game";
+import { getRun, isAlive } from "@/utils/run";
+import { isFinalStage } from "@/utils/utils";
+import { useEffect, useState } from "react";
+import styles from "./SummaryPage.module.scss";
+
+type Props = {
+    runName: string;
+    nickname: string;
+};
+
+const SummaryPage: React.FC<Props> = (props: Props) => {
+    // Internal state
+    const [caughtPokemon, setCaughtPokemon] = useState<CaughtPokemon | null>(null);
+
+    // Fetched data state
+    const [pokemonData, setPokemonData] = useState<PokemonData | null>(null);
+
+    // Get Pokemon from local storage
+    const handleUpdate = () => {
+        const pokemonList: CaughtPokemon[] = isAlive(props.runName, props.nickname)
+            ? getRun(props.runName).box
+            : getRun(props.runName).rips;
+        setCaughtPokemon(pokemonList.find((pokemon: CaughtPokemon) => pokemon.nickname === props.nickname)!);
+    };
+
+    // Find Pokemon on page load
+    useEffect(() => {
+        if (props.runName && props.nickname) handleUpdate();
+    }, [props.runName, props.nickname]);
+
+    // Fetch Pokemon's data on page load
+    useEffect(() => {
+        if (caughtPokemon) {
+            fetchPokemon(caughtPokemon.pokemon.slug, getGameGroup(getRun(props.runName).gameSlug)).then(
+                (pokemon: PokemonData) => setPokemonData(pokemon)
+            );
+        }
+    }, [caughtPokemon]);
+
+    return caughtPokemon && pokemonData ? (
+        <div className={styles["summary-page"]}>
+            <SummaryHeader
+                pokemonData={pokemonData}
+                nickname={props.nickname}
+                metLocation={caughtPokemon.locationSlug}
+                runName={props.runName}
+            />
+            <SummaryInfo
+                caughtPokemon={caughtPokemon}
+                pokemonData={pokemonData}
+                runName={props.runName}
+                onUpdate={handleUpdate}
+            />
+            <SummaryMoves
+                moves={caughtPokemon.pokemon.moveSlugs}
+                types={pokemonData.types}
+                runName={props.runName}
+                nickname={props.nickname}
+            />
+            <SummaryStats pokemonData={pokemonData} caughtPokemon={caughtPokemon} />
+            {!isFinalStage(pokemonData) ? <SummaryEvolutions pokemon={pokemonData} runName={props.runName} /> : ""}
+        </div>
+    ) : (
+        <div className={styles["summary-page"]}>
+            <p>Loading...</p>
+        </div>
+    );
+};
+
+export default SummaryPage;

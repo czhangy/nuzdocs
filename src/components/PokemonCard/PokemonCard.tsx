@@ -5,11 +5,14 @@ import MoveData from "@/models/MoveData";
 import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import { fetchAbility, fetchMoves, fetchPokemon } from "@/utils/api";
+import { getGameGroup } from "@/utils/game";
+import { getRun } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./PokemonCard.module.scss";
 
 type Props = {
     pokemon: Pokemon;
+    runName: string;
 };
 
 const PokemonCard: React.FC<Props> = (props: Props) => {
@@ -23,7 +26,9 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
 
     useEffect(() => {
         if (props.pokemon) {
-            fetchPokemon(props.pokemon.slug).then((pokemonData: PokemonData) => setPokemonData(pokemonData));
+            fetchPokemon(props.pokemon.slug, getGameGroup(getRun(props.runName).gameSlug)).then(
+                (pokemonData: PokemonData) => setPokemonData(pokemonData)
+            );
             fetchAbility(props.pokemon.abilitySlug as string).then((abilityData: AbilityData) =>
                 setPokemonAbility(abilityData)
             );
@@ -37,7 +42,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                 {isMinimized ? "+" : "-"}
             </button>
             <div className={styles.header}>
-                <PokemonDisplay pokemonSlug={props.pokemon.slug} />
+                <PokemonDisplay pokemonSlug={props.pokemon.slug} runName={props.runName} />
                 {pokemonAbility ? (
                     <div className={styles.info}>
                         <p className={styles.level}>Lv. {props.pokemon.level ? props.pokemon.level : "?"}</p>

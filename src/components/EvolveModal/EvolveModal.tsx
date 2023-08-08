@@ -1,5 +1,7 @@
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemonGroup } from "@/utils/api";
+import { getGameGroup } from "@/utils/game";
+import { getRun } from "@/utils/run";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EvolveModal.module.scss";
@@ -9,6 +11,7 @@ type Props = {
     chains: string[][];
     onClose: () => void;
     onEvolve: (selection: PokemonData) => void;
+    runName: string;
 };
 
 const EvolveModal: React.FC<Props> = (props: Props) => {
@@ -28,8 +31,8 @@ const EvolveModal: React.FC<Props> = (props: Props) => {
                     evolutionSlugs.push(chain[curIdx + 1]);
                 }
             }
-            fetchPokemonGroup([...new Set(evolutionSlugs)]).then((pokemonData: PokemonData[]) =>
-                setEvolutions(pokemonData)
+            fetchPokemonGroup([...new Set(evolutionSlugs)], getGameGroup(getRun(props.runName).gameSlug)).then(
+                (pokemonData: PokemonData[]) => setEvolutions(pokemonData)
             );
         }
     }, [props.pokemon, props.chains]);

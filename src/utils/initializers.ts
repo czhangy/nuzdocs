@@ -2,13 +2,15 @@ import AbilityData from "@/models/AbilityData";
 import AreaData from "@/models/AreaData";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import EncounterData from "@/models/EncounterData";
-import PokemonName from "@/models/PokemonName";
 import LocationData from "@/models/LocationData";
 import MoveData from "@/models/MoveData";
 import MyPokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
+import PokemonName from "@/models/PokemonName";
+import Stat from "@/models/Stat";
+import translations from "@/static/translations";
 import { getEnglishName } from "@/utils/utils";
-import { Name, NamedAPIResource, Pokemon, PokemonSpecies, PokemonSpeciesVariety } from "pokenode-ts";
+import { Name, NamedAPIResource, Pokemon, PokemonSpecies, PokemonSpeciesVariety, PokemonStat } from "pokenode-ts";
 
 export const initPokemonName = (slug: string, name: string, species: string): PokemonName => {
     return {
@@ -18,13 +20,33 @@ export const initPokemonName = (slug: string, name: string, species: string): Po
     };
 };
 
-export const initPokemonData = (pokemon: Pokemon, species: PokemonSpecies, evolutions: string[][]): PokemonData => {
+export const initPokemonData = (
+    pokemon: Pokemon,
+    species: PokemonSpecies,
+    evolutions: string[][],
+    abilities: string[],
+    generation: string,
+    versionGroup: string
+): PokemonData => {
+    // Discover most correct sprite for requested game
+    let sprite: string = pokemon.sprites.front_default!;
+    // @ts-expect-error
+    if (generation in pokemon.sprites.versions && versionGroup in pokemon.sprites.versions[generation]) {
+        // @ts-expect-error
+        sprite = pokemon.sprites.versions[generation][versionGroup].front_default;
+    }
+    let stats: Stat[] = pokemon.stats.map((stat: PokemonStat) => {
+        return { name: translations.stats[stat.stat.name], base: stat.base_stat };
+    });
+    stats = stats.splice(0, 3).concat(stats.reverse());
     return {
         pokemon: initPokemonName(pokemon.name, getEnglishName(species.names), species.name),
         types: pokemon.types.map((type) => type.type.name),
-        sprite: pokemon.sprites.front_default!,
+        sprite: sprite,
+        stats: stats,
         evolutions: evolutions,
         forms: species.varieties.map((form: PokemonSpeciesVariety) => form.pokemon.name),
+        abilities: abilities,
     };
 };
 
@@ -43,6 +65,7 @@ export const initPokemon = (slug: string, species: string, level: number | null 
 export const initCaughtPokemon = (pokemon: MyPokemon, locationSlug: string): CaughtPokemon => {
     return {
         pokemon: pokemon,
+        nickname: pokemon.species,
         locationSlug: locationSlug,
         pastSlugs: [pokemon.slug],
     };
@@ -88,8 +111,9 @@ export const initAreaData = (
     };
 };
 
-export const initAbilityData = (names: Name[]): AbilityData => {
+export const initAbilityData = (slug: string, names: Name[]): AbilityData => {
     return {
+        slug: slug,
         name: getEnglishName(names),
     };
 };

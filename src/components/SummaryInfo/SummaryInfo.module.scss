@@ -1,0 +1,76 @@
+@use "@/styles/constants";
+
+.summary-info {
+    --border-rad: 5px;
+    --font-size: 1rem;
+    --header-y-padding: 0.5rem;
+    --inner-spacing: 1rem;
+    --level-max-width: 50px;
+    --num-cols: 2;
+    --type-height: 12px;
+    --type-ratio: 8/3;
+    --value-height: 3rem;
+    --value-inner-spacing: 4px;
+
+    display: grid;
+    gap: var(--inner-spacing);
+    grid-template-columns: repeat(var(--num-cols), 1fr);
+
+    .card {
+        font-size: var(--font-size);
+        line-height: var(--font-size);
+        text-align: center;
+
+        .header {
+            background-color: constants.$hover-color;
+            border-radius: var(--border-rad) var(--border-rad) 0 0;
+            font-weight: bold;
+            padding: var(--header-y-padding);
+        }
+
+        .value {
+            align-items: center;
+            background-color: constants.$accent-color;
+            border-radius: 0 0 var(--border-rad) var(--border-rad);
+            display: flex;
+            gap: var(--value-inner-spacing);
+            height: var(--value-height);
+            justify-content: center;
+
+            .type {
+                height: var(--type-height);
+                position: relative;
+                width: calc(var(--type-height) * var(--type-ratio));
+            }
+
+            .level {
+                background-color: constants.$accent-color;
+                font-size: var(--font-size);
+                line-height: var(--font-size);
+                text-align: center;
+                max-width: var(--level-max-width);
+            }
+
+            input::placeholder {
+                color: constants.$text-color;
+            }
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            /* Firefox */
+            input[type="number"] {
+                -moz-appearance: textfield;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .summary-info {
+        --num-cols: 4;
+    }
+}

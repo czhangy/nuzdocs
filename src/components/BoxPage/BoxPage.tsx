@@ -5,10 +5,9 @@ import Modal from "@/components/Modal/Modal";
 import RIPModal from "@/components/RIPModal/RIPModal";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
-import update from "immutability-helper";
+import { addToCaughtPokemonSlugs, addToRIPs, getBox, removeFromBox, updateBox } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./BoxPage.module.scss";
-import { addToCaughtPokemonSlugs, addToRIPs, getBox, removeFromBox, updateBox } from "@/utils/run";
 
 type Props = {
     runName: string;
@@ -112,6 +111,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
                         chains={selectedPokemon.evolutions}
                         onClose={handleClose}
                         onEvolve={(selection: PokemonData) => handleEvolve(selection)}
+                        runName={props.runName}
                     />
                 ) : (
                     ""
@@ -123,6 +123,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
                         forms={selectedPokemon.forms}
                         onClose={handleClose}
                         onFormChange={(selection: PokemonData) => handleFormChange(selection)}
+                        runName={props.runName}
                     />
                 ) : (
                     ""
@@ -138,6 +139,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
             <h2 className={styles.header}>Your Box</h2>
             <Box
                 box={boxPokemon}
+                runName={props.runName}
                 onEvolve={(pokemon: PokemonData, idx: number) => handleEvolveAttempt(pokemon, idx)}
                 onFormChange={(pokemon: PokemonData, idx: number) => handleFormChangeAttempt(pokemon, idx)}
                 onRIP={(pokemon: PokemonData, idx: number) => handleRIPAttempt(pokemon, idx)}

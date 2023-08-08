@@ -26,12 +26,6 @@
         display: flex;
         gap: var(--row-inner-spacing);
 
-        .type {
-            height: var(--type-icon-size);
-            position: relative;
-            width: var(--type-icon-size);
-        }
-
         .name {
             font-size: var(--name-font-size);
             font-weight: bold;

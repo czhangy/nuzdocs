@@ -7,10 +7,11 @@ import { getGameGroup } from "@/utils/game";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterList.module.scss";
+import { getRun } from "@/utils/run";
 
 type Props = {
     currentLocation: LocationData;
-    gameSlug: string;
+    runName: string;
     segmentSlug: string;
 };
 
@@ -33,7 +34,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
     const handleAreaSelect = (areaName: string): void => {
         let area: AreaData = areaList.find((area: AreaData) => area.areaName === areaName)!;
         // Strip starters out of encounters in starting town
-        if (props.segmentSlug === getGameGroup(props.gameSlug).startingTownSlug) {
+        if (props.segmentSlug === getGameGroup(getRun(props.runName).gameSlug).startingTownSlug) {
             delete area.encounters["time-morning"].gift;
             delete area.encounters["time-day"].gift;
             delete area.encounters["time-night"].gift;
@@ -45,7 +46,9 @@ const EncounterList: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (props.currentLocation) {
             setAreaList([]);
-            fetchAreas(props.currentLocation.areaSlugList, props.gameSlug).then((areaList) => setAreaList(areaList));
+            fetchAreas(props.currentLocation.areaSlugList, getRun(props.runName).gameSlug).then((areaList) =>
+                setAreaList(areaList)
+            );
         }
     }, [props.currentLocation]);
 
@@ -96,6 +99,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                     value={currentArea ? currentArea.areaName : null}
                     options={getAreaNames()}
                     onSelect={(areaName: string) => handleAreaSelect(areaName)}
+                    border={true}
                 />
             </div>
             {currentArea && currentArea.usesTime ? (
@@ -130,7 +134,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                                 key={key}
                                 method={method}
                                 encounters={currentArea.encounters[time][method]}
-                                versionGroup={getGameGroup(props.gameSlug).versionGroup}
+                                runName={props.runName}
                             />
                         );
                     })}

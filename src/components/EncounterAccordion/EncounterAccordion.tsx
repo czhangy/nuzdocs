@@ -2,6 +2,8 @@ import TierCard from "@/components/TierCard/TierCard";
 import EncounterData from "@/models/EncounterData";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemonGroup } from "@/utils/api";
+import { getGameGroup } from "@/utils/game";
+import { getRun } from "@/utils/run";
 import { getPokemonTier } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -10,7 +12,7 @@ import styles from "./EncounterAccordion.module.scss";
 type Props = {
     method: string;
     encounters: EncounterData[];
-    versionGroup: string;
+    runName: string;
 };
 
 const EncounterAccordion: React.FC<Props> = (props: Props) => {
@@ -38,9 +40,10 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (props.encounters) {
             setPokemonData([]);
-            fetchPokemonGroup(props.encounters.map((encounter: EncounterData) => encounter.pokemonSlug)).then(
-                (pokemon) => setPokemonData(pokemon)
-            );
+            fetchPokemonGroup(
+                props.encounters.map((encounter: EncounterData) => encounter.pokemonSlug),
+                getGameGroup(getRun(props.runName).gameSlug)
+            ).then((pokemon) => setPokemonData(pokemon));
         }
     }, [props.encounters]);
 
@@ -70,7 +73,10 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
                     <tbody>
                         {pokemonData.map((pokemon: PokemonData, key: number) => {
                             {
-                                const tier: string = getPokemonTier(pokemon.pokemon.slug, props.versionGroup);
+                                const tier: string = getPokemonTier(
+                                    pokemon.pokemon.slug,
+                                    getGameGroup(getRun(props.runName).gameSlug).versionGroup
+                                );
                                 return (
                                     <tr className={styles.row} key={key}>
                                         <td className={styles.cell}>

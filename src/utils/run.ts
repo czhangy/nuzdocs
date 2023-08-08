@@ -172,6 +172,17 @@ export const isCleared = (runName: string, battleSlug: string): boolean => {
     return getRun(runName).clearedBattles.includes(battleSlug);
 };
 
+export const isAlive = (runName: string, nickname: string): boolean => {
+    return getBox(runName).find((pokemon: CaughtPokemon) => pokemon.nickname === nickname) !== undefined;
+};
+
+export const isPokemon = (runName: string, nickname: string): boolean => {
+    return (
+        getBox(runName).find((pokemon: CaughtPokemon) => pokemon.nickname === nickname) !== undefined ||
+        getRIPs(runName).find((pokemon: CaughtPokemon) => pokemon.nickname === nickname) !== undefined
+    );
+};
+
 // Queries
 export const getLocationEncounter = (runName: string, locationSlug: string): CaughtPokemon | null => {
     const encounter: CaughtPokemon | undefined = getRun(runName).box.find(

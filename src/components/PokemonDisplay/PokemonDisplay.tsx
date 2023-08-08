@@ -1,11 +1,14 @@
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemon } from "@/utils/api";
+import { getGameGroup } from "@/utils/game";
+import { getRun } from "@/utils/run";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./PokemonDisplay.module.scss";
 
 type Props = {
     pokemonSlug: string;
+    runName: string;
 };
 
 const PokemonDisplay: React.FC<Props> = (props: Props) => {
@@ -15,7 +18,9 @@ const PokemonDisplay: React.FC<Props> = (props: Props) => {
     // Fetch Pokemon data from PokeAPI on component load
     useEffect(() => {
         if (props.pokemonSlug) {
-            fetchPokemon(props.pokemonSlug).then((pokemonData: PokemonData) => setPokemonData(pokemonData));
+            fetchPokemon(props.pokemonSlug, getGameGroup(getRun(props.runName).gameSlug)).then(
+                (pokemonData: PokemonData) => setPokemonData(pokemonData)
+            );
         }
     }, [props.pokemonSlug]);
 

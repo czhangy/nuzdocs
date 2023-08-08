@@ -8,6 +8,10 @@ type ResData = {
     error?: string;
 };
 
+const isSingleMoveRequest = (req: NextApiRequest): boolean => {
+    return req.method === "GET" && "moveSlugs[]" in req.query && typeof req.query["moveSlugs[]"] === "string";
+};
+
 const isMoveListRequest = (req: NextApiRequest): boolean => {
     return req.method === "GET" && "moveSlugs[]" in req.query && Array.isArray(req.query["moveSlugs[]"]);
 };
@@ -41,7 +45,16 @@ const fetchListOfMoves = async (moveSlugs: string[]): Promise<MoveData[]> => {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<ResData>) {
-    if (isMoveListRequest(req)) {
+    if (isSingleMoveRequest(req)) {
+        try {
+            const moveData: MoveData[] = [await fetchMove(req.query["moveSlugs[]"] as string)];
+            return res.status(200).json({ moves: JSON.stringify(moveData) });
+        } catch (error: any) {
+            return res.status(500).json({
+                error: error,
+            });
+        }
+    } else if (isMoveListRequest(req)) {
         try {
             const moveDataList: MoveData[] = await fetchListOfMoves(req.query["moveSlugs[]"] as string[]);
             return res.status(200).json({ moves: JSON.stringify(moveDataList) });

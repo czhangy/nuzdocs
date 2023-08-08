@@ -1,0 +1,35 @@
+@use "@/styles/constants";
+
+.summary-header {
+    --info-font-size: 1rem;
+    --info-inner-spacing: 0.75rem;
+    --sprite-size: 125px;
+
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    .sprite {
+        height: var(--sprite-size);
+        position: relative;
+        width: var(--sprite-size);
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--info-inner-spacing);
+
+        .text {
+            font-size: var(--info-font-size);
+            line-height: var(--info-font-size);
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .summary-header {
+        --info-font-size: 1.5rem;
+        --sprite-size: 150px;
+    }
+}

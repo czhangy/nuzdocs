@@ -70,6 +70,7 @@ const RIPsPage: React.FC<Props> = (props: Props) => {
             <h2 className={styles.header}>Your RIPs</h2>
             <Box
                 box={ripsPokemon}
+                runName={props.runName}
                 onRevive={(pokemon: PokemonData, idx: number) => handleReviveAttempt(pokemon, idx)}
             />
         </div>

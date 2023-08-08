@@ -17,6 +17,10 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Loading occasionally crashes between locations",
             group: "General",
         },
+        {
+            desc: "Pokemon with regional forms show up in all games' evolutions, even when not accessible",
+            group: "General",
+        },
     ],
     Low: [
         {
@@ -29,6 +33,10 @@ const bugs: { [priority: string]: Bug[] } = {
         },
         {
             desc: "Sprites with negative margins overlap surrounding content",
+            group: "General",
+        },
+        {
+            desc: "Damaging moves with no BP (ex: Grass Knot) don't display a STAB bonus",
             group: "General",
         },
     ],

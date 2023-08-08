@@ -1,5 +1,7 @@
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemonGroup } from "@/utils/api";
+import { getGameGroup } from "@/utils/game";
+import { getRun } from "@/utils/run";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./FormChangeModal.module.scss";
@@ -8,6 +10,7 @@ type Props = {
     forms: string[];
     onClose: () => void;
     onFormChange: (selection: PokemonData) => void;
+    runName: string;
 };
 
 const FormChangeModal: React.FC<Props> = (props: Props) => {
@@ -20,7 +23,9 @@ const FormChangeModal: React.FC<Props> = (props: Props) => {
     // Fetch data for all forms on modal open
     useEffect(() => {
         if (props.forms) {
-            fetchPokemonGroup(props.forms).then((formData: PokemonData[]) => setFormData(formData));
+            fetchPokemonGroup(props.forms, getGameGroup(getRun(props.runName).gameSlug)).then(
+                (formData: PokemonData[]) => setFormData(formData)
+            );
         }
     }, [props.forms]);
 
