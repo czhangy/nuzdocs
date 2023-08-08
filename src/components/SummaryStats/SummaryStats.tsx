@@ -74,27 +74,6 @@ const SummaryStats: React.FC<Props> = (props: Props) => {
         <div className={styles["summary-stats"]}>
             <p className={styles.header}>Stats</p>
             <div className={styles.stats}>
-                {props.caughtPokemon.pokemon.nature ? (
-                    <div className={styles.nature}>
-                        <div className={styles["nature-header"]}>
-                            Nature: <strong>{props.caughtPokemon.pokemon.nature}</strong>
-                        </div>
-                        {!isNeutralNature(props.caughtPokemon.pokemon.nature) ? (
-                            <div className={styles.changes}>
-                                <p className={styles.increase}>
-                                    ↑{getNature(props.caughtPokemon.pokemon.nature).increase}
-                                </p>
-                                <p className={styles.decrease}>
-                                    ↓{getNature(props.caughtPokemon.pokemon.nature).decrease}
-                                </p>
-                            </div>
-                        ) : (
-                            ""
-                        )}
-                    </div>
-                ) : (
-                    ""
-                )}
                 <div className={styles.chart}>
                     <p className={styles.bst}>
                         BST: {props.pokemonData.stats.reduce((bst: number, stat: Stat) => bst + stat.base, 0)}
@@ -102,6 +81,22 @@ const SummaryStats: React.FC<Props> = (props: Props) => {
                     <div className={styles.radar}>
                         <canvas id="stats" />
                     </div>
+                </div>
+                <div className={styles.nature}>
+                    <div className={styles["nature-header"]}>
+                        Nature:{" "}
+                        <strong>
+                            {props.caughtPokemon.pokemon.nature ? props.caughtPokemon.pokemon.nature : "???"}
+                        </strong>
+                    </div>
+                    {props.caughtPokemon.pokemon.nature && !isNeutralNature(props.caughtPokemon.pokemon.nature) ? (
+                        <div className={styles.changes}>
+                            <p className={styles.increase}>↑{getNature(props.caughtPokemon.pokemon.nature).increase}</p>
+                            <p className={styles.decrease}>↓{getNature(props.caughtPokemon.pokemon.nature).decrease}</p>
+                        </div>
+                    ) : (
+                        ""
+                    )}
                 </div>
             </div>
         </div>

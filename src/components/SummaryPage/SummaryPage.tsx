@@ -50,7 +50,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 metLocation={caughtPokemon.locationSlug}
                 runName={props.runName}
             />
-            <SummaryInfo pokemon={caughtPokemon} types={pokemonData.types} />
+            <SummaryInfo pokemon={caughtPokemon} types={pokemonData.types} runName={props.runName} />
             <SummaryMoves
                 moves={caughtPokemon.pokemon.moveSlugs}
                 types={pokemonData.types}
