@@ -21,6 +21,7 @@ const fetchMove = async (moveSlug: string): Promise<MoveData> => {
     try {
         const move: Move = await api.getMoveByName(moveSlug);
         return initMoveData(
+            moveSlug,
             move.names,
             move.type,
             move.power,

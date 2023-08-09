@@ -1,12 +1,10 @@
 import PokemonData from "@/models/PokemonData";
-import Run from "@/models/Run";
 import { getTypeCardSrc } from "@/utils/utils";
 import Image from "next/image";
 import styles from "./PokemonDisplay.module.scss";
 
 type Props = {
     pokemon: PokemonData;
-    run: Run;
 };
 
 const PokemonDisplay: React.FC<Props> = (props: Props) => {

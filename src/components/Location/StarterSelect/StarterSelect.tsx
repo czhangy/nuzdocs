@@ -104,7 +104,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                 </ul>
             </div>
             <div className={styles.starter}>
-                <PokemonDisplay pokemon={selectedStarter} run={props.run} />
+                <PokemonDisplay pokemon={selectedStarter} />
                 <TierCard tier={getPokemonTier(selectedStarter.pokemon.slug, props.run.gameSlug)} />
             </div>
         </div>

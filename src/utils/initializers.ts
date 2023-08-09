@@ -126,6 +126,7 @@ export const initAbilityData = (slug: string, names: Name[]): AbilityData => {
 };
 
 export const initMoveData = (
+    slug: string,
     names: Name[],
     type: NamedAPIResource,
     power: number | null,
@@ -133,6 +134,7 @@ export const initMoveData = (
     pp: number
 ): MoveData => {
     return {
+        slug: slug,
         name: getEnglishName(names),
         type: type.name,
         power: power ? power : 0,

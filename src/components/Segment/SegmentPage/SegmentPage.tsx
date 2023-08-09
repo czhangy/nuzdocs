@@ -1,11 +1,9 @@
-import BattlePage from "@/components/BattlePage/BattlePage";
+import BattlePage from "@/components/Battle/BattlePage/BattlePage";
 import LocationPage from "@/components/Location/LocationPage/LocationPage";
 import SegmentNav from "@/components/Segment/SegmentNav/SegmentNav";
-import BattleSegment from "@/models/BattleSegment";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { setPrevSegmentSlug } from "@/utils/run";
-import { getSegment } from "@/utils/segment";
 import { useEffect } from "react";
 import styles from "./SegmentPage.module.scss";
 
@@ -28,11 +26,7 @@ const SegmentPage: React.FC<Props> = (props) => {
             {props.segment.type === "location" ? (
                 <LocationPage segment={props.segment} run={props.run} />
             ) : (
-                <BattlePage
-                    battleSlug={props.segmentSlug}
-                    segment={getSegment(props.gameSlug, props.segmentSlug).segment as BattleSegment}
-                    runName={props.runName}
-                />
+                <BattlePage segment={props.segment} run={props.run} />
             )}
         </div>
     );
