@@ -36,7 +36,12 @@ const SummaryHeader: React.FC<Props> = (props: Props) => {
             </div>
             <div className={styles.info}>
                 <p className={styles.text}>
-                    <strong>{props.caughtPokemon.nickname}</strong> the {props.pokemonData.pokemon.name}
+                    <strong>
+                        {props.caughtPokemon.nickname
+                            ? props.caughtPokemon.nickname
+                            : props.caughtPokemon.pokemon.species}
+                    </strong>{" "}
+                    the {props.pokemonData.pokemon.name}
                 </p>
                 <p className={styles.text}>
                     Met at: <strong>{getMetLocation()}</strong>
