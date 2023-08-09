@@ -28,16 +28,14 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
                         />
                     </div>
                 </div>
-                <div className={styles["level-cap"]}>
-                    {hasLevelCap(props.battle) ? (
-                        <>
-                            <p className={styles.title}>Level Cap</p>
-                            <p className={styles.level}>{(props.battle.segment as BattleSegment).levelCap}</p>
-                        </>
-                    ) : (
-                        ""
-                    )}
-                </div>
+                {hasLevelCap(props.battle) ? (
+                    <div className={styles["level-cap"]}>
+                        <p className={styles.title}>Level Cap</p>
+                        <p className={styles.level}>{(props.battle.segment as BattleSegment).levelCap}</p>
+                    </div>
+                ) : (
+                    ""
+                )}
             </a>
         </Link>
     );

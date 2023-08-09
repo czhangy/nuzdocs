@@ -8,8 +8,8 @@
     --border-size: 2px;
     --level-font-size: 1.25rem;
     --level-letter-spacing: 1px;
-    --level-cap-height: calc(2rem + 75px);
     --level-cap-inner-spacing: 1rem;
+    --overview-height: calc(2rem + 75px + 2 * var(--y-padding));
     --title-font-size: 1rem;
     --trainer-size: 75px;
     --x-padding: 2rem;
@@ -21,6 +21,7 @@
     border-radius: var(--border-rad);
     display: flex;
     justify-content: space-between;
+    height: var(--overview-height);
     padding: var(--y-padding) var(--x-padding);
     width: 100%;
 
@@ -54,16 +55,10 @@
     }
 
     .level-cap {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        gap: var(--level-cap-inner-spacing);
-        height: var(--level-cap-height);
-        justify-content: center;
-
         .title {
             font-size: var(--title-font-size);
             line-height: var(--title-font-size);
+            margin-bottom: var(--level-cap-inner-spacing);
         }
 
         .level {
@@ -71,6 +66,7 @@
             font-weight: bold;
             letter-spacing: var(--level-letter-spacing);
             line-height: var(--level-font-size);
+            text-align: center;
         }
     }
 }
