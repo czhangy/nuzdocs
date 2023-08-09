@@ -91,7 +91,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
     // RIP the Pokemon, updating component + local storage and closing the modal
     const handleRIP = () => {
         addToRIPs(props.run.id, boxPokemon[selectedIdx!]);
-        removeFromBox(props.run.id, boxPokemon[selectedIdx!].locationSlug);
+        removeFromBox(props.run.id, boxPokemon[selectedIdx!].id);
         setBoxPokemon(getBox(props.run.id));
         handleClose();
     };

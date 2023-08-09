@@ -42,7 +42,7 @@ const RIPsPage: React.FC<Props> = (props: Props) => {
     // Revive the Pokemon, updating component + local storage and closing the modal
     const handleRevive = () => {
         addToBox(props.run.id, ripsPokemon[selectedIdx!]);
-        removeFromRIPs(props.run.id, ripsPokemon[selectedIdx!].locationSlug);
+        removeFromRIPs(props.run.id, ripsPokemon[selectedIdx!].id);
         setRIPsPokemon(getRIPs(props.run.id));
         handleClose();
     };

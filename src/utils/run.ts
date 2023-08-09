@@ -115,9 +115,9 @@ export const addToBox = (runID: string, pokemon: CaughtPokemon): void => {
     setRun(runID, run);
 };
 
-export const removeFromBox = (runID: string, locationSlug: string): void => {
+export const removeFromBox = (runID: string, pokemonID: string): void => {
     let run: Run = getRun(runID);
-    run.box = run.box.filter((encounter: CaughtPokemon) => encounter.locationSlug !== locationSlug);
+    run.box = run.box.filter((encounter: CaughtPokemon) => encounter.id !== pokemonID);
     setRun(runID, run);
 };
 
@@ -133,9 +133,9 @@ export const addToRIPs = (runID: string, pokemon: CaughtPokemon): void => {
     setRun(runID, run);
 };
 
-export const removeFromRIPs = (runID: string, locationSlug: string): void => {
+export const removeFromRIPs = (runID: string, pokemonID: string): void => {
     let run: Run = getRun(runID);
-    run.rips = run.rips.filter((encounter: CaughtPokemon) => encounter.locationSlug !== locationSlug);
+    run.rips = run.rips.filter((encounter: CaughtPokemon) => encounter.id !== pokemonID);
     setRun(runID, run);
 };
 
@@ -145,16 +145,13 @@ export const addToCaughtPokemonSlugs = (runID: string, pokemonSlug: string): voi
     setRun(runID, run);
 };
 
-export const removeFromCaughtPokemonSlugs = (runID: string, locationSlug: string): void => {
+export const removeFromCaughtPokemonSlugs = (runID: string, pokemonID: string): void => {
     let run: Run = getRun(runID);
-    let pokemon: CaughtPokemon | undefined = run.box.find(
-        (boxPokemon: CaughtPokemon) => boxPokemon.locationSlug === locationSlug
-    );
+    let pokemon: CaughtPokemon | undefined = run.box.find((boxPokemon: CaughtPokemon) => boxPokemon.id === pokemonID);
     if (pokemon === undefined) {
-        pokemon = run.rips.find((ripPokemon: CaughtPokemon) => ripPokemon.locationSlug === locationSlug);
+        pokemon = run.rips.find((ripPokemon: CaughtPokemon) => ripPokemon.id === pokemonID);
     }
     if (pokemon === undefined) {
-        console.log("sdfin");
         return;
     } else {
         for (const slug of pokemon.pastSlugs) {
@@ -200,9 +197,12 @@ export const isPokemon = (runID: string, pokemonID: string): boolean => {
 
 // Queries
 export const getLocationEncounter = (runID: string, locationSlug: string): CaughtPokemon | null => {
-    const encounter: CaughtPokemon | undefined = getRun(runID).box.find(
+    let encounter: CaughtPokemon | undefined = getBox(runID).find(
         (pokemon: CaughtPokemon) => pokemon.locationSlug === locationSlug
     );
+    if (!encounter) {
+        encounter = getRIPs(runID).find((pokemon: CaughtPokemon) => pokemon.locationSlug === locationSlug);
+    }
     return encounter ? encounter : null;
 };
 

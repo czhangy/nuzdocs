@@ -74,9 +74,10 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
         } else {
             updateDisplay(false, "");
             setEncounteredPokemon(null);
-            removeFromCaughtPokemonSlugs(props.run.id, props.locationSlug);
-            removeFromBox(props.run.id, props.locationSlug);
-            removeFromRIPs(props.run.id, props.locationSlug);
+            const caughtPokemon: CaughtPokemon = getLocationEncounter(props.run.id, props.locationSlug)!;
+            removeFromCaughtPokemonSlugs(props.run.id, caughtPokemon.id);
+            removeFromBox(props.run.id, caughtPokemon.id);
+            removeFromRIPs(props.run.id, caughtPokemon.id);
         }
     };
 
