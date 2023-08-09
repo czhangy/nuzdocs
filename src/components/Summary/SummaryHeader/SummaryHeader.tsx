@@ -42,7 +42,7 @@ const SummaryHeader: React.FC<Props> = (props: Props) => {
                     Met at: <strong>{getMetLocation()}</strong>
                 </p>
                 <p className={styles.text}>
-                    Status: <strong>{isAlive(props.run.id, props.caughtPokemon.nickname) ? "Alive" : "RIP'd"}</strong>
+                    Status: <strong>{isAlive(props.run.id, props.caughtPokemon.id) ? "Alive" : "RIP'd"}</strong>
                 </p>
             </div>
         </div>

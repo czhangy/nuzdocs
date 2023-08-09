@@ -53,15 +53,15 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
     const handleUpdate = (selection: string | number, property: string) => {
         // @ts-expect-error
         props.caughtPokemon.pokemon[property] = selection;
-        if (isAlive(props.runID, props.caughtPokemon.nickname)) {
+        if (isAlive(props.runID, props.caughtPokemon.id)) {
             const idx: number = getBox(props.runID)
-                .map((cp: CaughtPokemon) => cp.nickname)
-                .indexOf(props.caughtPokemon.nickname);
+                .map((cp: CaughtPokemon) => cp.id)
+                .indexOf(props.caughtPokemon.id);
             updateBox(props.runID, props.caughtPokemon, idx);
         } else {
             const updateIdx: number = getRIPs(props.runID)
-                .map((cp: CaughtPokemon) => cp.nickname)
-                .indexOf(props.caughtPokemon.nickname);
+                .map((cp: CaughtPokemon) => cp.id)
+                .indexOf(props.caughtPokemon.id);
             updateRIPs(props.runID, props.caughtPokemon, updateIdx);
         }
         props.onUpdate();

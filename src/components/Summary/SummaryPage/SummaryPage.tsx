@@ -14,7 +14,7 @@ import styles from "./SummaryPage.module.scss";
 
 type Props = {
     run: Run;
-    nickname: string;
+    id: string;
 };
 
 const SummaryPage: React.FC<Props> = (props: Props) => {
@@ -26,16 +26,16 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
 
     // Get Pokemon from local storage
     const handleUpdate = () => {
-        const pokemonList: CaughtPokemon[] = isAlive(props.run.id, props.nickname)
+        const pokemonList: CaughtPokemon[] = isAlive(props.run.id, props.id)
             ? getRun(props.run.id).box
             : getRun(props.run.id).rips;
-        setCaughtPokemon(pokemonList.find((pokemon: CaughtPokemon) => pokemon.nickname === props.nickname)!);
+        setCaughtPokemon(pokemonList.find((pokemon: CaughtPokemon) => pokemon.id === props.id)!);
     };
 
     // Find Pokemon on page load
     useEffect(() => {
-        if (props.run && props.nickname) handleUpdate();
-    }, [props.run, props.nickname]);
+        if (props.run && props.id) handleUpdate();
+    }, [props.run, props.id]);
 
     // Fetch Pokemon's data on page load
     useEffect(() => {

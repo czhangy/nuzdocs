@@ -5,7 +5,7 @@ import styles from "./BoxMenu.module.scss";
 
 type Props = {
     pokemon: PokemonData;
-    nickname: string;
+    pokemonID: string;
     runID: string;
     open: boolean;
     inverted: boolean;
@@ -22,7 +22,7 @@ const BoxMenu: React.FC<Props> = (props: Props) => {
             <div className={styles.overlay} onClick={props.onClose} />
             <div className={`${styles.menu} ${props.inverted ? styles.inverted : ""}`}>
                 <div className={styles.arrow} />
-                <Link href={`/runs/${props.runID}/summary/${props.nickname}`}>
+                <Link href={`/runs/${props.runID}/summary/${props.pokemonID}`}>
                     <a className={styles.option}>Summary</a>
                 </Link>
                 {props.onEvolve ? (

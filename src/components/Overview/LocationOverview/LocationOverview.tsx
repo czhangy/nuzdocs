@@ -28,8 +28,8 @@ const LocationOverview: React.FC<Props> = (props: Props) => {
                 if (pokemon.pastSlugs[0] === "failed") {
                     setEncounterText("Failed");
                 } else {
-                    fetchPokemon(pokemon.pastSlugs[0], getGameGroup(props.run.gameSlug)).then(
-                        (pokemonData: PokemonData) => setEncounter(pokemonData)
+                    fetchPokemon(pokemon.pastSlugs[0], props.run.gameSlug).then((pokemonData: PokemonData) =>
+                        setEncounter(pokemonData)
                     );
                 }
             }

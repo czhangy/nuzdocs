@@ -187,14 +187,14 @@ export const isCleared = (runID: string, battleSlug: string): boolean => {
     return getRun(runID).clearedBattles.includes(battleSlug);
 };
 
-export const isAlive = (runID: string, nickname: string): boolean => {
-    return getBox(runID).find((pokemon: CaughtPokemon) => pokemon.nickname === nickname) !== undefined;
+export const isAlive = (runID: string, pokemonID: string): boolean => {
+    return getBox(runID).find((pokemon: CaughtPokemon) => pokemon.id === pokemonID) !== undefined;
 };
 
-export const isPokemon = (runID: string, nickname: string): boolean => {
+export const isPokemon = (runID: string, pokemonID: string): boolean => {
     return (
-        getBox(runID).find((pokemon: CaughtPokemon) => pokemon.nickname === nickname) !== undefined ||
-        getRIPs(runID).find((pokemon: CaughtPokemon) => pokemon.nickname === nickname) !== undefined
+        getBox(runID).find((pokemon: CaughtPokemon) => pokemon.id === pokemonID) !== undefined ||
+        getRIPs(runID).find((pokemon: CaughtPokemon) => pokemon.id === pokemonID) !== undefined
     );
 };
 

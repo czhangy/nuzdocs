@@ -92,7 +92,7 @@ const Box: React.FC<Props> = (props: Props) => {
                     {props.onEvolve ? (
                         <BoxMenu
                             pokemon={pokemon}
-                            nickname={props.box[idx].nickname}
+                            pokemonID={props.box[idx].id}
                             runID={props.run.id}
                             open={idx === activeIdx}
                             inverted={isInverted[idx]}
@@ -104,7 +104,7 @@ const Box: React.FC<Props> = (props: Props) => {
                     ) : (
                         <BoxMenu
                             pokemon={pokemon}
-                            nickname={props.box[idx].nickname}
+                            pokemonID={props.box[idx].id}
                             runID={props.run.id}
                             open={idx === activeIdx}
                             inverted={isInverted[idx]}
