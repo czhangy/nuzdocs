@@ -1,3 +1,4 @@
+import PokemonMove from "@/models/PokemonMove";
 import PokemonName from "@/models/PokemonName";
 import Stat from "@/models/Stat";
 
@@ -9,4 +10,5 @@ export default interface PokemonData {
     evolutions: string[][];
     forms: string[];
     abilities: string[];
+    movepool: PokemonMove[];
 }

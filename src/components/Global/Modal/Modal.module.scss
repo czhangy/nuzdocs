@@ -1,31 +1,37 @@
 @use "@/styles/constants";
 
 .modal {
+    --content-border-rad: 15px;
+    --content-padding: 2rem;
+    --overlay-opacity: 0.9;
+    --overlay-z: 999;
+    --transition-time: 0.1s;
+
     align-items: center;
+    bottom: 0;
     display: flex;
-    height: 100vh;
     justify-content: center;
     left: 0;
-    position: absolute;
+    position: fixed;
+    right: 0;
     top: 0;
-    transition: opacity 0.1s;
-    width: 100%;
+    transition: opacity var(--transition-time);
 
     .modal-overlay {
         background: black;
         height: 100%;
         position: absolute;
-        opacity: 0.9;
+        opacity: var(--overlay-opacity);
         width: 100%;
-        z-index: 999;
+        z-index: var(--overlay-z);
     }
 
     .modal-content {
         background: constants.$accent-color;
-        border-radius: 15px;
+        border-radius: var(--content-border-rad);
         max-width: constants.$max-width;
-        padding: 2rem;
-        z-index: 1000;
+        padding: var(--content-padding);
+        z-index: calc(var(--overlay-z) + 1);
     }
 }
 

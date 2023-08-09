@@ -1,3 +1,5 @@
+import Modal from "@/components/Global/Modal/Modal";
+import MoveModal from "@/components/Summary/MoveModal/MoveModal";
 import SummaryEvolutions from "@/components/Summary/SummaryEvolutions/SummaryEvolutions";
 import SummaryHeader from "@/components/Summary/SummaryHeader/SummaryHeader";
 import SummaryInfo from "@/components/Summary/SummaryInfo/SummaryInfo";
@@ -22,6 +24,9 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
 
     // Fetched data state
     const [pokemonData, setPokemonData] = useState<PokemonData | null>(null);
+
+    // Component state
+    const [moveModalOpen, setMoveModalOpen] = useState<boolean>(false);
 
     // Get Pokemon from local storage
     const handleUpdate = (selection: string | number, property: string, isNested: boolean = true): void => {
@@ -72,9 +77,16 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 onUpdate={handleUpdate}
             />
             <SummaryInfo caughtPokemon={caughtPokemon} pokemonData={pokemonData} onUpdate={handleUpdate} />
-            <SummaryMoves caughtPokemon={caughtPokemon} pokemonData={pokemonData} />
+            <SummaryMoves
+                caughtPokemon={caughtPokemon}
+                pokemonData={pokemonData}
+                onClick={() => setMoveModalOpen(true)}
+            />
             <SummaryStats stats={pokemonData.stats} nature={caughtPokemon.pokemon.nature} />
             <SummaryEvolutions pokemon={pokemonData} gameSlug={props.run.gameSlug} />
+            <Modal modalID="move-modal" open={moveModalOpen} onClose={() => setMoveModalOpen(false)}>
+                <MoveModal />
+            </Modal>
         </div>
     ) : (
         <div className={styles["summary-page"]}>

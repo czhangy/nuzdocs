@@ -6,12 +6,21 @@ import LocationData from "@/models/LocationData";
 import MoveData from "@/models/MoveData";
 import MyPokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
+import PokemonMove from "@/models/PokemonMove";
 import PokemonName from "@/models/PokemonName";
 import Stat from "@/models/Stat";
 import translations from "@/static/translations";
 import { getBox, getRIPs } from "@/utils/run";
 import { generateID, getEnglishName } from "@/utils/utils";
-import { Name, NamedAPIResource, Pokemon, PokemonSpecies, PokemonSpeciesVariety, PokemonStat } from "pokenode-ts";
+import {
+    Name,
+    NamedAPIResource,
+    Pokemon,
+    PokemonMoveVersion,
+    PokemonSpecies,
+    PokemonSpeciesVariety,
+    PokemonStat,
+} from "pokenode-ts";
 
 export const initPokemonName = (slug: string, name: string, species: string): PokemonName => {
     return {
@@ -45,6 +54,15 @@ export const initPokemonData = (
         return { name: translations.stats[stat.stat.name], base: stat.base_stat };
     });
     stats = stats.splice(0, 3).concat(stats.reverse());
+    const movepool: PokemonMove[] = [];
+    for (const move of pokemon.moves) {
+        const vgd: PokemonMoveVersion | undefined = move.version_group_details.find(
+            (pmv: PokemonMoveVersion) => pmv.version_group.name === versionGroup
+        );
+        if (vgd !== undefined) {
+            movepool.push(initPokemonMove(move.move.name, vgd));
+        }
+    }
     return {
         pokemon: initPokemonName(pokemon.name, getEnglishName(species.names), species.name),
         types: pokemon.types.map((type) => type.type.name),
@@ -53,6 +71,7 @@ export const initPokemonData = (
         evolutions: evolutions,
         forms: species.varieties.map((form: PokemonSpeciesVariety) => form.pokemon.name),
         abilities: abilities,
+        movepool: movepool,
     };
 };
 
@@ -76,6 +95,7 @@ export const initCaughtPokemon = (pokemon: MyPokemon, locationSlug: string, runI
                 .concat(getRIPs(runID).map((pokemon: CaughtPokemon) => pokemon.id))
         ),
         pokemon: pokemon,
+        nickname: pokemon.species,
         locationSlug: locationSlug,
         pastSlugs: [pokemon.slug],
     };
@@ -144,5 +164,13 @@ export const initMoveData = (
         power: power ? power : 0,
         category: category.name === "status" ? "other" : category.name,
         pp: pp,
+    };
+};
+
+export const initPokemonMove = (slug: string, vgd: PokemonMoveVersion): PokemonMove => {
+    return {
+        slug: slug,
+        level: vgd.level_learned_at,
+        method: vgd.move_learn_method.name,
     };
 };

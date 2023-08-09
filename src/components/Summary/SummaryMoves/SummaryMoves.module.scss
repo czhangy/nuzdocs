@@ -2,11 +2,15 @@
 
 .summary-moves {
     --border-rad: 5px;
+    --card-border-size: 2px;
+    --card-height: calc(16px + 5rem);
     --font-size: 1rem;
     --header-y-padding: 0.5rem;
+    --icon-size: 3rem;
     --moves-inner-spacing: 1rem;
     --moves-padding: 1rem;
     --num-cols: 1;
+    --plus-size: 3rem;
 
     border-radius: var(--border-rad);
     overflow: hidden;
@@ -26,11 +30,40 @@
         gap: var(--moves-inner-spacing);
         grid-template-columns: repeat(var(--num-cols), 1fr);
         padding: var(--moves-padding);
+
+        .button {
+            padding: 0;
+
+            .add {
+                align-items: center;
+                border: var(--card-border-size) solid constants.$disabled-color;
+                border-radius: var(--border-rad);
+                display: flex;
+                height: var(--card-height);
+                justify-content: center;
+
+                .icon {
+                    color: constants.$disabled-color;
+                    font-size: var(--icon-size);
+                    line-height: var(--icon-size);
+                }
+            }
+        }
     }
 }
 
 @media screen and (min-width: constants.$tablet) {
     .summary-moves {
         --num-cols: 2;
+    }
+}
+
+@media (hover: hover) {
+    .summary-moves > .moves > .button:hover > .add {
+        border-color: constants.$text-color;
+
+        .icon {
+            color: constants.$text-color;
+        }
     }
 }
