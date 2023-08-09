@@ -125,9 +125,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Trades
 -   [ ] Key items
 -   [ ] Tooltips
--   [ ] Revisit `EncounterList`: it's a mess
--   [ ] Think about only fetching on open in `EncounterAccordion`
--   [ ] Rework `BoxPage` fetching
 
 ## License
 
