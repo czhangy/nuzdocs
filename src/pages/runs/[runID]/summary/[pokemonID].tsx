@@ -11,7 +11,7 @@ const Summary: NextPage = () => {
 
     // Internal data state
     const [run, setRun] = useState<Run | null>(null);
-    const [id, setID] = useState<string>("");
+    const [pokemonID, setPokemonID] = useState<string>("");
 
     useEffect(() => {
         if (router.isReady) {
@@ -19,7 +19,7 @@ const Summary: NextPage = () => {
             const pokemonID: string = router.query.pokemonID as string;
             if (isRun(runID) && isPokemon(runID, pokemonID)) {
                 setRun(getRun(runID));
-                setID(pokemonID);
+                setPokemonID(pokemonID);
             } else {
                 router.push("/");
             }
@@ -31,7 +31,7 @@ const Summary: NextPage = () => {
             <Head>
                 <title>{run ? `${run.name} // Summary` : "NuzlockeDB"}</title>
             </Head>
-            {run && id.length > 0 ? <SummaryPage run={run} id={id} /> : ""}
+            {run && pokemonID.length > 0 ? <SummaryPage run={run} pokemonID={pokemonID} /> : ""}
         </>
     );
 };

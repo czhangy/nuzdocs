@@ -14,7 +14,7 @@ import styles from "./SummaryPage.module.scss";
 
 type Props = {
     run: Run;
-    id: string;
+    pokemonID: string;
 };
 
 const SummaryPage: React.FC<Props> = (props: Props) => {
@@ -25,26 +25,28 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
     const [pokemonData, setPokemonData] = useState<PokemonData | null>(null);
 
     // Get Pokemon from local storage
-    const handleUpdate = () => {
-        const pokemonList: CaughtPokemon[] = isAlive(props.run.id, props.id)
+    const handleUpdate = (): void => {
+        const pokemonList: CaughtPokemon[] = isAlive(props.run.id, props.pokemonID)
             ? getRun(props.run.id).box
             : getRun(props.run.id).rips;
-        setCaughtPokemon(pokemonList.find((pokemon: CaughtPokemon) => pokemon.id === props.id)!);
+        setCaughtPokemon(pokemonList.find((pokemon: CaughtPokemon) => pokemon.id === props.pokemonID)!);
     };
 
     // Find Pokemon on page load
     useEffect(() => {
-        if (props.run && props.id) handleUpdate();
-    }, [props.run, props.id]);
-
-    // Fetch Pokemon's data on page load
-    useEffect(() => {
-        if (caughtPokemon) {
+        if (props.run && props.pokemonID.length) {
+            const pokemonList: CaughtPokemon[] = isAlive(props.run.id, props.pokemonID)
+                ? getRun(props.run.id).box
+                : getRun(props.run.id).rips;
+            const caughtPokemon: CaughtPokemon = pokemonList.find(
+                (pokemon: CaughtPokemon) => pokemon.id === props.pokemonID
+            )!;
+            setCaughtPokemon(caughtPokemon);
             fetchPokemon(caughtPokemon.pokemon.slug, props.run.gameSlug).then((pokemon: PokemonData) =>
                 setPokemonData(pokemon)
             );
         }
-    }, [caughtPokemon]);
+    }, [props.run, props.pokemonID]);
 
     return caughtPokemon && pokemonData ? (
         <div className={styles["summary-page"]}>
