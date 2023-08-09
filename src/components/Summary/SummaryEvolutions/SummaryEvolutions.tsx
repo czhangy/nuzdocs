@@ -3,6 +3,7 @@ import { fetchPokemonGroup } from "@/utils/api";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./SummaryEvolutions.module.scss";
+import { isFinalStage } from "@/utils/utils";
 
 type Props = {
     pokemon: PokemonData;
@@ -13,12 +14,21 @@ const SummaryEvolutions: React.FC<Props> = (props: Props) => {
     // Fetched data state
     const [pokemonMap, setPokemonMap] = useState<{ [slug: string]: PokemonData }>({});
 
+    // Filter out evolution chains if the Pokemon is fully evolved
+    const getEvolutionChains = (): string[][] => {
+        if (isFinalStage(props.pokemon)) {
+            return [props.pokemon.evolutions.find((chain: string[]) => chain.at(-1) === props.pokemon.pokemon.slug)!];
+        } else {
+            return props.pokemon.evolutions;
+        }
+    };
+
     // Fetch data for all Pokemon in evolution line on component load
     useEffect(() => {
         const newPokemonMap: { [slug: string]: PokemonData } = {};
         newPokemonMap[props.pokemon.pokemon.slug] = props.pokemon;
         fetchPokemonGroup(
-            [...new Set(props.pokemon.evolutions.flat())].filter((slug: string) => slug !== props.pokemon.pokemon.slug),
+            [...new Set(getEvolutionChains().flat())].filter((slug: string) => slug !== props.pokemon.pokemon.slug),
             props.gameSlug
         ).then((pokemonData: PokemonData[]) => {
             for (const pokemon of pokemonData) newPokemonMap[pokemon.pokemon.slug] = pokemon;
@@ -30,7 +40,7 @@ const SummaryEvolutions: React.FC<Props> = (props: Props) => {
         <div className={styles["summary-evolutions"]}>
             <p className={styles.header}>Evolutions</p>
             <div className={styles.evolutions}>
-                {props.pokemon.evolutions.map((chain: string[], key: number) => {
+                {getEvolutionChains().map((chain: string[], key: number) => {
                     return (
                         <div className={styles.chain} key={key}>
                             {chain.map((slug: string, idx: number) => {

@@ -31,8 +31,13 @@ export const initPokemonData = (
 ): PokemonData => {
     // Discover most correct sprite for requested game
     let sprite: string = pokemon.sprites.front_default!;
-    // @ts-expect-error
-    if (generation in pokemon.sprites.versions && versionGroup in pokemon.sprites.versions[generation]) {
+    if (
+        generation in pokemon.sprites.versions &&
+        // @ts-expect-error
+        versionGroup in pokemon.sprites.versions[generation] &&
+        // @ts-expect-error
+        pokemon.sprites.versions[generation][versionGroup].front_default
+    ) {
         // @ts-expect-error
         sprite = pokemon.sprites.versions[generation][versionGroup].front_default;
     }

@@ -1,5 +1,5 @@
-import SummaryHeader from "@/components/Summary/SummaryHeader/SummaryHeader";
 import SummaryEvolutions from "@/components/Summary/SummaryEvolutions/SummaryEvolutions";
+import SummaryHeader from "@/components/Summary/SummaryHeader/SummaryHeader";
 import SummaryInfo from "@/components/Summary/SummaryInfo/SummaryInfo";
 import SummaryMoves from "@/components/Summary/SummaryMoves/SummaryMoves";
 import SummaryStats from "@/components/Summary/SummaryStats/SummaryStats";
@@ -8,7 +8,6 @@ import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import { fetchPokemon } from "@/utils/api";
 import { getRun, isAlive } from "@/utils/run";
-import { isFinalStage } from "@/utils/utils";
 import { useEffect, useState } from "react";
 import styles from "./SummaryPage.module.scss";
 
@@ -59,11 +58,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
             />
             <SummaryMoves caughtPokemon={caughtPokemon} pokemonData={pokemonData} />
             <SummaryStats stats={pokemonData.stats} nature={caughtPokemon.pokemon.nature} />
-            {!isFinalStage(pokemonData) ? (
-                <SummaryEvolutions pokemon={pokemonData} gameSlug={props.run.gameSlug} />
-            ) : (
-                ""
-            )}
+            <SummaryEvolutions pokemon={pokemonData} gameSlug={props.run.gameSlug} />
         </div>
     ) : (
         <div className={styles["summary-page"]}>
