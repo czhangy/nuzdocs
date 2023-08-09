@@ -1,4 +1,5 @@
 export default interface LocationData {
-    locationName: string;
-    areaSlugList: string[];
+    slug: string;
+    name: string;
+    areas: string[];
 }

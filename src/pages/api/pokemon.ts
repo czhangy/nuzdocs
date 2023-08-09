@@ -1,6 +1,4 @@
-import AbilityData from "@/models/AbilityData";
 import PokemonData from "@/models/PokemonData";
-import { fetchAbilities } from "@/utils/api";
 import { initPokemonData } from "@/utils/initializers";
 import type { NextApiRequest, NextApiResponse } from "next";
 import {

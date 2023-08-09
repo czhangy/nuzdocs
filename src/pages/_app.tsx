@@ -1,7 +1,7 @@
-import Footer from "@/components/Footer/Footer";
-import MainNavbar from "@/components/MainNavbar/MainNavbar";
-import PageWrapper from "@/components/PageWrapper/PageWrapper";
-import RunNavbar from "@/components/RunNavbar/RunNavbar";
+import Footer from "@/components/Global/Footer/Footer";
+import MainNavbar from "@/components/Home/MainNavbar/MainNavbar";
+import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
+import RunNavbar from "@/components/Run/RunNavbar/RunNavbar";
 import "@/styles/globals.scss";
 import { Analytics } from "@vercel/analytics/react";
 import type { AppProps } from "next/app";

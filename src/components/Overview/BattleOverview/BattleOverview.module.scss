@@ -1,0 +1,87 @@
+@use "@/styles/constants";
+
+.battle-overview {
+    --battle-font-size: 1rem;
+    --battle-inner-spacing: 1rem;
+    --battle-letter-spacing: 0;
+    --border-rad: 5px;
+    --border-size: 2px;
+    --level-font-size: 1.25rem;
+    --level-letter-spacing: 1px;
+    --level-cap-inner-spacing: 1rem;
+    --overview-height: calc(2rem + 75px + 2 * var(--y-padding));
+    --title-font-size: 1rem;
+    --trainer-size: 75px;
+    --x-padding: 2rem;
+    --y-padding: 1rem;
+
+    align-items: center;
+    background-color: constants.$accent-color;
+    border: var(--border-size) solid constants.$accent-color;
+    border-radius: var(--border-rad);
+    display: flex;
+    justify-content: space-between;
+    height: var(--overview-height);
+    padding: var(--y-padding) var(--x-padding);
+    width: 100%;
+
+    .battle {
+        align-items: center;
+        display: flex;
+        gap: var(--battle-inner-spacing);
+
+        .name {
+            font-size: var(--battle-font-size);
+            font-weight: bold;
+            letter-spacing: var(--battle-letter-spacing);
+            line-height: var(--battle-font-size);
+        }
+
+        .trainer {
+            height: var(--trainer-size);
+            position: relative;
+            width: var(--trainer-size);
+        }
+    }
+
+    .done {
+        .name {
+            text-decoration: line-through;
+        }
+
+        .trainer {
+            filter: grayscale(100%);
+        }
+    }
+
+    .level-cap {
+        .title {
+            font-size: var(--title-font-size);
+            line-height: var(--title-font-size);
+            margin-bottom: var(--level-cap-inner-spacing);
+        }
+
+        .level {
+            font-size: var(--level-font-size);
+            font-weight: bold;
+            letter-spacing: var(--level-letter-spacing);
+            line-height: var(--level-font-size);
+            text-align: center;
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .battle-overview {
+        --battle-font-size: 1.25rem;
+        --battle-letter-spacing: 1px;
+        --level-font-size: 1.5rem;
+        --level-letter-spacing: 2px;
+    }
+}
+
+@media (hover: hover) {
+    .battle-overview:hover {
+        border-color: constants.$hover-color;
+    }
+}

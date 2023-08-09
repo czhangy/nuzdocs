@@ -1,13 +1,15 @@
 import PokemonData from "@/models/PokemonData";
 import tiers from "@/static/tiers";
 import { Name } from "pokenode-ts";
+import { getGameGroup } from "./game";
 
 export const getEnglishName: (names: Name[]) => string = (names: Name[]): string => {
     const nameObj: Name = names.find((name) => name.language.name === "en")!;
     return nameObj.name;
 };
 
-export const getPokemonTier = (pokemonSlug: string, versionGroup: string): string => {
+export const getPokemonTier = (pokemonSlug: string, gameSlug: string): string => {
+    const versionGroup = getGameGroup(gameSlug).versionGroup;
     return pokemonSlug in tiers[versionGroup] ? tiers[versionGroup][pokemonSlug] : "?";
 };
 
@@ -19,4 +21,20 @@ export const isFinalStage = (pokemon: PokemonData) => {
         }
     }
     return false;
+};
+
+export const generateID = (usedIDs: string[]): string => {
+    let id = Date.now().toString(36) + Math.random().toString(36).substring(2);
+    while (usedIDs.includes(id)) {
+        id = Date.now().toString(36) + Math.random().toString(36).substring(2);
+    }
+    return id;
+};
+
+export const capitalizeWord = (word: string): string => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+};
+
+export const getTypeCardSrc = (type: string) => {
+    return `https://www.serebii.net/pokedex-bw/type/${type}.gif`;
 };

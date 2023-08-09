@@ -1,8 +1,9 @@
 import Pokemon from "@/models/Pokemon";
 
 export default interface CaughtPokemon {
+    id: string;
     pokemon: Pokemon;
-    nickname: string;
+    nickname?: string;
     locationSlug: string;
     pastSlugs: string[];
 }

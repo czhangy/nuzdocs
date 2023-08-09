@@ -9,7 +9,8 @@ import PokemonData from "@/models/PokemonData";
 import PokemonName from "@/models/PokemonName";
 import Stat from "@/models/Stat";
 import translations from "@/static/translations";
-import { getEnglishName } from "@/utils/utils";
+import { getBox, getRIPs } from "@/utils/run";
+import { generateID, getEnglishName } from "@/utils/utils";
 import { Name, NamedAPIResource, Pokemon, PokemonSpecies, PokemonSpeciesVariety, PokemonStat } from "pokenode-ts";
 
 export const initPokemonName = (slug: string, name: string, species: string): PokemonName => {
@@ -30,8 +31,13 @@ export const initPokemonData = (
 ): PokemonData => {
     // Discover most correct sprite for requested game
     let sprite: string = pokemon.sprites.front_default!;
-    // @ts-expect-error
-    if (generation in pokemon.sprites.versions && versionGroup in pokemon.sprites.versions[generation]) {
+    if (
+        generation in pokemon.sprites.versions &&
+        // @ts-expect-error
+        versionGroup in pokemon.sprites.versions[generation] &&
+        // @ts-expect-error
+        pokemon.sprites.versions[generation][versionGroup].front_default
+    ) {
         // @ts-expect-error
         sprite = pokemon.sprites.versions[generation][versionGroup].front_default;
     }
@@ -62,8 +68,13 @@ export const initPokemon = (slug: string, species: string, level: number | null 
     return pokemon;
 };
 
-export const initCaughtPokemon = (pokemon: MyPokemon, locationSlug: string): CaughtPokemon => {
+export const initCaughtPokemon = (pokemon: MyPokemon, locationSlug: string, runID: string): CaughtPokemon => {
     return {
+        id: generateID(
+            getBox(runID)
+                .map((pokemon: CaughtPokemon) => pokemon.id)
+                .concat(getRIPs(runID).map((pokemon: CaughtPokemon) => pokemon.id))
+        ),
         pokemon: pokemon,
         nickname: pokemon.species,
         locationSlug: locationSlug,
@@ -87,10 +98,11 @@ export const initEncounterData = (
     };
 };
 
-export const initLocationData = (names: Name[], areaSlugList: string[]): LocationData => {
+export const initLocationData = (slug: string, names: Name[], areas: string[]): LocationData => {
     return {
-        locationName: getEnglishName(names),
-        areaSlugList: areaSlugList,
+        slug: slug,
+        name: getEnglishName(names),
+        areas: areas,
     };
 };
 
@@ -119,6 +131,7 @@ export const initAbilityData = (slug: string, names: Name[]): AbilityData => {
 };
 
 export const initMoveData = (
+    slug: string,
     names: Name[],
     type: NamedAPIResource,
     power: number | null,
@@ -126,6 +139,7 @@ export const initMoveData = (
     pp: number
 ): MoveData => {
     return {
+        slug: slug,
         name: getEnglishName(names),
         type: type.name,
         power: power ? power : 0,
