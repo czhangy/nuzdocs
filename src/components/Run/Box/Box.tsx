@@ -1,16 +1,16 @@
 import BoxMenu from "@/components/Run/BoxMenu/BoxMenu";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
+import Run from "@/models/Run";
 import { fetchPokemonGroup } from "@/utils/api";
-import { getGameGroup } from "@/utils/game";
-import { getPokemonSlugsFromBox, getRun } from "@/utils/run";
+import { getPokemonSlugsFromBox } from "@/utils/run";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./Box.module.scss";
 
 type Props = {
     box: CaughtPokemon[];
-    runName: string;
+    run: Run;
     onEvolve?: (pokemon: PokemonData, idx: number) => void;
     onFormChange?: (pokemon: PokemonData, idx: number) => void;
     onRIP?: (pokemon: PokemonData, idx: number) => void;
@@ -23,13 +23,15 @@ const Box: React.FC<Props> = (props: Props) => {
 
     // Component state
     const [activeIdx, setActiveIdx] = useState<number | null>(null);
+
+    // Internal data state
     const [isInverted, setIsInverted] = useState<boolean[]>([]);
 
     // Compute inverted indices for menu display
     const getInvertedMenus = () => {
         const pokemon: HTMLCollectionOf<Element> = document.getElementsByClassName(styles.pokemon);
         const inverted: boolean[] = [];
-        for (let p of pokemon) {
+        for (const p of pokemon) {
             inverted.push(p.getBoundingClientRect().right > window.innerWidth / 2);
         }
         setIsInverted(inverted);
@@ -50,72 +52,65 @@ const Box: React.FC<Props> = (props: Props) => {
     // Close menu and propagate up
     const handleRIP = (pokemon: PokemonData, idx: number): void => {
         setActiveIdx(null);
-        setBoxData([]);
         props.onRIP!(pokemon, idx);
     };
 
     // Close menu and propagate up
     const handleRevive = (pokemon: PokemonData, idx: number): void => {
         setActiveIdx(null);
-        setBoxData([]);
         props.onRevive!(pokemon, idx);
     };
 
-    // Listen for window resizes to recompute inverted menus
+    // Listen for window resizes to recompute inverted menus on component load
     useEffect(() => {
+        getInvertedMenus();
         window.addEventListener("resize", getInvertedMenus);
         return () => {
             window.removeEventListener("resize", getInvertedMenus);
         };
     }, []);
 
-    // Compute which indices are inverted menus after box data is fetched
-    useEffect(getInvertedMenus, [boxData]);
-
     // Use box to fetch data for all Pokemon in box, ignoring failed encounters
     useEffect(() => {
         if (props.box.length > 0) {
-            fetchPokemonGroup(getPokemonSlugsFromBox(props.box), getGameGroup(getRun(props.runName).gameSlug)).then(
+            fetchPokemonGroup(getPokemonSlugsFromBox(props.box), props.run.gameSlug).then(
                 (pokemonData: PokemonData[]) => setBoxData(pokemonData)
             );
         }
     }, [props.box]);
 
-    return boxData.length > 0 ? (
+    return boxData.length === props.box.length ? (
         <div className={styles.box}>
-            {boxData.map((pokemon: PokemonData, key: number) => (
-                <div className={styles.pokemon} key={key}>
+            {boxData.map((pokemon: PokemonData, idx: number) => (
+                <div className={styles.pokemon} key={props.box[idx].id}>
                     <button
-                        className={`${styles.button} ${key === activeIdx ? styles.active : ""}`}
-                        onClick={() => setActiveIdx(key)}
-                        key={key}
+                        className={`${styles.button} ${idx === activeIdx ? styles.active : ""}`}
+                        onClick={() => setActiveIdx(idx)}
                     >
                         <Image src={pokemon.sprite} alt={pokemon.pokemon.name} layout="fill" objectFit="contain" />
                     </button>
-                    {isInverted.length > 0 ? (
-                        props.onEvolve ? (
-                            <BoxMenu
-                                open={key === activeIdx}
-                                pokemon={pokemon}
-                                nickname={props.box[key].nickname}
-                                onClose={() => setActiveIdx(null)}
-                                onEvolve={() => handleEvolve(pokemon, key)}
-                                onFormChange={() => handleFormChange(pokemon, key)}
-                                onRIP={() => handleRIP(pokemon, key)}
-                                inverted={isInverted[key]}
-                            />
-                        ) : (
-                            <BoxMenu
-                                open={key === activeIdx}
-                                pokemon={pokemon}
-                                nickname={props.box[key].nickname}
-                                onClose={() => setActiveIdx(null)}
-                                onRevive={() => handleRevive(pokemon, key)}
-                                inverted={isInverted[key]}
-                            />
-                        )
+                    {props.onEvolve ? (
+                        <BoxMenu
+                            pokemon={pokemon}
+                            nickname={props.box[idx].nickname}
+                            runID={props.run.id}
+                            open={idx === activeIdx}
+                            inverted={isInverted[idx]}
+                            onClose={() => setActiveIdx(null)}
+                            onEvolve={() => handleEvolve(pokemon, idx)}
+                            onFormChange={() => handleFormChange(pokemon, idx)}
+                            onRIP={() => handleRIP(pokemon, idx)}
+                        />
                     ) : (
-                        ""
+                        <BoxMenu
+                            pokemon={pokemon}
+                            nickname={props.box[idx].nickname}
+                            runID={props.run.id}
+                            open={idx === activeIdx}
+                            inverted={isInverted[idx]}
+                            onClose={() => setActiveIdx(null)}
+                            onRevive={() => handleRevive(pokemon, idx)}
+                        />
                     )}
                 </div>
             ))}

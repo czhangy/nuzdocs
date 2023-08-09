@@ -1,20 +1,21 @@
-import EvolveModal from "@/components/EvolveModal/EvolveModal";
-import FormChangeModal from "@/components/FormChangeModal/FormChangeModal";
+import EvolveModal from "@/components/Box/EvolveModal/EvolveModal";
+import FormChangeModal from "@/components/Box/FormChangeModal/FormChangeModal";
 import Modal from "@/components/Global/Modal/Modal";
-import RIPModal from "@/components/RIPModal/RIPModal";
 import Box from "@/components/Run/Box/Box";
+import RIPModal from "@/components/Run/RIPModal/RIPModal";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
+import Run from "@/models/Run";
 import { addToCaughtPokemonSlugs, addToRIPs, getBox, removeFromBox, updateBox } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./BoxPage.module.scss";
 
 type Props = {
-    runName: string;
+    run: Run;
 };
 
 const BoxPage: React.FC<Props> = (props: Props) => {
-    // LocalStorage data state
+    // Internal data state
     const [boxPokemon, setBoxPokemon] = useState<CaughtPokemon[]>([]);
 
     // Component state
@@ -68,39 +69,37 @@ const BoxPage: React.FC<Props> = (props: Props) => {
 
     // Evolve the Pokemon, updating component + local storage and closing the modal
     const handleEvolve = (selection: PokemonData) => {
-        let evolvedPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
+        let evolvedPokemon: CaughtPokemon = boxPokemon[selectedIdx!];
         evolvedPokemon.pokemon.slug = selection.pokemon.slug;
         evolvedPokemon.pokemon.species = selection.pokemon.species;
         evolvedPokemon.pastSlugs.push(selection.pokemon.slug);
-        updateBox(props.runName, evolvedPokemon, selectedIdx!);
-        addToCaughtPokemonSlugs(props.runName, selection.pokemon.slug);
-        setBoxPokemon(getBox(props.runName));
+        updateBox(props.run.id, evolvedPokemon, selectedIdx!);
+        addToCaughtPokemonSlugs(props.run.id, selection.pokemon.slug);
+        setBoxPokemon(getBox(props.run.id));
         handleClose();
     };
 
     // Change the form of the Pokemon, updating component + local storage and closing the modal
     const handleFormChange = (selection: PokemonData) => {
-        let updatedPokemon: CaughtPokemon = JSON.parse(JSON.stringify(boxPokemon[selectedIdx!]));
+        let updatedPokemon: CaughtPokemon = boxPokemon[selectedIdx!];
         updatedPokemon.pokemon.slug = selection.pokemon.slug;
-        updateBox(props.runName, updatedPokemon, selectedIdx!);
-        setBoxPokemon(getBox(props.runName));
+        updateBox(props.run.id, updatedPokemon, selectedIdx!);
+        setBoxPokemon(getBox(props.run.id));
         handleClose();
     };
 
     // RIP the Pokemon, updating component + local storage and closing the modal
     const handleRIP = () => {
-        addToRIPs(props.runName, boxPokemon[selectedIdx!]);
-        removeFromBox(props.runName, boxPokemon[selectedIdx!].locationSlug);
-        setBoxPokemon(getBox(props.runName));
+        addToRIPs(props.run.id, boxPokemon[selectedIdx!]);
+        removeFromBox(props.run.id, boxPokemon[selectedIdx!].locationSlug);
+        setBoxPokemon(getBox(props.run.id));
         handleClose();
     };
 
     // Access local storage on component load
     useEffect(() => {
-        if (props.runName) {
-            setBoxPokemon(getBox(props.runName));
-        }
-    }, [props.runName]);
+        if (props.run) setBoxPokemon(getBox(props.run.id));
+    }, [props.run]);
 
     return (
         <div className={styles["box-page"]}>
@@ -108,10 +107,9 @@ const BoxPage: React.FC<Props> = (props: Props) => {
                 {selectedPokemon && evolveModalOpen ? (
                     <EvolveModal
                         pokemon={selectedPokemon}
-                        chains={selectedPokemon.evolutions}
-                        onClose={handleClose}
+                        gameSlug={props.run.gameSlug}
                         onEvolve={(selection: PokemonData) => handleEvolve(selection)}
-                        runName={props.runName}
+                        onClose={handleClose}
                     />
                 ) : (
                     ""
@@ -120,10 +118,10 @@ const BoxPage: React.FC<Props> = (props: Props) => {
             <Modal modalID="form-change-modal" open={formChangeModalOpen} onClose={handleClose}>
                 {selectedPokemon && formChangeModalOpen ? (
                     <FormChangeModal
-                        forms={selectedPokemon.forms}
-                        onClose={handleClose}
+                        pokemon={selectedPokemon}
+                        gameSlug={props.run.gameSlug}
                         onFormChange={(selection: PokemonData) => handleFormChange(selection)}
-                        runName={props.runName}
+                        onClose={handleClose}
                     />
                 ) : (
                     ""
@@ -131,7 +129,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
             </Modal>
             <Modal modalID="rip-modal" open={ripModalOpen} onClose={handleClose}>
                 {selectedPokemon && ripModalOpen ? (
-                    <RIPModal pokemon={selectedPokemon} onClose={handleClose} onConfirm={handleRIP} isRevive={false} />
+                    <RIPModal pokemon={selectedPokemon} isRevive={false} onConfirm={handleRIP} onClose={handleClose} />
                 ) : (
                     ""
                 )}
@@ -139,7 +137,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
             <h2 className={styles.header}>Your Box</h2>
             <Box
                 box={boxPokemon}
-                runName={props.runName}
+                run={props.run}
                 onEvolve={(pokemon: PokemonData, idx: number) => handleEvolveAttempt(pokemon, idx)}
                 onFormChange={(pokemon: PokemonData, idx: number) => handleFormChangeAttempt(pokemon, idx)}
                 onRIP={(pokemon: PokemonData, idx: number) => handleRIPAttempt(pokemon, idx)}

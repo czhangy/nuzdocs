@@ -3,12 +3,12 @@
 .pokemon-card {
     --body-estimate: 30rem;
     --card-border-rad: 10px;
-    --display-size: 150px;
+    --display-size: 120px;
     --header-border-size: 3px;
-    --header-x-padding: 1rem;
-    --info-font-size: 1rem;
+    --header-x-padding: 2.5rem;
+    --info-font-size: 0.75rem;
     --info-inner-spacing: 0.5rem;
-    --level-font-size: 1.25rem;
+    --level-font-size: 1rem;
     --moves-inner-spacing: 1rem;
     --toggle-font-size: 2rem;
     --toggle-offset: 0.5rem;
@@ -73,6 +73,7 @@
 @media screen and (min-width: constants.$tablet) {
     .pokemon-card {
         --body-estimate: 15rem;
+        --display-size: 150px;
         --header-x-padding: 4rem;
         --info-font-size: 1.25rem;
         --level-font-size: 1.5rem;

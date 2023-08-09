@@ -129,6 +129,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Fix issue where `NextLevelCap` always computes the first level cap
 -   [ ] Revisit `EncounterList`: it's a mess
 -   [ ] Think about only fetching on open in `EncounterAccordion`
+-   [ ] Rework `BoxPage` fetching
 
 ## License
 

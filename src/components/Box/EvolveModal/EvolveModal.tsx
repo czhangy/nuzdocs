@@ -1,21 +1,19 @@
 import PokemonData from "@/models/PokemonData";
+import Run from "@/models/Run";
 import { fetchPokemonGroup } from "@/utils/api";
-import { getGameGroup } from "@/utils/game";
-import { getRun } from "@/utils/run";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EvolveModal.module.scss";
 
 type Props = {
     pokemon: PokemonData;
-    chains: string[][];
-    onClose: () => void;
+    gameSlug: string;
     onEvolve: (selection: PokemonData) => void;
-    runName: string;
+    onClose: () => void;
 };
 
 const EvolveModal: React.FC<Props> = (props: Props) => {
-    // User state
+    // Component state
     const [selection, setSelection] = useState<PokemonData | null>(null);
 
     // Fetched data state
@@ -23,19 +21,19 @@ const EvolveModal: React.FC<Props> = (props: Props) => {
 
     // Fetch data for all next evolutions on modal open
     useEffect(() => {
-        if (props.pokemon && props.chains) {
-            let evolutionSlugs: string[] = [];
-            for (let chain of props.chains) {
-                const curIdx: number = chain.indexOf(props.pokemon.pokemon.slug);
-                if (curIdx + 1 < chain.length) {
-                    evolutionSlugs.push(chain[curIdx + 1]);
+        if (props.pokemon) {
+            const evolutionSlugs: string[] = [];
+            for (const chain of props.pokemon.evolutions) {
+                const idx: number = chain.indexOf(props.pokemon.pokemon.slug);
+                if (idx + 1 < chain.length) {
+                    evolutionSlugs.push(chain[idx + 1]);
                 }
             }
-            fetchPokemonGroup([...new Set(evolutionSlugs)], getGameGroup(getRun(props.runName).gameSlug)).then(
-                (pokemonData: PokemonData[]) => setEvolutions(pokemonData)
+            fetchPokemonGroup([...new Set(evolutionSlugs)], props.gameSlug).then((pokemonData: PokemonData[]) =>
+                setEvolutions(pokemonData)
             );
         }
-    }, [props.pokemon, props.chains]);
+    }, [props.pokemon]);
 
     // When the evolution data has been fetched, initialize the user state to the first option
     useEffect(() => {
@@ -44,14 +42,14 @@ const EvolveModal: React.FC<Props> = (props: Props) => {
         }
     }, [evolutions]);
 
-    return selection ? (
+    return evolutions.length > 0 && selection ? (
         <div className={styles["evolve-modal"]}>
             <p className={styles.header}>
                 Evolve <strong>{props.pokemon.pokemon.name}</strong> into <strong>{selection.pokemon.name}</strong>?
             </p>
-            <div className={styles.chains}>
-                {evolutions.map((evolution: PokemonData, key: number) => (
-                    <div className={styles.chain} key={key}>
+            <ul className={styles.chains}>
+                {evolutions.map((evolution: PokemonData) => (
+                    <li className={styles.chain} key={evolution.pokemon.slug}>
                         <div className={styles.sprite}>
                             <Image
                                 src={props.pokemon.sprite}
@@ -72,9 +70,9 @@ const EvolveModal: React.FC<Props> = (props: Props) => {
                                 objectFit="contain"
                             />
                         </button>
-                    </div>
+                    </li>
                 ))}
-            </div>
+            </ul>
             <div className={styles.buttons}>
                 <button className={`${styles.button} ${styles.cancel}`} onClick={props.onClose}>
                     Cancel

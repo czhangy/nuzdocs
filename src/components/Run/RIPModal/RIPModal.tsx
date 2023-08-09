@@ -4,9 +4,9 @@ import styles from "./RIPModal.module.scss";
 
 type Props = {
     pokemon: PokemonData;
-    onClose: () => void;
-    onConfirm: () => void;
     isRevive: boolean;
+    onConfirm: () => void;
+    onClose: () => void;
 };
 
 const RIPModal: React.FC<Props> = (props: Props) => {

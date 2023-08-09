@@ -1,29 +1,28 @@
 import PokemonData from "@/models/PokemonData";
 import { isFinalStage } from "@/utils/utils";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import styles from "./BoxMenu.module.scss";
 
 type Props = {
-    open: boolean;
     pokemon: PokemonData;
     nickname: string;
+    runID: string;
+    open: boolean;
+    inverted: boolean;
     onClose: () => void;
     onEvolve?: () => void;
     onFormChange?: () => void;
     onRIP?: () => void;
     onRevive?: () => void;
-    inverted: boolean;
 };
 
 const BoxMenu: React.FC<Props> = (props: Props) => {
-    const router = useRouter();
-
     return (
         <div className={`${styles["box-menu"]} ${props.open ? "" : styles.hide}`}>
             <div className={styles.overlay} onClick={props.onClose} />
             <div className={`${styles.menu} ${props.inverted ? styles.inverted : ""}`}>
-                <Link href={`/runs/${router.query.runName}/summary/${props.nickname}`}>
+                <div className={styles.arrow} />
+                <Link href={`/runs/${props.runID}/summary/${props.nickname}`}>
                     <a className={styles.option}>Summary</a>
                 </Link>
                 {props.onEvolve ? (
@@ -60,7 +59,6 @@ const BoxMenu: React.FC<Props> = (props: Props) => {
                 ) : (
                     ""
                 )}
-                <div className={styles.arrow} />
             </div>
         </div>
     );

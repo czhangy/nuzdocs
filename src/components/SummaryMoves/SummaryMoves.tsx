@@ -1,5 +1,5 @@
 import AddMove from "@/components/AddMove/AddMove";
-import MoveCard from "@/components/MoveCard/MoveCard";
+import MoveCard from "@/components/Run/MoveCard/MoveCard";
 import MoveData from "@/models/MoveData";
 import { fetchMoves } from "@/utils/api";
 import { useEffect, useState } from "react";

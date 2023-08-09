@@ -2,11 +2,11 @@
 
 .pokemon-display {
     --info-inner-spacing: 0.2rem;
-    --name-font-size: 1.25rem;
+    --name-font-size: 1rem;
     --name-z: 2;
     --sprite-left-offset: -2rem;
-    --sprite-right-offset: -1.5rem;
-    --sprite-size: 150px;
+    --sprite-right-offset: -0.5rem;
+    --sprite-size: 120px;
     --top-inner-spacing: 0.5rem;
     --type-height: 12px;
     --type-ratio: 8/3;
@@ -46,5 +46,12 @@
                 width: calc(var(--type-height) * var(--type-ratio));
             }
         }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .pokemon-display {
+        --name-font-size: 1.25rem;
+        --sprite-size: 150px;
     }
 }

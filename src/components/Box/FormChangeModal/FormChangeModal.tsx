@@ -1,20 +1,18 @@
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemonGroup } from "@/utils/api";
-import { getGameGroup } from "@/utils/game";
-import { getRun } from "@/utils/run";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./FormChangeModal.module.scss";
 
 type Props = {
-    forms: string[];
-    onClose: () => void;
+    pokemon: PokemonData;
+    gameSlug: string;
     onFormChange: (selection: PokemonData) => void;
-    runName: string;
+    onClose: () => void;
 };
 
 const FormChangeModal: React.FC<Props> = (props: Props) => {
-    // User state
+    // Component state
     const [selection, setSelection] = useState<PokemonData | null>(null);
 
     // Fetched data state
@@ -22,29 +20,29 @@ const FormChangeModal: React.FC<Props> = (props: Props) => {
 
     // Fetch data for all forms on modal open
     useEffect(() => {
-        if (props.forms) {
-            fetchPokemonGroup(props.forms, getGameGroup(getRun(props.runName).gameSlug)).then(
-                (formData: PokemonData[]) => setFormData(formData)
-            );
+        if (props.pokemon) {
+            const forms: string[] = props.pokemon.forms.filter((form: string) => form !== props.pokemon.pokemon.slug);
+            fetchPokemonGroup(forms, props.gameSlug).then((formData: PokemonData[]) => {
+                formData.unshift(props.pokemon);
+                setFormData(formData);
+            });
         }
-    }, [props.forms]);
+    }, [props.pokemon]);
 
     // When the form data has been fetched, initialize the user state to the default option
     useEffect(() => {
-        if (formData.length > 0) {
-            setSelection(formData[0]);
-        }
+        if (formData.length > 0) setSelection(formData[0]);
     }, [formData]);
 
-    return selection ? (
+    return formData.length > 0 && selection ? (
         <div className={styles["form-change-modal"]}>
             <p className={styles.header}>Choose a form</p>
             <div className={styles.forms}>
-                {formData.map((form: PokemonData, key: number) => (
+                {formData.map((form: PokemonData) => (
                     <button
                         className={`${styles.form} ${form === selection ? styles.active : ""}`}
                         onClick={() => setSelection(form)}
-                        key={key}
+                        key={form.pokemon.slug}
                     >
                         <Image src={form.sprite} alt={form.pokemon.name} layout="fill" objectFit="contain" />
                     </button>
