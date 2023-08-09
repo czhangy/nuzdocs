@@ -2,9 +2,7 @@ import TierCard from "@/components/Global/TierCard/TierCard";
 import EncounterData from "@/models/EncounterData";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemonGroup } from "@/utils/api";
-import { getGameGroup } from "@/utils/game";
-import { getRun } from "@/utils/run";
-import { getPokemonTier } from "@/utils/utils";
+import { getPokemonTier, getTypeCardSrc } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterAccordion.module.scss";
@@ -12,14 +10,14 @@ import styles from "./EncounterAccordion.module.scss";
 type Props = {
     method: string;
     encounters: EncounterData[];
-    runName: string;
+    gameSlug: string;
 };
 
 const EncounterAccordion: React.FC<Props> = (props: Props) => {
-    // Display state
+    // Component state
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    // Data state
+    // Fetched data state
     const [pokemonData, setPokemonData] = useState<PokemonData[]>([]);
 
     // Calculates the expanded height of the accordion
@@ -36,16 +34,16 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
         }
     };
 
-    // Gets the tier of the Pokemon when new Pokemon data is given
+    // Fetches data of encounters on component load
     useEffect(() => {
-        if (props.encounters) {
+        if (props.encounters && props.gameSlug) {
             setPokemonData([]);
             fetchPokemonGroup(
                 props.encounters.map((encounter: EncounterData) => encounter.pokemonSlug),
-                getGameGroup(getRun(props.runName).gameSlug)
+                props.gameSlug
             ).then((pokemon) => setPokemonData(pokemon));
         }
-    }, [props.encounters]);
+    }, [props.encounters, props.gameSlug]);
 
     return (
         <div className={styles["encounter-accordion"]} style={isOpen ? { maxHeight: getExpandedHeight() } : {}}>
@@ -71,14 +69,11 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {pokemonData.map((pokemon: PokemonData, key: number) => {
+                        {pokemonData.map((pokemon: PokemonData, idx: number) => {
                             {
-                                const tier: string = getPokemonTier(
-                                    pokemon.pokemon.slug,
-                                    getGameGroup(getRun(props.runName).gameSlug).versionGroup
-                                );
+                                const tier: string = getPokemonTier(pokemon.pokemon.slug, props.gameSlug);
                                 return (
-                                    <tr className={styles.row} key={key}>
+                                    <tr className={styles.row} key={pokemon.pokemon.slug}>
                                         <td className={styles.cell}>
                                             <div className={styles.pokemon}>
                                                 <div className={styles.sprite}>
@@ -90,13 +85,12 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
                                                     />
                                                 </div>
                                                 <p className={styles.name}>{pokemon.pokemon.name}</p>
-
                                                 <div className={styles.types}>
-                                                    {pokemon.types.map((type: string, key: number) => {
+                                                    {pokemon.types.map((type: string) => {
                                                         return (
-                                                            <div className={styles.type} key={key}>
+                                                            <div className={styles.type} key={type}>
                                                                 <Image
-                                                                    src={`https://www.serebii.net/pokedex-bw/type/${type}.gif`}
+                                                                    src={getTypeCardSrc(type)}
                                                                     alt={type}
                                                                     layout="fill"
                                                                     objectFit="contain"
@@ -107,8 +101,8 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className={styles.cell}>{props.encounters[key].chance}%</td>
-                                        <td className={styles.cell}>{getLevelRange(props.encounters[key])}</td>
+                                        <td className={styles.cell}>{props.encounters[idx].chance}%</td>
+                                        <td className={styles.cell}>{getLevelRange(props.encounters[idx])}</td>
                                         <td className={styles.cell}>
                                             <TierCard tier={tier} />
                                         </td>

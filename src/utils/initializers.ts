@@ -93,10 +93,11 @@ export const initEncounterData = (
     };
 };
 
-export const initLocationData = (names: Name[], areaSlugList: string[]): LocationData => {
+export const initLocationData = (slug: string, names: Name[], areas: string[]): LocationData => {
     return {
-        locationName: getEnglishName(names),
-        areaSlugList: areaSlugList,
+        slug: slug,
+        name: getEnglishName(names),
+        areas: areas,
     };
 };
 

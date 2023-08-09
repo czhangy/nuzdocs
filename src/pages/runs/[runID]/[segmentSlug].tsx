@@ -1,7 +1,8 @@
 import SegmentPage from "@/components/Segment/SegmentPage/SegmentPage";
 import Run from "@/models/Run";
+import Segment from "@/models/Segment";
 import { getRun, isRun } from "@/utils/run";
-import { isSegment } from "@/utils/segment";
+import { getSegment, isSegment } from "@/utils/segment";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -12,7 +13,7 @@ const Segment: NextPage = () => {
 
     // Internal data state
     const [run, setRun] = useState<Run | null>(null);
-    const [segmentSlug, setSegmentSlug] = useState<string>("");
+    const [segment, setSegment] = useState<Segment | null>(null);
 
     // Validate route and set run for valid routes, redirect to home for invalid addresses
     useEffect(() => {
@@ -20,8 +21,9 @@ const Segment: NextPage = () => {
             const runID: string = router.query.runID as string;
             const segmentSlug: string = router.query.segmentSlug as string;
             if (isRun(runID) && isSegment(getRun(runID).gameSlug, segmentSlug)) {
-                setRun(getRun(runID));
-                setSegmentSlug(segmentSlug);
+                const run: Run = getRun(runID);
+                setRun(run);
+                setSegment(getSegment(run.gameSlug, segmentSlug));
             } else {
                 router.push("/");
             }
@@ -33,7 +35,7 @@ const Segment: NextPage = () => {
             <Head>
                 <title>{run ? run.name : "NuzlockeDB"}</title>
             </Head>
-            {run && segmentSlug.length > 0 ? <SegmentPage segmentSlug={segmentSlug} run={run} /> : ""}
+            {run && segment ? <SegmentPage segment={segment} run={run} /> : ""}
         </>
     );
 };

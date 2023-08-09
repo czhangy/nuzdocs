@@ -4,7 +4,7 @@ import { getGame } from "@/utils/game";
 import { getNumClearedBattles, getNumRIPs, getRun } from "@/utils/run";
 import { getNumBattles } from "@/utils/segment";
 import Image from "next/image";
-import Router from "next/router";
+import Link from "next/link";
 import styles from "./RunEntry.module.scss";
 
 type Props = {
@@ -31,40 +31,37 @@ const RunEntry: React.FC<Props> = (props: Props) => {
         link.remove();
     };
 
-    // Redirect to previous location of selected run
-    const handleNav = () => {
-        Router.push(`/runs/${props.run.name}/${props.run.prevSegmentSlug}`);
-    };
-
     return (
         <li className={styles["run-entry"]}>
-            <button className={styles.nav} onClick={handleNav}>
-                <div className={styles.logo}>
-                    <Image
-                        src={getGame(props.run.gameSlug).logoURL}
-                        alt="Game logo"
-                        layout="fill"
-                        objectFit="contain"
-                    />
-                </div>
-                <div className={styles.info}>
-                    <p className={styles.name}>
-                        {getNumClearedBattles(props.run.id) === getNumBattles(getRun(props.run.id).gameSlug)
-                            ? `👑 ${props.run.name}`
-                            : props.run.name}
-                    </p>
-                    <ProgressBar
-                        complete={getNumClearedBattles(props.run.id)}
-                        total={getNumBattles(getRun(props.run.id).gameSlug)}
-                    />
-                    <div className={styles.rips}>
-                        <div className={styles.icon}>
-                            <Image src="/assets/icons/dead.svg" alt="Deaths" layout="fill" objectFit="contain" />
-                        </div>
-                        <p className={styles.num}>{getNumRIPs(props.run.id)}</p>
+            <Link href={`/runs/${props.run.id}/${props.run.prevSegmentSlug}`}>
+                <a className={styles.nav}>
+                    <div className={styles.logo}>
+                        <Image
+                            src={getGame(props.run.gameSlug).logoURL}
+                            alt="Game logo"
+                            layout="fill"
+                            objectFit="contain"
+                        />
                     </div>
-                </div>
-            </button>
+                    <div className={styles.info}>
+                        <p className={styles.name}>
+                            {getNumClearedBattles(props.run.id) === getNumBattles(getRun(props.run.id).gameSlug)
+                                ? `👑 ${props.run.name}`
+                                : props.run.name}
+                        </p>
+                        <ProgressBar
+                            complete={getNumClearedBattles(props.run.id)}
+                            total={getNumBattles(getRun(props.run.id).gameSlug)}
+                        />
+                        <div className={styles.rips}>
+                            <div className={styles.icon}>
+                                <Image src="/assets/icons/dead.svg" alt="Deaths" layout="fill" objectFit="contain" />
+                            </div>
+                            <p className={styles.num}>{getNumRIPs(props.run.id)}</p>
+                        </div>
+                    </div>
+                </a>
+            </Link>
             <div className={styles.buttons}>
                 <button className={styles.button} onClick={props.onDelete}>
                     <Image src="/assets/icons/delete.svg" alt="Delete" layout="fill" objectFit="contain" />

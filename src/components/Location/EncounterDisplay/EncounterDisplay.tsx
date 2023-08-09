@@ -1,6 +1,7 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import PokemonName from "@/models/PokemonName";
+import Run from "@/models/Run";
 import { fetchPokemon } from "@/utils/api";
 import { getGameGroup } from "@/utils/game";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
@@ -18,105 +19,93 @@ import { useEffect, useState } from "react";
 import styles from "./EncounterDisplay.module.scss";
 
 type Props = {
-    pokedex: PokemonName[];
-    runName: string;
     locationSlug: string;
+    run: Run;
 };
 
 const EncounterDisplay: React.FC<Props> = (props: Props) => {
     // Input states
-    const [isSelected, setIsSelected] = useState<boolean>(false);
     const [searchValue, setSearchValue] = useState<string>("");
     const [matches, setMatches] = useState<PokemonName[]>([]);
+    const [hasEncounter, setHasEncounter] = useState<boolean>(false);
 
-    // Display states
+    // Component states
     const [isFocused, setIsFocused] = useState<boolean>(false);
     const [isMinimized, setIsMinimized] = useState<boolean>(false);
 
-    // Encounter state
+    // Fetched data state
     const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | null>(null);
 
     // Delay close on blur to allow clicks to register
-    const handleBlur = () => {
-        setTimeout(() => setIsFocused(false), 100);
-    };
+    const handleBlur = () => setTimeout(() => setIsFocused(false), 100);
 
     // Highlight matching substring
-    const renderMatch = (pokemonName: string) => {
-        const matchIdx: number = pokemonName.toLowerCase().indexOf(searchValue.toLowerCase());
+    const renderMatch = (name: string) => {
+        const idx: number = name.toLowerCase().indexOf(searchValue.toLowerCase());
         return (
             <p>
-                {pokemonName.substring(0, matchIdx)}
-                <span className={styles.highlight}>
-                    {pokemonName.substring(matchIdx, matchIdx + searchValue.length)}
-                </span>
-                {pokemonName.substring(matchIdx + searchValue.length, pokemonName.length)}
+                {name.substring(0, idx)}
+                <span className={styles.highlight}>{name.substring(idx, idx + searchValue.length)}</span>
+                {name.substring(idx + searchValue.length, name.length)}
             </p>
         );
     };
 
     // Update display on reloads
-    const handleDisplay = (selected: boolean, value: string) => {
-        setIsSelected(selected);
+    const updateDisplay = (selected: boolean, value: string) => {
+        setHasEncounter(selected);
         setSearchValue(value);
     };
 
-    // Update display and local storage on select
+    // Update display + local storage on select
     const handleUpdate = async (encounter: PokemonName | null) => {
         if (encounter) {
-            handleDisplay(true, encounter.name);
-            if (encounter.slug !== "failed") {
-                const encounterData: PokemonData = await fetchPokemon(
-                    encounter.slug,
-                    getGameGroup(getRun(props.runName).gameSlug)
-                );
-                setEncounteredPokemon(encounterData);
-                addToBox(
-                    props.runName,
-                    initCaughtPokemon(initPokemon(encounter.slug, encounter.species), props.locationSlug, props.runName)
-                );
-                addToCaughtPokemonSlugs(props.runName, encounter.slug);
+            updateDisplay(true, encounter.name);
+            if (encounter.slug === "failed") {
+                addFailedEncounter(props.run.id, props.locationSlug);
             } else {
-                addFailedEncounter(props.runName, props.locationSlug);
+                addToBox(
+                    props.run.id,
+                    initCaughtPokemon(initPokemon(encounter.slug, encounter.species), props.locationSlug, props.run.id)
+                );
+                addToCaughtPokemonSlugs(props.run.id, encounter.slug);
+                setEncounteredPokemon(await fetchPokemon(encounter.slug, props.run.gameSlug));
             }
         } else {
-            handleDisplay(false, "");
-            for (const slug of getLocationEncounter(props.runName, props.locationSlug)!.pastSlugs) {
-                removeFromCaughtPokemonSlugs(props.runName, slug);
-            }
-            removeFromBox(props.runName, props.locationSlug);
+            updateDisplay(false, "");
             setEncounteredPokemon(null);
+            removeFromCaughtPokemonSlugs(props.run.id, props.locationSlug);
+            removeFromBox(props.run.id, props.locationSlug);
         }
     };
 
-    // Fetch saved encounter if it exists
+    // Fetch saved encounter if it exists + update display on page change
     useEffect(() => {
-        if (props.runName && props.locationSlug) {
-            const currentEncounter: CaughtPokemon | null = getLocationEncounter(props.runName, props.locationSlug);
-            if (!currentEncounter) {
-                handleDisplay(false, "");
-                setEncounteredPokemon(null);
-            } else if (currentEncounter.pastSlugs[0] === "failed") {
-                handleDisplay(true, "Failed");
-            } else {
-                fetchPokemon(currentEncounter.pastSlugs[0], getGameGroup(getRun(props.runName).gameSlug)).then(
-                    (pokemon: PokemonData) => {
-                        handleDisplay(true, pokemon.pokemon.name);
+        if (props.run && props.locationSlug) {
+            updateDisplay(false, "");
+            setEncounteredPokemon(null);
+            const currentEncounter: CaughtPokemon | null = getLocationEncounter(props.run.id, props.locationSlug);
+            if (currentEncounter) {
+                if (currentEncounter.pokemon.slug === "failed") {
+                    updateDisplay(true, "Failed");
+                } else {
+                    fetchPokemon(currentEncounter.pastSlugs[0], props.run.gameSlug).then((pokemon: PokemonData) => {
+                        updateDisplay(true, pokemon.pokemon.name);
                         setEncounteredPokemon(pokemon);
-                    }
-                );
+                    });
+                }
             }
         }
-    }, [props.runName, props.locationSlug]);
+    }, [props.run, props.locationSlug]);
 
     // Search for matches in dex when typing in input
     useEffect(() => {
-        if (searchValue.length > 2 && !isSelected) {
-            let newMatches: PokemonName[] = [];
-            props.pokedex.forEach((pokemon: PokemonName) => {
+        if (!hasEncounter && searchValue.length > 2) {
+            const newMatches: PokemonName[] = [];
+            getGameGroup(props.run.gameSlug).pokedex.forEach((pokemon: PokemonName) => {
                 if (
                     pokemon.name.toLowerCase().includes(searchValue.toLowerCase()) &&
-                    !getRun(props.runName).caughtPokemonSlugs.includes(pokemon.slug)
+                    !props.run.caughtPokemonSlugs.includes(pokemon.slug)
                 ) {
                     newMatches.push(pokemon);
                 }
@@ -149,7 +138,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                     <div className={styles.text}>
                         <div className={styles.header}>
                             <h3 className={styles.title}>Encounter:</h3>
-                            {isSelected ? (
+                            {hasEncounter ? (
                                 <button className={styles["encounter-button"]} onClick={() => handleUpdate(null)}>
                                     <Image
                                         src="/assets/icons/reset.svg"
@@ -174,7 +163,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                         </div>
                         <input
                             className={styles.search}
-                            disabled={isSelected}
+                            disabled={hasEncounter}
                             type="text"
                             placeholder="Search..."
                             onChange={(e) => setSearchValue(e.target.value)}

@@ -8,6 +8,7 @@ import { getBox, getRIPs, isAlive, updateBox, updateRIPs } from "@/utils/run";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
 import styles from "./SummaryInfo.module.scss";
+import { getTypeCardSrc } from "@/utils/utils";
 
 type Props = {
     caughtPokemon: CaughtPokemon;
@@ -85,13 +86,8 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
                 <div className={styles.value}>
                     {props.pokemonData.types.map((type: string, key: number) => {
                         return (
-                            <div className={styles.type} key={key}>
-                                <Image
-                                    src={`https://www.serebii.net/pokedex-bw/type/${type}.gif`}
-                                    alt={type}
-                                    layout="fill"
-                                    objectFit="contain"
-                                />
+                            <div className={styles.type} key={type}>
+                                <Image src={getTypeCardSrc(type)} alt={type} layout="fill" objectFit="contain" />
                             </div>
                         );
                     })}

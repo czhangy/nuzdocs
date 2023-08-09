@@ -1,18 +1,17 @@
 import Dropdown from "@/components/Global/Dropdown/Dropdown";
-import EncounterAccordion from "@/components/EncounterAccordion/EncounterAccordion";
+import EncounterAccordion from "@/components/Location/EncounterAccordion/EncounterAccordion";
 import AreaData from "@/models/AreaData";
 import LocationData from "@/models/LocationData";
+import Run from "@/models/Run";
 import { fetchAreas } from "@/utils/api";
 import { getGameGroup } from "@/utils/game";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterList.module.scss";
-import { getRun } from "@/utils/run";
 
 type Props = {
-    currentLocation: LocationData;
-    runName: string;
-    segmentSlug: string;
+    location: LocationData;
+    run: Run;
 };
 
 const EncounterList: React.FC<Props> = (props: Props) => {
@@ -34,7 +33,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
     const handleAreaSelect = (areaName: string): void => {
         let area: AreaData = areaList.find((area: AreaData) => area.areaName === areaName)!;
         // Strip starters out of encounters in starting town
-        if (props.segmentSlug === getGameGroup(getRun(props.runName).gameSlug).startingTownSlug) {
+        if (props.location.slug === getGameGroup(props.run.gameSlug).startingTownSlug) {
             delete area.encounters["time-morning"].gift;
             delete area.encounters["time-day"].gift;
             delete area.encounters["time-night"].gift;
@@ -42,22 +41,14 @@ const EncounterList: React.FC<Props> = (props: Props) => {
         setCurrentArea(area);
     };
 
-    // Fetch areas + encounters in location on component load
+    // Fetch areas + encounters in location on location change
     useEffect(() => {
-        if (props.currentLocation) {
-            setAreaList([]);
-            fetchAreas(props.currentLocation.areaSlugList, getRun(props.runName).gameSlug).then((areaList) =>
-                setAreaList(areaList)
-            );
-        }
-    }, [props.currentLocation]);
-
-    // When area list is changed, reset area info and fetch all encounters' PokemonData in area
-    useEffect(() => {
-        if (areaList.length > 0) {
+        if (props.location) {
             setCurrentArea(null);
+            setAreaList([]);
+            fetchAreas(props.location.areas, props.run.gameSlug).then((areaList) => setAreaList(areaList));
         }
-    }, [areaList]);
+    }, [props.location]);
 
     return (
         <div className={styles["encounter-list"]}>
@@ -128,13 +119,13 @@ const EncounterList: React.FC<Props> = (props: Props) => {
             )}
             {currentArea ? (
                 <div className={styles.encounters}>
-                    {Object.keys(currentArea.encounters[time]).map((method: string, key: number) => {
+                    {Object.keys(currentArea.encounters[time]).map((method: string) => {
                         return (
                             <EncounterAccordion
-                                key={key}
+                                key={method}
                                 method={method}
                                 encounters={currentArea.encounters[time][method]}
-                                runName={props.runName}
+                                gameSlug={props.run.gameSlug}
                             />
                         );
                     })}

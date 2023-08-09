@@ -21,7 +21,7 @@ export const getGameGroup = (gameSlug: string): GameGroup => {
 export const getSegments = (gameSlug: string): Segment[] => {
     const segments: Segment[] = [];
     for (const split of getGameGroup(gameSlug).splits) {
-        segments.concat(split.segments);
+        segments.push(...split.segments);
     }
     return segments;
 };

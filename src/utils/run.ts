@@ -144,10 +144,23 @@ export const addToCaughtPokemonSlugs = (runID: string, pokemonSlug: string): voi
     setRun(runID, run);
 };
 
-export const removeFromCaughtPokemonSlugs = (runID: string, pokemonSlug: string): void => {
+export const removeFromCaughtPokemonSlugs = (runID: string, locationSlug: string): void => {
     let run: Run = getRun(runID);
-    run.caughtPokemonSlugs.splice(run.caughtPokemonSlugs.indexOf(pokemonSlug), 1);
-    setRun(runID, run);
+    let pokemon: CaughtPokemon | undefined = run.box.find(
+        (boxPokemon: CaughtPokemon) => boxPokemon.locationSlug === locationSlug
+    );
+    if (pokemon === undefined) {
+        pokemon = run.rips.find((ripPokemon: CaughtPokemon) => ripPokemon.locationSlug === locationSlug);
+    }
+    if (pokemon === undefined) {
+        return;
+    } else {
+        for (const slug of pokemon.pastSlugs) {
+            const removeIdx: number = run.caughtPokemonSlugs.indexOf(slug);
+            run.caughtPokemonSlugs = run.caughtPokemonSlugs.splice(removeIdx, 1);
+        }
+        setRun(runID, run);
+    }
 };
 
 export const addToClearedBattles = (runID: string, battleSlug: string): void => {

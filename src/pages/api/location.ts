@@ -21,12 +21,12 @@ type ResData = {
     error?: any;
 };
 
-const fetchLocation = async (locationSlug: string): Promise<LocationData> => {
+const fetchLocation = async (slug: string): Promise<LocationData> => {
     const api: LocationClient = new LocationClient();
     try {
-        const location: Location = await api.getLocationByName(locationSlug);
-        const areaSlugList: string[] = location.areas.map((area) => area.name);
-        return initLocationData(location.names, areaSlugList);
+        const location: Location = await api.getLocationByName(slug);
+        const areas: string[] = location.areas.map((area) => area.name);
+        return initLocationData(slug, location.names, areas);
     } catch (error: any) {
         throw error;
     }
