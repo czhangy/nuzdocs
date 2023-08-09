@@ -29,7 +29,7 @@ const LocationPage: React.FC<Props> = (props: Props) => {
     return currentLocation ? (
         <div className={styles["location-page"]}>
             <div className={styles.info}>
-                <NextLevelCap run={props.run} />
+                <NextLevelCap locationSlug={props.segment.slug} run={props.run} />
                 {props.segment.slug === getGameGroup(props.run.gameSlug).startingTownSlug ? (
                     <section className={styles.section}>
                         <StarterSelect run={props.run} />
