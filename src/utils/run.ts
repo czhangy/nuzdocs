@@ -154,6 +154,7 @@ export const removeFromCaughtPokemonSlugs = (runID: string, locationSlug: string
         pokemon = run.rips.find((ripPokemon: CaughtPokemon) => ripPokemon.locationSlug === locationSlug);
     }
     if (pokemon === undefined) {
+        console.log("sdfin");
         return;
     } else {
         for (const slug of pokemon.pastSlugs) {

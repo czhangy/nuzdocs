@@ -1,15 +1,15 @@
-import AddMove from "@/components/AddMove/AddMove";
 import MoveCard from "@/components/Run/MoveCard/MoveCard";
+import AddMove from "@/components/Summary/AddMove/AddMove";
+import CaughtPokemon from "@/models/CaughtPokemon";
 import MoveData from "@/models/MoveData";
+import PokemonData from "@/models/PokemonData";
 import { fetchMoves } from "@/utils/api";
 import { useEffect, useState } from "react";
 import styles from "./SummaryMoves.module.scss";
 
 type Props = {
-    moves: string[];
-    types: string[];
-    runName: string;
-    nickname: string;
+    caughtPokemon: CaughtPokemon;
+    pokemonData: PokemonData;
 };
 
 const SummaryMoves: React.FC<Props> = (props: Props) => {
@@ -18,10 +18,10 @@ const SummaryMoves: React.FC<Props> = (props: Props) => {
 
     // Fetch move data on component load
     useEffect(() => {
-        if (props.moves && props.moves.length > 0) {
-            fetchMoves(props.moves).then((moves: MoveData[]) => setMoveData(moves));
+        if (props.caughtPokemon.pokemon.moveSlugs && props.caughtPokemon.pokemon.moveSlugs.length > 0) {
+            fetchMoves(props.caughtPokemon.pokemon.moveSlugs).then((moves: MoveData[]) => setMoveData(moves));
         }
-    }, [props.moves]);
+    }, [props.caughtPokemon]);
 
     return (
         <div className={styles["summary-moves"]}>
@@ -32,7 +32,7 @@ const SummaryMoves: React.FC<Props> = (props: Props) => {
                         return (
                             <MoveCard
                                 move={moveData[key]}
-                                isSTAB={props.types.includes(moveData[key].type)}
+                                isSTAB={props.pokemonData.types.includes(moveData[key].type)}
                                 key={key}
                             />
                         );

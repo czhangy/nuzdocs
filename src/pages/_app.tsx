@@ -1,6 +1,6 @@
 import Footer from "@/components/Global/Footer/Footer";
 import MainNavbar from "@/components/Home/MainNavbar/MainNavbar";
-import PageWrapper from "@/components/PageWrapper/PageWrapper";
+import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
 import RunNavbar from "@/components/Run/RunNavbar/RunNavbar";
 import "@/styles/globals.scss";
 import { Analytics } from "@vercel/analytics/react";

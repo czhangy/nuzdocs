@@ -79,7 +79,7 @@ const Box: React.FC<Props> = (props: Props) => {
         }
     }, [props.box]);
 
-    return boxData.length === props.box.length ? (
+    return boxData.length > 0 && boxData.length === props.box.length ? (
         <div className={styles.box}>
             {boxData.map((pokemon: PokemonData, idx: number) => (
                 <div className={styles.pokemon} key={props.box[idx].id}>

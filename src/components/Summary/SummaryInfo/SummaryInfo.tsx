@@ -2,18 +2,18 @@ import Dropdown from "@/components/Global/Dropdown/Dropdown";
 import AbilityData from "@/models/AbilityData";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
-import { fetchAbilities, fetchAbility } from "@/utils/api";
+import { fetchAbilities } from "@/utils/api";
 import { getListOfNatures } from "@/utils/natures";
 import { getBox, getRIPs, isAlive, updateBox, updateRIPs } from "@/utils/run";
+import { getTypeCardSrc } from "@/utils/utils";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
 import styles from "./SummaryInfo.module.scss";
-import { getTypeCardSrc } from "@/utils/utils";
 
 type Props = {
     caughtPokemon: CaughtPokemon;
     pokemonData: PokemonData;
-    runName: string;
+    runID: string;
     onUpdate: () => void;
 };
 
@@ -21,11 +21,11 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
     // Fetched data state
     const [abilityData, setAbilityData] = useState<AbilityData[]>([]);
 
-    // Internal data state
+    // Component state
     const [level, setLevel] = useState<string>("");
 
-    // Save level when clicked off
-    const handleBlur = () => {
+    // Save level when clicked off or revert it if the input is invalid
+    const handleBlur = (): void => {
         const levelNum: number = Number(level);
         if (!isNaN(levelNum) && levelNum > 0 && levelNum <= 100) {
             handleUpdate(levelNum, "level");
@@ -53,16 +53,16 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
     const handleUpdate = (selection: string | number, property: string) => {
         // @ts-expect-error
         props.caughtPokemon.pokemon[property] = selection;
-        if (isAlive(props.runName, props.caughtPokemon.nickname)) {
-            const updateIdx: number = getBox(props.runName)
+        if (isAlive(props.runID, props.caughtPokemon.nickname)) {
+            const idx: number = getBox(props.runID)
                 .map((cp: CaughtPokemon) => cp.nickname)
                 .indexOf(props.caughtPokemon.nickname);
-            updateBox(props.runName, props.caughtPokemon, updateIdx);
+            updateBox(props.runID, props.caughtPokemon, idx);
         } else {
-            const updateIdx: number = getRIPs(props.runName)
+            const updateIdx: number = getRIPs(props.runID)
                 .map((cp: CaughtPokemon) => cp.nickname)
                 .indexOf(props.caughtPokemon.nickname);
-            updateRIPs(props.runName, props.caughtPokemon, updateIdx);
+            updateRIPs(props.runID, props.caughtPokemon, updateIdx);
         }
         props.onUpdate();
     };
@@ -84,7 +84,7 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
             <div className={styles.card}>
                 <p className={styles.header}>Typing</p>
                 <div className={styles.value}>
-                    {props.pokemonData.types.map((type: string, key: number) => {
+                    {props.pokemonData.types.map((type: string) => {
                         return (
                             <div className={styles.type} key={type}>
                                 <Image src={getTypeCardSrc(type)} alt={type} layout="fill" objectFit="contain" />

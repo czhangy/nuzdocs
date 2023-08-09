@@ -1,4 +1,4 @@
-import LevelCap from "@/components/LevelCap/LevelCap";
+import LevelCap from "@/components/Battle/LevelCap/LevelCap";
 import BattleSegment from "@/models/BattleSegment";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";

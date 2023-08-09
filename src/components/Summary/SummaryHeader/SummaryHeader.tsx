@@ -1,28 +1,27 @@
+import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
-import { getRun, isAlive } from "@/utils/run";
+import Run from "@/models/Run";
+import { getGameGroup } from "@/utils/game";
+import { isAlive } from "@/utils/run";
 import { getSegment } from "@/utils/segment";
 import Image from "next/image";
 import styles from "./SummaryHeader.module.scss";
-import { getGameGroup } from "@/utils/game";
 
 type Props = {
+    caughtPokemon: CaughtPokemon;
     pokemonData: PokemonData;
-    nickname: string;
-    metLocation: string;
-    runName: string;
+    run: Run;
 };
 
 const SummaryHeader: React.FC<Props> = (props: Props) => {
     // Compute the name of the location the Pokemon was met at
     const getMetLocation = (): string => {
-        if (props.metLocation === "starter") {
-            return getSegment(
-                getRun(props.runName).gameSlug,
-                getGameGroup(getRun(props.runName).gameSlug).startingTownSlug
-            ).name;
-        } else {
-            return getSegment(getRun(props.runName).gameSlug, props.metLocation).name;
-        }
+        return getSegment(
+            props.run.gameSlug,
+            props.caughtPokemon.locationSlug === "starter"
+                ? getGameGroup(props.run.gameSlug).startingTownSlug
+                : props.caughtPokemon.locationSlug
+        ).name;
     };
 
     return (
@@ -37,13 +36,13 @@ const SummaryHeader: React.FC<Props> = (props: Props) => {
             </div>
             <div className={styles.info}>
                 <p className={styles.text}>
-                    <strong>{props.nickname}</strong> the {props.pokemonData.pokemon.name}
+                    <strong>{props.caughtPokemon.nickname}</strong> the {props.pokemonData.pokemon.name}
                 </p>
                 <p className={styles.text}>
                     Met at: <strong>{getMetLocation()}</strong>
                 </p>
                 <p className={styles.text}>
-                    Status: <strong>{isAlive(props.runName, props.nickname) ? "Alive" : "RIP'd"}</strong>
+                    Status: <strong>{isAlive(props.run.id, props.caughtPokemon.nickname) ? "Alive" : "RIP'd"}</strong>
                 </p>
             </div>
         </div>
