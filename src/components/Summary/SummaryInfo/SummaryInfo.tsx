@@ -4,7 +4,6 @@ import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import { fetchAbilities } from "@/utils/api";
 import { getListOfNatures } from "@/utils/natures";
-import { getBox, getRIPs, isAlive, updateBox, updateRIPs } from "@/utils/run";
 import { getTypeCardSrc } from "@/utils/utils";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -13,8 +12,7 @@ import styles from "./SummaryInfo.module.scss";
 type Props = {
     caughtPokemon: CaughtPokemon;
     pokemonData: PokemonData;
-    runID: string;
-    onUpdate: () => void;
+    onUpdate: (selection: string | number, property: string) => void;
 };
 
 const SummaryInfo: React.FC<Props> = (props: Props) => {
@@ -28,7 +26,7 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
     const handleBlur = (): void => {
         const levelNum: number = Number(level);
         if (!isNaN(levelNum) && levelNum > 0 && levelNum <= 100) {
-            handleUpdate(levelNum, "level");
+            props.onUpdate(levelNum, "level");
         } else {
             setLevel(props.caughtPokemon.pokemon.level ? String(props.caughtPokemon.pokemon.level) : "");
         }
@@ -47,24 +45,6 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
     // Convert an ability slug to name
     const getAbilityName = (slug: string): string => {
         return abilityData.find((ability: AbilityData) => ability.slug === slug)!.name;
-    };
-
-    // Save CaughtPokemon data to local storage
-    const handleUpdate = (selection: string | number, property: string) => {
-        // @ts-expect-error
-        props.caughtPokemon.pokemon[property] = selection;
-        if (isAlive(props.runID, props.caughtPokemon.id)) {
-            const idx: number = getBox(props.runID)
-                .map((cp: CaughtPokemon) => cp.id)
-                .indexOf(props.caughtPokemon.id);
-            updateBox(props.runID, props.caughtPokemon, idx);
-        } else {
-            const updateIdx: number = getRIPs(props.runID)
-                .map((cp: CaughtPokemon) => cp.id)
-                .indexOf(props.caughtPokemon.id);
-            updateRIPs(props.runID, props.caughtPokemon, updateIdx);
-        }
-        props.onUpdate();
     };
 
     // Set the level of the current Pokemon if it exists on component load
@@ -119,7 +99,7 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
                                 : null
                         }
                         options={getAbilityNames()}
-                        onSelect={(label: string) => handleUpdate(getAbilitySlug(label), "abilitySlug")}
+                        onSelect={(label: string) => props.onUpdate(getAbilitySlug(label), "abilitySlug")}
                         border={false}
                         minWidth={150}
                     />
@@ -132,7 +112,7 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
                         placeholder="???"
                         value={props.caughtPokemon.pokemon.nature ? props.caughtPokemon.pokemon.nature : null}
                         options={getListOfNatures()}
-                        onSelect={(label: string) => handleUpdate(label, "nature")}
+                        onSelect={(label: string) => props.onUpdate(label, "nature")}
                         border={false}
                         minWidth={120}
                     />

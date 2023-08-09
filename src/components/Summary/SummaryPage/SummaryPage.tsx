@@ -7,7 +7,7 @@ import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import { fetchPokemon } from "@/utils/api";
-import { getRun, isAlive } from "@/utils/run";
+import { getBox, getRIPs, getRun, isAlive, updateBox, updateRIPs } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./SummaryPage.module.scss";
 
@@ -24,11 +24,27 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
     const [pokemonData, setPokemonData] = useState<PokemonData | null>(null);
 
     // Get Pokemon from local storage
-    const handleUpdate = (): void => {
-        const pokemonList: CaughtPokemon[] = isAlive(props.run.id, props.pokemonID)
-            ? getRun(props.run.id).box
-            : getRun(props.run.id).rips;
-        setCaughtPokemon(pokemonList.find((pokemon: CaughtPokemon) => pokemon.id === props.pokemonID)!);
+    const handleUpdate = (selection: string | number, property: string, isNested: boolean = true): void => {
+        const newCaughtPokemon: CaughtPokemon = JSON.parse(JSON.stringify(caughtPokemon));
+        if (isNested) {
+            //@ts-expect-error
+            newCaughtPokemon.pokemon[property] = selection;
+        } else {
+            //@ts-expect-error
+            newCaughtPokemon[property] = selection;
+        }
+        if (isAlive(props.run.id, newCaughtPokemon.id)) {
+            const idx: number = getBox(props.run.id)
+                .map((cp: CaughtPokemon) => cp.id)
+                .indexOf(newCaughtPokemon.id);
+            updateBox(props.run.id, newCaughtPokemon, idx);
+        } else {
+            const updateIdx: number = getRIPs(props.run.id)
+                .map((cp: CaughtPokemon) => cp.id)
+                .indexOf(newCaughtPokemon.id);
+            updateRIPs(props.run.id, newCaughtPokemon, updateIdx);
+        }
+        setCaughtPokemon(newCaughtPokemon);
     };
 
     // Find Pokemon on page load
@@ -49,13 +65,13 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
 
     return caughtPokemon && pokemonData ? (
         <div className={styles["summary-page"]}>
-            <SummaryHeader caughtPokemon={caughtPokemon} pokemonData={pokemonData} run={props.run} />
-            <SummaryInfo
+            <SummaryHeader
                 caughtPokemon={caughtPokemon}
                 pokemonData={pokemonData}
-                runID={props.run.id}
+                run={props.run}
                 onUpdate={handleUpdate}
             />
+            <SummaryInfo caughtPokemon={caughtPokemon} pokemonData={pokemonData} onUpdate={handleUpdate} />
             <SummaryMoves caughtPokemon={caughtPokemon} pokemonData={pokemonData} />
             <SummaryStats stats={pokemonData.stats} nature={caughtPokemon.pokemon.nature} />
             <SummaryEvolutions pokemon={pokemonData} gameSlug={props.run.gameSlug} />
