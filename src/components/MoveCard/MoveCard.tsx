@@ -1,4 +1,4 @@
-import TypeIcon from "@/components/Global/TypeIcon/TypeIcon";
+import TypeIcon from "@/components/Run/TypeIcon/TypeIcon";
 import MoveData from "@/models/MoveData";
 import Image from "next/image";
 import styles from "./MoveCard.module.scss";

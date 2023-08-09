@@ -42,7 +42,7 @@ const SegmentNav: React.FC<Props> = (props: Props) => {
                     ""
                 )}
             </nav>
-            <h2 className={styles.header}>{segments[segmentIdx].name}</h2>
+            {segments.length > 0 ? <h2 className={styles.header}>{segments[segmentIdx].name}</h2> : <p>Loading...</p>}
         </div>
     );
 };

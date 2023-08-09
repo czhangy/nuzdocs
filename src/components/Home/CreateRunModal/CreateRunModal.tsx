@@ -13,8 +13,9 @@ const CreateRunModal: React.FC = () => {
     // Creates a run in local storage and adds the run to the run list, then redirects
     const handleCreate = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        createRun(selectedName, selectedGameSlug);
-        Router.push(`/runs/${selectedName}/${getGameGroup(selectedGameSlug).startingTownSlug}`);
+        Router.push(
+            `/runs/${createRun(selectedName, selectedGameSlug)}/${getGameGroup(selectedGameSlug).startingTownSlug}`
+        );
     };
 
     return (

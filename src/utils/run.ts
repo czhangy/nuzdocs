@@ -19,7 +19,7 @@ export const initRun = (id: string, name: string, gameSlug: string): Run => {
     };
 };
 
-export const createRun = (name: string, gameSlug: string): void => {
+export const createRun = (name: string, gameSlug: string): string => {
     const id: string = generateID(getRunIDs());
     const storedRuns: string | null = localStorage.getItem("runs");
     if (storedRuns) {
@@ -31,6 +31,7 @@ export const createRun = (name: string, gameSlug: string): void => {
     }
     const newRun: Run = initRun(id, name, gameSlug);
     localStorage.setItem(id, JSON.stringify(newRun));
+    return id;
 };
 
 export const loadRun = (runStr: string): boolean => {

@@ -1,6 +1,6 @@
-import Box from "@/components/Global/Box/Box";
 import Modal from "@/components/Global/Modal/Modal";
 import RIPModal from "@/components/RIPModal/RIPModal";
+import Box from "@/components/Run/Box/Box";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import { addToBox, getRIPs, removeFromRIPs } from "@/utils/run";

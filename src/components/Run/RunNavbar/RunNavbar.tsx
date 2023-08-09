@@ -1,5 +1,4 @@
 import Navbar from "@/components/Global/Navbar/Navbar";
-import Game from "@/models/Game";
 import Run from "@/models/Run";
 import { getGame } from "@/utils/game";
 import { getRun } from "@/utils/run";
@@ -12,35 +11,34 @@ import styles from "./RunNavbar.module.scss";
 const RunNavbar: React.FC = () => {
     const router = useRouter();
 
-    // Internal state
-    const [game, setGame] = useState<Game | null>(null);
+    // Internal data state
+    const [run, setRun] = useState<Run | null>(null);
 
     // Validate run and set game for valid runs
     useEffect(() => {
-        if (router.query.runName) {
-            const runName: string = router.query.runName as string;
-            const run: Run = getRun(runName);
-            if (run) setGame(getGame(getRun(runName).gameSlug));
+        if (router.isReady) {
+            setRun(getRun(router.query.runID as string));
         }
-    }, [router.query.runName]);
+    }, [router.isReady, router.query.runName]);
 
-    return (
+    return run ? (
         <Navbar>
             <Link href="/">
                 <a className={styles.game}>
                     <p className={styles["back-arrow"]}>←</p>
-                    {game ? (
-                        <div className={styles.logo}>
-                            <Image src={game.logoURL} alt={game.name} layout="fill" objectFit="contain" />
-                        </div>
-                    ) : (
-                        ""
-                    )}
+                    <div className={styles.logo}>
+                        <Image
+                            src={getGame(run.gameSlug).logoURL}
+                            alt={getGame(run.gameSlug).name}
+                            layout="fill"
+                            objectFit="contain"
+                        />
+                    </div>
                 </a>
             </Link>
             <ul className={styles.links}>
                 <li>
-                    <Link href={`/runs/${router.query.runName}/overview`}>
+                    <Link href={`/runs/${run.id}/overview`}>
                         <a className={styles.link}>
                             <div className={styles["link-icon"]}>
                                 <Image
@@ -55,7 +53,7 @@ const RunNavbar: React.FC = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link href={`/runs/${router.query.runName}/box`}>
+                    <Link href={`/runs/${run.id}/box`}>
                         <a className={styles.link}>
                             <div className={styles["link-icon"]}>
                                 <Image src="/assets/icons/box.svg" alt="Box" layout="fill" objectFit="contain" />
@@ -65,7 +63,7 @@ const RunNavbar: React.FC = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link href={`/runs/${router.query.runName}/rips`}>
+                    <Link href={`/runs/${run.id}/rips`}>
                         <a className={styles.link}>
                             <div className={styles["link-icon"]}>
                                 <Image src="/assets/icons/dead.svg" alt="Dead" layout="fill" objectFit="contain" />
@@ -76,6 +74,8 @@ const RunNavbar: React.FC = () => {
                 </li>
             </ul>
         </Navbar>
+    ) : (
+        <></>
     );
 };
 

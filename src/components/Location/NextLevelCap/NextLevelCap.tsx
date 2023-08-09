@@ -15,7 +15,7 @@ const NextLevelCap: React.FC<Props> = (props: Props) => {
     const getNextLevelCap = (): number | string => {
         const segments: Segment[] = getSegments(props.run.gameSlug);
         for (const segment of segments) {
-            if (hasLevelCap(segment) && !isCleared(props.run.name, segment.slug)) {
+            if (hasLevelCap(segment) && !isCleared(props.run.id, segment.slug)) {
                 return (segment.segment as BattleSegment).levelCap!;
             }
         }

@@ -10,9 +10,9 @@ import {
     addToBox,
     addToCaughtPokemonSlugs,
     getLocationEncounter,
-    getRun,
     removeFromBox,
     removeFromCaughtPokemonSlugs,
+    removeFromRIPs,
 } from "@/utils/run";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -76,6 +76,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
             setEncounteredPokemon(null);
             removeFromCaughtPokemonSlugs(props.run.id, props.locationSlug);
             removeFromBox(props.run.id, props.locationSlug);
+            removeFromRIPs(props.run.id, props.locationSlug);
         }
     };
 

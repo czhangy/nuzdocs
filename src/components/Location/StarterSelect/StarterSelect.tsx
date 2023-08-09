@@ -1,5 +1,5 @@
-import PokemonDisplay from "@/components/Global/PokemonDisplay/PokemonDisplay";
-import TierCard from "@/components/Global/TierCard/TierCard";
+import PokemonDisplay from "@/components/Run/PokemonDisplay/PokemonDisplay";
+import TierCard from "@/components/Run/TierCard/TierCard";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import colors from "@/static/colors";
@@ -11,6 +11,7 @@ import {
     addToCaughtPokemonSlugs,
     removeFromBox,
     removeFromCaughtPokemonSlugs,
+    removeFromRIPs,
     setStarterSlug,
 } from "@/utils/run";
 import { capitalizeWord, getPokemonTier } from "@/utils/utils";
@@ -51,8 +52,9 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (selectedStarter) {
             if (selectedStarter.pokemon.slug !== props.run.starterSlug) {
-                removeFromBox(props.run.id, "starter");
                 removeFromCaughtPokemonSlugs(props.run.id, "starter");
+                removeFromBox(props.run.id, "starter");
+                removeFromRIPs(props.run.id, "starter");
                 setStarterSlug(props.run.id, selectedStarter.pokemon.slug);
                 addToBox(
                     props.run.id,

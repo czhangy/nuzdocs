@@ -1,5 +1,5 @@
 import MoveCard from "@/components/MoveCard/MoveCard";
-import PokemonDisplay from "@/components/Global/PokemonDisplay/PokemonDisplay";
+import PokemonDisplay from "@/components/Run/PokemonDisplay/PokemonDisplay";
 import AbilityData from "@/models/AbilityData";
 import MoveData from "@/models/MoveData";
 import Pokemon from "@/models/Pokemon";

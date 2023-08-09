@@ -1,8 +1,8 @@
 import EvolveModal from "@/components/EvolveModal/EvolveModal";
 import FormChangeModal from "@/components/FormChangeModal/FormChangeModal";
-import Box from "@/components/Global/Box/Box";
 import Modal from "@/components/Global/Modal/Modal";
 import RIPModal from "@/components/RIPModal/RIPModal";
+import Box from "@/components/Run/Box/Box";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import { addToCaughtPokemonSlugs, addToRIPs, getBox, removeFromBox, updateBox } from "@/utils/run";

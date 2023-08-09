@@ -28,7 +28,7 @@ const Segment: NextPage = () => {
                 router.push("/");
             }
         }
-    }, [router.isReady]);
+    }, [router.isReady, router.query.runID, router.query.segmentSlug]);
 
     return (
         <>
