@@ -1,11 +1,11 @@
 import Dropdown from "@/components/Global/Dropdown/Dropdown";
 import EncounterAccordion from "@/components/Location/EncounterAccordion/EncounterAccordion";
+import TimeControls from "@/components/Location/TimeControls/TimeControls";
 import AreaData from "@/models/AreaData";
 import LocationData from "@/models/LocationData";
 import Run from "@/models/Run";
 import { fetchAreas } from "@/utils/api";
 import { getGameGroup } from "@/utils/game";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterList.module.scss";
 
@@ -18,10 +18,8 @@ const EncounterList: React.FC<Props> = (props: Props) => {
     // Fetched data state
     const [areaList, setAreaList] = useState<AreaData[]>([]);
 
-    // User data state
-    const [currentArea, setCurrentArea] = useState<AreaData | null>(null);
-
     // Component state
+    const [currentArea, setCurrentArea] = useState<AreaData | null>(null);
     const [time, setTime] = useState<"time-morning" | "time-day" | "time-night">("time-morning");
 
     // Translates areas into area names for the dropdown
@@ -56,31 +54,11 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                 <div className={styles.left}>
                     <h3 className={styles.title}>Encounters:</h3>
                     {currentArea && currentArea.usesTime ? (
-                        <div className={styles.times}>
-                            <button
-                                className={`${styles.time} ${time === "time-morning" ? styles.active : ""}`}
-                                onClick={() => setTime("time-morning")}
-                            >
-                                <Image
-                                    src="/assets/icons/morning.svg"
-                                    alt="Morning"
-                                    layout="fill"
-                                    objectFit="contain"
-                                />
-                            </button>
-                            <button
-                                className={`${styles.time} ${time === "time-day" ? styles.active : ""}`}
-                                onClick={() => setTime("time-day")}
-                            >
-                                <Image src="/assets/icons/day.svg" alt="Day" layout="fill" objectFit="contain" />
-                            </button>
-                            <button
-                                className={`${styles.time} ${time === "time-night" ? styles.active : ""}`}
-                                onClick={() => setTime("time-night")}
-                            >
-                                <Image src="/assets/icons/night.svg" alt="Night" layout="fill" objectFit="contain" />
-                            </button>
-                        </div>
+                        <TimeControls
+                            time={time}
+                            onClick={(time: "time-morning" | "time-day" | "time-night") => setTime(time)}
+                            inline={true}
+                        />
                     ) : (
                         ""
                     )}
@@ -94,26 +72,11 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                 />
             </div>
             {currentArea && currentArea.usesTime ? (
-                <div className={styles.times}>
-                    <button
-                        className={`${styles.time} ${time === "time-morning" ? styles.active : ""}`}
-                        onClick={() => setTime("time-morning")}
-                    >
-                        <Image src="/assets/icons/morning.svg" alt="Morning" layout="fill" objectFit="contain" />
-                    </button>
-                    <button
-                        className={`${styles.time} ${time === "time-day" ? styles.active : ""}`}
-                        onClick={() => setTime("time-day")}
-                    >
-                        <Image src="/assets/icons/day.svg" alt="Day" layout="fill" objectFit="contain" />
-                    </button>
-                    <button
-                        className={`${styles.time} ${time === "time-night" ? styles.active : ""}`}
-                        onClick={() => setTime("time-night")}
-                    >
-                        <Image src="/assets/icons/night.svg" alt="Night" layout="fill" objectFit="contain" />
-                    </button>
-                </div>
+                <TimeControls
+                    time={time}
+                    onClick={(time: "time-morning" | "time-day" | "time-night") => setTime(time)}
+                    inline={false}
+                />
             ) : (
                 ""
             )}
