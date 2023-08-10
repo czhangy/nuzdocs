@@ -12,7 +12,7 @@ type Props = {
     caughtPokemon: CaughtPokemon;
     pokemonData: PokemonData;
     run: Run;
-    onUpdate: (selection: string | number, property: string, isNested: boolean) => void;
+    onUpdate: (nickname: string) => void;
 };
 
 const SummaryHeader: React.FC<Props> = (props: Props) => {
@@ -70,7 +70,7 @@ const SummaryHeader: React.FC<Props> = (props: Props) => {
                         placeholder={props.caughtPokemon.pokemon.species}
                         spellCheck={false}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e.target.value)}
-                        onBlur={() => props.onUpdate(nickname, "nickname", false)}
+                        onBlur={() => props.onUpdate(nickname)}
                     />
                     <span id="hidden" className={styles.hidden}></span>
                     <p className={styles.text}>the {props.pokemonData.pokemon.name}</p>

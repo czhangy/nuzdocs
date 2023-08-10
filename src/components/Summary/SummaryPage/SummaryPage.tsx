@@ -29,52 +29,21 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
     const [moveModalOpen, setMoveModalOpen] = useState<boolean>(false);
     const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
-    // Get Pokemon from local storage
-    const handleUpdate = (
-        selection: string | number,
-        property: string,
-        isNested: boolean = true,
-        index: number | null = null
-    ): void => {
+    // Update Pokemon in local storage
+    const handleUpdate = (selection: string | number, property: string): void => {
         const newCaughtPokemon: CaughtPokemon = JSON.parse(JSON.stringify(caughtPokemon));
-        if (isNested) {
-            if (index !== null) {
-                // @ts-expect-error
-                newCaughtPokemon.pokemon.moveSlugs[Math.min(newCaughtPokemon.pokemon.moveSlugs.length, index)] =
-                    selection;
-            } else {
-                // @ts-expect-error
-                newCaughtPokemon.pokemon[property] = selection;
-            }
+        if (property === "moveSlugs") {
+            // @ts-expect-error
+            newCaughtPokemon.pokemon.moveSlugs[Math.min(newCaughtPokemon.pokemon.moveSlugs.length, selectedIdx)] =
+                selection;
+        } else if (property === "delete") {
+            newCaughtPokemon.pokemon.moveSlugs.splice(selectedIdx!, 1);
+        } else if (property === "nickname") {
+            newCaughtPokemon.nickname = selection as string;
         } else {
             // @ts-expect-error
-            newCaughtPokemon[property] = selection;
+            newCaughtPokemon.pokemon[property] = selection;
         }
-        if (isAlive(props.run.id, newCaughtPokemon.id)) {
-            const idx: number = getBox(props.run.id)
-                .map((cp: CaughtPokemon) => cp.id)
-                .indexOf(newCaughtPokemon.id);
-            updateBox(props.run.id, newCaughtPokemon, idx);
-        } else {
-            const updateIdx: number = getRIPs(props.run.id)
-                .map((cp: CaughtPokemon) => cp.id)
-                .indexOf(newCaughtPokemon.id);
-            updateRIPs(props.run.id, newCaughtPokemon, updateIdx);
-        }
-        setCaughtPokemon(newCaughtPokemon);
-        setSelectedIdx(null);
-    };
-
-    // Pass move selection info to MoveModal
-    const handleMoveSelect = (idx: number): void => {
-        setSelectedIdx(idx);
-        setMoveModalOpen(true);
-    };
-
-    // Delete a given move
-    const handleDeleteMove = (): void => {
-        const newCaughtPokemon: CaughtPokemon = JSON.parse(JSON.stringify(caughtPokemon));
-        newCaughtPokemon.pokemon.moveSlugs.splice(selectedIdx!, 1);
         if (isAlive(props.run.id, newCaughtPokemon.id)) {
             const idx: number = getBox(props.run.id)
                 .map((cp: CaughtPokemon) => cp.id)
@@ -89,6 +58,12 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
         setCaughtPokemon(newCaughtPokemon);
         setSelectedIdx(null);
         setMoveModalOpen(false);
+    };
+
+    // Pass move selection info to MoveModal
+    const handleMoveSelect = (idx: number): void => {
+        setSelectedIdx(idx);
+        setMoveModalOpen(true);
     };
 
     // Find Pokemon on page load
@@ -113,7 +88,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 caughtPokemon={caughtPokemon}
                 pokemonData={pokemonData}
                 run={props.run}
-                onUpdate={handleUpdate}
+                onUpdate={(nickname: string) => handleUpdate(nickname, "nickname")}
             />
             <SummaryInfo caughtPokemon={caughtPokemon} pokemonData={pokemonData} onUpdate={handleUpdate} />
             <SummaryMoves
@@ -133,8 +108,8 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                                 ? caughtPokemon.pokemon.moveSlugs[selectedIdx]
                                 : null
                         }
-                        onConfirm={(selection: string) => handleUpdate(selection, "moveSlugs", true, selectedIdx)}
-                        onDelete={handleDeleteMove}
+                        onConfirm={(selection: string) => handleUpdate(selection, "moveSlugs")}
+                        onDelete={() => handleUpdate("", "delete")}
                         onClose={() => setMoveModalOpen(false)}
                     />
                 ) : (

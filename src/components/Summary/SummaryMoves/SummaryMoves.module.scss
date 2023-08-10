@@ -3,7 +3,7 @@
 .summary-moves {
     --border-rad: 5px;
     --card-border-size: 2px;
-    --card-height: calc(16px + 5rem);
+    --card-height: calc(16px + 5rem - 3px);
     --font-size: 1rem;
     --header-y-padding: 0.5rem;
     --icon-size: 3rem;
