@@ -38,3 +38,12 @@ export const capitalizeWord = (word: string): string => {
 export const getTypeCardSrc = (type: string) => {
     return `https://www.serebii.net/pokedex-bw/type/${type}.gif`;
 };
+
+export const translateSlug = (slug: string) => {
+    return slug
+        .replace(/-/g, " ")
+        .toLowerCase()
+        .split(" ")
+        .map((word: string) => capitalizeWord(word))
+        .join(" ");
+};

@@ -20,6 +20,30 @@
         flex-direction: column;
         gap: var(--info-inner-spacing);
 
+        .name {
+            align-items: center;
+            display: flex;
+
+            .nickname {
+                background-color: constants.$bg-color;
+                font-size: var(--info-font-size);
+                font-weight: bold;
+                line-height: var(--info-font-size);
+            }
+
+            .hidden {
+                display: inline-block;
+                font-size: var(--info-font-size);
+                font-weight: bold;
+                left: -9999px;
+                position: absolute;
+            }
+
+            input::placeholder {
+                color: constants.$text-color;
+            }
+        }
+
         .text {
             font-size: var(--info-font-size);
             line-height: var(--info-font-size);

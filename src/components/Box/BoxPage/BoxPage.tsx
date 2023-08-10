@@ -103,6 +103,14 @@ const BoxPage: React.FC<Props> = (props: Props) => {
 
     return (
         <div className={styles["box-page"]}>
+            <h2 className={styles.header}>Your Box</h2>
+            <Box
+                box={boxPokemon}
+                run={props.run}
+                onEvolve={(pokemon: PokemonData, idx: number) => handleEvolveAttempt(pokemon, idx)}
+                onFormChange={(pokemon: PokemonData, idx: number) => handleFormChangeAttempt(pokemon, idx)}
+                onRIP={(pokemon: PokemonData, idx: number) => handleRIPAttempt(pokemon, idx)}
+            />
             <Modal modalID="evolve-modal" open={evolveModalOpen} onClose={handleClose}>
                 {selectedPokemon && evolveModalOpen ? (
                     <EvolveModal
@@ -134,14 +142,6 @@ const BoxPage: React.FC<Props> = (props: Props) => {
                     ""
                 )}
             </Modal>
-            <h2 className={styles.header}>Your Box</h2>
-            <Box
-                box={boxPokemon}
-                run={props.run}
-                onEvolve={(pokemon: PokemonData, idx: number) => handleEvolveAttempt(pokemon, idx)}
-                onFormChange={(pokemon: PokemonData, idx: number) => handleFormChangeAttempt(pokemon, idx)}
-                onRIP={(pokemon: PokemonData, idx: number) => handleRIPAttempt(pokemon, idx)}
-            />
         </div>
     );
 };
