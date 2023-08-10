@@ -11,7 +11,6 @@ export const initRun = (id: string, name: string, gameSlug: string): Run => {
         name: name,
         gameSlug: gameSlug,
         prevSegmentSlug: getGameGroup(gameSlug).startingTownSlug,
-        starterSlug: "",
         box: [],
         rips: [],
         caughtPokemonSlugs: [],
@@ -87,12 +86,6 @@ export const setRun = (runID: string, run: Run): void => {
 export const setPrevSegmentSlug = (runID: string, locationSlug: string): void => {
     let run: Run = getRun(runID);
     run.prevSegmentSlug = locationSlug;
-    setRun(runID, run);
-};
-
-export const setStarterSlug = (runID: string, starterSlug: string): void => {
-    let run: Run = getRun(runID);
-    run.starterSlug = starterSlug;
     setRun(runID, run);
 };
 
@@ -218,4 +211,9 @@ export const getPokemonSlugsFromBox = (box: CaughtPokemon[]): string[] => {
     return box
         .filter((pokemon: CaughtPokemon) => pokemon.pastSlugs[0] !== "failed")
         .map((pokemon: CaughtPokemon) => pokemon.pokemon.slug);
+};
+
+export const getStarterSlug = (runID: string): string => {
+    const allPokemon: CaughtPokemon[] = getBox(runID).concat(getRIPs(runID));
+    return allPokemon.find((pokemon: CaughtPokemon) => pokemon.locationSlug === "starter")!.pastSlugs[0];
 };

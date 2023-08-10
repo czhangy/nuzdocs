@@ -9,10 +9,10 @@ import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import {
     addToBox,
     addToCaughtPokemonSlugs,
+    getStarterSlug,
     removeFromBox,
     removeFromCaughtPokemonSlugs,
     removeFromRIPs,
-    setStarterSlug,
 } from "@/utils/run";
 import { capitalizeWord, getPokemonTier } from "@/utils/utils";
 import Image from "next/image";
@@ -35,13 +35,12 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
         if (props.run) {
             fetchPokemonGroup(getGameGroup(props.run.gameSlug).starterSlugs, props.run.gameSlug).then(
                 (starterData: PokemonData[]) => {
+                    const starterSlug: string = getStarterSlug(props.run.id);
                     setStarters(starterData);
                     setSelectedStarter(
-                        props.run.starterSlug === ""
+                        starterSlug
                             ? starterData[0]
-                            : starterData.find(
-                                  (starter: PokemonData) => starter.pokemon.slug === props.run.starterSlug
-                              )!
+                            : starterData.find((starter: PokemonData) => starter.pokemon.slug === starterSlug)!
                     );
                 }
             );
@@ -51,11 +50,10 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     // Place starter in box and remove existing starter on starter change + set run's starter
     useEffect(() => {
         if (selectedStarter) {
-            if (selectedStarter.pokemon.slug !== props.run.starterSlug) {
+            if (selectedStarter.pokemon.slug !== getStarterSlug(props.run.id)) {
                 removeFromCaughtPokemonSlugs(props.run.id, "starter");
                 removeFromBox(props.run.id, "starter");
                 removeFromRIPs(props.run.id, "starter");
-                setStarterSlug(props.run.id, selectedStarter.pokemon.slug);
                 addToBox(
                     props.run.id,
                     initCaughtPokemon(

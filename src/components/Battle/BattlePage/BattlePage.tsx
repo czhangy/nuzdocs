@@ -5,6 +5,7 @@ import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { getBattle } from "@/utils/battle";
 import styles from "./BattlePage.module.scss";
+import { getStarterSlug } from "@/utils/run";
 
 type Props = {
     segment: Segment;
@@ -16,7 +17,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
         <div className={styles["battle-page"]}>
             <BattlePreview segment={props.segment} run={props.run} />
             <ul className={styles.team}>
-                {getBattle(props.run.gameSlug, props.segment.slug, props.run.starterSlug).team.map(
+                {getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).team.map(
                     (pokemon: Pokemon, key: number) => (
                         <PokemonCard pokemon={pokemon} gameSlug={props.run.gameSlug} key={key} />
                     )
