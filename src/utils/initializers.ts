@@ -2,6 +2,7 @@ import AbilityData from "@/models/AbilityData";
 import AreaData from "@/models/AreaData";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import EncounterData from "@/models/EncounterData";
+import ItemData from "@/models/ItemData";
 import LocationData from "@/models/LocationData";
 import MoveData from "@/models/MoveData";
 import MyPokemon from "@/models/Pokemon";
@@ -11,8 +12,9 @@ import PokemonName from "@/models/PokemonName";
 import Stat from "@/models/Stat";
 import translations from "@/static/translations";
 import { getBox, getRIPs } from "@/utils/run";
-import { generateID, getEnglishName } from "@/utils/utils";
+import { generateID, getEnglishName, getItemDescription } from "@/utils/utils";
 import {
+    Item,
     Name,
     NamedAPIResource,
     Pokemon,
@@ -172,5 +174,14 @@ export const initPokemonMove = (slug: string, vgd: PokemonMoveVersion): PokemonM
         slug: slug,
         level: vgd.level_learned_at,
         method: vgd.move_learn_method.name,
+    };
+};
+
+export const initItemData = (item: Item, versionGroup: string): ItemData => {
+    return {
+        slug: item.name,
+        name: getEnglishName(item.names),
+        sprite: item.sprites.default,
+        desc: getItemDescription(item.flavor_text_entries, versionGroup),
     };
 };

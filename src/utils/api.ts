@@ -119,3 +119,39 @@ export const fetchPokemonGroup = async (pokemonSlugs: string[], gameSlug: string
         return [];
     }
 };
+
+export const fetchItem = async (item: string, game: string) => {
+    try {
+        const group: GameGroup = getGameGroup(game);
+        const res = await axios.get("/api/items", {
+            params: {
+                item: item,
+                versionGroup: group.versionGroup,
+            },
+        });
+        return JSON.parse(res.data.item);
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+};
+
+export const fetchItems = async (items: string[], game: string) => {
+    try {
+        if (items.length === 1) {
+            return [await fetchPokemon(items[0], game)];
+        } else {
+            const group: GameGroup = getGameGroup(game);
+            const res = await axios.get("/api/items", {
+                params: {
+                    item: items,
+                    versionGroup: group.versionGroup,
+                },
+            });
+            return JSON.parse(res.data.item);
+        }
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+};
