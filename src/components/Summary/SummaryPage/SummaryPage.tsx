@@ -29,13 +29,23 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
     const [moveModalOpen, setMoveModalOpen] = useState<boolean>(false);
 
     // Get Pokemon from local storage
-    const handleUpdate = (selection: string | number, property: string, isNested: boolean = true): void => {
+    const handleUpdate = (
+        selection: string | number,
+        property: string,
+        isNested: boolean = true,
+        index: number | null = null
+    ): void => {
         const newCaughtPokemon: CaughtPokemon = JSON.parse(JSON.stringify(caughtPokemon));
         if (isNested) {
-            //@ts-expect-error
-            newCaughtPokemon.pokemon[property] = selection;
+            if (index !== null) {
+                // @ts-expect-error
+                newCaughtPokemon.pokemon.moveSlugs.push(selection);
+            } else {
+                // @ts-expect-error
+                newCaughtPokemon.pokemon[property] = selection;
+            }
         } else {
-            //@ts-expect-error
+            // @ts-expect-error
             newCaughtPokemon[property] = selection;
         }
         if (isAlive(props.run.id, newCaughtPokemon.id)) {
@@ -85,7 +95,12 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
             <SummaryStats stats={pokemonData.stats} nature={caughtPokemon.pokemon.nature} />
             <SummaryEvolutions pokemon={pokemonData} gameSlug={props.run.gameSlug} />
             <Modal modalID="move-modal" open={moveModalOpen} onClose={() => setMoveModalOpen(false)}>
-                <MoveModal />
+                <MoveModal
+                    movepool={pokemonData.movepool}
+                    moves={caughtPokemon.pokemon.moveSlugs}
+                    onConfirm={(selection: string) => handleUpdate(selection, "moveSlugs", true, 0)}
+                    onClose={() => setMoveModalOpen(false)}
+                />
             </Modal>
         </div>
     ) : (

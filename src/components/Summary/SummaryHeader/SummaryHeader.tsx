@@ -42,11 +42,6 @@ const SummaryHeader: React.FC<Props> = (props: Props) => {
         setNickname(nickname);
     };
 
-    // Save nickname on blur
-    const handleBlur = (): void => {
-        props.onUpdate(nickname, "nickname", false);
-    };
-
     // Set the level of the current Pokemon if it exists on component load
     useEffect((): void => {
         if (props.caughtPokemon) {
@@ -75,7 +70,7 @@ const SummaryHeader: React.FC<Props> = (props: Props) => {
                         placeholder={props.caughtPokemon.pokemon.species}
                         spellCheck={false}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e.target.value)}
-                        onBlur={handleBlur}
+                        onBlur={() => props.onUpdate(nickname, "nickname", false)}
                     />
                     <span id="hidden" className={styles.hidden}></span>
                     <p className={styles.text}>the {props.pokemonData.pokemon.name}</p>

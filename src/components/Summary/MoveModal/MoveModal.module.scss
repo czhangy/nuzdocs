@@ -1,1 +1,99 @@
 @use "@/styles/constants";
+
+.move-modal {
+    --button-border-rad: 5px;
+    --button-border-size: 2px;
+    --button-font-size: 1rem;
+    --button-letter-spacing: 1px;
+    --button-padding: 1rem;
+    --header-font-size: 1.25rem;
+    --inner-spacing: 1.5rem;
+    --input-font-size: 1.25rem;
+    --input-x-padding: 1.25rem;
+    --input-y-padding: 0.5rem;
+    --match-font-size: 1.25rem;
+    --match-x-padding: 1.25rem;
+    --match-y-padding: 1rem;
+    --matches-border-size: 2px;
+    --matches-max-height: 300px;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--inner-spacing);
+
+    .header {
+        font-size: var(--header-font-size);
+        font-weight: bold;
+        line-height: var(--header-font-size);
+        text-align: center;
+    }
+
+    .search {
+        position: relative;
+
+        .input {
+            background-color: constants.$bg-color;
+            font-size: var(--input-font-size);
+            padding: var(--input-y-padding) var(--input-x-padding);
+        }
+
+        .matches {
+            background-color: constants.$bg-color;
+            bottom: 0;
+            max-height: var(--matches-max-height);
+            overflow-y: auto;
+            position: absolute;
+            transform: translateY(100%);
+
+            .match {
+                cursor: pointer;
+                font-size: var(--match-font-size);
+                line-height: var(--match-font-size);
+                padding: var(--match-y-padding) var(--match-x-padding);
+                text-align: left;
+                width: 100%;
+
+                .highlight {
+                    color: constants.$hover-color;
+                }
+            }
+        }
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .confirm {
+        background-color: constants.$text-color;
+        border: var(--button-border-size) solid constants.$text-color;
+        border-radius: var(--button-border-rad);
+        color: constants.$bg-color;
+        font-size: var(--button-font-size);
+        font-weight: bold;
+        letter-spacing: var(--button-letter-spacing);
+        line-height: var(--button-font-size);
+        padding: var(--button-padding);
+
+        &:disabled {
+            background-color: transparent;
+            border: var(--button-border-size) solid constants.$disabled-color;
+            color: constants.$disabled-color;
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .move-modal {
+        --header-font-size: 1.5rem;
+    }
+}
+
+@media screen and (hover: hover) {
+    .move-modal > .confirm:hover {
+        background-color: constants.$hover-color;
+        border-color: constants.$hover-color;
+        color: constants.$text-color;
+    }
+}
