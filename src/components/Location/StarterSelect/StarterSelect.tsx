@@ -9,6 +9,7 @@ import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import {
     addToBox,
     addToCaughtPokemonSlugs,
+    getStarterID,
     getStarterSlug,
     removeFromBox,
     removeFromCaughtPokemonSlugs,
@@ -39,8 +40,8 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                     setStarters(starterData);
                     setSelectedStarter(
                         starterSlug
-                            ? starterData[0]
-                            : starterData.find((starter: PokemonData) => starter.pokemon.slug === starterSlug)!
+                            ? starterData.find((starter: PokemonData) => starter.pokemon.slug === starterSlug)!
+                            : starterData[0]
                     );
                 }
             );
@@ -51,9 +52,10 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (selectedStarter) {
             if (selectedStarter.pokemon.slug !== getStarterSlug(props.run.id)) {
-                removeFromCaughtPokemonSlugs(props.run.id, "starter");
-                removeFromBox(props.run.id, "starter");
-                removeFromRIPs(props.run.id, "starter");
+                const starterID: string = getStarterID(props.run.id);
+                removeFromCaughtPokemonSlugs(props.run.id, starterID);
+                removeFromBox(props.run.id, starterID);
+                removeFromRIPs(props.run.id, starterID);
                 addToBox(
                     props.run.id,
                     initCaughtPokemon(

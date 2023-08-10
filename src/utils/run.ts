@@ -140,17 +140,12 @@ export const addToCaughtPokemonSlugs = (runID: string, pokemonSlug: string): voi
 
 export const removeFromCaughtPokemonSlugs = (runID: string, pokemonID: string): void => {
     let run: Run = getRun(runID);
-    let pokemon: CaughtPokemon | undefined = run.box.find((boxPokemon: CaughtPokemon) => boxPokemon.id === pokemonID);
-    if (pokemon === undefined) {
-        pokemon = run.rips.find((ripPokemon: CaughtPokemon) => ripPokemon.id === pokemonID);
-    }
+    const allPokemon: CaughtPokemon[] = getBox(runID).concat(getRIPs(runID));
+    const pokemon: CaughtPokemon | undefined = allPokemon.find((pokemon: CaughtPokemon) => pokemon.id === pokemonID);
     if (pokemon === undefined) {
         return;
     } else {
-        for (const slug of pokemon.pastSlugs) {
-            const removeIdx: number = run.caughtPokemonSlugs.indexOf(slug);
-            run.caughtPokemonSlugs = run.caughtPokemonSlugs.splice(removeIdx, 1);
-        }
+        run.caughtPokemonSlugs = run.caughtPokemonSlugs.filter((slug: string) => !pokemon.pastSlugs.includes(slug));
         setRun(runID, run);
     }
 };
@@ -215,5 +210,16 @@ export const getPokemonSlugsFromBox = (box: CaughtPokemon[]): string[] => {
 
 export const getStarterSlug = (runID: string): string => {
     const allPokemon: CaughtPokemon[] = getBox(runID).concat(getRIPs(runID));
-    return allPokemon.find((pokemon: CaughtPokemon) => pokemon.locationSlug === "starter")!.pastSlugs[0];
+    const starterSlug: string | undefined = allPokemon.find(
+        (pokemon: CaughtPokemon) => pokemon.locationSlug === "starter"
+    )?.pastSlugs[0];
+    return starterSlug ? starterSlug : "";
+};
+
+export const getStarterID = (runID: string): string => {
+    const allPokemon: CaughtPokemon[] = getBox(runID).concat(getRIPs(runID));
+    const starterID: string | undefined = allPokemon.find(
+        (pokemon: CaughtPokemon) => pokemon.locationSlug === "starter"
+    )?.id;
+    return starterID ? starterID : "";
 };

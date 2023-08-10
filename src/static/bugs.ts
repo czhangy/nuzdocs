@@ -11,10 +11,6 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "HeartGold/SoulSilver",
             link: "https://github.com/czhangy/nuzlocke-db/issues/25",
         },
-        {
-            desc: "Starter select duplicates Pokemon in box/caught Pokemon",
-            group: "General",
-        },
     ],
     Medium: [
         {
