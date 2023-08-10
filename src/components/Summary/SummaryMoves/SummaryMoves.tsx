@@ -9,7 +9,7 @@ import styles from "./SummaryMoves.module.scss";
 type Props = {
     caughtPokemon: CaughtPokemon;
     pokemonData: PokemonData;
-    onClick: () => void;
+    onClick: (idx: number) => void;
 };
 
 const SummaryMoves: React.FC<Props> = (props: Props) => {
@@ -29,7 +29,7 @@ const SummaryMoves: React.FC<Props> = (props: Props) => {
             <div className={styles.moves}>
                 {[...Array(4)].map((_, key: number) => {
                     return (
-                        <button className={styles.button} onClick={props.onClick} key={key}>
+                        <button className={styles.button} onClick={() => props.onClick(key)} key={key}>
                             {key < moveData.length ? (
                                 <MoveCard
                                     move={moveData[key]}

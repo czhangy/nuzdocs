@@ -27,6 +27,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
 
     // Component state
     const [moveModalOpen, setMoveModalOpen] = useState<boolean>(false);
+    const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
     // Get Pokemon from local storage
     const handleUpdate = (
@@ -39,7 +40,8 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
         if (isNested) {
             if (index !== null) {
                 // @ts-expect-error
-                newCaughtPokemon.pokemon.moveSlugs.push(selection);
+                newCaughtPokemon.pokemon.moveSlugs[Math.min(newCaughtPokemon.pokemon.moveSlugs.length, index)] =
+                    selection;
             } else {
                 // @ts-expect-error
                 newCaughtPokemon.pokemon[property] = selection;
@@ -60,6 +62,13 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
             updateRIPs(props.run.id, newCaughtPokemon, updateIdx);
         }
         setCaughtPokemon(newCaughtPokemon);
+        setSelectedIdx(null);
+    };
+
+    // Pass move selection info to MoveModal
+    const handleMoveSelect = (idx: number): void => {
+        setSelectedIdx(idx);
+        setMoveModalOpen(true);
     };
 
     // Find Pokemon on page load
@@ -90,17 +99,21 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
             <SummaryMoves
                 caughtPokemon={caughtPokemon}
                 pokemonData={pokemonData}
-                onClick={() => setMoveModalOpen(true)}
+                onClick={(idx: number) => handleMoveSelect(idx)}
             />
             <SummaryStats stats={pokemonData.stats} nature={caughtPokemon.pokemon.nature} />
             <SummaryEvolutions pokemon={pokemonData} gameSlug={props.run.gameSlug} />
             <Modal modalID="move-modal" open={moveModalOpen} onClose={() => setMoveModalOpen(false)}>
-                <MoveModal
-                    movepool={pokemonData.movepool}
-                    moves={caughtPokemon.pokemon.moveSlugs}
-                    onConfirm={(selection: string) => handleUpdate(selection, "moveSlugs", true, 0)}
-                    onClose={() => setMoveModalOpen(false)}
-                />
+                {selectedIdx !== null ? (
+                    <MoveModal
+                        movepool={pokemonData.movepool}
+                        moves={caughtPokemon.pokemon.moveSlugs}
+                        onConfirm={(selection: string) => handleUpdate(selection, "moveSlugs", true, selectedIdx)}
+                        onClose={() => setMoveModalOpen(false)}
+                    />
+                ) : (
+                    ""
+                )}
             </Modal>
         </div>
     ) : (
