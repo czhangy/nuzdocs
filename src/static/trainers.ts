@@ -1,6 +1,14 @@
 import Trainer from "@/models/Trainer";
 
 const trainers: { [trainerSlug: string]: Trainer } = {
+    emerald_may: {
+        name: "May",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3.png",
+    },
+    emerald_roxanne: {
+        name: "Roxanne",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/roxanne-gen3.png",
+    },
     silver: {
         name: "Silver",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/silver.png",

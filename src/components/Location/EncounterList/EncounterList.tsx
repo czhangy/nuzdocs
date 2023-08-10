@@ -8,6 +8,7 @@ import { fetchAreas } from "@/utils/api";
 import { getGameGroup } from "@/utils/game";
 import { useEffect, useState } from "react";
 import styles from "./EncounterList.module.scss";
+import translations from "@/static/translations";
 
 type Props = {
     location: LocationData;
@@ -30,13 +31,20 @@ const EncounterList: React.FC<Props> = (props: Props) => {
     // Sets the current area on dropdown select
     const handleAreaSelect = (areaName: string): void => {
         let area: AreaData = areaList.find((area: AreaData) => area.areaName === areaName)!;
-        // Strip starters out of encounters in starting town
-        if (props.location.slug === getGameGroup(props.run.gameSlug).startingTownSlug) {
-            delete area.encounters["time-morning"].gift;
-            delete area.encounters["time-day"].gift;
-            delete area.encounters["time-night"].gift;
-        }
         setCurrentArea(area);
+    };
+
+    // Checks to see if the location has any encounters
+    const hasEncounters = (): boolean => {
+        return areaList.some((area: AreaData) => Object.keys(area.encounters).length > 0);
+    };
+
+    // Gets the list of encounter methods, sorted by priority (as defined in translations)
+    const getSortedMethods = (): string[] => {
+        return Object.keys(currentArea!.encounters[time]).sort((a: string, b: string) => {
+            const priorities: string[] = Object.values(translations.encounter_methods);
+            return priorities.indexOf(a) - priorities.indexOf(b);
+        });
     };
 
     // Fetch areas + encounters in location on location change
@@ -44,11 +52,11 @@ const EncounterList: React.FC<Props> = (props: Props) => {
         if (props.location) {
             setCurrentArea(null);
             setAreaList([]);
-            fetchAreas(props.location.areas, props.run.gameSlug).then((areaList) => setAreaList(areaList));
+            fetchAreas(props.location.areas, props.run.gameSlug).then((areaList: AreaData[]) => setAreaList(areaList));
         }
     }, [props.location]);
 
-    return (
+    return hasEncounters() ? (
         <div className={styles["encounter-list"]}>
             <div className={styles.header}>
                 <div className={styles.left}>
@@ -82,7 +90,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
             )}
             {currentArea ? (
                 <div className={styles.encounters}>
-                    {Object.keys(currentArea.encounters[time]).map((method: string) => {
+                    {getSortedMethods().map((method: string) => {
                         return (
                             <EncounterAccordion
                                 key={method}
@@ -97,6 +105,8 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                 ""
             )}
         </div>
+    ) : (
+        <></>
     );
 };
 

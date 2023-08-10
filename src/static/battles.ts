@@ -2,6 +2,70 @@ import Battle from "@/models/Battle";
 import trainers from "@/static/trainers";
 
 const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
+    emerald: {
+        may_1_treecko: {
+            trainer: trainers.emerald_may,
+            team: [
+                {
+                    slug: "torchic",
+                    species: "torchic",
+                    level: 5,
+                    abilitySlug: "blaze",
+                    moveSlugs: ["scratch", "growl"],
+                },
+            ],
+        },
+        may_1_torchic: {
+            trainer: trainers.emerald_may,
+            team: [
+                {
+                    slug: "mudkip",
+                    species: "mudkip",
+                    level: 5,
+                    abilitySlug: "torrent",
+                    moveSlugs: ["tackle", "growl"],
+                },
+            ],
+        },
+        may_1_mudkip: {
+            trainer: trainers.emerald_may,
+            team: [
+                {
+                    slug: "treecko",
+                    species: "treecko",
+                    level: 5,
+                    abilitySlug: "overgrow",
+                    moveSlugs: ["pound", "leer"],
+                },
+            ],
+        },
+        roxanne: {
+            trainer: trainers.emerald_roxanne,
+            team: [
+                {
+                    slug: "geodude",
+                    species: "geodude",
+                    level: 12,
+                    abilitySlug: "rock-head",
+                    moveSlugs: ["tackle", "defense-curl", "rock-throw", "rock-tomb"],
+                },
+                {
+                    slug: "geodude",
+                    species: "geodude",
+                    level: 12,
+                    abilitySlug: "rock-head",
+                    moveSlugs: ["tackle", "defense-curl", "rock-throw", "rock-tomb"],
+                },
+                {
+                    slug: "nosepass",
+                    species: "nosepass",
+                    level: 15,
+                    abilitySlug: "sturdy",
+                    moveSlugs: ["block", "harden", "tackle", "rock-tomb"],
+                },
+            ],
+        },
+    },
     "heartgold-soulsilver": {
         silver_1_chikorita: {
             trainer: trainers.silver,

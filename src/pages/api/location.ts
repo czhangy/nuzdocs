@@ -100,6 +100,9 @@ const getEncounterData = (
 ): boolean => {
     let usesTime = false;
     for (const pokemonEncounter of pokemonEncounters) {
+        if (getGameGroup(gameSlug).starterSlugs.includes(pokemonEncounter.pokemon.name)) {
+            continue;
+        }
         const versionDetail: VersionEncounterDetail | undefined = pokemonEncounter.version_details.find(
             (vd: VersionEncounterDetail) => vd.version.name === gameSlug
         );

@@ -5,7 +5,6 @@
     --name-font-size: 1rem;
     --name-z: 2;
     --sprite-left-offset: -2rem;
-    --sprite-right-offset: -0.5rem;
     --sprite-size: 120px;
     --top-inner-spacing: 0.5rem;
     --type-height: 12px;
@@ -18,7 +17,6 @@
     .sprite {
         height: var(--sprite-size);
         margin-left: var(--sprite-left-offset);
-        margin-right: var(--sprite-right-offset);
         position: relative;
         width: var(--sprite-size);
     }
@@ -52,6 +50,5 @@
 @media screen and (min-width: constants.$tablet) {
     .pokemon-display {
         --name-font-size: 1.25rem;
-        --sprite-size: 150px;
     }
 }
