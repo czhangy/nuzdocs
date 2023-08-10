@@ -1,6 +1,7 @@
 import AbilityData from "@/models/AbilityData";
 import GameGroup from "@/models/GameGroup";
 import { getGameGroup } from "./game";
+import ItemData from "@/models/ItemData";
 
 // IDK why but this errors when using import
 const axios = require("axios");
@@ -120,7 +121,7 @@ export const fetchPokemonGroup = async (pokemonSlugs: string[], gameSlug: string
     }
 };
 
-export const fetchItem = async (item: string, game: string) => {
+export const fetchItem = async (item: string, game: string): Promise<ItemData | null> => {
     try {
         const group: GameGroup = getGameGroup(game);
         const res = await axios.get("/api/items", {
@@ -136,7 +137,7 @@ export const fetchItem = async (item: string, game: string) => {
     }
 };
 
-export const fetchItems = async (items: string[], game: string) => {
+export const fetchItems = async (items: string[], game: string): Promise<ItemData[]> => {
     try {
         if (items.length === 1) {
             return [await fetchPokemon(items[0], game)];
@@ -152,6 +153,6 @@ export const fetchItems = async (items: string[], game: string) => {
         }
     } catch (error) {
         console.log(error);
-        return null;
+        return [];
     }
 };

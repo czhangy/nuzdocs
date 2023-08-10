@@ -14,6 +14,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     moveSlugs: ["scratch", "growl"],
                 },
             ],
+            items: [],
         },
         may_1_torchic: {
             trainer: trainers.emerald_may,
@@ -26,6 +27,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     moveSlugs: ["tackle", "growl"],
                 },
             ],
+            items: [],
         },
         may_1_mudkip: {
             trainer: trainers.emerald_may,
@@ -38,6 +40,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     moveSlugs: ["pound", "leer"],
                 },
             ],
+            items: [],
         },
         roxanne: {
             trainer: trainers.emerald_roxanne,
@@ -64,6 +67,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     moveSlugs: ["block", "harden", "tackle", "rock-tomb"],
                 },
             ],
+            items: [],
         },
         brawly: {
             trainer: trainers.emerald_brawly,
@@ -91,6 +95,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     heldItemSlug: "sitrus-berry",
                 },
             ],
+            items: [],
         },
     },
     "heartgold-soulsilver": {
@@ -105,6 +110,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     moveSlugs: ["tackle", "leer"],
                 },
             ],
+            items: [],
         },
         silver_1_cyndaquil: {
             trainer: trainers.silver,
@@ -117,6 +123,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     moveSlugs: ["scratch", "leer"],
                 },
             ],
+            items: [],
         },
         silver_1_totodile: {
             trainer: trainers.silver,
@@ -129,6 +136,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     moveSlugs: ["tackle", "growl"],
                 },
             ],
+            items: [],
         },
         elder_li: {
             trainer: trainers.elder_li,
@@ -155,6 +163,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     moveSlugs: ["growl", "hypnosis", "peck"],
                 },
             ],
+            items: [],
         },
         falkner: {
             trainer: trainers.falkner,
@@ -174,6 +183,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     moveSlugs: ["tackle", "roost", "gust"],
                 },
             ],
+            items: [],
         },
     },
 };
