@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./BattlePreview.module.scss";
 import { fetchItems } from "@/utils/api";
+import ItemDisplay from "@/components/Battle/ItemDisplay/ItemDisplay";
 
 type Props = {
     segment: Segment;
@@ -51,7 +52,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["battle-preview"]}>
             <div className={styles.trainer}>
-                <div className={`${styles["trainer-sprite"]} ${defeated ? styles.defeated : ""}`}>
+                <div className={`${styles.sprite} ${defeated ? styles.defeated : ""}`}>
                     <Image
                         src={
                             getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).trainer
@@ -74,11 +75,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                         </p>
                         <div className={styles.items}>
                             {items.map((item: ItemData, key: number) => {
-                                return (
-                                    <div className={styles["item-sprite"]} key={key}>
-                                        <Image src={item.sprite} alt={item.name} layout="fill" objectFit="contain" />
-                                    </div>
-                                );
+                                return <ItemDisplay item={item} key={key} />;
                             })}
                         </div>
                     </div>

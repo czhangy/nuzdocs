@@ -1,0 +1,13 @@
+@use "@/styles/constants";
+
+.item-display {
+    --sprite-size: 28px;
+
+    display: flex;
+
+    .sprite {
+        height: var(--sprite-size);
+        position: relative;
+        width: var(--sprite-size);
+    }
+}

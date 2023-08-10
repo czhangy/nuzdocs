@@ -2,11 +2,11 @@
 
 .level-cap {
     --bg-border-rad: 5px;
-    --bg-size: 4rem;
+    --bg-size: 3rem;
     --inner-spacing: 0.5rem;
-    --level-font-size: 2rem;
+    --level-font-size: 1.5rem;
     --text-font-size: 1rem;
-    --text-letter-spacing: 1px;
+    --text-letter-spacing: 0;
 
     align-items: center;
     display: flex;
@@ -32,5 +32,13 @@
             font-size: var(--level-font-size);
             font-weight: bold;
         }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .level-cap {
+        --bg-size: 4rem;
+        --level-font-size: 2rem;
+        --text-letter-spacing: 1px;
     }
 }
