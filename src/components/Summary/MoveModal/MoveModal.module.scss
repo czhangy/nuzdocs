@@ -6,12 +6,12 @@
     --button-font-size: 1rem;
     --button-letter-spacing: 1px;
     --button-padding: 1rem;
+    --buttons-inner-spacing: 1rem;
     --header-font-size: 1.25rem;
     --inner-spacing: 1.5rem;
-    --input-font-size: 1.25rem;
+    --input-font-size: 1rem;
     --input-x-padding: 1.25rem;
     --input-y-padding: 0.5rem;
-    --match-font-size: 1.25rem;
     --match-x-padding: 1.25rem;
     --match-y-padding: 1rem;
     --matches-border-size: 2px;
@@ -24,7 +24,6 @@
 
     .header {
         font-size: var(--header-font-size);
-        font-weight: bold;
         line-height: var(--header-font-size);
         text-align: center;
     }
@@ -48,8 +47,8 @@
 
             .match {
                 cursor: pointer;
-                font-size: var(--match-font-size);
-                line-height: var(--match-font-size);
+                font-size: var(--input-font-size);
+                line-height: var(--input-font-size);
                 padding: var(--match-y-padding) var(--match-x-padding);
                 text-align: left;
                 width: 100%;
@@ -65,21 +64,29 @@
         display: none;
     }
 
-    .confirm {
-        background-color: constants.$text-color;
-        border: var(--button-border-size) solid constants.$text-color;
-        border-radius: var(--button-border-rad);
-        color: constants.$bg-color;
-        font-size: var(--button-font-size);
-        font-weight: bold;
-        letter-spacing: var(--button-letter-spacing);
-        line-height: var(--button-font-size);
-        padding: var(--button-padding);
+    .buttons {
+        display: flex;
+        gap: var(--buttons-inner-spacing);
 
-        &:disabled {
-            background-color: transparent;
-            border: var(--button-border-size) solid constants.$disabled-color;
-            color: constants.$disabled-color;
+        .button {
+            border: var(--button-border-size) solid constants.$text-color;
+            border-radius: var(--button-border-rad);
+            font-size: var(--button-font-size);
+            font-weight: bold;
+            letter-spacing: var(--button-letter-spacing);
+            line-height: var(--button-font-size);
+            padding: var(--button-padding);
+        }
+
+        .confirm {
+            background-color: constants.$text-color;
+            color: constants.$bg-color;
+
+            &:disabled {
+                background-color: transparent;
+                border: var(--button-border-size) solid constants.$disabled-color;
+                color: constants.$disabled-color;
+            }
         }
     }
 }
@@ -87,13 +94,33 @@
 @media screen and (min-width: constants.$tablet) {
     .move-modal {
         --header-font-size: 1.5rem;
+        --input-font-size: 1.25rem;
     }
 }
 
 @media screen and (hover: hover) {
-    .move-modal > .confirm:hover {
-        background-color: constants.$hover-color;
-        border-color: constants.$hover-color;
-        color: constants.$text-color;
+    .move-modal {
+        .search > .matches .match:hover {
+            background-color: constants.$hover-color;
+
+            .highlight {
+                color: constants.$text-color;
+            }
+        }
+
+        .buttons {
+            .button:hover {
+                border-color: constants.$hover-color;
+            }
+
+            .delete:hover {
+                color: constants.$hover-color;
+            }
+
+            .confirm:hover {
+                background-color: constants.$hover-color;
+                color: constants.$text-color;
+            }
+        }
     }
 }

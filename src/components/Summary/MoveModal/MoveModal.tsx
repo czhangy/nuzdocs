@@ -6,7 +6,9 @@ import styles from "./MoveModal.module.scss";
 type Props = {
     movepool: PokemonMove[];
     moves: string[];
+    move: string | null;
     onConfirm: (selection: string) => void;
+    onDelete: () => void;
     onClose: () => void;
 };
 
@@ -76,7 +78,16 @@ const MoveModal: React.FC<Props> = (props: Props) => {
 
     return (
         <div className={styles["move-modal"]}>
-            <h2 className={styles.header}>Select a move to learn!</h2>
+            {props.move ? (
+                <h2 className={styles.header}>
+                    Edit <strong>{translateSlug(props.move)}</strong>!
+                </h2>
+            ) : (
+                <h2 className={styles.header}>
+                    <strong>Select a move to learn!</strong>
+                </h2>
+            )}
+
             <div className={styles.search}>
                 <input
                     className={styles.input}
@@ -100,9 +111,18 @@ const MoveModal: React.FC<Props> = (props: Props) => {
                     })}
                 </ul>
             </div>
-            <button className={styles.confirm} disabled={!move} onClick={handleConfirm}>
-                Learn!
-            </button>
+            <div className={styles.buttons}>
+                {props.move ? (
+                    <button className={`${styles.button} ${styles.delete}`} onClick={props.onDelete}>
+                        Remove
+                    </button>
+                ) : (
+                    ""
+                )}
+                <button className={`${styles.button} ${styles.confirm}`} disabled={!move} onClick={handleConfirm}>
+                    {props.move ? "Replace" : "Learn"}
+                </button>
+            </div>
         </div>
     );
 };
