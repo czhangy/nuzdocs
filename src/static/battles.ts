@@ -65,6 +65,33 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                 },
             ],
         },
+        brawly: {
+            trainer: trainers.emerald_brawly,
+            team: [
+                {
+                    slug: "machop",
+                    species: "machop",
+                    level: 16,
+                    abilitySlug: "guts",
+                    moveSlugs: ["karate-chop", "low-kick", "seismic-toss", "bulk-up"],
+                },
+                {
+                    slug: "meditite",
+                    species: "meditite",
+                    level: 16,
+                    abilitySlug: "pure-power",
+                    moveSlugs: ["focus-punch", "light-screen", "reflect", "bulk-up"],
+                },
+                {
+                    slug: "makuhita",
+                    species: "makuhita",
+                    level: 19,
+                    abilitySlug: "guts",
+                    moveSlugs: ["arm-thrust", "vital-throw", "reversal", "bulk-up"],
+                    heldItemSlug: "sitrus-berry",
+                },
+            ],
+        },
     },
     "heartgold-soulsilver": {
         silver_1_chikorita: {

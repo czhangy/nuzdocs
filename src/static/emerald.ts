@@ -35,6 +35,12 @@ const emerald: GameGroup = {
                     segment: {},
                 },
                 {
+                    slug: "oldale-town",
+                    name: "Oldale Town",
+                    type: "location",
+                    segment: {},
+                },
+                {
                     slug: "hoenn-route-103",
                     name: "Route 103",
                     type: "location",
@@ -89,6 +95,50 @@ const emerald: GameGroup = {
                     segment: {
                         battle: battles.emerald.roxanne,
                         levelCap: 15,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Brawly Split",
+            segments: [
+                {
+                    slug: "dewford-town",
+                    name: "Dewford Town",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-106",
+                    name: "Route 106",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "granite-cave",
+                    name: "Granite Cave",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-109",
+                    name: "Route 109",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "slateport-city",
+                    name: "Slateport City",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "brawly",
+                    name: "Brawly",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.brawly,
+                        levelCap: 19,
                     },
                 },
             ],

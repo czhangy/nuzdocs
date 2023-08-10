@@ -34,11 +34,6 @@ const EncounterList: React.FC<Props> = (props: Props) => {
         setCurrentArea(area);
     };
 
-    // Checks to see if the location has any encounters
-    const hasEncounters = (): boolean => {
-        return areaList.some((area: AreaData) => Object.keys(area.encounters).length > 0);
-    };
-
     // Gets the list of encounter methods, sorted by priority (as defined in translations)
     const getSortedMethods = (): string[] => {
         return Object.keys(currentArea!.encounters[time]).sort((a: string, b: string) => {
@@ -52,11 +47,19 @@ const EncounterList: React.FC<Props> = (props: Props) => {
         if (props.location) {
             setCurrentArea(null);
             setAreaList([]);
-            fetchAreas(props.location.areas, props.run.gameSlug).then((areaList: AreaData[]) => setAreaList(areaList));
+            fetchAreas(props.location.areas, props.run.gameSlug).then((areaList: AreaData[]) => {
+                const validAreas: AreaData[] = [];
+                for (const area of areaList) {
+                    if (Object.keys(area.encounters["time-day"]).length > 0) {
+                        validAreas.push(area);
+                    }
+                }
+                setAreaList(validAreas);
+            });
         }
     }, [props.location]);
 
-    return hasEncounters() ? (
+    return areaList.length > 0 ? (
         <div className={styles["encounter-list"]}>
             <div className={styles.header}>
                 <div className={styles.left}>
