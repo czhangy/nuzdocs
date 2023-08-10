@@ -45,12 +45,9 @@
             }
         }
 
-        .text {
+        .bp {
             display: flex;
-            font-size: var(--text-font-size);
             gap: var(--text-inner-spacing);
-            letter-spacing: var(--text-letter-spacing);
-            line-height: var(--text-font-size);
 
             .stab-text {
                 color: constants.$hover-color;
@@ -62,6 +59,12 @@
                 position: relative;
                 width: var(--text-font-size);
             }
+        }
+
+        .text {
+            font-size: var(--text-font-size);
+            letter-spacing: var(--text-letter-spacing);
+            line-height: var(--text-font-size);
         }
     }
 }

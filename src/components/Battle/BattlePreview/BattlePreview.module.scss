@@ -6,10 +6,11 @@
     --defeat-font-size: 0.9rem;
     --defeat-x-padding: 1rem;
     --defeat-y-padding: 0.5rem;
-    --info-inner-spacing: 0.5rem;
+    --item-sprite-size: 28px;
     --name-font-size: 1.25rem;
-    --sprite-size: 100px;
-    --sprite-transition-time: 0.5s;
+    --preview-inner-spacing: 0.5rem;
+    --trainer-sprite-size: 100px;
+    --trainer-sprite-transition-time: 0.5s;
     --undo-button-size: 1rem;
 
     align-items: center;
@@ -21,10 +22,10 @@
         display: flex;
         justify-content: center;
 
-        .sprite {
-            height: var(--sprite-size);
+        .trainer-sprite {
+            height: var(--trainer-sprite-size);
             position: relative;
-            transition: filter var(--sprite-transition-time);
+            transition: filter var(--trainer-sprite-transition-time);
             width: var(--sprite-size);
         }
 
@@ -34,10 +35,24 @@
 
         .preview {
             .info {
+                align-items: center;
+                display: flex;
+                gap: var(--preview-inner-spacing);
+                margin-bottom: var(--preview-inner-spacing);
+
                 .name {
                     font-size: var(--name-font-size);
                     line-height: var(--name-font-size);
-                    margin-bottom: var(--info-inner-spacing);
+                }
+
+                .items {
+                    display: flex;
+
+                    .item-sprite {
+                        height: var(--item-sprite-size);
+                        position: relative;
+                        width: var(--item-sprite-size);
+                    }
                 }
             }
 

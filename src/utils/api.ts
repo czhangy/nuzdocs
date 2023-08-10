@@ -139,7 +139,9 @@ export const fetchItem = async (item: string, game: string): Promise<ItemData | 
 
 export const fetchItems = async (items: string[], game: string): Promise<ItemData[]> => {
     try {
-        if (items.length === 1) {
+        if (items.length === 0) {
+            return [];
+        } else if (items.length === 1) {
             return [await fetchPokemon(items[0], game)];
         } else {
             const group: GameGroup = getGameGroup(game);

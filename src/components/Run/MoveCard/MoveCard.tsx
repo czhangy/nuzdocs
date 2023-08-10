@@ -28,8 +28,10 @@ const MoveCard: React.FC<Props> = (props: Props) => {
                     </div>
                 </div>
                 {props.isSTAB && props.move.power > 0 ? (
-                    <p className={styles.text}>
-                        BP: <strong className={styles["stab-text"]}>{props.move.power * 1.5}</strong>
+                    <div className={styles.bp}>
+                        <p className={styles.text}>
+                            BP: <strong className={styles["stab-text"]}>{props.move.power * 1.5}</strong>
+                        </p>
                         <div className={styles["stab-icon"]}>
                             <Image
                                 src="/assets/icons/double-arrow.svg"
@@ -38,7 +40,7 @@ const MoveCard: React.FC<Props> = (props: Props) => {
                                 objectFit="contain"
                             />
                         </div>
-                    </p>
+                    </div>
                 ) : (
                     <p className={styles.text}>
                         BP: <strong>{props.move.power === 0 ? "--" : props.move.power}</strong>
