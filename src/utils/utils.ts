@@ -1,6 +1,6 @@
 import PokemonData from "@/models/PokemonData";
 import tiers from "@/static/tiers";
-import { Name } from "pokenode-ts";
+import { Name, VersionGroupFlavorText } from "pokenode-ts";
 import { getGameGroup } from "./game";
 
 export const getEnglishName: (names: Name[]) => string = (names: Name[]): string => {
@@ -46,4 +46,10 @@ export const translateSlug = (slug: string) => {
         .split(" ")
         .map((word: string) => capitalizeWord(word))
         .join(" ");
+};
+
+export const getItemDescription = (fte: VersionGroupFlavorText[], versionGroup: string): string => {
+    return fte.find(
+        (vgft: VersionGroupFlavorText) => vgft.language.name === "en" && vgft.version_group.name === versionGroup
+    )!.text;
 };

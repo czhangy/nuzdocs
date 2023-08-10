@@ -97,8 +97,8 @@ const hgss: GameGroup = {
                     },
                 },
                 {
-                    slug: "gym-leader-falkner",
-                    name: "Gym Leader Falkner",
+                    slug: "falkner",
+                    name: "Falkner",
                     type: "battle",
                     segment: {
                         battle: battles["heartgold-soulsilver"].falkner,

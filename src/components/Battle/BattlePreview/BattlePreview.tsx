@@ -53,10 +53,16 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                         objectFit="contain"
                     />
                 </div>
-                <div className={styles.info}>
-                    <p className={styles.name}>
-                        {getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).trainer.name}
-                    </p>
+                <div className={styles.preview}>
+                    <div className={styles.info}>
+                        <p className={styles.name}>
+                            {
+                                getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).trainer
+                                    .name
+                            }
+                        </p>
+                    </div>
+                    <div className={styles.items}></div>
                     {defeated ? (
                         <div className={styles.buttons}>
                             <button className={styles.defeat} disabled={true}>

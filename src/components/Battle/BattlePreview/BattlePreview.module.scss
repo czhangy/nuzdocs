@@ -32,11 +32,13 @@
             filter: grayscale(100%);
         }
 
-        .info {
-            .name {
-                font-size: var(--name-font-size);
-                line-height: var(--name-font-size);
-                margin-bottom: var(--info-inner-spacing);
+        .preview {
+            .info {
+                .name {
+                    font-size: var(--name-font-size);
+                    line-height: var(--name-font-size);
+                    margin-bottom: var(--info-inner-spacing);
+                }
             }
 
             .buttons {
@@ -74,7 +76,7 @@
 }
 
 @media (hover: hover) {
-    .battle-preview > .trainer > .info > .buttons {
+    .battle-preview > .trainer > .preview > .buttons {
         .defeat:hover {
             background-color: constants.$hover-color;
             color: constants.$text-color;
