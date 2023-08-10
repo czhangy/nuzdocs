@@ -2,7 +2,7 @@ import BattleSegment from "@/models/BattleSegment";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { getTrainer } from "@/utils/battle";
-import { isCleared } from "@/utils/run";
+import { getStarterSlug, isCleared } from "@/utils/run";
 import { hasLevelCap } from "@/utils/segment";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,8 +21,8 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
                     <p className={styles.name}>{props.battle.name}</p>
                     <div className={styles.trainer}>
                         <Image
-                            src={getTrainer(props.run.gameSlug, props.battle.slug, props.run.starterSlug).sprite}
-                            alt={getTrainer(props.run.gameSlug, props.battle.slug, props.run.starterSlug).name}
+                            src={getTrainer(props.run.gameSlug, props.battle.slug, getStarterSlug(props.run.id)).sprite}
+                            alt={getTrainer(props.run.gameSlug, props.battle.slug, getStarterSlug(props.run.id)).name}
                             layout="fill"
                             objectFit="contain"
                         />

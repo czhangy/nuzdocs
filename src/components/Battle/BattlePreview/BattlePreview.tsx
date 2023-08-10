@@ -3,7 +3,7 @@ import BattleSegment from "@/models/BattleSegment";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { getBattle } from "@/utils/battle";
-import { addToClearedBattles, isCleared, removeFromClearedBattles } from "@/utils/run";
+import { addToClearedBattles, getStarterSlug, isCleared, removeFromClearedBattles } from "@/utils/run";
 import { hasLevelCap } from "@/utils/segment";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -42,15 +42,20 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
             <div className={styles.trainer}>
                 <div className={`${styles.sprite} ${defeated ? styles.defeated : ""}`}>
                     <Image
-                        src={getBattle(props.run.gameSlug, props.segment.slug, props.run.starterSlug).trainer.sprite}
-                        alt={getBattle(props.run.gameSlug, props.segment.slug, props.run.starterSlug).trainer.name}
+                        src={
+                            getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).trainer
+                                .sprite
+                        }
+                        alt={
+                            getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).trainer.name
+                        }
                         layout="fill"
                         objectFit="contain"
                     />
                 </div>
                 <div className={styles.info}>
                     <p className={styles.name}>
-                        {getBattle(props.run.gameSlug, props.segment.slug, props.run.starterSlug).trainer.name}
+                        {getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).trainer.name}
                     </p>
                     {defeated ? (
                         <div className={styles.buttons}>
