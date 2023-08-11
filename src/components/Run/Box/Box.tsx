@@ -61,6 +61,11 @@ const Box: React.FC<Props> = (props: Props) => {
         props.onRevive!(pokemon, idx);
     };
 
+    // Compute the number of failed encounters
+    const getNumFailedEncounters = (): number => {
+        return props.box.filter((pokemon: CaughtPokemon) => pokemon.pokemon.slug === "failed").length;
+    };
+
     // Listen for window resizes to recompute inverted menus on component load
     useEffect(() => {
         getInvertedMenus();
@@ -79,7 +84,7 @@ const Box: React.FC<Props> = (props: Props) => {
         }
     }, [props.box]);
 
-    return boxData.length > 0 && boxData.length === props.box.length ? (
+    return boxData.length > 0 && boxData.length + getNumFailedEncounters() === props.box.length ? (
         <div className={styles.box}>
             {boxData.map((pokemon: PokemonData, idx: number) => (
                 <div className={styles.pokemon} key={props.box[idx].id}>
