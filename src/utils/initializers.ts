@@ -10,6 +10,7 @@ import PokemonData from "@/models/PokemonData";
 import PokemonMove from "@/models/PokemonMove";
 import PokemonName from "@/models/PokemonName";
 import Stat from "@/models/Stat";
+import Values from "@/models/Values";
 import translations from "@/static/translations";
 import { getBox, getRIPs } from "@/utils/run";
 import { generateID, getDescription, getEnglishName } from "@/utils/utils";
@@ -18,7 +19,6 @@ import {
     Item,
     Move,
     Name,
-    NamedAPIResource,
     Pokemon,
     PokemonMoveVersion,
     PokemonSpecies,
@@ -84,6 +84,8 @@ export const initPokemon = (slug: string, species: string, level: number | null 
         slug: slug,
         species: species,
         moveSlugs: [],
+        ivs: initValues(),
+        evs: initValues(),
     };
     if (level) {
         pokemon.level = level;
@@ -181,5 +183,16 @@ export const initItemData = (item: Item, versionGroup: string): ItemData => {
         name: getEnglishName(item.names),
         sprite: item.sprites.default,
         desc: getDescription(item.flavor_text_entries, versionGroup) as string,
+    };
+};
+
+export const initValues = (): Values => {
+    return {
+        hp: 0,
+        attack: 0,
+        "special-attack": 0,
+        defense: 0,
+        "special-defense": 0,
+        speed: 0,
     };
 };

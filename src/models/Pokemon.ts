@@ -1,4 +1,5 @@
 import Nature from "@/models/Nature";
+import Values from "@/models/Values";
 
 export default interface Pokemon {
     slug: string;
@@ -8,4 +9,6 @@ export default interface Pokemon {
     abilitySlug?: string;
     heldItemSlug?: string;
     moveSlugs: string[];
+    ivs: Values;
+    evs: Values;
 }
