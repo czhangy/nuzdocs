@@ -1,8 +1,10 @@
 @use "@/styles/constants";
 
 .item-display {
+    --font-size: 0.75rem;
     --sprite-size: 28px;
 
+    align-items: center;
     display: flex;
     position: relative;
 
@@ -10,5 +12,17 @@
         height: var(--sprite-size);
         position: relative;
         width: var(--sprite-size);
+    }
+
+    .name {
+        cursor: default;
+        font-size: var(--font-size);
+        line-height: var(--font-size);
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .item-display {
+        --font-size: 1rem;
     }
 }

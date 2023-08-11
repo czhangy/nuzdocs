@@ -1,8 +1,8 @@
 import Tooltip from "@/components/Global/Tooltip/Tooltip";
 import ItemData from "@/models/ItemData";
 import Image from "next/image";
-import styles from "./ItemDisplay.module.scss";
 import { useState } from "react";
+import styles from "./ItemDisplay.module.scss";
 
 type Props = {
     item: ItemData;
@@ -10,6 +10,7 @@ type Props = {
 };
 
 const ItemDisplay: React.FC<Props> = (props: Props) => {
+    // Component state
     const [open, setOpen] = useState<boolean>(false);
 
     return (
@@ -17,6 +18,7 @@ const ItemDisplay: React.FC<Props> = (props: Props) => {
             <div className={styles.sprite}>
                 <Image src={props.item.sprite} alt={props.item.name} layout="fill" objectFit="contain" />
             </div>
+            {props.showName ? <p className={styles.name}>{props.item.name}</p> : ""}
             <Tooltip desc={props.item.desc} show={open} />
         </div>
     );
