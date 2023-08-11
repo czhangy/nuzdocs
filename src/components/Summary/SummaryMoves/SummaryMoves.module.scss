@@ -12,11 +12,9 @@
     --num-cols: 1;
     --plus-size: 3rem;
 
-    border-radius: var(--border-rad);
-    overflow: hidden;
-
     .header {
         background-color: constants.$hover-color;
+        border-radius: var(--border-rad) var(--border-rad) 0 0;
         font-size: var(--font-size);
         font-weight: bold;
         line-height: var(--font-size);
@@ -26,6 +24,7 @@
 
     .moves {
         background-color: constants.$accent-color;
+        border-radius: 0 0 var(--border-rad) var(--border-rad);
         display: grid;
         gap: var(--moves-inner-spacing);
         grid-template-columns: repeat(var(--num-cols), 1fr);
