@@ -9,6 +9,7 @@ import styles from "./SummaryMoves.module.scss";
 type Props = {
     caughtPokemon: CaughtPokemon;
     pokemonData: PokemonData;
+    game: string;
     onClick: (idx: number) => void;
 };
 
@@ -34,6 +35,7 @@ const SummaryMoves: React.FC<Props> = (props: Props) => {
                                 <MoveCard
                                     move={moveData[key]}
                                     isSTAB={props.pokemonData.types.includes(moveData[key].type)}
+                                    game={props.game}
                                 />
                             ) : (
                                 <div className={styles.add}>

@@ -3,7 +3,7 @@ export default interface MoveData {
     name: string;
     type: string;
     power: number;
-    category: string;
+    category: "physical" | "special" | "other";
     pp: number;
     desc: string;
 }
