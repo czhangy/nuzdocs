@@ -8,7 +8,7 @@
     --header-x-padding: 2.5rem;
     --info-font-size: 0.75rem;
     --info-inner-spacing: 0.5rem;
-    --info-offset: 1.75rem;
+    --info-offset: 1.25rem;
     --level-font-size: 1rem;
     --moves-inner-spacing: 1rem;
     --toggle-font-size: 2rem;
@@ -41,26 +41,6 @@
             display: flex;
             padding: 0 var(--header-x-padding);
             justify-content: space-between;
-
-            .info {
-                align-items: flex-end;
-                display: flex;
-                flex-direction: column;
-                gap: var(--info-inner-spacing);
-                justify-content: flex-start;
-                margin-top: var(--info-offset);
-
-                .level {
-                    font-size: var(--level-font-size);
-                    font-weight: bold;
-                    line-height: var(--level-font-size);
-                }
-
-                .info-text {
-                    font-size: var(--info-font-size);
-                    line-height: var(--info-font-size);
-                }
-            }
         }
 
         .moves {
@@ -72,10 +52,25 @@
         }
     }
 
-    .item {
+    .info {
+        align-items: flex-end;
+        display: flex;
+        flex-direction: column;
+        gap: var(--info-inner-spacing);
         position: absolute;
         right: var(--header-x-padding);
-        top: calc(var(--info-offset) + var(--level-font-size) + var(--info-inner-spacing) + var(--info-font-size));
+        top: calc(var(--info-offset));
+
+        .level {
+            font-size: var(--level-font-size);
+            font-weight: bold;
+            line-height: var(--level-font-size);
+        }
+
+        .missing {
+            font-size: var(--info-font-size);
+            line-height: var(--info-font-size);
+        }
     }
 
     .minimized {
@@ -89,6 +84,7 @@
         --display-size: 120px;
         --header-x-padding: 4rem;
         --info-font-size: 1rem;
+        --info-offset: 1.5rem;
         --level-font-size: 1.25rem;
 
         .card > .moves {
