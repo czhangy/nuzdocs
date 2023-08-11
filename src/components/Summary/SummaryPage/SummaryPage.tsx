@@ -99,7 +99,6 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
             <SummaryMoves
                 caughtPokemon={caughtPokemon}
                 pokemonData={pokemonData}
-                game={props.run.gameSlug}
                 onClick={(idx: number) => handleMoveSelect(idx)}
             />
             <SummaryStats stats={pokemonData.stats} nature={caughtPokemon.pokemon.nature} />

@@ -1,7 +1,7 @@
 import MoveData from "@/models/MoveData";
 import { initMoveData } from "@/utils/initializers";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { MoveClient } from "pokenode-ts";
+import { Move, MoveClient, VerboseEffect } from "pokenode-ts";
 
 type ResData = {
     moves?: string;
@@ -9,38 +9,30 @@ type ResData = {
 };
 
 const isMoveRequest = (req: NextApiRequest): boolean => {
-    return (
-        req.method === "GET" &&
-        "slugs" in req.query &&
-        typeof req.query.slugs === "string" &&
-        "group" in req.query &&
-        typeof req.query.group === "string"
-    );
+    return req.method === "GET" && "slugs" in req.query && typeof req.query.slugs === "string";
 };
 
 const isMoveListRequest = (req: NextApiRequest): boolean => {
-    return (
-        req.method === "GET" &&
-        "slugs[]" in req.query &&
-        Array.isArray(req.query["slugs[]"]) &&
-        "group" in req.query &&
-        typeof req.query.group === "string"
-    );
+    return req.method === "GET" && "slugs[]" in req.query && Array.isArray(req.query["slugs[]"]);
 };
 
 const fetchMove = async (slug: string): Promise<MoveData> => {
     const api: MoveClient = new MoveClient();
     try {
-        return initMoveData(await api.getMoveByName(slug));
+        const move: Move = await api.getMoveByName(slug);
+        const desc: string = move.effect_entries
+            .find((effect: VerboseEffect) => effect.language.name === "en")!
+            .effect.replaceAll("$effect_chance", String(move.effect_chance));
+        return initMoveData(move, desc);
     } catch (error: any) {
         throw error;
     }
 };
 
-const fetchListOfMoves = async (moveSlugs: string[]): Promise<MoveData[]> => {
+const fetchListOfMoves = async (slugs: string[]): Promise<MoveData[]> => {
     let promises: Promise<MoveData>[] = [];
-    moveSlugs.forEach((moveSlug: string) => {
-        promises.push(fetchMove(moveSlug));
+    slugs.forEach((slug: string) => {
+        promises.push(fetchMove(slug));
     });
     try {
         return await Promise.all(promises);

@@ -78,12 +78,11 @@ export const fetchAbilities = async (abilities: string[], game: string): Promise
     }
 };
 
-export const fetchMove = async (move: string, game: string): Promise<MoveData | null> => {
+export const fetchMove = async (move: string): Promise<MoveData | null> => {
     try {
         const res = await axios.get("/api/moves", {
             params: {
                 slugs: move,
-                group: getGameGroup(game).versionGroup,
             },
         });
         return JSON.parse(res.data.moves);
@@ -93,18 +92,17 @@ export const fetchMove = async (move: string, game: string): Promise<MoveData | 
     }
 };
 
-export const fetchMoves = async (moves: string[], game: string): Promise<MoveData[]> => {
+export const fetchMoves = async (moves: string[]): Promise<MoveData[]> => {
     try {
         if (moves.length === 0) {
             return [];
         } else if (moves.length === 1) {
-            const move: MoveData | null = await fetchMove(moves[0], game);
+            const move: MoveData | null = await fetchMove(moves[0]);
             return move ? [move] : [];
         } else {
             const res = await axios.get("/api/moves", {
                 params: {
                     slugs: moves,
-                    group: getGameGroup(game).versionGroup,
                 },
             });
             return JSON.parse(res.data.moves);
@@ -116,9 +114,9 @@ export const fetchMoves = async (moves: string[], game: string): Promise<MoveDat
 };
 
 // Fetch a Pokemon by their Pokemon slug
-export const fetchPokemon = async (pokemonSlug: string, gameSlug: string) => {
+export const fetchPokemon = async (pokemonSlug: string, game: string) => {
     try {
-        const group: GameGroup = getGameGroup(gameSlug);
+        const group: GameGroup = getGameGroup(game);
         const res = await axios.get("/api/pokemon", {
             params: {
                 pokemonSlug: pokemonSlug,
@@ -134,12 +132,12 @@ export const fetchPokemon = async (pokemonSlug: string, gameSlug: string) => {
 };
 
 // Fetch a list of PokemonData given Pokemon slugs
-export const fetchPokemonGroup = async (pokemonSlugs: string[], gameSlug: string) => {
+export const fetchPokemonGroup = async (pokemonSlugs: string[], game: string) => {
     try {
         if (pokemonSlugs.length === 1) {
-            return [await fetchPokemon(pokemonSlugs[0], gameSlug)];
+            return [await fetchPokemon(pokemonSlugs[0], game)];
         } else {
-            const group: GameGroup = getGameGroup(gameSlug);
+            const group: GameGroup = getGameGroup(game);
             const res = await axios.get("/api/pokemon", {
                 params: {
                     pokemonSlugList: pokemonSlugs,

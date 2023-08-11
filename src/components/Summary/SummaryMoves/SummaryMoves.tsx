@@ -9,7 +9,6 @@ import styles from "./SummaryMoves.module.scss";
 type Props = {
     caughtPokemon: CaughtPokemon;
     pokemonData: PokemonData;
-    game: string;
     onClick: (idx: number) => void;
 };
 
@@ -20,9 +19,7 @@ const SummaryMoves: React.FC<Props> = (props: Props) => {
     // Fetch move data on component load
     useEffect(() => {
         if (props.caughtPokemon.pokemon.moveSlugs && props.caughtPokemon.pokemon.moveSlugs.length > 0) {
-            fetchMoves(props.caughtPokemon.pokemon.moveSlugs, props.game).then((moves: MoveData[]) =>
-                setMoveData(moves)
-            );
+            fetchMoves(props.caughtPokemon.pokemon.moveSlugs).then((moves: MoveData[]) => setMoveData(moves));
         }
     }, [props.caughtPokemon]);
 

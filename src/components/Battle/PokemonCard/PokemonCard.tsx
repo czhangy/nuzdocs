@@ -35,7 +35,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
             fetchAbility(props.pokemon.abilitySlug as string, props.gameSlug).then((abilityData: AbilityData | null) =>
                 setAbility(abilityData)
             );
-            fetchMoves(props.pokemon.moveSlugs, props.gameSlug).then((moveData: MoveData[]) => setMoves(moveData));
+            fetchMoves(props.pokemon.moveSlugs).then((moveData: MoveData[]) => setMoves(moveData));
             if (props.pokemon.heldItemSlug) {
                 fetchItem(props.pokemon.heldItemSlug, props.gameSlug).then((item: ItemData | null) =>
                     setHeldItem(item)

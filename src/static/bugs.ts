@@ -21,6 +21,10 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Pokemon with regional forms show up in all games' evolutions, even when not accessible",
             group: "General",
         },
+        {
+            desc: "If a move has been updated, only the most recent set of info is displayed, regardless of what gen the run is",
+            group: "General",
+        },
     ],
     Low: [
         {

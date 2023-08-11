@@ -154,7 +154,7 @@ export const initAbilityData = (ability: Ability, versionGroup: string, desc: st
     };
 };
 
-export const initMoveData = (move: Move): MoveData => {
+export const initMoveData = (move: Move, desc: string): MoveData => {
     return {
         slug: move.name,
         name: getEnglishName(move.names),
@@ -162,6 +162,7 @@ export const initMoveData = (move: Move): MoveData => {
         power: move.power ? move.power : 0,
         category: !move.damage_class || move.damage_class.name === "status" ? "other" : move.damage_class.name,
         pp: move.pp ? move.pp : 0,
+        desc: desc,
     };
 };
 

@@ -5,4 +5,5 @@ export default interface MoveData {
     power: number;
     category: string;
     pp: number;
+    desc: string;
 }
