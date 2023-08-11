@@ -12,6 +12,7 @@ import { fetchPokemon } from "@/utils/api";
 import { getBox, getRIPs, getRun, isAlive, updateBox, updateRIPs } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./SummaryPage.module.scss";
+import NamedResource from "@/models/NamedResource";
 
 type Props = {
     run: Run;
@@ -29,33 +30,62 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
     const [moveModalOpen, setMoveModalOpen] = useState<boolean>(false);
     const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
-    // Update Pokemon in local storage
-    const handleUpdate = (selection: string | number, property: string): void => {
+    // Update nickname in local storage
+    const handleNicknameUpdate = (nickname: string): void => {
         const newCaughtPokemon: CaughtPokemon = JSON.parse(JSON.stringify(caughtPokemon));
-        if (property === "moveSlugs") {
-            // @ts-expect-error
-            newCaughtPokemon.pokemon.moveSlugs[Math.min(newCaughtPokemon.pokemon.moveSlugs.length, selectedIdx)] =
-                selection;
-        } else if (property === "delete") {
-            newCaughtPokemon.pokemon.moveSlugs.splice(selectedIdx!, 1);
-        } else if (property === "nickname") {
-            newCaughtPokemon.nickname = selection as string;
-        } else {
-            // @ts-expect-error
-            newCaughtPokemon.pokemon[property] = selection;
-        }
-        if (isAlive(props.run.id, newCaughtPokemon.id)) {
+        newCaughtPokemon.nickname = nickname;
+        handleUpdate(newCaughtPokemon);
+    };
+
+    // Update level in local storage
+    const handleLevelUpdate = (level: number): void => {
+        const newCaughtPokemon: CaughtPokemon = JSON.parse(JSON.stringify(caughtPokemon));
+        newCaughtPokemon.pokemon.level = level;
+        handleUpdate(newCaughtPokemon);
+    };
+
+    // Update ability in local storage
+    const handleAbilityUpdate = (ability: NamedResource): void => {
+        const newCaughtPokemon: CaughtPokemon = JSON.parse(JSON.stringify(caughtPokemon));
+        newCaughtPokemon.pokemon.ability = ability;
+        handleUpdate(newCaughtPokemon);
+    };
+
+    // Update nature in local storage
+    const handleNatureUpdate = (nature: string): void => {
+        const newCaughtPokemon: CaughtPokemon = JSON.parse(JSON.stringify(caughtPokemon));
+        newCaughtPokemon.pokemon.nature = nature;
+        handleUpdate(newCaughtPokemon);
+    };
+
+    // Update moveset in local storage
+    const handleMovesetUpdate = (move: NamedResource): void => {
+        const newCaughtPokemon: CaughtPokemon = JSON.parse(JSON.stringify(caughtPokemon));
+        newCaughtPokemon.pokemon.moves[Math.min(newCaughtPokemon.pokemon.moves.length, selectedIdx!)] = move;
+        handleUpdate(newCaughtPokemon);
+    };
+
+    // Delete from moveset in local storage
+    const handleMovesetDelete = (): void => {
+        const newCaughtPokemon: CaughtPokemon = JSON.parse(JSON.stringify(caughtPokemon));
+        newCaughtPokemon.pokemon.moves.splice(selectedIdx!, 1);
+        handleUpdate(newCaughtPokemon);
+    };
+
+    // Update Pokemon in local storage
+    const handleUpdate = (newPokemon: CaughtPokemon): void => {
+        if (isAlive(props.run.id, newPokemon.id)) {
             const idx: number = getBox(props.run.id)
                 .map((cp: CaughtPokemon) => cp.id)
-                .indexOf(newCaughtPokemon.id);
-            updateBox(props.run.id, newCaughtPokemon, idx);
+                .indexOf(newPokemon.id);
+            updateBox(props.run.id, newPokemon, idx);
         } else {
             const updateIdx: number = getRIPs(props.run.id)
                 .map((cp: CaughtPokemon) => cp.id)
-                .indexOf(newCaughtPokemon.id);
-            updateRIPs(props.run.id, newCaughtPokemon, updateIdx);
+                .indexOf(newPokemon.id);
+            updateRIPs(props.run.id, newPokemon, updateIdx);
         }
-        setCaughtPokemon(newCaughtPokemon);
+        setCaughtPokemon(newPokemon);
         setSelectedIdx(null);
         setMoveModalOpen(false);
     };
@@ -88,17 +118,19 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 caughtPokemon={caughtPokemon}
                 pokemonData={pokemonData}
                 run={props.run}
-                onUpdate={(nickname: string) => handleUpdate(nickname, "nickname")}
+                onUpdate={(nickname: string) => handleNicknameUpdate(nickname)}
             />
             <SummaryInfo
                 caughtPokemon={caughtPokemon}
                 pokemonData={pokemonData}
                 game={props.run.gameSlug}
-                onUpdate={handleUpdate}
+                onLevelUpdate={(level: number) => handleLevelUpdate(level)}
+                onAbilityUpdate={(ability: NamedResource) => handleAbilityUpdate(ability)}
+                onNatureUpdate={(nature: string) => handleNatureUpdate(nature)}
             />
             <SummaryMoves
                 caughtPokemon={caughtPokemon}
-                pokemonData={pokemonData}
+                types={pokemonData.types}
                 game={props.run.gameSlug}
                 onClick={(idx: number) => handleMoveSelect(idx)}
             />
@@ -108,14 +140,14 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 {selectedIdx !== null ? (
                     <MoveModal
                         movepool={pokemonData.movepool}
-                        moves={caughtPokemon.pokemon.moveSlugs}
+                        moves={caughtPokemon.pokemon.moves.map((move: NamedResource) => move.slug)}
                         move={
-                            selectedIdx < caughtPokemon.pokemon.moveSlugs.length
-                                ? caughtPokemon.pokemon.moveSlugs[selectedIdx]
+                            selectedIdx < caughtPokemon.pokemon.moves.length
+                                ? caughtPokemon.pokemon.moves[selectedIdx].name
                                 : null
                         }
-                        onConfirm={(selection: string) => handleUpdate(selection, "moveSlugs")}
-                        onDelete={() => handleUpdate("", "delete")}
+                        onConfirm={(move: NamedResource) => handleMovesetUpdate(move)}
+                        onDelete={handleMovesetDelete}
                         onClose={() => setMoveModalOpen(false)}
                     />
                 ) : (

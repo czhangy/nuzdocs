@@ -1,4 +1,4 @@
-import Nature from "@/models/Nature";
+import NamedResource from "@/models/NamedResource";
 import Values from "@/models/Values";
 
 export default interface Pokemon {
@@ -6,9 +6,9 @@ export default interface Pokemon {
     species: string;
     level?: number;
     nature?: string;
-    abilitySlug?: string;
+    ability?: NamedResource;
     heldItemSlug?: string;
-    moveSlugs: string[];
+    moves: NamedResource[];
     ivs: Values;
     evs: Values;
 }

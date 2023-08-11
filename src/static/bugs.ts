@@ -25,6 +25,10 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "If a move has been updated, only the most recent set of info is displayed, regardless of what gen the run is",
             group: "General",
         },
+        {
+            desc: "Pokemon with different forms can evolve between forms (i.e., Zigzagoon/Linoone/Obstagoon)",
+            group: "General",
+        },
     ],
     Low: [
         {

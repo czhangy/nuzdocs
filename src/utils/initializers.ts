@@ -5,6 +5,7 @@ import EncounterData from "@/models/EncounterData";
 import ItemData from "@/models/ItemData";
 import LocationData from "@/models/LocationData";
 import MoveData from "@/models/MoveData";
+import NamedResource from "@/models/NamedResource";
 import MyPokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import PokemonMove from "@/models/PokemonMove";
@@ -83,7 +84,7 @@ export const initPokemon = (slug: string, species: string, level: number | null 
     let pokemon: MyPokemon = {
         slug: slug,
         species: species,
-        moveSlugs: [],
+        moves: [],
         ivs: initValues(),
         evs: initValues(),
     };
@@ -194,5 +195,12 @@ export const initValues = (): Values => {
         defense: 0,
         "special-defense": 0,
         speed: 0,
+    };
+};
+
+export const initNamedResource = (slug: string, name: string): NamedResource => {
+    return {
+        slug: slug,
+        name: name,
     };
 };
