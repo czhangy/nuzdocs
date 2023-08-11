@@ -40,7 +40,7 @@ export const loadRun = (runStr: string): boolean => {
         return false;
     } else {
         runIDs.push(id);
-        localStorage.setItem("runs", JSON.stringify([id]));
+        localStorage.setItem("runs", JSON.stringify(runIDs));
         localStorage.setItem(id, runStr);
         return true;
     }
