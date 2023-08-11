@@ -22,7 +22,7 @@ const fetchMove = async (slug: string): Promise<MoveData> => {
         const move: Move = await api.getMoveByName(slug);
         const desc: string = move.effect_entries
             .find((effect: VerboseEffect) => effect.language.name === "en")!
-            .effect.replaceAll("$effect_chance", String(move.effect_chance));
+            .short_effect.replaceAll("$effect_chance", String(move.effect_chance));
         return initMoveData(move, desc);
     } catch (error: any) {
         throw error;

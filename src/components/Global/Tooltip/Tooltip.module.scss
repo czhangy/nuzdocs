@@ -6,10 +6,11 @@
     --tooltip-border-rad: 5px;
     --tooltip-border-size: 2px;
     --tooltip-offset: 0.5rem;
-    --tooltip-width: 200px;
+    --tooltip-width: 300px;
     --transition-time: 0.2s;
     --tooltip-x-padding: 1rem;
     --tooltip-y-padding: 0.5rem;
+    --tooltip-z: 99;
 
     background-color: constants.$accent-color;
     border: var(--tooltip-border-size) solid constants.$text-color;
@@ -23,6 +24,7 @@
     transform: translate(-50%, -100%);
     transition: opacity var(--transition-time);
     width: var(--tooltip-width);
+    z-index: var(--tooltip-z);
 
     .arrow-border {
         border-left: calc(var(--arrow-size) + var(--tooltip-border-size)) solid transparent;

@@ -2,6 +2,8 @@ import TypeIcon from "@/components/Run/TypeIcon/TypeIcon";
 import MoveData from "@/models/MoveData";
 import Image from "next/image";
 import styles from "./MoveCard.module.scss";
+import Tooltip from "@/components/Global/Tooltip/Tooltip";
+import { useState } from "react";
 
 type Props = {
     move: MoveData;
@@ -9,8 +11,11 @@ type Props = {
 };
 
 const MoveCard: React.FC<Props> = (props: Props) => {
+    // Component state
+    const [show, setShow] = useState<boolean>(false);
+
     return (
-        <div className={styles["move-card"]}>
+        <div className={styles["move-card"]} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
             <div className={styles.row}>
                 <TypeIcon type={props.move.type} size={16} />
                 <p className={styles.name}>{props.move.name}</p>
@@ -50,6 +55,7 @@ const MoveCard: React.FC<Props> = (props: Props) => {
                     PP: <strong>{props.move.pp}</strong>
                 </p>
             </div>
+            <Tooltip desc={props.move.desc} show={show} />
         </div>
     );
 };
