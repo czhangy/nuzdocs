@@ -1,3 +1,4 @@
+import AbilityDisplay from "@/components/Battle/AbilityDisplay/AbilityDisplay";
 import ItemDisplay from "@/components/Battle/ItemDisplay/ItemDisplay";
 import MoveCard from "@/components/Run/MoveCard/MoveCard";
 import PokemonDisplay from "@/components/Run/PokemonDisplay/PokemonDisplay";
@@ -9,7 +10,6 @@ import PokemonData from "@/models/PokemonData";
 import { fetchAbility, fetchItem, fetchMoves, fetchPokemon } from "@/utils/api";
 import { useEffect, useState } from "react";
 import styles from "./PokemonCard.module.scss";
-import AbilityDisplay from "@/components/Run/AbilityDisplay/AbilityDisplay";
 
 type Props = {
     pokemon: Pokemon;
@@ -35,7 +35,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
             fetchAbility(props.pokemon.abilitySlug as string, props.gameSlug).then((abilityData: AbilityData | null) =>
                 setAbility(abilityData)
             );
-            fetchMoves(props.pokemon.moveSlugs).then((moveData: MoveData[]) => setMoves(moveData));
+            fetchMoves(props.pokemon.moveSlugs, props.gameSlug).then((moveData: MoveData[]) => setMoves(moveData));
             if (props.pokemon.heldItemSlug) {
                 fetchItem(props.pokemon.heldItemSlug, props.gameSlug).then((item: ItemData | null) =>
                     setHeldItem(item)

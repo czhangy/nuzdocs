@@ -16,6 +16,7 @@ import { generateID, getDescription, getEnglishName } from "@/utils/utils";
 import {
     Ability,
     Item,
+    Move,
     Name,
     NamedAPIResource,
     Pokemon,
@@ -153,21 +154,14 @@ export const initAbilityData = (ability: Ability, versionGroup: string, desc: st
     };
 };
 
-export const initMoveData = (
-    slug: string,
-    names: Name[],
-    type: NamedAPIResource,
-    power: number | null,
-    category: NamedAPIResource,
-    pp: number
-): MoveData => {
+export const initMoveData = (move: Move): MoveData => {
     return {
-        slug: slug,
-        name: getEnglishName(names),
-        type: type.name,
-        power: power ? power : 0,
-        category: category.name === "status" ? "other" : category.name,
-        pp: pp,
+        slug: move.name,
+        name: getEnglishName(move.names),
+        type: move.type.name,
+        power: move.power ? move.power : 0,
+        category: !move.damage_class || move.damage_class.name === "status" ? "other" : move.damage_class.name,
+        pp: move.pp ? move.pp : 0,
     };
 };
 
