@@ -4,10 +4,10 @@ import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import { fetchPokemonGroup } from "@/utils/api";
 import { getPokemonSlugsFromBox } from "@/utils/run";
+import { exportPokemon } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./Box.module.scss";
-import { exportPokemon } from "@/utils/utils";
 
 type Props = {
     box: CaughtPokemon[];
@@ -65,8 +65,7 @@ const Box: React.FC<Props> = (props: Props) => {
     // Close menu and copy set to clipboard
     const handleExport = (pokemon: CaughtPokemon, name: string): void => {
         setActiveIdx(null);
-        exportPokemon(pokemon, name);
-        alert("Copied to clipboard!");
+        exportPokemon(pokemon.pokemon, name, pokemon.nickname);
     };
 
     // Compute the number of failed encounters

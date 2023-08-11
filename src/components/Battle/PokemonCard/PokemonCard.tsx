@@ -8,18 +8,18 @@ import MoveData from "@/models/MoveData";
 import NamedResource from "@/models/NamedResource";
 import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
-import { fetchAbility, fetchItem, fetchMoves, fetchPokemon } from "@/utils/api";
+import { fetchAbility, fetchItem, fetchMoves } from "@/utils/api";
 import { useEffect, useState } from "react";
 import styles from "./PokemonCard.module.scss";
 
 type Props = {
-    pokemon: Pokemon;
+    set: Pokemon;
+    pokemon: PokemonData;
     gameSlug: string;
 };
 
 const PokemonCard: React.FC<Props> = (props: Props) => {
     // Fetched data state
-    const [pokemon, setPokemon] = useState<PokemonData | null>(null);
     const [ability, setAbility] = useState<AbilityData | null>(null);
     const [moves, setMoves] = useState<MoveData[]>([]);
     const [heldItem, setHeldItem] = useState<ItemData | null>(null);
@@ -29,39 +29,34 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
 
     // Fetch all related data on component load
     useEffect(() => {
-        if (props.pokemon) {
-            fetchPokemon(props.pokemon.slug, props.gameSlug).then((pokemonData: PokemonData) =>
-                setPokemon(pokemonData)
-            );
-            fetchAbility(props.pokemon.ability!.slug, props.gameSlug).then((abilityData: AbilityData | null) =>
+        if (props.set) {
+            fetchAbility(props.set.ability!.slug, props.gameSlug).then((abilityData: AbilityData | null) =>
                 setAbility(abilityData)
             );
-            fetchMoves(props.pokemon.moves.map((move: NamedResource) => move.slug)).then((moveData: MoveData[]) =>
+            fetchMoves(props.set.moves.map((move: NamedResource) => move.slug)).then((moveData: MoveData[]) =>
                 setMoves(moveData)
             );
-            if (props.pokemon.heldItemSlug) {
-                fetchItem(props.pokemon.heldItemSlug, props.gameSlug).then((item: ItemData | null) =>
-                    setHeldItem(item)
-                );
+            if (props.set.heldItemSlug) {
+                fetchItem(props.set.heldItemSlug, props.gameSlug).then((item: ItemData | null) => setHeldItem(item));
             }
         }
-    }, [props.pokemon]);
+    }, [props.set]);
 
-    return pokemon && ability && moves.length > 0 ? (
+    return props.pokemon && ability && moves.length > 0 ? (
         <li className={styles["pokemon-card"]}>
             <div className={`${styles.card} ${isMinimized ? styles.minimized : ""}`}>
                 <button className={styles.toggle} onClick={() => setIsMinimized(!isMinimized)}>
                     {isMinimized ? "+" : "-"}
                 </button>
                 <div className={styles.header}>
-                    <PokemonDisplay pokemon={pokemon} />
+                    <PokemonDisplay pokemon={props.pokemon} />
                 </div>
                 <div className={styles.moves}>
                     {moves.map((move: MoveData) => {
                         return (
                             <MoveCard
                                 move={move}
-                                isSTAB={pokemon.types.includes(move.type)}
+                                isSTAB={props.pokemon.types.includes(move.type)}
                                 game={props.gameSlug}
                                 key={move.slug}
                             />
@@ -70,7 +65,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                 </div>
             </div>
             <div className={styles.info}>
-                <p className={styles.level}>Lv. {props.pokemon.level ? props.pokemon.level : "?"}</p>
+                <p className={styles.level}>Lv. {props.set.level ? props.set.level : "?"}</p>
                 <AbilityDisplay ability={ability} />
                 {heldItem ? (
                     <div className={styles.item}>
