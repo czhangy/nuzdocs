@@ -38,11 +38,13 @@ export const fetchAreas = async (areas: string[], gameSlug: string) => {
 };
 
 // Fetch AbilityData given slug
-export const fetchAbility = async (abilitySlug: string) => {
+export const fetchAbility = async (ability: string, game: string): Promise<AbilityData | null> => {
     try {
+        const group: string = getGameGroup(game).versionGroup;
         const res = await axios.get("/api/abilities", {
             params: {
-                abilitySlug: abilitySlug,
+                ability: ability,
+                versionGroup: group,
             },
         });
         return JSON.parse(res.data.ability);
@@ -52,14 +54,23 @@ export const fetchAbility = async (abilitySlug: string) => {
     }
 };
 
-export const fetchAbilities = async (abilitySlugs: string[]): Promise<AbilityData[]> => {
+export const fetchAbilities = async (abilities: string[], game: string): Promise<AbilityData[]> => {
     try {
-        const res = await axios.get("/api/abilities", {
-            params: {
-                abilitySlug: abilitySlugs,
-            },
-        });
-        return JSON.parse(res.data.ability);
+        if (abilities.length === 0) {
+            return [];
+        } else if (abilities.length === 1) {
+            const ability: AbilityData | null = await fetchAbility(abilities[0], game);
+            return ability ? [ability] : [];
+        } else {
+            const group: string = getGameGroup(game).versionGroup;
+            const res = await axios.get("/api/abilities", {
+                params: {
+                    ability: abilities,
+                    versionGroup: group,
+                },
+            });
+            return JSON.parse(res.data.ability);
+        }
     } catch (error) {
         console.log(error);
         return [];
@@ -123,11 +134,11 @@ export const fetchPokemonGroup = async (pokemonSlugs: string[], gameSlug: string
 
 export const fetchItem = async (item: string, game: string): Promise<ItemData | null> => {
     try {
-        const group: GameGroup = getGameGroup(game);
+        const group: string = getGameGroup(game).versionGroup;
         const res = await axios.get("/api/items", {
             params: {
                 item: item,
-                versionGroup: group.versionGroup,
+                versionGroup: group,
             },
         });
         return JSON.parse(res.data.item);
@@ -142,13 +153,14 @@ export const fetchItems = async (items: string[], game: string): Promise<ItemDat
         if (items.length === 0) {
             return [];
         } else if (items.length === 1) {
-            return [await fetchPokemon(items[0], game)];
+            const item: ItemData | null = await fetchItem(items[0], game);
+            return item ? [item] : [];
         } else {
-            const group: GameGroup = getGameGroup(game);
+            const group: string = getGameGroup(game).versionGroup;
             const res = await axios.get("/api/items", {
                 params: {
                     item: items,
-                    versionGroup: group.versionGroup,
+                    versionGroup: group,
                 },
             });
             return JSON.parse(res.data.item);

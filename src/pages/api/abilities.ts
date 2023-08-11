@@ -1,7 +1,7 @@
 import AbilityData from "@/models/AbilityData";
 import { initAbilityData } from "@/utils/initializers";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Ability, PokemonClient } from "pokenode-ts";
+import { Ability, AbilityFlavorText, PokemonClient } from "pokenode-ts";
 
 type ResData = {
     ability?: string;
@@ -9,30 +9,49 @@ type ResData = {
 };
 
 const isAbilityRequest = (req: NextApiRequest): boolean => {
-    return req.method === "GET" && "abilitySlug" in req.query && typeof req.query.abilitySlug === "string";
+    return (
+        req.method === "GET" &&
+        "ability" in req.query &&
+        typeof req.query.ability === "string" &&
+        "versionGroup" in req.query &&
+        typeof req.query.versionGroup === "string"
+    );
 };
 
 const isAbilityListRequest = (req: NextApiRequest): boolean => {
-    return req.method === "GET" && "abilitySlug[]" in req.query && Array.isArray(req.query["abilitySlug[]"]);
+    return (
+        req.method === "GET" &&
+        "ability[]" in req.query &&
+        Array.isArray(req.query["ability[]"]) &&
+        "versionGroup" in req.query &&
+        typeof req.query.versionGroup === "string"
+    );
 };
 
-const fetchAbility = async (abilitySlug: string): Promise<AbilityData> => {
+const fetchAbility = async (slug: string, versionGroup: string): Promise<AbilityData | null> => {
     const api: PokemonClient = new PokemonClient();
     try {
-        const ability: Ability = await api.getAbilityByName(abilitySlug);
-        return initAbilityData(abilitySlug, ability.names);
+        const ability: Ability = await api.getAbilityByName(slug);
+        const entry: AbilityFlavorText | undefined = ability.flavor_text_entries.find(
+            (ft: AbilityFlavorText) => ft.language.name === "en" && ft.version_group.name === versionGroup
+        );
+        if (entry === undefined) {
+            return null;
+        } else {
+            return initAbilityData(ability, versionGroup, entry.flavor_text);
+        }
     } catch (error: any) {
         throw error;
     }
 };
 
-const fetchAbilityList = async (abilitySlugs: string[]): Promise<AbilityData[]> => {
-    let abilityPromises: Promise<AbilityData>[] = [];
-    abilitySlugs.forEach((abilitySlug: string) => {
-        abilityPromises.push(fetchAbility(abilitySlug));
+const fetchAbilities = async (slugs: string[], versionGroup: string): Promise<AbilityData[]> => {
+    let promises: Promise<AbilityData | null>[] = [];
+    slugs.forEach((slug: string) => {
+        promises.push(fetchAbility(slug, versionGroup));
     });
     try {
-        return await Promise.all(abilityPromises);
+        return (await Promise.all(promises)).filter((ability: AbilityData | null) => ability !== null) as AbilityData[];
     } catch (error: any) {
         throw error;
     }
@@ -41,7 +60,10 @@ const fetchAbilityList = async (abilitySlugs: string[]): Promise<AbilityData[]> 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<ResData>) {
     if (isAbilityRequest(req)) {
         try {
-            const ability: AbilityData = await fetchAbility(req.query.abilitySlug as string);
+            const ability: AbilityData | null = await fetchAbility(
+                req.query.ability as string,
+                req.query.versionGroup as string
+            );
             return res.status(200).json({ ability: JSON.stringify(ability) });
         } catch (error: any) {
             return res.status(500).json({
@@ -50,7 +72,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         }
     } else if (isAbilityListRequest(req)) {
         try {
-            const abilities: AbilityData[] = await fetchAbilityList(req.query["abilitySlug[]"] as string[]);
+            const abilities: AbilityData[] = await fetchAbilities(
+                req.query["ability[]"] as string[],
+                req.query.versionGroup as string
+            );
             return res.status(200).json({ ability: JSON.stringify(abilities) });
         } catch (error: any) {
             return res.status(500).json({

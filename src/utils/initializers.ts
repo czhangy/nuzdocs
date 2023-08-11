@@ -12,8 +12,9 @@ import PokemonName from "@/models/PokemonName";
 import Stat from "@/models/Stat";
 import translations from "@/static/translations";
 import { getBox, getRIPs } from "@/utils/run";
-import { generateID, getEnglishName, getItemDescription } from "@/utils/utils";
+import { generateID, getDescription, getEnglishName } from "@/utils/utils";
 import {
+    Ability,
     Item,
     Name,
     NamedAPIResource,
@@ -144,10 +145,11 @@ export const initAreaData = (
     };
 };
 
-export const initAbilityData = (slug: string, names: Name[]): AbilityData => {
+export const initAbilityData = (ability: Ability, versionGroup: string, desc: string): AbilityData => {
     return {
-        slug: slug,
-        name: getEnglishName(names),
+        slug: ability.name,
+        name: getEnglishName(ability.names),
+        desc: desc,
     };
 };
 
@@ -182,6 +184,6 @@ export const initItemData = (item: Item, versionGroup: string): ItemData => {
         slug: item.name,
         name: getEnglishName(item.names),
         sprite: item.sprites.default,
-        desc: getItemDescription(item.flavor_text_entries, versionGroup),
+        desc: getDescription(item.flavor_text_entries, versionGroup) as string,
     };
 };

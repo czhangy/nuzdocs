@@ -12,6 +12,7 @@ import styles from "./SummaryInfo.module.scss";
 type Props = {
     caughtPokemon: CaughtPokemon;
     pokemonData: PokemonData;
+    game: string;
     onUpdate: (selection: string | number, property: string) => void;
 };
 
@@ -55,7 +56,9 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
     // Fetch the ability data for the given Pokemon on component load
     useEffect(() => {
         if (props.pokemonData) {
-            fetchAbilities(props.pokemonData.abilities).then((abilities: AbilityData[]) => setAbilityData(abilities));
+            fetchAbilities(props.pokemonData.abilities, props.game).then((abilities: AbilityData[]) =>
+                setAbilityData(abilities)
+            );
         }
     }, [props.pokemonData]);
 
