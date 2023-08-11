@@ -4,6 +4,7 @@
     --sprite-size: 28px;
 
     display: flex;
+    position: relative;
 
     .sprite {
         height: var(--sprite-size);

@@ -75,7 +75,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                         </p>
                         <div className={styles.items}>
                             {items.map((item: ItemData, key: number) => {
-                                return <ItemDisplay item={item} key={key} />;
+                                return <ItemDisplay item={item} showName={false} key={key} />;
                             })}
                         </div>
                     </div>
