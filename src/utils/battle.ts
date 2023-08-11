@@ -4,23 +4,23 @@ import Trainer from "@/models/Trainer";
 import { getSegment } from "@/utils/segment";
 
 // Getters
-export const getBattle = (gameSlug: string, battleSlug: string, starterSlug: string): Battle => {
-    if (hasVariants(gameSlug, battleSlug)) {
+export const getBattle = (game: string, battle: string, starter: string): Battle => {
+    if (hasVariants(game, battle)) {
         return (
-            (getSegment(gameSlug, battleSlug).segment as BattleSegment).battle as {
+            (getSegment(game, battle).segment as BattleSegment).battle as {
                 [variant: string]: Battle;
             }
-        )[starterSlug];
+        )[starter];
     } else {
-        return (getSegment(gameSlug, battleSlug).segment as BattleSegment).battle as Battle;
+        return (getSegment(game, battle).segment as BattleSegment).battle as Battle;
     }
 };
 
-export const getTrainer = (gameSlug: string, battleSlug: string, starterSlug: string): Trainer => {
-    return getBattle(gameSlug, battleSlug, starterSlug).trainer;
+export const getTrainer = (game: string, battle: string, starter: string): Trainer => {
+    return getBattle(game, battle, starter).trainer;
 };
 
 // Predicates
-export const hasVariants = (gameSlug: string, battleSlug: string): boolean => {
-    return !("trainer" in (getSegment(gameSlug, battleSlug).segment as BattleSegment).battle);
+export const hasVariants = (game: string, battle: string): boolean => {
+    return !("trainer" in (getSegment(game, battle).segment as BattleSegment).battle);
 };

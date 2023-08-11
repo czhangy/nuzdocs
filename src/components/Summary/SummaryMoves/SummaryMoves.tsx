@@ -15,12 +15,12 @@ type Props = {
 
 const SummaryMoves: React.FC<Props> = (props: Props) => {
     // Fetched data state
-    const [moveData, setMoveData] = useState<MoveData[]>([]);
+    const [moves, setMoves] = useState<MoveData[]>([]);
 
     // Fetch move data on component load
     useEffect(() => {
         if (props.caughtPokemon.pokemon.moveSlugs && props.caughtPokemon.pokemon.moveSlugs.length > 0) {
-            fetchMoves(props.caughtPokemon.pokemon.moveSlugs).then((moves: MoveData[]) => setMoveData(moves));
+            fetchMoves(props.caughtPokemon.pokemon.moveSlugs).then((moves: MoveData[]) => setMoves(moves));
         }
     }, [props.caughtPokemon]);
 
@@ -31,10 +31,10 @@ const SummaryMoves: React.FC<Props> = (props: Props) => {
                 {[...Array(4)].map((_, key: number) => {
                     return (
                         <button className={styles.button} onClick={() => props.onClick(key)} key={key}>
-                            {key < moveData.length ? (
+                            {key < moves.length ? (
                                 <MoveCard
-                                    move={moveData[key]}
-                                    isSTAB={props.pokemonData.types.includes(moveData[key].type)}
+                                    move={moves[key]}
+                                    isSTAB={props.pokemonData.types.includes(moves[key].type)}
                                     game={props.game}
                                 />
                             ) : (

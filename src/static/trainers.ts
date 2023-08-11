@@ -5,25 +5,41 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         name: "May",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3.png",
     },
-    emerald_roxanne: {
+    rse_wally: {
+        name: "Wally",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/wally-gen3.png",
+    },
+    rse_roxanne: {
         name: "Roxanne",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/roxanne-gen3.png",
     },
-    emerald_brawly: {
+    rse_brawly: {
         name: "Brawly",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/brawly-gen3.png",
     },
-    silver: {
+    rse_wattson: {
+        name: "Wattson",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/wattson-gen3.png",
+    },
+    rse_flannery: {
+        name: "Flannery",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/flannery-gen3.png",
+    },
+    rse_tabitha: {
+        name: "Tabitha",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/tabitha-gen3.png",
+    },
+    hgss_silver: {
         name: "Silver",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/silver.png",
     },
-    elder_li: {
-        name: "Elder Li",
-        sprite: "https://play.pokemonshowdown.com/sprites/trainers/li.png",
-    },
-    falkner: {
+    hgss_falkner: {
         name: "Falkner",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/falkner.png",
+    },
+    hgss_elder_li: {
+        name: "Elder Li",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/li.png",
     },
 };
 

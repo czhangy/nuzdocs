@@ -23,12 +23,12 @@ export const fetchLocation = async (slug: string) => {
 };
 
 // Fetch a list of AreaData given area and game slugs
-export const fetchAreas = async (areas: string[], gameSlug: string) => {
+export const fetchAreas = async (areas: string[], game: string) => {
     try {
         const res = await axios.get("/api/location", {
             params: {
                 areaSlugList: areas,
-                gameSlug: gameSlug,
+                gameSlug: game,
             },
         });
         return JSON.parse(res.data.areaList);
@@ -114,12 +114,12 @@ export const fetchMoves = async (moves: string[]): Promise<MoveData[]> => {
 };
 
 // Fetch a Pokemon by their Pokemon slug
-export const fetchPokemon = async (pokemonSlug: string, game: string) => {
+export const fetchPokemon = async (slug: string, game: string) => {
     try {
         const group: GameGroup = getGameGroup(game);
         const res = await axios.get("/api/pokemon", {
             params: {
-                pokemonSlug: pokemonSlug,
+                pokemonSlug: slug,
                 generation: group.generation,
                 versionGroup: group.versionGroup,
             },
@@ -132,15 +132,15 @@ export const fetchPokemon = async (pokemonSlug: string, game: string) => {
 };
 
 // Fetch a list of PokemonData given Pokemon slugs
-export const fetchPokemonGroup = async (pokemonSlugs: string[], game: string) => {
+export const fetchPokemonGroup = async (slugs: string[], game: string) => {
     try {
-        if (pokemonSlugs.length === 1) {
-            return [await fetchPokemon(pokemonSlugs[0], game)];
+        if (slugs.length === 1) {
+            return [await fetchPokemon(slugs[0], game)];
         } else {
             const group: GameGroup = getGameGroup(game);
             const res = await axios.get("/api/pokemon", {
                 params: {
-                    pokemonSlugList: pokemonSlugs,
+                    pokemonSlugList: slugs,
                     generation: group.generation,
                     versionGroup: group.versionGroup,
                 },

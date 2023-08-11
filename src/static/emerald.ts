@@ -121,6 +121,12 @@ const emerald: GameGroup = {
                     segment: {},
                 },
                 {
+                    slug: "hoenn-route-107",
+                    name: "Route 107",
+                    type: "location",
+                    segment: {},
+                },
+                {
                     slug: "hoenn-route-109",
                     name: "Route 109",
                     type: "location",
@@ -139,6 +145,152 @@ const emerald: GameGroup = {
                     segment: {
                         battle: battles.emerald.brawly,
                         levelCap: 19,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Wattson Split",
+            segments: [
+                {
+                    slug: "hoenn-route-110",
+                    name: "Route 110",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "may-2",
+                    name: "May 2",
+                    type: "battle",
+                    segment: {
+                        battle: {
+                            treecko: battles.emerald.may_2_treecko,
+                            torchic: battles.emerald.may_2_torchic,
+                            mudkip: battles.emerald.may_2_mudkip,
+                        },
+                    },
+                },
+                {
+                    slug: "mauville-city",
+                    name: "Mauville City",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "wally-1",
+                    name: "Wally 1",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.wally_1,
+                    },
+                },
+                {
+                    slug: "hoenn-route-117",
+                    name: "Route 117",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "verdanturf-town",
+                    name: "Verdanturf Town",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-111",
+                    name: "Route 111",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "wattson",
+                    name: "Wattson",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.wattson,
+                        levelCap: 24,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Flannery Split",
+            segments: [
+                {
+                    slug: "hoenn-route-112",
+                    name: "Route 112",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "fiery-path",
+                    name: "Fiery Path",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-113",
+                    name: "Route 113",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "fallarbor-town",
+                    name: "Fallarbor Town",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-114",
+                    name: "Route 114",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "meteor-falls",
+                    name: "Meteor Falls",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-115",
+                    name: "Route 115",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "mt-chimney",
+                    name: "Mt. Chimney",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "tabitha-1",
+                    name: "Tabitha 1",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.tabitha_1,
+                    },
+                },
+                {
+                    slug: "jagged-pass",
+                    name: "Jagged Pass",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "lavaridge-town",
+                    name: "Lavaridge Town",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "flannery",
+                    name: "Flannery",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.flannery,
+                        levelCap: 29,
                     },
                 },
             ],

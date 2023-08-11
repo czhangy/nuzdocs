@@ -42,8 +42,102 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             ],
             items: [],
         },
+        may_2_treecko: {
+            trainer: trainers.emerald_may,
+            team: [
+                {
+                    slug: "wingull",
+                    species: "wingull",
+                    level: 18,
+                    abilitySlug: "keen-eye",
+                    moveSlugs: ["growl", "water-gun", "supersonic", "wing-attack"],
+                },
+                {
+                    slug: "lombre",
+                    species: "lombre",
+                    level: 18,
+                    abilitySlug: "swift-swim",
+                    moveSlugs: ["astonish", "growl", "absorb", "nature-power"],
+                },
+                {
+                    slug: "combusken",
+                    species: "combusken",
+                    level: 20,
+                    abilitySlug: "blaze",
+                    moveSlugs: ["focus-energy", "ember", "double-kick", "peck"],
+                },
+            ],
+            items: [],
+        },
+        may_2_torchic: {
+            trainer: trainers.emerald_may,
+            team: [
+                {
+                    slug: "lombre",
+                    species: "lombre",
+                    level: 18,
+                    abilitySlug: "swift-swim",
+                    moveSlugs: ["astonish", "growl", "absorb", "nature-power"],
+                },
+                {
+                    slug: "slugma",
+                    species: "slugma",
+                    level: 18,
+                    abilitySlug: "flame-body",
+                    moveSlugs: ["yawn", "smog", "ember", "rock-tomb"],
+                },
+                {
+                    slug: "marshtomp",
+                    species: "marshtomp",
+                    level: 20,
+                    abilitySlug: "torrent",
+                    moveSlugs: ["water-gun", "bide", "mud-shot", "foresight"],
+                },
+            ],
+            items: [],
+        },
+        may_2_mudkip: {
+            trainer: trainers.emerald_may,
+            team: [
+                {
+                    slug: "slugma",
+                    species: "slugma",
+                    level: 18,
+                    abilitySlug: "flame-body",
+                    moveSlugs: ["yawn", "smog", "ember", "rock-tomb"],
+                },
+                {
+                    slug: "wingull",
+                    species: "wingull",
+                    level: 18,
+                    abilitySlug: "keen-eye",
+                    moveSlugs: ["growl", "water-gun", "supersonic", "wing-attack"],
+                },
+                {
+                    slug: "grovyle",
+                    species: "grovyle",
+                    level: 20,
+                    abilitySlug: "overgrow",
+                    moveSlugs: ["absorb", "quick-attack", "fury-cutter", "pursuit"],
+                },
+            ],
+            items: [],
+        },
+        wally_1: {
+            trainer: trainers.rse_wally,
+            team: [
+                {
+                    slug: "ralts",
+                    species: "ralts",
+                    level: 16,
+                    abilitySlug: "synchronize",
+                    moveSlugs: ["growl", "confusion", "double-team", "teleport"],
+                },
+            ],
+            items: [],
+        },
         roxanne: {
-            trainer: trainers.emerald_roxanne,
+            trainer: trainers.rse_roxanne,
             team: [
                 {
                     slug: "geodude",
@@ -71,7 +165,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             items: ["potion", "potion"],
         },
         brawly: {
-            trainer: trainers.emerald_brawly,
+            trainer: trainers.rse_brawly,
             team: [
                 {
                     slug: "machop",
@@ -98,10 +192,114 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             ],
             items: ["super-potion", "super-potion"],
         },
+        wattson: {
+            trainer: trainers.rse_wattson,
+            team: [
+                {
+                    slug: "voltorb",
+                    species: "voltorb",
+                    level: 20,
+                    abilitySlug: "soundproof",
+                    moveSlugs: ["rollout", "spark", "self-destruct", "shock-wave"],
+                },
+                {
+                    slug: "electrike",
+                    species: "electrike",
+                    level: 20,
+                    abilitySlug: "soundproof",
+                    moveSlugs: ["shock-wave", "leer", "quick-attack", "howl"],
+                },
+                {
+                    slug: "magneton",
+                    species: "magneton",
+                    level: 22,
+                    abilitySlug: "magnet-pull",
+                    moveSlugs: ["supersonic", "thunder-wave", "shock-wave", "sonic-boom"],
+                },
+                {
+                    slug: "manectric",
+                    species: "manectric",
+                    level: 24,
+                    abilitySlug: "static",
+                    moveSlugs: ["quick-attack", "shock-wave", "thunder-wave", "howl"],
+                    heldItemSlug: "sitrus-berry",
+                },
+            ],
+            items: ["super-potion", "super-potion"],
+        },
+        flannery: {
+            trainer: trainers.rse_flannery,
+            team: [
+                {
+                    slug: "numel",
+                    species: "numel",
+                    level: 20,
+                    abilitySlug: "soundproof",
+                    moveSlugs: ["rollout", "spark", "self-destruct", "shock-wave"],
+                },
+                {
+                    slug: "slugma",
+                    species: "slugma",
+                    level: 20,
+                    abilitySlug: "soundproof",
+                    moveSlugs: ["shock-wave", "leer", "quick-attack", "howl"],
+                },
+                {
+                    slug: "camerupt",
+                    species: "camerupt",
+                    level: 22,
+                    abilitySlug: "magnet-pull",
+                    moveSlugs: ["supersonic", "thunder-wave", "shock-wave", "sonic-boom"],
+                },
+                {
+                    slug: "torkoal",
+                    species: "torkoal",
+                    level: 29,
+                    abilitySlug: "white-smoke",
+                    moveSlugs: ["overheat", "sunny-day", "body-slam", "attract"],
+                    heldItemSlug: "white-herb",
+                },
+            ],
+            items: ["super-potion", "super-potion"],
+        },
+        tabitha_1: {
+            trainer: trainers.rse_tabitha,
+            team: [
+                {
+                    slug: "numel",
+                    species: "numel",
+                    level: 18,
+                    abilitySlug: "oblivious",
+                    moveSlugs: ["growl", "tackle", "ember"],
+                },
+                {
+                    slug: "poochyena",
+                    species: "poochyena",
+                    level: 20,
+                    abilitySlug: "run-away",
+                    moveSlugs: ["howl", "sand-attack", "bite", "odor-sleuth"],
+                },
+                {
+                    slug: "numel",
+                    species: "numel",
+                    level: 22,
+                    abilitySlug: "oblivious",
+                    moveSlugs: ["growl", "tackle", "ember", "magnitude"],
+                },
+                {
+                    slug: "zubat",
+                    species: "zubat",
+                    level: 22,
+                    abilitySlug: "inner-focus",
+                    moveSlugs: ["supersonic", "astonish", "bite", "wing-attack"],
+                },
+            ],
+            items: [],
+        },
     },
     "heartgold-soulsilver": {
         silver_1_chikorita: {
-            trainer: trainers.silver,
+            trainer: trainers.hgss_silver,
             team: [
                 {
                     slug: "cyndaquil",
@@ -114,7 +312,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             items: [],
         },
         silver_1_cyndaquil: {
-            trainer: trainers.silver,
+            trainer: trainers.hgss_silver,
             team: [
                 {
                     slug: "totodile",
@@ -127,7 +325,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             items: [],
         },
         silver_1_totodile: {
-            trainer: trainers.silver,
+            trainer: trainers.hgss_silver,
             team: [
                 {
                     slug: "chikorita",
@@ -140,7 +338,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             items: [],
         },
         elder_li: {
-            trainer: trainers.elder_li,
+            trainer: trainers.hgss_elder_li,
             team: [
                 {
                     slug: "bellsprout",
@@ -167,7 +365,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             items: [],
         },
         falkner: {
-            trainer: trainers.falkner,
+            trainer: trainers.hgss_falkner,
             team: [
                 {
                     slug: "pidgey",
