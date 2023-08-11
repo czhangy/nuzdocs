@@ -14,6 +14,7 @@ type Props = {
     onFormChange?: () => void;
     onRIP?: () => void;
     onRevive?: () => void;
+    onExport?: () => void;
 };
 
 const BoxMenu: React.FC<Props> = (props: Props) => {
@@ -55,6 +56,13 @@ const BoxMenu: React.FC<Props> = (props: Props) => {
                 {props.onRevive ? (
                     <button className={styles.option} onClick={props.onRevive}>
                         Revive
+                    </button>
+                ) : (
+                    ""
+                )}
+                {props.onExport ? (
+                    <button className={styles.option} onClick={props.onExport}>
+                        Export
                     </button>
                 ) : (
                     ""
