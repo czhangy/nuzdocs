@@ -160,6 +160,7 @@ export const initMoveData = (move: Move, desc: string): MoveData => {
         name: getEnglishName(move.names),
         type: move.type.name,
         power: move.power ? move.power : 0,
+        // @ts-expect-error
         category: !move.damage_class || move.damage_class.name === "status" ? "other" : move.damage_class.name,
         pp: move.pp ? move.pp : 0,
         desc: desc,

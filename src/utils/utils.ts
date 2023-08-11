@@ -2,6 +2,7 @@ import PokemonData from "@/models/PokemonData";
 import tiers from "@/static/tiers";
 import { Name, VersionGroupFlavorText } from "pokenode-ts";
 import { getGameGroup } from "./game";
+import MoveData from "@/models/MoveData";
 
 export const getEnglishName: (names: Name[]) => string = (names: Name[]): string => {
     const nameObj: Name = names.find((name) => name.language.name === "en")!;
@@ -52,4 +53,14 @@ export const getDescription = (fte: VersionGroupFlavorText[], versionGroup: stri
     return fte.find(
         (vgft: VersionGroupFlavorText) => vgft.language.name === "en" && vgft.version_group.name === versionGroup
     )!.text;
+};
+
+export const getPreSplitCategories = (move: MoveData, game: string): "physical" | "special" | "other" => {
+    const generation: string = getGameGroup(game).generation;
+    if (generation === "generation-iii" && move.category !== "other") {
+        const special: string[] = ["fire", "water", "electric", "grass", "ice", "psychic", "dragon", "dark"];
+        return special.includes(move.type) ? "special" : "physical";
+    } else {
+        return move.category;
+    }
 };

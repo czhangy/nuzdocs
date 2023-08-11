@@ -55,7 +55,14 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                 </div>
                 <div className={styles.moves}>
                     {moves.map((move: MoveData) => {
-                        return <MoveCard move={move} isSTAB={pokemon.types.includes(move.type)} key={move.slug} />;
+                        return (
+                            <MoveCard
+                                move={move}
+                                isSTAB={pokemon.types.includes(move.type)}
+                                game={props.gameSlug}
+                                key={move.slug}
+                            />
+                        );
                     })}
                 </div>
             </div>

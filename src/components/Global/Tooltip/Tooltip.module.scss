@@ -20,6 +20,7 @@
     padding: var(--tooltip-y-padding) var(--tooltip-x-padding);
     pointer-events: none;
     position: absolute;
+    text-align: center;
     top: calc((var(--arrow-size) + var(--tooltip-offset)) * -1);
     transform: translate(-50%, -100%);
     transition: opacity var(--transition-time);

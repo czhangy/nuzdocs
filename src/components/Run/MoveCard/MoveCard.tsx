@@ -4,10 +4,12 @@ import Image from "next/image";
 import styles from "./MoveCard.module.scss";
 import Tooltip from "@/components/Global/Tooltip/Tooltip";
 import { useState } from "react";
+import { capitalizeWord, getPreSplitCategories } from "@/utils/utils";
 
 type Props = {
     move: MoveData;
     isSTAB: boolean;
+    game: string;
 };
 
 const MoveCard: React.FC<Props> = (props: Props) => {
@@ -25,8 +27,11 @@ const MoveCard: React.FC<Props> = (props: Props) => {
                     <p className={styles.text}>Class: </p>
                     <div className={styles.icon}>
                         <Image
-                            src={`https://www.serebii.net/pokedex-bw/type/${props.move.category}.png`}
-                            alt={styles.category}
+                            src={`https://www.serebii.net/pokedex-bw/type/${getPreSplitCategories(
+                                props.move,
+                                props.game
+                            )}.png`}
+                            alt={capitalizeWord(getPreSplitCategories(props.move, props.game))}
                             layout="fill"
                             objectFit="contain"
                         />
