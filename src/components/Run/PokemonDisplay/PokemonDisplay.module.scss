@@ -4,8 +4,8 @@
     --info-inner-spacing: 0.2rem;
     --name-font-size: 1rem;
     --name-z: 2;
-    --sprite-left-offset: -2rem;
-    --sprite-size: 120px;
+    --sprite-left-offset: -1.5rem;
+    --sprite-size: 100px;
     --top-inner-spacing: 0.5rem;
     --type-height: 12px;
     --type-ratio: 8/3;
@@ -50,5 +50,6 @@
 @media screen and (min-width: constants.$tablet) {
     .pokemon-display {
         --name-font-size: 1.25rem;
+        --sprite-size: 120px;
     }
 }

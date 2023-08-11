@@ -1,0 +1,53 @@
+@use "@/styles/constants";
+
+.tooltip {
+    --arrow-offset: 1px;
+    --arrow-size: 12px;
+    --tooltip-border-rad: 5px;
+    --tooltip-border-size: 2px;
+    --tooltip-offset: 0.5rem;
+    --tooltip-width: 200px;
+    --transition-time: 0.2s;
+    --tooltip-x-padding: 1rem;
+    --tooltip-y-padding: 0.5rem;
+
+    background-color: constants.$accent-color;
+    border: var(--tooltip-border-size) solid constants.$text-color;
+    border-radius: var(--tooltip-border-rad);
+    left: 50%;
+    opacity: 0;
+    padding: var(--tooltip-y-padding) var(--tooltip-x-padding);
+    pointer-events: none;
+    position: absolute;
+    top: calc((var(--arrow-size) + var(--tooltip-offset)) * -1);
+    transform: translate(-50%, -100%);
+    transition: opacity var(--transition-time);
+    width: var(--tooltip-width);
+
+    .arrow-border {
+        border-left: calc(var(--arrow-size) + var(--tooltip-border-size)) solid transparent;
+        border-right: calc(var(--arrow-size) + var(--tooltip-border-size)) solid transparent;
+        border-top: calc(var(--arrow-size) + var(--tooltip-border-size)) solid constants.$text-color;
+        bottom: 0;
+        height: 0;
+        left: 50%;
+        transform: translate(-50%, 100%);
+        position: absolute;
+        width: 0;
+
+        .arrow {
+            border-left: var(--arrow-size) solid transparent;
+            border-right: var(--arrow-size) solid transparent;
+            border-top: var(--arrow-size) solid constants.$accent-color;
+            height: 0;
+            position: absolute;
+            transform: translate(-50%, calc(-100% - var(--tooltip-border-size) - var(--arrow-offset)));
+            width: 0;
+        }
+    }
+}
+
+.show {
+    opacity: 1;
+    pointer-events: auto;
+}

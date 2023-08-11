@@ -65,9 +65,10 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     level: 15,
                     abilitySlug: "sturdy",
                     moveSlugs: ["block", "harden", "tackle", "rock-tomb"],
+                    heldItemSlug: "oran-berry",
                 },
             ],
-            items: [],
+            items: ["potion", "potion"],
         },
         brawly: {
             trainer: trainers.emerald_brawly,
@@ -95,7 +96,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     heldItemSlug: "sitrus-berry",
                 },
             ],
-            items: [],
+            items: ["super-potion", "super-potion"],
         },
     },
     "heartgold-soulsilver": {

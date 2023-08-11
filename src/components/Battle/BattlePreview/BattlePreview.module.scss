@@ -6,8 +6,8 @@
     --defeat-font-size: 0.9rem;
     --defeat-x-padding: 1rem;
     --defeat-y-padding: 0.5rem;
-    --info-inner-spacing: 0.5rem;
     --name-font-size: 1.25rem;
+    --preview-inner-spacing: 0.5rem;
     --sprite-size: 100px;
     --sprite-transition-time: 0.5s;
     --undo-button-size: 1rem;
@@ -34,10 +34,18 @@
 
         .preview {
             .info {
+                align-items: center;
+                display: flex;
+                gap: var(--preview-inner-spacing);
+                margin-bottom: var(--preview-inner-spacing);
+
                 .name {
                     font-size: var(--name-font-size);
                     line-height: var(--name-font-size);
-                    margin-bottom: var(--info-inner-spacing);
+                }
+
+                .items {
+                    display: flex;
                 }
             }
 

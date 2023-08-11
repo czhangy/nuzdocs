@@ -1,5 +1,6 @@
 import LevelCap from "@/components/Battle/LevelCap/LevelCap";
 import BattleSegment from "@/models/BattleSegment";
+import ItemData from "@/models/ItemData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { getBattle } from "@/utils/battle";
@@ -8,6 +9,8 @@ import { hasLevelCap } from "@/utils/segment";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./BattlePreview.module.scss";
+import { fetchItems } from "@/utils/api";
+import ItemDisplay from "@/components/Battle/ItemDisplay/ItemDisplay";
 
 type Props = {
     segment: Segment;
@@ -17,6 +20,9 @@ type Props = {
 const BattlePreview: React.FC<Props> = (props: Props) => {
     // Component state
     const [defeated, setDefeated] = useState<boolean>(false);
+
+    // Fetched data state
+    const [items, setItems] = useState<ItemData[]>([]);
 
     // Sets component state and updates local storage when defeat is clicked
     const handleDefeat = () => {
@@ -34,6 +40,12 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (props.segment && props.run) {
             setDefeated(isCleared(props.run.id, props.segment.slug));
+            fetchItems(
+                getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).items,
+                props.run.gameSlug
+            ).then((items: ItemData[]) => {
+                setItems(items);
+            });
         }
     }, [props.segment, props.run]);
 
@@ -61,8 +73,13 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                                     .name
                             }
                         </p>
+                        <div className={styles.items}>
+                            {items.map((item: ItemData, key: number) => {
+                                return <ItemDisplay item={item} showName={false} key={key} />;
+                            })}
+                        </div>
                     </div>
-                    <div className={styles.items}></div>
+
                     {defeated ? (
                         <div className={styles.buttons}>
                             <button className={styles.defeat} disabled={true}>
