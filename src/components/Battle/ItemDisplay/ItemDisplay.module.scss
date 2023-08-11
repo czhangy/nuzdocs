@@ -1,11 +1,13 @@
 @use "@/styles/constants";
 
 .item-display {
+    --display-offset: -6px;
     --font-size: 0.75rem;
     --sprite-size: 28px;
 
     align-items: center;
     display: flex;
+    margin-top: var(--display-offset);
     position: relative;
 
     .sprite {
@@ -23,6 +25,7 @@
 
 @media screen and (min-width: constants.$tablet) {
     .item-display {
+        --display-offset: -4px;
         --font-size: 1rem;
     }
 }

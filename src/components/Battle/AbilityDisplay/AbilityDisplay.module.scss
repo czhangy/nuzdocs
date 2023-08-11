@@ -1,0 +1,19 @@
+@use "@/styles/constants";
+
+.ability-display {
+    --font-size: 0.75rem;
+
+    position: relative;
+
+    .name {
+        cursor: default;
+        font-size: var(--font-size);
+        line-height: var(--font-size);
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .ability-display {
+        --font-size: 1rem;
+    }
+}

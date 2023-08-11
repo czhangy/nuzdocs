@@ -20,6 +20,7 @@
     flex-direction: column;
     gap: var(--card-inner-spacing);
     padding: var(--card-y-padding) var(--card-x-padding);
+    position: relative;
 
     .row {
         align-items: center;

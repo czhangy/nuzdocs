@@ -48,7 +48,7 @@ export const translateSlug = (slug: string) => {
         .join(" ");
 };
 
-export const getItemDescription = (fte: VersionGroupFlavorText[], versionGroup: string): string => {
+export const getDescription = (fte: VersionGroupFlavorText[], versionGroup: string): string => {
     return fte.find(
         (vgft: VersionGroupFlavorText) => vgft.language.name === "en" && vgft.version_group.name === versionGroup
     )!.text;

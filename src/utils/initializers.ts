@@ -12,9 +12,11 @@ import PokemonName from "@/models/PokemonName";
 import Stat from "@/models/Stat";
 import translations from "@/static/translations";
 import { getBox, getRIPs } from "@/utils/run";
-import { generateID, getEnglishName, getItemDescription } from "@/utils/utils";
+import { generateID, getDescription, getEnglishName } from "@/utils/utils";
 import {
+    Ability,
     Item,
+    Move,
     Name,
     NamedAPIResource,
     Pokemon,
@@ -144,28 +146,23 @@ export const initAreaData = (
     };
 };
 
-export const initAbilityData = (slug: string, names: Name[]): AbilityData => {
+export const initAbilityData = (ability: Ability, versionGroup: string, desc: string): AbilityData => {
     return {
-        slug: slug,
-        name: getEnglishName(names),
+        slug: ability.name,
+        name: getEnglishName(ability.names),
+        desc: desc,
     };
 };
 
-export const initMoveData = (
-    slug: string,
-    names: Name[],
-    type: NamedAPIResource,
-    power: number | null,
-    category: NamedAPIResource,
-    pp: number
-): MoveData => {
+export const initMoveData = (move: Move, desc: string): MoveData => {
     return {
-        slug: slug,
-        name: getEnglishName(names),
-        type: type.name,
-        power: power ? power : 0,
-        category: category.name === "status" ? "other" : category.name,
-        pp: pp,
+        slug: move.name,
+        name: getEnglishName(move.names),
+        type: move.type.name,
+        power: move.power ? move.power : 0,
+        category: !move.damage_class || move.damage_class.name === "status" ? "other" : move.damage_class.name,
+        pp: move.pp ? move.pp : 0,
+        desc: desc,
     };
 };
 
@@ -182,6 +179,6 @@ export const initItemData = (item: Item, versionGroup: string): ItemData => {
         slug: item.name,
         name: getEnglishName(item.names),
         sprite: item.sprites.default,
-        desc: getItemDescription(item.flavor_text_entries, versionGroup),
+        desc: getDescription(item.flavor_text_entries, versionGroup) as string,
     };
 };
