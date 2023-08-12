@@ -113,7 +113,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
 
     // Find Pokemon on page load
     useEffect(() => {
-        if (props.run && props.pokemonID.length) {
+        if (props.run && props.pokemonID) {
             const pokemonList: CaughtPokemon[] = isAlive(props.run.id, props.pokemonID)
                 ? getRun(props.run.id).box
                 : getRun(props.run.id).rips;
@@ -155,7 +155,11 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 onIVUpdate={(ivs: Values) => handleIVUpdate(ivs)}
                 onEVUpdate={(evs: Values) => handleEVUpdate(evs)}
             />
-            <SummaryEvolutions pokemon={pokemonData} gameSlug={props.run.gameSlug} />
+            {pokemonData.evolutions.some((chain: string[]) => chain.length > 1) ? (
+                <SummaryEvolutions pokemon={pokemonData} gameSlug={props.run.gameSlug} />
+            ) : (
+                ""
+            )}
             <Modal modalID="move-modal" open={moveModalOpen} onClose={() => setMoveModalOpen(false)}>
                 {selectedIdx !== null ? (
                     <MoveModal

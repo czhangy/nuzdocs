@@ -14,7 +14,7 @@ const Summary: NextPage = () => {
     const [pokemonID, setPokemonID] = useState<string>("");
 
     useEffect(() => {
-        if (router.isReady) {
+        if (router.isReady && router.query.pokemonID) {
             const runID: string = router.query.runID as string;
             const pokemonID: string = router.query.pokemonID as string;
             if (isRun(runID) && isPokemon(runID, pokemonID)) {
@@ -24,7 +24,7 @@ const Summary: NextPage = () => {
                 router.push("/");
             }
         }
-    }, [router.isReady]);
+    }, [router.isReady, router.query.pokemonID]);
 
     return (
         <>
