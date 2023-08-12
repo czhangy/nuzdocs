@@ -2,6 +2,7 @@
 
 .game {
     --arrow-size: 1.5rem;
+    --logo-ratio: 1.5;
     --logo-size: 80px;
 
     align-items: center;
@@ -15,29 +16,12 @@
     .logo {
         height: var(--logo-size);
         position: relative;
-        width: calc(var(--logo-size) * 1.5);
-    }
-}
-
-@media screen and (min-width: constants.$tablet) {
-    .links {
-        --font-size: 1.2rem;
-        --icon-size: 40px;
+        width: calc(var(--logo-size) * var(--logo-ratio));
     }
 }
 
 @media (hover: hover) {
     .game:hover > .back-arrow {
         color: constants.$hover-color;
-    }
-
-    .links .link:hover {
-        .link-icon {
-            filter: constants.$svg-hover-color;
-        }
-
-        .link-text {
-            color: constants.$hover-color;
-        }
     }
 }

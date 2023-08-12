@@ -94,8 +94,14 @@
 }
 
 @media (hover: hover) {
-    .nav-menu > .button:hover {
-        .dash {
+    .nav-menu {
+        .button:hover {
+            .dash {
+                background-color: constants.$hover-color;
+            }
+        }
+
+        .menu > .option > .link:hover {
             background-color: constants.$hover-color;
         }
     }
