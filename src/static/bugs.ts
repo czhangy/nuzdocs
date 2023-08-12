@@ -51,10 +51,6 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "The nickname container doesn't resize when changing the screen size past the font-change breakpoint",
             group: "General",
         },
-        {
-            desc: "SVG filters expose themselves on highlight",
-            group: "General",
-        },
     ],
 };
 
