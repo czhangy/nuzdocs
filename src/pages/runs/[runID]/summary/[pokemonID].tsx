@@ -4,7 +4,7 @@ import { getRun, isPokemon, isRun } from "@/utils/run";
 import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Summary: NextPage = () => {
     const router = useRouter();
@@ -14,7 +14,7 @@ const Summary: NextPage = () => {
     const [pokemonID, setPokemonID] = useState<string>("");
 
     useEffect(() => {
-        if (router.isReady && router.query.pokemonID) {
+        if (router.isReady && router.query.runID && router.query.pokemonID) {
             const runID: string = router.query.runID as string;
             const pokemonID: string = router.query.pokemonID as string;
             if (isRun(runID) && isPokemon(runID, pokemonID)) {
@@ -24,7 +24,7 @@ const Summary: NextPage = () => {
                 router.push("/");
             }
         }
-    }, [router.isReady, router.query.pokemonID]);
+    }, [router.isReady, router.query.runID, router.query.pokemonID]);
 
     return (
         <>

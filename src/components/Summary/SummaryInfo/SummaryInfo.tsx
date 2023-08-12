@@ -49,7 +49,11 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
 
     // Set the level of the current Pokemon if it exists on component load
     useEffect(() => {
-        if (props.caughtPokemon.pokemon.level) setLevel(String(props.caughtPokemon.pokemon.level));
+        if (props.caughtPokemon.pokemon.level) {
+            setLevel(String(props.caughtPokemon.pokemon.level));
+        } else {
+            setLevel("");
+        }
     }, [props.caughtPokemon]);
 
     // Fetch the ability data for the given Pokemon on component load
