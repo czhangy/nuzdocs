@@ -7,18 +7,12 @@
     --nav-font-size: 1rem;
     --nav-spacing: 1.5rem;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-bottom: var(--bottom-spacing);
     position: relative;
     width: 100%;
-
-    .header {
-        font-size: var(--header-font-size);
-        font-weight: bold;
-        letter-spacing: var(--header-font-spacing);
-        line-height: var(--header-font-size);
-        text-align: center;
-        width: 100%;
-    }
 
     .nav {
         display: flex;
@@ -26,6 +20,15 @@
         font-size: var(--nav-font-size);
         margin-bottom: var(--nav-spacing);
         width: 100%;
+    }
+
+    .header {
+        font-size: var(--header-font-size);
+        font-weight: bold;
+        letter-spacing: var(--header-font-spacing);
+        line-height: var(--header-font-size);
+        position: relative;
+        text-align: center;
     }
 }
 

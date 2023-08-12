@@ -119,7 +119,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Run progression as route/link
 -   [ ] Add way to still show duplicates, but mark them
 -   [ ] Box filters
--   [ ] Check old generation typings
 -   [ ] Customizable run settings
 -   [ ] Trades
 -   [ ] Key items
