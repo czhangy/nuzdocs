@@ -109,7 +109,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 
 ## To-Dos
 
--   [ ] Run menu
 -   [ ] Pokedex data
 -   [ ] Location maps
 -   [ ] Tier list page

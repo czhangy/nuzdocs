@@ -1,4 +1,5 @@
 import Navbar from "@/components/Global/Navbar/Navbar";
+import NavMenu from "@/components/Run/NavMenu/NavMenu";
 import Run from "@/models/Run";
 import { getGame } from "@/utils/game";
 import { getRun } from "@/utils/run";
@@ -36,7 +37,8 @@ const RunNavbar: React.FC = () => {
                     </div>
                 </a>
             </Link>
-            <ul className={styles.links}>
+            <NavMenu />
+            {/* <ul className={styles.links}>
                 <li>
                     <Link href={`/runs/${run.id}/overview`}>
                         <a className={styles.link}>
@@ -72,7 +74,7 @@ const RunNavbar: React.FC = () => {
                         </a>
                     </Link>
                 </li>
-            </ul>
+            </ul> */}
         </Navbar>
     ) : (
         <></>

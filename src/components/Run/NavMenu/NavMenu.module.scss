@@ -1,0 +1,35 @@
+@use "@/styles/constants";
+
+.nav-menu {
+    --button-transition-time: 0.2s;
+    --button-width: 40px;
+    --icon-line-height: 2px;
+    --icon-inner-spacing: 6px;
+
+    .button {
+        display: flex;
+        flex-direction: column;
+        gap: var(--icon-inner-spacing);
+        transition: gap var(--button-transition-time);
+        width: var(--button-width);
+
+        .icon {
+            background-color: constants.$text-color;
+            height: var(--icon-line-height);
+            margin: 0;
+            width: 100%;
+        }
+    }
+}
+
+.open {
+    --icon-inner-spacing: 10px;
+}
+
+@media (hover: hover) {
+    .nav-menu > .button:hover {
+        .icon {
+            background-color: constants.$hover-color;
+        }
+    }
+}
