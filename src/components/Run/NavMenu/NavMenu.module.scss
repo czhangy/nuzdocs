@@ -5,13 +5,16 @@
     --button-width: 40px;
     --icon-line-height: 2px;
     --icon-inner-spacing: 6px;
+    --overlay-z: 999;
 
     .button {
         display: flex;
         flex-direction: column;
         gap: var(--icon-inner-spacing);
+        position: relative;
         transition: gap var(--button-transition-time);
         width: var(--button-width);
+        z-index: calc(var(--overlay-z) + 1);
 
         .icon {
             background-color: constants.$text-color;
@@ -24,6 +27,15 @@
 
 .open {
     --icon-inner-spacing: 10px;
+
+    .overlay {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: var(--overlay-z);
+    }
 }
 
 @media (hover: hover) {
