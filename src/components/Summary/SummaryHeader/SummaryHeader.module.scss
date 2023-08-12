@@ -3,50 +3,60 @@
 .summary-header {
     --info-font-size: 1rem;
     --info-inner-spacing: 0.75rem;
+    --pokemon-inner-spacing: 1rem;
     --sprite-size: 125px;
 
-    align-items: center;
-    display: flex;
-    justify-content: center;
-
-    .sprite {
-        height: var(--sprite-size);
-        position: relative;
-        width: var(--sprite-size);
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
     }
 
-    .info {
+    .pokemon {
+        align-items: center;
         display: flex;
-        flex-direction: column;
-        gap: var(--info-inner-spacing);
+        gap: var(--pokemon-inner-spacing);
+        justify-content: center;
 
-        .name {
-            align-items: center;
-            display: flex;
-
-            .nickname {
-                background-color: constants.$bg-color;
-                font-size: var(--info-font-size);
-                font-weight: bold;
-                line-height: var(--info-font-size);
-            }
-
-            .hidden {
-                display: inline-block;
-                font-size: var(--info-font-size);
-                font-weight: bold;
-                left: -9999px;
-                position: absolute;
-            }
-
-            input::placeholder {
-                color: constants.$text-color;
-            }
+        .sprite {
+            height: var(--sprite-size);
+            position: relative;
+            width: var(--sprite-size);
         }
 
-        .text {
-            font-size: var(--info-font-size);
-            line-height: var(--info-font-size);
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--info-inner-spacing);
+
+            .name {
+                align-items: center;
+                display: flex;
+
+                .nickname {
+                    background-color: constants.$bg-color;
+                    font-size: var(--info-font-size);
+                    font-weight: bold;
+                    line-height: var(--info-font-size);
+                }
+
+                .hidden {
+                    display: inline-block;
+                    font-size: var(--info-font-size);
+                    font-weight: bold;
+                    left: -9999px;
+                    position: absolute;
+                }
+
+                input::placeholder {
+                    color: constants.$text-color;
+                }
+            }
+
+            .text {
+                font-size: var(--info-font-size);
+                line-height: var(--info-font-size);
+            }
         }
     }
 }
@@ -55,5 +65,11 @@
     .summary-header {
         --info-font-size: 1.5rem;
         --sprite-size: 150px;
+    }
+}
+
+@media (hover: hover) {
+    .summary-header > .nav > .link:hover {
+        color: constants.$hover-color;
     }
 }

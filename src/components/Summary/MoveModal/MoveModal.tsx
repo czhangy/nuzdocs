@@ -1,13 +1,17 @@
+import NamedResource from "@/models/NamedResource";
 import PokemonMove from "@/models/PokemonMove";
 import { translateSlug } from "@/utils/utils";
 import { ChangeEvent, useEffect, useState } from "react";
 import styles from "./MoveModal.module.scss";
+import { fetchMove } from "@/utils/api";
+import MoveData from "@/models/MoveData";
+import { initNamedResource } from "@/utils/initializers";
 
 type Props = {
     movepool: PokemonMove[];
     moves: string[];
     move: string | null;
-    onConfirm: (selection: string) => void;
+    onConfirm: (move: NamedResource) => void;
     onDelete: () => void;
     onClose: () => void;
 };
@@ -28,9 +32,15 @@ const MoveModal: React.FC<Props> = (props: Props) => {
     };
 
     // Propagate selection to SummaryPage and close the modal
-    const handleConfirm = (): void => {
-        props.onConfirm(move);
+    const handleConfirm = async (): Promise<void> => {
         props.onClose();
+        fetchMove(move).then((move: MoveData | null) => {
+            if (move) {
+                props.onConfirm(initNamedResource(move.slug, move.name));
+            } else {
+                alert("Something went wrong!");
+            }
+        });
     };
 
     // Highlight matching substring
@@ -80,7 +90,7 @@ const MoveModal: React.FC<Props> = (props: Props) => {
         <div className={styles["move-modal"]}>
             {props.move ? (
                 <h2 className={styles.header}>
-                    Edit <strong>{translateSlug(props.move)}</strong>!
+                    Edit <strong>{props.move}</strong>!
                 </h2>
             ) : (
                 <h2 className={styles.header}>

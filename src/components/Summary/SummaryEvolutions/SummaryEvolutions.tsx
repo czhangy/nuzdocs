@@ -47,14 +47,18 @@ const SummaryEvolutions: React.FC<Props> = (props: Props) => {
                                 return (
                                     <div className={styles.link} key={slug}>
                                         {idx > 0 ? <p className={styles.arrow}>→</p> : ""}
-                                        <div className={styles.sprite}>
-                                            <Image
-                                                src={pokemonMap[slug].sprite}
-                                                alt={pokemonMap[slug].pokemon.name}
-                                                layout="fill"
-                                                objectFit="contain"
-                                            />
-                                        </div>
+                                        {slug in pokemonMap ? (
+                                            <div className={styles.sprite}>
+                                                <Image
+                                                    src={pokemonMap[slug].sprite}
+                                                    alt={pokemonMap[slug].pokemon.name}
+                                                    layout="fill"
+                                                    objectFit="contain"
+                                                />
+                                            </div>
+                                        ) : (
+                                            "Loading..."
+                                        )}
                                     </div>
                                 );
                             })}

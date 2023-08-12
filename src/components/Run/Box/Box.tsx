@@ -4,6 +4,7 @@ import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import { fetchPokemonGroup } from "@/utils/api";
 import { getPokemonSlugsFromBox } from "@/utils/run";
+import { exportPokemon } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./Box.module.scss";
@@ -61,6 +62,12 @@ const Box: React.FC<Props> = (props: Props) => {
         props.onRevive!(pokemon, idx);
     };
 
+    // Close menu and copy set to clipboard
+    const handleExport = (pokemon: CaughtPokemon, name: string): void => {
+        setActiveIdx(null);
+        exportPokemon(pokemon.pokemon, name, pokemon.nickname);
+    };
+
     // Compute the number of failed encounters
     const getNumFailedEncounters = (): number => {
         return props.box.filter((pokemon: CaughtPokemon) => pokemon.pokemon.slug === "failed").length;
@@ -105,6 +112,7 @@ const Box: React.FC<Props> = (props: Props) => {
                             onEvolve={() => handleEvolve(pokemon, idx)}
                             onFormChange={() => handleFormChange(pokemon, idx)}
                             onRIP={() => handleRIP(pokemon, idx)}
+                            onExport={() => handleExport(props.box[idx], pokemon.pokemon.name)}
                         />
                     ) : (
                         <BoxMenu

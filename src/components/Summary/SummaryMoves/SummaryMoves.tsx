@@ -1,14 +1,14 @@
 import MoveCard from "@/components/Run/MoveCard/MoveCard";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import MoveData from "@/models/MoveData";
-import PokemonData from "@/models/PokemonData";
+import NamedResource from "@/models/NamedResource";
 import { fetchMoves } from "@/utils/api";
 import { useEffect, useState } from "react";
 import styles from "./SummaryMoves.module.scss";
 
 type Props = {
     caughtPokemon: CaughtPokemon;
-    pokemonData: PokemonData;
+    types: string[];
     game: string;
     onClick: (idx: number) => void;
 };
@@ -19,8 +19,10 @@ const SummaryMoves: React.FC<Props> = (props: Props) => {
 
     // Fetch move data on component load
     useEffect(() => {
-        if (props.caughtPokemon.pokemon.moveSlugs && props.caughtPokemon.pokemon.moveSlugs.length > 0) {
-            fetchMoves(props.caughtPokemon.pokemon.moveSlugs).then((moves: MoveData[]) => setMoves(moves));
+        if (props.caughtPokemon) {
+            fetchMoves(props.caughtPokemon.pokemon.moves.map((move: NamedResource) => move.slug)).then(
+                (moves: MoveData[]) => setMoves(moves)
+            );
         }
     }, [props.caughtPokemon]);
 
@@ -34,7 +36,7 @@ const SummaryMoves: React.FC<Props> = (props: Props) => {
                             {key < moves.length ? (
                                 <MoveCard
                                     move={moves[key]}
-                                    isSTAB={props.pokemonData.types.includes(moves[key].type)}
+                                    isSTAB={props.types.includes(moves[key].type)}
                                     game={props.game}
                                 />
                             ) : (

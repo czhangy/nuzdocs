@@ -25,6 +25,10 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "If a move has been updated, only the most recent set of info is displayed, regardless of what gen the run is",
             group: "General",
         },
+        {
+            desc: "Pokemon with different forms can evolve between forms (i.e., Zigzagoon/Linoone/Obstagoon)",
+            group: "General",
+        },
     ],
     Low: [
         {
@@ -44,7 +48,11 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "General",
         },
         {
-            desc: "Tooltips don't always play well on mobile",
+            desc: "Some tooltips overflow the screen on mobile",
+            group: "General",
+        },
+        {
+            desc: "The nickname container doesn't resize when changing the screen size past the font-change breakpoint",
             group: "General",
         },
     ],

@@ -1,6 +1,7 @@
 import Dropdown from "@/components/Global/Dropdown/Dropdown";
 import AbilityData from "@/models/AbilityData";
 import CaughtPokemon from "@/models/CaughtPokemon";
+import NamedResource from "@/models/NamedResource";
 import PokemonData from "@/models/PokemonData";
 import { fetchAbilities } from "@/utils/api";
 import { getListOfNatures } from "@/utils/natures";
@@ -8,17 +9,20 @@ import { getTypeCardSrc } from "@/utils/utils";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
 import styles from "./SummaryInfo.module.scss";
+import { initNamedResource } from "@/utils/initializers";
 
 type Props = {
     caughtPokemon: CaughtPokemon;
     pokemonData: PokemonData;
     game: string;
-    onUpdate: (selection: string | number, property: string) => void;
+    onLevelUpdate: (level: number) => void;
+    onAbilityUpdate: (ability: NamedResource) => void;
+    onNatureUpdate: (nature: string) => void;
 };
 
 const SummaryInfo: React.FC<Props> = (props: Props) => {
     // Fetched data state
-    const [abilityData, setAbilityData] = useState<AbilityData[]>([]);
+    const [abilities, setAbilities] = useState<AbilityData[]>([]);
 
     // Component state
     const [level, setLevel] = useState<string>("");
@@ -27,7 +31,7 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
     const handleBlur = (): void => {
         const levelNum: number = Number(level);
         if (!isNaN(levelNum) && levelNum > 0 && levelNum <= 100) {
-            props.onUpdate(levelNum, "level");
+            props.onLevelUpdate(levelNum);
         } else {
             setLevel(props.caughtPokemon.pokemon.level ? String(props.caughtPokemon.pokemon.level) : "");
         }
@@ -35,29 +39,28 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
 
     // Get the names of all abilities
     const getAbilityNames = (): string[] => {
-        return abilityData.map((ability: AbilityData) => ability.name);
+        return abilities.map((ability: AbilityData) => ability.name);
     };
 
     // Convert an ability name to slug
     const getAbilitySlug = (name: string): string => {
-        return abilityData.find((ability: AbilityData) => ability.name === name)!.slug;
-    };
-
-    // Convert an ability slug to name
-    const getAbilityName = (slug: string): string => {
-        return abilityData.find((ability: AbilityData) => ability.slug === slug)!.name;
+        return abilities.find((ability: AbilityData) => ability.name === name)!.slug;
     };
 
     // Set the level of the current Pokemon if it exists on component load
     useEffect(() => {
-        if (props.caughtPokemon.pokemon.level) setLevel(String(props.caughtPokemon.pokemon.level));
+        if (props.caughtPokemon.pokemon.level) {
+            setLevel(String(props.caughtPokemon.pokemon.level));
+        } else {
+            setLevel("");
+        }
     }, [props.caughtPokemon]);
 
     // Fetch the ability data for the given Pokemon on component load
     useEffect(() => {
         if (props.pokemonData) {
             fetchAbilities(props.pokemonData.abilities, props.game).then((abilities: AbilityData[]) =>
-                setAbilityData(abilities)
+                setAbilities(abilities)
             );
         }
     }, [props.pokemonData]);
@@ -97,12 +100,14 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
                     <Dropdown
                         placeholder="???"
                         value={
-                            abilityData.length > 0 && props.caughtPokemon.pokemon.abilitySlug
-                                ? getAbilityName(props.caughtPokemon.pokemon.abilitySlug)
+                            abilities.length > 0 && props.caughtPokemon.pokemon.ability
+                                ? props.caughtPokemon.pokemon.ability.name
                                 : null
                         }
                         options={getAbilityNames()}
-                        onSelect={(label: string) => props.onUpdate(getAbilitySlug(label), "abilitySlug")}
+                        onSelect={(name: string) =>
+                            props.onAbilityUpdate(initNamedResource(getAbilitySlug(name), name))
+                        }
                         border={false}
                         minWidth={150}
                     />
@@ -115,7 +120,7 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
                         placeholder="???"
                         value={props.caughtPokemon.pokemon.nature ? props.caughtPokemon.pokemon.nature : null}
                         options={getListOfNatures()}
-                        onSelect={(label: string) => props.onUpdate(label, "nature")}
+                        onSelect={(nature: string) => props.onNatureUpdate(nature)}
                         border={false}
                         minWidth={120}
                     />

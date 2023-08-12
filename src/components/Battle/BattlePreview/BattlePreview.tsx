@@ -11,9 +11,11 @@ import { useEffect, useState } from "react";
 import styles from "./BattlePreview.module.scss";
 import { fetchItems } from "@/utils/api";
 import ItemDisplay from "@/components/Battle/ItemDisplay/ItemDisplay";
+import { exportPokemonList } from "@/utils/utils";
 
 type Props = {
     segment: Segment;
+    names: string[];
     run: Run;
 };
 
@@ -25,15 +27,24 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     const [items, setItems] = useState<ItemData[]>([]);
 
     // Sets component state and updates local storage when defeat is clicked
-    const handleDefeat = () => {
+    const handleDefeat = (): void => {
         setDefeated(true);
         addToClearedBattles(props.run.id, props.segment.slug);
     };
 
     // Sets component state and updates local storage when undo is clicked
-    const handleUndo = () => {
+    const handleUndo = (): void => {
         setDefeated(false);
         removeFromClearedBattles(props.run.id, props.segment.slug);
+    };
+
+    // Save battle team to clipboard
+    const handleExport = (): void => {
+        exportPokemonList(
+            getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).team,
+            props.names,
+            `${props.run.gameSlug}-${props.segment.slug}`
+        );
     };
 
     // Persist defeated state on component load
@@ -96,6 +107,13 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                         </div>
                     ) : (
                         <div className={styles.buttons}>
+                            <button
+                                className={styles.defeat}
+                                disabled={props.names.length === 0}
+                                onClick={handleExport}
+                            >
+                                Export
+                            </button>
                             <button className={styles.defeat} onClick={handleDefeat}>
                                 Defeat!
                             </button>

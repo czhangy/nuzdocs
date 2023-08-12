@@ -5,11 +5,13 @@ import EncounterData from "@/models/EncounterData";
 import ItemData from "@/models/ItemData";
 import LocationData from "@/models/LocationData";
 import MoveData from "@/models/MoveData";
+import NamedResource from "@/models/NamedResource";
 import MyPokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import PokemonMove from "@/models/PokemonMove";
 import PokemonName from "@/models/PokemonName";
 import Stat from "@/models/Stat";
+import Values from "@/models/Values";
 import translations from "@/static/translations";
 import { getBox, getRIPs } from "@/utils/run";
 import { generateID, getDescription, getEnglishName } from "@/utils/utils";
@@ -18,7 +20,6 @@ import {
     Item,
     Move,
     Name,
-    NamedAPIResource,
     Pokemon,
     PokemonMoveVersion,
     PokemonSpecies,
@@ -57,7 +58,6 @@ export const initPokemonData = (
     let stats: Stat[] = pokemon.stats.map((stat: PokemonStat) => {
         return { name: translations.stats[stat.stat.name], base: stat.base_stat };
     });
-    stats = stats.splice(0, 3).concat(stats.reverse());
     const movepool: PokemonMove[] = [];
     for (const move of pokemon.moves) {
         const vgd: PokemonMoveVersion | undefined = move.version_group_details.find(
@@ -83,7 +83,9 @@ export const initPokemon = (slug: string, species: string, level: number | null 
     let pokemon: MyPokemon = {
         slug: slug,
         species: species,
-        moveSlugs: [],
+        moves: [],
+        ivs: initValues(),
+        evs: initValues(),
     };
     if (level) {
         pokemon.level = level;
@@ -181,5 +183,23 @@ export const initItemData = (item: Item, versionGroup: string): ItemData => {
         name: getEnglishName(item.names),
         sprite: item.sprites.default,
         desc: getDescription(item.flavor_text_entries, versionGroup) as string,
+    };
+};
+
+export const initValues = (): Values => {
+    return {
+        hp: 0,
+        atk: 0,
+        spa: 0,
+        def: 0,
+        spd: 0,
+        spe: 0,
+    };
+};
+
+export const initNamedResource = (slug: string, name: string): NamedResource => {
+    return {
+        slug: slug,
+        name: name,
     };
 };

@@ -1,127 +1,197 @@
-import Stat from "@/models/Stat";
-import { getNature, isNeutralNature } from "@/utils/natures";
-import { Chart } from "chart.js/auto";
-import { useEffect } from "react";
+import CaughtPokemon from "@/models/CaughtPokemon";
+import PokemonData from "@/models/PokemonData";
 import styles from "./SummaryStats.module.scss";
+import Stat from "@/models/Stat";
+import { ChangeEvent, useEffect, useState } from "react";
+import Values from "@/models/Values";
+import { getNature } from "@/utils/natures";
 
 type Props = {
-    stats: Stat[];
-    nature: string | undefined;
+    pokemon: PokemonData;
+    set: CaughtPokemon;
+    onIVUpdate: (ivs: Values) => void;
+    onEVUpdate: (evs: Values) => void;
 };
 
 const SummaryStats: React.FC<Props> = (props: Props) => {
-    // Calculate the base stat, taking nature into account
-    const getBaseStat = (stat: Stat): number => {
-        if (props.nature) {
-            if (getNature(props.nature).increase === stat.name) {
-                return Math.floor(stat.base * 1.1);
-            } else if (getNature(props.nature).decrease === stat.name) {
-                return Math.floor(stat.base * 0.9);
-            }
-        }
-        return stat.base;
+    // Component state
+    const [ivs, setIVs] = useState<number[]>([0, 0, 0, 0, 0, 0]);
+    const [evs, setEVs] = useState<number[]>([0, 0, 0, 0, 0, 0]);
+
+    // Parse IV inputs
+    const handleIVChange = (iv: number, idx: number): void => {
+        iv = Math.max(iv, 0);
+        iv = Math.min(iv, 31);
+        const newIVs: number[] = [...ivs];
+        newIVs[idx] = iv;
+        setIVs(newIVs);
     };
 
-    // Initialize radar chart on component load
-    useEffect(() => {
-        if (props.stats) {
-            let chartStatus = Chart.getChart("stats");
-            if (chartStatus) chartStatus.destroy();
-            const stats = {
-                labels: props.stats.map((stat: Stat) => `${stat.name}: ${getBaseStat(stat)}`),
-                datasets: [
-                    {
-                        backgroundColor: "rgba(54, 154, 45, 0.5)",
-                        borderColor: "rgba(54, 154, 45, 1)",
-                        data: props.stats.map((stat: Stat) => getBaseStat(stat)),
-                    },
-                ],
-            };
-            const chart = new Chart(document.getElementById("stats") as HTMLCanvasElement, {
-                type: "radar",
-                data: stats,
-                options: {
-                    animation: false,
-                    events: [],
-                    plugins: {
-                        legend: {
-                            display: false,
-                        },
-                        tooltip: {
-                            enabled: false,
-                        },
-                    },
-                    scales: {
-                        r: {
-                            angleLines: {
-                                color: "white",
-                            },
-                            grid: {
-                                color: ["white"],
-                                lineWidth: 1,
-                            },
-                            min: 10,
-                            max: 180,
-                            pointLabels: {
-                                color: (ctx) => {
-                                    if (props.nature) {
-                                        const label: string = ctx.label.substring(0, ctx.label.indexOf(":"));
-                                        if (label === getNature(props.nature).increase) {
-                                            return "#369a2d";
-                                        } else if (label === getNature(props.nature).decrease) {
-                                            return "red";
-                                        }
-                                    }
-                                    return "white";
-                                },
-                                font: {
-                                    family: "'Poppins', sans-serif",
-                                    size: 12,
-                                    weight: "bold",
-                                },
-                            },
-                            ticks: {
-                                display: false,
-                                maxTicksLimit: 5,
-                                stepSize: 45,
-                            },
-                        },
-                    },
-                },
-            });
+    // Save IV inputs
+    const handleIVSave = (): void => {
+        props.onIVUpdate({
+            hp: ivs[0],
+            atk: ivs[1],
+            def: ivs[2],
+            spa: ivs[3],
+            spd: ivs[4],
+            spe: ivs[5],
+        });
+    };
+
+    // Parse EV inputs
+    const handleEVChange = (ev: number, idx: number): void => {
+        ev = Math.max(ev, 0);
+        ev = Math.min(ev, 252);
+        const newEVs: number[] = [...evs];
+        newEVs[idx] = ev;
+        setEVs(newEVs);
+    };
+
+    // Save IV inputs
+    const handleEVSave = (): void => {
+        props.onEVUpdate({
+            hp: evs[0],
+            atk: evs[1],
+            def: evs[2],
+            spa: evs[3],
+            spd: evs[4],
+            spe: evs[5],
+        });
+    };
+
+    // Check if beneficial nature
+    const isPositiveNature = (idx: number): boolean => {
+        return (
+            props.set.pokemon.nature !== undefined &&
+            props.pokemon.stats[idx].name === getNature(props.set.pokemon.nature).increase
+        );
+    };
+
+    // Check if harmful nature
+    const isNegativeNature = (idx: number): boolean => {
+        return (
+            props.set.pokemon.nature !== undefined &&
+            props.pokemon.stats[idx].name === getNature(props.set.pokemon.nature).decrease
+        );
+    };
+
+    // Calculate Pokemon's HP
+    const getTotalHP = (): number | string => {
+        if (props.set.pokemon.level === undefined) {
+            return "?";
+        } else if (props.set.pokemon.species === "shedinja") {
+            return 1;
+        } else {
+            return (
+                Math.floor(
+                    0.01 *
+                        (2 * props.pokemon.stats[0].base + ivs[0] + Math.floor(0.25 * evs[0])) *
+                        props.set.pokemon.level
+                ) +
+                props.set.pokemon.level +
+                10
+            );
         }
-    }, [props.stats, props.nature]);
+    };
+
+    // Calculate other stats
+    const getTotalStat = (idx: number): number | string => {
+        if (props.set.pokemon.level === undefined) {
+            return "?";
+        } else {
+            let stat: number =
+                Math.floor(
+                    0.01 *
+                        (2 * props.pokemon.stats[idx].base + ivs[idx] + Math.floor(0.25 * evs[idx])) *
+                        props.set.pokemon.level
+                ) + 5;
+            if (isPositiveNature(idx)) {
+                stat *= 1.1;
+            } else if (isNegativeNature(idx)) {
+                stat *= 0.9;
+            }
+            return Math.floor(stat);
+        }
+    };
+
+    // Compute any class styling for the total stat
+    const getTotalClass = (idx: number): string => {
+        if (isPositiveNature(idx)) {
+            return styles.positive;
+        } else if (isNegativeNature(idx)) {
+            return styles.negative;
+        } else {
+            return "";
+        }
+    };
+
+    // Set IVs and EVs if saved on component load
+    useEffect(() => {
+        if (props.set) {
+            setIVs(Object.values(props.set.pokemon.ivs));
+            setEVs(Object.values(props.set.pokemon.evs));
+        }
+    }, [props.set]);
+
     return (
         <div className={styles["summary-stats"]}>
             <p className={styles.header}>Stats</p>
             <div className={styles.stats}>
-                {props.nature ? (
-                    <div className={styles.nature}>
-                        <div className={styles["nature-header"]}>
-                            Nature: <strong>{props.nature}</strong>
-                        </div>
-                        {!isNeutralNature(props.nature) ? (
-                            <div className={styles.changes}>
-                                <p className={styles.increase}>↑{getNature(props.nature).increase}</p>
-                                <p className={styles.decrease}>↓{getNature(props.nature).decrease}</p>
-                            </div>
-                        ) : (
-                            <div className={styles.changes}>
-                                <p className={styles.neutral}>Neutral</p>
-                            </div>
-                        )}
-                    </div>
-                ) : (
-                    ""
-                )}
-                <div className={styles.chart}>
-                    <p className={styles.bst}>
-                        BST: {props.stats.reduce((bst: number, stat: Stat) => bst + stat.base, 0)}
-                    </p>
-                    <div className={styles.radar}>
-                        <canvas id="stats" />
-                    </div>
-                </div>
+                <table className={styles.table}>
+                    <thead>
+                        <tr className={styles.row}>
+                            <th />
+                            <th className={styles.cell}>Base</th>
+                            <th className={styles.cell}>IV</th>
+                            <th className={styles.cell}>EV</th>
+                            <th className={styles.cell}>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {props.pokemon.stats.map((stat: Stat, idx: number) => {
+                            return (
+                                <tr className={styles.row} key={stat.name}>
+                                    <td className={styles.cell}>
+                                        <strong>{stat.name}</strong>
+                                    </td>
+                                    <td className={styles.cell}>{stat.base}</td>
+                                    <td className={styles.cell}>
+                                        <input
+                                            className={styles.input}
+                                            type="number"
+                                            value={ivs[idx].toString()}
+                                            min={0}
+                                            max={31}
+                                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                                handleIVChange(parseInt(e.target.value), idx)
+                                            }
+                                            onBlur={handleIVSave}
+                                        />
+                                    </td>
+                                    <td className={styles.cell}>
+                                        <input
+                                            className={styles.input}
+                                            type="number"
+                                            value={evs[idx].toString()}
+                                            min={0}
+                                            max={252}
+                                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                                handleEVChange(parseInt(e.target.value), idx)
+                                            }
+                                            onBlur={handleEVSave}
+                                        />
+                                    </td>
+                                    <td className={styles.cell}>
+                                        <strong className={getTotalClass(idx)}>
+                                            {idx === 0 ? getTotalHP() : getTotalStat(idx)}
+                                        </strong>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
             </div>
         </div>
     );
