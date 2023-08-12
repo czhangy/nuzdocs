@@ -24,20 +24,22 @@ const RunNavbar: React.FC = () => {
 
     return run ? (
         <Navbar>
-            <Link href="/">
-                <a className={styles.game}>
-                    <p className={styles["back-arrow"]}>←</p>
-                    <div className={styles.logo}>
-                        <Image
-                            src={getGame(run.gameSlug).logoURL}
-                            alt={getGame(run.gameSlug).name}
-                            layout="fill"
-                            objectFit="contain"
-                        />
-                    </div>
-                </a>
-            </Link>
-            <NavMenu run={run} />
+            <div className={styles["run-navbar"]}>
+                <Link href="/">
+                    <a className={styles.game}>
+                        <p className={styles["back-arrow"]}>←</p>
+                        <div className={styles.logo}>
+                            <Image
+                                src={getGame(run.gameSlug).logoURL}
+                                alt={getGame(run.gameSlug).name}
+                                layout="fill"
+                                objectFit="contain"
+                            />
+                        </div>
+                    </a>
+                </Link>
+                <NavMenu run={run} />
+            </div>
         </Navbar>
     ) : (
         <></>

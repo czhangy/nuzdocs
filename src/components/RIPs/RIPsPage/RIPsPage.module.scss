@@ -7,7 +7,7 @@
     --top-spacing: 2rem;
 
     margin-top: var(--top-spacing);
-    min-height: calc(100vh - constants.$mobile-navbar-height - var(--top-spacing));
+    min-height: calc(100vh - constants.$navbar-height - var(--top-spacing));
 
     .header {
         font-size: var(--header-font-size);
@@ -23,7 +23,5 @@
     .rips-page {
         --header-font-size: 2.5rem;
         --top-spacing: 4rem;
-
-        min-height: calc(100vh - constants.$navbar-height - var(--top-spacing));
     }
 }

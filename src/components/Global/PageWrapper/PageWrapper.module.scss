@@ -4,7 +4,7 @@
     background: constants.$bg-color;
     display: flex;
     justify-content: center;
-    min-height: calc(100vh - #{constants.$mobile-navbar-height});
+    min-height: calc(100vh - #{constants.$navbar-height});
     width: 100%;
 
     .page-wrapper {
@@ -35,6 +35,5 @@
 @media screen and (min-width: constants.$tablet) {
     .page-container {
         align-items: center;
-        min-height: calc(100vh - #{constants.$navbar-height});
     }
 }
