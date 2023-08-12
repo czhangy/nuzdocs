@@ -58,7 +58,6 @@ export const initPokemonData = (
     let stats: Stat[] = pokemon.stats.map((stat: PokemonStat) => {
         return { name: translations.stats[stat.stat.name], base: stat.base_stat };
     });
-    stats = stats.splice(0, 3).concat(stats.reverse());
     const movepool: PokemonMove[] = [];
     for (const move of pokemon.moves) {
         const vgd: PokemonMoveVersion | undefined = move.version_group_details.find(

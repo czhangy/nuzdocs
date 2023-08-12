@@ -1,0 +1,84 @@
+@use "@/styles/constants";
+
+.summary-stats {
+    --border-rad: 5px;
+    --header-font-size: 1rem;
+    --header-y-padding: 0.5rem;
+    --nature-inner-spacing: 0.5rem;
+    --radar-size: 250px;
+    --stats-font-size: 1.25rem;
+    --stats-inner-spacing: 2rem;
+    --stats-padding: 1rem;
+    --stats-top-padding: 2rem;
+
+    border-radius: var(--border-rad);
+    overflow: hidden;
+
+    .header {
+        background-color: constants.$hover-color;
+        font-size: var(--header-font-size);
+        font-weight: bold;
+        line-height: var(--header-font-size);
+        padding: var(--header-y-padding);
+        text-align: center;
+    }
+
+    .stats {
+        align-items: center;
+        background-color: constants.$accent-color;
+        display: flex;
+        flex-direction: column;
+        padding: var(--stats-padding);
+        padding-top: var(--stats-top-padding);
+
+        .nature {
+            font-size: var(--stats-font-size);
+            line-height: var(--stats-font-size);
+            margin-bottom: var(--stats-inner-spacing);
+
+            .changes {
+                display: flex;
+                gap: var(--nature-inner-spacing);
+                justify-content: center;
+                margin-top: var(--nature-inner-spacing);
+
+                .increase {
+                    color: constants.$hover-color;
+                }
+
+                .decrease {
+                    color: constants.$error-color;
+                }
+
+                .neutral {
+                    color: constants.$disabled-color;
+                }
+            }
+        }
+
+        .chart {
+            .bst {
+                font-size: var(--stats-font-size);
+                font-weight: bold;
+                line-height: var(--stats-font-size);
+                text-align: center;
+            }
+
+            .radar {
+                height: var(--radar-size);
+                width: var(--radar-size);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .summary-stats {
+        --stats-inner-spacing: 0;
+
+        .stats {
+            flex-direction: row;
+            justify-content: space-around;
+        }
+    }
+}

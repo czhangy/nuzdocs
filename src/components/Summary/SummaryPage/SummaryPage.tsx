@@ -6,13 +6,14 @@ import SummaryInfo from "@/components/Summary/SummaryInfo/SummaryInfo";
 import SummaryMoves from "@/components/Summary/SummaryMoves/SummaryMoves";
 import SummaryStats from "@/components/Summary/SummaryStats/SummaryStats";
 import CaughtPokemon from "@/models/CaughtPokemon";
+import NamedResource from "@/models/NamedResource";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
+import Values from "@/models/Values";
 import { fetchPokemon } from "@/utils/api";
 import { getBox, getRIPs, getRun, isAlive, updateBox, updateRIPs } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./SummaryPage.module.scss";
-import NamedResource from "@/models/NamedResource";
 
 type Props = {
     run: Run;
@@ -69,6 +70,20 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
     const handleMovesetDelete = (): void => {
         const newCaughtPokemon: CaughtPokemon = JSON.parse(JSON.stringify(caughtPokemon));
         newCaughtPokemon.pokemon.moves.splice(selectedIdx!, 1);
+        handleUpdate(newCaughtPokemon);
+    };
+
+    // Update IVs in local storage
+    const handleIVUpdate = (ivs: Values): void => {
+        const newCaughtPokemon: CaughtPokemon = JSON.parse(JSON.stringify(caughtPokemon));
+        newCaughtPokemon.pokemon.ivs = ivs;
+        handleUpdate(newCaughtPokemon);
+    };
+
+    // Update EVs in local storage
+    const handleEVUpdate = (evs: Values): void => {
+        const newCaughtPokemon: CaughtPokemon = JSON.parse(JSON.stringify(caughtPokemon));
+        newCaughtPokemon.pokemon.evs = evs;
         handleUpdate(newCaughtPokemon);
     };
 
@@ -134,7 +149,12 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 game={props.run.gameSlug}
                 onClick={(idx: number) => handleMoveSelect(idx)}
             />
-            <SummaryStats stats={pokemonData.stats} nature={caughtPokemon.pokemon.nature} />
+            <SummaryStats
+                pokemon={pokemonData}
+                set={caughtPokemon}
+                onIVUpdate={(ivs: Values) => handleIVUpdate(ivs)}
+                onEVUpdate={(evs: Values) => handleEVUpdate(evs)}
+            />
             <SummaryEvolutions pokemon={pokemonData} gameSlug={props.run.gameSlug} />
             <Modal modalID="move-modal" open={moveModalOpen} onClose={() => setMoveModalOpen(false)}>
                 {selectedIdx !== null ? (
