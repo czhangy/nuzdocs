@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import styles from "./NavMenu.module.scss";
+import Image from "next/image";
+import Link from "next/link";
+import Run from "@/models/Run";
 
-const NavMenu: React.FC = () => {
+type Props = {
+    run: Run;
+};
+
+const NavMenu: React.FC<Props> = (props: Props) => {
     // Component state
     const [open, setOpen] = useState<boolean>(false);
 
@@ -20,10 +27,47 @@ const NavMenu: React.FC = () => {
         <div className={`${styles["nav-menu"]} ${open ? styles.open : ""}`}>
             <div className={styles.overlay} onClick={() => setOpen(false)} />
             <button className={styles.button} onClick={() => setOpen(!open)}>
-                <hr className={styles.icon} />
-                <hr className={styles.icon} />
-                <hr className={styles.icon} />
+                <hr className={styles.dash} />
+                <hr className={styles.dash} />
+                <hr className={styles.dash} />
             </button>
+            <ul className={styles.menu}>
+                <li className={styles.option}>
+                    <Link href={`/runs/${props.run.id}/overview`}>
+                        <a className={styles.link}>
+                            <div className={styles.icon}>
+                                <Image
+                                    src="/assets/icons/pokeball.svg"
+                                    alt="Overview"
+                                    layout="fill"
+                                    objectFit="contain"
+                                />
+                            </div>
+                            <p className={styles.page}>Overview</p>
+                        </a>
+                    </Link>
+                </li>
+                <li className={styles.option}>
+                    <Link href={`/runs/${props.run.id}/box`}>
+                        <a className={styles.link}>
+                            <div className={styles.icon}>
+                                <Image src="/assets/icons/box.svg" alt="Box" layout="fill" objectFit="contain" />
+                            </div>
+                            <p className={styles.page}>Box</p>
+                        </a>
+                    </Link>
+                </li>
+                <li className={styles.option}>
+                    <Link href={`/runs/${props.run.id}/rips`}>
+                        <a className={styles.link}>
+                            <div className={styles.icon}>
+                                <Image src="/assets/icons/dead.svg" alt="Dead" layout="fill" objectFit="contain" />
+                            </div>
+                            <p className={styles.page}>RIPs</p>
+                        </a>
+                    </Link>
+                </li>
+            </ul>
         </div>
     );
 };

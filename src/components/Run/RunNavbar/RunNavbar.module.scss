@@ -19,31 +19,6 @@
     }
 }
 
-.links {
-    --font-size: 1rem;
-    --icon-size: 32px;
-
-    display: flex;
-    gap: var(--link-spacing);
-
-    .link {
-        align-items: center;
-        display: flex;
-
-        .link-icon {
-            filter: constants.$svg-color;
-            height: var(--icon-size);
-            margin-right: var(--inner-spacing);
-            position: relative;
-            width: var(--icon-size);
-        }
-
-        .link-text {
-            font-size: var(--font-size);
-        }
-    }
-}
-
 @media screen and (min-width: constants.$tablet) {
     .links {
         --font-size: 1.2rem;
