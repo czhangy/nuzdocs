@@ -25,6 +25,8 @@
             height: var(--sprite-size);
             position: relative;
             transition: filter var(--sprite-transition-time);
+            user-select: none; /* Standard syntax */
+            -webkit-user-select: none; /* Safari */
             width: var(--sprite-size);
         }
 
@@ -67,6 +69,8 @@
                     filter: constants.$svg-color;
                     height: var(--undo-button-size);
                     position: relative;
+                    user-select: none; /* Standard syntax */
+                    -webkit-user-select: none; /* Safari */
                     width: var(--undo-button-size);
                 }
             }

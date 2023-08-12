@@ -54,6 +54,8 @@
             height: var(--chevron-size);
             position: absolute;
             transition: transform var(--transition-time);
+            user-select: none; /* Standard syntax */
+            -webkit-user-select: none; /* Safari */
             right: var(--arrow-spacing);
             width: var(--chevron-size);
         }

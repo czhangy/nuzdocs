@@ -11,5 +11,7 @@
     .icon {
         filter: constants.$svg-color;
         position: relative;
+        user-select: none; /* Standard syntax */
+        -webkit-user-select: none; /* Safari */
     }
 }
