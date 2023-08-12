@@ -98,7 +98,7 @@ export const exportPokemon = (pokemon: Pokemon, name: string, tag: string): void
 export const exportPokemonList = (pokemon: Pokemon[], names: string[], tag: string): void => {
     let sets: string = "";
     for (let i = 0; i < pokemon.length; i++) {
-        sets += generateSet(pokemon[i], names[i], tag) + "\n";
+        sets += generateSet(pokemon[i], names[i], `${tag}-${i + 1}`) + "\n";
     }
     navigator.clipboard
         .writeText(sets)
