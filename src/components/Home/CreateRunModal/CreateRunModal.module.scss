@@ -63,6 +63,8 @@
                 height: var(--game-icon-size);
                 margin: 0 auto;
                 position: relative;
+                user-select: none; /* Standard syntax */
+                -webkit-user-select: none; /* Safari */
                 width: calc(var(--game-icon-size) * 1.5);
             }
 

@@ -1,14 +1,14 @@
 @use "@/styles/constants";
 
 .footer-container {
+    --footer-padding: 2rem;
     --icon-size: 32px;
     --text-size: 0.8rem;
 
     background: constants.$accent-color;
-    padding: 2rem;
+    padding: var(--footer-padding);
     position: relative;
     width: 100%;
-    z-index: 9;
 
     .footer {
         align-items: center;
@@ -49,6 +49,8 @@
                 height: var(--icon-size);
                 position: relative;
                 transition: transform 0.2s;
+                user-select: none; /* Standard syntax */
+                -webkit-user-select: none; /* Safari */
                 width: var(--icon-size);
             }
         }

@@ -58,6 +58,8 @@
                 filter: constants.$svg-hover-color;
                 height: var(--text-font-size);
                 position: relative;
+                user-select: none; /* Standard syntax */
+                -webkit-user-select: none; /* Safari */
                 width: var(--text-font-size);
             }
         }
