@@ -22,9 +22,11 @@ import {
     Name,
     Pokemon,
     PokemonMoveVersion,
+    PokemonPastType,
     PokemonSpecies,
     PokemonSpeciesVariety,
     PokemonStat,
+    PokemonType,
 } from "pokenode-ts";
 
 export const initPokemonName = (slug: string, name: string, species: string): PokemonName => {
@@ -41,27 +43,43 @@ export const initPokemonData = (
     evolutions: string[][],
     abilities: string[],
     generation: string,
-    versionGroup: string
+    group: string
 ): PokemonData => {
+    // Get correct type based on generation
+    let types: PokemonType[] = pokemon.types;
+    const pastTypes: PokemonPastType[] = pokemon.past_types.filter(
+        (type: PokemonPastType) =>
+            parseInt(translations.generations[type.generation.name]) > parseInt(translations.generations[generation])
+    );
+    if (pastTypes.length > 0) {
+        pastTypes.sort(
+            (a: PokemonPastType, b: PokemonPastType) =>
+                parseInt(translations.generations[a.generation.name]) -
+                parseInt(translations.generations[b.generation.name])
+        );
+        types = pastTypes[0].types;
+    }
     // Discover most correct sprite for requested game
     let sprite: string = pokemon.sprites.front_default!;
     if (
         generation in pokemon.sprites.versions &&
         // @ts-expect-error
-        versionGroup in pokemon.sprites.versions[generation] &&
+        group in pokemon.sprites.versions[generation] &&
         // @ts-expect-error
-        pokemon.sprites.versions[generation][versionGroup].front_default
+        pokemon.sprites.versions[generation][group].front_default
     ) {
         // @ts-expect-error
-        sprite = pokemon.sprites.versions[generation][versionGroup].front_default;
+        sprite = pokemon.sprites.versions[generation][group].front_default;
     }
+    // Map stat to StatData interface
     let stats: Stat[] = pokemon.stats.map((stat: PokemonStat) => {
         return { name: translations.stats[stat.stat.name], base: stat.base_stat };
     });
+    // Get moves learned by Pokemon
     const movepool: PokemonMove[] = [];
     for (const move of pokemon.moves) {
         const vgd: PokemonMoveVersion | undefined = move.version_group_details.find(
-            (pmv: PokemonMoveVersion) => pmv.version_group.name === versionGroup
+            (pmv: PokemonMoveVersion) => pmv.version_group.name === group
         );
         if (vgd !== undefined) {
             movepool.push(initPokemonMove(move.move.name, vgd));
@@ -69,7 +87,7 @@ export const initPokemonData = (
     }
     return {
         pokemon: initPokemonName(pokemon.name, getEnglishName(species.names), species.name),
-        types: pokemon.types.map((type) => type.type.name),
+        types: types.map((type) => type.type.name),
         sprite: sprite,
         stats: stats,
         evolutions: evolutions,
