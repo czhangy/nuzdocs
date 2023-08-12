@@ -31,7 +31,17 @@ const NavMenu: React.FC<Props> = (props: Props) => {
                 <hr className={styles.dash} />
                 <hr className={styles.dash} />
             </button>
-            <ul className={styles.menu}>
+            <ul className={styles.menu} onClick={() => setOpen(false)}>
+                <li className={styles.option}>
+                    <Link href={`/runs/${props.run.id}/${props.run.prevSegmentSlug}`}>
+                        <a className={styles.link}>
+                            <div className={styles.icon}>
+                                <Image src="/assets/icons/path.svg" alt="Overview" layout="fill" objectFit="contain" />
+                            </div>
+                            <p className={styles.page}>Run</p>
+                        </a>
+                    </Link>
+                </li>
                 <li className={styles.option}>
                     <Link href={`/runs/${props.run.id}/overview`}>
                         <a className={styles.link}>
