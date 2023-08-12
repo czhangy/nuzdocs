@@ -1,9 +1,9 @@
 @use "@/styles/constants";
 
 .branding {
-    --font-size: 2.5rem;
+    --font-size: 2rem;
     --font-spacing: 1px;
-    --logo-size: 80px;
+    --logo-size: 60px;
 
     align-items: center;
     display: flex;
@@ -37,6 +37,11 @@
 }
 
 @media screen and (min-width: constants.$tablet) {
+    .branding {
+        --font-size: 2.5rem;
+        --logo-size: 80px;
+    }
+
     .links {
         --font-size: 1.5rem;
     }

@@ -5,7 +5,7 @@
     --link-spacing: 3rem;
 
     background-color: constants.$bg-color;
-    height: constants.$mobile-navbar-height;
+    height: constants.$navbar-height;
     position: relative;
     width: 100%;
 
@@ -24,8 +24,6 @@
 
 @media screen and (min-width: constants.$tablet) {
     .navbar-container {
-        height: constants.$navbar-height;
-
         .navbar {
             flex-direction: row;
             justify-content: space-between;

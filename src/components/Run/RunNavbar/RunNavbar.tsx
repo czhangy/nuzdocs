@@ -1,4 +1,5 @@
 import Navbar from "@/components/Global/Navbar/Navbar";
+import NavMenu from "@/components/Run/NavMenu/NavMenu";
 import Run from "@/models/Run";
 import { getGame } from "@/utils/game";
 import { getRun } from "@/utils/run";
@@ -23,56 +24,22 @@ const RunNavbar: React.FC = () => {
 
     return run ? (
         <Navbar>
-            <Link href="/">
-                <a className={styles.game}>
-                    <p className={styles["back-arrow"]}>←</p>
-                    <div className={styles.logo}>
-                        <Image
-                            src={getGame(run.gameSlug).logoURL}
-                            alt={getGame(run.gameSlug).name}
-                            layout="fill"
-                            objectFit="contain"
-                        />
-                    </div>
-                </a>
-            </Link>
-            <ul className={styles.links}>
-                <li>
-                    <Link href={`/runs/${run.id}/overview`}>
-                        <a className={styles.link}>
-                            <div className={styles["link-icon"]}>
-                                <Image
-                                    src="/assets/icons/pokeball.svg"
-                                    alt="Overview"
-                                    layout="fill"
-                                    objectFit="contain"
-                                />
-                            </div>
-                            <p className={styles["link-text"]}>Overview</p>
-                        </a>
-                    </Link>
-                </li>
-                <li>
-                    <Link href={`/runs/${run.id}/box`}>
-                        <a className={styles.link}>
-                            <div className={styles["link-icon"]}>
-                                <Image src="/assets/icons/box.svg" alt="Box" layout="fill" objectFit="contain" />
-                            </div>
-                            <p className={styles["link-text"]}>Box</p>
-                        </a>
-                    </Link>
-                </li>
-                <li>
-                    <Link href={`/runs/${run.id}/rips`}>
-                        <a className={styles.link}>
-                            <div className={styles["link-icon"]}>
-                                <Image src="/assets/icons/dead.svg" alt="Dead" layout="fill" objectFit="contain" />
-                            </div>
-                            <p className={styles["link-text"]}>RIPs</p>
-                        </a>
-                    </Link>
-                </li>
-            </ul>
+            <div className={styles["run-navbar"]}>
+                <Link href="/">
+                    <a className={styles.game}>
+                        <p className={styles["back-arrow"]}>←</p>
+                        <div className={styles.logo}>
+                            <Image
+                                src={getGame(run.gameSlug).logoURL}
+                                alt={getGame(run.gameSlug).name}
+                                layout="fill"
+                                objectFit="contain"
+                            />
+                        </div>
+                    </a>
+                </Link>
+                <NavMenu run={run} />
+            </div>
         </Navbar>
     ) : (
         <></>

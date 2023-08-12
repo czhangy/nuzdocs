@@ -36,10 +36,6 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "General",
         },
         {
-            desc: "Navigation on segment pages exposes itself by overlapping segment names",
-            group: "General",
-        },
-        {
             desc: "Sprites with negative margins overlap surrounding content",
             group: "General",
         },
@@ -53,6 +49,10 @@ const bugs: { [priority: string]: Bug[] } = {
         },
         {
             desc: "The nickname container doesn't resize when changing the screen size past the font-change breakpoint",
+            group: "General",
+        },
+        {
+            desc: "SVG filters expose themselves on highlight",
             group: "General",
         },
     ],

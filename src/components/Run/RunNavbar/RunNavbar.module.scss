@@ -1,68 +1,40 @@
 @use "@/styles/constants";
 
-.game {
+.run-navbar {
     --arrow-size: 1.5rem;
-    --logo-size: 80px;
+    --logo-ratio: 1.5;
+    --logo-size: 60px;
 
     align-items: center;
     display: flex;
-    gap: var(--inner-spacing);
+    justify-content: space-between;
+    width: 100%;
 
-    .back-arrow {
-        font-size: var(--arrow-size);
-    }
-
-    .logo {
-        height: var(--logo-size);
-        position: relative;
-        width: calc(var(--logo-size) * 1.5);
-    }
-}
-
-.links {
-    --font-size: 1rem;
-    --icon-size: 32px;
-
-    display: flex;
-    gap: var(--link-spacing);
-
-    .link {
+    .game {
         align-items: center;
         display: flex;
+        gap: var(--inner-spacing);
 
-        .link-icon {
-            filter: constants.$svg-color;
-            height: var(--icon-size);
-            margin-right: var(--inner-spacing);
-            position: relative;
-            width: var(--icon-size);
+        .back-arrow {
+            font-size: var(--arrow-size);
         }
 
-        .link-text {
-            font-size: var(--font-size);
+        .logo {
+            height: var(--logo-size);
+            position: relative;
+            width: calc(var(--logo-size) * var(--logo-ratio));
         }
     }
 }
 
 @media screen and (min-width: constants.$tablet) {
-    .links {
-        --font-size: 1.2rem;
-        --icon-size: 40px;
+    .run-navbar {
+        --logo-size: 80px;
     }
 }
 
 @media (hover: hover) {
-    .game:hover > .back-arrow {
+    .run-navbar > .game:hover > .back-arrow {
         color: constants.$hover-color;
-    }
-
-    .links .link:hover {
-        .link-icon {
-            filter: constants.$svg-hover-color;
-        }
-
-        .link-text {
-            color: constants.$hover-color;
-        }
     }
 }

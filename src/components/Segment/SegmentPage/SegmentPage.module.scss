@@ -7,7 +7,7 @@
 
     margin-top: var(--top-spacing);
     margin-bottom: var(--bottom-spacing);
-    min-height: calc(100vh - constants.$mobile-navbar-height - var(--top-spacing));
+    min-height: calc(100vh - constants.$navbar-height - var(--top-spacing));
     position: relative;
     width: var(--page-width);
 }
