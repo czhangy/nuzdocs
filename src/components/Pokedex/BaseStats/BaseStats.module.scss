@@ -4,10 +4,8 @@
     --border-rad: 5px;
     --header-font-size: 1rem;
     --header-y-padding: 0.5rem;
-    --nature-inner-spacing: 0.5rem;
     --radar-size: 250px;
     --stats-font-size: 1.25rem;
-    --stats-inner-spacing: 2rem;
     --stats-padding: 1rem;
     --stats-top-padding: 2rem;
 
@@ -44,17 +42,6 @@
                 height: var(--radar-size);
                 width: var(--radar-size);
             }
-        }
-    }
-}
-
-@media screen and (min-width: constants.$tablet) {
-    .summary-stats {
-        --stats-inner-spacing: 0;
-
-        .stats {
-            flex-direction: row;
-            justify-content: space-around;
         }
     }
 }
