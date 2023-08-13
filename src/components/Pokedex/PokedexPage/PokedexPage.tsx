@@ -4,6 +4,7 @@ import { fetchPokemonFromGroup } from "@/utils/api";
 import { useEffect, useState } from "react";
 import styles from "./PokedexPage.module.scss";
 import EvolutionsDisplay from "@/components/Run/EvolutionsDisplay/EvolutionsDisplay";
+import BaseStats from "@/components/Pokedex/BaseStats/BaseStats";
 
 type Props = {
     group: string;
@@ -24,6 +25,7 @@ const PokedexPage: React.FC<Props> = (props: Props) => {
     return pokemon ? (
         <div className={styles["pokedex-page"]}>
             <PokemonDisplay pokemon={pokemon} group={props.group} />
+            <BaseStats stats={pokemon.stats} />
             {pokemon.evolutions.some((chain: string[]) => chain.length > 1) ? (
                 <EvolutionsDisplay pokemon={pokemon} group={props.group} />
             ) : (

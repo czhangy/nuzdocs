@@ -13,6 +13,7 @@
 
     border-radius: var(--border-rad);
     overflow: hidden;
+    width: 100%;
 
     .header {
         background-color: constants.$hover-color;
@@ -30,31 +31,6 @@
         flex-direction: column;
         padding: var(--stats-padding);
         padding-top: var(--stats-top-padding);
-
-        .nature {
-            font-size: var(--stats-font-size);
-            line-height: var(--stats-font-size);
-            margin-bottom: var(--stats-inner-spacing);
-
-            .changes {
-                display: flex;
-                gap: var(--nature-inner-spacing);
-                justify-content: center;
-                margin-top: var(--nature-inner-spacing);
-
-                .increase {
-                    color: constants.$hover-color;
-                }
-
-                .decrease {
-                    color: constants.$error-color;
-                }
-
-                .neutral {
-                    color: constants.$disabled-color;
-                }
-            }
-        }
 
         .chart {
             .bst {
