@@ -24,7 +24,11 @@ const PokedexPage: React.FC<Props> = (props: Props) => {
     return pokemon ? (
         <div className={styles["pokedex-page"]}>
             <PokemonDisplay pokemon={pokemon} group={props.group} />
-            <EvolutionsDisplay pokemon={pokemon} group={props.group} />
+            {pokemon.evolutions.some((chain: string[]) => chain.length > 1) ? (
+                <EvolutionsDisplay pokemon={pokemon} group={props.group} />
+            ) : (
+                ""
+            )}
         </div>
     ) : (
         <p>Loading...</p>
