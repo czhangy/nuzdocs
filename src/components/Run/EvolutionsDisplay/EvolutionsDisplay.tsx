@@ -1,6 +1,7 @@
 import PokemonData from "@/models/PokemonData";
-import { fetchPokemonListFromGroup } from "@/utils/api";
-import { isFinalStage } from "@/utils/utils";
+import Run from "@/models/Run";
+import { fetchPokemonList } from "@/utils/api";
+import { getPokedexLink, isFinalStage } from "@/utils/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -8,7 +9,7 @@ import styles from "./EvolutionsDisplay.module.scss";
 
 type Props = {
     pokemon: PokemonData;
-    group: string;
+    run: Run;
 };
 
 const EvolutionsDisplay: React.FC<Props> = (props: Props) => {
@@ -28,9 +29,9 @@ const EvolutionsDisplay: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         const newPokemonMap: { [slug: string]: PokemonData } = {};
         newPokemonMap[props.pokemon.pokemon.slug] = props.pokemon;
-        fetchPokemonListFromGroup(
+        fetchPokemonList(
             [...new Set(getEvolutionChains().flat())].filter((slug: string) => slug !== props.pokemon.pokemon.slug),
-            props.group
+            props.run.gameSlug
         ).then((pokemonData: PokemonData[]) => {
             for (const pokemon of pokemonData) newPokemonMap[pokemon.pokemon.slug] = pokemon;
             setPokemonMap(newPokemonMap);
@@ -49,7 +50,7 @@ const EvolutionsDisplay: React.FC<Props> = (props: Props) => {
                                     <div className={styles.link} key={slug}>
                                         {idx > 0 ? <p className={styles.arrow}>→</p> : ""}
                                         {slug in pokemonMap ? (
-                                            <Link href={`/pokedex/${props.group}/${pokemonMap[slug].pokemon.slug}`}>
+                                            <Link href={getPokedexLink(props.run.id, slug)}>
                                                 <a className={styles.sprite}>
                                                     <Image
                                                         src={pokemonMap[slug].sprite}

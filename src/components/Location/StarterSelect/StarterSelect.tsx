@@ -3,7 +3,7 @@ import TierCard from "@/components/Run/TierCard/TierCard";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import colors from "@/static/colors";
-import { fetchPokemonListFromGame } from "@/utils/api";
+import { fetchPokemonList } from "@/utils/api";
 import { getGame, getGameGroup } from "@/utils/game";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import {
@@ -34,7 +34,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     // Fetch starter data on load
     useEffect(() => {
         if (props.run) {
-            fetchPokemonListFromGame(getGameGroup(props.run.gameSlug).starterSlugs, props.run.gameSlug).then(
+            fetchPokemonList(getGameGroup(props.run.gameSlug).starterSlugs, props.run.gameSlug).then(
                 (starterData: PokemonData[]) => {
                     const starterSlug: string = getStarterSlug(props.run.id);
                     setStarters(starterData);
@@ -104,7 +104,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                 </ul>
             </div>
             <div className={styles.starter}>
-                <PokemonDisplay pokemon={selectedStarter} group={getGameGroup(props.run.gameSlug).versionGroup} />
+                <PokemonDisplay pokemon={selectedStarter} runID={props.run.id} />
                 <TierCard tier={getPokemonTier(selectedStarter.pokemon.slug, props.run.gameSlug)} />
             </div>
         </div>

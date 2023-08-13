@@ -107,3 +107,7 @@ export const exportPokemonList = (pokemon: Pokemon[], names: string[], tag: stri
         })
         .catch((error: any) => alert("Something went wrong!"));
 };
+
+export const getPokedexLink = (runID: string, pokemon: string): string => {
+    return `/runs/${runID}/pokedex/${pokemon}`;
+};

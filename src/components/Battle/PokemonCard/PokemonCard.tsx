@@ -12,11 +12,12 @@ import { fetchAbility, fetchItem, fetchMoves } from "@/utils/api";
 import { useEffect, useState } from "react";
 import styles from "./PokemonCard.module.scss";
 import { getGameGroup } from "@/utils/game";
+import Run from "@/models/Run";
 
 type Props = {
     set: Pokemon;
     pokemon: PokemonData;
-    gameSlug: string;
+    run: Run;
 };
 
 const PokemonCard: React.FC<Props> = (props: Props) => {
@@ -31,14 +32,14 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
     // Fetch all related data on component load
     useEffect(() => {
         if (props.set) {
-            fetchAbility(props.set.ability!.slug, props.gameSlug).then((abilityData: AbilityData | null) =>
+            fetchAbility(props.set.ability!.slug, props.run.gameSlug).then((abilityData: AbilityData | null) =>
                 setAbility(abilityData)
             );
             fetchMoves(props.set.moves.map((move: NamedResource) => move.slug)).then((moveData: MoveData[]) =>
                 setMoves(moveData)
             );
             if (props.set.item) {
-                fetchItem(props.set.item.slug, props.gameSlug).then((item: ItemData | null) => setHeldItem(item));
+                fetchItem(props.set.item.slug, props.run.gameSlug).then((item: ItemData | null) => setHeldItem(item));
             }
         }
     }, [props.set]);
@@ -50,7 +51,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                     {isMinimized ? "+" : "-"}
                 </button>
                 <div className={styles.header}>
-                    <PokemonDisplay pokemon={props.pokemon} group={getGameGroup(props.gameSlug).versionGroup} />
+                    <PokemonDisplay pokemon={props.pokemon} runID={getGameGroup(props.run.gameSlug).versionGroup} />
                 </div>
                 <div className={styles.moves}>
                     {moves.map((move: MoveData) => {
@@ -58,7 +59,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                             <MoveCard
                                 move={move}
                                 isSTAB={props.pokemon.types.includes(move.type)}
-                                game={props.gameSlug}
+                                game={props.run.gameSlug}
                                 key={move.slug}
                             />
                         );

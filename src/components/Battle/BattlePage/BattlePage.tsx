@@ -4,7 +4,7 @@ import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
-import { fetchPokemonListFromGame } from "@/utils/api";
+import { fetchPokemonList } from "@/utils/api";
 import { getBattle } from "@/utils/battle";
 import { getStarterSlug } from "@/utils/run";
 import { useEffect, useState } from "react";
@@ -32,7 +32,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
     // Fetch Pokemon data on page load
     useEffect(() => {
         if (sets.length > 0) {
-            fetchPokemonListFromGame(
+            fetchPokemonList(
                 sets.map((set: Pokemon) => set.slug),
                 props.run.gameSlug
             ).then((pokemon: PokemonData[]) => setPokemon(pokemon));
@@ -50,7 +50,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
                 <ul className={styles.team}>
                     {getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).team.map(
                         (set: Pokemon, key: number) => (
-                            <PokemonCard set={set} pokemon={pokemon[key]} gameSlug={props.run.gameSlug} key={key} />
+                            <PokemonCard set={set} pokemon={pokemon[key]} run={props.run} key={key} />
                         )
                     )}
                 </ul>

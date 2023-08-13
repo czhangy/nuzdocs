@@ -1,7 +1,7 @@
 import TierCard from "@/components/Run/TierCard/TierCard";
 import EncounterData from "@/models/EncounterData";
 import PokemonData from "@/models/PokemonData";
-import { fetchPokemonListFromGame } from "@/utils/api";
+import { fetchPokemonList } from "@/utils/api";
 import { getPokemonTier, getTypeCardSrc } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -38,7 +38,7 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (props.encounters && props.gameSlug) {
             setPokemonData([]);
-            fetchPokemonListFromGame(
+            fetchPokemonList(
                 props.encounters.map((encounter: EncounterData) => encounter.pokemonSlug),
                 props.gameSlug
             ).then((pokemon) => setPokemonData(pokemon));

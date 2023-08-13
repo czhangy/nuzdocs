@@ -2,7 +2,7 @@ import BoxMenu from "@/components/Run/BoxMenu/BoxMenu";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
-import { fetchPokemonListFromGame } from "@/utils/api";
+import { fetchPokemonList } from "@/utils/api";
 import { getPokemonSlugsFromBox } from "@/utils/run";
 import { exportPokemon } from "@/utils/utils";
 import Image from "next/image";
@@ -85,8 +85,8 @@ const Box: React.FC<Props> = (props: Props) => {
     // Use box to fetch data for all Pokemon in box, ignoring failed encounters
     useEffect(() => {
         if (props.box.length > 0) {
-            fetchPokemonListFromGame(getPokemonSlugsFromBox(props.box), props.run.gameSlug).then(
-                (pokemonData: PokemonData[]) => setBoxData(pokemonData)
+            fetchPokemonList(getPokemonSlugsFromBox(props.box), props.run.gameSlug).then((pokemonData: PokemonData[]) =>
+                setBoxData(pokemonData)
             );
         }
     }, [props.box]);
