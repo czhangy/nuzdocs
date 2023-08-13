@@ -10,7 +10,7 @@ import NamedResource from "@/models/NamedResource";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import Values from "@/models/Values";
-import { fetchPokemon } from "@/utils/api";
+import { fetchPokemonFromGame } from "@/utils/api";
 import { getBox, getRIPs, getRun, isAlive, updateBox, updateRIPs } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./SummaryPage.module.scss";
@@ -121,7 +121,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 (pokemon: CaughtPokemon) => pokemon.id === props.pokemonID
             )!;
             setCaughtPokemon(caughtPokemon);
-            fetchPokemon(caughtPokemon.pokemon.slug, props.run.gameSlug).then((pokemon: PokemonData) =>
+            fetchPokemonFromGame(caughtPokemon.pokemon.slug, props.run.gameSlug).then((pokemon: PokemonData) =>
                 setPokemonData(pokemon)
             );
         }
