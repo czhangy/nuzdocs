@@ -11,6 +11,7 @@ import PokemonData from "@/models/PokemonData";
 import { fetchAbility, fetchItem, fetchMoves } from "@/utils/api";
 import { useEffect, useState } from "react";
 import styles from "./PokemonCard.module.scss";
+import { getGameGroup } from "@/utils/game";
 
 type Props = {
     set: Pokemon;
@@ -49,7 +50,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                     {isMinimized ? "+" : "-"}
                 </button>
                 <div className={styles.header}>
-                    <PokemonDisplay pokemon={props.pokemon} />
+                    <PokemonDisplay pokemon={props.pokemon} group={getGameGroup(props.gameSlug).versionGroup} />
                 </div>
                 <div className={styles.moves}>
                     {moves.map((move: MoveData) => {

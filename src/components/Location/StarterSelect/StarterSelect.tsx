@@ -4,7 +4,7 @@ import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import colors from "@/static/colors";
 import { fetchPokemonGroup } from "@/utils/api";
-import { getGameGroup } from "@/utils/game";
+import { getGame, getGameGroup } from "@/utils/game";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import {
     addToBox,
@@ -104,7 +104,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                 </ul>
             </div>
             <div className={styles.starter}>
-                <PokemonDisplay pokemon={selectedStarter} />
+                <PokemonDisplay pokemon={selectedStarter} group={getGameGroup(props.run.gameSlug).versionGroup} />
                 <TierCard tier={getPokemonTier(selectedStarter.pokemon.slug, props.run.gameSlug)} />
             </div>
         </div>

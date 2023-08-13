@@ -2,9 +2,11 @@ import PokemonData from "@/models/PokemonData";
 import { getTypeCardSrc } from "@/utils/utils";
 import Image from "next/image";
 import styles from "./PokemonDisplay.module.scss";
+import Link from "next/link";
 
 type Props = {
     pokemon: PokemonData;
+    group: string;
 };
 
 const PokemonDisplay: React.FC<Props> = (props: Props) => {
@@ -15,7 +17,9 @@ const PokemonDisplay: React.FC<Props> = (props: Props) => {
             </div>
             <div className={styles.info}>
                 <div className={styles.top}>
-                    <p className={styles.name}>{props.pokemon.pokemon.name}</p>
+                    <Link href={`/pokedex/${props.group}/${props.pokemon.pokemon.slug}`}>
+                        <a className={styles.name}>{props.pokemon.pokemon.name}</a>
+                    </Link>
                 </div>
                 <ul className={styles.types}>
                     {props.pokemon.types.map((type: string) => {

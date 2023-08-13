@@ -25,3 +25,13 @@ export const getSegments = (gameSlug: string): Segment[] => {
     }
     return segments;
 };
+
+export const getGroups = (): string[] => {
+    return Object.values(games).map((game: Game) => game.gameGroup.versionGroup);
+};
+
+export const getPokedex = (group: string): PokemonName[] => {
+    return Object.values(games)
+        .map((game: Game) => game.gameGroup)
+        .find((gg: GameGroup) => gg.versionGroup === group)!.pokedex;
+};

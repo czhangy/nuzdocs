@@ -1,9 +1,9 @@
 import MoveData from "@/models/MoveData";
+import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import tiers from "@/static/tiers";
 import { Name, VersionGroupFlavorText } from "pokenode-ts";
 import { getGameGroup } from "./game";
-import Pokemon from "@/models/Pokemon";
 
 export const getEnglishName: (names: Name[]) => string = (names: Name[]): string => {
     const nameObj: Name = names.find((name) => name.language.name === "en")!;
