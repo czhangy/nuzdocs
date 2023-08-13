@@ -4,7 +4,7 @@ import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
-import { fetchPokemonGroup } from "@/utils/api";
+import { fetchPokemonListFromGame } from "@/utils/api";
 import { getBattle } from "@/utils/battle";
 import { getStarterSlug } from "@/utils/run";
 import { useEffect, useState } from "react";
@@ -32,7 +32,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
     // Fetch Pokemon data on page load
     useEffect(() => {
         if (sets.length > 0) {
-            fetchPokemonGroup(
+            fetchPokemonListFromGame(
                 sets.map((set: Pokemon) => set.slug),
                 props.run.gameSlug
             ).then((pokemon: PokemonData[]) => setPokemon(pokemon));

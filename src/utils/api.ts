@@ -140,18 +140,27 @@ export const fetchPokemonFromGroup = async (slug: string, group: string) => {
     }
 };
 
-// Fetch a list of PokemonData given Pokemon slugs
-export const fetchPokemonGroup = async (slugs: string[], game: string) => {
+// Fetch a list of PokemonData given Pokemon slugs and game
+export const fetchPokemonListFromGame = async (slugs: string[], game: string) => {
+    try {
+        return await fetchPokemonListFromGroup(slugs, getGameGroup(game).versionGroup);
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+};
+
+// Fetch a list of PokemonData given Pokemon slugs and group
+export const fetchPokemonListFromGroup = async (slugs: string[], group: string) => {
     try {
         if (slugs.length === 1) {
-            return [await fetchPokemonFromGame(slugs[0], game)];
+            return [await fetchPokemonFromGroup(slugs[0], group)];
         } else {
-            const group: GameGroup = getGameGroup(game);
             const res = await axios.get("/api/pokemon", {
                 params: {
                     pokemonSlugList: slugs,
-                    generation: group.generation,
-                    versionGroup: group.versionGroup,
+                    generation: getGeneration(group),
+                    versionGroup: group,
                 },
             });
             return JSON.parse(res.data.pokemon);

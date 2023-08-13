@@ -1,5 +1,5 @@
 import PokemonData from "@/models/PokemonData";
-import { fetchPokemonGroup } from "@/utils/api";
+import { fetchPokemonListFromGame } from "@/utils/api";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./FormChangeModal.module.scss";
@@ -22,7 +22,7 @@ const FormChangeModal: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (props.pokemon) {
             const forms: string[] = props.pokemon.forms.filter((form: string) => form !== props.pokemon.pokemon.slug);
-            fetchPokemonGroup(forms, props.gameSlug).then((formData: PokemonData[]) => {
+            fetchPokemonListFromGame(forms, props.gameSlug).then((formData: PokemonData[]) => {
                 formData.unshift(props.pokemon);
                 setFormData(formData);
             });

@@ -3,6 +3,7 @@ import PokemonData from "@/models/PokemonData";
 import { fetchPokemonFromGroup } from "@/utils/api";
 import { useEffect, useState } from "react";
 import styles from "./PokedexPage.module.scss";
+import EvolutionsDisplay from "@/components/Run/EvolutionsDisplay/EvolutionsDisplay";
 
 type Props = {
     group: string;
@@ -23,6 +24,7 @@ const PokedexPage: React.FC<Props> = (props: Props) => {
     return pokemon ? (
         <div className={styles["pokedex-page"]}>
             <PokemonDisplay pokemon={pokemon} group={props.group} />
+            <EvolutionsDisplay pokemon={pokemon} group={props.group} />
         </div>
     ) : (
         <p>Loading...</p>

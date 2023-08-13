@@ -1,16 +1,17 @@
 import PokemonData from "@/models/PokemonData";
-import { fetchPokemonGroup } from "@/utils/api";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import styles from "./SummaryEvolutions.module.scss";
+import { fetchPokemonListFromGroup } from "@/utils/api";
 import { isFinalStage } from "@/utils/utils";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import styles from "./EvolutionsDisplay.module.scss";
 
 type Props = {
     pokemon: PokemonData;
-    gameSlug: string;
+    group: string;
 };
 
-const SummaryEvolutions: React.FC<Props> = (props: Props) => {
+const EvolutionsDisplay: React.FC<Props> = (props: Props) => {
     // Fetched data state
     const [pokemonMap, setPokemonMap] = useState<{ [slug: string]: PokemonData }>({});
 
@@ -27,9 +28,9 @@ const SummaryEvolutions: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         const newPokemonMap: { [slug: string]: PokemonData } = {};
         newPokemonMap[props.pokemon.pokemon.slug] = props.pokemon;
-        fetchPokemonGroup(
+        fetchPokemonListFromGroup(
             [...new Set(getEvolutionChains().flat())].filter((slug: string) => slug !== props.pokemon.pokemon.slug),
-            props.gameSlug
+            props.group
         ).then((pokemonData: PokemonData[]) => {
             for (const pokemon of pokemonData) newPokemonMap[pokemon.pokemon.slug] = pokemon;
             setPokemonMap(newPokemonMap);
@@ -37,7 +38,7 @@ const SummaryEvolutions: React.FC<Props> = (props: Props) => {
     }, [props.pokemon]);
 
     return Object.keys(pokemonMap).length > 1 ? (
-        <div className={styles["summary-evolutions"]}>
+        <div className={styles["evolutions-display"]}>
             <p className={styles.header}>Evolutions</p>
             <div className={styles.evolutions}>
                 {getEvolutionChains().map((chain: string[], key: number) => {
@@ -48,14 +49,16 @@ const SummaryEvolutions: React.FC<Props> = (props: Props) => {
                                     <div className={styles.link} key={slug}>
                                         {idx > 0 ? <p className={styles.arrow}>→</p> : ""}
                                         {slug in pokemonMap ? (
-                                            <div className={styles.sprite}>
-                                                <Image
-                                                    src={pokemonMap[slug].sprite}
-                                                    alt={pokemonMap[slug].pokemon.name}
-                                                    layout="fill"
-                                                    objectFit="contain"
-                                                />
-                                            </div>
+                                            <Link href={`/pokedex/${props.group}/${pokemonMap[slug].pokemon.slug}`}>
+                                                <a className={styles.sprite}>
+                                                    <Image
+                                                        src={pokemonMap[slug].sprite}
+                                                        alt={pokemonMap[slug].pokemon.name}
+                                                        layout="fill"
+                                                        objectFit="contain"
+                                                    />
+                                                </a>
+                                            </Link>
                                         ) : (
                                             "Loading..."
                                         )}
@@ -72,4 +75,4 @@ const SummaryEvolutions: React.FC<Props> = (props: Props) => {
     );
 };
 
-export default SummaryEvolutions;
+export default EvolutionsDisplay;

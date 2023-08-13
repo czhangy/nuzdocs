@@ -1,6 +1,6 @@
 import Modal from "@/components/Global/Modal/Modal";
 import MoveModal from "@/components/Summary/MoveModal/MoveModal";
-import SummaryEvolutions from "@/components/Summary/SummaryEvolutions/SummaryEvolutions";
+import EvolutionsDisplay from "@/components/Run/EvolutionsDisplay/EvolutionsDisplay";
 import SummaryHeader from "@/components/Summary/SummaryHeader/SummaryHeader";
 import SummaryInfo from "@/components/Summary/SummaryInfo/SummaryInfo";
 import SummaryMoves from "@/components/Summary/SummaryMoves/SummaryMoves";
@@ -14,6 +14,7 @@ import { fetchPokemonFromGame } from "@/utils/api";
 import { getBox, getRIPs, getRun, isAlive, updateBox, updateRIPs } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./SummaryPage.module.scss";
+import { getGameGroup } from "@/utils/game";
 
 type Props = {
     run: Run;
@@ -156,7 +157,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 onEVUpdate={(evs: Values) => handleEVUpdate(evs)}
             />
             {pokemonData.evolutions.some((chain: string[]) => chain.length > 1) ? (
-                <SummaryEvolutions pokemon={pokemonData} gameSlug={props.run.gameSlug} />
+                <EvolutionsDisplay pokemon={pokemonData} group={getGameGroup(props.run.gameSlug).versionGroup} />
             ) : (
                 ""
             )}
