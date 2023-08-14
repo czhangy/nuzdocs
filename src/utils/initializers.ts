@@ -185,7 +185,7 @@ export const initMoveData = (
     return {
         slug: move.name,
         name: getEnglishName(move.names),
-        type: type.name,
+        type: type.name === "unknown" ? "ghost" : type.name,
         power: power ? power : 0,
         // @ts-expect-error
         category: !move.damage_class || move.damage_class.name === "status" ? "other" : move.damage_class.name,
