@@ -1,6 +1,6 @@
 @use "@/styles/constants";
 
-.summary-moves {
+.moveset {
     --border-rad: 5px;
     --card-border-size: 2px;
     --card-height: calc(16px + 5rem - 3px);
@@ -52,13 +52,13 @@
 }
 
 @media screen and (min-width: constants.$tablet) {
-    .summary-moves {
+    .moveset {
         --num-cols: 2;
     }
 }
 
 @media (hover: hover) {
-    .summary-moves > .moves > .button:hover > .add {
+    .moveset > .moves > .button:hover > .add {
         border-color: constants.$text-color;
 
         .icon {

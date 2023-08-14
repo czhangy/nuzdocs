@@ -1,6 +1,6 @@
 @use "@/styles/constants";
 
-.summary-evolutions {
+.evolutions {
     --border-rad: 5px;
     --chain-inner-spacing: 1rem;
     --evolutions-inner-spacing: 1rem;
@@ -11,6 +11,7 @@
 
     border-radius: var(--border-rad);
     overflow: hidden;
+    width: 100%;
 
     .header {
         background-color: constants.$hover-color;
@@ -50,7 +51,7 @@
 }
 
 @media screen and (min-width: constants.$tablet) {
-    .summary-evolutions {
+    .evolutions {
         --sprite-size: 100px;
     }
 }

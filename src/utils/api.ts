@@ -1,8 +1,8 @@
 import AbilityData from "@/models/AbilityData";
 import GameGroup from "@/models/GameGroup";
-import { getGameGroup } from "./game";
 import ItemData from "@/models/ItemData";
 import MoveData from "@/models/MoveData";
+import { getGameGroup } from "@/utils/game";
 
 // IDK why but this errors when using import
 const axios = require("axios");
@@ -113,7 +113,7 @@ export const fetchMoves = async (moves: string[]): Promise<MoveData[]> => {
     }
 };
 
-// Fetch a Pokemon by their Pokemon slug
+// Fetch a Pokemon by their Pokemon slug, given the game
 export const fetchPokemon = async (slug: string, game: string) => {
     try {
         const group: GameGroup = getGameGroup(game);
@@ -131,8 +131,8 @@ export const fetchPokemon = async (slug: string, game: string) => {
     }
 };
 
-// Fetch a list of PokemonData given Pokemon slugs
-export const fetchPokemonGroup = async (slugs: string[], game: string) => {
+// Fetch a list of PokemonData given Pokemon slugs and game
+export const fetchPokemonList = async (slugs: string[], game: string) => {
     try {
         if (slugs.length === 1) {
             return [await fetchPokemon(slugs[0], game)];

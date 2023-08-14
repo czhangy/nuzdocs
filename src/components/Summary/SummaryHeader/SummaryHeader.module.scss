@@ -69,7 +69,19 @@
 }
 
 @media (hover: hover) {
-    .summary-header > .nav > .link:hover {
-        color: constants.$hover-color;
+    .summary-header {
+        .nav > .link:hover {
+            color: constants.$hover-color;
+        }
+
+        .pokemon > .info {
+            .name > .pokedex:hover {
+                color: constants.$hover-color;
+            }
+
+            .text > .location:hover {
+                color: constants.$hover-color;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 import PokemonData from "@/models/PokemonData";
+import translations from "@/static/translations";
 import { initPokemonData } from "@/utils/initializers";
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
@@ -91,7 +92,12 @@ const fetchPokemon = async (pokemonSlug: string, generation: string, versionGrou
         const pokemon: Pokemon = await api.getPokemonByName(pokemonSlug);
         const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemon.species.name);
         const evolutions: string[][] = await fetchPokemonEvolutionChains(species);
-        const abilities: string[] = pokemon.abilities.map((ability: PokemonAbility) => ability.ability.name);
+        const abilities: string[] =
+            parseInt(translations.generations[generation]) < 5
+                ? pokemon.abilities
+                      .filter((ability: PokemonAbility) => !ability.is_hidden)
+                      .map((ability: PokemonAbility) => ability.ability.name)
+                : pokemon.abilities.map((ability: PokemonAbility) => ability.ability.name);
         return initPokemonData(pokemon, species, evolutions, abilities, generation, versionGroup);
     } catch (error: any) {
         throw error;

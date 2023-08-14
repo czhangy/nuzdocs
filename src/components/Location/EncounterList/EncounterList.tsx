@@ -100,6 +100,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                                 method={method}
                                 encounters={currentArea.encounters[time][method]}
                                 gameSlug={props.run.gameSlug}
+                                runID={props.run.id}
                             />
                         );
                     })}
@@ -109,7 +110,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
             )}
         </div>
     ) : (
-        <></>
+        <p className={styles.empty}>No encounters here!</p>
     );
 };
 

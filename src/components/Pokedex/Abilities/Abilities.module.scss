@@ -1,0 +1,43 @@
+@use "@/styles/constants";
+
+.abilities {
+    --abilities-font-size: 1rem;
+    --abilities-inner-spacing: 0.5rem;
+    --abilities-x-padding: 2rem;
+    --abilities-y-padding: 1rem;
+    --border-rad: 5px;
+    --header-font-size: 1rem;
+    --header-y-padding: 0.5rem;
+
+    border-radius: var(--border-rad);
+    overflow: hidden;
+    width: 100%;
+
+    .header {
+        background-color: constants.$hover-color;
+        font-size: var(--header-font-size);
+        font-weight: bold;
+        line-height: var(--header-font-size);
+        padding: var(--header-y-padding);
+        text-align: center;
+    }
+
+    .abilities {
+        background-color: constants.$accent-color;
+        display: flex;
+        flex-direction: column;
+        gap: var(--abilities-inner-spacing);
+        padding: var(--abilities-y-padding) var(--abilities-x-padding);
+
+        .ability {
+            font-size: var(--abilities-font-size);
+            text-align: left;
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .abilities {
+        --abilities-font-size: 1.25rem;
+    }
+}

@@ -1,10 +1,9 @@
 import Modal from "@/components/Global/Modal/Modal";
 import MoveModal from "@/components/Summary/MoveModal/MoveModal";
-import SummaryEvolutions from "@/components/Summary/SummaryEvolutions/SummaryEvolutions";
+import Moveset from "@/components/Summary/Moveset/Moveset";
 import SummaryHeader from "@/components/Summary/SummaryHeader/SummaryHeader";
 import SummaryInfo from "@/components/Summary/SummaryInfo/SummaryInfo";
-import SummaryMoves from "@/components/Summary/SummaryMoves/SummaryMoves";
-import SummaryStats from "@/components/Summary/SummaryStats/SummaryStats";
+import Stats from "@/components/Summary/Stats/Stats";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import NamedResource from "@/models/NamedResource";
 import PokemonData from "@/models/PokemonData";
@@ -143,23 +142,18 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 onAbilityUpdate={(ability: NamedResource) => handleAbilityUpdate(ability)}
                 onNatureUpdate={(nature: string) => handleNatureUpdate(nature)}
             />
-            <SummaryMoves
+            <Moveset
                 caughtPokemon={caughtPokemon}
                 types={pokemonData.types}
                 game={props.run.gameSlug}
                 onClick={(idx: number) => handleMoveSelect(idx)}
             />
-            <SummaryStats
+            <Stats
                 pokemon={pokemonData}
                 set={caughtPokemon}
                 onIVUpdate={(ivs: Values) => handleIVUpdate(ivs)}
                 onEVUpdate={(evs: Values) => handleEVUpdate(evs)}
             />
-            {pokemonData.evolutions.some((chain: string[]) => chain.length > 1) ? (
-                <SummaryEvolutions pokemon={pokemonData} gameSlug={props.run.gameSlug} />
-            ) : (
-                ""
-            )}
             <Modal modalID="move-modal" open={moveModalOpen} onClose={() => setMoveModalOpen(false)}>
                 {selectedIdx !== null ? (
                     <MoveModal

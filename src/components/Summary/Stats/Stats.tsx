@@ -1,10 +1,10 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
-import styles from "./SummaryStats.module.scss";
 import Stat from "@/models/Stat";
-import { ChangeEvent, useEffect, useState } from "react";
 import Values from "@/models/Values";
 import { getNature } from "@/utils/natures";
+import { ChangeEvent, useEffect, useState } from "react";
+import styles from "./Stats.module.scss";
 
 type Props = {
     pokemon: PokemonData;
@@ -13,7 +13,7 @@ type Props = {
     onEVUpdate: (evs: Values) => void;
 };
 
-const SummaryStats: React.FC<Props> = (props: Props) => {
+const Stats: React.FC<Props> = (props: Props) => {
     // Component state
     const [ivs, setIVs] = useState<number[]>([0, 0, 0, 0, 0, 0]);
     const [evs, setEVs] = useState<number[]>([0, 0, 0, 0, 0, 0]);
@@ -135,9 +135,9 @@ const SummaryStats: React.FC<Props> = (props: Props) => {
     }, [props.set]);
 
     return (
-        <div className={styles["summary-stats"]}>
+        <div className={styles.stats}>
             <p className={styles.header}>Stats</p>
-            <div className={styles.stats}>
+            <div className={styles.container}>
                 <table className={styles.table}>
                     <thead>
                         <tr className={styles.row}>
@@ -197,4 +197,4 @@ const SummaryStats: React.FC<Props> = (props: Props) => {
     );
 };
 
-export default SummaryStats;
+export default Stats;

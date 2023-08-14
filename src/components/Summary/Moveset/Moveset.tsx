@@ -4,7 +4,7 @@ import MoveData from "@/models/MoveData";
 import NamedResource from "@/models/NamedResource";
 import { fetchMoves } from "@/utils/api";
 import { useEffect, useState } from "react";
-import styles from "./SummaryMoves.module.scss";
+import styles from "./Moveset.module.scss";
 
 type Props = {
     caughtPokemon: CaughtPokemon;
@@ -13,7 +13,7 @@ type Props = {
     onClick: (idx: number) => void;
 };
 
-const SummaryMoves: React.FC<Props> = (props: Props) => {
+const Moveset: React.FC<Props> = (props: Props) => {
     // Fetched data state
     const [moves, setMoves] = useState<MoveData[]>([]);
 
@@ -27,7 +27,7 @@ const SummaryMoves: React.FC<Props> = (props: Props) => {
     }, [props.caughtPokemon]);
 
     return (
-        <div className={styles["summary-moves"]}>
+        <div className={styles.moveset}>
             <p className={styles.header}>Moveset</p>
             <div className={styles.moves}>
                 {[...Array(4)].map((_, key: number) => {
@@ -52,4 +52,4 @@ const SummaryMoves: React.FC<Props> = (props: Props) => {
     );
 };
 
-export default SummaryMoves;
+export default Moveset;

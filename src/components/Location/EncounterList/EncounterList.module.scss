@@ -32,3 +32,19 @@
         gap: var(--encounters-inner-spacing);
     }
 }
+
+.empty {
+    --font-size: 1.75rem;
+    --letter-spacing: 1px;
+
+    font-size: var(--font-size);
+    font-weight: bold;
+    letter-spacing: var(--letter-spacing);
+    text-align: center;
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .empty {
+        --font-size: 2rem;
+    }
+}

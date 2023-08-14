@@ -17,7 +17,7 @@
     --loading-y-padding: 2rem;
     --method-font-size: 1.4rem;
     --name-font-size: 1rem;
-    --pokemon-inner-spacing: 0.25rem;
+    --name-spacing: 0.5rem;
     --sprite-size: 90px;
     --type-height: 12px;
     --type-ratio: 8/3;
@@ -80,7 +80,6 @@
                     align-items: center;
                     display: flex;
                     flex-direction: column;
-                    gap: var(--pokemon-inner-spacing);
 
                     .sprite {
                         height: var(--sprite-size);
@@ -91,6 +90,7 @@
                     .name {
                         font-size: var(--name-font-size);
                         line-height: var(--name-font-size);
+                        margin-bottom: var(--name-spacing);
                     }
 
                     .types {
@@ -133,9 +133,15 @@
 }
 
 @media (hover: hover) {
-    .encounter-accordion > .header:hover {
-        .arrow {
-            filter: constants.$svg-hover-color;
+    .encounter-accordion {
+        .header:hover {
+            .arrow {
+                filter: constants.$svg-hover-color;
+            }
+        }
+
+        .body .row > .cell > .pokemon > .name:hover {
+            color: constants.$hover-color;
         }
     }
 }

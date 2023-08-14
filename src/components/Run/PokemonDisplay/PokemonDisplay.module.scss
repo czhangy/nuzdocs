@@ -2,6 +2,7 @@
 
 .pokemon-display {
     --info-inner-spacing: 0.2rem;
+    --inner-spacing: 1rem;
     --name-font-size: 1rem;
     --name-z: 2;
     --sprite-left-offset: -1.5rem;
@@ -13,6 +14,7 @@
 
     align-items: center;
     display: flex;
+    gap: var(--inner-spacing);
 
     .sprite {
         height: var(--sprite-size);
@@ -51,5 +53,11 @@
     .pokemon-display {
         --name-font-size: 1.25rem;
         --sprite-size: 120px;
+    }
+}
+
+@media (hover: hover) {
+    .pokemon-display > .info > .top > .name:hover {
+        color: constants.$hover-color;
     }
 }

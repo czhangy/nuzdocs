@@ -4,10 +4,11 @@ import Run from "@/models/Run";
 import { getGameGroup } from "@/utils/game";
 import { getBox, getRIPs, isAlive } from "@/utils/run";
 import { getSegment } from "@/utils/segment";
+import { getPokedexLink } from "@/utils/utils";
 import Image from "next/image";
+import Link from "next/link";
 import { ChangeEvent, useEffect, useState } from "react";
 import styles from "./SummaryHeader.module.scss";
-import Link from "next/link";
 
 type Props = {
     caughtPokemon: CaughtPokemon;
@@ -108,10 +109,24 @@ const SummaryHeader: React.FC<Props> = (props: Props) => {
                             onBlur={() => props.onUpdate(nickname)}
                         />
                         <span id="hidden" className={styles.hidden}></span>
-                        <p className={styles.text}>the {props.pokemonData.pokemon.name}</p>
+                        <p className={styles.text}>the&nbsp;</p>
+                        <Link href={getPokedexLink(props.run.id, props.caughtPokemon.pokemon.slug)}>
+                            <a className={`${styles.text} ${styles.pokedex}`}>{props.pokemonData.pokemon.name}</a>
+                        </Link>
                     </div>
                     <p className={styles.text}>
-                        Met at: <strong>{getMetLocation()}</strong>
+                        Met at:{" "}
+                        <Link
+                            href={`/runs/${props.run.id}/${
+                                props.caughtPokemon.locationSlug === "starter"
+                                    ? getGameGroup(props.run.gameSlug).startingTownSlug
+                                    : props.caughtPokemon.locationSlug
+                            }`}
+                        >
+                            <a className={styles.location}>
+                                <strong>{getMetLocation()}</strong>
+                            </a>
+                        </Link>
                     </p>
                     <p className={styles.text}>
                         Status: <strong>{isAlive(props.run.id, props.caughtPokemon.id) ? "Alive" : "RIP'd"}</strong>

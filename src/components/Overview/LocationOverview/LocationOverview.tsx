@@ -3,7 +3,6 @@ import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { fetchPokemon } from "@/utils/api";
-import { getGameGroup } from "@/utils/game";
 import { getLocationEncounter } from "@/utils/run";
 import Image from "next/image";
 import Link from "next/link";

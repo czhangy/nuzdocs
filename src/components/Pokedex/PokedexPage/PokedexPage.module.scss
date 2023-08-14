@@ -1,0 +1,29 @@
+@use "@/styles/constants";
+
+.pokedex-page {
+    --header-inner-spacing: 1rem;
+    --page-inner-spacing: 1rem;
+    --page-spacing: 2rem;
+    --page-width: 350px;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--page-inner-spacing);
+    margin: var(--page-spacing) 0;
+    min-height: calc(100vh - constants.$navbar-height - 2 * var(--page-spacing));
+    width: var(--page-width);
+
+    .header {
+        align-items: center;
+        display: flex;
+        gap: var(--header-inner-spacing);
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .pokedex-page {
+        --page-spacing: 4rem;
+        --page-width: 750px;
+    }
+}

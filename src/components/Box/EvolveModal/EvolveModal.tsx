@@ -1,6 +1,6 @@
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
-import { fetchPokemonGroup } from "@/utils/api";
+import { fetchPokemonList } from "@/utils/api";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EvolveModal.module.scss";
@@ -29,7 +29,7 @@ const EvolveModal: React.FC<Props> = (props: Props) => {
                     evolutionSlugs.push(chain[idx + 1]);
                 }
             }
-            fetchPokemonGroup([...new Set(evolutionSlugs)], props.gameSlug).then((pokemonData: PokemonData[]) =>
+            fetchPokemonList([...new Set(evolutionSlugs)], props.gameSlug).then((pokemonData: PokemonData[]) =>
                 setEvolutions(pokemonData)
             );
         }
