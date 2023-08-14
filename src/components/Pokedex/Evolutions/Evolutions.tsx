@@ -5,7 +5,7 @@ import { getPokedexLink, isFinalStage } from "@/utils/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import styles from "./EvolutionsDisplay.module.scss";
+import styles from "./Evolutions.module.scss";
 
 type Props = {
     pokemon: PokemonData;
@@ -39,7 +39,7 @@ const EvolutionsDisplay: React.FC<Props> = (props: Props) => {
     }, [props.pokemon]);
 
     return Object.keys(pokemonMap).length > 1 ? (
-        <div className={styles["evolutions-display"]}>
+        <div className={styles.evolutions}>
             <p className={styles.header}>Evolutions</p>
             <div className={styles.evolutions}>
                 {getEvolutionChains().map((chain: string[], key: number) => {

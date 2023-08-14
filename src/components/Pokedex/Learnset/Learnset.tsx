@@ -4,14 +4,14 @@ import { fetchMoves } from "@/utils/api";
 import { capitalizeWord, getPreSplitCategories, getTypeCardSrc } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import styles from "./MoveList.module.scss";
+import styles from "./Learnset.module.scss";
 
 type Props = {
     moves: PokemonMove[];
     game: string;
 };
 
-const MoveList: React.FC<Props> = (props: Props) => {
+const Learnset: React.FC<Props> = (props: Props) => {
     // Fetched data state
     const [moves, setMoves] = useState<MoveData[]>([]);
 
@@ -82,4 +82,4 @@ const MoveList: React.FC<Props> = (props: Props) => {
     );
 };
 
-export default MoveList;
+export default Learnset;

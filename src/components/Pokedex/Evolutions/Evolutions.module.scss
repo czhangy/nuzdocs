@@ -1,6 +1,6 @@
 @use "@/styles/constants";
 
-.evolutions-display {
+.evolutions {
     --border-rad: 5px;
     --chain-inner-spacing: 1rem;
     --evolutions-inner-spacing: 1rem;
@@ -51,7 +51,7 @@
 }
 
 @media screen and (min-width: constants.$tablet) {
-    .evolutions-display {
+    .evolutions {
         --sprite-size: 100px;
     }
 }

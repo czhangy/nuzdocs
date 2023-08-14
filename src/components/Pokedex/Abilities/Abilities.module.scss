@@ -1,6 +1,6 @@
 @use "@/styles/constants";
 
-.ability-list {
+.abilities {
     --abilities-font-size: 1rem;
     --abilities-inner-spacing: 0.5rem;
     --abilities-x-padding: 2rem;
@@ -37,7 +37,7 @@
 }
 
 @media screen and (min-width: constants.$tablet) {
-    .ability-list {
+    .abilities {
         --abilities-font-size: 1.25rem;
     }
 }

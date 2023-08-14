@@ -1,6 +1,6 @@
 @use "@/styles/constants";
 
-.move-list {
+.learnset {
     --border-rad: 5px;
     --cell-x-padding: 0.5rem;
     --cell-y-padding: 0.5rem;
@@ -67,7 +67,7 @@
 }
 
 @media screen and (min-width: constants.$tablet) {
-    .move-list {
+    .learnset {
         --cell-x-padding: 1rem;
         --font-size: 1rem;
         --letter-spacing: 1px;

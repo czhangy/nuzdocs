@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "./AbilityList.module.scss";
+import styles from "./Abilities.module.scss";
 import AbilityData from "@/models/AbilityData";
 import { fetchAbilities } from "@/utils/api";
 
@@ -8,7 +8,7 @@ type Props = {
     game: string;
 };
 
-const AbilityList: React.FC<Props> = (props: Props) => {
+const Abilities: React.FC<Props> = (props: Props) => {
     // Fetched data state
     const [abilities, setAbilities] = useState<AbilityData[]>([]);
 
@@ -20,7 +20,7 @@ const AbilityList: React.FC<Props> = (props: Props) => {
     }, [props.abilities]);
 
     return (
-        <div className={styles["ability-list"]}>
+        <div className={styles.abilities}>
             <div className={styles.header}>{props.abilities.length === 1 ? "Ability" : "Abilities"}</div>
             <ul className={styles.abilities}>
                 {abilities.map((ability: AbilityData) => {
@@ -35,4 +35,4 @@ const AbilityList: React.FC<Props> = (props: Props) => {
     );
 };
 
-export default AbilityList;
+export default Abilities;
