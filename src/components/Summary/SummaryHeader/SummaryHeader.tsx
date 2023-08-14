@@ -4,11 +4,11 @@ import Run from "@/models/Run";
 import { getGameGroup } from "@/utils/game";
 import { getBox, getRIPs, isAlive } from "@/utils/run";
 import { getSegment } from "@/utils/segment";
+import { getPokedexLink } from "@/utils/utils";
 import Image from "next/image";
+import Link from "next/link";
 import { ChangeEvent, useEffect, useState } from "react";
 import styles from "./SummaryHeader.module.scss";
-import Link from "next/link";
-import { getPokedexLink } from "@/utils/utils";
 
 type Props = {
     caughtPokemon: CaughtPokemon;
@@ -116,7 +116,13 @@ const SummaryHeader: React.FC<Props> = (props: Props) => {
                     </div>
                     <p className={styles.text}>
                         Met at:{" "}
-                        <Link href={`/runs/${props.run.id}/${props.caughtPokemon.locationSlug}`}>
+                        <Link
+                            href={`/runs/${props.run.id}/${
+                                props.caughtPokemon.locationSlug === "starter"
+                                    ? getGameGroup(props.run.gameSlug).startingTownSlug
+                                    : props.caughtPokemon.locationSlug
+                            }`}
+                        >
                             <a className={styles.location}>
                                 <strong>{getMetLocation()}</strong>
                             </a>
