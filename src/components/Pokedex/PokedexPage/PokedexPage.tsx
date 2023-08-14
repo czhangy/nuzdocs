@@ -26,10 +26,10 @@ const PokedexPage: React.FC<Props> = (props: Props) => {
 
     // Fetch Pokemon on page load
     useEffect(() => {
-        if (props.pokemon) {
+        if (props.pokemon && props.run) {
             fetchPokemon(props.pokemon, props.run.gameSlug).then((pokemon: PokemonData) => setPokemon(pokemon));
         }
-    }, [props.pokemon]);
+    }, [props.pokemon, props.run]);
 
     // Get learnset on fetch
     useEffect(() => {

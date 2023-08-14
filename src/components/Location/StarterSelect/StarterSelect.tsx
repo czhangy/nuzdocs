@@ -50,7 +50,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
 
     // Place starter in box and remove existing starter on starter change + set run's starter
     useEffect(() => {
-        if (selectedStarter) {
+        if (props.run && selectedStarter) {
             if (selectedStarter.pokemon.slug !== getStarterSlug(props.run.id)) {
                 const starterID: string = getStarterID(props.run.id);
                 removeFromCaughtPokemonSlugs(props.run.id, starterID);
@@ -67,7 +67,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                 addToCaughtPokemonSlugs(props.run.id, selectedStarter.pokemon.slug);
             }
         }
-    }, [selectedStarter]);
+    }, [props.run, selectedStarter]);
 
     return selectedStarter ? (
         <div className={styles["starter-select"]}>

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import styles from "./Abilities.module.scss";
 import AbilityData from "@/models/AbilityData";
 import { fetchAbilities } from "@/utils/api";
+import { useEffect, useState } from "react";
+import styles from "./Abilities.module.scss";
 
 type Props = {
     abilities: string[];
@@ -14,10 +14,10 @@ const Abilities: React.FC<Props> = (props: Props) => {
 
     // Fetch abilities on component load
     useEffect(() => {
-        if (props.abilities) {
+        if (props.abilities && props.game) {
             fetchAbilities(props.abilities, props.game).then((abilities: AbilityData[]) => setAbilities(abilities));
         }
-    }, [props.abilities]);
+    }, [props.abilities, props.game]);
 
     return (
         <div className={styles.abilities}>

@@ -69,7 +69,7 @@ const MoveModal: React.FC<Props> = (props: Props) => {
     // Update matches while user is inputting move name
     useEffect(() => {
         setMove("");
-        if (searchValue.length > 2) {
+        if (searchValue.length > 2 && moveList.length > 0) {
             const newMatches: string[] = [];
             moveList.forEach((move: string) => {
                 const moveName: string = translateSlug(move);
@@ -84,7 +84,7 @@ const MoveModal: React.FC<Props> = (props: Props) => {
         } else {
             setMatches([]);
         }
-    }, [searchValue]);
+    }, [searchValue, moveList]);
 
     return (
         <div className={styles["move-modal"]}>
