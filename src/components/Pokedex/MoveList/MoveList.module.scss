@@ -1,0 +1,75 @@
+@use "@/styles/constants";
+
+.move-list {
+    --border-rad: 5px;
+    --cell-x-padding: 0.5rem;
+    --cell-y-padding: 0.5rem;
+    --class-icon-ratio: 2;
+    --font-size: 0.75rem;
+    --header-font-size: 1rem;
+    --header-y-padding: 0.5rem;
+    --icon-height: 12px;
+    --letter-spacing: 0;
+    --moves-padding: 1rem;
+    --table-border-rad: 5px;
+    --type-icon-ratio: 8/3;
+
+    border-radius: var(--border-rad);
+    overflow: hidden;
+    width: 100%;
+
+    .header {
+        background-color: constants.$hover-color;
+        font-size: var(--header-font-size);
+        font-weight: bold;
+        line-height: var(--header-font-size);
+        padding: var(--header-y-padding);
+        text-align: center;
+    }
+
+    .moves {
+        background-color: constants.$accent-color;
+        display: flex;
+        padding: var(--moves-padding);
+
+        .table {
+            margin: 0 auto;
+
+            .row {
+                .cell {
+                    background-color: constants.$bg-color;
+                    font-size: var(--font-size);
+                    letter-spacing: var(--letter-spacing);
+                    padding: var(--cell-y-padding) var(--cell-x-padding);
+                    text-align: center;
+
+                    .class {
+                        height: var(--icon-height);
+                        margin: 0 auto;
+                        position: relative;
+                        width: calc(var(--icon-height) * var(--class-icon-ratio));
+                    }
+
+                    .type {
+                        height: var(--icon-height);
+                        margin: 0 auto;
+                        position: relative;
+                        width: calc(var(--icon-height) * var(--type-icon-ratio));
+                    }
+                }
+
+                .level {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .move-list {
+        --cell-x-padding: 1rem;
+        --font-size: 1rem;
+        --letter-spacing: 1px;
+    }
+}
