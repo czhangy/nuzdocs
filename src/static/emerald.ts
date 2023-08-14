@@ -319,6 +319,18 @@ const emerald: GameGroup = {
             name: "Winona Split",
             segments: [
                 {
+                    slug: "may-3",
+                    name: "May 3",
+                    type: "battle",
+                    segment: {
+                        battle: {
+                            treecko: battles.emerald.may_3_treecko,
+                            torchic: battles.emerald.may_3_torchic,
+                            mudkip: battles.emerald.may_3_mudkip,
+                        },
+                    },
+                },
+                {
                     slug: "winona",
                     name: "Winona",
                     type: "battle",
@@ -360,6 +372,14 @@ const emerald: GameGroup = {
         {
             name: "Champion Split",
             segments: [
+                {
+                    slug: "wally-2",
+                    name: "Wally 2",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.wally_2,
+                    },
+                },
                 {
                     slug: "sidney",
                     name: "Sidney",
