@@ -25,7 +25,7 @@ const Abilities: React.FC<Props> = (props: Props) => {
             <ul className={styles.abilities}>
                 {abilities.map((ability: AbilityData) => {
                     return (
-                        <li className={styles.ability}>
+                        <li className={styles.ability} key={ability.slug}>
                             <strong>{ability.name}</strong>: {ability.desc}
                         </li>
                     );
