@@ -58,12 +58,12 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
 
     // Fetch the ability data for the given Pokemon on component load
     useEffect(() => {
-        if (props.pokemonData) {
+        if (props.pokemonData && props.game) {
             fetchAbilities(props.pokemonData.abilities, props.game).then((abilities: AbilityData[]) =>
                 setAbilities(abilities)
             );
         }
-    }, [props.pokemonData]);
+    }, [props.pokemonData, props.game]);
 
     return (
         <div className={styles["summary-info"]}>

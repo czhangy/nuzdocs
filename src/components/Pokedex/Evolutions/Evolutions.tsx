@@ -27,16 +27,18 @@ const EvolutionsDisplay: React.FC<Props> = (props: Props) => {
 
     // Fetch data for all Pokemon in evolution line on component load
     useEffect(() => {
-        const newPokemonMap: { [slug: string]: PokemonData } = {};
-        newPokemonMap[props.pokemon.pokemon.slug] = props.pokemon;
-        fetchPokemonList(
-            [...new Set(getEvolutionChains().flat())].filter((slug: string) => slug !== props.pokemon.pokemon.slug),
-            props.run.gameSlug
-        ).then((pokemonData: PokemonData[]) => {
-            for (const pokemon of pokemonData) newPokemonMap[pokemon.pokemon.slug] = pokemon;
-            setPokemonMap(newPokemonMap);
-        });
-    }, [props.pokemon]);
+        if (props.pokemon && props.run) {
+            const newPokemonMap: { [slug: string]: PokemonData } = {};
+            newPokemonMap[props.pokemon.pokemon.slug] = props.pokemon;
+            fetchPokemonList(
+                [...new Set(getEvolutionChains().flat())].filter((slug: string) => slug !== props.pokemon.pokemon.slug),
+                props.run.gameSlug
+            ).then((pokemonData: PokemonData[]) => {
+                for (const pokemon of pokemonData) newPokemonMap[pokemon.pokemon.slug] = pokemon;
+                setPokemonMap(newPokemonMap);
+            });
+        }
+    }, [props.pokemon, props.run]);
 
     return Object.keys(pokemonMap).length > 1 ? (
         <div className={styles.evolutions}>

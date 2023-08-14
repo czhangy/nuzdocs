@@ -31,7 +31,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
 
     // Fetch all related data on component load
     useEffect(() => {
-        if (props.set) {
+        if (props.set && props.run) {
             fetchAbility(props.set.ability!.slug, props.run.gameSlug).then((abilityData: AbilityData | null) =>
                 setAbility(abilityData)
             );
@@ -42,7 +42,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                 fetchItem(props.set.item.slug, props.run.gameSlug).then((item: ItemData | null) => setHeldItem(item));
             }
         }
-    }, [props.set]);
+    }, [props.set, props.run]);
 
     return props.pokemon && ability && moves.length > 0 ? (
         <li className={styles["pokemon-card"]}>

@@ -20,14 +20,14 @@ const FormChangeModal: React.FC<Props> = (props: Props) => {
 
     // Fetch data for all forms on modal open
     useEffect(() => {
-        if (props.pokemon) {
+        if (props.pokemon && props.gameSlug) {
             const forms: string[] = props.pokemon.forms.filter((form: string) => form !== props.pokemon.pokemon.slug);
             fetchPokemonList(forms, props.gameSlug).then((formData: PokemonData[]) => {
                 formData.unshift(props.pokemon);
                 setFormData(formData);
             });
         }
-    }, [props.pokemon]);
+    }, [props.pokemon, props.gameSlug]);
 
     // When the form data has been fetched, initialize the user state to the default option
     useEffect(() => {

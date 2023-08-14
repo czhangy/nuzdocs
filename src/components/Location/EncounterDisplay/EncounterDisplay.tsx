@@ -102,7 +102,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
 
     // Search for matches in dex when typing in input
     useEffect(() => {
-        if (!hasEncounter && searchValue.length > 2) {
+        if (props.run && !hasEncounter && searchValue.length > 2) {
             const newMatches: PokemonName[] = [];
             getGameGroup(props.run.gameSlug).pokedex.forEach((pokemon: PokemonName) => {
                 if (
@@ -116,7 +116,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
         } else {
             setMatches([]);
         }
-    }, [searchValue]);
+    }, [props.run, hasEncounter, searchValue]);
 
     return (
         <>

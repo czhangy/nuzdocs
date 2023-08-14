@@ -15,10 +15,10 @@ type Props = {
 const SegmentPage: React.FC<Props> = (props) => {
     // Save segment as previous segment on nav
     useEffect(() => {
-        if (props.segment) {
+        if (props.segment && props.run) {
             setPrevSegmentSlug(props.run.id, props.segment.slug);
         }
-    }, [props.segment]);
+    }, [props.segment, props.run]);
 
     return (
         <div className={styles["segment-page"]}>

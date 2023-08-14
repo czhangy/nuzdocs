@@ -31,13 +31,13 @@ const BattlePage: React.FC<Props> = (props: Props) => {
 
     // Fetch Pokemon data on page load
     useEffect(() => {
-        if (sets.length > 0) {
+        if (props.run && sets.length > 0) {
             fetchPokemonList(
                 sets.map((set: Pokemon) => set.slug),
                 props.run.gameSlug
             ).then((pokemon: PokemonData[]) => setPokemon(pokemon));
         }
-    }, [sets]);
+    }, [props.run, sets]);
 
     return (
         <div className={styles["battle-page"]}>

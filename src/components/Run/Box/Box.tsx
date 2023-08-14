@@ -84,12 +84,12 @@ const Box: React.FC<Props> = (props: Props) => {
 
     // Use box to fetch data for all Pokemon in box, ignoring failed encounters
     useEffect(() => {
-        if (props.box.length > 0) {
+        if (props.box.length > 0 && props.run) {
             fetchPokemonList(getPokemonSlugsFromBox(props.box), props.run.gameSlug).then((pokemonData: PokemonData[]) =>
                 setBoxData(pokemonData)
             );
         }
-    }, [props.box]);
+    }, [props.box, props.run]);
 
     return boxData.length > 0 && boxData.length + getNumFailedEncounters() === props.box.length ? (
         <div className={styles.box}>

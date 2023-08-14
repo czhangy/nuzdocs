@@ -21,7 +21,7 @@ const EvolveModal: React.FC<Props> = (props: Props) => {
 
     // Fetch data for all next evolutions on modal open
     useEffect(() => {
-        if (props.pokemon) {
+        if (props.pokemon && props.gameSlug) {
             const evolutionSlugs: string[] = [];
             for (const chain of props.pokemon.evolutions) {
                 const idx: number = chain.indexOf(props.pokemon.pokemon.slug);
@@ -33,7 +33,7 @@ const EvolveModal: React.FC<Props> = (props: Props) => {
                 setEvolutions(pokemonData)
             );
         }
-    }, [props.pokemon]);
+    }, [props.pokemon, props.gameSlug]);
 
     // When the evolution data has been fetched, initialize the user state to the first option
     useEffect(() => {
