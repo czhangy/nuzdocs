@@ -37,7 +37,7 @@ const Pokedex: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Pokédex</title>
+                <title>{run ? `${run.name} // Pokédex` : "NuzlockeDB"}</title>
             </Head>
             {pokemon && run ? <PokedexPage pokemon={pokemon} run={run} /> : ""}
         </>

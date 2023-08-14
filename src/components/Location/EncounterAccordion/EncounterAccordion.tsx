@@ -2,15 +2,17 @@ import TierCard from "@/components/Run/TierCard/TierCard";
 import EncounterData from "@/models/EncounterData";
 import PokemonData from "@/models/PokemonData";
 import { fetchPokemonList } from "@/utils/api";
-import { getPokemonTier, getTypeCardSrc } from "@/utils/utils";
+import { getPokedexLink, getPokemonTier, getTypeCardSrc } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./EncounterAccordion.module.scss";
+import Link from "next/link";
 
 type Props = {
     method: string;
     encounters: EncounterData[];
     gameSlug: string;
+    runID: string;
 };
 
 const EncounterAccordion: React.FC<Props> = (props: Props) => {
@@ -84,7 +86,9 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
                                                         objectFit="contain"
                                                     />
                                                 </div>
-                                                <p className={styles.name}>{pokemon.pokemon.name}</p>
+                                                <Link href={getPokedexLink(props.runID, pokemon.pokemon.slug)}>
+                                                    <a className={styles.name}>{pokemon.pokemon.name}</a>
+                                                </Link>
                                                 <div className={styles.types}>
                                                     {pokemon.types.map((type: string) => {
                                                         return (

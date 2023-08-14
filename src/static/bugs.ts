@@ -51,6 +51,10 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "The nickname container doesn't resize when changing the screen size past the font-change breakpoint",
             group: "General",
         },
+        {
+            desc: "Segment pages have extra padding at the bottom when the page is smaller than the screen height",
+            group: "General",
+        },
     ],
 };
 

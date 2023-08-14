@@ -23,7 +23,7 @@ const Learnset: React.FC<Props> = (props: Props) => {
     }, [props.moves]);
 
     return (
-        <div className={styles["move-list"]}>
+        <div className={styles.learnset}>
             <h2 className={styles.header}>Learnset</h2>
             <div className={styles.moves}>
                 {props.moves.length === moves.length ? (
