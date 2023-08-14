@@ -73,14 +73,14 @@ const Box: React.FC<Props> = (props: Props) => {
         return props.box.filter((pokemon: CaughtPokemon) => pokemon.pokemon.slug === "failed").length;
     };
 
-    // Listen for window resizes to recompute inverted menus on component load
+    // Listen for window resizes to recompute inverted menus when component ready
     useEffect(() => {
         getInvertedMenus();
         window.addEventListener("resize", getInvertedMenus);
         return () => {
             window.removeEventListener("resize", getInvertedMenus);
         };
-    }, []);
+    }, [boxData]);
 
     // Use box to fetch data for all Pokemon in box, ignoring failed encounters
     useEffect(() => {

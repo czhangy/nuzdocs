@@ -37,7 +37,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
                 props.run.gameSlug
             ).then((pokemon: PokemonData[]) => setPokemon(pokemon));
         }
-    }, [props.run, sets]);
+    }, [props.run.gameSlug, sets]);
 
     return (
         <div className={styles["battle-page"]}>

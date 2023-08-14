@@ -44,7 +44,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
 
     // Fetch areas + encounters in location on location change
     useEffect(() => {
-        if (props.location && props.run) {
+        if (props.location && props.run.gameSlug) {
             setCurrentArea(null);
             setAreaList([]);
             fetchAreas(props.location.areas, props.run.gameSlug).then((areaList: AreaData[]) => {
@@ -57,7 +57,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                 setAreaList(validAreas);
             });
         }
-    }, [props.location, props.run]);
+    }, [props.location, props.run.gameSlug]);
 
     return areaList.length > 0 ? (
         <div className={styles["encounter-list"]}>

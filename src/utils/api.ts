@@ -25,13 +25,17 @@ export const fetchLocation = async (slug: string) => {
 // Fetch a list of AreaData given area and game slugs
 export const fetchAreas = async (areas: string[], game: string) => {
     try {
-        const res = await axios.get("/api/location", {
-            params: {
-                areaSlugList: areas,
-                gameSlug: game,
-            },
-        });
-        return JSON.parse(res.data.areaList);
+        if (areas.length === 0) {
+            return [];
+        } else {
+            const res = await axios.get("/api/location", {
+                params: {
+                    areaSlugList: areas,
+                    gameSlug: game,
+                },
+            });
+            return JSON.parse(res.data.areaList);
+        }
     } catch (error) {
         console.log(error);
         return [];

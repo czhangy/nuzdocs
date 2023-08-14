@@ -52,7 +52,11 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                     {isMinimized ? "+" : "-"}
                 </button>
                 <div className={styles.header}>
-                    <PokemonDisplay pokemon={props.pokemon} runID={getGameGroup(props.run.gameSlug).versionGroup} />
+                    <PokemonDisplay
+                        pokemon={props.pokemon}
+                        runID={getGameGroup(props.run.gameSlug).versionGroup}
+                        key={props.pokemon.pokemon.slug}
+                    />
                 </div>
                 <div className={styles.moves}>
                     {moves.map((move: MoveData) => {

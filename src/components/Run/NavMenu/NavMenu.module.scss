@@ -41,6 +41,7 @@
         border-radius: var(--menu-border-rad);
         bottom: var(--menu-offset);
         opacity: 0;
+        pointer-events: none;
         position: absolute;
         right: 0;
         transform: translateY(100%);
@@ -91,6 +92,7 @@
 
     .menu {
         opacity: 1;
+        pointer-events: all;
         z-index: calc(var(--overlay-z) + 1);
     }
 }
