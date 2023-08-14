@@ -1,5 +1,5 @@
 import PokemonData from "@/models/PokemonData";
-import translations from "@/static/translations";
+import priorities from "@/static/priorities";
 import { initPokemonData } from "@/utils/initializers";
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
@@ -93,7 +93,7 @@ const fetchPokemon = async (pokemonSlug: string, generation: string, versionGrou
         const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemon.species.name);
         const evolutions: string[][] = await fetchPokemonEvolutionChains(species);
         const abilities: string[] =
-            parseInt(translations.generations[generation]) < 5
+            priorities.generations.indexOf(generation) < 5
                 ? pokemon.abilities
                       .filter((ability: PokemonAbility) => !ability.is_hidden)
                       .map((ability: PokemonAbility) => ability.ability.name)

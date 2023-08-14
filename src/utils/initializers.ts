@@ -12,6 +12,7 @@ import PokemonMove from "@/models/PokemonMove";
 import PokemonName from "@/models/PokemonName";
 import Stat from "@/models/Stat";
 import Values from "@/models/Values";
+import priorities from "@/static/priorities";
 import translations from "@/static/translations";
 import { getBox, getRIPs } from "@/utils/run";
 import { generateID, getDescription, getEnglishName } from "@/utils/utils";
@@ -20,6 +21,7 @@ import {
     Item,
     Move,
     Name,
+    NamedAPIResource,
     Pokemon,
     PokemonMoveVersion,
     PokemonPastType,
@@ -49,13 +51,12 @@ export const initPokemonData = (
     let types: PokemonType[] = pokemon.types;
     const pastTypes: PokemonPastType[] = pokemon.past_types.filter(
         (type: PokemonPastType) =>
-            parseInt(translations.generations[type.generation.name]) > parseInt(translations.generations[generation])
+            priorities.generations.indexOf(type.generation.name) > priorities.generations.indexOf(generation)
     );
     if (pastTypes.length > 0) {
         pastTypes.sort(
             (a: PokemonPastType, b: PokemonPastType) =>
-                parseInt(translations.generations[a.generation.name]) -
-                parseInt(translations.generations[b.generation.name])
+                priorities.generations.indexOf(a.generation.name) - priorities.generations.indexOf(b.generation.name)
         );
         types = pastTypes[0].types;
     }
@@ -166,7 +167,7 @@ export const initAreaData = (
     };
 };
 
-export const initAbilityData = (ability: Ability, versionGroup: string, desc: string): AbilityData => {
+export const initAbilityData = (ability: Ability, desc: string): AbilityData => {
     return {
         slug: ability.name,
         name: getEnglishName(ability.names),
@@ -174,15 +175,21 @@ export const initAbilityData = (ability: Ability, versionGroup: string, desc: st
     };
 };
 
-export const initMoveData = (move: Move, desc: string): MoveData => {
+export const initMoveData = (
+    move: Move,
+    type: NamedAPIResource,
+    power: number | null,
+    pp: number | null,
+    desc: string
+): MoveData => {
     return {
         slug: move.name,
         name: getEnglishName(move.names),
-        type: move.type.name,
-        power: move.power ? move.power : 0,
+        type: type.name,
+        power: power ? power : 0,
         // @ts-expect-error
         category: !move.damage_class || move.damage_class.name === "status" ? "other" : move.damage_class.name,
-        pp: move.pp ? move.pp : 0,
+        pp: pp ? pp : 0,
         desc: desc,
     };
 };

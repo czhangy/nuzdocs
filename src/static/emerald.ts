@@ -295,6 +295,114 @@ const emerald: GameGroup = {
                 },
             ],
         },
+        {
+            name: "Norman Split",
+            segments: [
+                {
+                    slug: "mirage-tower",
+                    name: "Mirage Tower",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "norman",
+                    name: "Norman",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.norman,
+                        levelCap: 31,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Winona Split",
+            segments: [
+                {
+                    slug: "winona",
+                    name: "Winona",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.winona,
+                        levelCap: 33,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Tate & Liza Split",
+            segments: [
+                {
+                    slug: "tate-and-liza",
+                    name: "Tate and Liza",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald["tate-and-liza"],
+                        levelCap: 42,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Juan Split",
+            segments: [
+                {
+                    slug: "juan",
+                    name: "Juan",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.juan,
+                        levelCap: 46,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Champion Split",
+            segments: [
+                {
+                    slug: "sidney",
+                    name: "Sidney",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.sidney,
+                    },
+                },
+                {
+                    slug: "phoebe",
+                    name: "Phoebe",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.phoebe,
+                    },
+                },
+                {
+                    slug: "glacia",
+                    name: "Glacia",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.glacia,
+                    },
+                },
+                {
+                    slug: "drake",
+                    name: "Drake",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.drake,
+                    },
+                },
+                {
+                    slug: "wallace",
+                    name: "Wallace",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.wallace,
+                        levelCap: 58,
+                    },
+                },
+            ],
+        },
     ],
     starterSlugs: ["treecko", "torchic", "mudkip"],
     startingTownSlug: "littleroot-town",

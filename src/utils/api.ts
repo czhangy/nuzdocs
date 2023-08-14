@@ -78,11 +78,12 @@ export const fetchAbilities = async (abilities: string[], game: string): Promise
     }
 };
 
-export const fetchMove = async (move: string): Promise<MoveData | null> => {
+export const fetchMove = async (move: string, game: string): Promise<MoveData | null> => {
     try {
         const res = await axios.get("/api/moves", {
             params: {
                 slugs: move,
+                group: getGameGroup(game).versionGroup,
             },
         });
         return JSON.parse(res.data.moves);
@@ -92,17 +93,18 @@ export const fetchMove = async (move: string): Promise<MoveData | null> => {
     }
 };
 
-export const fetchMoves = async (moves: string[]): Promise<MoveData[]> => {
+export const fetchMoves = async (moves: string[], game: string): Promise<MoveData[]> => {
     try {
         if (moves.length === 0) {
             return [];
         } else if (moves.length === 1) {
-            const move: MoveData | null = await fetchMove(moves[0]);
+            const move: MoveData | null = await fetchMove(moves[0], game);
             return move ? [move] : [];
         } else {
             const res = await axios.get("/api/moves", {
                 params: {
                     slugs: moves,
+                    group: getGameGroup(game).versionGroup,
                 },
             });
             return JSON.parse(res.data.moves);

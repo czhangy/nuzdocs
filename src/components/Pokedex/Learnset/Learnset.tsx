@@ -18,7 +18,10 @@ const Learnset: React.FC<Props> = (props: Props) => {
     // Fetch move data on component load
     useEffect(() => {
         if (props.moves) {
-            fetchMoves(props.moves.map((move: PokemonMove) => move.slug)).then((moves: MoveData[]) => setMoves(moves));
+            fetchMoves(
+                props.moves.map((move: PokemonMove) => move.slug),
+                props.game
+            ).then((moves: MoveData[]) => setMoves(moves));
         }
     }, [props.moves]);
 
