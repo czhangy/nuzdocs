@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import styles from "./NavMenu.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import Run from "@/models/Run";
+import { useEffect, useState } from "react";
+import styles from "./NavMenu.module.scss";
 
 type Props = {
     runID: string;
