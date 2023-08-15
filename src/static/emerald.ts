@@ -273,6 +273,14 @@ const emerald: GameGroup = {
                     },
                 },
                 {
+                    slug: "maxie-1",
+                    name: "Maxie 1",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.maxie_1,
+                    },
+                },
+                {
                     slug: "jagged-pass",
                     name: "Jagged Pass",
                     type: "location",
@@ -319,6 +327,14 @@ const emerald: GameGroup = {
             name: "Winona Split",
             segments: [
                 {
+                    slug: "shelly",
+                    name: "Shelly",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.shelly,
+                    },
+                },
+                {
                     slug: "may-3",
                     name: "May 3",
                     type: "battle",
@@ -345,6 +361,30 @@ const emerald: GameGroup = {
             name: "Tate & Liza Split",
             segments: [
                 {
+                    slug: "tabitha-2",
+                    name: "Tabitha 2",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.tabitha_2,
+                    },
+                },
+                {
+                    slug: "maxie-2",
+                    name: "Maxie 2",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.maxie_2,
+                    },
+                },
+                {
+                    slug: "matt",
+                    name: "Matt",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.matt,
+                    },
+                },
+                {
                     slug: "tate-and-liza",
                     name: "Tate and Liza",
                     type: "battle",
@@ -358,6 +398,14 @@ const emerald: GameGroup = {
         {
             name: "Juan Split",
             segments: [
+                {
+                    slug: "archie",
+                    name: "Archie",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.archie,
+                    },
+                },
                 {
                     slug: "juan",
                     name: "Juan",

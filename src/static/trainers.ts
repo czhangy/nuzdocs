@@ -53,6 +53,22 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         name: "Tabitha",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/tabitha-gen3.png",
     },
+    rse_shelly: {
+        name: "Shelly",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/shelly-gen3.png",
+    },
+    rse_maxie: {
+        name: "Maxie",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/maxie-gen3.png",
+    },
+    rse_matt: {
+        name: "Matt",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/matt-gen3.png",
+    },
+    rse_archie: {
+        name: "Archie",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/archie-gen3.png",
+    },
     emerald_may: {
         name: "May",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3.png",

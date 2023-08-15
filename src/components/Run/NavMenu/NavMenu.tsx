@@ -5,7 +5,8 @@ import Link from "next/link";
 import Run from "@/models/Run";
 
 type Props = {
-    run: Run;
+    runID: string;
+    prev: string;
 };
 
 const NavMenu: React.FC<Props> = (props: Props) => {
@@ -33,7 +34,7 @@ const NavMenu: React.FC<Props> = (props: Props) => {
             </button>
             <ul className={styles.menu} onClick={() => setOpen(false)}>
                 <li className={styles.option}>
-                    <Link href={`/runs/${props.run.id}/${props.run.prevSegmentSlug}`}>
+                    <Link href={`/runs/${props.runID}/${props.prev}`}>
                         <a className={styles.link}>
                             <div className={styles.icon}>
                                 <Image src="/assets/icons/path.svg" alt="Overview" layout="fill" objectFit="contain" />
@@ -43,7 +44,7 @@ const NavMenu: React.FC<Props> = (props: Props) => {
                     </Link>
                 </li>
                 <li className={styles.option}>
-                    <Link href={`/runs/${props.run.id}/overview`}>
+                    <Link href={`/runs/${props.runID}/overview`}>
                         <a className={styles.link}>
                             <div className={styles.icon}>
                                 <Image
@@ -58,7 +59,7 @@ const NavMenu: React.FC<Props> = (props: Props) => {
                     </Link>
                 </li>
                 <li className={styles.option}>
-                    <Link href={`/runs/${props.run.id}/box`}>
+                    <Link href={`/runs/${props.runID}/box`}>
                         <a className={styles.link}>
                             <div className={styles.icon}>
                                 <Image src="/assets/icons/box.svg" alt="Box" layout="fill" objectFit="contain" />
@@ -68,7 +69,7 @@ const NavMenu: React.FC<Props> = (props: Props) => {
                     </Link>
                 </li>
                 <li className={styles.option}>
-                    <Link href={`/runs/${props.run.id}/rips`}>
+                    <Link href={`/runs/${props.runID}/rips`}>
                         <a className={styles.link}>
                             <div className={styles.icon}>
                                 <Image src="/assets/icons/dead.svg" alt="Dead" layout="fill" objectFit="contain" />

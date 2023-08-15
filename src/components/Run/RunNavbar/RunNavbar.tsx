@@ -14,13 +14,15 @@ const RunNavbar: React.FC = () => {
 
     // Internal data state
     const [run, setRun] = useState<Run | null>(null);
+    const [prev, setPrev] = useState<string>("");
 
     // Validate run and set game for valid runs
     useEffect(() => {
-        if (router.isReady) {
+        if (router.isReady && router.query.segmentSlug) {
             setRun(getRun(router.query.runID as string));
+            setPrev(router.query.segmentSlug as string);
         }
-    }, [router.isReady, router.query.runID]);
+    }, [router.isReady, router.query.runID, router.query.segmentSlug]);
 
     return run ? (
         <Navbar>
@@ -38,7 +40,7 @@ const RunNavbar: React.FC = () => {
                         </div>
                     </a>
                 </Link>
-                <NavMenu run={run} />
+                <NavMenu runID={run.id} prev={prev} />
             </div>
         </Navbar>
     ) : (
