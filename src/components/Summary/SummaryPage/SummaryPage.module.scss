@@ -4,18 +4,18 @@
     --page-inner-spacing: 1rem;
     --page-spacing: 2rem;
     --page-width: 350px;
+    --page-y-padding: 2rem;
 
     display: flex;
     flex-direction: column;
     gap: var(--page-inner-spacing);
-    margin: var(--page-spacing) 0;
-    min-height: calc(100vh - constants.$navbar-height - 2 * var(--page-spacing));
+    min-height: calc(100vh - constants.$navbar-height - 2 * var(--page-y-padding));
     width: var(--page-width);
 }
 
 @media screen and (min-width: constants.$tablet) {
     .summary-page {
-        --page-spacing: 4rem;
         --page-width: 750px;
+        --page-y-padding: 4rem;
     }
 }

@@ -157,20 +157,6 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             trainer: trainers.emerald_may,
             team: [
                 {
-                    slug: "slugma",
-                    species: "slugma",
-                    level: 18,
-                    ability: { slug: "flame-body", name: "Flame Body" },
-                    moves: [
-                        { slug: "yawn", name: "Yawn" },
-                        { slug: "smog", name: "Smog" },
-                        { slug: "ember", name: "Ember" },
-                        { slug: "rock-tomb", name: "Rock Tomb" },
-                    ],
-                    ivs: { hp: 6, atk: 6, spa: 6, def: 6, spd: 6, spe: 6 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-                {
                     slug: "wingull",
                     species: "wingull",
                     level: 18,
@@ -180,6 +166,20 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                         { slug: "water-gun", name: "Water Gun" },
                         { slug: "supersonic", name: "Supersonic" },
                         { slug: "wing-attack", name: "Wing Attack" },
+                    ],
+                    ivs: { hp: 6, atk: 6, spa: 6, def: 6, spd: 6, spe: 6 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+                {
+                    slug: "slugma",
+                    species: "slugma",
+                    level: 18,
+                    ability: { slug: "flame-body", name: "Flame Body" },
+                    moves: [
+                        { slug: "yawn", name: "Yawn" },
+                        { slug: "smog", name: "Smog" },
+                        { slug: "ember", name: "Ember" },
+                        { slug: "rock-tomb", name: "Rock Tomb" },
                     ],
                     ivs: { hp: 6, atk: 6, spa: 6, def: 6, spd: 6, spe: 6 },
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
@@ -501,7 +501,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     moves: [
                         { slug: "karate-chop", name: "Karate Chop" },
                         { slug: "low-kick", name: "Low Kick" },
-                        { slug: "seismic-toss", name: "Sesimic Toss" },
+                        { slug: "seismic-toss", name: "Seismic Toss" },
                         { slug: "bulk-up", name: "Bulk Up" },
                     ],
                     ivs: { hp: 12, atk: 12, spa: 12, def: 12, spd: 12, spe: 12 },

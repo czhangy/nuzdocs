@@ -4,10 +4,9 @@
     --header-font-size: 2rem;
     --header-letter-spacing: 2px;
     --header-spacing: 2rem;
-    --page-spacing: 2rem;
+    --page-y-padding: 2rem;
 
-    margin: var(--page-spacing) 0;
-    min-height: calc(100vh - constants.$navbar-height - 2 * var(--page-spacing));
+    min-height: calc(100vh - constants.$navbar-height - 2 * var(--page-y-padding));
 
     .header {
         font-size: var(--header-font-size);
@@ -22,6 +21,6 @@
 @media screen and (min-width: constants.$tablet) {
     .box-page {
         --header-font-size: 2.5rem;
-        --page-spacing: 4rem;
+        --page-y-padding: 4rem;
     }
 }

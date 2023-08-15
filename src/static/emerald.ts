@@ -197,8 +197,8 @@ const emerald: GameGroup = {
                     segment: {},
                 },
                 {
-                    slug: "hoenn-route-111",
-                    name: "Route 111",
+                    slug: "hoenn-route-118",
+                    name: "Route 118",
                     type: "location",
                     segment: {},
                 },
@@ -216,6 +216,12 @@ const emerald: GameGroup = {
         {
             name: "Flannery Split",
             segments: [
+                {
+                    slug: "hoenn-route-111",
+                    name: "Route 111",
+                    type: "location",
+                    segment: {},
+                },
                 {
                     slug: "hoenn-route-112",
                     name: "Route 112",

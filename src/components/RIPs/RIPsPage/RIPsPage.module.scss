@@ -4,10 +4,9 @@
     --header-font-size: 2rem;
     --header-letter-spacing: 2px;
     --header-spacing: 2rem;
-    --top-spacing: 2rem;
+    --page-y-padding: 2rem;
 
-    margin-top: var(--top-spacing);
-    min-height: calc(100vh - constants.$navbar-height - var(--top-spacing));
+    min-height: calc(100vh - constants.$navbar-height - 2 * var(--page-y-padding));
 
     .header {
         font-size: var(--header-font-size);

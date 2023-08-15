@@ -11,6 +11,10 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "HeartGold/SoulSilver",
             link: "https://github.com/czhangy/nuzlocke-db/issues/25",
         },
+        {
+            desc: "Refreshing while not on the main run page prevents the navbar from rendering",
+            group: "General",
+        },
     ],
     Medium: [
         {
@@ -27,6 +31,10 @@ const bugs: { [priority: string]: Bug[] } = {
         },
         {
             desc: "Pokemon with different forms can evolve between forms (i.e., Zigzagoon/Linoone/Obstagoon)",
+            group: "General",
+        },
+        {
+            desc: "Pokemon cannot learn moves from their past forms if they are no longer part of its moveset",
             group: "General",
         },
     ],

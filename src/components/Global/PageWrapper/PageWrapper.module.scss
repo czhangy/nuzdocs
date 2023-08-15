@@ -1,6 +1,8 @@
 @use "@/styles/constants";
 
 .page-container {
+    --page-y-padding: 2rem;
+
     background: constants.$bg-color;
     display: flex;
     justify-content: center;
@@ -14,7 +16,7 @@
         display: flex;
         justify-content: center;
         max-width: constants.$max-width;
-        padding: 0 constants.$page-padding;
+        padding: var(--page-y-padding) constants.$page-padding;
         width: 100%;
     }
 }
@@ -34,6 +36,8 @@
 // Tablet view
 @media screen and (min-width: constants.$tablet) {
     .page-container {
+        --page-y-padding: 4rem;
+
         align-items: center;
     }
 }
