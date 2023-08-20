@@ -1,17 +1,17 @@
+import ItemDisplay from "@/components/Battle/ItemDisplay/ItemDisplay";
 import LevelCap from "@/components/Battle/LevelCap/LevelCap";
 import BattleSegment from "@/models/BattleSegment";
 import ItemData from "@/models/ItemData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
+import { fetchItems } from "@/utils/api";
 import { getBattle } from "@/utils/battle";
 import { addToClearedBattles, getStarterSlug, isCleared, removeFromClearedBattles } from "@/utils/run";
 import { hasLevelCap } from "@/utils/segment";
+import { exportPokemonList } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./BattlePreview.module.scss";
-import { fetchItems } from "@/utils/api";
-import ItemDisplay from "@/components/Battle/ItemDisplay/ItemDisplay";
-import { exportPokemonList } from "@/utils/utils";
 
 type Props = {
     segment: Segment;

@@ -35,9 +35,10 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
             fetchAbility(props.set.ability!.slug, props.run.gameSlug).then((abilityData: AbilityData | null) =>
                 setAbility(abilityData)
             );
-            fetchMoves(props.set.moves.map((move: NamedResource) => move.slug)).then((moveData: MoveData[]) =>
-                setMoves(moveData)
-            );
+            fetchMoves(
+                props.set.moves.map((move: NamedResource) => move.slug),
+                props.run.gameSlug
+            ).then((moveData: MoveData[]) => setMoves(moveData));
             if (props.set.item) {
                 fetchItem(props.set.item.slug, props.run.gameSlug).then((item: ItemData | null) => setHeldItem(item));
             }
@@ -51,7 +52,11 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                     {isMinimized ? "+" : "-"}
                 </button>
                 <div className={styles.header}>
-                    <PokemonDisplay pokemon={props.pokemon} runID={getGameGroup(props.run.gameSlug).versionGroup} />
+                    <PokemonDisplay
+                        pokemon={props.pokemon}
+                        runID={getGameGroup(props.run.gameSlug).versionGroup}
+                        key={props.pokemon.pokemon.slug}
+                    />
                 </div>
                 <div className={styles.moves}>
                     {moves.map((move: MoveData) => {

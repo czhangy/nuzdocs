@@ -20,7 +20,7 @@ const RunNavbar: React.FC = () => {
         if (router.isReady) {
             setRun(getRun(router.query.runID as string));
         }
-    }, [router.isReady, router.query.runID]);
+    }, [router.isReady, router.query.runID, router.query.segmentSlug]);
 
     return run ? (
         <Navbar>

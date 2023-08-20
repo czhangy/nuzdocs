@@ -11,6 +11,7 @@ type Props = {
     movepool: PokemonMove[];
     moves: string[];
     move: string | null;
+    game: string;
     onConfirm: (move: NamedResource) => void;
     onDelete: () => void;
     onClose: () => void;
@@ -34,7 +35,7 @@ const MoveModal: React.FC<Props> = (props: Props) => {
     // Propagate selection to SummaryPage and close the modal
     const handleConfirm = async (): Promise<void> => {
         props.onClose();
-        fetchMove(move).then((move: MoveData | null) => {
+        fetchMove(move, props.game).then((move: MoveData | null) => {
             if (move) {
                 props.onConfirm(initNamedResource(move.slug, move.name));
             } else {

@@ -1,10 +1,6 @@
 import Trainer from "@/models/Trainer";
 
 const trainers: { [trainerSlug: string]: Trainer } = {
-    emerald_may: {
-        name: "May",
-        sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3.png",
-    },
     rse_wally: {
         name: "Wally",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/wally-gen3.png",
@@ -25,9 +21,65 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         name: "Flannery",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/flannery-gen3.png",
     },
+    rse_norman: {
+        name: "Norman",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/norman-gen3.png",
+    },
+    rse_winona: {
+        name: "Winona",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/winona-gen3.png",
+    },
+    rse_tate_and_liza: {
+        name: "Tate & Liza",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/tateandliza-gen3.png",
+    },
+    rse_sidney: {
+        name: "Sidney",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/sidney-gen3.png",
+    },
+    rse_phoebe: {
+        name: "Phoebe",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/phoebe-gen3.png",
+    },
+    rse_glacia: {
+        name: "Glacia",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/glacia-gen3.png",
+    },
+    rse_drake: {
+        name: "Drake",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/drake-gen3.png",
+    },
     rse_tabitha: {
         name: "Tabitha",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/tabitha-gen3.png",
+    },
+    rse_shelly: {
+        name: "Shelly",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/shelly-gen3.png",
+    },
+    rse_maxie: {
+        name: "Maxie",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/maxie-gen3.png",
+    },
+    rse_matt: {
+        name: "Matt",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/matt-gen3.png",
+    },
+    rse_archie: {
+        name: "Archie",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/archie-gen3.png",
+    },
+    emerald_may: {
+        name: "May",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3.png",
+    },
+    emerald_juan: {
+        name: "Juan",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/juan-gen3.png",
+    },
+    emerald_wallace: {
+        name: "Wallace",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/wallace-gen3.png",
     },
     hgss_silver: {
         name: "Silver",

@@ -1,8 +1,7 @@
-import AbilityData from "@/models/AbilityData";
 import ItemData from "@/models/ItemData";
-import { initAbilityData, initItemData } from "@/utils/initializers";
+import { initItemData } from "@/utils/initializers";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Ability, Item, ItemClient, PokemonClient } from "pokenode-ts";
+import { ItemClient } from "pokenode-ts";
 
 type ResData = {
     item?: string;

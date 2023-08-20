@@ -17,7 +17,7 @@ const Segment: NextPage = () => {
 
     // Validate route and set run for valid routes, redirect to home for invalid addresses
     useEffect(() => {
-        if (router.isReady) {
+        if (router.isReady && router.query.segmentSlug) {
             const runID: string = router.query.runID as string;
             const segmentSlug: string = router.query.segmentSlug as string;
             if (isRun(runID) && isSegment(getRun(runID).gameSlug, segmentSlug)) {

@@ -20,9 +20,10 @@ const Moveset: React.FC<Props> = (props: Props) => {
     // Fetch move data on component load
     useEffect(() => {
         if (props.caughtPokemon) {
-            fetchMoves(props.caughtPokemon.pokemon.moves.map((move: NamedResource) => move.slug)).then(
-                (moves: MoveData[]) => setMoves(moves)
-            );
+            fetchMoves(
+                props.caughtPokemon.pokemon.moves.map((move: NamedResource) => move.slug),
+                props.game
+            ).then((moves: MoveData[]) => setMoves(moves));
         }
     }, [props.caughtPokemon]);
 

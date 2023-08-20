@@ -1,20 +1,17 @@
 @use "@/styles/constants";
 
 .segment-page {
-    --bottom-spacing: 2rem;
+    --page-x-padding: 2rem;
     --page-width: 350px;
-    --top-spacing: 2rem;
 
-    margin-top: var(--top-spacing);
-    margin-bottom: var(--bottom-spacing);
-    min-height: calc(100vh - constants.$navbar-height - var(--top-spacing));
+    min-height: calc(100vh - constants.$navbar-height - 2 * var(--page-x-padding));
     position: relative;
     width: var(--page-width);
 }
 
 @media screen and (min-width: constants.$tablet) {
     .segment-page {
+        --page-x-padding: 4rem;
         --page-width: 750px;
-        --top-spacing: 4rem;
     }
 }

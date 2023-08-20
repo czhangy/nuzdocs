@@ -38,7 +38,7 @@ const fetchAbility = async (slug: string, versionGroup: string): Promise<Ability
         if (entry === undefined) {
             return null;
         } else {
-            return initAbilityData(ability, versionGroup, entry.flavor_text);
+            return initAbilityData(ability, entry.flavor_text);
         }
     } catch (error: any) {
         throw error;

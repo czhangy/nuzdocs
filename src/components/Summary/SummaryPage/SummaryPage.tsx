@@ -164,6 +164,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                                 ? caughtPokemon.pokemon.moves[selectedIdx].name
                                 : null
                         }
+                        game={props.run.gameSlug}
                         onConfirm={(move: NamedResource) => handleMovesetUpdate(move)}
                         onDelete={handleMovesetDelete}
                         onClose={() => setMoveModalOpen(false)}

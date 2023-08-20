@@ -118,6 +118,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Box filters
 -   [ ] Customizable run settings
 -   [ ] Key items
+-   [ ] PBs
 
 ## License
 

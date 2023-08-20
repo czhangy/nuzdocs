@@ -8,11 +8,11 @@ const games: { [gameSlug: string]: Game } = {
         logoURL: "/assets/images/emerald.webp",
         gameGroup: emerald,
     },
-    soulsilver: {
-        name: "SoulSilver",
-        logoURL: "/assets/images/soulsilver.webp",
-        gameGroup: hgss,
-    },
+    // soulsilver: {
+    //     name: "SoulSilver",
+    //     logoURL: "/assets/images/soulsilver.webp",
+    //     gameGroup: hgss,
+    // },
 };
 
 export default games;

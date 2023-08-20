@@ -67,7 +67,7 @@ export const getPreSplitCategories = (move: MoveData, game: string): "physical" 
 };
 
 export const generateSet = (pokemon: Pokemon, name: string, tag: string): string => {
-    let set = `${tag} (${name})\n`;
+    let set = `${tag} (${name})${pokemon.item ? ` @ ${pokemon.item.name}` : ""}\n`;
     set += `IVs: ${pokemon.ivs.hp} HP / ${pokemon.ivs.atk} Atk / ${pokemon.ivs.def} Def / ${pokemon.ivs.spa} SpA / ${pokemon.ivs.spd} SpD / ${pokemon.ivs.spe} Spe\n`;
     set += `EVs: ${pokemon.evs.hp} HP / ${pokemon.evs.atk} Atk / ${pokemon.evs.def} Def / ${pokemon.evs.spa} SpA / ${pokemon.evs.spd} SpD / ${pokemon.evs.spe} Spe\n`;
     if (pokemon.ability) {

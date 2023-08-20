@@ -197,8 +197,8 @@ const emerald: GameGroup = {
                     segment: {},
                 },
                 {
-                    slug: "hoenn-route-111",
-                    name: "Route 111",
+                    slug: "hoenn-route-118",
+                    name: "Route 118",
                     type: "location",
                     segment: {},
                 },
@@ -216,6 +216,12 @@ const emerald: GameGroup = {
         {
             name: "Flannery Split",
             segments: [
+                {
+                    slug: "hoenn-route-111",
+                    name: "Route 111",
+                    type: "location",
+                    segment: {},
+                },
                 {
                     slug: "hoenn-route-112",
                     name: "Route 112",
@@ -273,6 +279,14 @@ const emerald: GameGroup = {
                     },
                 },
                 {
+                    slug: "maxie-1",
+                    name: "Maxie 1",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.maxie_1,
+                    },
+                },
+                {
                     slug: "jagged-pass",
                     name: "Jagged Pass",
                     type: "location",
@@ -291,6 +305,174 @@ const emerald: GameGroup = {
                     segment: {
                         battle: battles.emerald.flannery,
                         levelCap: 29,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Norman Split",
+            segments: [
+                {
+                    slug: "mirage-tower",
+                    name: "Mirage Tower",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "norman",
+                    name: "Norman",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.norman,
+                        levelCap: 31,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Winona Split",
+            segments: [
+                {
+                    slug: "shelly",
+                    name: "Shelly",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.shelly,
+                    },
+                },
+                {
+                    slug: "may-3",
+                    name: "May 3",
+                    type: "battle",
+                    segment: {
+                        battle: {
+                            treecko: battles.emerald.may_3_treecko,
+                            torchic: battles.emerald.may_3_torchic,
+                            mudkip: battles.emerald.may_3_mudkip,
+                        },
+                    },
+                },
+                {
+                    slug: "winona",
+                    name: "Winona",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.winona,
+                        levelCap: 33,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Tate & Liza Split",
+            segments: [
+                {
+                    slug: "tabitha-2",
+                    name: "Tabitha 2",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.tabitha_2,
+                    },
+                },
+                {
+                    slug: "maxie-2",
+                    name: "Maxie 2",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.maxie_2,
+                    },
+                },
+                {
+                    slug: "matt",
+                    name: "Matt",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.matt,
+                    },
+                },
+                {
+                    slug: "tate-and-liza",
+                    name: "Tate and Liza",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald["tate-and-liza"],
+                        levelCap: 42,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Juan Split",
+            segments: [
+                {
+                    slug: "archie",
+                    name: "Archie",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.archie,
+                    },
+                },
+                {
+                    slug: "juan",
+                    name: "Juan",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.juan,
+                        levelCap: 46,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Champion Split",
+            segments: [
+                {
+                    slug: "wally-2",
+                    name: "Wally 2",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.wally_2,
+                    },
+                },
+                {
+                    slug: "sidney",
+                    name: "Sidney",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.sidney,
+                    },
+                },
+                {
+                    slug: "phoebe",
+                    name: "Phoebe",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.phoebe,
+                    },
+                },
+                {
+                    slug: "glacia",
+                    name: "Glacia",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.glacia,
+                    },
+                },
+                {
+                    slug: "drake",
+                    name: "Drake",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.drake,
+                    },
+                },
+                {
+                    slug: "wallace",
+                    name: "Wallace",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.wallace,
+                        levelCap: 58,
                     },
                 },
             ],

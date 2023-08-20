@@ -37,7 +37,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
                 props.run.gameSlug
             ).then((pokemon: PokemonData[]) => setPokemon(pokemon));
         }
-    }, [props.run, sets]);
+    }, [props.run.gameSlug, sets]);
 
     return (
         <div className={styles["battle-page"]}>
@@ -49,8 +49,13 @@ const BattlePage: React.FC<Props> = (props: Props) => {
             {pokemon.length === sets.length ? (
                 <ul className={styles.team}>
                     {getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).team.map(
-                        (set: Pokemon, key: number) => (
-                            <PokemonCard set={set} pokemon={pokemon[key]} run={props.run} key={key} />
+                        (set: Pokemon, idx: number) => (
+                            <PokemonCard
+                                set={set}
+                                pokemon={pokemon[idx]}
+                                run={props.run}
+                                key={`${props.run.gameSlug} + ${set.slug} + ${idx}`}
+                            />
                         )
                     )}
                 </ul>
