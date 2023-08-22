@@ -1,17 +1,17 @@
 @use "@/styles/constants";
 
 .segment-page {
-    --page-x-padding: 2rem;
     --page-width: 350px;
+    --page-y-padding: 2rem;
 
-    min-height: calc(100vh - constants.$navbar-height - 2 * var(--page-x-padding));
+    min-height: calc(100vh - constants.$navbar-height - 2 * var(--page-y-padding));
     position: relative;
     width: var(--page-width);
 }
 
 @media screen and (min-width: constants.$tablet) {
     .segment-page {
-        --page-x-padding: 4rem;
         --page-width: 750px;
+        --page-y-padding: 4rem;
     }
 }

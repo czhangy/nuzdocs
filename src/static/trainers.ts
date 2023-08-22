@@ -81,6 +81,10 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         name: "Wallace",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/wallace-gen3.png",
     },
+    emerald_maxie_tabitha: {
+        name: "Maxie & Tabitha",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/maxie-gen3.png",
+    },
     hgss_silver: {
         name: "Silver",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/silver.png",

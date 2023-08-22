@@ -63,6 +63,10 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Segment pages have extra padding at the bottom when the page is smaller than the screen height",
             group: "General",
         },
+        {
+            desc: "Static Electrode encounters are missing from Aqua Hideout",
+            group: "Emerald",
+        },
     ],
 };
 

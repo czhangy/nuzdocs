@@ -2,10 +2,12 @@ const translations: { [translation: string]: { [slug: string]: string } } = {
     encounter_methods: {
         walk: "Walking",
         surf: "Surf",
+        seaweed: "Diving",
         "rock-smash": "Rock Smash",
         "old-rod": "Old Rod",
         "good-rod": "Good Rod",
         "super-rod": "Super Rod",
+        "only-one": "Static",
         gift: "Gift",
         "gift-egg": "Egg",
     },

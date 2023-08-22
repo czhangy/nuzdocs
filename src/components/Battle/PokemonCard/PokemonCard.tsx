@@ -8,11 +8,11 @@ import MoveData from "@/models/MoveData";
 import NamedResource from "@/models/NamedResource";
 import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
+import Run from "@/models/Run";
 import { fetchAbility, fetchItem, fetchMoves } from "@/utils/api";
+import { getGameGroup } from "@/utils/game";
 import { useEffect, useState } from "react";
 import styles from "./PokemonCard.module.scss";
-import { getGameGroup } from "@/utils/game";
-import Run from "@/models/Run";
 
 type Props = {
     set: Pokemon;
