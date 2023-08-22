@@ -112,13 +112,18 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Evolution methods
 -   [ ] Location maps
 -   [ ] Loading screens
--   [ ] Game data
--   [ ] Coverage calculator
+-   [ ] Coverage graphs
 -   [ ] Add way to still show duplicates, but mark them
 -   [ ] Box filters
 -   [ ] Customizable run settings
 -   [ ] Key items
 -   [ ] PBs
+-   [ ] Mark encounters
+-   [ ] Game data
+-   [ ] Correct display for double battles
+-   [ ] Consider loading one-by-one instead of in groups (esp. for boxes)
+-   [ ] Confirmation modal for run deletion
+-   [ ] Nicer alerts for exports
 
 ## License
 

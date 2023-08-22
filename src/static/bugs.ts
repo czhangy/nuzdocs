@@ -3,7 +3,7 @@ import Bug from "@/models/Bug";
 const bugs: { [priority: string]: Bug[] } = {
     High: [
         {
-            desc: "Encounter data is slightly off (compared to Serebii)",
+            desc: "Encounter data is slightly wrong",
             group: "General",
         },
         {
@@ -12,7 +12,7 @@ const bugs: { [priority: string]: Bug[] } = {
             link: "https://github.com/czhangy/nuzlocke-db/issues/25",
         },
         {
-            desc: "Refreshing while not on the main run page prevents the navbar from rendering",
+            desc: "The encounter display covers information if the location page is taller than the screen height",
             group: "General",
         },
     ],
@@ -26,25 +26,21 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "General",
         },
         {
-            desc: "If a move has been updated, only the most recent set of info is displayed, regardless of what gen the run is",
-            group: "General",
-        },
-        {
             desc: "Pokemon with different forms can evolve between forms (i.e., Zigzagoon/Linoone/Obstagoon)",
             group: "General",
         },
         {
-            desc: "Pokemon cannot learn moves from their past forms if they are no longer part of its moveset",
+            desc: "Pokemon cannot learn moves from their past evolutions if they are no longer part of its moveset",
+            group: "General",
+        },
+        {
+            desc: "Pokemon abilities carry through when they evolve, even when they can no longer have that abiilty",
             group: "General",
         },
     ],
     Low: [
         {
             desc: "Accordion arrow icon is loading too slow",
-            group: "General",
-        },
-        {
-            desc: "Sprites with negative margins overlap surrounding content",
             group: "General",
         },
         {
@@ -57,10 +53,6 @@ const bugs: { [priority: string]: Bug[] } = {
         },
         {
             desc: "The nickname container doesn't resize when changing the screen size past the font-change breakpoint",
-            group: "General",
-        },
-        {
-            desc: "Segment pages have extra padding at the bottom when the page is smaller than the screen height",
             group: "General",
         },
         {

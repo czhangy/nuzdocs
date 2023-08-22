@@ -1,6 +1,7 @@
 import PokemonData from "@/models/PokemonData";
 import priorities from "@/static/priorities";
 import { initPokemonData } from "@/utils/initializers";
+import { isInvalidForm } from "@/utils/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
     ChainLink,
@@ -44,19 +45,8 @@ const isPokemonListRequest = (req: NextApiRequest): boolean => {
 const createEvolutionChains = async (stage: ChainLink, chain: string[], chains: string[][]): Promise<void> => {
     const api: PokemonClient = new PokemonClient();
     const species: PokemonSpecies = await api.getPokemonSpeciesByName(stage.species.name);
-    const invalidForms: string[] = [
-        "-starter",
-        "-gmax",
-        "-mega",
-        "-cap",
-        "-belle",
-        "-cosplay",
-        "-libre",
-        "-phd",
-        "-star",
-    ];
     for (const form of species.varieties) {
-        if (invalidForms.some((suffix: string) => form.pokemon.name.endsWith(suffix))) {
+        if (isInvalidForm(form.pokemon.name)) {
             continue;
         }
         chain.push(form.pokemon.name);
