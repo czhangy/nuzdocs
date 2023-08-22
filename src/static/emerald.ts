@@ -17,20 +17,14 @@ const emerald: GameGroup = {
                     segment: {},
                 },
                 {
-                    slug: "may-1",
-                    name: "May 1",
-                    type: "battle",
-                    segment: {
-                        battle: {
-                            treecko: battles.emerald.may_1_treecko,
-                            torchic: battles.emerald.may_1_torchic,
-                            mudkip: battles.emerald.may_1_mudkip,
-                        },
-                    },
-                },
-                {
                     slug: "hoenn-route-101",
                     name: "Route 101",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-103",
+                    name: "Route 103",
                     type: "location",
                     segment: {},
                 },
@@ -41,10 +35,16 @@ const emerald: GameGroup = {
                     segment: {},
                 },
                 {
-                    slug: "hoenn-route-103",
-                    name: "Route 103",
-                    type: "location",
-                    segment: {},
+                    slug: "may-1",
+                    name: "May 1",
+                    type: "battle",
+                    segment: {
+                        battle: {
+                            treecko: battles.emerald.may_1_treecko,
+                            torchic: battles.emerald.may_1_torchic,
+                            mudkip: battles.emerald.may_1_mudkip,
+                        },
+                    },
                 },
                 {
                     slug: "hoenn-route-102",

@@ -89,15 +89,9 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
     // Update Pokemon in local storage
     const handleUpdate = (newPokemon: CaughtPokemon): void => {
         if (isAlive(props.run.id, newPokemon.id)) {
-            const idx: number = getBox(props.run.id)
-                .map((cp: CaughtPokemon) => cp.id)
-                .indexOf(newPokemon.id);
-            updateBox(props.run.id, newPokemon, idx);
+            updateBox(props.run.id, newPokemon);
         } else {
-            const updateIdx: number = getRIPs(props.run.id)
-                .map((cp: CaughtPokemon) => cp.id)
-                .indexOf(newPokemon.id);
-            updateRIPs(props.run.id, newPokemon, updateIdx);
+            updateRIPs(props.run.id, newPokemon);
         }
         setCaughtPokemon(newPokemon);
         setSelectedIdx(null);
