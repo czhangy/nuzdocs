@@ -1,55 +1,34 @@
 import RunEntry from "@/components/Home/RunEntry/RunEntry";
 import Run from "@/models/Run";
-import { deleteRun, getRun, getRunIDs, loadRun } from "@/utils/run";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import styles from "./RunList.module.scss";
 
 type Props = {
-    onOpen: () => void;
+    runs: Run[];
+    onLoad: (jsonStr: string) => void;
+    onCreate: () => void;
+    onDelete: (run: Run) => void;
 };
 
 const RunList: React.FC<Props> = (props) => {
-    // Internal data state
-    const [runs, setRuns] = useState<Run[]>([]);
-
     // Extracts JSON string from file input
     const handleFileRead = (inputEvt: React.ChangeEvent<HTMLInputElement>) => {
         if (inputEvt.target.files && inputEvt.target.files.length > 0) {
             const fileReader = new FileReader();
             fileReader.readAsText(inputEvt.target.files[0], "UTF-8");
             fileReader.onload = (loadEvt: ProgressEvent<FileReader>) => {
-                handleLoad(loadEvt.target!.result as string);
+                props.onLoad(loadEvt.target!.result as string);
             };
         }
     };
 
-    // Loads data from JSON files into local storage
-    const handleLoad = (jsonStr: string) => {
-        if (loadRun(JSON.parse(jsonStr))) {
-            setRuns(getRunIDs().map((runID: string) => getRun(runID)));
-        } else {
-            alert("That run has already been saved!");
-        }
-    };
-
-    // Deletes a run from local storage and refreshes the list to update the view
-    const handleDelete = (runID: string) => {
-        deleteRun(runID);
-        setRuns(getRunIDs().map((runID: string) => getRun(runID)));
-    };
-
-    useEffect(() => {
-        setRuns(getRunIDs().map((runID: string) => getRun(runID)));
-    }, []);
-
     return (
         <div className={styles["run-list"]}>
             <h2 className={styles.header}>Your Runs</h2>
-            {runs.length > 0 ? (
+            {props.runs.length > 0 ? (
                 <ul className={styles.list}>
-                    {runs.map((run: Run) => {
-                        return <RunEntry run={run} onDelete={() => handleDelete(run.id)} key={run.id} />;
+                    {props.runs.map((run: Run) => {
+                        return <RunEntry run={run} onDelete={() => props.onDelete(run)} key={run.id} />;
                     })}
                 </ul>
             ) : (
@@ -69,7 +48,7 @@ const RunList: React.FC<Props> = (props) => {
                     accept="application/JSON"
                     onInput={(inputEvt: React.ChangeEvent<HTMLInputElement>) => handleFileRead(inputEvt)}
                 />
-                <button className={styles.button} onClick={props.onOpen}>
+                <button className={styles.button} onClick={props.onCreate}>
                     + New Run
                 </button>
             </div>

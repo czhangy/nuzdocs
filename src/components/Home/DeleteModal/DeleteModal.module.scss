@@ -1,0 +1,70 @@
+@use "@/styles/constants";
+
+.delete-modal {
+    --button-border-rad: 5px;
+    --button-border-size: 2px;
+    --button-font-size: 1rem;
+    --button-letter-spacing: 1px;
+    --button-padding: 1rem;
+    --buttons-inner-spacing: 1.5rem;
+    --delete-inner-spacing: 2rem;
+    --header-font-size: 1.25rem;
+    --modal-width: 325px;
+
+    width: var(--modal-width);
+
+    .delete {
+        text-align: center;
+
+        .header {
+            display: block;
+            font-size: var(--header-font-size);
+            line-height: var(--header-font-size);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            gap: var(--buttons-inner-spacing);
+            justify-content: center;
+
+            .button {
+                border: var(--button-border-size) solid constants.$text-color;
+                border-radius: var(--button-border-rad);
+                font-size: var(--button-font-size);
+                font-weight: bold;
+                letter-spacing: var(--button-letter-spacing);
+                line-height: var(--button-font-size);
+                padding: var(--button-padding);
+            }
+
+            .confirm {
+                background-color: constants.$text-color;
+                color: constants.$bg-color;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .delete-modal {
+        --header-font-size: 1.5rem;
+        --modal-width: 500px;
+    }
+}
+
+@media (hover: hover) {
+    .delete-modal > .delete > .buttons {
+        .cancel:hover {
+            border-color: constants.$hover-color;
+            color: constants.$hover-color;
+        }
+
+        .confirm:hover {
+            background-color: constants.$hover-color;
+            border-color: constants.$hover-color;
+            color: constants.$text-color;
+        }
+    }
+}

@@ -17,7 +17,6 @@ const ProgressBar: React.FC<Props> = (props) => {
     useEffect(() => {
         if (props.complete && props.total) {
             setTimeout(() => {
-                console.log(props.complete);
                 document.getElementById(`bar-${props.barID}`)!.style.width = `${calculatePercentage()}%`;
             }, 100);
         }
