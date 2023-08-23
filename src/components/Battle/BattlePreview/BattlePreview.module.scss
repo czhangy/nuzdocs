@@ -23,11 +23,16 @@
 
         .sprite {
             height: var(--sprite-size);
+            margin-left: calc(var(--sprite-size) / -2);
             position: relative;
             transition: filter var(--sprite-transition-time);
             user-select: none; /* Standard syntax */
             -webkit-user-select: none; /* Safari */
             width: var(--sprite-size);
+
+            &:first-child {
+                margin-left: 0;
+            }
         }
 
         .defeated {

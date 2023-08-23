@@ -40,13 +40,15 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
             <a className={styles["battle-overview"]}>
                 <div className={`${styles.battle} ${isCleared(props.run.id, props.battle.slug) ? styles.done : ""}`}>
                     <p className={styles.name}>{props.battle.name}</p>
-                    {trainers.map((trainer: Trainer) => {
-                        return (
-                            <div className={styles.trainer} key={trainer.name}>
-                                <Image src={trainer.sprite} alt={trainer.name} layout="fill" objectFit="contain" />
-                            </div>
-                        );
-                    })}
+                    <div className={styles.trainers}>
+                        {trainers.map((trainer: Trainer) => {
+                            return (
+                                <div className={styles.trainer} key={trainer.name}>
+                                    <Image src={trainer.sprite} alt={trainer.name} layout="fill" objectFit="contain" />
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
                 {hasLevelCap(props.battle) ? (
                     <div className={styles["level-cap"]}>

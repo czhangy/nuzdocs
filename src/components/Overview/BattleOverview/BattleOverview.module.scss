@@ -37,12 +37,21 @@
             line-height: var(--battle-font-size);
         }
 
-        .trainer {
-            height: var(--trainer-size);
-            position: relative;
-            user-select: none; /* Standard syntax */
-            -webkit-user-select: none; /* Safari */
-            width: var(--trainer-size);
+        .trainers {
+            display: flex;
+
+            .trainer {
+                height: var(--trainer-size);
+                margin-left: calc(var(--trainer-size) / -2);
+                position: relative;
+                user-select: none; /* Standard syntax */
+                -webkit-user-select: none; /* Safari */
+                width: var(--trainer-size);
+
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
         }
     }
 
@@ -51,7 +60,7 @@
             text-decoration: line-through;
         }
 
-        .trainer {
+        .trainers > .trainer {
             filter: grayscale(100%);
         }
     }
