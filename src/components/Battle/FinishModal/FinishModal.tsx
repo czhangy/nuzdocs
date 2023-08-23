@@ -10,7 +10,7 @@ const FinishModal: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["finish-modal"]}>
             <p className={styles.header}>🎉 Congrats! 🎉</p>
-            <p className={styles.text}>You've completed a Nuzlocke of</p>
+            <p className={styles.text}>You&apos;ve completed a Nuzlocke of</p>
             <div className={styles.game}>
                 <Image
                     src={getGame(props.game).logoURL}
