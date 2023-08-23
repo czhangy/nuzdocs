@@ -5,8 +5,11 @@
     --header-spacing: 1.5rem;
     --icon-size: 24px;
     --left-inner-spacing: 1rem;
+    --list-spacing: 10rem;
     --times-inner-spacing: 0.5rem;
     --title-font-size: 1.5rem;
+
+    margin-bottom: var(--list-spacing);
 
     .header {
         align-items: center;

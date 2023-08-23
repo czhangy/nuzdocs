@@ -12,10 +12,6 @@ const bugs: { [priority: string]: Bug[] } = {
             link: "https://github.com/czhangy/nuzlocke-db/issues/25",
         },
         {
-            desc: "The encounter display covers information if the location page is taller than the screen height",
-            group: "General",
-        },
-        {
             desc: "Underwater encounters display as part of their routes, not in the underwater location",
             group: "Emerald",
         },
@@ -62,6 +58,10 @@ const bugs: { [priority: string]: Bug[] } = {
         {
             desc: "Static Electrode encounters are missing from Aqua Hideout",
             group: "Emerald",
+        },
+        {
+            desc: "Location pages have excess height on mobile displays",
+            group: "General",
         },
     ],
 };

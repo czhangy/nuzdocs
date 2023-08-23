@@ -18,9 +18,11 @@
     --minimize-transition-time: 0.5s;
     --outline-size: 6px;
     --overlay-z: 99;
+    --page-y-padding: 2rem;
     --sprite-size: 100px;
 
     bottom: 0;
+    margin-bottom: calc(var(--page-y-padding) * -1);
     position: sticky;
     transition: bottom var(--focus-transition-time);
     width: 100%;
@@ -178,6 +180,12 @@
 
     opacity: var(--overlay-opacity);
     pointer-events: all;
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .encounter-display {
+        --page-y-padding: 4rem;
+    }
 }
 
 @media screen and (min-width: constants.$desktop) {
