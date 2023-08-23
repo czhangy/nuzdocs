@@ -15,6 +15,10 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "The encounter display covers information if the location page is taller than the screen height",
             group: "General",
         },
+        {
+            desc: "Underwater encounters display as part of their routes, not in the underwater location",
+            group: "Emerald",
+        },
     ],
     Medium: [
         {

@@ -606,12 +606,36 @@ const emerald: GameGroup = {
                     },
                 },
                 {
+                    slug: "underwater",
+                    name: "Underwater",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "sootopolis-city",
+                    name: "Sootopolis City",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "seafloor-cavern",
+                    name: "Seafloor Cavern",
+                    type: "location",
+                    segment: {},
+                },
+                {
                     slug: "archie",
                     name: "Archie",
                     type: "battle",
                     segment: {
                         battle: battles.emerald.archie,
                     },
+                },
+                {
+                    slug: "cave-of-origin",
+                    name: "Cave of Origin",
+                    type: "location",
+                    segment: {},
                 },
                 {
                     slug: "juan",
@@ -627,6 +651,12 @@ const emerald: GameGroup = {
         {
             name: "Champion Split",
             segments: [
+                {
+                    slug: "hoenn-victory-road",
+                    name: "Victory Road",
+                    type: "location",
+                    segment: {},
+                },
                 {
                     slug: "wally-2",
                     name: "Wally 2",

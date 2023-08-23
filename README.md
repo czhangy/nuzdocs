@@ -124,6 +124,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Consider loading one-by-one instead of in groups (esp. for boxes)
 -   [ ] Confirmation modal for run deletion
 -   [ ] Nicer alerts for exports
+-   [ ] Add congratulations at end of run
 
 ## License
 

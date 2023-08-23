@@ -439,7 +439,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: ["full-restore", "full-restore"],
         },
         roxanne: {
             trainer: trainers.rse_roxanne,
