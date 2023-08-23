@@ -19,7 +19,7 @@ type Props = {
 
 const BattlePage: React.FC<Props> = (props: Props) => {
     // Component state
-    const [open, setOpen] = useState<boolean>(true);
+    const [open, setOpen] = useState<boolean>(false);
 
     // Internal state
     const [sets, setSets] = useState<Pokemon[]>([]);
