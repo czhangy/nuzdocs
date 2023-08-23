@@ -9,7 +9,7 @@
     --indicator-size: 5px;
     --info-inner-spacing: 0.5rem;
     --logo-size: 70px;
-    --name-font-size: 1.5rem;
+    --name-font-size: 1.25rem;
     --nav-inner-spacing: 2rem;
     --nav-padding: 2rem;
     --rip-spacing: 0.3rem;
@@ -88,6 +88,7 @@
     .run-entry {
         --entry-padding: 2rem;
         --button-size: 32px;
+        --name-font-size: 1.5rem;
 
         .nav {
             .logo {
