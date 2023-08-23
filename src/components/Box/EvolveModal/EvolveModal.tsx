@@ -1,5 +1,4 @@
 import PokemonData from "@/models/PokemonData";
-import Run from "@/models/Run";
 import { fetchPokemonList } from "@/utils/api";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -74,10 +73,10 @@ const EvolveModal: React.FC<Props> = (props: Props) => {
                 ))}
             </ul>
             <div className={styles.buttons}>
-                <button className={`${styles.button} ${styles.cancel}`} onClick={props.onClose}>
+                <button className="secondary-button" onClick={props.onClose}>
                     Cancel
                 </button>
-                <button className={`${styles.button} ${styles.evolve}`} onClick={() => props.onEvolve(selection)}>
+                <button className="primary-button" onClick={() => props.onEvolve(selection)}>
                     Evolve
                 </button>
             </div>

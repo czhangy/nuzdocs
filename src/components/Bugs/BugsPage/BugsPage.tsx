@@ -7,9 +7,9 @@ import styles from "./BugsPage.module.scss";
 const BugsPage: React.FC = () => {
     return (
         <div className={styles["bugs-page"]}>
-            <h2 className={styles.header}>KNOWN BUGS</h2>
+            <h2 className={styles.header}>Known Bugs</h2>
             <a
-                className={styles.report}
+                className={styles.button}
                 href="https://github.com/czhangy/nuzlocke-db/issues"
                 target="_blank"
                 rel="noreferrer"

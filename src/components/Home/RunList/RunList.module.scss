@@ -8,21 +8,20 @@
     --button-icon-size: 12px;
     --button-inner-spacing: 0.5rem;
     --button-letter-spacing: 1px;
-    --buttons-inner-spacing: 1rem;
     --button-padding: 1rem;
-    --buttons-spacing: 1rem;
-    --header-size: 2rem;
-    --inner-spacing: 2rem;
+    --buttons-inner-spacing: 1rem;
+    --header-font-size: 2rem;
+    --list-inner-spacing: 2rem;
     --list-max-width: 800px;
 
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: var(--inner-spacing);
+    gap: var(--list-inner-spacing);
     width: 100%;
 
     .header {
-        font-size: var(--header-size);
+        font-size: var(--header-font-size);
         font-weight: bold;
         margin-bottom: var(--header-spacing);
         text-align: center;
@@ -83,7 +82,7 @@
         --button-font-size: 1.25rem;
         --button-icon-size: 16px;
         --button-padding: 1.25rem;
-        --header-size: 2.5rem;
+        --header-font-size: 2.5rem;
     }
 }
 

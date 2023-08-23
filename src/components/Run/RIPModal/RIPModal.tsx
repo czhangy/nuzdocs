@@ -25,10 +25,10 @@ const RIPModal: React.FC<Props> = (props: Props) => {
                 <Image src={props.pokemon.sprite} alt={props.pokemon.pokemon.name} layout="fill" objectFit="contain" />
             </div>
             <div className={styles.buttons}>
-                <button className={`${styles.button} ${styles.cancel}`} onClick={props.onClose}>
+                <button className="secondary-button" onClick={props.onClose}>
                     No
                 </button>
-                <button className={`${styles.button} ${styles.confirm}`} onClick={props.onConfirm}>
+                <button className="primary-button" onClick={props.onConfirm}>
                     Yes
                 </button>
             </div>

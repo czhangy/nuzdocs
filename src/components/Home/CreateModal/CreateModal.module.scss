@@ -1,9 +1,6 @@
 @use "@/styles/constants";
 
 .create-modal {
-    --button-border-rad: 5px;
-    --button-font-size: 1rem;
-    --button-padding: 1rem;
     --field-x-padding: 1rem;
     --form-inner-spacing: 1.5rem;
     --game-max-width: 120px;
@@ -72,20 +69,6 @@
                 pointer-events: none;
             }
         }
-
-        .button {
-            background-color: constants.$text-color;
-            border-radius: var(--button-border-rad);
-            color: constants.$accent-color;
-            font-size: var(--button-font-size);
-            font-weight: bold;
-            line-height: var(--button-font-size);
-            padding: var(--button-padding);
-
-            &:disabled {
-                background-color: constants.$disabled-color;
-            }
-        }
     }
 }
 
@@ -97,14 +80,7 @@
 }
 
 @media (hover: hover) {
-    .create-modal > .form {
-        .games > .game:hover {
-            filter: none;
-        }
-
-        .button:hover {
-            background-color: constants.$hover-color;
-            color: constants.$text-color;
-        }
+    .create-modal > .form > .games > .game:hover {
+        filter: none;
     }
 }

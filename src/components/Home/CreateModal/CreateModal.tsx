@@ -48,7 +48,7 @@ const CreateModal: React.FC = () => {
                         );
                     })}
                 </div>
-                <button className={styles.button} disabled={!selectedName || !selectedGame}>
+                <button className="primary-button" disabled={!selectedName || !selectedGame}>
                     Start!
                 </button>
             </form>

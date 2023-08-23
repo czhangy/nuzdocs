@@ -4,6 +4,7 @@ import BattleSegment from "@/models/BattleSegment";
 import ItemData from "@/models/ItemData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
+import Trainer from "@/models/Trainer";
 import { fetchItems } from "@/utils/api";
 import { getBattle } from "@/utils/battle";
 import { addToClearedBattles, getStarterSlug, isCleared, removeFromClearedBattles } from "@/utils/run";
@@ -12,7 +13,6 @@ import { exportPokemonList } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./BattlePreview.module.scss";
-import Trainer from "@/models/Trainer";
 
 type Props = {
     segment: Segment;
@@ -27,7 +27,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     // Internal state
     const [trainers, setTrainers] = useState<Trainer[]>([]);
 
-    // Fetched data state
+    // Fetched state
     const [items, setItems] = useState<ItemData[]>([]);
 
     // Sets component state and updates local storage when defeat is clicked
@@ -104,7 +104,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                     </div>
                     {defeated ? (
                         <div className={styles.buttons}>
-                            <button className={styles.defeat} disabled={true}>
+                            <button className="primary-button" disabled={true}>
                                 Defeated!
                             </button>
                             <button className={styles.undo} onClick={handleUndo}>
@@ -119,13 +119,13 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                     ) : (
                         <div className={styles.buttons}>
                             <button
-                                className={styles.defeat}
+                                className="secondary-button"
                                 disabled={props.names.length === 0}
                                 onClick={handleExport}
                             >
                                 Export
                             </button>
-                            <button className={styles.defeat} onClick={handleDefeat}>
+                            <button className="primary-button" onClick={handleDefeat}>
                                 Defeat!
                             </button>
                         </div>

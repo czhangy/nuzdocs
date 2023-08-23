@@ -16,10 +16,10 @@ const DeleteModal: React.FC<Props> = (props: Props) => {
                         Delete <strong>{props.run.name}</strong>?
                     </p>
                     <div className={styles.buttons}>
-                        <button className={`${styles.button} ${styles.cancel}`} onClick={props.onClose}>
+                        <button className="secondary-button" onClick={props.onClose}>
                             Cancel
                         </button>
-                        <button className={`${styles.button} ${styles.confirm}`} onClick={props.onConfirm}>
+                        <button className="primary-button" onClick={props.onConfirm}>
                             Confirm
                         </button>
                     </div>
