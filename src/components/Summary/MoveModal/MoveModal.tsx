@@ -1,11 +1,11 @@
+import MoveData from "@/models/MoveData";
 import NamedResource from "@/models/NamedResource";
 import PokemonMove from "@/models/PokemonMove";
+import { fetchMove } from "@/utils/api";
+import { initNamedResource } from "@/utils/initializers";
 import { translateSlug } from "@/utils/utils";
 import { ChangeEvent, useEffect, useState } from "react";
 import styles from "./MoveModal.module.scss";
-import { fetchMove } from "@/utils/api";
-import MoveData from "@/models/MoveData";
-import { initNamedResource } from "@/utils/initializers";
 
 type Props = {
     movepool: PokemonMove[];

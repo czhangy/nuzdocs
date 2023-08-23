@@ -4,9 +4,6 @@
     --buttons-inner-spacing: 1.5rem;
     --delete-inner-spacing: 2rem;
     --header-font-size: 1.25rem;
-    --modal-width: 325px;
-
-    width: var(--modal-width);
 
     .delete {
         text-align: center;
@@ -30,6 +27,5 @@
 @media screen and (min-width: constants.$tablet) {
     .delete-modal {
         --header-font-size: 1.5rem;
-        --modal-width: 500px;
     }
 }
