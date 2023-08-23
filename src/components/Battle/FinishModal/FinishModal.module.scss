@@ -1,0 +1,37 @@
+@use "@/styles/constants";
+
+.finish-modal {
+    --game-height: 60px;
+    --game-ratio: 2;
+    --game-spacing: 1.25rem;
+    --header-font-size: 1.25rem;
+    --header-spacing: 1.5rem;
+    --text-font-size: 1rem;
+
+    .header {
+        font-size: var(--header-font-size);
+        font-weight: bold;
+        margin-bottom: var(--header-spacing);
+        text-align: center;
+    }
+
+    .text {
+        font-size: var(--text-font-size);
+        line-height: var(--text-font-size);
+    }
+
+    .game {
+        height: var(--game-height);
+        margin: 0 auto;
+        margin-top: var(--game-spacing);
+        position: relative;
+        width: calc(var(--game-height) * var(--game-ratio));
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .finish-modal {
+        --header-font-size: 1.5rem;
+        --text-font-size: 1.25rem;
+    }
+}

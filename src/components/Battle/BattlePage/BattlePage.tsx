@@ -1,5 +1,7 @@
 import BattlePreview from "@/components/Battle/BattlePreview/BattlePreview";
+import FinishModal from "@/components/Battle/FinishModal/FinishModal";
 import PokemonCard from "@/components/Battle/PokemonCard/PokemonCard";
+import Modal from "@/components/Global/Modal/Modal";
 import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
@@ -9,7 +11,6 @@ import { getBattle } from "@/utils/battle";
 import { getStarterSlug } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./BattlePage.module.scss";
-import Modal from "@/components/Global/Modal/Modal";
 
 type Props = {
     segment: Segment;
@@ -18,7 +19,7 @@ type Props = {
 
 const BattlePage: React.FC<Props> = (props: Props) => {
     // Component state
-    const [open, setOpen] = useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>(true);
 
     // Internal state
     const [sets, setSets] = useState<Pokemon[]>([]);
@@ -68,7 +69,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
                 ""
             )}
             <Modal open={open} onClose={() => setOpen(false)}>
-                <p></p>
+                <FinishModal game={props.run.gameSlug} />
             </Modal>
         </div>
     );
