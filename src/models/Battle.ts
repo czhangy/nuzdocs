@@ -2,7 +2,7 @@ import Trainer from "@/models/Trainer";
 import Pokemon from "@/models/Pokemon";
 
 export default interface Battle {
-    trainer: Trainer;
+    trainer: Trainer | Trainer[];
     team: Pokemon[];
     items: string[];
 }

@@ -16,7 +16,7 @@ export const getBattle = (game: string, battle: string, starter: string): Battle
     }
 };
 
-export const getTrainer = (game: string, battle: string, starter: string): Trainer => {
+export const getTrainer = (game: string, battle: string, starter: string): Trainer | Trainer[] => {
     return getBattle(game, battle, starter).trainer;
 };
 

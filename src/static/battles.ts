@@ -1563,8 +1563,8 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             ],
             items: ["super-potion", "super-potion"],
         },
-        maxie_tabitha: {
-            trainer: trainers.emerald_maxie_tabitha,
+        tabitha_maxie: {
+            trainer: [trainers.rse_tabitha, trainers.rse_maxie],
             team: [
                 {
                     slug: "mightyena",

@@ -12,6 +12,7 @@ import { exportPokemonList } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./BattlePreview.module.scss";
+import Trainer from "@/models/Trainer";
 
 type Props = {
     segment: Segment;
@@ -22,6 +23,9 @@ type Props = {
 const BattlePreview: React.FC<Props> = (props: Props) => {
     // Component state
     const [defeated, setDefeated] = useState<boolean>(false);
+
+    // Internal state
+    const [trainers, setTrainers] = useState<Trainer[]>([]);
 
     // Fetched data state
     const [items, setItems] = useState<ItemData[]>([]);
@@ -47,9 +51,28 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
         );
     };
 
+    // Translates array of trainer names to single string
+    const getTrainerName = (): string => {
+        let name: string = "";
+        for (const trainer of trainers) {
+            name += name ? ` & ${trainer.name}` : trainer.name;
+        }
+        return name;
+    };
+
     // Persist defeated state on component load
     useEffect(() => {
         if (props.segment && props.run) {
+            const trainer: Trainer | Trainer[] = getBattle(
+                props.run.gameSlug,
+                props.segment.slug,
+                getStarterSlug(props.run.id)
+            ).trainer;
+            if (Array.isArray(trainer)) {
+                setTrainers(trainer);
+            } else {
+                setTrainers([trainer]);
+            }
             setDefeated(isCleared(props.run.id, props.segment.slug));
             fetchItems(
                 getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).items,
@@ -63,34 +86,22 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["battle-preview"]}>
             <div className={styles.trainer}>
-                <div className={`${styles.sprite} ${defeated ? styles.defeated : ""}`}>
-                    <Image
-                        src={
-                            getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).trainer
-                                .sprite
-                        }
-                        alt={
-                            getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).trainer.name
-                        }
-                        layout="fill"
-                        objectFit="contain"
-                    />
-                </div>
+                {trainers.map((trainer: Trainer) => {
+                    return (
+                        <div className={`${styles.sprite} ${defeated ? styles.defeated : ""}`} key={trainer.name}>
+                            <Image src={trainer.sprite} alt={trainer.name} layout="fill" objectFit="contain" />
+                        </div>
+                    );
+                })}
                 <div className={styles.preview}>
                     <div className={styles.info}>
-                        <p className={styles.name}>
-                            {
-                                getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).trainer
-                                    .name
-                            }
-                        </p>
+                        <p className={styles.name}>{getTrainerName()}</p>
                         <div className={styles.items}>
                             {items.map((item: ItemData, key: number) => {
                                 return <ItemDisplay item={item} showName={false} key={key} />;
                             })}
                         </div>
                     </div>
-
                     {defeated ? (
                         <div className={styles.buttons}>
                             <button className={styles.defeat} disabled={true}>
