@@ -1,11 +1,11 @@
 import Modal from "@/components/Global/Modal/Modal";
 import CreateModal from "@/components/Home/CreateModal/CreateModal";
-import RunList from "@/components/Home/RunList/RunList";
-import { useEffect, useState } from "react";
-import styles from "./HomePage.module.scss";
 import DeleteModal from "@/components/Home/DeleteModal/DeleteModal";
+import RunList from "@/components/Home/RunList/RunList";
 import Run from "@/models/Run";
 import { deleteRun, getRun, getRunIDs, loadRun } from "@/utils/run";
+import { useEffect, useState } from "react";
+import styles from "./HomePage.module.scss";
 
 const HomePage: React.FC = () => {
     // Internal state

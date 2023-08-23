@@ -56,14 +56,16 @@
 
 @media (hover: hover) {
     .delete-modal > .delete > .buttons {
-        .cancel:hover {
+        .button:hover {
             border-color: constants.$hover-color;
+        }
+
+        .cancel:hover {
             color: constants.$hover-color;
         }
 
         .confirm:hover {
             background-color: constants.$hover-color;
-            border-color: constants.$hover-color;
             color: constants.$text-color;
         }
     }

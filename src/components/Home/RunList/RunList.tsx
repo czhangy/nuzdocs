@@ -35,11 +35,11 @@ const RunList: React.FC<Props> = (props) => {
                 <p className={styles["alt-text"]}>You don&apos;t have any saved runs yet!</p>
             )}
             <div className={styles.buttons}>
-                <label className={styles.button} htmlFor="file-upload">
+                <label className={`${styles.button} ${styles.load}`} htmlFor="file-upload">
                     <div className={styles.icon}>
                         <Image src="/assets/icons/upload.svg" alt="Upload" layout="fill" objectFit="contain" />
                     </div>
-                    Load Run
+                    <strong>Load Run</strong>
                 </label>
                 <input
                     id="file-upload"
@@ -48,8 +48,8 @@ const RunList: React.FC<Props> = (props) => {
                     accept="application/JSON"
                     onInput={(inputEvt: React.ChangeEvent<HTMLInputElement>) => handleFileRead(inputEvt)}
                 />
-                <button className={styles.button} onClick={props.onCreate}>
-                    + New Run
+                <button className={`${styles.button} ${styles.new}`} onClick={props.onCreate}>
+                    + <strong>New Run</strong>
                 </button>
             </div>
         </div>
