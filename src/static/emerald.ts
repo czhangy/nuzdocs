@@ -23,14 +23,14 @@ const emerald: GameGroup = {
                     segment: {},
                 },
                 {
-                    slug: "hoenn-route-103",
-                    name: "Route 103",
+                    slug: "oldale-town",
+                    name: "Oldale Town",
                     type: "location",
                     segment: {},
                 },
                 {
-                    slug: "oldale-town",
-                    name: "Oldale Town",
+                    slug: "hoenn-route-103",
+                    name: "Route 103",
                     type: "location",
                     segment: {},
                 },
