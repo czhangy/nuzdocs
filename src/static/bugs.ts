@@ -44,10 +44,6 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "General",
         },
         {
-            desc: "Damaging moves with no BP (ex: Grass Knot) don't display a STAB bonus",
-            group: "General",
-        },
-        {
             desc: "Some tooltips overflow the screen on mobile",
             group: "General",
         },

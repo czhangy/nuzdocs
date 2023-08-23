@@ -16,6 +16,27 @@ const MoveCard: React.FC<Props> = (props: Props) => {
     // Component state
     const [show, setShow] = useState<boolean>(false);
 
+    // Determines if move should display STAB
+    const hasSTABDisplay = (): boolean => {
+        if (props.move && props.isSTAB) {
+            const invalidSTAB: string[] = [
+                "sonic-boom",
+                "dragon-rage",
+                "night-shade",
+                "seismic-toss",
+                "counter",
+                "mirror-coat",
+                "future-sight",
+                "doom-desire",
+                "bide",
+                "beat-up",
+            ];
+            return props.isSTAB && props.move.category !== "other" && !invalidSTAB.includes(props.move.slug);
+        } else {
+            return false;
+        }
+    };
+
     return (
         <div className={styles["move-card"]} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
             <div className={styles.row}>
@@ -37,10 +58,13 @@ const MoveCard: React.FC<Props> = (props: Props) => {
                         />
                     </div>
                 </div>
-                {props.isSTAB && props.move.power > 0 ? (
+                {hasSTABDisplay() ? (
                     <div className={styles.bp}>
                         <p className={styles.text}>
-                            BP: <strong className={styles["stab-text"]}>{props.move.power * 1.5}</strong>
+                            BP:{" "}
+                            <strong className={styles["stab-text"]}>
+                                {props.move.power === 0 ? "--" : props.move.power * 1.5}
+                            </strong>
                         </p>
                         <div className={styles["stab-icon"]}>
                             <Image
