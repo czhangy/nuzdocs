@@ -1,6 +1,6 @@
 @use "@/styles/constants";
 
-.create-run-modal {
+.create-modal {
     --button-border-rad: 5px;
     --button-x-padding: 2rem;
     --content-width: 320px;
@@ -89,13 +89,13 @@
 }
 
 @media screen and (min-width: constants.$tablet) {
-    .create-run-modal {
+    .create-modal {
         --content-width: 400px;
     }
 }
 
 @media (hover: hover) {
-    .create-run-modal > .form {
+    .create-modal > .form {
         .games > .game:hover {
             filter: grayscale(0%);
         }

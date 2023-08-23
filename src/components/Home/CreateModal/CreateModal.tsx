@@ -3,9 +3,9 @@ import { createRun } from "@/utils/run";
 import Image from "next/image";
 import Router from "next/router";
 import { ChangeEvent, useState } from "react";
-import styles from "./CreateRunModal.module.scss";
+import styles from "./CreateModal.module.scss";
 
-const CreateRunModal: React.FC = () => {
+const CreateModal: React.FC = () => {
     // Form states
     const [selectedName, setSelectedName] = useState<string>("");
     const [selectedGameSlug, setSelectedGameSlug] = useState<string>("");
@@ -19,7 +19,7 @@ const CreateRunModal: React.FC = () => {
     };
 
     return (
-        <div className={styles["create-run-modal"]}>
+        <div className={styles["create-modal"]}>
             <h2 className={styles.header}>Start a New Run</h2>
             <form id="create-form" className={styles.form} onSubmit={handleCreate}>
                 <input
@@ -57,4 +57,4 @@ const CreateRunModal: React.FC = () => {
     );
 };
 
-export default CreateRunModal;
+export default CreateModal;
