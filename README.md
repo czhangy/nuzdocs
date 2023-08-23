@@ -120,7 +120,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] PBs
 -   [ ] Mark encounters
 -   [ ] Game data
--   [ ] Correct display for double battles
 -   [ ] Consider loading one-by-one instead of in groups (esp. for boxes)
 -   [ ] Confirmation modal for run deletion
 -   [ ] Nicer alerts for exports
