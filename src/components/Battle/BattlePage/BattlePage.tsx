@@ -1,5 +1,7 @@
 import BattlePreview from "@/components/Battle/BattlePreview/BattlePreview";
+import FinishModal from "@/components/Battle/FinishModal/FinishModal";
 import PokemonCard from "@/components/Battle/PokemonCard/PokemonCard";
+import Modal from "@/components/Global/Modal/Modal";
 import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
@@ -16,10 +18,13 @@ type Props = {
 };
 
 const BattlePage: React.FC<Props> = (props: Props) => {
-    // Internal data state
+    // Component state
+    const [open, setOpen] = useState<boolean>(false);
+
+    // Internal state
     const [sets, setSets] = useState<Pokemon[]>([]);
 
-    // Fetched data state
+    // Fetched state
     const [pokemon, setPokemon] = useState<PokemonData[]>([]);
 
     // Save sets array on page load
@@ -45,6 +50,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
                 segment={props.segment}
                 names={pokemon.map((pokemon: PokemonData) => pokemon.pokemon.name)}
                 run={props.run}
+                onFinish={() => setOpen(true)}
             />
             {pokemon.length === sets.length ? (
                 <ul className={styles.team}>
@@ -62,6 +68,9 @@ const BattlePage: React.FC<Props> = (props: Props) => {
             ) : (
                 ""
             )}
+            <Modal open={open} onClose={() => setOpen(false)}>
+                <FinishModal game={props.run.gameSlug} />
+            </Modal>
         </div>
     );
 };

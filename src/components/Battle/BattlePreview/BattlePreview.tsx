@@ -13,11 +13,13 @@ import { exportPokemonList } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./BattlePreview.module.scss";
+import { getSegments } from "@/utils/game";
 
 type Props = {
     segment: Segment;
     names: string[];
     run: Run;
+    onFinish: () => void;
 };
 
 const BattlePreview: React.FC<Props> = (props: Props) => {
@@ -34,6 +36,9 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     const handleDefeat = (): void => {
         setDefeated(true);
         addToClearedBattles(props.run.id, props.segment.slug);
+        if (props.segment.slug === getSegments(props.run.gameSlug).at(-1)!.slug) {
+            props.onFinish();
+        }
     };
 
     // Sets component state and updates local storage when undo is clicked

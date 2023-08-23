@@ -3,8 +3,8 @@
 .modal {
     --content-border-rad: 15px;
     --content-padding: 2rem;
+    --modal-z: 999;
     --overlay-opacity: 0.9;
-    --overlay-z: 999;
     --transition-time: 0.1s;
 
     align-items: center;
@@ -16,6 +16,7 @@
     right: 0;
     top: 0;
     transition: opacity var(--transition-time);
+    z-index: var(--modal-z);
 
     .modal-overlay {
         background: black;
@@ -23,7 +24,6 @@
         position: absolute;
         opacity: var(--overlay-opacity);
         width: 100%;
-        z-index: var(--overlay-z);
     }
 
     .modal-content {
@@ -31,7 +31,7 @@
         border-radius: var(--content-border-rad);
         max-width: constants.$max-width;
         padding: var(--content-padding);
-        z-index: calc(var(--overlay-z) + 1);
+        position: relative;
     }
 }
 
