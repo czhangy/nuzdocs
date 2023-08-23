@@ -1,34 +1,5 @@
 @use "@/styles/constants";
 
 .home-page {
-    --alt-text-size: 1.2rem;
-
-    align-items: center;
-    display: flex;
-    flex-direction: column;
     width: 100%;
-}
-
-@media screen and (min-width: constants.$tablet) {
-    .home-page {
-        --alt-text-size: 1.5rem;
-
-        .runs > .header {
-            justify-content: space-between;
-
-            .title {
-                display: block;
-                font-size: 2rem;
-                font-weight: bold;
-                text-align: center;
-            }
-        }
-    }
-}
-
-@media (hover: hover) {
-    .new-button:hover {
-        background: constants.$text-color;
-        color: constants.$bg-color;
-    }
 }

@@ -148,7 +148,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 onIVUpdate={(ivs: Values) => handleIVUpdate(ivs)}
                 onEVUpdate={(evs: Values) => handleEVUpdate(evs)}
             />
-            <Modal modalID="move-modal" open={moveModalOpen} onClose={() => setMoveModalOpen(false)}>
+            <Modal open={moveModalOpen} onClose={() => setMoveModalOpen(false)}>
                 {selectedIdx !== null ? (
                     <MoveModal
                         movepool={pokemonData.movepool}

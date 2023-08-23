@@ -18,14 +18,12 @@ const HomePage: React.FC = () => {
     };
 
     return (
-        <>
-            <div className={styles["home-page"]}>
-                <RunList onOpen={() => setModalOpen(true)} />
-            </div>
-            <Modal modalID="create-run-modal" onClose={closeCreateModal} open={modalOpen}>
+        <div className={styles["home-page"]}>
+            <RunList onOpen={() => setModalOpen(true)} />
+            <Modal onClose={closeCreateModal} open={modalOpen}>
                 <CreateModal key={resetFlag} />
             </Modal>
-        </>
+        </div>
     );
 };
 
