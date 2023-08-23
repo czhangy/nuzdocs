@@ -1,0 +1,31 @@
+@use "@/styles/constants";
+
+.delete-modal {
+    --buttons-inner-spacing: 1.5rem;
+    --delete-inner-spacing: 2rem;
+    --header-font-size: 1.25rem;
+
+    .delete {
+        text-align: center;
+
+        .header {
+            display: block;
+            font-size: var(--header-font-size);
+            line-height: var(--header-font-size);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            gap: var(--buttons-inner-spacing);
+            justify-content: center;
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .delete-modal {
+        --header-font-size: 1.5rem;
+    }
+}

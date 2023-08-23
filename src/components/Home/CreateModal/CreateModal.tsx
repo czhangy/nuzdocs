@@ -3,25 +3,23 @@ import { createRun } from "@/utils/run";
 import Image from "next/image";
 import Router from "next/router";
 import { ChangeEvent, useState } from "react";
-import styles from "./CreateRunModal.module.scss";
+import styles from "./CreateModal.module.scss";
 
-const CreateRunModal: React.FC = () => {
+const CreateModal: React.FC = () => {
     // Form states
     const [selectedName, setSelectedName] = useState<string>("");
-    const [selectedGameSlug, setSelectedGameSlug] = useState<string>("");
+    const [selectedGame, setSelectedGame] = useState<string>("");
 
     // Creates a run in local storage and adds the run to the run list, then redirects
     const handleCreate = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        Router.push(
-            `/runs/${createRun(selectedName, selectedGameSlug)}/${getGameGroup(selectedGameSlug).startingTownSlug}`
-        );
+        Router.push(`/runs/${createRun(selectedName, selectedGame)}/${getGameGroup(selectedGame).startingTownSlug}`);
     };
 
     return (
-        <div className={styles["create-run-modal"]}>
-            <h2 className={styles.header}>Start a New Run</h2>
-            <form id="create-form" className={styles.form} onSubmit={handleCreate}>
+        <div className={styles["create-modal"]}>
+            <p className={styles.header}>New Run</p>
+            <form className={styles.form} onSubmit={handleCreate}>
                 <input
                     className={styles.input}
                     maxLength={30}
@@ -29,19 +27,20 @@ const CreateRunModal: React.FC = () => {
                     type="text"
                     value={selectedName}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setSelectedName(e.target.value)}
+                    spellCheck={false}
                 />
                 <div className={styles.games}>
-                    {getGameSlugs().map((gameSlug: string, key: number) => {
+                    {getGameSlugs().map((game: string) => {
                         return (
                             <button
-                                className={`${styles.game} ${gameSlug === selectedGameSlug ? styles.active : ""}`}
-                                key={key}
+                                className={`${styles.game} ${game === selectedGame ? styles.active : ""}`}
+                                key={game}
                                 type="button"
-                                onClick={() => setSelectedGameSlug(gameSlug)}
+                                onClick={() => setSelectedGame(game)}
                             >
                                 <Image
-                                    src={getGame(gameSlug).logoURL}
-                                    alt={getGame(gameSlug).name}
+                                    src={getGame(game).logoURL}
+                                    alt={getGame(game).name}
                                     layout="fill"
                                     objectFit="contain"
                                 />
@@ -49,7 +48,7 @@ const CreateRunModal: React.FC = () => {
                         );
                     })}
                 </div>
-                <button className={styles.submit} disabled={selectedName.length === 0 || selectedGameSlug.length === 0}>
+                <button className="primary-button" disabled={!selectedName || !selectedGame}>
                     Start!
                 </button>
             </form>
@@ -57,4 +56,4 @@ const CreateRunModal: React.FC = () => {
     );
 };
 
-export default CreateRunModal;
+export default CreateModal;

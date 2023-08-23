@@ -1,11 +1,11 @@
+import MoveData from "@/models/MoveData";
 import NamedResource from "@/models/NamedResource";
 import PokemonMove from "@/models/PokemonMove";
+import { fetchMove } from "@/utils/api";
+import { initNamedResource } from "@/utils/initializers";
 import { translateSlug } from "@/utils/utils";
 import { ChangeEvent, useEffect, useState } from "react";
 import styles from "./MoveModal.module.scss";
-import { fetchMove } from "@/utils/api";
-import MoveData from "@/models/MoveData";
-import { initNamedResource } from "@/utils/initializers";
 
 type Props = {
     movepool: PokemonMove[];
@@ -70,7 +70,7 @@ const MoveModal: React.FC<Props> = (props: Props) => {
     // Update matches while user is inputting move name
     useEffect(() => {
         setMove("");
-        if (searchValue.length > 2 && moveList.length > 0) {
+        if (searchValue.length > 1 && moveList.length > 0) {
             const newMatches: string[] = [];
             moveList.forEach((move: string) => {
                 const moveName: string = translateSlug(move);
@@ -91,14 +91,13 @@ const MoveModal: React.FC<Props> = (props: Props) => {
         <div className={styles["move-modal"]}>
             {props.move ? (
                 <h2 className={styles.header}>
-                    Edit <strong>{props.move}</strong>!
+                    Edit <strong>{props.move}</strong>?
                 </h2>
             ) : (
                 <h2 className={styles.header}>
                     <strong>Select a move to learn!</strong>
                 </h2>
             )}
-
             <div className={styles.search}>
                 <input
                     className={styles.input}
@@ -124,13 +123,13 @@ const MoveModal: React.FC<Props> = (props: Props) => {
             </div>
             <div className={styles.buttons}>
                 {props.move ? (
-                    <button className={`${styles.button} ${styles.delete}`} onClick={props.onDelete}>
+                    <button className="secondary-button" onClick={props.onDelete}>
                         Remove
                     </button>
                 ) : (
                     ""
                 )}
-                <button className={`${styles.button} ${styles.confirm}`} disabled={!move} onClick={handleConfirm}>
+                <button className="primary-button" disabled={!move} onClick={handleConfirm}>
                     {props.move ? "Replace" : "Learn"}
                 </button>
             </div>

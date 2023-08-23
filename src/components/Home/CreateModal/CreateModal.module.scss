@@ -1,0 +1,86 @@
+@use "@/styles/constants";
+
+.create-modal {
+    --field-x-padding: 1rem;
+    --form-inner-spacing: 1.5rem;
+    --game-max-width: 120px;
+    --game-ratio: 2;
+    --games-inner-spacing: 1rem;
+    --games-max-height: 200px;
+    --games-num-columns: 3;
+    --games-y-padding: 1rem;
+    --header-font-size: 1.25rem;
+    --input-font-size: 1rem;
+    --input-y-padding: 0.5rem;
+    --modal-width: 325px;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--form-inner-spacing);
+    width: var(--modal-width);
+
+    .header {
+        font-size: var(--header-font-size);
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .form {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: var(--form-inner-spacing);
+        width: 100%;
+
+        .input {
+            background-color: constants.$bg-color;
+            font-size: var(--input-font-size);
+            line-height: var(--input-font-size);
+            padding: var(--input-y-padding) var(--field-x-padding);
+            width: 100%;
+        }
+
+        .games {
+            background-color: constants.$bg-color;
+            display: grid;
+            gap: var(--games-inner-spacing);
+            grid-template-columns: repeat(var(--games-num-columns), 1fr);
+            max-height: var(--games-max-height);
+            overflow-y: auto;
+            padding: var(--games-y-padding) var(--field-x-padding);
+            width: 100%;
+
+            .game {
+                filter: grayscale(100%);
+                height: calc(
+                    (var(--modal-width) - 2 * var(--games-inner-spacing) - 2 * var(--field-x-padding)) /
+                        (3 * var(--game-ratio))
+                );
+                margin: 0 auto;
+                max-width: var(--game-max-width);
+                position: relative;
+                user-select: none; /* Standard syntax */
+                -webkit-user-select: none; /* Safari */
+                width: calc((var(--modal-width) - 2 * var(--games-inner-spacing) - 2 * var(--field-x-padding)) / 3);
+            }
+
+            .active {
+                filter: none;
+                pointer-events: none;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .create-modal {
+        --header-font-size: 1.5rem;
+        --modal-width: 400px;
+    }
+}
+
+@media (hover: hover) {
+    .create-modal > .form > .games > .game:hover {
+        filter: none;
+    }
+}

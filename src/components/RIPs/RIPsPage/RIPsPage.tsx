@@ -60,7 +60,7 @@ const RIPsPage: React.FC<Props> = (props: Props) => {
                 run={props.run}
                 onRevive={(pokemon: PokemonData, id: string) => handleReviveAttempt(pokemon, id)}
             />
-            <Modal modalID="rip-modal" open={reviveModalOpen} onClose={handleClose}>
+            <Modal open={reviveModalOpen} onClose={handleClose}>
                 {selectedPokemon && reviveModalOpen ? (
                     <RIPModal
                         pokemon={selectedPokemon}

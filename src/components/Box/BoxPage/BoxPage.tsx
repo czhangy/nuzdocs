@@ -111,7 +111,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
                 onFormChange={(pokemon: PokemonData, id: string) => handleFormChangeAttempt(pokemon, id)}
                 onRIP={(pokemon: PokemonData, id: string) => handleRIPAttempt(pokemon, id)}
             />
-            <Modal modalID="evolve-modal" open={evolveModalOpen} onClose={handleClose}>
+            <Modal open={evolveModalOpen} onClose={handleClose}>
                 {selectedPokemon && evolveModalOpen ? (
                     <EvolveModal
                         pokemon={selectedPokemon}
@@ -123,7 +123,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
                     ""
                 )}
             </Modal>
-            <Modal modalID="form-change-modal" open={formChangeModalOpen} onClose={handleClose}>
+            <Modal open={formChangeModalOpen} onClose={handleClose}>
                 {selectedPokemon && formChangeModalOpen ? (
                     <FormChangeModal
                         pokemon={selectedPokemon}
@@ -135,7 +135,7 @@ const BoxPage: React.FC<Props> = (props: Props) => {
                     ""
                 )}
             </Modal>
-            <Modal modalID="rip-modal" open={ripModalOpen} onClose={handleClose}>
+            <Modal open={ripModalOpen} onClose={handleClose}>
                 {selectedPokemon && ripModalOpen ? (
                     <RIPModal pokemon={selectedPokemon} isRevive={false} onConfirm={handleRIP} onClose={handleClose} />
                 ) : (

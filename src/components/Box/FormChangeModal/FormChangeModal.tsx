@@ -49,10 +49,10 @@ const FormChangeModal: React.FC<Props> = (props: Props) => {
                 ))}
             </div>
             <div className={styles.buttons}>
-                <button className={`${styles.button} ${styles.cancel}`} onClick={props.onClose}>
+                <button className="secondary-button" onClick={props.onClose}>
                     Cancel
                 </button>
-                <button className={`${styles.button} ${styles.confirm}`} onClick={() => props.onFormChange(selection)}>
+                <button className="primary-button" onClick={() => props.onFormChange(selection)}>
                     Confirm
                 </button>
             </div>
