@@ -12,14 +12,15 @@ import styles from "./Box.module.scss";
 type Props = {
     box: CaughtPokemon[];
     run: Run;
-    onEvolve?: (pokemon: PokemonData, idx: number) => void;
-    onFormChange?: (pokemon: PokemonData, idx: number) => void;
-    onRIP?: (pokemon: PokemonData, idx: number) => void;
-    onRevive?: (pokemon: PokemonData, idx: number) => void;
+    onEvolve?: (pokemon: PokemonData, id: string) => void;
+    onFormChange?: (pokemon: PokemonData, id: string) => void;
+    onRIP?: (pokemon: PokemonData, id: string) => void;
+    onRevive?: (pokemon: PokemonData, id: string) => void;
 };
 
 const Box: React.FC<Props> = (props: Props) => {
     // Fetched data state
+    const [boxPokemon, setBoxPokemon] = useState<CaughtPokemon[]>([]);
     const [boxData, setBoxData] = useState<PokemonData[]>([]);
 
     // Component state
@@ -39,38 +40,33 @@ const Box: React.FC<Props> = (props: Props) => {
     };
 
     // Close menu and propagate up
-    const handleEvolve = (pokemon: PokemonData, idx: number): void => {
+    const handleEvolve = (pokemon: PokemonData, id: string): void => {
         setActiveIdx(null);
-        props.onEvolve!(pokemon, idx);
+        props.onEvolve!(pokemon, id);
     };
 
     // Close menu and propagate up
-    const handleFormChange = (pokemon: PokemonData, idx: number): void => {
+    const handleFormChange = (pokemon: PokemonData, id: string): void => {
         setActiveIdx(null);
-        props.onFormChange!(pokemon, idx);
+        props.onFormChange!(pokemon, id);
     };
 
     // Close menu and propagate up
-    const handleRIP = (pokemon: PokemonData, idx: number): void => {
+    const handleRIP = (pokemon: PokemonData, id: string): void => {
         setActiveIdx(null);
-        props.onRIP!(pokemon, idx);
+        props.onRIP!(pokemon, id);
     };
 
     // Close menu and propagate up
-    const handleRevive = (pokemon: PokemonData, idx: number): void => {
+    const handleRevive = (pokemon: PokemonData, id: string): void => {
         setActiveIdx(null);
-        props.onRevive!(pokemon, idx);
+        props.onRevive!(pokemon, id);
     };
 
     // Close menu and copy set to clipboard
     const handleExport = (pokemon: CaughtPokemon, name: string): void => {
         setActiveIdx(null);
         exportPokemon(pokemon.pokemon, name, pokemon.nickname);
-    };
-
-    // Compute the number of failed encounters
-    const getNumFailedEncounters = (): number => {
-        return props.box.filter((pokemon: CaughtPokemon) => pokemon.pokemon.slug === "failed").length;
     };
 
     // Listen for window resizes to recompute inverted menus when component ready
@@ -85,16 +81,20 @@ const Box: React.FC<Props> = (props: Props) => {
     // Use box to fetch data for all Pokemon in box, ignoring failed encounters
     useEffect(() => {
         if (props.box.length > 0 && props.run) {
+            setBoxPokemon(props.box.filter((pokemon: CaughtPokemon) => pokemon.pokemon.slug !== "failed"));
             fetchPokemonList(getPokemonSlugsFromBox(props.box), props.run.gameSlug).then((pokemonData: PokemonData[]) =>
                 setBoxData(pokemonData)
             );
+        } else {
+            setBoxPokemon([]);
+            setBoxData([]);
         }
     }, [props.box, props.run]);
 
-    return boxData.length > 0 && boxData.length + getNumFailedEncounters() === props.box.length ? (
+    return boxData.length > 0 && boxData.length === boxPokemon.length ? (
         <div className={styles.box}>
             {boxData.map((pokemon: PokemonData, idx: number) => (
-                <div className={styles.pokemon} key={props.box[idx].id}>
+                <div className={styles.pokemon} key={boxPokemon[idx].id}>
                     <button
                         className={`${styles.button} ${idx === activeIdx ? styles.active : ""}`}
                         onClick={() => setActiveIdx(idx)}
@@ -104,25 +104,25 @@ const Box: React.FC<Props> = (props: Props) => {
                     {props.onEvolve ? (
                         <BoxMenu
                             pokemon={pokemon}
-                            pokemonID={props.box[idx].id}
+                            pokemonID={boxPokemon[idx].id}
                             runID={props.run.id}
                             open={idx === activeIdx}
                             inverted={isInverted[idx]}
                             onClose={() => setActiveIdx(null)}
-                            onEvolve={() => handleEvolve(pokemon, idx)}
-                            onFormChange={() => handleFormChange(pokemon, idx)}
-                            onRIP={() => handleRIP(pokemon, idx)}
-                            onExport={() => handleExport(props.box[idx], pokemon.pokemon.name)}
+                            onEvolve={() => handleEvolve(pokemon, boxPokemon[idx].id)}
+                            onFormChange={() => handleFormChange(pokemon, boxPokemon[idx].id)}
+                            onRIP={() => handleRIP(pokemon, boxPokemon[idx].id)}
+                            onExport={() => handleExport(boxPokemon[idx], pokemon.pokemon.name)}
                         />
                     ) : (
                         <BoxMenu
                             pokemon={pokemon}
-                            pokemonID={props.box[idx].id}
+                            pokemonID={boxPokemon[idx].id}
                             runID={props.run.id}
                             open={idx === activeIdx}
                             inverted={isInverted[idx]}
                             onClose={() => setActiveIdx(null)}
-                            onRevive={() => handleRevive(pokemon, idx)}
+                            onRevive={() => handleRevive(pokemon, boxPokemon[idx].id)}
                         />
                     )}
                 </div>

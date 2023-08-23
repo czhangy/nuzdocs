@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import styles from "./ProgressBar.module.scss";
 
 type Props = {
     complete: number;
     total: number;
+    barID: string;
 };
 
 const ProgressBar: React.FC<Props> = (props) => {
@@ -11,11 +13,21 @@ const ProgressBar: React.FC<Props> = (props) => {
         return Math.round((props.complete / props.total) * 100);
     };
 
+    // Delay bar draw on component load for animation
+    useEffect(() => {
+        if (props.complete && props.total) {
+            setTimeout(() => {
+                console.log(props.complete);
+                document.getElementById(`bar-${props.barID}`)!.style.width = `${calculatePercentage()}%`;
+            }, 100);
+        }
+    }, [props.complete, props.total]);
+
     return (
         <div className={styles["progress-bar"]}>
             <p className={styles.percent}>{calculatePercentage()}%</p>
             <div className={styles.bg}>
-                <div className={styles.bar} style={{ width: `${calculatePercentage()}%` }} />
+                <div id={`bar-${props.barID}`} className={styles.bar} />
             </div>
         </div>
     );

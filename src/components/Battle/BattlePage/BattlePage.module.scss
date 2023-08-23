@@ -4,12 +4,10 @@
     --team-inner-spacing: 1rem;
     --team-spacing: 2rem;
 
-    min-height: inherit;
-
     .team {
-        display: grid;
+        display: flex;
+        flex-direction: column;
         gap: var(--team-inner-spacing);
-        grid-template-columns: 1fr;
         margin-top: var(--team-spacing);
         width: 100%;
     }

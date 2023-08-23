@@ -3,12 +3,14 @@
 .summary-header {
     --info-font-size: 1rem;
     --info-inner-spacing: 0.75rem;
+    --nav-spacing: 1rem;
     --pokemon-inner-spacing: 1rem;
     --sprite-size: 125px;
 
     .nav {
         display: flex;
         justify-content: space-between;
+        margin-bottom: var(--nav-spacing);
         width: 100%;
     }
 
@@ -64,6 +66,7 @@
 @media screen and (min-width: constants.$tablet) {
     .summary-header {
         --info-font-size: 1.5rem;
+        --nav-spacing: 0;
         --sprite-size: 150px;
     }
 }

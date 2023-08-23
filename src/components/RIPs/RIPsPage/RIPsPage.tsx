@@ -21,28 +21,28 @@ const RIPsPage: React.FC<Props> = (props: Props) => {
 
     // Internal data state
     const [selectedPokemon, setSelectedPokemon] = useState<PokemonData | null>(null);
-    const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+    const [selectedID, setSelectedID] = useState<string>("");
 
     // Reset internal state on close, delaying state change to allow modal to transition out smoothly
     const handleClose = () => {
         setReviveModalOpen(false);
         setTimeout(() => {
             setSelectedPokemon(null);
-            setSelectedIdx(null);
+            setSelectedID("");
         }, 200);
     };
 
     // Update state and open revive modal
-    const handleReviveAttempt = (pokemon: PokemonData, idx: number) => {
+    const handleReviveAttempt = (pokemon: PokemonData, id: string) => {
         setSelectedPokemon(pokemon);
-        setSelectedIdx(idx);
+        setSelectedID(id);
         setReviveModalOpen(true);
     };
 
     // Revive the Pokemon, updating component + local storage and closing the modal
     const handleRevive = () => {
-        addToBox(props.run.id, ripsPokemon[selectedIdx!]);
-        removeFromRIPs(props.run.id, ripsPokemon[selectedIdx!].id);
+        addToBox(props.run.id, ripsPokemon.find((pokemon: CaughtPokemon) => pokemon.id === selectedID)!);
+        removeFromRIPs(props.run.id, selectedID);
         setRIPsPokemon(getRIPs(props.run.id));
         handleClose();
     };
@@ -54,6 +54,12 @@ const RIPsPage: React.FC<Props> = (props: Props) => {
 
     return (
         <div className={styles["rips-page"]}>
+            <h2 className={styles.header}>Your RIPs</h2>
+            <Box
+                box={ripsPokemon}
+                run={props.run}
+                onRevive={(pokemon: PokemonData, id: string) => handleReviveAttempt(pokemon, id)}
+            />
             <Modal modalID="rip-modal" open={reviveModalOpen} onClose={handleClose}>
                 {selectedPokemon && reviveModalOpen ? (
                     <RIPModal
@@ -66,12 +72,6 @@ const RIPsPage: React.FC<Props> = (props: Props) => {
                     ""
                 )}
             </Modal>
-            <h2 className={styles.header}>Your RIPs</h2>
-            <Box
-                box={ripsPokemon}
-                run={props.run}
-                onRevive={(pokemon: PokemonData, idx: number) => handleReviveAttempt(pokemon, idx)}
-            />
         </div>
     );
 };

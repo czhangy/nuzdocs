@@ -111,3 +111,18 @@ export const exportPokemonList = (pokemon: Pokemon[], names: string[], tag: stri
 export const getPokedexLink = (runID: string, pokemon: string): string => {
     return `/runs/${runID}/pokedex/${pokemon}`;
 };
+
+export const isInvalidForm = (form: string): boolean => {
+    const invalidForms: string[] = [
+        "-starter",
+        "-gmax",
+        "-mega",
+        "-cap",
+        "-belle",
+        "-cosplay",
+        "-libre",
+        "-phd",
+        "-star",
+    ];
+    return invalidForms.some((suffix: string) => form.endsWith(suffix));
+};

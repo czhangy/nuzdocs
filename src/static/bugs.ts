@@ -3,7 +3,7 @@ import Bug from "@/models/Bug";
 const bugs: { [priority: string]: Bug[] } = {
     High: [
         {
-            desc: "Encounter data is slightly off (compared to Serebii)",
+            desc: "Encounter data is slightly wrong",
             group: "General",
         },
         {
@@ -12,8 +12,8 @@ const bugs: { [priority: string]: Bug[] } = {
             link: "https://github.com/czhangy/nuzlocke-db/issues/25",
         },
         {
-            desc: "Refreshing while not on the main run page prevents the navbar from rendering",
-            group: "General",
+            desc: "Underwater encounters display as part of their routes, not in the underwater location",
+            group: "Emerald",
         },
     ],
     Medium: [
@@ -26,25 +26,21 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "General",
         },
         {
-            desc: "If a move has been updated, only the most recent set of info is displayed, regardless of what gen the run is",
-            group: "General",
-        },
-        {
             desc: "Pokemon with different forms can evolve between forms (i.e., Zigzagoon/Linoone/Obstagoon)",
             group: "General",
         },
         {
-            desc: "Pokemon cannot learn moves from their past forms if they are no longer part of its moveset",
+            desc: "Pokemon cannot learn moves from their past evolutions if they are no longer part of its moveset",
+            group: "General",
+        },
+        {
+            desc: "Pokemon abilities carry through when they evolve, even when they can no longer have that abiilty",
             group: "General",
         },
     ],
     Low: [
         {
             desc: "Accordion arrow icon is loading too slow",
-            group: "General",
-        },
-        {
-            desc: "Sprites with negative margins overlap surrounding content",
             group: "General",
         },
         {
@@ -60,7 +56,11 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "General",
         },
         {
-            desc: "Segment pages have extra padding at the bottom when the page is smaller than the screen height",
+            desc: "Static Electrode encounters are missing from Aqua Hideout",
+            group: "Emerald",
+        },
+        {
+            desc: "Location pages have excess height on mobile displays",
             group: "General",
         },
     ],

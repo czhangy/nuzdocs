@@ -17,20 +17,14 @@ const emerald: GameGroup = {
                     segment: {},
                 },
                 {
-                    slug: "may-1",
-                    name: "May 1",
-                    type: "battle",
-                    segment: {
-                        battle: {
-                            treecko: battles.emerald.may_1_treecko,
-                            torchic: battles.emerald.may_1_torchic,
-                            mudkip: battles.emerald.may_1_mudkip,
-                        },
-                    },
-                },
-                {
                     slug: "hoenn-route-101",
                     name: "Route 101",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-103",
+                    name: "Route 103",
                     type: "location",
                     segment: {},
                 },
@@ -41,10 +35,16 @@ const emerald: GameGroup = {
                     segment: {},
                 },
                 {
-                    slug: "hoenn-route-103",
-                    name: "Route 103",
-                    type: "location",
-                    segment: {},
+                    slug: "may-1",
+                    name: "May 1",
+                    type: "battle",
+                    segment: {
+                        battle: {
+                            treecko: battles.emerald.may_1_treecko,
+                            torchic: battles.emerald.may_1_torchic,
+                            mudkip: battles.emerald.may_1_mudkip,
+                        },
+                    },
                 },
                 {
                     slug: "hoenn-route-102",
@@ -73,6 +73,12 @@ const emerald: GameGroup = {
                 {
                     slug: "rustboro-city",
                     name: "Rustboro City",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-115",
+                    name: "Route 115",
                     type: "location",
                     segment: {},
                 },
@@ -258,12 +264,7 @@ const emerald: GameGroup = {
                     type: "location",
                     segment: {},
                 },
-                {
-                    slug: "hoenn-route-115",
-                    name: "Route 115",
-                    type: "location",
-                    segment: {},
-                },
+
                 {
                     slug: "mt-chimney",
                     name: "Mt. Chimney",
@@ -333,6 +334,48 @@ const emerald: GameGroup = {
             name: "Winona Split",
             segments: [
                 {
+                    slug: "hoenn-route-105",
+                    name: "Route 105",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-108",
+                    name: "Route 108",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "abandoned-ship",
+                    name: "Abandoned Ship",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-134",
+                    name: "Route 134",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "new-mauville",
+                    name: "New Mauville",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-123",
+                    name: "Route 123",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-119",
+                    name: "Route 119",
+                    type: "location",
+                    segment: {},
+                },
+                {
                     slug: "shelly",
                     name: "Shelly",
                     type: "battle",
@@ -353,6 +396,60 @@ const emerald: GameGroup = {
                     },
                 },
                 {
+                    slug: "fortree-city",
+                    name: "Fortree City",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-120",
+                    name: "Route 120",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "scorched-slab",
+                    name: "Scorched Slab",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-121",
+                    name: "Route 121",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-122",
+                    name: "Route 122",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "mt-pyre",
+                    name: "Mt. Pyre",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "lilycove-city",
+                    name: "Lilycove City",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-safari-zone",
+                    name: "Safari Zone",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "team-aqua-hideout",
+                    name: "Aqua Hideout",
+                    type: "location",
+                    segment: {},
+                },
+                {
                     slug: "winona",
                     name: "Winona",
                     type: "battle",
@@ -366,6 +463,12 @@ const emerald: GameGroup = {
         {
             name: "Tate & Liza Split",
             segments: [
+                {
+                    slug: "magma-hideout",
+                    name: "Magma Hideout",
+                    type: "location",
+                    segment: {},
+                },
                 {
                     slug: "tabitha-2",
                     name: "Tabitha 2",
@@ -391,6 +494,96 @@ const emerald: GameGroup = {
                     },
                 },
                 {
+                    slug: "hoenn-route-124",
+                    name: "Route 124",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-126",
+                    name: "Route 126",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "mossdeep-city",
+                    name: "Mossdeep City",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-125",
+                    name: "Route 125",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "shoal-cave",
+                    name: "Shoal Cave",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-127",
+                    name: "Route 127",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-128",
+                    name: "Route 128",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "ever-grande-city",
+                    name: "Ever Grande City",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-129",
+                    name: "Route 129",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-130",
+                    name: "Route 130",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-131",
+                    name: "Route 131",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "sky-pillar",
+                    name: "Sky Pillar",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "pacifidlog-town",
+                    name: "Pacifidlog Town",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-132",
+                    name: "Route 132",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-133",
+                    name: "Route 133",
+                    type: "location",
+                    segment: {},
+                },
+                {
                     slug: "tate-and-liza",
                     name: "Tate and Liza",
                     type: "battle",
@@ -405,12 +598,44 @@ const emerald: GameGroup = {
             name: "Juan Split",
             segments: [
                 {
+                    slug: "maxie-and-tabitha",
+                    name: "Maxie & Tabitha",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.maxie_tabitha,
+                    },
+                },
+                {
+                    slug: "underwater",
+                    name: "Underwater",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "sootopolis-city",
+                    name: "Sootopolis City",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "seafloor-cavern",
+                    name: "Seafloor Cavern",
+                    type: "location",
+                    segment: {},
+                },
+                {
                     slug: "archie",
                     name: "Archie",
                     type: "battle",
                     segment: {
                         battle: battles.emerald.archie,
                     },
+                },
+                {
+                    slug: "cave-of-origin",
+                    name: "Cave of Origin",
+                    type: "location",
+                    segment: {},
                 },
                 {
                     slug: "juan",
@@ -426,6 +651,12 @@ const emerald: GameGroup = {
         {
             name: "Champion Split",
             segments: [
+                {
+                    slug: "hoenn-victory-road",
+                    name: "Victory Road",
+                    type: "location",
+                    segment: {},
+                },
                 {
                     slug: "wally-2",
                     name: "Wally 2",

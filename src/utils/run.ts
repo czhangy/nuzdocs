@@ -90,8 +90,9 @@ export const setPrevSegmentSlug = (runID: string, locationSlug: string): void =>
 };
 
 // Mutators
-export const updateBox = (runID: string, pokemon: CaughtPokemon, idx: number): void => {
+export const updateBox = (runID: string, pokemon: CaughtPokemon): void => {
     let run: Run = getRun(runID);
+    const idx: number = run.box.findIndex((boxPokemon: CaughtPokemon) => boxPokemon.id === pokemon.id);
     run.box[idx] = pokemon;
     setRun(runID, run);
 };
@@ -114,8 +115,9 @@ export const removeFromBox = (runID: string, pokemonID: string): void => {
     setRun(runID, run);
 };
 
-export const updateRIPs = (runID: string, pokemon: CaughtPokemon, idx: number): void => {
+export const updateRIPs = (runID: string, pokemon: CaughtPokemon): void => {
     let run: Run = getRun(runID);
+    const idx: number = run.rips.findIndex((ripPokemon: CaughtPokemon) => ripPokemon.id === pokemon.id);
     run.rips[idx] = pokemon;
     setRun(runID, run);
 };

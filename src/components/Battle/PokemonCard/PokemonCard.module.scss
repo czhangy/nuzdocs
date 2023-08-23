@@ -3,14 +3,17 @@
 .pokemon-card {
     --body-estimate: 30rem;
     --card-border-rad: 10px;
-    --display-size: 100px;
+    --display-size: calc(100px + 1rem);
     --header-border-size: 3px;
     --header-x-padding: 2.5rem;
+    --header-y-padding: 0.5rem;
     --info-font-size: 0.75rem;
     --info-inner-spacing: 0.5rem;
-    --info-offset: 1.25rem;
+    --info-offset: 2rem;
     --level-font-size: 1rem;
+    --moves-cols: 1;
     --moves-inner-spacing: 1rem;
+    --moves-rows: 4;
     --toggle-font-size: 2rem;
     --toggle-offset: 0.5rem;
     --toggle-z: 2;
@@ -39,15 +42,15 @@
             align-items: flex-start;
             border-bottom: var(--header-border-size) solid constants.$text-color;
             display: flex;
-            padding: 0 var(--header-x-padding);
+            padding: var(--header-y-padding) var(--header-x-padding);
             justify-content: space-between;
         }
 
         .moves {
             display: grid;
             gap: var(--moves-inner-spacing);
-            grid-template-columns: 1fr;
-            grid-template-rows: 1fr 1fr 1fr 1fr;
+            grid-template-columns: repeat(var(--moves-cols), 1fr);
+            grid-template-rows: repeat(var(--moves-rows), 1fr);
             padding: var(--moves-inner-spacing);
         }
     }
@@ -81,16 +84,12 @@
 @media screen and (min-width: constants.$tablet) {
     .pokemon-card {
         --body-estimate: 15rem;
-        --display-size: 120px;
+        --display-size: calc(120px + 1rem);
         --header-x-padding: 4rem;
         --info-font-size: 1rem;
-        --info-offset: 1.5rem;
         --level-font-size: 1.25rem;
-
-        .card > .moves {
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-        }
+        --moves-cols: 2;
+        --moves-rows: 2;
     }
 }
 
