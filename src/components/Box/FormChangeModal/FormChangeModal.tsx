@@ -59,7 +59,7 @@ const FormChangeModal: React.FC<Props> = (props: Props) => {
         </div>
     ) : (
         <div className={styles["form-change-modal"]}>
-            <p className={styles.header}>Loading...</p>
+            <div className="bg-spinner" />
         </div>
     );
 };
