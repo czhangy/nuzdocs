@@ -22,6 +22,7 @@ const LocationPage: React.FC<Props> = (props: Props) => {
     // Get data associated with current location on page load
     useEffect(() => {
         if (props.segment) {
+            setCurrentLocation(null);
             fetchLocation(props.segment.slug).then((location) => setCurrentLocation(location));
         }
     }, [props.segment]);
@@ -44,7 +45,9 @@ const LocationPage: React.FC<Props> = (props: Props) => {
             <EncounterDisplay locationSlug={props.segment.slug} run={props.run} />
         </div>
     ) : (
-        <p>Loading...</p>
+        <div className={styles.loading}>
+            <div className="accent-spinner" />
+        </div>
     );
 };
 

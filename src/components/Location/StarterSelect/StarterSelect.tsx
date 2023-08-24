@@ -109,7 +109,11 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
             </div>
         </div>
     ) : (
-        <p>Loading...</p>
+        <div className={styles["starter-select"]}>
+            <div className={styles.loading}>
+                <div className="accent-spinner" />
+            </div>
+        </div>
     );
 };
 

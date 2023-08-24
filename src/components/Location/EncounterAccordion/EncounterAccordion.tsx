@@ -22,11 +22,6 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
     // Fetched data state
     const [pokemonData, setPokemonData] = useState<PokemonData[]>([]);
 
-    // Calculates the expanded height of the accordion
-    const getExpandedHeight = (): string => {
-        return `calc(var(--method-font-size) + 2 * var(--accordion-y-padding) + var(--body-border-size) + var(--category-font-size) + 2 * var(--category-y-padding) + ${props.encounters.length} * (2 * var(--cell-y-padding) + 2 * var(--pokemon-inner-spacing) + var(--sprite-size) + var(--name-font-size) + var(--type-height)) + var(--body-extra-padding))`;
-    };
-
     // Formats the level range of an encounter
     const getLevelRange = (encounter: EncounterData): number | string => {
         if (encounter.minLevel === encounter.maxLevel) {
@@ -48,7 +43,7 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
     }, [props.encounters, props.gameSlug]);
 
     return (
-        <div className={styles["encounter-accordion"]} style={isOpen ? { maxHeight: getExpandedHeight() } : {}}>
+        <div className={`${styles["encounter-accordion"]} ${isOpen ? styles.open : ""}`}>
             <button className={styles.header} onClick={() => setIsOpen(!isOpen)}>
                 <h3 className={styles.method}>{props.method}</h3>
                 <div className={`${styles.arrow} ${isOpen ? styles.reversed : ""}`}>
@@ -117,7 +112,9 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
                     </tbody>
                 </table>
             ) : (
-                <p className={styles.loading}>Loading...</p>
+                <div className={styles.loading}>
+                    <div className="bg-spinner" />
+                </div>
             )}
         </div>
     );

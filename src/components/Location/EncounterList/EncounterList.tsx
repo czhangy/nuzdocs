@@ -4,11 +4,10 @@ import TimeControls from "@/components/Location/TimeControls/TimeControls";
 import AreaData from "@/models/AreaData";
 import LocationData from "@/models/LocationData";
 import Run from "@/models/Run";
+import translations from "@/static/translations";
 import { fetchAreas } from "@/utils/api";
-import { getGameGroup } from "@/utils/game";
 import { useEffect, useState } from "react";
 import styles from "./EncounterList.module.scss";
-import translations from "@/static/translations";
 
 type Props = {
     location: LocationData;
@@ -16,12 +15,13 @@ type Props = {
 };
 
 const EncounterList: React.FC<Props> = (props: Props) => {
-    // Fetched data state
+    // Fetched state
     const [areaList, setAreaList] = useState<AreaData[]>([]);
 
     // Component state
     const [currentArea, setCurrentArea] = useState<AreaData | null>(null);
     const [time, setTime] = useState<"time-morning" | "time-day" | "time-night">("time-morning");
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     // Translates areas into area names for the dropdown
     const getAreaNames = (): string[] => {
@@ -47,6 +47,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
         if (props.location && props.run.gameSlug) {
             setCurrentArea(null);
             setAreaList([]);
+            setIsLoading(true);
             fetchAreas(props.location.areas, props.run.gameSlug).then((areaList: AreaData[]) => {
                 const validAreas: AreaData[] = [];
                 for (const area of areaList) {
@@ -55,6 +56,7 @@ const EncounterList: React.FC<Props> = (props: Props) => {
                     }
                 }
                 setAreaList(validAreas);
+                setIsLoading(false);
             });
         }
     }, [props.location, props.run.gameSlug]);
@@ -108,6 +110,10 @@ const EncounterList: React.FC<Props> = (props: Props) => {
             ) : (
                 ""
             )}
+        </div>
+    ) : isLoading ? (
+        <div className={styles.loading}>
+            <div className="accent-spinner" />
         </div>
     ) : (
         <p className={styles.empty}>No encounters here!</p>

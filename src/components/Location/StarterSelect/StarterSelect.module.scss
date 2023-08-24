@@ -1,7 +1,8 @@
 @use "@/styles/constants";
 
 .starter-select {
-    --button-padding: 0.4rem;
+    --button-padding: 0.5rem;
+    --display-height: 100px;
     --header-inner-spacing: 1rem;
     --icon-size: 20px;
     --inner-spacing: 1rem;
@@ -50,6 +51,18 @@
         align-items: center;
         display: flex;
         gap: var(--starter-inner-spacing);
+    }
+
+    .loading {
+        align-items: center;
+        display: flex;
+        height: calc(var(--display-height) + var(--icon-size) + 2 * var(--button-padding));
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .starter-select {
+        --display-height: 120px;
     }
 }
 
