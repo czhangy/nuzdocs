@@ -1,8 +1,8 @@
-import GameGroup from "@/models/GameGroup";
+import GameData from "@/models/GameData";
 import battles from "@/static/battles";
 import pokedex from "@/static/pokedex";
 
-const ruby: GameGroup = {
+const ruby: GameData = {
     generation: "generation-iii",
     versionGroup: "ruby-sapphire",
     pokedex: pokedex.slice(0, 386),

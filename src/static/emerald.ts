@@ -1,8 +1,8 @@
-import GameGroup from "@/models/GameGroup";
+import GameData from "@/models/GameData";
 import battles from "@/static/battles";
 import pokedex from "@/static/pokedex";
 
-const emerald: GameGroup = {
+const emerald: GameData = {
     generation: "generation-iii",
     versionGroup: "emerald",
     pokedex: pokedex.slice(0, 386),

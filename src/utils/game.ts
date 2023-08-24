@@ -1,5 +1,5 @@
 import Game from "@/models/Game";
-import GameGroup from "@/models/GameGroup";
+import GameData from "@/models/GameData";
 import PokemonName from "@/models/PokemonName";
 import Segment from "@/models/Segment";
 import Split from "@/models/Split";
@@ -14,13 +14,13 @@ export const getGame = (gameSlug: string): Game => {
     return games[gameSlug];
 };
 
-export const getGameGroup = (gameSlug: string): GameGroup => {
-    return getGame(gameSlug).gameGroup;
+export const getGameData = (gameSlug: string): GameData => {
+    return getGame(gameSlug).data;
 };
 
 export const getSegments = (gameSlug: string): Segment[] => {
     const segments: Segment[] = [];
-    for (const split of getGameGroup(gameSlug).splits) {
+    for (const split of getGameData(gameSlug).splits) {
         segments.push(...split.segments);
     }
     return segments;

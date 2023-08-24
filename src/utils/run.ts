@@ -1,6 +1,6 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 import Run from "@/models/Run";
-import { getGameGroup } from "@/utils/game";
+import { getGameData } from "@/utils/game";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import { generateID } from "@/utils/utils";
 
@@ -10,7 +10,7 @@ export const initRun = (id: string, name: string, gameSlug: string): Run => {
         id: id,
         name: name,
         gameSlug: gameSlug,
-        prevSegmentSlug: getGameGroup(gameSlug).startingTownSlug,
+        prevSegmentSlug: getGameData(gameSlug).startingTownSlug,
         box: [],
         rips: [],
         caughtPokemonSlugs: [],

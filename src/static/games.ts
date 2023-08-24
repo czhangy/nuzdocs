@@ -8,22 +8,22 @@ const games: { [gameSlug: string]: Game } = {
     ruby: {
         name: "Ruby",
         logoURL: "/assets/images/ruby.webp",
-        gameGroup: ruby,
+        data: ruby,
     },
     sapphire: {
         name: "Sapphire",
         logoURL: "/assets/images/sapphire.webp",
-        gameGroup: sapphire,
+        data: sapphire,
     },
     emerald: {
         name: "Emerald",
         logoURL: "/assets/images/emerald.webp",
-        gameGroup: emerald,
+        data: emerald,
     },
     soulsilver: {
         name: "SoulSilver",
         logoURL: "/assets/images/soulsilver.webp",
-        gameGroup: hgss,
+        data: hgss,
     },
 };
 

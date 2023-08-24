@@ -1,7 +1,7 @@
 import SplitOverview from "@/components/Overview/SplitOverview/SplitOverview";
 import Run from "@/models/Run";
 import Split from "@/models/Split";
-import { getGameGroup } from "@/utils/game";
+import { getGameData } from "@/utils/game";
 import styles from "./OverviewPage.module.scss";
 
 type Props = {
@@ -14,7 +14,7 @@ const OverviewPage: React.FC<Props> = (props: Props) => {
             <h2 className={styles.header}>Overview</h2>
             <p className={styles.notice}>*Level caps noted at the top of each split*</p>
             <ul className={styles.splits}>
-                {getGameGroup(props.run.gameSlug).splits.map((split: Split) => (
+                {getGameData(props.run.gameSlug).splits.map((split: Split) => (
                     <li key={split.name}>
                         <SplitOverview split={split} run={props.run} />
                     </li>

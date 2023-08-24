@@ -6,7 +6,7 @@ import LocationData from "@/models/LocationData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { fetchLocation } from "@/utils/api";
-import { getGameGroup } from "@/utils/game";
+import { getGameData } from "@/utils/game";
 import { useEffect, useState } from "react";
 import styles from "./LocationPage.module.scss";
 
@@ -31,7 +31,7 @@ const LocationPage: React.FC<Props> = (props: Props) => {
         <div className={styles["location-page"]}>
             <div className={styles.info}>
                 <NextLevelCap locationSlug={props.segment.slug} run={props.run} />
-                {props.segment.slug === getGameGroup(props.run.gameSlug).startingTownSlug ? (
+                {props.segment.slug === getGameData(props.run.gameSlug).startingTownSlug ? (
                     <section className={styles.section}>
                         <StarterSelect run={props.run} />
                     </section>

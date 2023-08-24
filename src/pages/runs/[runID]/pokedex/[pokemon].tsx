@@ -1,7 +1,7 @@
 import PokedexPage from "@/components/Pokedex/PokedexPage/PokedexPage";
 import PokemonName from "@/models/PokemonName";
 import Run from "@/models/Run";
-import { getGameGroup } from "@/utils/game";
+import { getGameData } from "@/utils/game";
 import { getRun, isRun } from "@/utils/run";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -22,7 +22,7 @@ const Pokedex: NextPage = () => {
             const pokemon: string = router.query.pokemon as string;
             if (
                 isRun(runID) &&
-                getGameGroup(getRun(runID).gameSlug)
+                getGameData(getRun(runID).gameSlug)
                     .pokedex.map((p: PokemonName) => p.slug)
                     .includes(pokemon)
             ) {

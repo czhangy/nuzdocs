@@ -1,8 +1,8 @@
-import GameGroup from "@/models/GameGroup";
+import GameData from "@/models/GameData";
 import battles from "@/static/battles";
 import pokedex from "@/static/pokedex";
 
-const hgss: GameGroup = {
+const hgss: GameData = {
     generation: "generation-iv",
     versionGroup: "heartgold-soulsilver",
     pokedex: pokedex,
