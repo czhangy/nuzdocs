@@ -37,6 +37,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
     // Fetch Pokemon data on page load
     useEffect(() => {
         if (props.run && sets.length > 0) {
+            setPokemon([]);
             fetchPokemonList(
                 sets.map((set: Pokemon) => set.slug),
                 props.run.gameSlug
@@ -66,7 +67,9 @@ const BattlePage: React.FC<Props> = (props: Props) => {
                     )}
                 </ul>
             ) : (
-                ""
+                <div className={styles.loading}>
+                    <div className="accent-spinner" />
+                </div>
             )}
             <Modal open={open} onClose={() => setOpen(false)}>
                 <FinishModal game={props.run.gameSlug} />

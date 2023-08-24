@@ -122,27 +122,29 @@ ul {
 
 .accent-spinner {
     --line-size: 6px;
-    --spin-time: 1.25s;
+    --spin-time: 0.75s;
     --spinner-size: 50px;
 
-    animation: spin var(--spin-time) ease-out infinite;
+    animation: spin var(--spin-time) linear infinite;
     border: var(--line-size) solid constants.$accent-color;
     border-radius: 50%;
     border-top: var(--line-size) solid constants.$text-color;
     height: var(--spinner-size);
+    margin: 0 auto;
     width: var(--spinner-size);
 }
 
 .bg-spinner {
     --line-size: 6px;
-    --spin-time: 1.25s;
+    --spin-time: 0.75s;
     --spinner-size: 50px;
 
-    animation: spin var(--spin-time) ease-out infinite;
+    animation: spin var(--spin-time) linear infinite;
     border: var(--line-size) solid constants.$bg-color;
     border-radius: 50%;
     border-top: var(--line-size) solid constants.$text-color;
     height: var(--spinner-size);
+    margin: 0 auto;
     width: var(--spinner-size);
 }
 

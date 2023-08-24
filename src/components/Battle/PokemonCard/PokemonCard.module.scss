@@ -79,6 +79,15 @@
     .minimized {
         max-height: var(--display-size);
     }
+
+    .loading {
+        align-items: center;
+        background-color: constants.$accent-color;
+        border-radius: var(--card-border-rad);
+        display: flex;
+        justify-content: center;
+        height: var(--display-size);
+    }
 }
 
 @media screen and (min-width: constants.$tablet) {
