@@ -45,7 +45,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
         }
     }, [props.set, props.run]);
 
-    return props.pokemon && ability && moves.length > 0 ? (
+    return !props.pokemon && ability && moves.length > 0 ? (
         <li className={styles["pokemon-card"]}>
             <div className={`${styles.card} ${isMinimized ? styles.minimized : ""}`}>
                 <button className={styles.toggle} onClick={() => setIsMinimized(!isMinimized)}>
@@ -84,7 +84,9 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
             </div>
         </li>
     ) : (
-        <p>Loading...</p>
+        <li className={styles.loading}>
+            <div className="accent-spinner" />
+        </li>
     );
 };
 

@@ -42,8 +42,8 @@
             align-items: flex-start;
             border-bottom: var(--header-border-size) solid constants.$text-color;
             display: flex;
-            padding: var(--header-y-padding) var(--header-x-padding);
             justify-content: space-between;
+            padding: var(--header-y-padding) var(--header-x-padding);
         }
 
         .moves {
