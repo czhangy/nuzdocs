@@ -42,8 +42,8 @@
             align-items: flex-start;
             border-bottom: var(--header-border-size) solid constants.$text-color;
             display: flex;
-            padding: var(--header-y-padding) var(--header-x-padding);
             justify-content: space-between;
+            padding: var(--header-y-padding) var(--header-x-padding);
         }
 
         .moves {
@@ -78,6 +78,15 @@
 
     .minimized {
         max-height: var(--display-size);
+    }
+
+    .loading {
+        align-items: center;
+        background-color: constants.$accent-color;
+        border-radius: var(--card-border-rad);
+        display: flex;
+        justify-content: center;
+        height: var(--display-size);
     }
 }
 

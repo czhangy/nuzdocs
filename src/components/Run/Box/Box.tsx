@@ -25,6 +25,7 @@ const Box: React.FC<Props> = (props: Props) => {
 
     // Component state
     const [activeIdx, setActiveIdx] = useState<number | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     // Internal data state
     const [isInverted, setIsInverted] = useState<boolean[]>([]);
@@ -81,13 +82,18 @@ const Box: React.FC<Props> = (props: Props) => {
     // Use box to fetch data for all Pokemon in box, ignoring failed encounters
     useEffect(() => {
         if (props.box.length > 0 && props.run) {
+            setIsLoading(true);
             setBoxPokemon(props.box.filter((pokemon: CaughtPokemon) => pokemon.pokemon.slug !== "failed"));
-            fetchPokemonList(getPokemonSlugsFromBox(props.box), props.run.gameSlug).then((pokemonData: PokemonData[]) =>
-                setBoxData(pokemonData)
+            fetchPokemonList(getPokemonSlugsFromBox(props.box), props.run.gameSlug).then(
+                (pokemonData: PokemonData[]) => {
+                    setBoxData(pokemonData);
+                    setIsLoading(false);
+                }
             );
         } else {
             setBoxPokemon([]);
             setBoxData([]);
+            setIsLoading(false);
         }
     }, [props.box, props.run]);
 
@@ -128,8 +134,12 @@ const Box: React.FC<Props> = (props: Props) => {
                 </div>
             ))}
         </div>
+    ) : isLoading ? (
+        <div className={styles.loading}>
+            <div className="accent-spinner" />
+        </div>
     ) : (
-        <p className={styles.text}>{props.onEvolve ? "No Pokémon left!" : "No RIPs yet!"}</p>
+        <p className={styles.empty}>{props.onEvolve ? "No Pokémon left!" : "No RIPs yet!"}</p>
     );
 };
 

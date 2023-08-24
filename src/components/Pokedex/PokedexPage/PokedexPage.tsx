@@ -27,6 +27,8 @@ const PokedexPage: React.FC<Props> = (props: Props) => {
     // Fetch Pokemon on page load
     useEffect(() => {
         if (props.pokemon && props.run) {
+            setPokemon(null);
+            setLearnset([]);
             fetchPokemon(props.pokemon, props.run.gameSlug).then((pokemon: PokemonData) => setPokemon(pokemon));
         }
     }, [props.pokemon, props.run]);
@@ -58,7 +60,7 @@ const PokedexPage: React.FC<Props> = (props: Props) => {
             )}
         </div>
     ) : (
-        <p>Loading...</p>
+        <div className="accent-spinner" />
     );
 };
 

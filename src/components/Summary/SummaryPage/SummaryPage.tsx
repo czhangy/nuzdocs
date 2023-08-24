@@ -169,9 +169,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
             </Modal>
         </div>
     ) : (
-        <div className={styles["summary-page"]}>
-            <p>Loading...</p>
-        </div>
+        <div className="accent-spinner" />
     );
 };
 

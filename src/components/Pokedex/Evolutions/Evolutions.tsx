@@ -40,41 +40,45 @@ const EvolutionsDisplay: React.FC<Props> = (props: Props) => {
         }
     }, [props.pokemon, props.run]);
 
-    return Object.keys(pokemonMap).length > 1 ? (
+    return (
         <div className={styles.evolutions}>
             <p className={styles.header}>Evolutions</p>
             <div className={styles.evolutions}>
-                {getEvolutionChains().map((chain: string[], key: number) => {
-                    return (
-                        <div className={styles.chain} key={key}>
-                            {chain.map((slug: string, idx: number) => {
-                                return (
-                                    <div className={styles.link} key={slug}>
-                                        {idx > 0 ? <p className={styles.arrow}>→</p> : ""}
-                                        {slug in pokemonMap ? (
-                                            <Link href={getPokedexLink(props.run.id, slug)}>
-                                                <a className={styles.sprite}>
-                                                    <Image
-                                                        src={pokemonMap[slug].sprite}
-                                                        alt={pokemonMap[slug].pokemon.name}
-                                                        layout="fill"
-                                                        objectFit="contain"
-                                                    />
-                                                </a>
-                                            </Link>
-                                        ) : (
-                                            "Loading..."
-                                        )}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    );
-                })}
+                {Object.keys(pokemonMap).length > 1 ? (
+                    getEvolutionChains().map((chain: string[], key: number) => {
+                        return (
+                            <div className={styles.chain} key={key}>
+                                {chain.map((slug: string, idx: number) => {
+                                    return (
+                                        <div className={styles.link} key={slug}>
+                                            {idx > 0 ? <p className={styles.arrow}>→</p> : ""}
+                                            {slug in pokemonMap ? (
+                                                <Link href={getPokedexLink(props.run.id, slug)}>
+                                                    <a className={styles.sprite}>
+                                                        <Image
+                                                            src={pokemonMap[slug].sprite}
+                                                            alt={pokemonMap[slug].pokemon.name}
+                                                            layout="fill"
+                                                            objectFit="contain"
+                                                        />
+                                                    </a>
+                                                </Link>
+                                            ) : (
+                                                ""
+                                            )}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        );
+                    })
+                ) : (
+                    <div className={styles.loading}>
+                        <div className="bg-spinner" />
+                    </div>
+                )}
             </div>
         </div>
-    ) : (
-        <p>Loading...</p>
     );
 };
 

@@ -1,7 +1,6 @@
 @use "@/styles/constants";
 
 .encounter-accordion {
-    --accordion-transition-time: 0.3s;
     --accordion-x-padding: 2rem;
     --accordion-y-padding: 1.5rem;
     --arrow-size: 12px;
@@ -13,9 +12,8 @@
     --cell-y-padding: 1rem;
     --category-font-size: 1.2rem;
     --category-y-padding: 1.5rem;
-    --loading-font-size: 1.5rem;
     --loading-y-padding: 2rem;
-    --method-font-size: 1.4rem;
+    --method-font-size: 1.5rem;
     --name-font-size: 1rem;
     --name-spacing: 0.5rem;
     --sprite-size: 90px;
@@ -25,7 +23,6 @@
 
     max-height: calc(var(--method-font-size) + 2 * var(--accordion-y-padding));
     overflow-y: hidden;
-    transition: max-height var(--accordion-transition-time);
     width: 100%;
 
     .header {
@@ -58,7 +55,6 @@
 
     .body {
         border-top: var(--body-border-size) solid constants.$text-color;
-        padding: none;
         width: 100%;
 
         .row {
@@ -106,38 +102,35 @@
                 }
             }
 
-            &:last-child {
-                .cell {
-                    padding-bottom: var(--body-extra-padding);
-                }
+            &:last-child > .cell {
+                padding-bottom: var(--body-extra-padding);
             }
         }
     }
 
     .loading {
-        background: constants.$accent-color;
-        font-size: var(--loading-font-size);
-        line-height: var(--loading-font-size);
+        background-color: constants.$accent-color;
         padding: var(--loading-y-padding) 0;
-        text-align: center;
     }
+}
+
+.open {
+    max-height: fit-content;
 }
 
 @media screen and (min-width: constants.$tablet) {
     .encounter-accordion {
-        --cell-font-size: 1.2rem;
+        --cell-font-size: 1.25rem;
         --cell-x-padding: 3rem;
-        --name-font-size: 1.2rem;
+        --name-font-size: 1.25rem;
         --sprite-size: 100px;
     }
 }
 
 @media (hover: hover) {
     .encounter-accordion {
-        .header:hover {
-            .arrow {
-                filter: constants.$svg-hover-color;
-            }
+        .header:hover > .arrow {
+            filter: constants.$svg-hover-color;
         }
 
         .body .row > .cell > .pokemon > .name:hover {

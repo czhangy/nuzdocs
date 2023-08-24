@@ -1,6 +1,7 @@
 @use "@/styles/constants";
 
 .battle-page {
+    --loading-spacing: 4rem;
     --team-inner-spacing: 1rem;
     --team-spacing: 2rem;
 
@@ -10,5 +11,9 @@
         gap: var(--team-inner-spacing);
         margin-top: var(--team-spacing);
         width: 100%;
+    }
+
+    .loading {
+        margin-top: var(--loading-spacing);
     }
 }

@@ -63,7 +63,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                         return (
                             <MoveCard
                                 move={move}
-                                isSTAB={props.pokemon.types.includes(move.type)}
+                                isSTAB={props.pokemon!.types.includes(move.type)}
                                 game={props.run.gameSlug}
                                 key={move.slug}
                             />
@@ -84,7 +84,11 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
             </div>
         </li>
     ) : (
-        <p>Loading...</p>
+        <li className={styles["pokemon-card"]}>
+            <div className={styles.loading}>
+                <div className="bg-spinner" />
+            </div>
+        </li>
     );
 };
 

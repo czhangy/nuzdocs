@@ -111,7 +111,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 
 -   [ ] Evolution methods
 -   [ ] Location maps
--   [ ] Loading screens
 -   [ ] Coverage graphs
 -   [ ] Add way to still show duplicates, but mark them
 -   [ ] Box filters
@@ -122,7 +121,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Game data
 -   [ ] Consider loading one-by-one instead of in groups (esp. for boxes)
 -   [ ] Nicer alerts for exports
--   [ ] Add congratulations at end of run
 
 ## License
 
@@ -149,6 +147,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Acknowledgements
 
 -   [Awesome README](https://github.com/matiassingers/awesome-readme)
+-   [Mooba's Emerald Any% Guide](https://docs.google.com/spreadsheets/d/1YBll3FbJfaIMJ2CtV72kXfYTlF0qRDxuWHHKhUJ76Uo/)
 -   [Nuzlocke Tracker](https://nuzlocke.app/)
 -   [PokéAPI](https://pokeapi.co/)
 -   [Pokémon Database](https://pokemondb.net/)

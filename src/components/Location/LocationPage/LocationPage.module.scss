@@ -19,3 +19,9 @@
         }
     }
 }
+
+.loading {
+    --loading-spacing: 2rem;
+
+    margin-top: var(--loading-spacing);
+}

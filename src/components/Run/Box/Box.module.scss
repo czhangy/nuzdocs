@@ -37,7 +37,13 @@
     }
 }
 
-.text {
+.loading {
+    --loading-spacing: 4rem;
+
+    margin-top: var(--loading-spacing);
+}
+
+.empty {
     --text-font-size: 2rem;
     --text-letter-spacing: 1px;
     --text-spacing: 4rem;

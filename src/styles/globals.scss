@@ -120,6 +120,44 @@ ul {
     }
 }
 
+.accent-spinner {
+    --line-size: 6px;
+    --spin-time: 0.75s;
+    --spinner-size: 50px;
+
+    animation: spin var(--spin-time) linear infinite;
+    border: var(--line-size) solid constants.$accent-color;
+    border-radius: 50%;
+    border-top: var(--line-size) solid constants.$text-color;
+    height: var(--spinner-size);
+    margin: 0 auto;
+    width: var(--spinner-size);
+}
+
+.bg-spinner {
+    --line-size: 6px;
+    --spin-time: 0.75s;
+    --spinner-size: 50px;
+
+    animation: spin var(--spin-time) linear infinite;
+    border: var(--line-size) solid constants.$bg-color;
+    border-radius: 50%;
+    border-top: var(--line-size) solid constants.$text-color;
+    height: var(--spinner-size);
+    margin: 0 auto;
+    width: var(--spinner-size);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 @media (hover: hover) {
     .primary-button:hover {
         background-color: constants.$hover-color;
