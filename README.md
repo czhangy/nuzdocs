@@ -111,7 +111,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 
 -   [ ] Evolution methods
 -   [ ] Location maps
--   [ ] Loading screens
 -   [ ] Coverage graphs
 -   [ ] Add way to still show duplicates, but mark them
 -   [ ] Box filters
