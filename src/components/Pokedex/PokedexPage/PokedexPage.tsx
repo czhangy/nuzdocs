@@ -58,7 +58,7 @@ const PokedexPage: React.FC<Props> = (props: Props) => {
             )}
         </div>
     ) : (
-        <p>Loading...</p>
+        <div className="accent-spinner" />
     );
 };
 

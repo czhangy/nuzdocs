@@ -8,6 +8,7 @@
     --border-rad: 5px;
     --header-font-size: 1rem;
     --header-y-padding: 0.5rem;
+    --loading-padding: 2rem;
 
     border-radius: var(--border-rad);
     overflow: hidden;
@@ -22,7 +23,7 @@
         text-align: center;
     }
 
-    .abilities {
+    .list {
         background-color: constants.$accent-color;
         display: flex;
         flex-direction: column;
@@ -33,6 +34,11 @@
             font-size: var(--abilities-font-size);
             text-align: left;
         }
+    }
+
+    .loading {
+        background-color: constants.$accent-color;
+        padding: var(--loading-padding) 0;
     }
 }
 

@@ -83,7 +83,7 @@ const EvolveModal: React.FC<Props> = (props: Props) => {
         </div>
     ) : (
         <div className={styles["evolve-modal"]}>
-            <p className={styles.header}>Loading...</p>
+            <div className="bg-spinner" />
         </div>
     );
 };

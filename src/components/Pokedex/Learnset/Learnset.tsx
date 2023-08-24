@@ -78,7 +78,9 @@ const Learnset: React.FC<Props> = (props: Props) => {
                         </tbody>
                     </table>
                 ) : (
-                    <p>Loading...</p>
+                    <div className={styles.loading}>
+                        <div className="bg-spinner" />
+                    </div>
                 )}
             </div>
         </div>

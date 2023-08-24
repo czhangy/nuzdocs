@@ -10,6 +10,7 @@
     --header-y-padding: 0.5rem;
     --icon-height: 12px;
     --letter-spacing: 0;
+    --loading-spacing: 2rem;
     --moves-padding: 1rem;
     --table-border-rad: 5px;
     --type-icon-ratio: 8/3;
@@ -62,6 +63,11 @@
                     text-align: center;
                 }
             }
+        }
+
+        .loading {
+            margin: var(--loading-spacing) 0;
+            width: 100%;
         }
     }
 }
