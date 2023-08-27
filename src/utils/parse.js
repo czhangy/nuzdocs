@@ -6,43 +6,45 @@ const fs = require("fs");
 const rows = fs.readFileSync(`data/${game}.csv`).toString().split("\r\n");
 const battleData = {};
 
+const toSlug = (name) => {
+    return name.replace(/ /g, "-").toLowerCase();
+};
+
 const getTeam = (i, row, team) => {
     const start = i;
     while (i < rows.length && (i === start || row[0] === ",")) {
         // Get Pokemon's JSON
         const attrs = row.split(",");
-        const name = attrs[2].toLowerCase();
-        const ability = attrs[3].replace(/ /g, "-").toLowerCase();
-        const item = attrs[4].replace(/ /g, "-").toLowerCase();
-        const level = parseInt(attrs[5]);
+        const name = attrs[3].toLowerCase();
+        const level = parseInt(attrs[6]);
         const moves = [];
-        for (let j = 6; j <= 9; j++) {
+        for (let j = 7; j <= 10; j++) {
             if (!attrs[j]) {
                 break;
             } else {
-                moves.push(attrs[j].replace(/ /g, "-").toLowerCase());
+                moves.push({ slug: toSlug(attrs[j]), name: attrs[j] });
             }
         }
         const ivs = {
-            hp: parseInt(attrs[10]),
-            atk: parseInt(attrs[11]),
-            spa: parseInt(attrs[12]),
-            def: parseInt(attrs[13]),
-            spd: parseInt(attrs[14]),
-            spe: parseInt(attrs[15]),
+            hp: parseInt(attrs[11]),
+            atk: parseInt(attrs[12]),
+            spa: parseInt(attrs[13]),
+            def: parseInt(attrs[14]),
+            spd: parseInt(attrs[15]),
+            spe: parseInt(attrs[16]),
         };
 
         const pokemon = {
             slug: name,
             species: name,
             level: level,
-            ability: ability,
+            ability: { slug: toSlug(attrs[4]), name: attrs[4] },
             moves: moves,
             ivs: ivs,
             evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
         };
-        if (item) {
-            pokemon.item = item;
+        if (attrs[5]) {
+            pokemon.item = { slug: toSlug(attrs[5]), name: attrs[5] };
         }
         team.push(pokemon);
 
@@ -52,7 +54,7 @@ const getTeam = (i, row, team) => {
     return i;
 };
 
-const saveBattle = (battleKey, team) => {
+const saveBattle = (battleKey, row, team) => {
     // Skip version exclusives and remove version info from name
     if (game === "sapphire" && battleKey.includes("[Ruby]")) {
         return;
@@ -68,6 +70,15 @@ const saveBattle = (battleKey, team) => {
         team: team,
         items: [],
     };
+
+    // If the battle uses items, parse/set items
+    const items = row.split(",")[2];
+    if (items) {
+        const count = items.substring(items.indexOf("[") + 1, items.indexOf("]"));
+        for (let i = 0; i < count; i++) {
+            battle.items.push(toSlug(items.substring(items.indexOf(" ") + 1)));
+        }
+    }
 
     // Remove invalid chars from key
     battleKey = battleKey
@@ -127,7 +138,7 @@ const parse = () => {
         i = getTeam(i, row, team);
 
         // Save battle to object
-        saveBattle(battleKey, team);
+        saveBattle(battleKey, row, team);
     }
 
     handleRepeatFights();
