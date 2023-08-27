@@ -13,7 +13,7 @@ const FinishModal: React.FC<Props> = (props: Props) => {
             <p className={styles.text}>You&apos;ve completed a Nuzlocke of</p>
             <div className={styles.game}>
                 <Image
-                    src={getGame(props.game).logoURL}
+                    src={getGame(props.game).logo}
                     alt={getGame(props.game).name}
                     layout="fill"
                     objectFit="contain"

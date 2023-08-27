@@ -40,9 +40,9 @@ const ruby: GameData = {
                     type: "battle",
                     segment: {
                         battle: {
-                            treecko: battles.emerald.may_1_treecko,
-                            torchic: battles.emerald.may_1_torchic,
-                            mudkip: battles.emerald.may_1_mudkip,
+                            treecko: battles.ruby_sapphire.may_1_treecko,
+                            torchic: battles.ruby_sapphire.may_1_torchic,
+                            mudkip: battles.ruby_sapphire.may_1_mudkip,
                         },
                     },
                 },

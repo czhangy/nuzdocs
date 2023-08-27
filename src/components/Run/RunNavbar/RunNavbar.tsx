@@ -30,7 +30,7 @@ const RunNavbar: React.FC = () => {
                         <p className={styles["back-arrow"]}>←</p>
                         <div className={styles.logo}>
                             <Image
-                                src={getGame(run.gameSlug).logoURL}
+                                src={getGame(run.gameSlug).logo}
                                 alt={getGame(run.gameSlug).name}
                                 layout="fill"
                                 objectFit="contain"

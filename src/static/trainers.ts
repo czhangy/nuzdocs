@@ -1,6 +1,26 @@
 import Trainer from "@/models/Trainer";
 
 const trainers: { [trainerSlug: string]: Trainer } = {
+    rs_may: {
+        name: "May",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3rs.png",
+    },
+    emerald_may: {
+        name: "May",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3.png",
+    },
+    emerald_juan: {
+        name: "Juan",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/juan-gen3.png",
+    },
+    emerald_wallace: {
+        name: "Wallace",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/wallace-gen3.png",
+    },
+    emerald_maxie_tabitha: {
+        name: "Maxie & Tabitha",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/maxie-gen3.png",
+    },
     rse_wally: {
         name: "Wally",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/wally-gen3.png",
@@ -68,22 +88,6 @@ const trainers: { [trainerSlug: string]: Trainer } = {
     rse_archie: {
         name: "Archie",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/archie-gen3.png",
-    },
-    emerald_may: {
-        name: "May",
-        sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3.png",
-    },
-    emerald_juan: {
-        name: "Juan",
-        sprite: "https://play.pokemonshowdown.com/sprites/trainers/juan-gen3.png",
-    },
-    emerald_wallace: {
-        name: "Wallace",
-        sprite: "https://play.pokemonshowdown.com/sprites/trainers/wallace-gen3.png",
-    },
-    emerald_maxie_tabitha: {
-        name: "Maxie & Tabitha",
-        sprite: "https://play.pokemonshowdown.com/sprites/trainers/maxie-gen3.png",
     },
     hgss_silver: {
         name: "Silver",

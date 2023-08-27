@@ -2,6 +2,62 @@ import Battle from "@/models/Battle";
 import trainers from "@/static/trainers";
 
 const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
+    ruby_sapphire: {
+        may_1_treecko: {
+            trainer: trainers.rs_may,
+            team: [
+                {
+                    slug: "torchic",
+                    species: "torchic",
+                    level: 5,
+                    ability: { slug: "blaze", name: "Blaze" },
+                    moves: [
+                        { slug: "scratch", name: "Scratch" },
+                        { slug: "growl", name: "Growl" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+            ],
+            items: [],
+        },
+        may_1_torchic: {
+            trainer: trainers.rs_may,
+            team: [
+                {
+                    slug: "mudkip",
+                    species: "mudkip",
+                    level: 5,
+                    ability: { slug: "torrent", name: "Torrent" },
+                    moves: [
+                        { slug: "tackle", name: "Tackle" },
+                        { slug: "growl", name: "Growl" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+            ],
+            items: [],
+        },
+        may_1_mudkip: {
+            trainer: trainers.rs_may,
+            team: [
+                {
+                    slug: "treecko",
+                    species: "treecko",
+                    level: 5,
+                    ability: { slug: "overgrow", name: "Overgrow" },
+                    moves: [
+                        { slug: "pound", name: "Pound" },
+                        { slug: "leer", name: "Leer" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+            ],
+            items: [],
+        },
+    },
     emerald: {
         may_1_treecko: {
             trainer: trainers.emerald_may,

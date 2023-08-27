@@ -37,7 +37,7 @@ const RunEntry: React.FC<Props> = (props: Props) => {
                 <a className={styles.nav}>
                     <div className={styles.logo}>
                         <Image
-                            src={getGame(props.run.gameSlug).logoURL}
+                            src={getGame(props.run.gameSlug).logo}
                             alt="Game logo"
                             layout="fill"
                             objectFit="contain"

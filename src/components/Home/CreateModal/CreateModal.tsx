@@ -39,7 +39,7 @@ const CreateModal: React.FC = () => {
                                 onClick={() => setSelectedGame(game)}
                             >
                                 <Image
-                                    src={getGame(game).logoURL}
+                                    src={getGame(game).logo}
                                     alt={getGame(game).name}
                                     layout="fill"
                                     objectFit="contain"
