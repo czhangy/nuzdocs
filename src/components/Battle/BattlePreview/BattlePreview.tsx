@@ -79,7 +79,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                 <div className={styles.preview}>
                     <div className={styles.info}>
                         <p className={styles.name}>{`${trainer.class} ${
-                            (props.segment.segment as BattleSegment).battle.name
+                            getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).name
                         }`}</p>
                         <div className={styles.items}>
                             {items.map((item: ItemData, key: number) => {
