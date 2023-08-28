@@ -11,6 +11,7 @@ import { getBattle } from "@/utils/battle";
 import { getStarterSlug } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./BattlePage.module.scss";
+import NextLevelCap from "@/components/Segment/NextLevelCap/NextLevelCap";
 
 type Props = {
     segment: Segment;
@@ -47,6 +48,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
 
     return (
         <div className={styles["battle-page"]}>
+            <NextLevelCap segment={props.segment.slug} run={props.run} />
             <BattlePreview
                 segment={props.segment}
                 names={pokemon.map((pokemon: PokemonData) => pokemon.pokemon.name)}
