@@ -55,15 +55,8 @@ const getTeam = (i, row, team) => {
 };
 
 const saveBattle = (battleKey, row, team) => {
-    // Skip version exclusives and remove version info from name
-    if (game === "sapphire" && battleKey.includes("[Ruby]")) {
-        return;
-    } else if (game === "ruby" && battleKey.includes("[Sapphire]")) {
-        return;
-    }
-    battleKey = battleKey.replace(/_\[.+?\]/, "");
-
     // Construct battle object
+    battleKey = battleKey.replace(/_\[.+?\]/, "");
     const battle = {
         trainer: "[PLACEHOLDER]",
         name: getName(battleKey),

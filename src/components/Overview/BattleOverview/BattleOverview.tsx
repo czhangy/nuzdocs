@@ -41,10 +41,15 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
                 <div className={`${styles.battle} ${isCleared(props.run.id, props.battle.slug) ? styles.done : ""}`}>
                     <p className={styles.name}>{props.battle.name}</p>
                     <div className={styles.trainers}>
-                        {trainers.map((trainer: Trainer) => {
+                        {trainers.map((trainer: Trainer, key: number) => {
                             return (
-                                <div className={styles.trainer} key={trainer.name}>
-                                    <Image src={trainer.sprite} alt={trainer.name} layout="fill" objectFit="contain" />
+                                <div className={styles.trainer} key={key}>
+                                    <Image
+                                        src={trainer.sprite}
+                                        alt={`${trainer.class} ${props.battle.name}`}
+                                        layout="fill"
+                                        objectFit="contain"
+                                    />
                                 </div>
                             );
                         })}

@@ -60,7 +60,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     const getTrainerName = (): string => {
         let name: string = "";
         for (const trainer of trainers) {
-            name += name ? ` & ${trainer.name}` : trainer.name;
+            name += name ? ` & ${trainer.class}` : trainer.class;
         }
         return name;
     };
@@ -93,8 +93,8 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
             <div className={styles.trainer}>
                 {trainers.map((trainer: Trainer) => {
                     return (
-                        <div className={`${styles.sprite} ${defeated ? styles.defeated : ""}`} key={trainer.name}>
-                            <Image src={trainer.sprite} alt={trainer.name} layout="fill" objectFit="contain" />
+                        <div className={`${styles.sprite} ${defeated ? styles.defeated : ""}`} key={trainer.class}>
+                            <Image src={trainer.sprite} alt={trainer.class} layout="fill" objectFit="contain" />
                         </div>
                     );
                 })}

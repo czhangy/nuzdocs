@@ -1,4 +1,4 @@
 export default interface Trainer {
-    name: string;
+    class: string;
     sprite: string;
 }
