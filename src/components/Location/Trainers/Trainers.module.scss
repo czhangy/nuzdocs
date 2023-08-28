@@ -1,1 +1,14 @@
 @use "@/styles/constants";
+
+.trainers {
+    --bottom-spacing: 10rem;
+    --header-font-size: 1.5rem;
+
+    margin-bottom: var(--bottom-spacing);
+    width: 100%;
+
+    .header {
+        font-size: var(--header-font-size);
+        line-height: var(--header-font-size);
+    }
+}

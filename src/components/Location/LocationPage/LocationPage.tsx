@@ -1,6 +1,7 @@
 import EncounterDisplay from "@/components/Location/EncounterDisplay/EncounterDisplay";
 import EncounterList from "@/components/Location/EncounterList/EncounterList";
 import StarterSelect from "@/components/Location/StarterSelect/StarterSelect";
+import Trainers from "@/components/Location/Trainers/Trainers";
 import NextLevelCap from "@/components/Segment/NextLevelCap/NextLevelCap";
 import LocationData from "@/models/LocationData";
 import Run from "@/models/Run";
@@ -32,15 +33,12 @@ const LocationPage: React.FC<Props> = (props: Props) => {
             <div className={styles.info}>
                 <NextLevelCap segment={props.segment.slug} run={props.run} />
                 {props.segment.slug === getGameData(props.run.gameSlug).startingTownSlug ? (
-                    <section className={styles.section}>
-                        <StarterSelect run={props.run} />
-                    </section>
+                    <StarterSelect run={props.run} />
                 ) : (
                     ""
                 )}
-                <section className={styles.section}>
-                    <EncounterList location={currentLocation} run={props.run} />
-                </section>
+                <EncounterList location={currentLocation} run={props.run} />
+                <Trainers />
             </div>
             <EncounterDisplay locationSlug={props.segment.slug} run={props.run} />
         </div>
