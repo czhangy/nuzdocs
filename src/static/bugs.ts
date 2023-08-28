@@ -15,6 +15,10 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Underwater encounters display as part of their routes, not in the underwater location",
             group: "Emerald",
         },
+        {
+            desc: "Run navigation through the navbar doesn't update previous segment until refreshed",
+            group: "General",
+        },
     ],
     Medium: [
         {
@@ -26,7 +30,7 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "General",
         },
         {
-            desc: "Pokemon with different forms can evolve between forms (i.e., Zigzagoon/Linoone/Obstagoon)",
+            desc: "Pokemon with different forms can evolve between forms, such as Zigzagoon/Linoone/Obstagoon",
             group: "General",
         },
         {

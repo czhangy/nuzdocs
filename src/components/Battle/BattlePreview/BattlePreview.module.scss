@@ -2,7 +2,8 @@
 
 .battle-preview {
     --buttons-inner-spacing: 1rem;
-    --name-font-size: 1.25rem;
+    --name-font-size: 1rem;
+    --info-spacing: 0.75rem;
     --preview-inner-spacing: 0.5rem;
     --sprite-size: 0;
     --sprite-transition-time: 0.5s;
@@ -35,7 +36,7 @@
                 align-items: center;
                 display: flex;
                 gap: var(--preview-inner-spacing);
-                margin-bottom: var(--preview-inner-spacing);
+                margin-bottom: var(--info-spacing);
 
                 .name {
                     font-size: var(--name-font-size);
