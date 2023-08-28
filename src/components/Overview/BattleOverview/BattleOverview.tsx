@@ -1,8 +1,7 @@
-import BattleSegment from "@/models/BattleSegment";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import Trainer from "@/models/Trainer";
-import { getTrainer } from "@/utils/battle";
+import { getLevelCap, getTrainer } from "@/utils/battle";
 import { getStarterSlug, isCleared } from "@/utils/run";
 import { hasLevelCap } from "@/utils/segment";
 import Image from "next/image";
@@ -45,7 +44,9 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
                 {hasLevelCap(props.battle) ? (
                     <div className={styles["level-cap"]}>
                         <p className={styles.title}>Level Cap</p>
-                        <p className={styles.level}>{(props.battle.segment as BattleSegment).levelCap}</p>
+                        <p className={styles.level}>
+                            {getLevelCap(props.run.gameSlug, props.battle.slug, getStarterSlug(props.run.id))}
+                        </p>
                     </div>
                 ) : (
                     ""

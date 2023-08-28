@@ -55,21 +55,22 @@ const getTeam = (i, row, team) => {
 };
 
 const saveBattle = (battleKey, row, team) => {
+    const attrs = row.split(",");
     // Construct battle object
     battleKey = battleKey.replace(/_\[.+?\]/, "");
     const battle = {
         trainer: "[PLACEHOLDER]",
         name: getName(battleKey),
+        location: attrs[1],
         team: team,
         items: [],
     };
 
     // If the battle uses items, parse/set items
-    const items = row.split(",")[2];
-    if (items) {
-        const count = items.substring(items.indexOf("[") + 1, items.indexOf("]"));
+    if (attrs[2]) {
+        const count = attrs[2].substring(attrs[2].indexOf("[") + 1, attrs[2].indexOf("]"));
         for (let i = 0; i < count; i++) {
-            battle.items.push(toSlug(items.substring(items.indexOf(" ") + 1)));
+            battle.items.push(toSlug(attrs[2].substring(attrs[2].indexOf(" ") + 1)));
         }
     }
 

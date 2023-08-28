@@ -14,7 +14,7 @@ export const isSegment = (gameSlug: string, segmentSlug: string): boolean => {
 };
 
 export const hasLevelCap = (segment: Segment): boolean => {
-    return "levelCap" in segment.segment && typeof segment.segment.levelCap === "number";
+    return "levelCap" in segment.segment && segment.segment.levelCap === true;
 };
 
 // Queries

@@ -100,7 +100,7 @@ const emerald: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.emerald.roxanne,
-                        levelCap: 15,
+                        levelCap: true,
                     },
                 },
             ],
@@ -150,7 +150,7 @@ const emerald: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.emerald.brawly,
-                        levelCap: 19,
+                        levelCap: true,
                     },
                 },
             ],
@@ -214,7 +214,7 @@ const emerald: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.emerald.wattson,
-                        levelCap: 24,
+                        levelCap: true,
                     },
                 },
             ],
@@ -305,7 +305,7 @@ const emerald: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.emerald.flannery,
-                        levelCap: 29,
+                        levelCap: true,
                     },
                 },
             ],
@@ -325,7 +325,7 @@ const emerald: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.emerald.norman,
-                        levelCap: 31,
+                        levelCap: true,
                     },
                 },
             ],
@@ -455,7 +455,7 @@ const emerald: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.emerald.winona,
-                        levelCap: 33,
+                        levelCap: true,
                     },
                 },
             ],
@@ -589,7 +589,7 @@ const emerald: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.emerald["tate-and-liza"],
-                        levelCap: 42,
+                        levelCap: true,
                     },
                 },
             ],
@@ -643,7 +643,7 @@ const emerald: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.emerald.juan,
-                        levelCap: 46,
+                        levelCap: true,
                     },
                 },
             ],
@@ -703,7 +703,7 @@ const emerald: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.emerald.wallace,
-                        levelCap: 58,
+                        levelCap: true,
                     },
                 },
             ],

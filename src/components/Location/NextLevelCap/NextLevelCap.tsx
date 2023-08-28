@@ -1,8 +1,8 @@
-import BattleSegment from "@/models/BattleSegment";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
+import { getLevelCap } from "@/utils/battle";
 import { getSegments } from "@/utils/game";
-import { isCleared } from "@/utils/run";
+import { getStarterSlug, isCleared } from "@/utils/run";
 import { hasLevelCap } from "@/utils/segment";
 import styles from "./NextLevelCap.module.scss";
 
@@ -18,7 +18,7 @@ const NextLevelCap: React.FC<Props> = (props: Props) => {
         const idx: number = segments.map((segment: Segment) => segment.slug).indexOf(props.locationSlug);
         for (let i = idx + 1; i < segments.length; i++) {
             if (hasLevelCap(segments[i]) && !isCleared(props.run.id, segments[i].slug)) {
-                return (segments[i].segment as BattleSegment).levelCap!;
+                return getLevelCap(props.run.gameSlug, segments[i].slug, getStarterSlug(props.run.id));
             }
         }
         return "None";

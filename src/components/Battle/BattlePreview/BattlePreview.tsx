@@ -6,7 +6,7 @@ import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import Trainer from "@/models/Trainer";
 import { fetchItems } from "@/utils/api";
-import { getBattle, getTrainer } from "@/utils/battle";
+import { getBattle, getLevelCap, getTrainer } from "@/utils/battle";
 import { getSegments } from "@/utils/game";
 import { addToClearedBattles, getStarterSlug, isCleared, removeFromClearedBattles } from "@/utils/run";
 import { hasLevelCap } from "@/utils/segment";
@@ -117,7 +117,11 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                     )}
                 </div>
             </div>
-            {hasLevelCap(props.segment) ? <LevelCap level={(props.segment.segment as BattleSegment).levelCap!} /> : ""}
+            {hasLevelCap(props.segment) ? (
+                <LevelCap level={getLevelCap(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id))} />
+            ) : (
+                ""
+            )}
         </div>
     ) : (
         <></>

@@ -133,6 +133,10 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         class: "Gym Leader",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/norman-gen3.png",
     },
+    rse_old_couple: {
+        class: "Old Couple",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/oldcouple-gen3.png",
+    },
     rse_parasol_lady: {
         class: "Parasol Lady",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/parasollady-gen3.png",
@@ -289,10 +293,6 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         class: "Twins",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/twins-gen3rs.png",
     },
-    rse_youngster: {
-        class: "Youngster",
-        sprite: "https://play.pokemonshowdown.com/sprites/trainers/youngster-gen3rs.png",
-    },
     rse_wally: {
         class: "Pokémon Trainer",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/wally-gen3.png",
@@ -308,6 +308,10 @@ const trainers: { [trainerSlug: string]: Trainer } = {
     rse_young_couple: {
         class: "Young Couple",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/youngcouple-gen3rs.png",
+    },
+    rse_youngster: {
+        class: "Youngster",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/youngster-gen3rs.png",
     },
     rs_brendan: {
         class: "Pokémon Trainer",
