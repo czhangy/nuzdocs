@@ -8,6 +8,7 @@ import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { fetchLocation } from "@/utils/api";
 import { getGameData } from "@/utils/game";
+import { getBattles } from "@/utils/segment";
 import { useEffect, useState } from "react";
 import styles from "./LocationPage.module.scss";
 
@@ -38,7 +39,7 @@ const LocationPage: React.FC<Props> = (props: Props) => {
                     ""
                 )}
                 <EncounterList location={currentLocation} run={props.run} />
-                <Trainers />
+                <Trainers battles={getBattles(props.run.gameSlug, props.segment.slug)} game={props.run.gameSlug} />
             </div>
             <EncounterDisplay locationSlug={props.segment.slug} run={props.run} />
         </div>

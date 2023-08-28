@@ -1,0 +1,76 @@
+@use "@/styles/constants";
+
+.trainer-card {
+    --card-padding: 1rem;
+    --export-offset: 1rem;
+    --export-size: 24px;
+    --info-inner-spacing: 0.5rem;
+    --location-font-size: 1rem;
+    --name-font-size: 1rem;
+    --sprite-size: 80px;
+    --trainer-inner-spacing: 0.5rem;
+
+    background-color: constants.$accent-color;
+    padding: var(--card-padding);
+
+    .header {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+
+        .trainer {
+            align-items: center;
+            display: flex;
+            gap: var(--header-inner-spacing);
+
+            .sprite {
+                height: var(--sprite-size);
+                position: relative;
+                width: var(--sprite-size);
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                gap: var(--info-inner-spacing);
+
+                .name {
+                    font-size: var(--name-font-size);
+                    line-height: var(--name-font-size);
+                }
+
+                .location {
+                    font-size: var(--location-font-size);
+                    line-height: var(--location-font-size);
+                }
+
+                .items {
+                    display: flex;
+                }
+            }
+        }
+
+        .export {
+            filter: constants.$svg-color;
+            height: var(--export-size);
+            margin-right: var(--export-offset);
+            position: relative;
+            width: var(--export-size);
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .trainer-card {
+        --export-size: 36px;
+        --info-inner-spacing: 0.75rem;
+        --name-font-size: 1.25rem;
+        --sprite-size: 120px;
+    }
+}
+
+@media (hover: hover) {
+    .trainer-card > .header > .export:hover {
+        filter: constants.$svg-hover-color;
+    }
+}

@@ -1,16 +1,18 @@
+import Battle from "@/models/Battle";
+import LocationSegment from "@/models/LocationSegment";
 import Segment from "@/models/Segment";
 import { getSegments } from "@/utils/game";
 
 // Getters
-export const getSegment = (gameSlug: string, segmentSlug: string): Segment => {
-    return getSegments(gameSlug).find((segment: Segment) => segment.slug === segmentSlug)!;
+export const getSegment = (game: string, segmentSlug: string): Segment => {
+    return getSegments(game).find((segment: Segment) => segment.slug === segmentSlug)!;
 };
 
 // Predicates
-export const isSegment = (gameSlug: string, segmentSlug: string): boolean => {
-    return getSegments(gameSlug)
+export const isSegment = (game: string, segment: string): boolean => {
+    return getSegments(game)
         .map((segment: Segment) => segment.slug)
-        .includes(segmentSlug);
+        .includes(segment);
 };
 
 export const hasLevelCap = (segment: Segment): boolean => {
@@ -20,4 +22,7 @@ export const hasLevelCap = (segment: Segment): boolean => {
 // Queries
 export const getNumBattles = (gameSlug: string): number => {
     return getSegments(gameSlug).filter((segment: Segment) => segment.type === "battle").length;
+};
+export const getBattles = (game: string, location: string): Battle[] => {
+    return (getSegment(game, location).segment as LocationSegment).battles;
 };
