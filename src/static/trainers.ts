@@ -329,6 +329,10 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         class: "Gym Leader",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/juan-gen3.png",
     },
+    emerald_maxie_and_tabitha: {
+        class: "Team Magma",
+        sprite: "/assets/sprites/maxie_and_tabitha.webp",
+    },
     emerald_may: {
         class: "Pokémon Trainer",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3.png",

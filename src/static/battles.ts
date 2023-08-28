@@ -15166,9 +15166,9 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             ],
             items: ["super-potion", "super-potion"],
         },
-        tabitha_maxie: {
-            trainer: [trainers.rse_tabitha, trainers.rse_maxie],
-            name: "Tabitha & Maxie",
+        maxie_and_tabitha: {
+            trainer: trainers.emerald_maxie_and_tabitha,
+            name: "Maxie & Tabitha",
             team: [
                 {
                     slug: "mightyena",

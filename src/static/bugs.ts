@@ -59,6 +59,14 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Location pages have excess height on mobile displays",
             group: "General",
         },
+        {
+            desc: "All Aqua/Magma grunts currently use their male sprites",
+            group: "Ruby/Sapphire",
+        },
+        {
+            desc: "Brendan fights are currently unused",
+            group: "Emerald",
+        },
     ],
 };
 

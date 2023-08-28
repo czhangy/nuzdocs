@@ -6,14 +6,14 @@ import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import Trainer from "@/models/Trainer";
 import { fetchItems } from "@/utils/api";
-import { getBattle } from "@/utils/battle";
+import { getBattle, getTrainer } from "@/utils/battle";
+import { getSegments } from "@/utils/game";
 import { addToClearedBattles, getStarterSlug, isCleared, removeFromClearedBattles } from "@/utils/run";
 import { hasLevelCap } from "@/utils/segment";
 import { exportPokemonList } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./BattlePreview.module.scss";
-import { getSegments } from "@/utils/game";
 
 type Props = {
     segment: Segment;
@@ -27,7 +27,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     const [defeated, setDefeated] = useState<boolean>(false);
 
     // Internal state
-    const [trainers, setTrainers] = useState<Trainer[]>([]);
+    const [trainer, setTrainer] = useState<Trainer | null>();
 
     // Fetched state
     const [items, setItems] = useState<ItemData[]>([]);
@@ -56,28 +56,10 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
         );
     };
 
-    // Translates array of trainer names to single string
-    const getTrainerName = (): string => {
-        let name: string = "";
-        for (const trainer of trainers) {
-            name += name ? ` & ${trainer.class}` : trainer.class;
-        }
-        return name;
-    };
-
     // Persist defeated state on component load
     useEffect(() => {
         if (props.segment && props.run) {
-            const trainer: Trainer | Trainer[] = getBattle(
-                props.run.gameSlug,
-                props.segment.slug,
-                getStarterSlug(props.run.id)
-            ).trainer;
-            if (Array.isArray(trainer)) {
-                setTrainers(trainer);
-            } else {
-                setTrainers([trainer]);
-            }
+            setTrainer(getTrainer(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)));
             setDefeated(isCleared(props.run.id, props.segment.slug));
             fetchItems(
                 getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).items,
@@ -88,19 +70,17 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
         }
     }, [props.segment, props.run]);
 
-    return (
+    return trainer ? (
         <div className={styles["battle-preview"]}>
             <div className={styles.trainer}>
-                {trainers.map((trainer: Trainer) => {
-                    return (
-                        <div className={`${styles.sprite} ${defeated ? styles.defeated : ""}`} key={trainer.class}>
-                            <Image src={trainer.sprite} alt={trainer.class} layout="fill" objectFit="contain" />
-                        </div>
-                    );
-                })}
+                <div className={`${styles.sprite} ${defeated ? styles.defeated : ""}`}>
+                    <Image src={trainer.sprite} alt={trainer.class} layout="fill" objectFit="contain" />
+                </div>
                 <div className={styles.preview}>
                     <div className={styles.info}>
-                        <p className={styles.name}>{getTrainerName()}</p>
+                        <p className={styles.name}>{`${trainer.class} ${
+                            (props.segment.segment as BattleSegment).battle.name
+                        }`}</p>
                         <div className={styles.items}>
                             {items.map((item: ItemData, key: number) => {
                                 return <ItemDisplay item={item} showName={false} key={key} />;
@@ -139,6 +119,8 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
             </div>
             {hasLevelCap(props.segment) ? <LevelCap level={(props.segment.segment as BattleSegment).levelCap!} /> : ""}
         </div>
+    ) : (
+        <></>
     );
 };
 

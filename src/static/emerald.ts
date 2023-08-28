@@ -598,11 +598,11 @@ const emerald: GameData = {
             name: "Juan Split",
             segments: [
                 {
-                    slug: "tabitha-and-maxie",
-                    name: "Tabitha & Maxie",
+                    slug: "maxie-and-tabitha",
+                    name: "Maxie & Tabitha",
                     type: "battle",
                     segment: {
-                        battle: battles.emerald.tabitha_maxie,
+                        battle: battles.emerald.maxie_and_tabitha,
                     },
                 },
                 {
