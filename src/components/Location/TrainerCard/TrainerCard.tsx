@@ -1,14 +1,14 @@
 import ItemDisplay from "@/components/Battle/ItemDisplay/ItemDisplay";
+import PokemonDisplay from "@/components/Run/PokemonDisplay/PokemonDisplay";
 import Battle from "@/models/Battle";
 import ItemData from "@/models/ItemData";
-import PokemonData from "@/models/PokemonData";
-import Image from "next/image";
-import styles from "./TrainerCard.module.scss";
-import { exportPokemonList } from "@/utils/utils";
 import Pokemon from "@/models/Pokemon";
-import { useState } from "react";
-import PokemonDisplay from "@/components/Run/PokemonDisplay/PokemonDisplay";
+import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
+import { exportPokemonList } from "@/utils/utils";
+import Image from "next/image";
+import { useState } from "react";
+import styles from "./TrainerCard.module.scss";
 
 type Props = {
     battle: Battle;
@@ -76,7 +76,11 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                         return (
                             <li key={key}>
                                 <div className={styles.pokemon}>
-                                    <PokemonDisplay pokemon={props.pokemon[pokemon.slug]} runID={props.run.id} />
+                                    <PokemonDisplay
+                                        pokemon={props.pokemon[pokemon.slug]}
+                                        set={pokemon}
+                                        runID={props.run.id}
+                                    />
                                 </div>
                             </li>
                         );

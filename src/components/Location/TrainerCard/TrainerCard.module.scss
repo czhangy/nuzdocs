@@ -2,19 +2,21 @@
 
 .trainer-card {
     --body-padding: 2rem;
-    --card-padding: 1rem;
+    --card-x-padding: 1rem;
     --export-offset: 1rem;
     --export-size: 24px;
     --info-inner-spacing: 0.5rem;
     --location-font-size: 1rem;
     --name-font-size: 1rem;
+    --pokemon-border-size: 2px;
+    --pokemon-y-padding: 1rem;
     --sprite-size: 80px;
     --toggle-font-size: 1.5rem;
     --toggle-offset: 0.25rem;
     --trainer-inner-spacing: 0.5rem;
 
     background-color: constants.$accent-color;
-    padding: var(--card-padding);
+    padding: 0 var(--card-x-padding);
     position: relative;
 
     .header {
@@ -69,6 +71,11 @@
 
     .body {
         padding: 0 var(--body-padding);
+
+        .pokemon {
+            border-top: var(--pokemon-border-size) solid constants.$bg-color;
+            padding: var(--pokemon-y-padding) 0;
+        }
     }
 
     .toggle {

@@ -18,6 +18,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                         { slug: "growl", name: "Growl" },
                         { slug: "tail-whip", name: "Tail Whip" },
                     ],
+                    item: { slug: "cheri-berry", name: "Cheri Berry" },
                     ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },

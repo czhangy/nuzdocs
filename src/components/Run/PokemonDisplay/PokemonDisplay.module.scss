@@ -1,12 +1,13 @@
 @use "@/styles/constants";
 
 .pokemon-display {
-    --info-inner-spacing: 0.2rem;
+    --info-inner-spacing: 0.5rem;
     --inner-spacing: 1rem;
     --name-font-size: 1rem;
     --name-z: 2;
     --sprite-left-offset: -1.5rem;
     --sprite-size: 100px;
+    --text-font-size: 0.75rem;
     --top-inner-spacing: 0.5rem;
     --type-height: 12px;
     --type-ratio: 8/3;
@@ -24,16 +25,25 @@
     }
 
     .info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--info-inner-spacing);
+
         .top {
             align-items: center;
             display: flex;
             gap: var(--top-inner-spacing);
-            margin-bottom: var(--info-inner-spacing);
 
             .name {
                 font-size: var(--name-font-size);
+                line-height: var(--name-font-size);
                 z-index: var(--name-z);
             }
+        }
+
+        .text {
+            font-size: var(--text-font-size);
+            line-height: var(--text-font-size);
         }
 
         .types {
@@ -53,6 +63,7 @@
     .pokemon-display {
         --name-font-size: 1.25rem;
         --sprite-size: 120px;
+        --text-font-size: 1rem;
     }
 }
 
