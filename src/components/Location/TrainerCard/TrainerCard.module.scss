@@ -7,10 +7,16 @@
     --export-size: 24px;
     --info-inner-spacing: 0.5rem;
     --location-font-size: 1rem;
+    --move-border-rad: 5px;
+    --move-font-size: 0.75rem;
+    --move-y-padding: 1rem;
+    --move-width: 9rem;
+    --moves-inner-spacing: 0.5rem;
+    --moves-spacing: 1rem;
     --name-font-size: 1rem;
     --pokemon-border-size: 2px;
     --pokemon-y-padding: 1rem;
-    --sprite-size: 80px;
+    --sprite-size: 100px;
     --toggle-font-size: 1.5rem;
     --toggle-offset: 0.25rem;
     --trainer-inner-spacing: 0.5rem;
@@ -73,9 +79,33 @@
         padding: 0 var(--body-padding);
 
         .pokemon {
+            align-items: center;
             border-top: var(--pokemon-border-size) solid constants.$bg-color;
+            display: flex;
+            flex-direction: column;
             padding: var(--pokemon-y-padding) 0;
+
+            .moves {
+                display: grid;
+                gap: var(--moves-inner-spacing);
+                grid-template-columns: 1fr 1fr;
+                margin-top: var(--moves-spacing);
+
+                .move {
+                    background: constants.$bg-color;
+                    border-radius: var(--move-border-rad);
+                    font-size: var(--move-font-size);
+                    line-height: var(--move-font-size);
+                    padding: var(--move-y-padding) 0;
+                    text-align: center;
+                    width: var(--move-width);
+                }
+            }
         }
+    }
+
+    .loading {
+        padding: var(--pokemon-y-padding) 0;
     }
 
     .toggle {
@@ -91,10 +121,22 @@
     .trainer-card {
         --export-size: 36px;
         --info-inner-spacing: 0.75rem;
+        --move-font-size: 1rem;
+        --move-width: 10rem;
+        --moves-spacing: 0;
         --name-font-size: 1.25rem;
         --sprite-size: 120px;
         --toggle-font-size: 2rem;
         --toggle-offset: 0.5rem;
+
+        .body .pokemon {
+            flex-direction: row;
+            justify-content: space-between;
+
+            .moves {
+                grid-template-rows: 1fr 1fr;
+            }
+        }
     }
 }
 

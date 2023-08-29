@@ -9,6 +9,7 @@ import { exportPokemonList } from "@/utils/utils";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "./TrainerCard.module.scss";
+import NamedResource from "@/models/NamedResource";
 
 type Props = {
     battle: Battle;
@@ -81,13 +82,20 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                                         set={pokemon}
                                         runID={props.run.id}
                                     />
+                                    <div className={styles.moves}>
+                                        {pokemon.moves.map((move: NamedResource) => (
+                                            <p className={styles.move}>{move.name}</p>
+                                        ))}
+                                    </div>
                                 </div>
                             </li>
                         );
                     })}
                 </ul>
             ) : (
-                <div className="bg-spinner" />
+                <div className={styles.loading}>
+                    <div className="bg-spinner" />
+                </div>
             )}
             <button className={styles.toggle} onClick={() => setOpen(!open)}>
                 {open ? "-" : "+"}
