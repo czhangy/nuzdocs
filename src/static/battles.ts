@@ -2891,7 +2891,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: ["super-potion"],
         },
         black_belt_daisuke: {
             trainer: trainers.rse_black_belt,
@@ -2962,7 +2962,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: ["super-potion"],
         },
         youngster_neal: {
             trainer: trainers.rse_youngster,
@@ -14229,7 +14229,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: ["super-potion", "super-potion"],
         },
         magma_leader_maxie_2: {
             trainer: trainers.rse_maxie,
@@ -14279,7 +14279,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["potion-[2]", "potion-[2]"],
+            items: ["super-potion", "super-potion"],
         },
         aqua_leader_archie_1: {
             trainer: trainers.rse_archie,
@@ -14329,7 +14329,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: ["super-potion", "super-potion"],
         },
         aqua_leader_archie_2: {
             trainer: trainers.rse_archie,
@@ -14379,7 +14379,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["potion-[2]", "potion-[2]"],
+            items: ["super-potion", "super-potion"],
         },
         magma_admin_courtney_1: {
             trainer: trainers.rse_courtney,

@@ -1,15 +1,16 @@
 import TrainerCard from "@/components/Location/TrainerCard/TrainerCard";
 import Battle from "@/models/Battle";
-import styles from "./Trainers.module.scss";
-import { useEffect, useState } from "react";
 import ItemData from "@/models/ItemData";
-import { fetchItems, fetchPokemonList } from "@/utils/api";
-import PokemonData from "@/models/PokemonData";
 import Pokemon from "@/models/Pokemon";
+import PokemonData from "@/models/PokemonData";
+import Run from "@/models/Run";
+import { fetchItems, fetchPokemonList } from "@/utils/api";
+import { useEffect, useState } from "react";
+import styles from "./Trainers.module.scss";
 
 type Props = {
     battles: Battle[];
-    game: string;
+    run: Run;
 };
 
 const Trainers: React.FC<Props> = (props: Props) => {
@@ -26,12 +27,12 @@ const Trainers: React.FC<Props> = (props: Props) => {
                 ),
             ];
             const uniqueItems = [...new Set(props.battles.map((battle: Battle) => battle.items).flat())];
-            fetchPokemonList(uniquePokemon, props.game).then((pokemon: PokemonData[]) => {
+            fetchPokemonList(uniquePokemon, props.run.gameSlug).then((pokemon: PokemonData[]) => {
                 const pokemonData: { [pokemon: string]: PokemonData } = {};
                 pokemon.forEach((pokemon: PokemonData) => (pokemonData[pokemon.pokemon.slug] = pokemon));
                 setPokemon(pokemonData);
             });
-            fetchItems(uniqueItems, props.game).then((items: ItemData[]) => {
+            fetchItems(uniqueItems, props.run.gameSlug).then((items: ItemData[]) => {
                 const itemData: { [item: string]: ItemData } = {};
                 items.forEach((item: ItemData) => (itemData[item.slug] = item));
                 setItems(itemData);
@@ -46,7 +47,7 @@ const Trainers: React.FC<Props> = (props: Props) => {
                 {props.battles.map((battle: Battle, key: number) => {
                     return (
                         <li key={key}>
-                            <TrainerCard battle={battle} game={props.game} pokemon={pokemon} items={items} />
+                            <TrainerCard battle={battle} run={props.run} pokemon={pokemon} items={items} />
                         </li>
                     );
                 })}

@@ -6,21 +6,27 @@ import Image from "next/image";
 import styles from "./TrainerCard.module.scss";
 import { exportPokemonList } from "@/utils/utils";
 import Pokemon from "@/models/Pokemon";
+import { useState } from "react";
+import PokemonDisplay from "@/components/Run/PokemonDisplay/PokemonDisplay";
+import Run from "@/models/Run";
 
 type Props = {
     battle: Battle;
-    game: string;
+    run: Run;
     pokemon: { [pokemon: string]: PokemonData };
     items: { [item: string]: ItemData };
 };
 
 const TrainerCard: React.FC<Props> = (props: Props) => {
+    // Component state
+    const [open, setOpen] = useState<boolean>(false);
+
     // Save battle team to clipboard
     const handleExport = (): void => {
         exportPokemonList(
             props.battle.team,
             props.battle.team.map((pokemon: Pokemon) => props.pokemon[pokemon.slug].pokemon.name),
-            `${props.game}-${props.battle.trainer.class.toLowerCase()}-${props.battle.name.toLowerCase()}`
+            `${props.run.gameSlug}-${props.battle.trainer.class.toLowerCase()}-${props.battle.name.toLowerCase()}`
         );
     };
 
@@ -64,6 +70,24 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                     <Image src="/assets/icons/copy.svg" alt="Copy sets" layout="fill" objectFit="contain" />
                 </button>
             </div>
+            {Object.keys(props.pokemon).length > 0 ? (
+                <ul className={styles.body}>
+                    {props.battle.team.map((pokemon: Pokemon, key: number) => {
+                        return (
+                            <li key={key}>
+                                <div className={styles.pokemon}>
+                                    <PokemonDisplay pokemon={props.pokemon[pokemon.slug]} runID={props.run.id} />
+                                </div>
+                            </li>
+                        );
+                    })}
+                </ul>
+            ) : (
+                <div className="bg-spinner" />
+            )}
+            <button className={styles.toggle} onClick={() => setOpen(!open)}>
+                {open ? "-" : "+"}
+            </button>
         </div>
     );
 };

@@ -1,6 +1,7 @@
 @use "@/styles/constants";
 
 .trainer-card {
+    --body-padding: 2rem;
     --card-padding: 1rem;
     --export-offset: 1rem;
     --export-size: 24px;
@@ -8,10 +9,13 @@
     --location-font-size: 1rem;
     --name-font-size: 1rem;
     --sprite-size: 80px;
+    --toggle-font-size: 1.5rem;
+    --toggle-offset: 0.25rem;
     --trainer-inner-spacing: 0.5rem;
 
     background-color: constants.$accent-color;
     padding: var(--card-padding);
+    position: relative;
 
     .header {
         align-items: center;
@@ -62,6 +66,18 @@
             }
         }
     }
+
+    .body {
+        padding: 0 var(--body-padding);
+    }
+
+    .toggle {
+        font-size: var(--toggle-font-size);
+        left: var(--toggle-offset);
+        line-height: var(--toggle-font-size);
+        position: absolute;
+        top: var(--toggle-offset);
+    }
 }
 
 @media screen and (min-width: constants.$tablet) {
@@ -70,11 +86,19 @@
         --info-inner-spacing: 0.75rem;
         --name-font-size: 1.25rem;
         --sprite-size: 120px;
+        --toggle-font-size: 2rem;
+        --toggle-offset: 0.5rem;
     }
 }
 
 @media (hover: hover) {
-    .trainer-card > .header > .export:hover {
-        filter: constants.$svg-hover-color;
+    .trainer-card {
+        .header > .export:hover {
+            filter: constants.$svg-hover-color;
+        }
+
+        .toggle:hover {
+            color: constants.$hover-color;
+        }
     }
 }

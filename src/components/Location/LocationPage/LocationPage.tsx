@@ -39,7 +39,7 @@ const LocationPage: React.FC<Props> = (props: Props) => {
                     ""
                 )}
                 <EncounterList location={currentLocation} run={props.run} />
-                <Trainers battles={getBattles(props.run.gameSlug, props.segment.slug)} game={props.run.gameSlug} />
+                <Trainers battles={getBattles(props.run.gameSlug, props.segment.slug)} run={props.run} />
             </div>
             <EncounterDisplay locationSlug={props.segment.slug} run={props.run} />
         </div>
