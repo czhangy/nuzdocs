@@ -70,7 +70,14 @@ const ruby: GameData = {
                     name: "Route 104",
                     type: "location",
                     segment: {
-                        battles: [battles.ruby_sapphire.youngster_billy, battles.ruby_sapphire.rich_boy_winston],
+                        battles: [
+                            battles.ruby_sapphire.youngster_billy,
+                            battles.ruby_sapphire.rich_boy_winston,
+                            battles.ruby_sapphire.lady_cindy,
+                            battles.ruby_sapphire.lass_haley,
+                            battles.ruby_sapphire.twins_gia_and_mia,
+                            battles.ruby_sapphire.fisherman_ivan,
+                        ],
                     },
                 },
                 {

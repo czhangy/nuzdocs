@@ -20,6 +20,8 @@ const Trainers: React.FC<Props> = (props: Props) => {
 
     // Fetch Pokemon and items on component load
     useEffect(() => {
+        setPokemon({});
+        setItems({});
         if (props.battles) {
             const uniquePokemon: string[] = [
                 ...new Set(
