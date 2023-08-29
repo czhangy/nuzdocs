@@ -22,7 +22,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion", "hyper-potion"],
+            items: [],
         },
         bug_catcher_rick: {
             trainer: trainers.rse_bug_catcher,
