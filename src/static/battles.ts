@@ -403,6 +403,40 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             ],
             items: [],
         },
+        youngster_joey: {
+            trainer: trainers.rse_youngster,
+            name: "Joey",
+            location: "Route 116",
+            team: [
+                {
+                    slug: "zigzagoon",
+                    species: "zigzagoon",
+                    level: 8,
+                    ability: { slug: "pickup", name: "Pickup" },
+                    moves: [
+                        { slug: "tackle", name: "Tackle" },
+                        { slug: "growl", name: "Growl" },
+                        { slug: "tail-whip", name: "Tail Whip" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+                {
+                    slug: "machop",
+                    species: "machop",
+                    level: 10,
+                    ability: { slug: "guts", name: "Guts" },
+                    moves: [
+                        { slug: "low-kick", name: "Low Kick" },
+                        { slug: "leer", name: "Leer" },
+                        { slug: "focus-energy", name: "Focus Energy" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+            ],
+            items: [],
+        },
         bug_catcher_jose: {
             trainer: trainers.rse_bug_catcher,
             name: "Jose",
@@ -441,40 +475,6 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                         { slug: "leech-life", name: "Leech Life" },
                     ],
                     ivs: { hp: 6, atk: 6, spa: 6, def: 6, spd: 6, spe: 6 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-            ],
-            items: [],
-        },
-        youngster_joey: {
-            trainer: trainers.rse_youngster,
-            name: "Joey",
-            location: "Route 116",
-            team: [
-                {
-                    slug: "zigzagoon",
-                    species: "zigzagoon",
-                    level: 8,
-                    ability: { slug: "pickup", name: "Pickup" },
-                    moves: [
-                        { slug: "tackle", name: "Tackle" },
-                        { slug: "growl", name: "Growl" },
-                        { slug: "tail-whip", name: "Tail Whip" },
-                    ],
-                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-                {
-                    slug: "machop",
-                    species: "machop",
-                    level: 10,
-                    ability: { slug: "guts", name: "Guts" },
-                    moves: [
-                        { slug: "low-kick", name: "Low Kick" },
-                        { slug: "leer", name: "Leer" },
-                        { slug: "focus-energy", name: "Focus Energy" },
-                    ],
-                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
@@ -645,7 +645,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         school_kid_jerry: {
             trainer: trainers.rse_school_kid_m,
             name: "Jerry",
-            location: "Route 116 (Cut)",
+            location: "Route 116",
             team: [
                 {
                     slug: "ralts",
@@ -665,7 +665,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         school_kid_karen: {
             trainer: trainers.rse_school_kid_f,
             name: "Karen",
-            location: "Route 116 (Cut)",
+            location: "Route 116",
             team: [
                 {
                     slug: "shroomish",
@@ -1013,7 +1013,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         sailor_dwayne: {
             trainer: trainers.rse_sailor,
             name: "Dwayne",
-            location: "Seashore House",
+            location: "Route 109 (Seashore House)",
             team: [
                 {
                     slug: "wingull",
@@ -1060,7 +1060,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         beauty_johanna: {
             trainer: trainers.rse_beauty,
             name: "Johanna",
-            location: "Seashore House",
+            location: "Route 109 (Seashore House)",
             team: [
                 {
                     slug: "goldeen",
@@ -1082,7 +1082,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         tuber_simon: {
             trainer: trainers.rse_tuber_m,
             name: "Simon",
-            location: "Seashore House",
+            location: "Route 109 (Seashore House)",
             team: [
                 {
                     slug: "azurill",
@@ -1278,7 +1278,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         lass_sally: {
             trainer: trainers.rse_lass,
             name: "Sally",
-            location: "Trick House 1",
+            location: "Route 110 (Trick House 1)",
             team: [
                 {
                     slug: "oddish",
@@ -1300,7 +1300,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         youngster_eddie: {
             trainer: trainers.rse_youngster,
             name: "Eddie",
-            location: "Trick House 1",
+            location: "Route 110 (Trick House 1)",
             team: [
                 {
                     slug: "zigzagoon",
@@ -1336,7 +1336,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         lass_robin: {
             trainer: trainers.rse_lass,
             name: "Robin",
-            location: "Trick House 1",
+            location: "Route 110 (Trick House 1)",
             team: [
                 {
                     slug: "skitty",

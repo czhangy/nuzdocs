@@ -1,9 +1,8 @@
 import Run from "@/models/Run";
-import Segment from "@/models/Segment";
+import Split from "@/models/Split";
 import { getLevelCap } from "@/utils/battle";
-import { getSegments } from "@/utils/game";
+import { getGameData } from "@/utils/game";
 import { getStarterSlug, isCleared } from "@/utils/run";
-import { hasLevelCap } from "@/utils/segment";
 import styles from "./NextLevelCap.module.scss";
 
 type Props = {
@@ -12,13 +11,12 @@ type Props = {
 };
 
 const NextLevelCap: React.FC<Props> = (props: Props) => {
-    // Scan segments for the next
+    // Scan segments for the next level cap
     const getNextLevelCap = (): number | string => {
-        const segments: Segment[] = getSegments(props.run.gameSlug);
-        const idx: number = segments.map((segment: Segment) => segment.slug).indexOf(props.segment);
-        for (let i = idx + 1; i < segments.length; i++) {
-            if (hasLevelCap(segments[i]) && !isCleared(props.run.id, segments[i].slug)) {
-                return getLevelCap(props.run.gameSlug, segments[i].slug, getStarterSlug(props.run.id));
+        const splits: Split[] = getGameData(props.run.gameSlug).splits;
+        for (const split of splits) {
+            if (!isCleared(props.run.id, split.segments.at(-1)!.slug)) {
+                return getLevelCap(props.run.gameSlug, split.segments.at(-1)!.slug, getStarterSlug(props.run.id));
             }
         }
         return "None";

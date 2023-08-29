@@ -17,6 +17,18 @@ const ruby: GameData = {
                     segment: { battles: [] },
                 },
                 {
+                    slug: "may-1",
+                    name: "May 1",
+                    type: "battle",
+                    segment: {
+                        battle: {
+                            treecko: battles.ruby_sapphire.pokemon_trainer_may_treecko_1,
+                            torchic: battles.ruby_sapphire.pokemon_trainer_may_torchic_1,
+                            mudkip: battles.ruby_sapphire.pokemon_trainer_may_mudkip_1,
+                        },
+                    },
+                },
+                {
                     slug: "hoenn-route-101",
                     name: "Route 101",
                     type: "location",
@@ -32,18 +44,13 @@ const ruby: GameData = {
                     slug: "hoenn-route-103",
                     name: "Route 103",
                     type: "location",
-                    segment: { battles: [] },
-                },
-                {
-                    slug: "may-1",
-                    name: "May 1",
-                    type: "battle",
                     segment: {
-                        battle: {
-                            treecko: battles.ruby_sapphire.pokemon_trainer_may_treecko_1,
-                            torchic: battles.ruby_sapphire.pokemon_trainer_may_torchic_1,
-                            mudkip: battles.ruby_sapphire.pokemon_trainer_may_mudkip_1,
-                        },
+                        battles: [
+                            battles.ruby_sapphire.aroma_lady_daisy,
+                            battles.ruby_sapphire.twins_amy_and_liv,
+                            battles.ruby_sapphire.pokefan_miguel,
+                            battles.ruby_sapphire.fisherman_andrew,
+                        ],
                     },
                 },
                 {
@@ -110,23 +117,14 @@ const ruby: GameData = {
                     slug: "rustboro-city",
                     name: "Rustboro City",
                     type: "location",
-                    segment: { battles: [] },
+                    segment: {
+                        battles: [battles.ruby_sapphire.youngster_josh, battles.ruby_sapphire.youngster_tommy],
+                    },
                 },
+                // FIX
                 {
                     slug: "hoenn-route-115",
                     name: "Route 115",
-                    type: "location",
-                    segment: { battles: [] },
-                },
-                {
-                    slug: "hoenn-route-116",
-                    name: "Route 116",
-                    type: "location",
-                    segment: { battles: [] },
-                },
-                {
-                    slug: "rusturf-tunnel",
-                    name: "Rusturf Tunnel",
                     type: "location",
                     segment: { battles: [] },
                 },
@@ -141,120 +139,187 @@ const ruby: GameData = {
                 },
             ],
         },
-        // {
-        //     name: "Brawly Split",
-        //     segments: [
-        //         {
-        //             slug: "dewford-town",
-        //             name: "Dewford Town",
-        //             type: "location",
-        //             segment: {},
-        //         },
-        //         {
-        //             slug: "hoenn-route-106",
-        //             name: "Route 106",
-        //             type: "location",
-        //             segment: {},
-        //         },
-        //         {
-        //             slug: "granite-cave",
-        //             name: "Granite Cave",
-        //             type: "location",
-        //             segment: {},
-        //         },
-        //         {
-        //             slug: "hoenn-route-107",
-        //             name: "Route 107",
-        //             type: "location",
-        //             segment: {},
-        //         },
-        //         {
-        //             slug: "hoenn-route-109",
-        //             name: "Route 109",
-        //             type: "location",
-        //             segment: {},
-        //         },
-        //         {
-        //             slug: "slateport-city",
-        //             name: "Slateport City",
-        //             type: "location",
-        //             segment: {},
-        //         },
-        //         {
-        //             slug: "brawly",
-        //             name: "Brawly",
-        //             type: "battle",
-        //             segment: {
-        //                 battle: battles.emerald.brawly,
-        //                 levelCap: true,
-        //             },
-        //         },
-        //     ],
-        // },
-        // {
-        //     name: "Wattson Split",
-        //     segments: [
-        //         {
-        //             slug: "hoenn-route-110",
-        //             name: "Route 110",
-        //             type: "location",
-        //             segment: {},
-        //         },
-        //         {
-        //             slug: "may-2",
-        //             name: "May 2",
-        //             type: "battle",
-        //             segment: {
-        //                 battle: {
-        //                     treecko: battles.emerald.may_2_treecko,
-        //                     torchic: battles.emerald.may_2_torchic,
-        //                     mudkip: battles.emerald.may_2_mudkip,
-        //                 },
-        //             },
-        //         },
-        //         {
-        //             slug: "mauville-city",
-        //             name: "Mauville City",
-        //             type: "location",
-        //             segment: {},
-        //         },
-        //         {
-        //             slug: "wally-1",
-        //             name: "Wally 1",
-        //             type: "battle",
-        //             segment: {
-        //                 battle: battles.emerald.wally_1,
-        //             },
-        //         },
-        //         {
-        //             slug: "hoenn-route-117",
-        //             name: "Route 117",
-        //             type: "location",
-        //             segment: {},
-        //         },
-        //         {
-        //             slug: "verdanturf-town",
-        //             name: "Verdanturf Town",
-        //             type: "location",
-        //             segment: {},
-        //         },
-        //         {
-        //             slug: "hoenn-route-118",
-        //             name: "Route 118",
-        //             type: "location",
-        //             segment: {},
-        //         },
-        //         {
-        //             slug: "wattson",
-        //             name: "Wattson",
-        //             type: "battle",
-        //             segment: {
-        //                 battle: battles.emerald.wattson,
-        //                 levelCap: true,
-        //             },
-        //         },
-        //     ],
-        // },
+        {
+            name: "Brawly Split",
+            segments: [
+                {
+                    slug: "hoenn-route-116",
+                    name: "Route 116",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.youngster_joey,
+                            battles.ruby_sapphire.bug_catcher_jose,
+                            battles.ruby_sapphire.lass_janice,
+                            battles.ruby_sapphire.hiker_clark,
+                            battles.ruby_sapphire.school_kid_jerry,
+                            battles.ruby_sapphire.school_kid_karen,
+                        ],
+                    },
+                },
+                {
+                    slug: "rusturf-tunnel",
+                    name: "Rusturf Tunnel",
+                    type: "location",
+                    version: "ruby",
+                    segment: { battles: [battles.ruby_sapphire.team_magma_grunt_2] },
+                },
+                {
+                    slug: "rusturf-tunnel",
+                    name: "Rusturf Tunnel",
+                    type: "location",
+                    version: "sapphire",
+                    segment: { battles: [battles.ruby_sapphire.team_aqua_grunt_2] },
+                },
+                {
+                    slug: "dewford-town",
+                    name: "Dewford Town",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.battle_girl_laura,
+                            battles.ruby_sapphire.black_belt_hideki,
+                            battles.ruby_sapphire.battle_girl_tessa,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-106",
+                    name: "Route 106",
+                    type: "location",
+                    segment: {
+                        battles: [battles.ruby_sapphire.fisherman_ned, battles.ruby_sapphire.fisherman_elliot],
+                    },
+                },
+                {
+                    slug: "granite-cave",
+                    name: "Granite Cave",
+                    type: "location",
+                    segment: {
+                        battles: [],
+                    },
+                },
+                // FIX
+                {
+                    slug: "hoenn-route-107",
+                    name: "Route 107",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "brawly",
+                    name: "Brawly",
+                    type: "battle",
+                    segment: {
+                        battle: battles.ruby_sapphire.gym_leader_brawly,
+                        levelCap: true,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Wattson Split",
+            segments: [
+                {
+                    slug: "hoenn-route-109",
+                    name: "Route 109",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.sailor_huey,
+                            battles.ruby_sapphire.tuber_ricky,
+                            battles.ruby_sapphire.sailor_edmond,
+                            battles.ruby_sapphire.tuber_lola,
+                            battles.ruby_sapphire.sailor_dwayne,
+                            battles.ruby_sapphire.beauty_johanna,
+                            battles.ruby_sapphire.tuber_simon,
+                        ],
+                    },
+                },
+                {
+                    slug: "slateport-city",
+                    name: "Slateport City",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "hoenn-route-110",
+                    name: "Route 110",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.pokefan_isabel,
+                            battles.ruby_sapphire.lass_sally,
+                            battles.ruby_sapphire.youngster_eddie,
+                            battles.ruby_sapphire.lass_robin,
+                            battles.ruby_sapphire.youngster_timmy,
+                            battles.ruby_sapphire.collector_edwin,
+                            battles.ruby_sapphire.psychic_edward,
+                            battles.ruby_sapphire.fisherman_dale,
+                            battles.ruby_sapphire.psychic_jaclyn,
+                            battles.ruby_sapphire.triathlete_jacob,
+                            battles.ruby_sapphire.triathlete_jasmine,
+                            battles.ruby_sapphire.triathlete_benjamin,
+                            battles.ruby_sapphire.triathlete_abigail,
+                            battles.ruby_sapphire.triathlete_anthony,
+                        ],
+                    },
+                },
+                {
+                    slug: "may-2",
+                    name: "May 2",
+                    type: "battle",
+                    segment: {
+                        battle: {
+                            treecko: battles.emerald.may_2_treecko,
+                            torchic: battles.emerald.may_2_torchic,
+                            mudkip: battles.emerald.may_2_mudkip,
+                        },
+                    },
+                },
+                {
+                    slug: "mauville-city",
+                    name: "Mauville City",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "wally-1",
+                    name: "Wally 1",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.wally_1,
+                    },
+                },
+                {
+                    slug: "hoenn-route-117",
+                    name: "Route 117",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "verdanturf-town",
+                    name: "Verdanturf Town",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "hoenn-route-118",
+                    name: "Route 118",
+                    type: "location",
+                    segment: {},
+                },
+                {
+                    slug: "wattson",
+                    name: "Wattson",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.wattson,
+                        levelCap: true,
+                    },
+                },
+            ],
+        },
         // {
         //     name: "Flannery Split",
         //     segments: [

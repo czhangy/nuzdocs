@@ -7,7 +7,7 @@
     --export-size: 24px;
     --info-inner-spacing: 0.5rem;
     --loading-y-padding: 2rem;
-    --location-font-size: 1rem;
+    --location-font-size: 0.75rem;
     --move-border-rad: 5px;
     --move-font-size: 0.75rem;
     --move-y-padding: 1rem;
@@ -17,7 +17,7 @@
     --name-font-size: 1rem;
     --pokemon-border-size: 2px;
     --pokemon-y-padding: 1rem;
-    --sprite-size: 100px;
+    --sprite-size: 90px;
     --toggle-font-size: 1.5rem;
     --toggle-offset: 0.25rem;
     --trainer-inner-spacing: 0.5rem;
@@ -48,6 +48,7 @@
                 display: flex;
                 flex-direction: column;
                 gap: var(--info-inner-spacing);
+                margin-left: var(--info-offset);
 
                 .name {
                     font-size: var(--name-font-size);
@@ -129,6 +130,8 @@
     .trainer-card {
         --export-size: 36px;
         --info-inner-spacing: 0.75rem;
+        --info-offset: 0;
+        --location-font-size: 1rem;
         --move-font-size: 1rem;
         --move-width: 10rem;
         --moves-spacing: 0;
@@ -136,6 +139,12 @@
         --sprite-size: 120px;
         --toggle-font-size: 2rem;
         --toggle-offset: 0.5rem;
+
+        .header > .trainer > .sprite {
+            height: var(--sprite-size);
+            position: relative;
+            width: var(--sprite-size);
+        }
 
         .body .pokemon {
             flex-direction: row;

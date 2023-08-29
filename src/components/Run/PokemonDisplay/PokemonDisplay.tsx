@@ -12,7 +12,7 @@ type Props = {
 };
 
 const PokemonDisplay: React.FC<Props> = (props: Props) => {
-    return (
+    return props.pokemon ? (
         <div className={styles["pokemon-display"]}>
             <div className={styles.sprite}>
                 <Image src={props.pokemon.sprite} alt={props.pokemon.pokemon.name} layout="fill" objectFit="contain" />
@@ -41,6 +41,8 @@ const PokemonDisplay: React.FC<Props> = (props: Props) => {
                 </ul>
             </div>
         </div>
+    ) : (
+        <div className="bg-spinner" />
     );
 };
 
