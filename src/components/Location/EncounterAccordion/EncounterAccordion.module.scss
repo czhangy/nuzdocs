@@ -10,10 +10,10 @@
     --cell-font-size: 1rem;
     --cell-x-padding: 1rem;
     --cell-y-padding: 1rem;
-    --category-font-size: 1.2rem;
+    --category-font-size: 1rem;
     --category-y-padding: 1.5rem;
     --loading-y-padding: 2rem;
-    --method-font-size: 1.5rem;
+    --method-font-size: 1.25rem;
     --name-font-size: 1rem;
     --name-spacing: 0.5rem;
     --sprite-size: 90px;
@@ -120,8 +120,10 @@
 
 @media screen and (min-width: constants.$tablet) {
     .encounter-accordion {
+        --category-font-size: 1.25rem;
         --cell-font-size: 1.25rem;
         --cell-x-padding: 3rem;
+        --method-font-size: 1.5rem;
         --name-font-size: 1.25rem;
         --sprite-size: 100px;
     }

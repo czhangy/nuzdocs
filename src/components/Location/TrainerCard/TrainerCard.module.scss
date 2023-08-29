@@ -6,13 +6,14 @@
     --export-offset: 1rem;
     --export-size: 24px;
     --info-inner-spacing: 0.5rem;
+    --loading-y-padding: 2rem;
     --location-font-size: 1rem;
     --move-border-rad: 5px;
     --move-font-size: 0.75rem;
     --move-y-padding: 1rem;
     --move-width: 9rem;
     --moves-inner-spacing: 0.5rem;
-    --moves-spacing: 1rem;
+    --moves-spacing: 0.5rem;
     --name-font-size: 1rem;
     --pokemon-border-size: 2px;
     --pokemon-y-padding: 1rem;
@@ -22,6 +23,8 @@
     --trainer-inner-spacing: 0.5rem;
 
     background-color: constants.$accent-color;
+    max-height: var(--sprite-size);
+    overflow-y: hidden;
     padding: 0 var(--card-x-padding);
     position: relative;
 
@@ -105,7 +108,7 @@
     }
 
     .loading {
-        padding: var(--pokemon-y-padding) 0;
+        padding: var(--loading-y-padding) 0;
     }
 
     .toggle {
@@ -115,6 +118,10 @@
         position: absolute;
         top: var(--toggle-offset);
     }
+}
+
+.open {
+    max-height: fit-content;
 }
 
 @media screen and (min-width: constants.$tablet) {

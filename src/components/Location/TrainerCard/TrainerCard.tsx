@@ -2,6 +2,7 @@ import ItemDisplay from "@/components/Battle/ItemDisplay/ItemDisplay";
 import PokemonDisplay from "@/components/Run/PokemonDisplay/PokemonDisplay";
 import Battle from "@/models/Battle";
 import ItemData from "@/models/ItemData";
+import NamedResource from "@/models/NamedResource";
 import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
@@ -9,7 +10,6 @@ import { exportPokemonList } from "@/utils/utils";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "./TrainerCard.module.scss";
-import NamedResource from "@/models/NamedResource";
 
 type Props = {
     battle: Battle;
@@ -32,7 +32,7 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
     };
 
     return (
-        <div className={styles["trainer-card"]}>
+        <div className={`${styles["trainer-card"]} ${open ? styles.open : ""}`}>
             <div className={styles.header}>
                 <div className={styles.trainer}>
                     <div className={styles.sprite}>

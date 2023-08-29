@@ -4,7 +4,7 @@
     --encounters-inner-spacing: 1rem;
     --header-spacing: 1.5rem;
     --left-inner-spacing: 1rem;
-    --title-font-size: 1.5rem;
+    --title-font-size: 1.25rem;
 
     width: 100%;
 
@@ -37,4 +37,10 @@
     --section-offset: -2rem;
 
     margin-bottom: var(--section-offset);
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .encounter-list {
+        --title-font-size: 1.5rem;
+    }
 }

@@ -54,7 +54,7 @@ const Trainers: React.FC<Props> = (props: Props) => {
             </ul>
         </div>
     ) : (
-        <></>
+        <div className={styles.placeholder} />
     );
 };
 
