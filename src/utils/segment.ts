@@ -23,6 +23,7 @@ export const hasLevelCap = (segment: Segment): boolean => {
 export const getNumBattles = (gameSlug: string): number => {
     return getSegments(gameSlug).filter((segment: Segment) => segment.type === "battle").length;
 };
+
 export const getBattles = (game: string, location: string): Battle[] => {
     return (getSegment(game, location).segment as LocationSegment).battles;
 };

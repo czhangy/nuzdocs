@@ -61,6 +61,7 @@
 
                 .items {
                     display: flex;
+                    pointer-events: none;
                 }
             }
         }

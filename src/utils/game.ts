@@ -1,8 +1,6 @@
 import Game from "@/models/Game";
 import GameData from "@/models/GameData";
-import PokemonName from "@/models/PokemonName";
 import Segment from "@/models/Segment";
-import Split from "@/models/Split";
 import games from "@/static/games";
 
 // Getters
@@ -18,10 +16,12 @@ export const getGameData = (gameSlug: string): GameData => {
     return getGame(gameSlug).data;
 };
 
-export const getSegments = (gameSlug: string): Segment[] => {
+export const getSegments = (game: string): Segment[] => {
     const segments: Segment[] = [];
-    for (const split of getGameData(gameSlug).splits) {
-        segments.push(...split.segments);
+    for (const split of getGameData(game).splits) {
+        segments.push(
+            ...split.segments.filter((segment: Segment) => segment.version === undefined || segment.version === game)
+        );
     }
     return segments;
 };

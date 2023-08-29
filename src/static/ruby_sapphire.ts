@@ -69,13 +69,35 @@ const ruby: GameData = {
                     slug: "hoenn-route-104",
                     name: "Route 104",
                     type: "location",
-                    segment: { battles: [] },
+                    segment: {
+                        battles: [battles.ruby_sapphire.youngster_billy, battles.ruby_sapphire.rich_boy_winston],
+                    },
                 },
                 {
                     slug: "petalburg-woods",
                     name: "Petalburg Woods",
                     type: "location",
-                    segment: { battles: [] },
+                    version: "ruby",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.bug_catcher_lyle,
+                            battles.ruby_sapphire.team_magma_grunt_1,
+                            battles.ruby_sapphire.bug_catcher_james,
+                        ],
+                    },
+                },
+                {
+                    slug: "petalburg-woods",
+                    name: "Petalburg Woods",
+                    type: "location",
+                    version: "sapphire",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.bug_catcher_lyle,
+                            battles.ruby_sapphire.team_aqua_grunt_1,
+                            battles.ruby_sapphire.bug_catcher_james,
+                        ],
+                    },
                 },
                 {
                     slug: "rustboro-city",
