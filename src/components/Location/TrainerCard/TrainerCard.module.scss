@@ -56,6 +56,10 @@
             margin-right: var(--export-offset);
             position: relative;
             width: var(--export-size);
+
+            &:disabled {
+                filter: constants.$svg-disabled-color;
+            }
         }
     }
 }

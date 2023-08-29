@@ -3,7 +3,8 @@
 .trainers {
     --bottom-spacing: 10rem;
     --header-font-size: 1.5rem;
-    --header-spacing: 1rem;
+    --header-spacing: 2rem;
+    --list-inner-spacing: 1rem;
 
     margin-bottom: var(--bottom-spacing);
     width: 100%;
@@ -12,5 +13,11 @@
         font-size: var(--header-font-size);
         line-height: var(--header-font-size);
         margin-bottom: var(--header-spacing);
+    }
+
+    .list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--list-inner-spacing);
     }
 }

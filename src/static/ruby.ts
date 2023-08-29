@@ -50,7 +50,14 @@ const ruby: GameData = {
                     slug: "hoenn-route-102",
                     name: "Route 102",
                     type: "location",
-                    segment: { battles: [battles.ruby_sapphire.youngster_calvin] },
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.youngster_calvin,
+                            battles.ruby_sapphire.bug_catcher_rick,
+                            battles.ruby_sapphire.youngster_allen,
+                            battles.ruby_sapphire.lass_tiana,
+                        ],
+                    },
                 },
                 {
                     slug: "petalburg-city",
