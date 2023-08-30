@@ -1,6 +1,5 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 import Run from "@/models/Run";
-import { getGameData } from "@/utils/game";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import { generateID } from "@/utils/utils";
 
@@ -10,7 +9,7 @@ export const initRun = (id: string, name: string, gameSlug: string): Run => {
         id: id,
         name: name,
         gameSlug: gameSlug,
-        prevSegmentSlug: getGameData(gameSlug).startingTownSlug,
+        prevIdx: 0,
         box: [],
         rips: [],
         caughtPokemonSlugs: [],
@@ -83,9 +82,9 @@ export const setRun = (runID: string, run: Run): void => {
     localStorage.setItem(runID, JSON.stringify(run));
 };
 
-export const setPrevSegmentSlug = (runID: string, locationSlug: string): void => {
+export const setPrevIdx = (runID: string, idx: number): void => {
     let run: Run = getRun(runID);
-    run.prevSegmentSlug = locationSlug;
+    run.prevIdx = idx;
     setRun(runID, run);
 };
 

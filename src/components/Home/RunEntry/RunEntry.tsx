@@ -33,7 +33,7 @@ const RunEntry: React.FC<Props> = (props: Props) => {
 
     return (
         <li className={styles["run-entry"]}>
-            <Link href={`/runs/${props.run.id}/${props.run.prevSegmentSlug}`}>
+            <Link href={`/runs/${props.run.id}/${props.run.prevIdx}`}>
                 <a className={styles.nav}>
                     <div className={styles.logo}>
                         <Image

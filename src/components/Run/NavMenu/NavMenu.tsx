@@ -33,7 +33,7 @@ const NavMenu: React.FC<Props> = (props: Props) => {
             </button>
             <ul className={styles.menu} onClick={() => setOpen(false)}>
                 <li className={styles.option}>
-                    <Link href={`/runs/${props.run.id}/${props.run.prevSegmentSlug}`}>
+                    <Link href={`/runs/${props.run.id}/${props.run.prevIdx}`}>
                         <a className={styles.link}>
                             <div className={styles.icon}>
                                 <Image src="/assets/icons/path.svg" alt="Overview" layout="fill" objectFit="contain" />

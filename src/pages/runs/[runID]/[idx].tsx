@@ -1,8 +1,7 @@
 import SegmentPage from "@/components/Segment/SegmentPage/SegmentPage";
 import Run from "@/models/Run";
-import Segment from "@/models/Segment";
 import { getRun, isRun } from "@/utils/run";
-import { getSegment, isSegment } from "@/utils/segment";
+import { isSegment } from "@/utils/segment";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -13,29 +12,29 @@ const Segment: NextPage = () => {
 
     // Internal data state
     const [run, setRun] = useState<Run | null>(null);
-    const [segment, setSegment] = useState<Segment | null>(null);
+    const [idx, setIdx] = useState<number | null>(null);
 
     // Validate route and set run for valid routes, redirect to home for invalid addresses
     useEffect(() => {
-        if (router.isReady && router.query.segmentSlug) {
+        if (router.isReady && router.query.runID && router.query.idx) {
             const runID: string = router.query.runID as string;
-            const segmentSlug: string = router.query.segmentSlug as string;
-            if (isRun(runID) && isSegment(getRun(runID).gameSlug, segmentSlug)) {
+            const idx: string = router.query.idx as string;
+            if (isRun(runID) && isSegment(getRun(runID).gameSlug, idx)) {
                 const run: Run = getRun(runID);
                 setRun(run);
-                setSegment(getSegment(run.gameSlug, segmentSlug));
+                setIdx(parseInt(idx));
             } else {
                 router.push("/");
             }
         }
-    }, [router.isReady, router.query.runID, router.query.segmentSlug]);
+    }, [router.isReady, router.query.runID, router.query.idx]);
 
     return (
         <>
             <Head>
                 <title>{run ? run.name : "NuzlockeDB"}</title>
             </Head>
-            {run && segment ? <SegmentPage segment={segment} run={run} /> : ""}
+            {run !== null && idx !== null ? <SegmentPage idx={idx} run={run} /> : ""}
         </>
     );
 };

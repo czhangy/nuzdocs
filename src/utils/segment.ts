@@ -9,10 +9,13 @@ export const getSegment = (game: string, segmentSlug: string): Segment => {
 };
 
 // Predicates
-export const isSegment = (game: string, segment: string): boolean => {
-    return getSegments(game)
-        .map((segment: Segment) => segment.slug)
-        .includes(segment);
+export const isSegment = (game: string, idx: string): boolean => {
+    if (/^\d+$/.test(idx)) {
+        const idxNum: number = parseInt(idx);
+        return idxNum >= 0 && idxNum < getSegments(game).length;
+    } else {
+        return false;
+    }
 };
 
 export const hasLevelCap = (segment: Segment): boolean => {
