@@ -121,6 +121,8 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Game data
 -   [ ] Consider loading one-by-one instead of in groups (esp. for boxes)
 -   [ ] Nicer alerts for exports
+-   [ ] Double battle indicator
+-   [ ] Required battle indicator
 
 ## License
 

@@ -2342,7 +2342,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                     moves: [
                         { slug: "supersonic", name: "Supersonic" },
                         { slug: "sonic-boom", name: "Sonic Boom" },
-                        { slug: "thundershock", name: "Thundershock" },
+                        { slug: "thunder-shock", name: "Thunder Shock" },
                         { slug: "thunder-wave", name: "Thunder Wave" },
                     ],
                     ivs: { hp: 24, atk: 24, spa: 24, def: 24, spd: 24, spe: 24 },
@@ -3372,6 +3372,28 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
             ],
             items: [],
         },
+        pokemaniac_steve: {
+            trainer: trainers.rse_pokemaniac,
+            name: "Steve",
+            location: "Route 114",
+            team: [
+                {
+                    slug: "aron",
+                    species: "aron",
+                    level: 20,
+                    ability: { slug: "sturdy", name: "Sturdy" },
+                    moves: [
+                        { slug: "mud-slap", name: "Mud-Slap" },
+                        { slug: "headbutt", name: "Headbutt" },
+                        { slug: "metal-claw", name: "Metal Claw" },
+                        { slug: "iron-defense", name: "Iron Defense" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+            ],
+            items: [],
+        },
         kindler_bernie: {
             trainer: trainers.rse_kindler,
             name: "Bernie",
@@ -3487,28 +3509,6 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
                         { slug: "focus-energy", name: "Focus Energy" },
                         { slug: "karate-chop", name: "Karate Chop" },
                         { slug: "seismic-toss", name: "Seismic Toss" },
-                    ],
-                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-            ],
-            items: [],
-        },
-        pokemaniac_steve: {
-            trainer: trainers.rse_pokemaniac,
-            name: "Steve",
-            location: "Route 114",
-            team: [
-                {
-                    slug: "aron",
-                    species: "aron",
-                    level: 20,
-                    ability: { slug: "sturdy", name: "Sturdy" },
-                    moves: [
-                        { slug: "mud-slap", name: "Mud-Slap" },
-                        { slug: "headbutt", name: "Headbutt" },
-                        { slug: "metal-claw", name: "Metal Claw" },
-                        { slug: "iron-defense", name: "Iron Defense" },
                     ],
                     ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
