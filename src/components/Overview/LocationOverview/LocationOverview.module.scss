@@ -3,24 +3,24 @@
 .location-overview {
     --border-rad: 5px;
     --border-size: 2px;
-    --encounter-height: calc(var(--title-font-size) + var(--sprite-size) + var(--encounter-inner-spacing));
+    --card-height: 140px;
     --encounter-inner-spacing: 1rem;
     --location-font-size: 1rem;
     --location-letter-spacing: 0;
     --sprite-size: 75px;
-    --text-font-size: 1.25rem;
+    --text-font-size: 1rem;
     --text-letter-spacing: 1px;
-    --title-font-size: 1rem;
+    --title-font-size: 0.75rem;
     --x-padding: 2rem;
-    --y-padding: 1rem;
 
     align-items: center;
     background-color: constants.$accent-color;
     border: var(--border-size) solid constants.$accent-color;
     border-radius: var(--border-rad);
     display: flex;
+    height: var(--card-height);
     justify-content: space-between;
-    padding: var(--y-padding) var(--x-padding);
+    padding: 0 var(--x-padding);
     width: 100%;
 
     .location {
@@ -39,7 +39,6 @@
         display: flex;
         flex-direction: column;
         gap: var(--encounter-inner-spacing);
-        height: var(--encounter-height);
         justify-content: center;
 
         .title {
@@ -75,6 +74,7 @@
         --location-letter-spacing: 1px;
         --text-font-size: 1.5rem;
         --text-letter-spacing: 2px;
+        --title-font-size: 1rem;
     }
 }
 

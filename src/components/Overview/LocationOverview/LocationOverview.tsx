@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./LocationOverview.module.scss";
+import LocationSegment from "@/models/LocationSegment";
 
 type Props = {
     location: Segment;
@@ -42,23 +43,27 @@ const LocationOverview: React.FC<Props> = (props: Props) => {
                 <p className={`${styles.location} ${encounter || encounterText !== "None" ? styles.done : ""}`}>
                     {props.location.name}
                 </p>
-                <div className={styles.encounter}>
-                    <p className={styles.title}>Encounter</p>
-                    {encounter ? (
-                        <div className={styles.sprite}>
-                            <Image
-                                src={encounter.sprite}
-                                alt={encounter.pokemon.name}
-                                layout="fill"
-                                objectFit="contain"
-                            />
-                        </div>
-                    ) : (
-                        <p className={`${styles.text} ${encounterText === "Failed" ? styles.failed : ""}`}>
-                            {encounterText}
-                        </p>
-                    )}
-                </div>
+                {(props.location.segment as LocationSegment).custom !== true ? (
+                    <div className={styles.encounter}>
+                        <p className={styles.title}>Encounter</p>
+                        {encounter ? (
+                            <div className={styles.sprite}>
+                                <Image
+                                    src={encounter.sprite}
+                                    alt={encounter.pokemon.name}
+                                    layout="fill"
+                                    objectFit="contain"
+                                />
+                            </div>
+                        ) : (
+                            <p className={`${styles.text} ${encounterText === "Failed" ? styles.failed : ""}`}>
+                                {encounterText}
+                            </p>
+                        )}
+                    </div>
+                ) : (
+                    ""
+                )}
             </a>
         </Link>
     );

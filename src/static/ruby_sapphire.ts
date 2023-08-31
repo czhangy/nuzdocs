@@ -125,35 +125,15 @@ const ruby: GameData = {
                     slug: "rustboro-city",
                     name: "Rustboro City",
                     type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "rustboro-gym",
+                    name: "Rustboro Gym",
+                    type: "location",
                     segment: {
                         battles: [battles.ruby_sapphire.youngster_josh, battles.ruby_sapphire.youngster_tommy],
-                    },
-                },
-                // FIX
-                {
-                    slug: "hoenn-route-115",
-                    name: "Route 115",
-                    type: "location",
-                    version: "ruby",
-                    segment: {
-                        battles: [
-                            battles.ruby_sapphire.black_belt_nob,
-                            battles.ruby_sapphire.collector_hector_ruby,
-                            battles.ruby_sapphire.battle_girl_cyndy,
-                        ],
-                    },
-                },
-                {
-                    slug: "hoenn-route-115",
-                    name: "Route 115",
-                    type: "location",
-                    version: "sapphire",
-                    segment: {
-                        battles: [
-                            battles.ruby_sapphire.black_belt_nob,
-                            battles.ruby_sapphire.collector_hector_sapphire,
-                            battles.ruby_sapphire.battle_girl_cyndy,
-                        ],
+                        custom: true,
                     },
                 },
                 {
@@ -187,14 +167,14 @@ const ruby: GameData = {
                 },
                 {
                     slug: "rusturf-tunnel",
-                    name: "Rusturf Tunnel",
+                    name: "Rusturf Tunnel (West)",
                     type: "location",
                     version: "ruby",
-                    segment: { battles: [battles.ruby_sapphire.team_magma_grunt_2, battles.ruby_sapphire.hiker_mike] },
+                    segment: { battles: [battles.ruby_sapphire.team_magma_grunt_2] },
                 },
                 {
                     slug: "rusturf-tunnel",
-                    name: "Rusturf Tunnel",
+                    name: "Rusturf Tunnel (West)",
                     type: "location",
                     version: "sapphire",
                     segment: { battles: [battles.ruby_sapphire.team_aqua_grunt_2] },
@@ -213,7 +193,7 @@ const ruby: GameData = {
                 },
                 {
                     slug: "hoenn-route-106",
-                    name: "Route 106",
+                    name: "Route 106 (Beach)",
                     type: "location",
                     segment: {
                         battles: [battles.ruby_sapphire.fisherman_ned, battles.ruby_sapphire.fisherman_elliot],
@@ -393,6 +373,12 @@ const ruby: GameData = {
                     segment: { battles: [] },
                 },
                 {
+                    slug: "rusturf-tunnel",
+                    name: "Rusturf Tunnel (East)",
+                    type: "location",
+                    segment: { battles: [battles.ruby_sapphire.hiker_mike] },
+                },
+                {
                     slug: "hoenn-route-111",
                     name: "Route 111",
                     type: "location",
@@ -478,6 +464,32 @@ const ruby: GameData = {
                     name: "Meteor Falls",
                     type: "location",
                     segment: { battles: [] },
+                },
+                {
+                    slug: "hoenn-route-115",
+                    name: "Route 115",
+                    type: "location",
+                    version: "ruby",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.black_belt_nob,
+                            battles.ruby_sapphire.collector_hector_ruby,
+                            battles.ruby_sapphire.battle_girl_cyndy,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-115",
+                    name: "Route 115",
+                    type: "location",
+                    version: "sapphire",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.black_belt_nob,
+                            battles.ruby_sapphire.collector_hector_sapphire,
+                            battles.ruby_sapphire.battle_girl_cyndy,
+                        ],
+                    },
                 },
                 {
                     slug: "mt-chimney",
