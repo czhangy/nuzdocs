@@ -41,19 +41,21 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
                 </div>
             </button>
             <ul className={styles.segments}>
-                {props.split.segments.map((segment: Segment, idx: number) => {
-                    return segment.version === undefined || segment.version === props.run.gameSlug ? (
-                        <li className={styles.segment} key={idx}>
-                            {segment.type === "location" ? (
-                                <LocationOverview location={segment} run={props.run} idx={props.start + idx} />
-                            ) : (
-                                <BattleOverview battle={segment} run={props.run} idx={props.start + idx} />
-                            )}
-                        </li>
-                    ) : (
-                        ""
-                    );
-                })}
+                {props.split.segments
+                    .filter(
+                        (segment: Segment) => segment.version === undefined || segment.version === props.run.gameSlug
+                    )
+                    .map((segment: Segment, idx: number) => {
+                        return (
+                            <li className={styles.segment} key={idx}>
+                                {segment.type === "location" ? (
+                                    <LocationOverview location={segment} run={props.run} idx={props.start + idx} />
+                                ) : (
+                                    <BattleOverview battle={segment} run={props.run} idx={props.start + idx} />
+                                )}
+                            </li>
+                        );
+                    })}
             </ul>
         </div>
     );
