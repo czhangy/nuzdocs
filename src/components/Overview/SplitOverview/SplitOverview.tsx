@@ -12,6 +12,7 @@ import styles from "./SplitOverview.module.scss";
 type Props = {
     split: Split;
     run: Run;
+    start: number;
 };
 
 const SplitOverview: React.FC<Props> = (props: Props) => {
@@ -40,13 +41,13 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
                 </div>
             </button>
             <ul className={styles.segments}>
-                {props.split.segments.map((segment: Segment) => {
+                {props.split.segments.map((segment: Segment, idx: number) => {
                     return segment.version === undefined || segment.version === props.run.gameSlug ? (
-                        <li className={styles.segment} key={segment.slug}>
+                        <li className={styles.segment} key={idx}>
                             {segment.type === "location" ? (
-                                <LocationOverview location={segment} run={props.run} />
+                                <LocationOverview location={segment} run={props.run} idx={props.start + idx} />
                             ) : (
-                                <BattleOverview battle={segment} run={props.run} />
+                                <BattleOverview battle={segment} run={props.run} idx={props.start + idx} />
                             )}
                         </li>
                     ) : (

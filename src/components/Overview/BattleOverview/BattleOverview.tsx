@@ -12,6 +12,7 @@ import styles from "./BattleOverview.module.scss";
 type Props = {
     battle: Segment;
     run: Run;
+    idx: number;
 };
 
 const BattleOverview: React.FC<Props> = (props: Props) => {
@@ -26,7 +27,7 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
     }, [props.battle, props.run]);
 
     return trainer ? (
-        <Link href={`/runs/${props.run.id}/${props.battle.slug}`}>
+        <Link href={`/runs/${props.run.id}/${props.idx}`}>
             <a className={styles["battle-overview"]}>
                 <div className={`${styles.battle} ${isCleared(props.run.id, props.battle.slug) ? styles.done : ""}`}>
                     <p className={styles.name}>{props.battle.name}</p>

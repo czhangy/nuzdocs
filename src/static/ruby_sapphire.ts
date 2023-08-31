@@ -42,7 +42,7 @@ const ruby: GameData = {
                 },
                 {
                     slug: "hoenn-route-103",
-                    name: "Route 103",
+                    name: "Route 103 (West)",
                     type: "location",
                     segment: {
                         battles: [
@@ -74,17 +74,10 @@ const ruby: GameData = {
                 },
                 {
                     slug: "hoenn-route-104",
-                    name: "Route 104",
+                    name: "Route 104 (South)",
                     type: "location",
                     segment: {
-                        battles: [
-                            battles.ruby_sapphire.youngster_billy,
-                            battles.ruby_sapphire.rich_boy_winston,
-                            battles.ruby_sapphire.lady_cindy,
-                            battles.ruby_sapphire.lass_haley,
-                            battles.ruby_sapphire.twins_gia_and_mia,
-                            battles.ruby_sapphire.fisherman_ivan,
-                        ],
+                        battles: [battles.ruby_sapphire.youngster_billy, battles.ruby_sapphire.rich_boy_winston],
                     },
                 },
                 {
@@ -97,6 +90,21 @@ const ruby: GameData = {
                             battles.ruby_sapphire.bug_catcher_lyle,
                             battles.ruby_sapphire.team_magma_grunt_1,
                             battles.ruby_sapphire.bug_catcher_james,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-104",
+                    name: "Route 104 (North)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.youngster_billy,
+                            battles.ruby_sapphire.rich_boy_winston,
+                            battles.ruby_sapphire.lady_cindy,
+                            battles.ruby_sapphire.lass_haley,
+                            battles.ruby_sapphire.twins_gia_and_mia,
+                            battles.ruby_sapphire.fisherman_ivan,
                         ],
                     },
                 },

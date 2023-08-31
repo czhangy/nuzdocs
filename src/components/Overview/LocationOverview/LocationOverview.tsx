@@ -12,6 +12,7 @@ import styles from "./LocationOverview.module.scss";
 type Props = {
     location: Segment;
     run: Run;
+    idx: number;
 };
 
 const LocationOverview: React.FC<Props> = (props: Props) => {
@@ -36,7 +37,7 @@ const LocationOverview: React.FC<Props> = (props: Props) => {
     }, [props.location, props.run]);
 
     return (
-        <Link href={`/runs/${props.run.id}/${props.location.slug}`}>
+        <Link href={`/runs/${props.run.id}/${props.idx}`}>
             <a className={styles["location-overview"]}>
                 <p className={`${styles.location} ${encounter || encounterText !== "None" ? styles.done : ""}`}>
                     {props.location.name}

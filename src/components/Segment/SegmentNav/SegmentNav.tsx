@@ -22,7 +22,7 @@ const SegmentNav: React.FC<Props> = (props: Props) => {
         }
     }, [props.idx, props.run]);
 
-    return (
+    return segments.length > 0 ? (
         <div className={styles["segment-nav"]}>
             <nav className={styles.nav}>
                 {props.idx - 1 >= 0 ? (
@@ -40,8 +40,10 @@ const SegmentNav: React.FC<Props> = (props: Props) => {
                     ""
                 )}
             </nav>
-            {segments.length > 0 ? <h2 className={styles.header}>{segments[props.idx].name}</h2> : ""}
+            <h2 className={styles.header}>{segments[props.idx].name}</h2>
         </div>
+    ) : (
+        <></>
     );
 };
 
