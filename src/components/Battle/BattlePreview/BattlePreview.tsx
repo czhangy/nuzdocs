@@ -13,6 +13,7 @@ import { exportPokemonList } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./BattlePreview.module.scss";
+import BattleSegment from "@/models/BattleSegment";
 
 type Props = {
     segment: Segment;
@@ -86,6 +87,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                             })}
                         </div>
                     </div>
+                    <p className={styles.location}>{(props.segment.segment as BattleSegment).battle.location}</p>
                     {defeated ? (
                         <div className={styles.buttons}>
                             <button className="primary-button" disabled={true}>
