@@ -20,12 +20,72 @@ const rs: GameData = {
                     slug: "may-1",
                     name: "May 1",
                     type: "battle",
+                    conditions: {
+                        gender: "male",
+                        starter: "treecko",
+                    },
                     segment: {
-                        battle: {
-                            treecko: battles.ruby_sapphire.pokemon_trainer_may_treecko_1,
-                            torchic: battles.ruby_sapphire.pokemon_trainer_may_torchic_1,
-                            mudkip: battles.ruby_sapphire.pokemon_trainer_may_mudkip_1,
-                        },
+                        battle: battles.ruby_sapphire.pokemon_trainer_may_treecko_1,
+                    },
+                },
+                {
+                    slug: "may-1",
+                    name: "May 1",
+                    type: "battle",
+                    conditions: {
+                        gender: "male",
+                        starter: "torchic",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_may_torchic_1,
+                    },
+                },
+                {
+                    slug: "may-1",
+                    name: "May 1",
+                    type: "battle",
+                    conditions: {
+                        gender: "male",
+                        starter: "mudkip",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_may_mudkip_1,
+                    },
+                },
+                {
+                    slug: "brendan-1",
+                    name: "Brendan 1",
+                    type: "battle",
+                    conditions: {
+                        gender: "female",
+                        starter: "treecko",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_brendan_treecko_1,
+                    },
+                },
+                {
+                    slug: "brendan-1",
+                    name: "Brendan 1",
+                    type: "battle",
+                    conditions: {
+                        gender: "female",
+                        starter: "torchic",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_brendan_torchic_1,
+                    },
+                },
+                {
+                    slug: "brendan-1",
+                    name: "Brendan 1",
+                    type: "battle",
+                    conditions: {
+                        gender: "female",
+                        starter: "mudkip",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_brendan_mudkip_1,
                     },
                 },
                 {
@@ -293,12 +353,72 @@ const rs: GameData = {
                     slug: "may-2",
                     name: "May 2",
                     type: "battle",
+                    conditions: {
+                        gender: "male",
+                        starter: "treecko",
+                    },
                     segment: {
-                        battle: {
-                            treecko: battles.ruby_sapphire.pokemon_trainer_may_treecko_2,
-                            torchic: battles.ruby_sapphire.pokemon_trainer_may_torchic_2,
-                            mudkip: battles.ruby_sapphire.pokemon_trainer_may_mudkip_2,
-                        },
+                        battle: battles.ruby_sapphire.pokemon_trainer_may_treecko_2,
+                    },
+                },
+                {
+                    slug: "may-2",
+                    name: "May 2",
+                    type: "battle",
+                    conditions: {
+                        gender: "male",
+                        starter: "torchic",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_may_torchic_2,
+                    },
+                },
+                {
+                    slug: "may-2",
+                    name: "May 2",
+                    type: "battle",
+                    conditions: {
+                        gender: "male",
+                        starter: "mudkip",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_may_mudkip_2,
+                    },
+                },
+                {
+                    slug: "brendan-2",
+                    name: "Brendan 2",
+                    type: "battle",
+                    conditions: {
+                        gender: "female",
+                        starter: "treecko",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_brendan_treecko_2,
+                    },
+                },
+                {
+                    slug: "brendan-2",
+                    name: "Brendan 2",
+                    type: "battle",
+                    conditions: {
+                        gender: "female",
+                        starter: "torchic",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_brendan_torchic_2,
+                    },
+                },
+                {
+                    slug: "brendan-2",
+                    name: "Brendan 2",
+                    type: "battle",
+                    conditions: {
+                        gender: "female",
+                        starter: "mudkip",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_brendan_mudkip_2,
                     },
                 },
                 {
@@ -883,12 +1003,72 @@ const rs: GameData = {
                     slug: "may-3",
                     name: "May 3",
                     type: "battle",
+                    conditions: {
+                        gender: "male",
+                        starter: "treecko",
+                    },
                     segment: {
-                        battle: {
-                            treecko: battles.ruby_sapphire.pokemon_trainer_may_treecko_3,
-                            torchic: battles.ruby_sapphire.pokemon_trainer_may_torchic_3,
-                            mudkip: battles.ruby_sapphire.pokemon_trainer_may_mudkip_3,
-                        },
+                        battle: battles.ruby_sapphire.pokemon_trainer_may_treecko_3,
+                    },
+                },
+                {
+                    slug: "may-3",
+                    name: "May 3",
+                    type: "battle",
+                    conditions: {
+                        gender: "male",
+                        starter: "torchic",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_may_torchic_3,
+                    },
+                },
+                {
+                    slug: "may-3",
+                    name: "May 3",
+                    type: "battle",
+                    conditions: {
+                        gender: "male",
+                        starter: "mudkip",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_may_mudkip_3,
+                    },
+                },
+                {
+                    slug: "brendan-3",
+                    name: "Brendan 3",
+                    type: "battle",
+                    conditions: {
+                        gender: "female",
+                        starter: "treecko",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_brendan_treecko_3,
+                    },
+                },
+                {
+                    slug: "brendan-3",
+                    name: "Brendan 3",
+                    type: "battle",
+                    conditions: {
+                        gender: "female",
+                        starter: "torchic",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_brendan_torchic_3,
+                    },
+                },
+                {
+                    slug: "brendan-3",
+                    name: "Brendan 3",
+                    type: "battle",
+                    conditions: {
+                        gender: "female",
+                        starter: "mudkip",
+                    },
+                    segment: {
+                        battle: battles.ruby_sapphire.pokemon_trainer_brendan_mudkip_3,
                     },
                 },
                 {
@@ -995,12 +1175,65 @@ const rs: GameData = {
                     type: "location",
                     segment: { battles: [] },
                 },
-                // TO-DO: Add conditionals for locations
                 {
                     slug: "lilycove-city",
                     name: "Lilycove City",
                     type: "location",
+                    conditions: {
+                        gender: "male",
+                        starter: "treecko",
+                    },
+                    segment: { battles: [battles.ruby_sapphire.pokemon_trainer_may_treecko_4] },
+                },
+                {
+                    slug: "lilycove-city",
+                    name: "Lilycove City",
+                    type: "location",
+                    conditions: {
+                        gender: "male",
+                        starter: "torchic",
+                    },
+                    segment: { battles: [battles.ruby_sapphire.pokemon_trainer_may_torchic_4] },
+                },
+                {
+                    slug: "lilycove-city",
+                    name: "Lilycove City",
+                    type: "location",
+                    conditions: {
+                        gender: "male",
+                        starter: "mudkip",
+                    },
                     segment: { battles: [battles.ruby_sapphire.pokemon_trainer_may_mudkip_4] },
+                },
+                {
+                    slug: "lilycove-city",
+                    name: "Lilycove City",
+                    type: "location",
+                    conditions: {
+                        gender: "female",
+                        starter: "treecko",
+                    },
+                    segment: { battles: [battles.ruby_sapphire.pokemon_trainer_brendan_treecko_4] },
+                },
+                {
+                    slug: "lilycove-city",
+                    name: "Lilycove City",
+                    type: "location",
+                    conditions: {
+                        gender: "female",
+                        starter: "torchic",
+                    },
+                    segment: { battles: [battles.ruby_sapphire.pokemon_trainer_brendan_torchic_4] },
+                },
+                {
+                    slug: "lilycove-city",
+                    name: "Lilycove City",
+                    type: "location",
+                    conditions: {
+                        gender: "female",
+                        starter: "mudkip",
+                    },
+                    segment: { battles: [battles.ruby_sapphire.pokemon_trainer_brendan_mudkip_4] },
                 },
                 {
                     slug: "hoenn-route-122",

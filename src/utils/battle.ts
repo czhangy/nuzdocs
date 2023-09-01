@@ -7,15 +7,7 @@ import { getSegment } from "@/utils/segment";
 
 // Getters
 export const getBattle = (run: Run, battle: string, starter: string): Battle => {
-    if (hasVariants(run, battle)) {
-        return (
-            (getSegment(run, battle).segment as BattleSegment).battle as {
-                [variant: string]: Battle;
-            }
-        )[starter];
-    } else {
-        return (getSegment(run, battle).segment as BattleSegment).battle as Battle;
-    }
+    return (getSegment(run, battle).segment as BattleSegment).battle;
 };
 
 export const getTrainer = (run: Run, battle: string, starter: string): Trainer => {
@@ -25,9 +17,4 @@ export const getTrainer = (run: Run, battle: string, starter: string): Trainer =
 export const getLevelCap = (run: Run, battle: string, starter: string): number => {
     const levels: number[] = getBattle(run, battle, starter).team.map((pokemon: Pokemon) => pokemon.level!);
     return Math.max(...levels);
-};
-
-// Predicates
-export const hasVariants = (run: Run, battle: string): boolean => {
-    return !("trainer" in (getSegment(run, battle).segment as BattleSegment).battle);
 };
