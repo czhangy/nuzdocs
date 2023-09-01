@@ -13,8 +13,8 @@ const isAbilityRequest = (req: NextApiRequest): boolean => {
         req.method === "GET" &&
         "ability" in req.query &&
         typeof req.query.ability === "string" &&
-        "versionGroup" in req.query &&
-        typeof req.query.versionGroup === "string"
+        "group" in req.query &&
+        typeof req.query.group === "string"
     );
 };
 
@@ -23,17 +23,17 @@ const isAbilityListRequest = (req: NextApiRequest): boolean => {
         req.method === "GET" &&
         "ability[]" in req.query &&
         Array.isArray(req.query["ability[]"]) &&
-        "versionGroup" in req.query &&
-        typeof req.query.versionGroup === "string"
+        "group" in req.query &&
+        typeof req.query.group === "string"
     );
 };
 
-const fetchAbility = async (slug: string, versionGroup: string): Promise<AbilityData | null> => {
+const fetchAbility = async (slug: string, group: string): Promise<AbilityData | null> => {
     const api: PokemonClient = new PokemonClient();
     try {
         const ability: Ability = await api.getAbilityByName(slug);
         const entry: AbilityFlavorText | undefined = ability.flavor_text_entries.find(
-            (ft: AbilityFlavorText) => ft.language.name === "en" && ft.version_group.name === versionGroup
+            (ft: AbilityFlavorText) => ft.language.name === "en" && ft.version_group.name === group
         );
         if (entry === undefined) {
             return null;
@@ -45,10 +45,10 @@ const fetchAbility = async (slug: string, versionGroup: string): Promise<Ability
     }
 };
 
-const fetchAbilities = async (slugs: string[], versionGroup: string): Promise<AbilityData[]> => {
+const fetchAbilities = async (slugs: string[], group: string): Promise<AbilityData[]> => {
     let promises: Promise<AbilityData | null>[] = [];
     slugs.forEach((slug: string) => {
-        promises.push(fetchAbility(slug, versionGroup));
+        promises.push(fetchAbility(slug, group));
     });
     try {
         return (await Promise.all(promises)).filter((ability: AbilityData | null) => ability !== null) as AbilityData[];
@@ -62,7 +62,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         try {
             const ability: AbilityData | null = await fetchAbility(
                 req.query.ability as string,
-                req.query.versionGroup as string
+                req.query.group as string
             );
             return res.status(200).json({ ability: JSON.stringify(ability) });
         } catch (error: any) {
@@ -74,7 +74,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         try {
             const abilities: AbilityData[] = await fetchAbilities(
                 req.query["ability[]"] as string[],
-                req.query.versionGroup as string
+                req.query.group as string
             );
             return res.status(200).json({ ability: JSON.stringify(abilities) });
         } catch (error: any) {

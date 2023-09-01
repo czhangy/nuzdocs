@@ -11,8 +11,8 @@ export const getEnglishName: (names: Name[]) => string = (names: Name[]): string
 };
 
 export const getPokemonTier = (pokemonSlug: string, gameSlug: string): string => {
-    const versionGroup = getGameData(gameSlug).versionGroup;
-    return pokemonSlug in tiers[versionGroup] ? tiers[versionGroup][pokemonSlug] : "?";
+    const group = getGameData(gameSlug).group;
+    return pokemonSlug in tiers[group] ? tiers[group][pokemonSlug] : "?";
 };
 
 // Check if the Pokemon is in its final stage
@@ -50,10 +50,9 @@ export const translateSlug = (slug: string) => {
         .join(" ");
 };
 
-export const getDescription = (fte: VersionGroupFlavorText[], versionGroup: string): string => {
-    return fte.find(
-        (vgft: VersionGroupFlavorText) => vgft.language.name === "en" && vgft.version_group.name === versionGroup
-    )!.text;
+export const getDescription = (fte: VersionGroupFlavorText[], group: string): string => {
+    return fte.find((vgft: VersionGroupFlavorText) => vgft.language.name === "en" && vgft.version_group.name === group)!
+        .text;
 };
 
 export const getPreSplitCategories = (move: MoveData, game: string): "physical" | "special" | "other" => {

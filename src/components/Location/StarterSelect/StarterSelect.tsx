@@ -34,14 +34,14 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     // Fetch starter data on load
     useEffect(() => {
         if (props.run) {
-            fetchPokemonList(getGameData(props.run.gameSlug).starterSlugs, props.run.gameSlug).then(
-                (starterData: PokemonData[]) => {
-                    const starterSlug: string = getStarterSlug(props.run.id);
-                    setStarters(starterData);
+            fetchPokemonList(getGameData(props.run.gameSlug).starters, props.run.gameSlug).then(
+                (starters: PokemonData[]) => {
+                    const starter: string = getStarterSlug(props.run.id);
+                    setStarters(starters);
                     setSelectedStarter(
-                        starterSlug
-                            ? starterData.find((starter: PokemonData) => starter.pokemon.slug === starterSlug)!
-                            : starterData[0]
+                        starter
+                            ? starters.find((pokemon: PokemonData) => pokemon.pokemon.slug === starter)!
+                            : starters[0]
                     );
                 }
             );

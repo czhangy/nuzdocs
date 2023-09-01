@@ -4,11 +4,11 @@ import Trainer from "@/models/Trainer";
 
 export default interface GameData {
     generation: string;
-    versionGroup: string;
+    group: string;
     pokedex: PokemonName[];
     splits: Split[];
     characters: Trainer[];
-    starterSlugs: string[];
-    startingTownSlug: string;
+    starters: string[];
+    startingTown: string;
     invalidConditions: string[];
 }

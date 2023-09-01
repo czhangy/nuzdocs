@@ -5,7 +5,7 @@ import trainers from "@/static/trainers";
 
 const rs: GameData = {
     generation: "generation-iii",
-    versionGroup: "ruby-sapphire",
+    group: "ruby-sapphire",
     pokedex: pokedex.slice(0, 386),
     splits: [
         {
@@ -1768,8 +1768,8 @@ const rs: GameData = {
         },
     ],
     characters: [trainers.rs_brendan, trainers.rs_may],
-    starterSlugs: ["treecko", "torchic", "mudkip"],
-    startingTownSlug: "littleroot-town",
+    starters: ["treecko", "torchic", "mudkip"],
+    startingTown: "littleroot-town",
     invalidConditions: [],
 };
 

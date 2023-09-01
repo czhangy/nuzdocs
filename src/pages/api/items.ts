@@ -13,8 +13,8 @@ const isItemRequest = (req: NextApiRequest): boolean => {
         req.method === "GET" &&
         "item" in req.query &&
         typeof req.query.item === "string" &&
-        "versionGroup" in req.query &&
-        typeof req.query.versionGroup === "string"
+        "group" in req.query &&
+        typeof req.query.group === "string"
     );
 };
 
@@ -23,24 +23,24 @@ const isItemListRequest = (req: NextApiRequest): boolean => {
         req.method === "GET" &&
         "item[]" in req.query &&
         Array.isArray(req.query["item[]"]) &&
-        "versionGroup" in req.query &&
-        typeof req.query.versionGroup === "string"
+        "group" in req.query &&
+        typeof req.query.group === "string"
     );
 };
 
-const fetchItem = async (item: string, versionGroup: string): Promise<ItemData> => {
+const fetchItem = async (item: string, group: string): Promise<ItemData> => {
     const api: ItemClient = new ItemClient();
     try {
-        return initItemData(await api.getItemByName(item), versionGroup);
+        return initItemData(await api.getItemByName(item), group);
     } catch (error: any) {
         throw error;
     }
 };
 
-const fetchItems = async (items: string[], versionGroup: string): Promise<ItemData[]> => {
+const fetchItems = async (items: string[], group: string): Promise<ItemData[]> => {
     let itemPromises: Promise<ItemData>[] = [];
     items.forEach((item: string) => {
-        itemPromises.push(fetchItem(item, versionGroup));
+        itemPromises.push(fetchItem(item, group));
     });
     try {
         return await Promise.all(itemPromises);
@@ -52,7 +52,7 @@ const fetchItems = async (items: string[], versionGroup: string): Promise<ItemDa
 export default async function handler(req: NextApiRequest, res: NextApiResponse<ResData>) {
     if (isItemRequest(req)) {
         try {
-            const item: ItemData = await fetchItem(req.query.item as string, req.query.versionGroup as string);
+            const item: ItemData = await fetchItem(req.query.item as string, req.query.group as string);
             return res.status(200).json({ item: JSON.stringify(item) });
         } catch (error: any) {
             return res.status(500).json({
@@ -61,10 +61,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         }
     } else if (isItemListRequest(req)) {
         try {
-            const items: ItemData[] = await fetchItems(
-                req.query["item[]"] as string[],
-                req.query.versionGroup as string
-            );
+            const items: ItemData[] = await fetchItems(req.query["item[]"] as string[], req.query.group as string);
             return res.status(200).json({ item: JSON.stringify(items) });
         } catch (error: any) {
             return res.status(500).json({

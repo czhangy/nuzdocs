@@ -45,11 +45,11 @@ export const fetchAreas = async (areas: string[], game: string) => {
 // Fetch AbilityData given slug
 export const fetchAbility = async (ability: string, game: string): Promise<AbilityData | null> => {
     try {
-        const group: string = getGameData(game).versionGroup;
+        const group: string = getGameData(game).group;
         const res = await axios.get("/api/abilities", {
             params: {
                 ability: ability,
-                versionGroup: group,
+                group: group,
             },
         });
         return JSON.parse(res.data.ability);
@@ -67,11 +67,11 @@ export const fetchAbilities = async (abilities: string[], game: string): Promise
             const ability: AbilityData | null = await fetchAbility(abilities[0], game);
             return ability ? [ability] : [];
         } else {
-            const group: string = getGameData(game).versionGroup;
+            const group: string = getGameData(game).group;
             const res = await axios.get("/api/abilities", {
                 params: {
                     ability: abilities,
-                    versionGroup: group,
+                    group: group,
                 },
             });
             return JSON.parse(res.data.ability);
@@ -87,7 +87,7 @@ export const fetchMove = async (move: string, game: string): Promise<MoveData | 
         const res = await axios.get("/api/moves", {
             params: {
                 slugs: move,
-                group: getGameData(game).versionGroup,
+                group: getGameData(game).group,
             },
         });
         return JSON.parse(res.data.moves);
@@ -108,7 +108,7 @@ export const fetchMoves = async (moves: string[], game: string): Promise<MoveDat
             const res = await axios.get("/api/moves", {
                 params: {
                     slugs: moves,
-                    group: getGameData(game).versionGroup,
+                    group: getGameData(game).group,
                 },
             });
             return JSON.parse(res.data.moves);
@@ -127,7 +127,7 @@ export const fetchPokemon = async (slug: string, game: string) => {
             params: {
                 pokemonSlug: slug,
                 generation: group.generation,
-                versionGroup: group.versionGroup,
+                group: group.group,
             },
         });
         return JSON.parse(res.data.pokemon);
@@ -150,7 +150,7 @@ export const fetchPokemonList = async (slugs: string[], game: string) => {
                 params: {
                     pokemonSlugList: slugs,
                     generation: group.generation,
-                    versionGroup: group.versionGroup,
+                    group: group.group,
                 },
             });
             return JSON.parse(res.data.pokemon);
@@ -163,11 +163,11 @@ export const fetchPokemonList = async (slugs: string[], game: string) => {
 
 export const fetchItem = async (item: string, game: string): Promise<ItemData | null> => {
     try {
-        const group: string = getGameData(game).versionGroup;
+        const group: string = getGameData(game).group;
         const res = await axios.get("/api/items", {
             params: {
                 item: item,
-                versionGroup: group,
+                group: group,
             },
         });
         return JSON.parse(res.data.item);
@@ -185,11 +185,11 @@ export const fetchItems = async (items: string[], game: string): Promise<ItemDat
             const item: ItemData | null = await fetchItem(items[0], game);
             return item ? [item] : [];
         } else {
-            const group: string = getGameData(game).versionGroup;
+            const group: string = getGameData(game).group;
             const res = await axios.get("/api/items", {
                 params: {
                     item: items,
-                    versionGroup: group,
+                    group: group,
                 },
             });
             return JSON.parse(res.data.item);
