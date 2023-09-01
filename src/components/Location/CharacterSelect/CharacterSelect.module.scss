@@ -1,0 +1,44 @@
+@use "@/styles/constants";
+
+.character-select {
+    --characters-inner-spacing: 2rem;
+    --header-font-size: 1.5rem;
+    --header-spacing: 1rem;
+    --sprite-size: 100px;
+
+    .header {
+        font-size: var(--header-font-size);
+        line-height: var(--header-font-size);
+        margin-bottom: var(--header-spacing);
+        text-align: center;
+    }
+
+    .characters {
+        display: flex;
+        gap: var(--characters-inner-spacing);
+
+        .character {
+            filter: grayscale(100%);
+            height: var(--sprite-size);
+            position: relative;
+            width: var(--sprite-size);
+        }
+
+        .active {
+            filter: grayscale(0);
+            pointer-events: none;
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .character-select {
+        --sprite-size: 120px;
+    }
+}
+
+@media (hover: hover) {
+    .character-select > .characters > .character:hover {
+        filter: grayscale(0);
+    }
+}

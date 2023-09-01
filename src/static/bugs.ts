@@ -68,16 +68,24 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "Ruby/Sapphire",
         },
         {
-            desc: "Brendan fights are currently unused",
-            group: "Emerald",
-        },
-        {
             desc: "Too much page spacing in LocationPage when a custom location is loaded",
             group: "General",
         },
         {
             desc: "Devon Scope encounter percentages exceed 100%",
             group: "Ruby/Sapphire",
+        },
+        {
+            desc: "Road => Route translations for areas are buggy",
+            group: "General",
+        },
+        {
+            desc: "When character changes occur, SegmentNav fails to update until refresh",
+            group: "General",
+        },
+        {
+            desc: "When character changes occur, cleared battles will remain out of sync",
+            group: "General",
         },
     ],
 };

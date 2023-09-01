@@ -2,6 +2,7 @@ import CaughtPokemon from "@/models/CaughtPokemon";
 import Run from "@/models/Run";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import { generateID } from "@/utils/utils";
+import { getGameData } from "./game";
 
 // Constructors
 export const initRun = (id: string, name: string, gameSlug: string): Run => {
@@ -9,7 +10,7 @@ export const initRun = (id: string, name: string, gameSlug: string): Run => {
         id: id,
         name: name,
         gameSlug: gameSlug,
-        gender: "male",
+        character: getGameData(gameSlug).characters.length > 0 ? getGameData(gameSlug).characters[0].name! : "",
         prevIdx: 0,
         box: [],
         rips: [],
@@ -81,6 +82,12 @@ export const getRIPs = (runID: string): CaughtPokemon[] => {
 // Setters
 export const setRun = (runID: string, run: Run): void => {
     localStorage.setItem(runID, JSON.stringify(run));
+};
+
+export const setCharacter = (runID: string, character: string): void => {
+    let run: Run = getRun(runID);
+    run.character = character;
+    setRun(runID, run);
 };
 
 export const setPrevIdx = (runID: string, idx: number): void => {

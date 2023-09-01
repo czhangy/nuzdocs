@@ -22,7 +22,7 @@ const rs: GameData = {
                     name: "May 1",
                     type: "battle",
                     conditions: {
-                        gender: "male",
+                        character: "brendan",
                         starter: "treecko",
                     },
                     segment: {
@@ -34,7 +34,7 @@ const rs: GameData = {
                     name: "May 1",
                     type: "battle",
                     conditions: {
-                        gender: "male",
+                        character: "brendan",
                         starter: "torchic",
                     },
                     segment: {
@@ -46,7 +46,7 @@ const rs: GameData = {
                     name: "May 1",
                     type: "battle",
                     conditions: {
-                        gender: "male",
+                        character: "brendan",
                         starter: "mudkip",
                     },
                     segment: {
@@ -58,7 +58,7 @@ const rs: GameData = {
                     name: "Brendan 1",
                     type: "battle",
                     conditions: {
-                        gender: "female",
+                        character: "may",
                         starter: "treecko",
                     },
                     segment: {
@@ -70,7 +70,7 @@ const rs: GameData = {
                     name: "Brendan 1",
                     type: "battle",
                     conditions: {
-                        gender: "female",
+                        character: "may",
                         starter: "torchic",
                     },
                     segment: {
@@ -82,7 +82,7 @@ const rs: GameData = {
                     name: "Brendan 1",
                     type: "battle",
                     conditions: {
-                        gender: "female",
+                        character: "may",
                         starter: "mudkip",
                     },
                     segment: {
@@ -355,7 +355,7 @@ const rs: GameData = {
                     name: "May 2",
                     type: "battle",
                     conditions: {
-                        gender: "male",
+                        character: "brendan",
                         starter: "treecko",
                     },
                     segment: {
@@ -367,7 +367,7 @@ const rs: GameData = {
                     name: "May 2",
                     type: "battle",
                     conditions: {
-                        gender: "male",
+                        character: "brendan",
                         starter: "torchic",
                     },
                     segment: {
@@ -379,7 +379,7 @@ const rs: GameData = {
                     name: "May 2",
                     type: "battle",
                     conditions: {
-                        gender: "male",
+                        character: "brendan",
                         starter: "mudkip",
                     },
                     segment: {
@@ -391,7 +391,7 @@ const rs: GameData = {
                     name: "Brendan 2",
                     type: "battle",
                     conditions: {
-                        gender: "female",
+                        character: "may",
                         starter: "treecko",
                     },
                     segment: {
@@ -403,7 +403,7 @@ const rs: GameData = {
                     name: "Brendan 2",
                     type: "battle",
                     conditions: {
-                        gender: "female",
+                        character: "may",
                         starter: "torchic",
                     },
                     segment: {
@@ -415,7 +415,7 @@ const rs: GameData = {
                     name: "Brendan 2",
                     type: "battle",
                     conditions: {
-                        gender: "female",
+                        character: "may",
                         starter: "mudkip",
                     },
                     segment: {
@@ -1005,7 +1005,7 @@ const rs: GameData = {
                     name: "May 3",
                     type: "battle",
                     conditions: {
-                        gender: "male",
+                        character: "brendan",
                         starter: "treecko",
                     },
                     segment: {
@@ -1017,7 +1017,7 @@ const rs: GameData = {
                     name: "May 3",
                     type: "battle",
                     conditions: {
-                        gender: "male",
+                        character: "brendan",
                         starter: "torchic",
                     },
                     segment: {
@@ -1029,7 +1029,7 @@ const rs: GameData = {
                     name: "May 3",
                     type: "battle",
                     conditions: {
-                        gender: "male",
+                        character: "brendan",
                         starter: "mudkip",
                     },
                     segment: {
@@ -1041,7 +1041,7 @@ const rs: GameData = {
                     name: "Brendan 3",
                     type: "battle",
                     conditions: {
-                        gender: "female",
+                        character: "may",
                         starter: "treecko",
                     },
                     segment: {
@@ -1053,7 +1053,7 @@ const rs: GameData = {
                     name: "Brendan 3",
                     type: "battle",
                     conditions: {
-                        gender: "female",
+                        character: "may",
                         starter: "torchic",
                     },
                     segment: {
@@ -1065,7 +1065,7 @@ const rs: GameData = {
                     name: "Brendan 3",
                     type: "battle",
                     conditions: {
-                        gender: "female",
+                        character: "may",
                         starter: "mudkip",
                     },
                     segment: {
@@ -1181,7 +1181,7 @@ const rs: GameData = {
                     name: "Lilycove City",
                     type: "location",
                     conditions: {
-                        gender: "male",
+                        character: "brendan",
                         starter: "treecko",
                     },
                     segment: { battles: [battles.ruby_sapphire.pokemon_trainer_may_treecko_4] },
@@ -1191,7 +1191,7 @@ const rs: GameData = {
                     name: "Lilycove City",
                     type: "location",
                     conditions: {
-                        gender: "male",
+                        character: "brendan",
                         starter: "torchic",
                     },
                     segment: { battles: [battles.ruby_sapphire.pokemon_trainer_may_torchic_4] },
@@ -1201,7 +1201,7 @@ const rs: GameData = {
                     name: "Lilycove City",
                     type: "location",
                     conditions: {
-                        gender: "male",
+                        character: "brendan",
                         starter: "mudkip",
                     },
                     segment: { battles: [battles.ruby_sapphire.pokemon_trainer_may_mudkip_4] },
@@ -1211,7 +1211,7 @@ const rs: GameData = {
                     name: "Lilycove City",
                     type: "location",
                     conditions: {
-                        gender: "female",
+                        character: "may",
                         starter: "treecko",
                     },
                     segment: { battles: [battles.ruby_sapphire.pokemon_trainer_brendan_treecko_4] },
@@ -1221,7 +1221,7 @@ const rs: GameData = {
                     name: "Lilycove City",
                     type: "location",
                     conditions: {
-                        gender: "female",
+                        character: "may",
                         starter: "torchic",
                     },
                     segment: { battles: [battles.ruby_sapphire.pokemon_trainer_brendan_torchic_4] },
@@ -1231,7 +1231,7 @@ const rs: GameData = {
                     name: "Lilycove City",
                     type: "location",
                     conditions: {
-                        gender: "female",
+                        character: "may",
                         starter: "mudkip",
                     },
                     segment: { battles: [battles.ruby_sapphire.pokemon_trainer_brendan_mudkip_4] },
