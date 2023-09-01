@@ -4,7 +4,7 @@ export default interface Run {
     id: string;
     name: string;
     gameSlug: string;
-    gender: string;
+    character: string;
     prevIdx: number;
     box: CaughtPokemon[];
     rips: CaughtPokemon[];

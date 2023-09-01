@@ -26,7 +26,7 @@ export const satisifesConditions = (segment: Segment, run: Run): boolean => {
     if (segment.conditions) {
         if (segment.conditions.game && segment.conditions.game !== run.gameSlug) {
             return false;
-        } else if (segment.conditions.gender && segment.conditions.gender !== run.gender) {
+        } else if (segment.conditions.character && segment.conditions.character !== run.character) {
             return false;
         } else if (segment.conditions.starter && segment.conditions.starter !== getStarterSlug(run.id)) {
             return false;

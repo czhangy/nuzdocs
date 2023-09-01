@@ -25,8 +25,8 @@ const isPokemonRequest = (req: NextApiRequest): boolean => {
         typeof req.query.pokemonSlug === "string" &&
         "generation" in req.query &&
         typeof req.query.generation === "string" &&
-        "versionGroup" in req.query &&
-        typeof req.query.versionGroup === "string"
+        "group" in req.query &&
+        typeof req.query.group === "string"
     );
 };
 
@@ -37,8 +37,8 @@ const isPokemonListRequest = (req: NextApiRequest): boolean => {
         Array.isArray(req.query["pokemonSlugList[]"]) &&
         "generation" in req.query &&
         typeof req.query.generation === "string" &&
-        "versionGroup" in req.query &&
-        typeof req.query.versionGroup === "string"
+        "group" in req.query &&
+        typeof req.query.group === "string"
     );
 };
 
@@ -76,7 +76,7 @@ const fetchPokemonEvolutionChains = async (species: PokemonSpecies): Promise<str
     }
 };
 
-const fetchPokemon = async (pokemonSlug: string, generation: string, versionGroup: string): Promise<PokemonData> => {
+const fetchPokemon = async (pokemonSlug: string, generation: string, group: string): Promise<PokemonData> => {
     const api: PokemonClient = new PokemonClient();
     try {
         const pokemon: Pokemon = await api.getPokemonByName(pokemonSlug);
@@ -88,7 +88,7 @@ const fetchPokemon = async (pokemonSlug: string, generation: string, versionGrou
                       .filter((ability: PokemonAbility) => !ability.is_hidden)
                       .map((ability: PokemonAbility) => ability.ability.name)
                 : pokemon.abilities.map((ability: PokemonAbility) => ability.ability.name);
-        return initPokemonData(pokemon, species, evolutions, abilities, generation, versionGroup);
+        return initPokemonData(pokemon, species, evolutions, abilities, generation, group);
     } catch (error: any) {
         throw error;
     }
@@ -97,11 +97,11 @@ const fetchPokemon = async (pokemonSlug: string, generation: string, versionGrou
 const fetchPokemonList = async (
     pokemonSlugList: string[],
     generation: string,
-    versionGroup: string
+    group: string
 ): Promise<PokemonData[]> => {
     let pokemonPromises: Promise<PokemonData>[] = [];
     pokemonSlugList.forEach((pokemonSlug: string) => {
-        pokemonPromises.push(fetchPokemon(pokemonSlug, generation, versionGroup));
+        pokemonPromises.push(fetchPokemon(pokemonSlug, generation, group));
     });
     try {
         return await Promise.all(pokemonPromises);
@@ -116,7 +116,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             const pokemon: void | PokemonData = await fetchPokemon(
                 req.query.pokemonSlug as string,
                 req.query.generation as string,
-                req.query.versionGroup as string
+                req.query.group as string
             );
             return res.status(200).json({ pokemon: JSON.stringify(pokemon) });
         } catch (error: any) {
@@ -129,7 +129,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             const pokemonDataList: void | PokemonData[] = await fetchPokemonList(
                 req.query["pokemonSlugList[]"] as string[],
                 req.query.generation as string,
-                req.query.versionGroup as string
+                req.query.group as string
             );
             return res.status(200).json({ pokemon: JSON.stringify(pokemonDataList) });
         } catch (error: any) {

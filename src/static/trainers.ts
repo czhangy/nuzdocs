@@ -315,10 +315,12 @@ const trainers: { [trainerSlug: string]: Trainer } = {
     },
     rs_brendan: {
         class: "Pokémon Trainer",
+        name: "brendan",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/brendan-gen3rs.png",
     },
     rs_may: {
         class: "Pokémon Trainer",
+        name: "may",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3rs.png",
     },
     rs_steven: {
@@ -328,34 +330,6 @@ const trainers: { [trainerSlug: string]: Trainer } = {
     rs_wallace: {
         class: "Gym Leader",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/wallace-gen3rs.png",
-    },
-    emerald_juan: {
-        class: "Gym Leader",
-        sprite: "https://play.pokemonshowdown.com/sprites/trainers/juan-gen3.png",
-    },
-    emerald_maxie_and_tabitha: {
-        class: "Team Magma",
-        sprite: "/assets/sprites/maxie_and_tabitha.webp",
-    },
-    emerald_may: {
-        class: "Pokémon Trainer",
-        sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3.png",
-    },
-    emerald_wallace: {
-        class: "Champion",
-        sprite: "https://play.pokemonshowdown.com/sprites/trainers/wallace-gen3.png",
-    },
-    hgss_silver: {
-        class: "Rival",
-        sprite: "https://play.pokemonshowdown.com/sprites/trainers/silver.png",
-    },
-    hgss_falkner: {
-        class: "Gym Leader",
-        sprite: "https://play.pokemonshowdown.com/sprites/trainers/falkner.png",
-    },
-    hgss_elder_li: {
-        class: "Elder",
-        sprite: "https://play.pokemonshowdown.com/sprites/trainers/li.png",
     },
 };
 

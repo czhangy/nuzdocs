@@ -1,12 +1,14 @@
 import PokemonName from "@/models/PokemonName";
 import Split from "@/models/Split";
+import Trainer from "@/models/Trainer";
 
 export default interface GameData {
     generation: string;
-    versionGroup: string;
+    group: string;
     pokedex: PokemonName[];
     splits: Split[];
-    starterSlugs: string[];
-    startingTownSlug: string;
+    characters: Trainer[];
+    starters: string[];
+    startingTown: string;
     invalidConditions: string[];
 }

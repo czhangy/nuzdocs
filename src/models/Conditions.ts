@@ -1,5 +1,5 @@
 export default interface Conditions {
-    game?: string;
-    gender?: "male" | "female";
-    starter?: string;
+    game?: "ruby" | "sapphire";
+    character?: "brendan" | "may";
+    starter?: "treecko" | "torchic" | "mudkip";
 }

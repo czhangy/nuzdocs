@@ -204,12 +204,12 @@ export const initPokemonMove = (slug: string, vgd: PokemonMoveVersion): PokemonM
     };
 };
 
-export const initItemData = (item: Item, versionGroup: string): ItemData => {
+export const initItemData = (item: Item, group: string): ItemData => {
     return {
         slug: item.name,
         name: getEnglishName(item.names),
         sprite: item.sprites.default,
-        desc: getDescription(item.flavor_text_entries, versionGroup) as string,
+        desc: getDescription(item.flavor_text_entries, group) as string,
     };
 };
 

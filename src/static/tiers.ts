@@ -1,4 +1,4 @@
-const tiers: { [versionGroup: string]: { [pokemonSlug: string]: string } } = {
+const tiers: { [group: string]: { [pokemon: string]: string } } = {
     "ruby-sapphire": {
         treecko: "A",
         grovyle: "A",

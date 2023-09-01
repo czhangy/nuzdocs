@@ -30,7 +30,7 @@ const SummaryHeader: React.FC<Props> = (props: Props) => {
         return getSegment(
             props.run,
             props.caughtPokemon.locationSlug === "starter"
-                ? getGameData(props.run.gameSlug).startingTownSlug
+                ? getGameData(props.run.gameSlug).startingTown
                 : props.caughtPokemon.locationSlug
         ).name;
     };
