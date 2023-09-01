@@ -1,0 +1,172 @@
+@use "@/styles/constants";
+
+.trainer-card {
+    --body-padding: 2rem;
+    --card-x-padding: 0.5rem;
+    --export-offset: 0.5rem;
+    --export-size: 24px;
+    --info-inner-spacing: 0.5rem;
+    --loading-y-padding: 2rem;
+    --location-font-size: 0.75rem;
+    --move-border-rad: 5px;
+    --move-font-size: 0.75rem;
+    --move-y-padding: 1rem;
+    --move-width: 9rem;
+    --moves-inner-spacing: 0.5rem;
+    --moves-spacing: 0.5rem;
+    --name-font-size: 1rem;
+    --pokemon-border-size: 2px;
+    --pokemon-y-padding: 1rem;
+    --sprite-size: 90px;
+    --toggle-font-size: 1.5rem;
+    --toggle-offset: 0.25rem;
+    --trainer-inner-spacing: 0.5rem;
+
+    background-color: constants.$accent-color;
+    max-height: var(--sprite-size);
+    overflow-y: hidden;
+    padding: 0 var(--card-x-padding);
+    position: relative;
+
+    .header {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+
+        .trainer {
+            align-items: center;
+            display: flex;
+            gap: var(--header-inner-spacing);
+
+            .sprite {
+                height: var(--sprite-size);
+                position: relative;
+                width: var(--sprite-size);
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                gap: var(--info-inner-spacing);
+                margin-left: var(--info-offset);
+
+                .name {
+                    font-size: var(--name-font-size);
+                    line-height: var(--name-font-size);
+                }
+
+                .location {
+                    font-size: var(--location-font-size);
+                    line-height: var(--location-font-size);
+                }
+
+                .items {
+                    display: flex;
+                    pointer-events: none;
+                }
+            }
+        }
+
+        .export {
+            filter: constants.$svg-color;
+            height: var(--export-size);
+            margin-right: var(--export-offset);
+            position: relative;
+            width: var(--export-size);
+
+            &:disabled {
+                filter: constants.$svg-disabled-color;
+            }
+        }
+    }
+
+    .body {
+        padding: 0 var(--body-padding);
+
+        .pokemon {
+            align-items: center;
+            border-top: var(--pokemon-border-size) solid constants.$bg-color;
+            display: flex;
+            flex-direction: column;
+            padding: var(--pokemon-y-padding) 0;
+
+            .moves {
+                display: grid;
+                gap: var(--moves-inner-spacing);
+                grid-template-columns: 1fr 1fr;
+                margin-top: var(--moves-spacing);
+
+                .move {
+                    background: constants.$bg-color;
+                    border-radius: var(--move-border-rad);
+                    font-size: var(--move-font-size);
+                    line-height: var(--move-font-size);
+                    padding: var(--move-y-padding) 0;
+                    text-align: center;
+                    width: var(--move-width);
+                }
+            }
+        }
+    }
+
+    .loading {
+        padding: var(--loading-y-padding) 0;
+    }
+
+    .toggle {
+        font-size: var(--toggle-font-size);
+        left: var(--toggle-offset);
+        line-height: var(--toggle-font-size);
+        position: absolute;
+        top: var(--toggle-offset);
+    }
+}
+
+.open {
+    max-height: fit-content;
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .trainer-card {
+        --card-x-padding: 1rem;
+        --export-offset: 1rem;
+        --export-size: 36px;
+        --info-inner-spacing: 0.75rem;
+        --info-offset: 0;
+        --location-font-size: 1rem;
+        --move-font-size: 1rem;
+        --move-width: 10rem;
+        --moves-spacing: 0;
+        --name-font-size: 1.25rem;
+        --sprite-size: 120px;
+        --toggle-font-size: 2rem;
+        --toggle-offset: 0.5rem;
+
+        .header > .trainer > .sprite {
+            height: var(--sprite-size);
+            position: relative;
+            width: var(--sprite-size);
+        }
+
+        .body .pokemon {
+            flex-direction: row;
+            justify-content: space-between;
+
+            .moves {
+                grid-template-rows: 1fr 1fr;
+            }
+        }
+    }
+}
+
+@media (hover: hover) {
+    .trainer-card {
+        .header > .export:hover {
+            filter: constants.$svg-hover-color;
+        }
+
+        .toggle:hover {
+            color: constants.$hover-color;
+        }
+    }
+}

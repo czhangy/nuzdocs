@@ -1,8 +1,7 @@
-import BattleSegment from "@/models/BattleSegment";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import Trainer from "@/models/Trainer";
-import { getTrainer } from "@/utils/battle";
+import { getLevelCap, getTrainer } from "@/utils/battle";
 import { getStarterSlug, isCleared } from "@/utils/run";
 import { hasLevelCap } from "@/utils/segment";
 import Image from "next/image";
@@ -13,53 +12,50 @@ import styles from "./BattleOverview.module.scss";
 type Props = {
     battle: Segment;
     run: Run;
+    idx: number;
 };
 
 const BattleOverview: React.FC<Props> = (props: Props) => {
     // Internal state
-    const [trainers, setTrainers] = useState<Trainer[]>([]);
+    const [trainer, setTrainer] = useState<Trainer | null>();
 
     // Get trainer info on component load
     useEffect(() => {
         if (props.battle && props.run) {
-            const trainer: Trainer | Trainer[] = getTrainer(
-                props.run.gameSlug,
-                props.battle.slug,
-                getStarterSlug(props.run.id)
-            );
-            if (Array.isArray(trainer)) {
-                setTrainers(trainer);
-            } else {
-                setTrainers([trainer]);
-            }
+            setTrainer(getTrainer(props.run.gameSlug, props.battle.slug, getStarterSlug(props.run.id)));
         }
     }, [props.battle, props.run]);
 
-    return (
-        <Link href={`/runs/${props.run.id}/${props.battle.slug}`}>
+    return trainer ? (
+        <Link href={`/runs/${props.run.id}/${props.idx}`}>
             <a className={styles["battle-overview"]}>
                 <div className={`${styles.battle} ${isCleared(props.run.id, props.battle.slug) ? styles.done : ""}`}>
                     <p className={styles.name}>{props.battle.name}</p>
                     <div className={styles.trainers}>
-                        {trainers.map((trainer: Trainer) => {
-                            return (
-                                <div className={styles.trainer} key={trainer.name}>
-                                    <Image src={trainer.sprite} alt={trainer.name} layout="fill" objectFit="contain" />
-                                </div>
-                            );
-                        })}
+                        <div className={styles.trainer}>
+                            <Image
+                                src={trainer.sprite}
+                                alt={`${trainer.class} ${props.battle.name}`}
+                                layout="fill"
+                                objectFit="contain"
+                            />
+                        </div>
                     </div>
                 </div>
                 {hasLevelCap(props.battle) ? (
                     <div className={styles["level-cap"]}>
                         <p className={styles.title}>Level Cap</p>
-                        <p className={styles.level}>{(props.battle.segment as BattleSegment).levelCap}</p>
+                        <p className={styles.level}>
+                            {getLevelCap(props.run.gameSlug, props.battle.slug, getStarterSlug(props.run.id))}
+                        </p>
                     </div>
                 ) : (
                     ""
                 )}
             </a>
         </Link>
+    ) : (
+        <></>
     );
 };
 

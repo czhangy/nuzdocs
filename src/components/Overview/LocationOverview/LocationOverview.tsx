@@ -8,10 +8,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./LocationOverview.module.scss";
+import LocationSegment from "@/models/LocationSegment";
 
 type Props = {
     location: Segment;
     run: Run;
+    idx: number;
 };
 
 const LocationOverview: React.FC<Props> = (props: Props) => {
@@ -36,28 +38,32 @@ const LocationOverview: React.FC<Props> = (props: Props) => {
     }, [props.location, props.run]);
 
     return (
-        <Link href={`/runs/${props.run.id}/${props.location.slug}`}>
+        <Link href={`/runs/${props.run.id}/${props.idx}`}>
             <a className={styles["location-overview"]}>
                 <p className={`${styles.location} ${encounter || encounterText !== "None" ? styles.done : ""}`}>
                     {props.location.name}
                 </p>
-                <div className={styles.encounter}>
-                    <p className={styles.title}>Encounter</p>
-                    {encounter ? (
-                        <div className={styles.sprite}>
-                            <Image
-                                src={encounter.sprite}
-                                alt={encounter.pokemon.name}
-                                layout="fill"
-                                objectFit="contain"
-                            />
-                        </div>
-                    ) : (
-                        <p className={`${styles.text} ${encounterText === "Failed" ? styles.failed : ""}`}>
-                            {encounterText}
-                        </p>
-                    )}
-                </div>
+                {(props.location.segment as LocationSegment).custom !== true ? (
+                    <div className={styles.encounter}>
+                        <p className={styles.title}>Encounter</p>
+                        {encounter ? (
+                            <div className={styles.sprite}>
+                                <Image
+                                    src={encounter.sprite}
+                                    alt={encounter.pokemon.name}
+                                    layout="fill"
+                                    objectFit="contain"
+                                />
+                            </div>
+                        ) : (
+                            <p className={`${styles.text} ${encounterText === "Failed" ? styles.failed : ""}`}>
+                                {encounterText}
+                            </p>
+                        )}
+                    </div>
+                ) : (
+                    ""
+                )}
             </a>
         </Link>
     );

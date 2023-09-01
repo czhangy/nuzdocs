@@ -15,6 +15,10 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Underwater encounters display as part of their routes, not in the underwater location",
             group: "Emerald",
         },
+        {
+            desc: "Run navigation through the navbar doesn't update previous segment until refreshed",
+            group: "General",
+        },
     ],
     Medium: [
         {
@@ -26,7 +30,7 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "General",
         },
         {
-            desc: "Pokemon with different forms can evolve between forms (i.e., Zigzagoon/Linoone/Obstagoon)",
+            desc: "Pokemon with different forms can evolve between forms, such as Zigzagoon/Linoone/Obstagoon",
             group: "General",
         },
         {
@@ -58,6 +62,22 @@ const bugs: { [priority: string]: Bug[] } = {
         {
             desc: "Location pages have excess height on mobile displays",
             group: "General",
+        },
+        {
+            desc: "All Aqua/Magma grunts currently use their male sprites",
+            group: "Ruby/Sapphire",
+        },
+        {
+            desc: "Brendan fights are currently unused",
+            group: "Emerald",
+        },
+        {
+            desc: "Too much page spacing in LocationPage when a custom location is loaded",
+            group: "General",
+        },
+        {
+            desc: "Devon Scope encounter percentages exceed 100%",
+            group: "Ruby/Sapphire",
         },
     ],
 };

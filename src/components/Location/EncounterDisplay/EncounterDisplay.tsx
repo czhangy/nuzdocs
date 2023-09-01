@@ -3,7 +3,7 @@ import PokemonData from "@/models/PokemonData";
 import PokemonName from "@/models/PokemonName";
 import Run from "@/models/Run";
 import { fetchPokemon } from "@/utils/api";
-import { getGameGroup } from "@/utils/game";
+import { getGameData } from "@/utils/game";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import {
     addFailedEncounter,
@@ -104,7 +104,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (props.run && !hasEncounter && searchValue.length > 2) {
             const newMatches: PokemonName[] = [];
-            getGameGroup(props.run.gameSlug).pokedex.forEach((pokemon: PokemonName) => {
+            getGameData(props.run.gameSlug).pokedex.forEach((pokemon: PokemonName) => {
                 if (
                     pokemon.name.toLowerCase().includes(searchValue.toLowerCase()) &&
                     !props.run.caughtPokemonSlugs.includes(pokemon.slug)

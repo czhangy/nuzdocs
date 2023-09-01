@@ -3,13 +3,10 @@
 .encounter-list {
     --encounters-inner-spacing: 1rem;
     --header-spacing: 1.5rem;
-    --icon-size: 24px;
     --left-inner-spacing: 1rem;
-    --list-spacing: 10rem;
-    --times-inner-spacing: 0.5rem;
-    --title-font-size: 1.5rem;
+    --title-font-size: 1.25rem;
 
-    margin-bottom: var(--list-spacing);
+    width: 100%;
 
     .header {
         align-items: center;
@@ -36,18 +33,14 @@
     }
 }
 
-.empty {
-    --font-size: 1.75rem;
-    --letter-spacing: 1px;
+.offset {
+    --section-offset: -2rem;
 
-    font-size: var(--font-size);
-    font-weight: bold;
-    letter-spacing: var(--letter-spacing);
-    text-align: center;
+    margin-bottom: var(--section-offset);
 }
 
 @media screen and (min-width: constants.$tablet) {
-    .empty {
-        --font-size: 2rem;
+    .encounter-list {
+        --title-font-size: 1.5rem;
     }
 }

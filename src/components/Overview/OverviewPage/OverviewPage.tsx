@@ -1,7 +1,8 @@
 import SplitOverview from "@/components/Overview/SplitOverview/SplitOverview";
 import Run from "@/models/Run";
+import Segment from "@/models/Segment";
 import Split from "@/models/Split";
-import { getGameGroup } from "@/utils/game";
+import { getGameData } from "@/utils/game";
 import styles from "./OverviewPage.module.scss";
 
 type Props = {
@@ -9,14 +10,25 @@ type Props = {
 };
 
 const OverviewPage: React.FC<Props> = (props: Props) => {
+    // Calculate the starting index of the split
+    const getStartIdx = (idx: number) => {
+        let start = 0;
+        for (let i = idx - 1; i >= 0; i--) {
+            start += getGameData(props.run.gameSlug).splits[i].segments.filter(
+                (segment: Segment) => segment.version === undefined || segment.version === props.run.gameSlug
+            ).length;
+        }
+        return start;
+    };
+
     return (
         <div className={styles["overview-page"]}>
             <h2 className={styles.header}>Overview</h2>
             <p className={styles.notice}>*Level caps noted at the top of each split*</p>
             <ul className={styles.splits}>
-                {getGameGroup(props.run.gameSlug).splits.map((split: Split) => (
+                {getGameData(props.run.gameSlug).splits.map((split: Split, idx: number) => (
                     <li key={split.name}>
-                        <SplitOverview split={split} run={props.run} />
+                        <SplitOverview split={split} run={props.run} start={getStartIdx(idx)} />
                     </li>
                 ))}
             </ul>

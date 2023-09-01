@@ -4,7 +4,7 @@ import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import colors from "@/static/colors";
 import { fetchPokemonList } from "@/utils/api";
-import { getGame, getGameGroup } from "@/utils/game";
+import { getGame, getGameData } from "@/utils/game";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import {
     addToBox,
@@ -34,7 +34,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
     // Fetch starter data on load
     useEffect(() => {
         if (props.run) {
-            fetchPokemonList(getGameGroup(props.run.gameSlug).starterSlugs, props.run.gameSlug).then(
+            fetchPokemonList(getGameData(props.run.gameSlug).starterSlugs, props.run.gameSlug).then(
                 (starterData: PokemonData[]) => {
                     const starterSlug: string = getStarterSlug(props.run.id);
                     setStarters(starterData);

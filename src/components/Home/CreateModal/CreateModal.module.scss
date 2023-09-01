@@ -5,9 +5,10 @@
     --form-inner-spacing: 1.5rem;
     --game-max-width: 120px;
     --game-ratio: 2;
-    --games-inner-spacing: 1rem;
-    --games-max-height: 200px;
+    --games-max-height: 300px;
     --games-num-columns: 3;
+    --games-x-inner-spacing: 1rem;
+    --games-y-inner-spacing: 2rem;
     --games-y-padding: 1rem;
     --header-font-size: 1.25rem;
     --input-font-size: 1rem;
@@ -43,9 +44,10 @@
         .games {
             background-color: constants.$bg-color;
             display: grid;
-            gap: var(--games-inner-spacing);
+            gap: var(--games-y-inner-spacing) var(--games-x-inner-spacing);
             grid-template-columns: repeat(var(--games-num-columns), 1fr);
             max-height: var(--games-max-height);
+            overflow-x: hidden;
             overflow-y: auto;
             padding: var(--games-y-padding) var(--field-x-padding);
             width: 100%;
@@ -53,7 +55,7 @@
             .game {
                 filter: grayscale(100%);
                 height: calc(
-                    (var(--modal-width) - 2 * var(--games-inner-spacing) - 2 * var(--field-x-padding)) /
+                    (var(--modal-width) - 2 * var(--games-x-inner-spacing) - 2 * var(--field-x-padding)) /
                         (3 * var(--game-ratio))
                 );
                 margin: 0 auto;
@@ -61,7 +63,7 @@
                 position: relative;
                 user-select: none; /* Standard syntax */
                 -webkit-user-select: none; /* Safari */
-                width: calc((var(--modal-width) - 2 * var(--games-inner-spacing) - 2 * var(--field-x-padding)) / 3);
+                width: calc((var(--modal-width) - 2 * var(--games-x-inner-spacing) - 2 * var(--field-x-padding)) / 3);
             }
 
             .active {

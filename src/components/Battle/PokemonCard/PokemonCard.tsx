@@ -10,7 +10,7 @@ import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import { fetchAbility, fetchItem, fetchMoves } from "@/utils/api";
-import { getGameGroup } from "@/utils/game";
+import { getGameData } from "@/utils/game";
 import { useEffect, useState } from "react";
 import styles from "./PokemonCard.module.scss";
 
@@ -52,11 +52,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                     {isMinimized ? "+" : "-"}
                 </button>
                 <div className={styles.header}>
-                    <PokemonDisplay
-                        pokemon={props.pokemon}
-                        runID={getGameGroup(props.run.gameSlug).versionGroup}
-                        key={props.pokemon.pokemon.slug}
-                    />
+                    <PokemonDisplay pokemon={props.pokemon} runID={getGameData(props.run.gameSlug).versionGroup} />
                 </div>
                 <div className={styles.moves}>
                     {moves.map((move: MoveData) => {

@@ -112,11 +112,9 @@ const EncounterList: React.FC<Props> = (props: Props) => {
             )}
         </div>
     ) : isLoading ? (
-        <div className={styles.loading}>
-            <div className="accent-spinner" />
-        </div>
+        <div className="accent-spinner" />
     ) : (
-        <p className={styles.empty}>No encounters here!</p>
+        <></>
     );
 };
 

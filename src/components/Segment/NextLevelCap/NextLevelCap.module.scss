@@ -2,7 +2,7 @@
 
 .next-level-cap {
     --border-rad: 5px;
-    --font-size: 1.25rem;
+    --font-size: 1rem;
     --letter-spacing: 1px;
     --x-padding: 1.5rem;
     --y-padding: 1rem;
@@ -15,6 +15,5 @@
         font-size: var(--font-size);
         letter-spacing: var(--letter-spacing);
         line-height: var(--font-size);
-        text-align: center;
     }
 }

@@ -1,4 +1,4 @@
-import { getGame, getGameGroup, getGameSlugs } from "@/utils/game";
+import { getGame, getGameData, getGameSlugs } from "@/utils/game";
 import { createRun } from "@/utils/run";
 import Image from "next/image";
 import Router from "next/router";
@@ -13,7 +13,7 @@ const CreateModal: React.FC = () => {
     // Creates a run in local storage and adds the run to the run list, then redirects
     const handleCreate = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        Router.push(`/runs/${createRun(selectedName, selectedGame)}/${getGameGroup(selectedGame).startingTownSlug}`);
+        Router.push(`/runs/${createRun(selectedName, selectedGame)}/0`);
     };
 
     return (
@@ -39,7 +39,7 @@ const CreateModal: React.FC = () => {
                                 onClick={() => setSelectedGame(game)}
                             >
                                 <Image
-                                    src={getGame(game).logoURL}
+                                    src={getGame(game).logo}
                                     alt={getGame(game).name}
                                     layout="fill"
                                     objectFit="contain"

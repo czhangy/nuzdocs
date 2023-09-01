@@ -1,7 +1,7 @@
-import GameGroup from "@/models/GameGroup";
+import GameData from "@/models/GameData";
 
 export default interface Game {
     name: string;
-    logoURL: string;
-    gameGroup: GameGroup;
+    logo: string;
+    data: GameData;
 }

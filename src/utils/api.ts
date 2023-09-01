@@ -1,8 +1,8 @@
 import AbilityData from "@/models/AbilityData";
-import GameGroup from "@/models/GameGroup";
+import GameData from "@/models/GameData";
 import ItemData from "@/models/ItemData";
 import MoveData from "@/models/MoveData";
-import { getGameGroup } from "@/utils/game";
+import { getGameData } from "@/utils/game";
 
 // IDK why but this errors when using import
 const axios = require("axios");
@@ -45,7 +45,7 @@ export const fetchAreas = async (areas: string[], game: string) => {
 // Fetch AbilityData given slug
 export const fetchAbility = async (ability: string, game: string): Promise<AbilityData | null> => {
     try {
-        const group: string = getGameGroup(game).versionGroup;
+        const group: string = getGameData(game).versionGroup;
         const res = await axios.get("/api/abilities", {
             params: {
                 ability: ability,
@@ -67,7 +67,7 @@ export const fetchAbilities = async (abilities: string[], game: string): Promise
             const ability: AbilityData | null = await fetchAbility(abilities[0], game);
             return ability ? [ability] : [];
         } else {
-            const group: string = getGameGroup(game).versionGroup;
+            const group: string = getGameData(game).versionGroup;
             const res = await axios.get("/api/abilities", {
                 params: {
                     ability: abilities,
@@ -87,7 +87,7 @@ export const fetchMove = async (move: string, game: string): Promise<MoveData | 
         const res = await axios.get("/api/moves", {
             params: {
                 slugs: move,
-                group: getGameGroup(game).versionGroup,
+                group: getGameData(game).versionGroup,
             },
         });
         return JSON.parse(res.data.moves);
@@ -108,7 +108,7 @@ export const fetchMoves = async (moves: string[], game: string): Promise<MoveDat
             const res = await axios.get("/api/moves", {
                 params: {
                     slugs: moves,
-                    group: getGameGroup(game).versionGroup,
+                    group: getGameData(game).versionGroup,
                 },
             });
             return JSON.parse(res.data.moves);
@@ -122,7 +122,7 @@ export const fetchMoves = async (moves: string[], game: string): Promise<MoveDat
 // Fetch a Pokemon by their Pokemon slug, given the game
 export const fetchPokemon = async (slug: string, game: string) => {
     try {
-        const group: GameGroup = getGameGroup(game);
+        const group: GameData = getGameData(game);
         const res = await axios.get("/api/pokemon", {
             params: {
                 pokemonSlug: slug,
@@ -140,10 +140,12 @@ export const fetchPokemon = async (slug: string, game: string) => {
 // Fetch a list of PokemonData given Pokemon slugs and game
 export const fetchPokemonList = async (slugs: string[], game: string) => {
     try {
-        if (slugs.length === 1) {
+        if (slugs.length === 0) {
+            return [];
+        } else if (slugs.length === 1) {
             return [await fetchPokemon(slugs[0], game)];
         } else {
-            const group: GameGroup = getGameGroup(game);
+            const group: GameData = getGameData(game);
             const res = await axios.get("/api/pokemon", {
                 params: {
                     pokemonSlugList: slugs,
@@ -161,7 +163,7 @@ export const fetchPokemonList = async (slugs: string[], game: string) => {
 
 export const fetchItem = async (item: string, game: string): Promise<ItemData | null> => {
     try {
-        const group: string = getGameGroup(game).versionGroup;
+        const group: string = getGameData(game).versionGroup;
         const res = await axios.get("/api/items", {
             params: {
                 item: item,
@@ -183,7 +185,7 @@ export const fetchItems = async (items: string[], game: string): Promise<ItemDat
             const item: ItemData | null = await fetchItem(items[0], game);
             return item ? [item] : [];
         } else {
-            const group: string = getGameGroup(game).versionGroup;
+            const group: string = getGameData(game).versionGroup;
             const res = await axios.get("/api/items", {
                 params: {
                     item: items,

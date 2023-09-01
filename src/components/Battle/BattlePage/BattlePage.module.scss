@@ -2,14 +2,18 @@
 
 .battle-page {
     --loading-spacing: 4rem;
+    --page-inner-spacing: 2rem;
     --team-inner-spacing: 1rem;
-    --team-spacing: 2rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--page-inner-spacing);
 
     .team {
         display: flex;
         flex-direction: column;
         gap: var(--team-inner-spacing);
-        margin-top: var(--team-spacing);
         width: 100%;
     }
 

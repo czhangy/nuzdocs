@@ -6,14 +6,13 @@
     --battle-letter-spacing: 0;
     --border-rad: 5px;
     --border-size: 2px;
-    --level-font-size: 1.25rem;
+    --card-height: 140px;
+    --level-font-size: 1rem;
     --level-letter-spacing: 1px;
     --level-cap-inner-spacing: 1rem;
-    --overview-height: calc(2rem + 75px + 2 * var(--y-padding));
-    --title-font-size: 1rem;
+    --title-font-size: 0.75rem;
     --trainer-size: 75px;
     --x-padding: 2rem;
-    --y-padding: 1rem;
 
     align-items: center;
     background-color: constants.$accent-color;
@@ -21,8 +20,8 @@
     border-radius: var(--border-rad);
     display: flex;
     justify-content: space-between;
-    height: var(--overview-height);
-    padding: var(--y-padding) var(--x-padding);
+    height: var(--card-height);
+    padding: 0 var(--x-padding);
     width: 100%;
 
     .battle {
@@ -42,15 +41,10 @@
 
             .trainer {
                 height: var(--trainer-size);
-                margin-left: calc(var(--trainer-size) / -2);
                 position: relative;
                 user-select: none; /* Standard syntax */
                 -webkit-user-select: none; /* Safari */
                 width: var(--trainer-size);
-
-                &:first-child {
-                    margin-left: 0;
-                }
             }
         }
     }

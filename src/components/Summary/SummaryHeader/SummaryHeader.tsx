@@ -1,7 +1,7 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
-import { getGameGroup } from "@/utils/game";
+import { getGameData } from "@/utils/game";
 import { getBox, getRIPs, isAlive } from "@/utils/run";
 import { getSegment } from "@/utils/segment";
 import { getPokedexLink } from "@/utils/utils";
@@ -30,7 +30,7 @@ const SummaryHeader: React.FC<Props> = (props: Props) => {
         return getSegment(
             props.run.gameSlug,
             props.caughtPokemon.locationSlug === "starter"
-                ? getGameGroup(props.run.gameSlug).startingTownSlug
+                ? getGameData(props.run.gameSlug).startingTownSlug
                 : props.caughtPokemon.locationSlug
         ).name;
     };
@@ -115,18 +115,7 @@ const SummaryHeader: React.FC<Props> = (props: Props) => {
                         </Link>
                     </div>
                     <p className={styles.text}>
-                        Met at:{" "}
-                        <Link
-                            href={`/runs/${props.run.id}/${
-                                props.caughtPokemon.locationSlug === "starter"
-                                    ? getGameGroup(props.run.gameSlug).startingTownSlug
-                                    : props.caughtPokemon.locationSlug
-                            }`}
-                        >
-                            <a className={styles.location}>
-                                <strong>{getMetLocation()}</strong>
-                            </a>
-                        </Link>
+                        Met at: <strong>{getMetLocation()}</strong>
                     </p>
                     <p className={styles.text}>
                         Status: <strong>{isAlive(props.run.id, props.caughtPokemon.id) ? "Alive" : "RIP'd"}</strong>

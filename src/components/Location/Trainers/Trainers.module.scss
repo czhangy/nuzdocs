@@ -1,0 +1,33 @@
+@use "@/styles/constants";
+
+.trainers {
+    --bottom-spacing: 10rem;
+    --header-font-size: 1.25rem;
+    --header-spacing: 2rem;
+    --list-inner-spacing: 1rem;
+
+    margin-bottom: var(--bottom-spacing);
+    width: 100%;
+
+    .header {
+        font-size: var(--header-font-size);
+        line-height: var(--header-font-size);
+        margin-bottom: var(--header-spacing);
+    }
+
+    .list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--list-inner-spacing);
+    }
+}
+
+.placeholder {
+    margin-bottom: 8rem;
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .trainers {
+        --header-font-size: 1.5rem;
+    }
+}

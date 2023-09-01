@@ -5,5 +5,6 @@ export default interface Segment {
     slug: string;
     name: string;
     type: "location" | "battle";
+    version?: "ruby" | "sapphire";
     segment: LocationSegment | BattleSegment;
 }

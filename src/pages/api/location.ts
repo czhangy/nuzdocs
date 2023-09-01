@@ -1,7 +1,7 @@
 import AreaData from "@/models/AreaData";
 import EncounterData from "@/models/EncounterData";
 import LocationData from "@/models/LocationData";
-import { getGameGroup } from "@/utils/game";
+import { getGameData } from "@/utils/game";
 import { initAreaData, initEncounterData, initLocationData } from "@/utils/initializers";
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
@@ -73,7 +73,7 @@ const handleConstantEncounter = (
 ): void => {
     if (
         encounterDetail.condition_values.some((cv: NamedAPIResource) =>
-            getGameGroup(gameSlug).invalidConditions.includes(cv.name)
+            getGameData(gameSlug).invalidConditions.includes(cv.name)
         )
     ) {
         return;
@@ -100,7 +100,7 @@ const getEncounterData = (
 ): boolean => {
     let usesTime = false;
     for (const pokemonEncounter of pokemonEncounters) {
-        if (getGameGroup(gameSlug).starterSlugs.includes(pokemonEncounter.pokemon.name)) {
+        if (getGameData(gameSlug).starterSlugs.includes(pokemonEncounter.pokemon.name)) {
             continue;
         }
         const versionDetail: VersionEncounterDetail | undefined = pokemonEncounter.version_details.find(

@@ -1,10 +1,10 @@
 import BattleOverview from "@/components/Overview/BattleOverview/BattleOverview";
 import LocationOverview from "@/components/Overview/LocationOverview/LocationOverview";
-import BattleSegment from "@/models/BattleSegment";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import Split from "@/models/Split";
-import { isCleared } from "@/utils/run";
+import { getLevelCap } from "@/utils/battle";
+import { getStarterSlug, isCleared } from "@/utils/run";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "./SplitOverview.module.scss";
@@ -12,6 +12,7 @@ import styles from "./SplitOverview.module.scss";
 type Props = {
     split: Split;
     run: Run;
+    start: number;
 };
 
 const SplitOverview: React.FC<Props> = (props: Props) => {
@@ -25,11 +26,6 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
         } * (4rem + 81px) + ${props.split.segments.length - 1} * var(--segments-inner-spacing))`;
     };
 
-    // Get the level cap from the segment's final fight
-    const getLevelCap = (): number => {
-        return (props.split.segments.at(-1)!.segment as BattleSegment).levelCap!;
-    };
-
     return (
         <div className={styles["split-overview"]} style={open ? { maxHeight: getExpandedHeight() } : {}}>
             <button className={styles.header} onClick={() => setOpen(!open)}>
@@ -37,7 +33,7 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
                     {isCleared(props.run.id, props.split.segments.at(-1)!.slug)
                         ? `👑 ${props.split.name}`
                         : props.split.name}{" "}
-                    [{getLevelCap()}]
+                    [{getLevelCap(props.run.gameSlug, props.split.segments.at(-1)!.slug, getStarterSlug(props.run.id))}]
                 </p>
                 <hr className={styles.line} />
                 <div className={`${styles.arrow} ${open ? styles.reversed : ""}`}>
@@ -45,17 +41,21 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
                 </div>
             </button>
             <ul className={styles.segments}>
-                {props.split.segments.map((segment: Segment, key: number) => {
-                    return (
-                        <li className={styles.segment} key={key}>
-                            {segment.type === "location" ? (
-                                <LocationOverview location={segment} run={props.run} key={key} />
-                            ) : (
-                                <BattleOverview battle={segment} run={props.run} key={key} />
-                            )}
-                        </li>
-                    );
-                })}
+                {props.split.segments
+                    .filter(
+                        (segment: Segment) => segment.version === undefined || segment.version === props.run.gameSlug
+                    )
+                    .map((segment: Segment, idx: number) => {
+                        return (
+                            <li className={styles.segment} key={idx}>
+                                {segment.type === "location" ? (
+                                    <LocationOverview location={segment} run={props.run} idx={props.start + idx} />
+                                ) : (
+                                    <BattleOverview battle={segment} run={props.run} idx={props.start + idx} />
+                                )}
+                            </li>
+                        );
+                    })}
             </ul>
         </div>
     );
