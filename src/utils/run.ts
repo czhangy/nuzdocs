@@ -1,22 +1,36 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 import Run from "@/models/Run";
+import Status from "@/models/Status";
+import { getGameData, getSegments } from "@/utils/game";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import { generateID } from "@/utils/utils";
-import { getGameData } from "./game";
 
 // Constructors
-export const initRun = (id: string, name: string, gameSlug: string): Run => {
-    return {
+export const initEncounters = (run: Run): { [location: string]: Status } => {
+    const encounters: { [location: string]: Status } = {};
+    for (const segment of getSegments(run)) {
+        if (segment.type === "location") {
+            encounters[segment.slug] = { status: "none" };
+        }
+    }
+    return encounters;
+};
+
+export const initRun = (id: string, name: string, game: string): Run => {
+    const run: Run = {
         id: id,
         name: name,
-        gameSlug: gameSlug,
-        character: getGameData(gameSlug).characters.length > 0 ? getGameData(gameSlug).characters[0].name! : "",
+        gameSlug: game,
+        character: getGameData(game).characters.length > 0 ? getGameData(game).characters[0].name! : "",
         prevIdx: 0,
+        encounters: {},
         box: [],
         rips: [],
         caughtPokemonSlugs: [],
         clearedBattles: [],
     };
+    run.encounters = initEncounters(run);
+    return run;
 };
 
 export const createRun = (name: string, gameSlug: string): string => {

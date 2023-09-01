@@ -117,7 +117,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Customizable run settings
 -   [ ] Key items
 -   [ ] PBs
--   [ ] Mark encounters
 -   [ ] Game data
 -   [ ] Consider loading one-by-one instead of in groups (esp. for boxes)
 -   [ ] Nicer alerts for exports
