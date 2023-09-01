@@ -1,7 +1,5 @@
 import Game from "@/models/Game";
-import emerald from "@/static/emerald";
-import hgss from "@/static/hgss";
-import rs from "@/static/ruby_sapphire";
+import rs from "@/static/rs";
 
 const games: { [game: string]: Game } = {
     ruby: {
@@ -13,16 +11,6 @@ const games: { [game: string]: Game } = {
         name: "Sapphire",
         logo: "/assets/images/sapphire.webp",
         data: rs,
-    },
-    emerald: {
-        name: "Emerald",
-        logo: "/assets/images/emerald.webp",
-        data: emerald,
-    },
-    soulsilver: {
-        name: "SoulSilver",
-        logo: "/assets/images/soulsilver.webp",
-        data: hgss,
     },
 };
 

@@ -2,7 +2,7 @@ import GameData from "@/models/GameData";
 import battles from "@/static/battles";
 import pokedex from "@/static/pokedex";
 
-const ruby: GameData = {
+const rs: GameData = {
     generation: "generation-iii",
     versionGroup: "ruby-sapphire",
     pokedex: pokedex.slice(0, 386),
@@ -1487,6 +1487,7 @@ const ruby: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.ruby_sapphire.elite_four_sidney,
+                        levelCap: true,
                     },
                 },
                 {
@@ -1495,6 +1496,7 @@ const ruby: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.ruby_sapphire.elite_four_phoebe,
+                        levelCap: true,
                     },
                 },
                 {
@@ -1503,6 +1505,7 @@ const ruby: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.ruby_sapphire.elite_four_glacia,
+                        levelCap: true,
                     },
                 },
                 {
@@ -1511,6 +1514,7 @@ const ruby: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.ruby_sapphire.elite_four_drake,
+                        levelCap: true,
                     },
                 },
                 {
@@ -1530,4 +1534,4 @@ const ruby: GameData = {
     invalidConditions: [],
 };
 
-export default ruby;
+export default rs;
