@@ -2,7 +2,6 @@ import CaughtPokemon from "@/models/CaughtPokemon";
 import Run from "@/models/Run";
 import Status from "@/models/Status";
 import { getGameData, getSegments } from "@/utils/game";
-import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import { generateID } from "@/utils/utils";
 
 // Constructors
@@ -10,7 +9,7 @@ export const initEncounters = (run: Run): { [location: string]: Status } => {
     const encounters: { [location: string]: Status } = {};
     for (const segment of getSegments(run)) {
         if (segment.type === "location") {
-            encounters[segment.slug] = { status: "none" };
+            encounters[segment.slug] = { status: "None" };
         }
     }
     return encounters;
@@ -111,16 +110,20 @@ export const setPrevIdx = (runID: string, idx: number): void => {
 };
 
 // Mutators
+export const setEncounterStatus = (
+    runID: string,
+    location: string,
+    status: "None" | "Caught" | "Delayed" | "Skipped" | "Failed"
+): void => {
+    const run: Run = getRun(runID);
+    run.encounters[location] = { status: status };
+    setRun(runID, run);
+};
+
 export const updateBox = (runID: string, pokemon: CaughtPokemon): void => {
     let run: Run = getRun(runID);
     const idx: number = run.box.findIndex((boxPokemon: CaughtPokemon) => boxPokemon.id === pokemon.id);
     run.box[idx] = pokemon;
-    setRun(runID, run);
-};
-
-export const addFailedEncounter = (runID: string, locationSlug: string): void => {
-    let run: Run = getRun(runID);
-    run.box.push(initCaughtPokemon(initPokemon("failed", "failed"), locationSlug, runID));
     setRun(runID, run);
 };
 
