@@ -1,7 +1,7 @@
 import Battle from "@/models/Battle";
 import trainers from "@/static/trainers";
 
-const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
+const battles: { [group: string]: { [battle: string]: Battle } } = {
     ruby_sapphire: {
         youngster_calvin: {
             trainer: trainers.rse_youngster,
@@ -1739,7 +1739,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         aroma_lady_rose: {
             trainer: trainers.rse_aroma_lady,
             name: "Rose",
-            location: "Route 118 (West)",
+            location: "Route 118",
             team: [
                 {
                     slug: "shroomish",
@@ -1775,7 +1775,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         guitarist_dalton: {
             trainer: trainers.rse_guitarist,
             name: "Dalton",
-            location: "Route 118 (West)",
+            location: "Route 118",
             team: [
                 {
                     slug: "magnemite",
@@ -1825,7 +1825,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         fisherman_wade: {
             trainer: trainers.rse_fisherman,
             name: "Wade",
-            location: "Route 118 (West)",
+            location: "Route 118",
             team: [
                 {
                     slug: "carvanha",
@@ -11321,7 +11321,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         pokemon_trainer_brendan_treecko_2: {
             trainer: trainers.rs_brendan,
             name: "Brendan",
-            location: "Underpass",
+            location: "Route 110 (Underpass)",
             team: [
                 {
                     slug: "wailmer",
@@ -11505,7 +11505,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         pokemon_trainer_brendan_torchic_2: {
             trainer: trainers.rs_brendan,
             name: "Brendan",
-            location: "Underpass",
+            location: "Route 110 (Underpass)",
             team: [
                 {
                     slug: "shroomish",
@@ -11688,7 +11688,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         pokemon_trainer_brendan_mudkip_2: {
             trainer: trainers.rs_brendan,
             name: "Brendan",
-            location: "Underpass",
+            location: "Route 110 (Underpass)",
             team: [
                 {
                     slug: "numel",
@@ -11871,7 +11871,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         pokemon_trainer_may_treecko_2: {
             trainer: trainers.rs_may,
             name: "May",
-            location: "Underpass",
+            location: "Route 110 (Underpass)",
             team: [
                 {
                     slug: "wailmer",
@@ -12055,7 +12055,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         pokemon_trainer_may_torchic_2: {
             trainer: trainers.rs_may,
             name: "May",
-            location: "Underpass",
+            location: "Route 110 (Underpass)",
             team: [
                 {
                     slug: "shroomish",
@@ -12238,7 +12238,7 @@ const battles: { [versionGroup: string]: { [battleSlug: string]: Battle } } = {
         pokemon_trainer_may_mudkip_2: {
             trainer: trainers.rs_may,
             name: "May",
-            location: "Underpass",
+            location: "Route 110 (Underpass)",
             team: [
                 {
                     slug: "wailmer",

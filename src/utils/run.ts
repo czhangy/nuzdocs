@@ -9,6 +9,7 @@ export const initRun = (id: string, name: string, gameSlug: string): Run => {
         id: id,
         name: name,
         gameSlug: gameSlug,
+        gender: "male",
         prevIdx: 0,
         box: [],
         rips: [],

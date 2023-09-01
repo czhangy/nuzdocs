@@ -3,6 +3,7 @@ import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import Split from "@/models/Split";
 import { getGameData } from "@/utils/game";
+import { satisifesConditions } from "@/utils/segment";
 import styles from "./OverviewPage.module.scss";
 
 type Props = {
@@ -14,8 +15,8 @@ const OverviewPage: React.FC<Props> = (props: Props) => {
     const getStartIdx = (idx: number) => {
         let start = 0;
         for (let i = idx - 1; i >= 0; i--) {
-            start += getGameData(props.run.gameSlug).splits[i].segments.filter(
-                (segment: Segment) => segment.version === undefined || segment.version === props.run.gameSlug
+            start += getGameData(props.run.gameSlug).splits[i].segments.filter((segment: Segment) =>
+                satisifesConditions(segment, props.run)
             ).length;
         }
         return start;

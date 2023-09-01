@@ -3,7 +3,8 @@
 .battle-preview {
     --buttons-inner-spacing: 1rem;
     --name-font-size: 1rem;
-    --info-spacing: 0.75rem;
+    --location-font-size: 0.75rem;
+    --info-inner-spacing: 0.5rem;
     --preview-inner-spacing: 0.5rem;
     --sprite-size: 0;
     --sprite-transition-time: 0.5s;
@@ -23,8 +24,6 @@
             height: var(--sprite-size);
             position: relative;
             transition: filter var(--sprite-transition-time);
-            user-select: none; /* Standard syntax */
-            -webkit-user-select: none; /* Safari */
             width: var(--sprite-size);
         }
 
@@ -33,11 +32,14 @@
         }
 
         .preview {
+            display: flex;
+            flex-direction: column;
+            gap: var(--preview-inner-spacing);
+
             .info {
                 align-items: center;
                 display: flex;
-                gap: var(--preview-inner-spacing);
-                margin-bottom: var(--info-spacing);
+                gap: var(--info-inner-spacing);
 
                 .name {
                     font-size: var(--name-font-size);
@@ -49,6 +51,11 @@
                 }
             }
 
+            .location {
+                font-size: var(--location-font-size);
+                line-height: var(--location-font-size);
+            }
+
             .buttons {
                 align-items: center;
                 display: flex;
@@ -58,8 +65,6 @@
                     filter: constants.$svg-color;
                     height: var(--undo-button-size);
                     position: relative;
-                    user-select: none; /* Standard syntax */
-                    -webkit-user-select: none; /* Safari */
                     width: var(--undo-button-size);
                 }
             }
@@ -69,7 +74,9 @@
 
 @media screen and (min-width: constants.$tablet) {
     .battle-preview {
+        --location-font-size: 1.25rem;
         --name-font-size: 1.5rem;
+        --preview-inner-spacing: 0.75rem;
         --sprite-size: 120px;
     }
 }

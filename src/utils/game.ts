@@ -1,7 +1,9 @@
 import Game from "@/models/Game";
 import GameData from "@/models/GameData";
+import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import games from "@/static/games";
+import { satisifesConditions } from "./segment";
 
 // Getters
 export const getGameSlugs = (): string[] => {
@@ -16,12 +18,10 @@ export const getGameData = (gameSlug: string): GameData => {
     return getGame(gameSlug).data;
 };
 
-export const getSegments = (game: string): Segment[] => {
+export const getSegments = (run: Run): Segment[] => {
     const segments: Segment[] = [];
-    for (const split of getGameData(game).splits) {
-        segments.push(
-            ...split.segments.filter((segment: Segment) => segment.version === undefined || segment.version === game)
-        );
+    for (const split of getGameData(run.gameSlug).splits) {
+        segments.push(...split.segments.filter((segment: Segment) => satisifesConditions(segment, run)));
     }
     return segments;
 };

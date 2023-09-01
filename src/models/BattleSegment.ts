@@ -1,6 +1,6 @@
 import Battle from "@/models/Battle";
 
 export default interface BattleSegment {
-    battle: Battle | { [variant: string]: Battle };
+    battle: Battle;
     levelCap?: boolean;
 }

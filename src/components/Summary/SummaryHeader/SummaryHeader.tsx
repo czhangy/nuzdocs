@@ -28,7 +28,7 @@ const SummaryHeader: React.FC<Props> = (props: Props) => {
     // Compute the name of the location the Pokemon was met at
     const getMetLocation = (): string => {
         return getSegment(
-            props.run.gameSlug,
+            props.run,
             props.caughtPokemon.locationSlug === "starter"
                 ? getGameData(props.run.gameSlug).startingTownSlug
                 : props.caughtPokemon.locationSlug

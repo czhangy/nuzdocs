@@ -21,7 +21,7 @@ const SegmentPage: React.FC<Props> = (props) => {
     useEffect(() => {
         if (props.idx !== undefined && props.run !== undefined) {
             setPrevIdx(props.run.id, props.idx);
-            setSegment(getSegments(props.run.gameSlug)[props.idx]);
+            setSegment(getSegments(props.run)[props.idx]);
         }
     }, [props.idx, props.run]);
 

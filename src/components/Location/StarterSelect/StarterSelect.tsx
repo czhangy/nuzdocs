@@ -89,7 +89,7 @@ const StarterSelect: React.FC<Props> = (props: Props) => {
                                     }
                                     onClick={() => setSelectedStarter(starter)}
                                 >
-                                    <div className={styles.icon}>
+                                    <div className={`${styles.icon} disable-select`}>
                                         <Image
                                             src={`/assets/types/${starter.types[0]}.svg`}
                                             alt={capitalizeWord(starter.types[0])}

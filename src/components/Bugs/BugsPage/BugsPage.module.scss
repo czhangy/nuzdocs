@@ -58,8 +58,6 @@
             .icon {
                 height: var(--priority-icon-size);
                 position: relative;
-                user-select: none; /* Standard syntax */
-                -webkit-user-select: none; /* Safari */
                 width: var(--priority-icon-size);
             }
         }

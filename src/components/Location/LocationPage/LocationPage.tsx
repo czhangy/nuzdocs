@@ -27,7 +27,7 @@ const LocationPage: React.FC<Props> = (props: Props) => {
     // Get segment on page load
     useEffect(() => {
         if (props.idx !== undefined && props.run !== undefined) {
-            setSegment(getSegments(props.run.gameSlug)[props.idx]);
+            setSegment(getSegments(props.run)[props.idx]);
         }
     }, [props.idx, props.run]);
 

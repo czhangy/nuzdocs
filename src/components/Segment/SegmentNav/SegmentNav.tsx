@@ -17,7 +17,7 @@ const SegmentNav: React.FC<Props> = (props: Props) => {
     // Get the segments of the current game from local storage on component load
     useEffect(() => {
         if (props.idx !== undefined && props.run !== undefined) {
-            const segments: Segment[] = getSegments(props.run.gameSlug);
+            const segments: Segment[] = getSegments(props.run);
             setSegments(segments);
         }
     }, [props.idx, props.run]);

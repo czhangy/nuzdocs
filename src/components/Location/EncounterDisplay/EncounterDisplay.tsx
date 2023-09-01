@@ -141,7 +141,10 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                         <div className={styles.header}>
                             <h3 className={styles.title}>Encounter:</h3>
                             {hasEncounter ? (
-                                <button className={styles["encounter-button"]} onClick={() => handleUpdate(null)}>
+                                <button
+                                    className={`${styles["encounter-button"]} disable-select`}
+                                    onClick={() => handleUpdate(null)}
+                                >
                                     <Image
                                         src="/assets/icons/reset.svg"
                                         alt="Reset encounter"
@@ -151,7 +154,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                                 </button>
                             ) : (
                                 <button
-                                    className={styles["encounter-button"]}
+                                    className={`${styles["encounter-button"]} disable-select`}
                                     onClick={() => handleUpdate({ slug: "failed", name: "Failed", species: "failed" })}
                                 >
                                     <Image

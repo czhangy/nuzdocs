@@ -3,6 +3,10 @@
 .footer-container {
     --footer-padding: 2rem;
     --icon-size: 32px;
+    --icon-transition-time: 0.2s;
+    --info-inner-spacing: 0.5rem;
+    --info-spacing: 2rem;
+    --links-inner-spacing: 1.5rem;
     --text-size: 0.8rem;
 
     background: constants.$accent-color;
@@ -20,17 +24,15 @@
         padding: 0 constants.$page-padding;
         width: 100%;
 
-        .text-content {
-            margin-bottom: 2rem;
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--info-inner-spacing);
+            margin-bottom: var(--info-spacing);
             text-align: center;
 
             .text {
                 font-size: var(--text-size);
-                margin-bottom: 0.5rem;
-
-                &:last-child {
-                    margin-bottom: 0;
-                }
 
                 .link {
                     text-decoration: underline;
@@ -41,16 +43,14 @@
         .links {
             align-items: center;
             display: flex;
-            gap: 1.5rem;
+            gap: var(--links-inner-spacing);
 
             .icon {
                 display: block;
                 filter: constants.$svg-color;
                 height: var(--icon-size);
                 position: relative;
-                transition: transform 0.2s;
-                user-select: none; /* Standard syntax */
-                -webkit-user-select: none; /* Safari */
+                transition: transform var(--icon-transition-time);
                 width: var(--icon-size);
             }
         }
@@ -59,18 +59,15 @@
 
 @media screen and (min-width: constants.$tablet) {
     .footer-container {
+        --info-spacing: 0;
+        --links-inner-spacing: 2.5rem;
         --text-size: 1rem;
 
         .footer {
             flex-direction: row;
 
-            .text-content {
-                margin-bottom: 0;
+            .info {
                 text-align: left;
-            }
-
-            .links {
-                gap: 2.5rem;
             }
         }
     }
@@ -78,7 +75,7 @@
 
 @media (hover: hover) {
     .footer-container > .footer {
-        .text-content > .text > .link:hover {
+        .info > .text > .link:hover {
             color: constants.$hover-color;
         }
 

@@ -42,8 +42,6 @@
             .trainer {
                 height: var(--trainer-size);
                 position: relative;
-                user-select: none; /* Standard syntax */
-                -webkit-user-select: none; /* Safari */
                 width: var(--trainer-size);
             }
         }

@@ -45,18 +45,18 @@ const RunEntry: React.FC<Props> = (props: Props) => {
                     </div>
                     <div className={styles.info}>
                         <p className={styles.name}>
-                            {getNumClearedBattles(props.run.id) === getNumBattles(getRun(props.run.id).gameSlug)
+                            {getNumClearedBattles(props.run.id) === getNumBattles(props.run)
                                 ? `👑 ${props.run.name} `
                                 : props.run.name + " "}
                             <strong className={styles.game}>[{getGame(props.run.gameSlug).name}]</strong>
                         </p>
                         <ProgressBar
                             complete={getNumClearedBattles(props.run.id)}
-                            total={getNumBattles(getRun(props.run.id).gameSlug)}
+                            total={getNumBattles(props.run)}
                             barID={props.run.id}
                         />
                         <div className={styles.rips}>
-                            <div className={styles.icon}>
+                            <div className={`${styles.icon} disable-select`}>
                                 <Image src="/assets/icons/dead.svg" alt="Deaths" layout="fill" objectFit="contain" />
                             </div>
                             <p className={styles.num}>{getNumRIPs(props.run.id)}</p>
@@ -65,10 +65,10 @@ const RunEntry: React.FC<Props> = (props: Props) => {
                 </a>
             </Link>
             <div className={styles.buttons}>
-                <button className={styles.button} onClick={props.onDelete}>
+                <button className={`${styles.button} disable-select`} onClick={props.onDelete}>
                     <Image src="/assets/icons/delete.svg" alt="Delete" layout="fill" objectFit="contain" />
                 </button>
-                <button className={styles.button} onClick={handleSave}>
+                <button className={`${styles.button} disable-select`} onClick={handleSave}>
                     <Image src="/assets/icons/save.svg" alt="Save" layout="fill" objectFit="contain" />
                 </button>
             </div>

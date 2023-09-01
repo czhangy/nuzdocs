@@ -16,7 +16,7 @@ const NextLevelCap: React.FC<Props> = (props: Props) => {
         const splits: Split[] = getGameData(props.run.gameSlug).splits;
         for (const split of splits) {
             if (!isCleared(props.run.id, split.segments.at(-1)!.slug)) {
-                return getLevelCap(props.run.gameSlug, split.segments.at(-1)!.slug, getStarterSlug(props.run.id));
+                return getLevelCap(props.run, split.segments.at(-1)!.slug, getStarterSlug(props.run.id));
             }
         }
         return "None";

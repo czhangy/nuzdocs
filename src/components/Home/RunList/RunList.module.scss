@@ -60,8 +60,6 @@
                 filter: constants.$svg-color;
                 height: var(--button-icon-size);
                 position: relative;
-                user-select: none; /* Standard syntax */
-                -webkit-user-select: none; /* Safari */
                 width: var(--button-icon-size);
             }
         }

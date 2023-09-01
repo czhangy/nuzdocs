@@ -46,7 +46,7 @@ const EncounterAccordion: React.FC<Props> = (props: Props) => {
         <div className={`${styles["encounter-accordion"]} ${isOpen ? styles.open : ""}`}>
             <button className={styles.header} onClick={() => setIsOpen(!isOpen)}>
                 <h3 className={styles.method}>{props.method}</h3>
-                <div className={`${styles.arrow} ${isOpen ? styles.reversed : ""}`}>
+                <div className={`${styles.arrow} ${isOpen ? styles.reversed : ""} disable-select`}>
                     <Image
                         src="/assets/icons/arrow.svg"
                         alt={isOpen ? "Close accordion" : "Open accordion"}

@@ -20,7 +20,10 @@ const BugsPage: React.FC = () => {
                 return (
                     <section className={styles.section} key={sectionKey}>
                         <h3 className={styles.priority} style={{ color: colors.priorities[priority] }}>
-                            <div className={styles.icon} style={{ filter: colors.priorities_svg[priority] }}>
+                            <div
+                                className={`${styles.icon} disable-select`}
+                                style={{ filter: colors.priorities_svg[priority] }}
+                            >
                                 <Image src="/assets/icons/alert.svg" alt="" layout="fill" objectFit="contain" />
                             </div>
                             {priority} Priority

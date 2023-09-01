@@ -148,6 +148,11 @@ ul {
     width: var(--spinner-size);
 }
 
+.disable-select {
+    user-select: none; /* Standard syntax */
+    -webkit-user-select: none; /* Safari */
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);

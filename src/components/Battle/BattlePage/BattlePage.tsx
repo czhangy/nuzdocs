@@ -31,7 +31,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
     // Save sets array on page load
     useEffect(() => {
         if (props.segment && props.run) {
-            setSets(getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).team);
+            setSets(getBattle(props.run, props.segment.slug, getStarterSlug(props.run.id)).team);
         }
     }, [props.segment, props.run]);
 
@@ -57,7 +57,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
             />
             {pokemon.length === sets.length ? (
                 <ul className={styles.team}>
-                    {getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).team.map(
+                    {getBattle(props.run, props.segment.slug, getStarterSlug(props.run.id)).team.map(
                         (set: Pokemon, idx: number) => (
                             <PokemonCard
                                 set={set}

@@ -66,7 +66,7 @@ const MoveCard: React.FC<Props> = (props: Props) => {
                                 {props.move.power === 0 ? "--" : props.move.power * 1.5}
                             </strong>
                         </p>
-                        <div className={styles["stab-icon"]}>
+                        <div className={`${styles["stab-icon"]} disable-select`}>
                             <Image
                                 src="/assets/icons/double-arrow.svg"
                                 alt="STAB bonus"

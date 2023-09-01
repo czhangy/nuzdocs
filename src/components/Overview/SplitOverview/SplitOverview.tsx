@@ -5,6 +5,7 @@ import Segment from "@/models/Segment";
 import Split from "@/models/Split";
 import { getLevelCap } from "@/utils/battle";
 import { getStarterSlug, isCleared } from "@/utils/run";
+import { satisifesConditions } from "@/utils/segment";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "./SplitOverview.module.scss";
@@ -33,18 +34,16 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
                     {isCleared(props.run.id, props.split.segments.at(-1)!.slug)
                         ? `👑 ${props.split.name}`
                         : props.split.name}{" "}
-                    [{getLevelCap(props.run.gameSlug, props.split.segments.at(-1)!.slug, getStarterSlug(props.run.id))}]
+                    [{getLevelCap(props.run, props.split.segments.at(-1)!.slug, getStarterSlug(props.run.id))}]
                 </p>
                 <hr className={styles.line} />
-                <div className={`${styles.arrow} ${open ? styles.reversed : ""}`}>
+                <div className={`${styles.arrow} ${open ? styles.reversed : ""} disable-select`}>
                     <Image src="/assets/icons/arrow.svg" alt="Open split" layout="fill" objectFit="contain" />
                 </div>
             </button>
             <ul className={styles.segments}>
                 {props.split.segments
-                    .filter(
-                        (segment: Segment) => segment.version === undefined || segment.version === props.run.gameSlug
-                    )
+                    .filter((segment: Segment) => satisifesConditions(segment, props.run))
                     .map((segment: Segment, idx: number) => {
                         return (
                             <li className={styles.segment} key={idx}>

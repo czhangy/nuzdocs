@@ -43,8 +43,6 @@
             height: var(--arrow-size);
             position: relative;
             transition: transform var(--arrow-transition-time);
-            user-select: none; /* Standard syntax */
-            -webkit-user-select: none; /* Safari */
             width: var(--arrow-size);
         }
 

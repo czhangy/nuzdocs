@@ -58,8 +58,6 @@
                     filter: constants.$svg-color;
                     height: var(--link-icon-size);
                     position: relative;
-                    user-select: none; /* Standard syntax */
-                    -webkit-user-select: none; /* Safari */
                     width: var(--link-icon-size);
                 }
 
