@@ -35,7 +35,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     const handleDefeat = (): void => {
         setDefeated(true);
         addToClearedBattles(props.run.id, props.segment.slug);
-        if (props.segment.slug === getSegments(props.run.gameSlug).at(-1)!.slug) {
+        if (props.segment.slug === getSegments(props.run).at(-1)!.slug) {
             props.onFinish();
         }
     };
@@ -49,7 +49,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     // Save battle team to clipboard
     const handleExport = (): void => {
         exportPokemonList(
-            getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).team,
+            getBattle(props.run, props.segment.slug, getStarterSlug(props.run.id)).team,
             props.names,
             `${props.run.gameSlug}-${props.segment.slug}`
         );
@@ -58,10 +58,10 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     // Persist defeated state on component load
     useEffect(() => {
         if (props.segment && props.run) {
-            setTrainer(getTrainer(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)));
+            setTrainer(getTrainer(props.run, props.segment.slug, getStarterSlug(props.run.id)));
             setDefeated(isCleared(props.run.id, props.segment.slug));
             fetchItems(
-                getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).items,
+                getBattle(props.run, props.segment.slug, getStarterSlug(props.run.id)).items,
                 props.run.gameSlug
             ).then((items: ItemData[]) => {
                 setItems(items);
@@ -78,7 +78,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                 <div className={styles.preview}>
                     <div className={styles.info}>
                         <p className={styles.name}>{`${trainer.class} ${
-                            getBattle(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id)).name
+                            getBattle(props.run, props.segment.slug, getStarterSlug(props.run.id)).name
                         }`}</p>
                         <div className={styles.items}>
                             {items.map((item: ItemData, key: number) => {
@@ -117,7 +117,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                 </div>
             </div>
             {hasLevelCap(props.segment) ? (
-                <LevelCap level={getLevelCap(props.run.gameSlug, props.segment.slug, getStarterSlug(props.run.id))} />
+                <LevelCap level={getLevelCap(props.run, props.segment.slug, getStarterSlug(props.run.id))} />
             ) : (
                 ""
             )}

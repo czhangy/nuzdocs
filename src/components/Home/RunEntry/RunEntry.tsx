@@ -45,14 +45,14 @@ const RunEntry: React.FC<Props> = (props: Props) => {
                     </div>
                     <div className={styles.info}>
                         <p className={styles.name}>
-                            {getNumClearedBattles(props.run.id) === getNumBattles(getRun(props.run.id).gameSlug)
+                            {getNumClearedBattles(props.run.id) === getNumBattles(props.run)
                                 ? `👑 ${props.run.name} `
                                 : props.run.name + " "}
                             <strong className={styles.game}>[{getGame(props.run.gameSlug).name}]</strong>
                         </p>
                         <ProgressBar
                             complete={getNumClearedBattles(props.run.id)}
-                            total={getNumBattles(getRun(props.run.id).gameSlug)}
+                            total={getNumBattles(props.run)}
                             barID={props.run.id}
                         />
                         <div className={styles.rips}>

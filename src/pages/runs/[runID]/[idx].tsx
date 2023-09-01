@@ -19,13 +19,15 @@ const Segment: NextPage = () => {
         if (router.isReady && router.query.runID && router.query.idx) {
             const runID: string = router.query.runID as string;
             const idx: string = router.query.idx as string;
-            if (isRun(runID) && isSegment(getRun(runID).gameSlug, idx)) {
+            if (isRun(runID)) {
                 const run: Run = getRun(runID);
-                setRun(run);
-                setIdx(parseInt(idx));
-            } else {
-                router.push("/");
+                if (isSegment(run, idx)) {
+                    setRun(run);
+                    setIdx(parseInt(idx));
+                    return;
+                }
             }
+            router.push("/");
         }
     }, [router.isReady, router.query.runID, router.query.idx]);
 

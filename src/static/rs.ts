@@ -84,11 +84,28 @@ const rs: GameData = {
                     slug: "petalburg-woods",
                     name: "Petalburg Woods",
                     type: "location",
-                    version: "ruby",
+                    conditions: {
+                        game: "ruby",
+                    },
                     segment: {
                         battles: [
                             battles.ruby_sapphire.bug_catcher_lyle,
                             battles.ruby_sapphire.team_magma_grunt_1,
+                            battles.ruby_sapphire.bug_catcher_james,
+                        ],
+                    },
+                },
+                {
+                    slug: "petalburg-woods",
+                    name: "Petalburg Woods",
+                    type: "location",
+                    conditions: {
+                        game: "sapphire",
+                    },
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.bug_catcher_lyle,
+                            battles.ruby_sapphire.team_aqua_grunt_1,
                             battles.ruby_sapphire.bug_catcher_james,
                         ],
                     },
@@ -105,19 +122,6 @@ const rs: GameData = {
                             battles.ruby_sapphire.lass_haley,
                             battles.ruby_sapphire.twins_gia_and_mia,
                             battles.ruby_sapphire.fisherman_ivan,
-                        ],
-                    },
-                },
-                {
-                    slug: "petalburg-woods",
-                    name: "Petalburg Woods",
-                    type: "location",
-                    version: "sapphire",
-                    segment: {
-                        battles: [
-                            battles.ruby_sapphire.bug_catcher_lyle,
-                            battles.ruby_sapphire.team_aqua_grunt_1,
-                            battles.ruby_sapphire.bug_catcher_james,
                         ],
                     },
                 },
@@ -169,14 +173,14 @@ const rs: GameData = {
                     slug: "rusturf-tunnel",
                     name: "Rusturf Tunnel (West)",
                     type: "location",
-                    version: "ruby",
+                    conditions: { game: "ruby" },
                     segment: { battles: [battles.ruby_sapphire.team_magma_grunt_2] },
                 },
                 {
                     slug: "rusturf-tunnel",
                     name: "Rusturf Tunnel (West)",
                     type: "location",
-                    version: "sapphire",
+                    conditions: { game: "sapphire" },
                     segment: { battles: [battles.ruby_sapphire.team_aqua_grunt_2] },
                 },
                 {
@@ -254,7 +258,7 @@ const rs: GameData = {
                     slug: "slateport-city",
                     name: "Slateport City",
                     type: "location",
-                    version: "ruby",
+                    conditions: { game: "ruby" },
                     segment: {
                         battles: [battles.ruby_sapphire.team_magma_grunt_3, battles.ruby_sapphire.team_magma_grunt_4],
                     },
@@ -263,7 +267,7 @@ const rs: GameData = {
                     slug: "slateport-city",
                     name: "Slateport City",
                     type: "location",
-                    version: "sapphire",
+                    conditions: { game: "sapphire" },
                     segment: {
                         battles: [battles.ruby_sapphire.team_aqua_grunt_3, battles.ruby_sapphire.team_aqua_grunt_4],
                     },
@@ -501,7 +505,7 @@ const rs: GameData = {
                     slug: "hoenn-route-115",
                     name: "Route 115 (South)",
                     type: "location",
-                    version: "ruby",
+                    conditions: { game: "ruby" },
                     segment: {
                         battles: [
                             battles.ruby_sapphire.black_belt_nob,
@@ -514,7 +518,7 @@ const rs: GameData = {
                     slug: "hoenn-route-115",
                     name: "Route 115 (South)",
                     type: "location",
-                    version: "sapphire",
+                    conditions: { game: "sapphire" },
                     segment: {
                         battles: [
                             battles.ruby_sapphire.black_belt_nob,
@@ -527,7 +531,7 @@ const rs: GameData = {
                     slug: "mt-chimney",
                     name: "Mt. Chimney",
                     type: "location",
-                    version: "ruby",
+                    conditions: { game: "ruby" },
                     segment: {
                         battles: [battles.ruby_sapphire.team_magma_grunt_5],
                     },
@@ -536,7 +540,7 @@ const rs: GameData = {
                     slug: "mt-chimney",
                     name: "Mt. Chimney",
                     type: "location",
-                    version: "sapphire",
+                    conditions: { game: "sapphire" },
                     segment: {
                         battles: [battles.ruby_sapphire.team_aqua_grunt_5],
                     },
@@ -545,7 +549,7 @@ const rs: GameData = {
                     slug: "tabitha-1",
                     name: "Tabitha 1",
                     type: "battle",
-                    version: "ruby",
+                    conditions: { game: "ruby" },
                     segment: {
                         battle: battles.ruby_sapphire.magma_admin_tabitha_1,
                     },
@@ -554,7 +558,7 @@ const rs: GameData = {
                     slug: "matt-1",
                     name: "Matt 1",
                     type: "battle",
-                    version: "sapphire",
+                    conditions: { game: "sapphire" },
                     segment: {
                         battle: battles.ruby_sapphire.aqua_admin_matt_1,
                     },
@@ -563,7 +567,7 @@ const rs: GameData = {
                     slug: "maxie-1",
                     name: "Maxie 1",
                     type: "battle",
-                    version: "ruby",
+                    conditions: { game: "ruby" },
                     segment: {
                         battle: battles.ruby_sapphire.magma_leader_maxie_1,
                     },
@@ -572,7 +576,7 @@ const rs: GameData = {
                     slug: "archie-1",
                     name: "Archie 1",
                     type: "battle",
-                    version: "sapphire",
+                    conditions: { game: "sapphire" },
                     segment: {
                         battle: battles.ruby_sapphire.aqua_leader_archie_1,
                     },
@@ -831,7 +835,7 @@ const rs: GameData = {
                     slug: "weather-institute",
                     name: "Weather Institute",
                     type: "location",
-                    version: "ruby",
+                    conditions: { game: "ruby" },
                     segment: {
                         battles: [
                             battles.ruby_sapphire.team_magma_grunt_6,
@@ -846,7 +850,7 @@ const rs: GameData = {
                     slug: "weather-institute",
                     name: "Weather Institute",
                     type: "location",
-                    version: "sapphire",
+                    conditions: { game: "sapphire" },
                     segment: {
                         battles: [
                             battles.ruby_sapphire.team_aqua_grunt_6,
@@ -861,7 +865,7 @@ const rs: GameData = {
                     slug: "courtney-1",
                     name: "Courtney 1",
                     type: "battle",
-                    version: "ruby",
+                    conditions: { game: "ruby" },
                     segment: {
                         battle: battles.ruby_sapphire.magma_admin_courtney_1,
                     },
@@ -870,7 +874,7 @@ const rs: GameData = {
                     slug: "shelly-1",
                     name: "Shelly",
                     type: "battle",
-                    version: "sapphire",
+                    conditions: { game: "sapphire" },
                     segment: {
                         battle: battles.ruby_sapphire.aqua_admin_shelly_1,
                     },
@@ -1024,7 +1028,7 @@ const rs: GameData = {
                     slug: "mt-pyre",
                     name: "Mt. Pyre (Outer)",
                     type: "location",
-                    version: "ruby",
+                    conditions: { game: "ruby" },
                     segment: {
                         battles: [
                             battles.ruby_sapphire.team_magma_grunt_10,
@@ -1037,7 +1041,7 @@ const rs: GameData = {
                     slug: "mt-pyre",
                     name: "Mt. Pyre (Outer)",
                     type: "location",
-                    version: "sapphire",
+                    conditions: { game: "sapphire" },
                     segment: {
                         battles: [
                             battles.ruby_sapphire.team_aqua_grunt_10,
@@ -1066,7 +1070,7 @@ const rs: GameData = {
                     slug: "team-magma-hideout",
                     name: "Magma Hideout",
                     type: "location",
-                    version: "ruby",
+                    conditions: { game: "ruby" },
                     segment: {
                         battles: [
                             battles.ruby_sapphire.team_magma_grunt_13,
@@ -1082,7 +1086,7 @@ const rs: GameData = {
                     slug: "team-aqua-hideout",
                     name: "Aqua Hideout",
                     type: "location",
-                    version: "sapphire",
+                    conditions: { game: "sapphire" },
                     segment: {
                         battles: [
                             battles.ruby_sapphire.team_aqua_grunt_13,
@@ -1098,7 +1102,7 @@ const rs: GameData = {
                     slug: "tabitha-2",
                     name: "Tabitha 2",
                     type: "battle",
-                    version: "ruby",
+                    conditions: { game: "ruby" },
                     segment: {
                         battle: battles.ruby_sapphire.magma_admin_tabitha_2,
                     },
@@ -1107,7 +1111,7 @@ const rs: GameData = {
                     slug: "matt-2",
                     name: "Matt 2",
                     type: "battle",
-                    version: "sapphire",
+                    conditions: { game: "sapphire" },
                     segment: {
                         battle: battles.ruby_sapphire.aqua_admin_matt_2,
                     },
@@ -1241,7 +1245,7 @@ const rs: GameData = {
                     slug: "seafloor-cavern",
                     name: "Seafloor Cavern",
                     type: "location",
-                    version: "ruby",
+                    conditions: { game: "ruby" },
                     segment: {
                         battles: [battles.ruby_sapphire.team_magma_grunt_19, battles.ruby_sapphire.team_magma_grunt_20],
                     },
@@ -1250,7 +1254,7 @@ const rs: GameData = {
                     slug: "seafloor-cavern",
                     name: "Seafloor Cavern",
                     type: "location",
-                    version: "sapphire",
+                    conditions: { game: "sapphire" },
                     segment: {
                         battles: [battles.ruby_sapphire.team_aqua_grunt_19, battles.ruby_sapphire.team_aqua_grunt_20],
                     },
@@ -1259,7 +1263,7 @@ const rs: GameData = {
                     slug: "courtney-2",
                     name: "Courtney 2",
                     type: "battle",
-                    version: "ruby",
+                    conditions: { game: "ruby" },
                     segment: {
                         battle: battles.ruby_sapphire.magma_admin_courtney_2,
                     },
@@ -1268,7 +1272,7 @@ const rs: GameData = {
                     slug: "shelly-2",
                     name: "Shelly 2",
                     type: "battle",
-                    version: "sapphire",
+                    conditions: { game: "sapphire" },
                     segment: {
                         battle: battles.ruby_sapphire.aqua_admin_shelly_2,
                     },
@@ -1277,7 +1281,7 @@ const rs: GameData = {
                     slug: "maxie-2",
                     name: "Maxie 2",
                     type: "battle",
-                    version: "ruby",
+                    conditions: { game: "ruby" },
                     segment: {
                         battle: battles.ruby_sapphire.magma_leader_maxie_2,
                     },
@@ -1286,7 +1290,7 @@ const rs: GameData = {
                     slug: "archie-2",
                     name: "Archie 2",
                     type: "battle",
-                    version: "sapphire",
+                    conditions: { game: "sapphire" },
                     segment: {
                         battle: battles.ruby_sapphire.aqua_leader_archie_2,
                     },

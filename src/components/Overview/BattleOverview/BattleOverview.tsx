@@ -22,7 +22,7 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
     // Get trainer info on component load
     useEffect(() => {
         if (props.battle && props.run) {
-            setTrainer(getTrainer(props.run.gameSlug, props.battle.slug, getStarterSlug(props.run.id)));
+            setTrainer(getTrainer(props.run, props.battle.slug, getStarterSlug(props.run.id)));
         }
     }, [props.battle, props.run]);
 
@@ -46,7 +46,7 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
                     <div className={styles["level-cap"]}>
                         <p className={styles.title}>Level Cap</p>
                         <p className={styles.level}>
-                            {getLevelCap(props.run.gameSlug, props.battle.slug, getStarterSlug(props.run.id))}
+                            {getLevelCap(props.run, props.battle.slug, getStarterSlug(props.run.id))}
                         </p>
                     </div>
                 ) : (
