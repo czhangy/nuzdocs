@@ -37,7 +37,7 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
                     [{getLevelCap(props.run, props.split.segments.at(-1)!.slug, getStarterSlug(props.run.id))}]
                 </p>
                 <hr className={styles.line} />
-                <div className={`${styles.arrow} ${open ? styles.reversed : ""}`}>
+                <div className={`${styles.arrow} ${open ? styles.reversed : ""} disable-select`}>
                     <Image src="/assets/icons/arrow.svg" alt="Open split" layout="fill" objectFit="contain" />
                 </div>
             </button>

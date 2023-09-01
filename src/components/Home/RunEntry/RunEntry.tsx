@@ -56,7 +56,7 @@ const RunEntry: React.FC<Props> = (props: Props) => {
                             barID={props.run.id}
                         />
                         <div className={styles.rips}>
-                            <div className={styles.icon}>
+                            <div className={`${styles.icon} disable-select`}>
                                 <Image src="/assets/icons/dead.svg" alt="Deaths" layout="fill" objectFit="contain" />
                             </div>
                             <p className={styles.num}>{getNumRIPs(props.run.id)}</p>
@@ -65,10 +65,10 @@ const RunEntry: React.FC<Props> = (props: Props) => {
                 </a>
             </Link>
             <div className={styles.buttons}>
-                <button className={styles.button} onClick={props.onDelete}>
+                <button className={`${styles.button} disable-select`} onClick={props.onDelete}>
                     <Image src="/assets/icons/delete.svg" alt="Delete" layout="fill" objectFit="contain" />
                 </button>
-                <button className={styles.button} onClick={handleSave}>
+                <button className={`${styles.button} disable-select`} onClick={handleSave}>
                     <Image src="/assets/icons/save.svg" alt="Save" layout="fill" objectFit="contain" />
                 </button>
             </div>

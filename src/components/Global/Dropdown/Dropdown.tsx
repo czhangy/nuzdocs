@@ -46,7 +46,7 @@ const Dropdown: React.FC<Props> = (props: Props) => {
             />
             <div className={styles.controller} onClick={() => setOpen(true)} style={getStyling()}>
                 <p className={styles.display}>{props.value ? props.value : props.placeholder}</p>
-                <div className={`${styles.arrow} ${open ? styles.flipped : ""}`}>
+                <div className={`${styles.arrow} ${open ? styles.flipped : ""} disable-select`}>
                     <Image
                         src="/assets/icons/chevron.svg"
                         alt={open ? "Close dropdown" : "Open dropdown"}

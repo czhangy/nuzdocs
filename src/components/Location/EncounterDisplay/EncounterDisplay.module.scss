@@ -103,8 +103,6 @@
                     filter: constants.$svg-color;
                     height: var(--encounter-button-size);
                     position: relative;
-                    user-select: none; /* Standard syntax */
-                    -webkit-user-select: none; /* Safari */
                     width: var(--encounter-button-size);
                 }
             }

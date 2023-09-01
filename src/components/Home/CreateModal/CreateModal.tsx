@@ -1,4 +1,4 @@
-import { getGame, getGameData, getGameSlugs } from "@/utils/game";
+import { getGame, getGameSlugs } from "@/utils/game";
 import { createRun } from "@/utils/run";
 import Image from "next/image";
 import Router from "next/router";
@@ -33,7 +33,9 @@ const CreateModal: React.FC = () => {
                     {getGameSlugs().map((game: string) => {
                         return (
                             <button
-                                className={`${styles.game} ${game === selectedGame ? styles.active : ""}`}
+                                className={`${styles.game} ${
+                                    game === selectedGame ? styles.active : ""
+                                } disable-select`}
                                 key={game}
                                 type="button"
                                 onClick={() => setSelectedGame(game)}

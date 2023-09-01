@@ -11,19 +11,19 @@ const TimeControls: React.FC<Props> = (props: Props) => {
     return (
         <div className={`${styles["time-controls"]} ${props.inline ? styles.inline : ""}`}>
             <button
-                className={`${styles.time} ${props.time === "time-morning" ? styles.active : ""}`}
+                className={`${styles.time} ${props.time === "time-morning" ? styles.active : ""} disable-select`}
                 onClick={() => props.onClick("time-morning")}
             >
                 <Image src="/assets/icons/morning.svg" alt="Morning" layout="fill" objectFit="contain" />
             </button>
             <button
-                className={`${styles.time} ${props.time === "time-day" ? styles.active : ""}`}
+                className={`${styles.time} ${props.time === "time-day" ? styles.active : ""} disable-select`}
                 onClick={() => props.onClick("time-day")}
             >
                 <Image src="/assets/icons/day.svg" alt="Day" layout="fill" objectFit="contain" />
             </button>
             <button
-                className={`${styles.time} ${props.time === "time-night" ? styles.active : ""}`}
+                className={`${styles.time} ${props.time === "time-night" ? styles.active : ""} disable-select`}
                 onClick={() => props.onClick("time-night")}
             >
                 <Image src="/assets/icons/night.svg" alt="Night" layout="fill" objectFit="contain" />

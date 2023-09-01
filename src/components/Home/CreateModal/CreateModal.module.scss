@@ -61,8 +61,6 @@
                 margin: 0 auto;
                 max-width: var(--game-max-width);
                 position: relative;
-                user-select: none; /* Standard syntax */
-                -webkit-user-select: none; /* Safari */
                 width: calc((var(--modal-width) - 2 * var(--games-x-inner-spacing) - 2 * var(--field-x-padding)) / 3);
             }
 

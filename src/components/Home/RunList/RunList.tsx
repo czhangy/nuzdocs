@@ -36,7 +36,7 @@ const RunList: React.FC<Props> = (props) => {
             )}
             <div className={styles.buttons}>
                 <label className={`${styles.button} ${styles.load}`} htmlFor="file-upload">
-                    <div className={styles.icon}>
+                    <div className={`${styles.icon} disable-select`}>
                         <Image src="/assets/icons/upload.svg" alt="Upload" layout="fill" objectFit="contain" />
                     </div>
                     <strong>Load Run</strong>

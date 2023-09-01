@@ -35,7 +35,7 @@ const NavMenu: React.FC<Props> = (props: Props) => {
                 <li className={styles.option}>
                     <Link href={`/runs/${props.run.id}/${props.run.prevIdx}`}>
                         <a className={styles.link}>
-                            <div className={styles.icon}>
+                            <div className={`${styles.icon} disable-select`}>
                                 <Image src="/assets/icons/path.svg" alt="Overview" layout="fill" objectFit="contain" />
                             </div>
                             <p className={styles.page}>Run</p>
@@ -45,7 +45,7 @@ const NavMenu: React.FC<Props> = (props: Props) => {
                 <li className={styles.option}>
                     <Link href={`/runs/${props.run.id}/overview`}>
                         <a className={styles.link}>
-                            <div className={styles.icon}>
+                            <div className={`${styles.icon} disable-select`}>
                                 <Image
                                     src="/assets/icons/pokeball.svg"
                                     alt="Overview"
@@ -60,7 +60,7 @@ const NavMenu: React.FC<Props> = (props: Props) => {
                 <li className={styles.option}>
                     <Link href={`/runs/${props.run.id}/box`}>
                         <a className={styles.link}>
-                            <div className={styles.icon}>
+                            <div className={`${styles.icon} disable-select`}>
                                 <Image src="/assets/icons/box.svg" alt="Box" layout="fill" objectFit="contain" />
                             </div>
                             <p className={styles.page}>Box</p>
@@ -70,7 +70,7 @@ const NavMenu: React.FC<Props> = (props: Props) => {
                 <li className={styles.option}>
                     <Link href={`/runs/${props.run.id}/rips`}>
                         <a className={styles.link}>
-                            <div className={styles.icon}>
+                            <div className={`${styles.icon} disable-select`}>
                                 <Image src="/assets/icons/dead.svg" alt="Dead" layout="fill" objectFit="contain" />
                             </div>
                             <p className={styles.page}>RIPs</p>

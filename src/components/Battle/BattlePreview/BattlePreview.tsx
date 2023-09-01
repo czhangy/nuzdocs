@@ -73,7 +73,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     return trainer ? (
         <div className={styles["battle-preview"]}>
             <div className={styles.trainer}>
-                <div className={`${styles.sprite} ${defeated ? styles.defeated : ""}`}>
+                <div className={`${styles.sprite} ${defeated ? styles.defeated : ""} disable-select`}>
                     <Image src={trainer.sprite} alt={trainer.class} layout="fill" objectFit="contain" />
                 </div>
                 <div className={styles.preview}>
@@ -93,7 +93,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                             <button className="primary-button" disabled={true}>
                                 Defeated!
                             </button>
-                            <button className={styles.undo} onClick={handleUndo}>
+                            <button className={`${styles.undo} disable-select`} onClick={handleUndo}>
                                 <Image
                                     src="/assets/icons/reset.svg"
                                     alt="Undo defeat"

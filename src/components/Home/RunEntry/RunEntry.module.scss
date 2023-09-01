@@ -59,8 +59,6 @@
                     filter: constants.$svg-color;
                     height: var(--icon-size);
                     position: relative;
-                    user-select: none; /* Standard syntax */
-                    -webkit-user-select: none; /* Safari */
                     width: var(--icon-size);
                 }
             }
@@ -76,8 +74,6 @@
             height: var(--button-size);
             position: relative;
             transition: transform var(--transition-time);
-            user-select: none; /* Standard syntax */
-            -webkit-user-select: none; /* Safari */
             width: var(--button-size);
             z-index: var(--button-z);
         }

@@ -32,7 +32,7 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
                 <div className={`${styles.battle} ${isCleared(props.run.id, props.battle.slug) ? styles.done : ""}`}>
                     <p className={styles.name}>{props.battle.name}</p>
                     <div className={styles.trainers}>
-                        <div className={styles.trainer}>
+                        <div className={`${styles.trainer} disable-select`}>
                             <Image
                                 src={trainer.sprite}
                                 alt={`${trainer.class} ${props.battle.name}`}
