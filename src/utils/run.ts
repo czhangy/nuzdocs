@@ -1,15 +1,24 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
+import LocationSegment from "@/models/LocationSegment";
 import Run from "@/models/Run";
 import Status from "@/models/Status";
-import { getGameData, getSegments } from "@/utils/game";
+import { getGameData } from "@/utils/game";
 import { generateID } from "@/utils/utils";
 
 // Constructors
 export const initEncounters = (run: Run): { [location: string]: Status } => {
     const encounters: { [location: string]: Status } = {};
-    for (const segment of getSegments(run)) {
-        if (segment.type === "location") {
-            encounters[segment.slug] = { status: "None" };
+    for (const split of getGameData(run.gameSlug).splits) {
+        for (const segment of split.segments) {
+            if (
+                segment.type === "location" &&
+                (segment.segment as LocationSegment).custom !== true &&
+                (segment.conditions === undefined ||
+                    segment.conditions.game === undefined ||
+                    segment.conditions.game === run.gameSlug)
+            ) {
+                encounters[segment.slug] = { status: "None" };
+            }
         }
     }
     return encounters;
@@ -82,6 +91,10 @@ export const getRunIDs = (): string[] => {
 
 export const getRun = (runID: string): Run => {
     return JSON.parse(localStorage.getItem(runID)!);
+};
+
+export const getStatus = (runID: string, location: string): string => {
+    return getRun(runID).encounters[location].status;
 };
 
 export const getBox = (runID: string): CaughtPokemon[] => {
@@ -210,14 +223,13 @@ export const isPokemon = (runID: string, pokemonID: string): boolean => {
 };
 
 // Queries
-export const getLocationEncounter = (runID: string, locationSlug: string): CaughtPokemon | null => {
+export const getLocationEncounter = (runID: string, locationSlug: string): CaughtPokemon => {
     let encounter: CaughtPokemon | undefined = getBox(runID).find(
         (pokemon: CaughtPokemon) => pokemon.locationSlug === locationSlug
     );
-    if (!encounter) {
-        encounter = getRIPs(runID).find((pokemon: CaughtPokemon) => pokemon.locationSlug === locationSlug);
-    }
-    return encounter ? encounter : null;
+    return encounter
+        ? encounter
+        : getRIPs(runID).find((pokemon: CaughtPokemon) => pokemon.locationSlug === locationSlug)!;
 };
 
 export const getNumClearedBattles = (runID: string): number => {

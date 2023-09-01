@@ -1,3 +1,4 @@
+import LocationSegment from "@/models/LocationSegment";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { getSegments } from "@/utils/game";
@@ -36,6 +37,10 @@ export const satisifesConditions = (segment: Segment, run: Run): boolean => {
     } else {
         return true;
     }
+};
+
+export const isCustom = (segment: Segment): boolean => {
+    return (segment.segment as LocationSegment).custom === true;
 };
 
 // Queries
