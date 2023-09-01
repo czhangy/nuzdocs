@@ -140,7 +140,9 @@ export const fetchPokemon = async (slug: string, game: string) => {
 // Fetch a list of PokemonData given Pokemon slugs and game
 export const fetchPokemonList = async (slugs: string[], game: string) => {
     try {
-        if (slugs.length === 1) {
+        if (slugs.length === 0) {
+            return [];
+        } else if (slugs.length === 1) {
             return [await fetchPokemon(slugs[0], game)];
         } else {
             const group: GameData = getGameData(game);

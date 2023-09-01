@@ -29,7 +29,7 @@ const SegmentPage: React.FC<Props> = (props) => {
         <div className={styles["segment-page"]}>
             <SegmentNav idx={props.idx} run={props.run} />
             {segment.type === "location" ? (
-                <LocationPage segment={segment} run={props.run} />
+                <LocationPage idx={props.idx} run={props.run} />
             ) : (
                 <BattlePage segment={segment} run={props.run} />
             )}

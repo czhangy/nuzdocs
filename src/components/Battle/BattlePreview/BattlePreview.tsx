@@ -1,6 +1,5 @@
 import ItemDisplay from "@/components/Battle/ItemDisplay/ItemDisplay";
 import LevelCap from "@/components/Battle/LevelCap/LevelCap";
-import BattleSegment from "@/models/BattleSegment";
 import ItemData from "@/models/ItemData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";

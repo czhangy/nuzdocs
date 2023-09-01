@@ -7,6 +7,7 @@ const translations: { [translation: string]: { [slug: string]: string } } = {
         "old-rod": "Old Rod",
         "good-rod": "Good Rod",
         "super-rod": "Super Rod",
+        "devon-scope": "Devon Scope",
         "only-one": "Static",
         gift: "Gift",
         "gift-egg": "Egg",

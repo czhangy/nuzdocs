@@ -1,5 +1,3 @@
-import Battle from "@/models/Battle";
-import LocationSegment from "@/models/LocationSegment";
 import Segment from "@/models/Segment";
 import { getSegments } from "@/utils/game";
 
@@ -25,8 +23,4 @@ export const hasLevelCap = (segment: Segment): boolean => {
 // Queries
 export const getNumBattles = (gameSlug: string): number => {
     return getSegments(gameSlug).filter((segment: Segment) => segment.type === "battle").length;
-};
-
-export const getBattles = (game: string, location: string): Battle[] => {
-    return (getSegment(game, location).segment as LocationSegment).battles;
 };

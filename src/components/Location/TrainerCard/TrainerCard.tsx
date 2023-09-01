@@ -84,7 +84,9 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                                     />
                                     <div className={styles.moves}>
                                         {pokemon.moves.map((move: NamedResource) => (
-                                            <p className={styles.move}>{move.name}</p>
+                                            <p className={styles.move} key={move.slug}>
+                                                {move.name}
+                                            </p>
                                         ))}
                                     </div>
                                 </div>

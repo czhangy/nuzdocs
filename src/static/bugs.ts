@@ -71,6 +71,14 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Brendan fights are currently unused",
             group: "Emerald",
         },
+        {
+            desc: "Too much page spacing in LocationPage when a custom location is loaded",
+            group: "General",
+        },
+        {
+            desc: "Devon Scope encounter percentages exceed 100%",
+            group: "Ruby/Sapphire",
+        },
     ],
 };
 
