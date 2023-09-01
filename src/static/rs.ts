@@ -18,8 +18,8 @@ const rs: GameData = {
                     segment: { battles: [] },
                 },
                 {
-                    slug: "may-1",
-                    name: "May 1",
+                    slug: "rival-1",
+                    name: "Rival 1",
                     type: "battle",
                     conditions: {
                         character: "brendan",
@@ -30,8 +30,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "may-1",
-                    name: "May 1",
+                    slug: "rival-1",
+                    name: "Rival 1",
                     type: "battle",
                     conditions: {
                         character: "brendan",
@@ -42,8 +42,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "may-1",
-                    name: "May 1",
+                    slug: "rival-1",
+                    name: "Rival 1",
                     type: "battle",
                     conditions: {
                         character: "brendan",
@@ -54,8 +54,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "brendan-1",
-                    name: "Brendan 1",
+                    slug: "rival-1",
+                    name: "Rival 1",
                     type: "battle",
                     conditions: {
                         character: "may",
@@ -66,8 +66,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "brendan-1",
-                    name: "Brendan 1",
+                    slug: "rival-1",
+                    name: "Rival 1",
                     type: "battle",
                     conditions: {
                         character: "may",
@@ -78,8 +78,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "brendan-1",
-                    name: "Brendan 1",
+                    slug: "rival-1",
+                    name: "Rival 1",
                     type: "battle",
                     conditions: {
                         character: "may",
@@ -351,8 +351,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "may-2",
-                    name: "May 2",
+                    slug: "rival-2",
+                    name: "Rival 2",
                     type: "battle",
                     conditions: {
                         character: "brendan",
@@ -363,8 +363,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "may-2",
-                    name: "May 2",
+                    slug: "rival-2",
+                    name: "Rival 2",
                     type: "battle",
                     conditions: {
                         character: "brendan",
@@ -375,8 +375,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "may-2",
-                    name: "May 2",
+                    slug: "rival-2",
+                    name: "Rival 2",
                     type: "battle",
                     conditions: {
                         character: "brendan",
@@ -387,8 +387,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "brendan-2",
-                    name: "Brendan 2",
+                    slug: "rival-2",
+                    name: "Rival 2",
                     type: "battle",
                     conditions: {
                         character: "may",
@@ -399,8 +399,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "brendan-2",
-                    name: "Brendan 2",
+                    slug: "rival-2",
+                    name: "Rival 2",
                     type: "battle",
                     conditions: {
                         character: "may",
@@ -411,8 +411,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "brendan-2",
-                    name: "Brendan 2",
+                    slug: "rival-2",
+                    name: "Rival 2",
                     type: "battle",
                     conditions: {
                         character: "may",
@@ -1001,8 +1001,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "may-3",
-                    name: "May 3",
+                    slug: "rival-3",
+                    name: "Rival 3",
                     type: "battle",
                     conditions: {
                         character: "brendan",
@@ -1013,8 +1013,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "may-3",
-                    name: "May 3",
+                    slug: "rival-3",
+                    name: "Rival 3",
                     type: "battle",
                     conditions: {
                         character: "brendan",
@@ -1025,8 +1025,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "may-3",
-                    name: "May 3",
+                    slug: "rival-3",
+                    name: "Rival 3",
                     type: "battle",
                     conditions: {
                         character: "brendan",
@@ -1037,8 +1037,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "brendan-3",
-                    name: "Brendan 3",
+                    slug: "rival-3",
+                    name: "Rival 3",
                     type: "battle",
                     conditions: {
                         character: "may",
@@ -1049,8 +1049,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "brendan-3",
-                    name: "Brendan 3",
+                    slug: "rival-3",
+                    name: "Rival 3",
                     type: "battle",
                     conditions: {
                         character: "may",
@@ -1061,8 +1061,8 @@ const rs: GameData = {
                     },
                 },
                 {
-                    slug: "brendan-3",
-                    name: "Brendan 3",
+                    slug: "rival-3",
+                    name: "Rival 3",
                     type: "battle",
                     conditions: {
                         character: "may",

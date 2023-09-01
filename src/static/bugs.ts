@@ -79,14 +79,6 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Road => Route translations for areas are buggy",
             group: "General",
         },
-        {
-            desc: "When character changes occur, SegmentNav fails to update until refresh",
-            group: "General",
-        },
-        {
-            desc: "When character changes occur, cleared battles will remain out of sync",
-            group: "General",
-        },
     ],
 };
 
