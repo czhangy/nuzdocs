@@ -1,6 +1,7 @@
 import GameData from "@/models/GameData";
 import battles from "@/static/battles";
 import pokedex from "@/static/pokedex";
+import trainers from "@/static/trainers";
 
 const rs: GameData = {
     generation: "generation-iii",
@@ -1766,6 +1767,7 @@ const rs: GameData = {
             ],
         },
     ],
+    characters: [trainers.rs_brendan, trainers.rs_may],
     starterSlugs: ["treecko", "torchic", "mudkip"],
     startingTownSlug: "littleroot-town",
     invalidConditions: [],
