@@ -240,12 +240,6 @@ export const getNumRIPs = (runID: string): number => {
     return getRIPs(runID).length;
 };
 
-export const getPokemonSlugsFromBox = (box: CaughtPokemon[]): string[] => {
-    return box
-        .filter((pokemon: CaughtPokemon) => pokemon.pastSlugs[0] !== "failed")
-        .map((pokemon: CaughtPokemon) => pokemon.pokemon.slug);
-};
-
 export const getStarterSlug = (runID: string): string => {
     const allPokemon: CaughtPokemon[] = getBox(runID).concat(getRIPs(runID));
     const starterSlug: string | undefined = allPokemon.find(

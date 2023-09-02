@@ -3,7 +3,6 @@ import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import { fetchPokemonList } from "@/utils/api";
-import { getPokemonSlugsFromBox } from "@/utils/run";
 import { exportPokemon } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -84,12 +83,13 @@ const Box: React.FC<Props> = (props: Props) => {
         if (props.box.length > 0 && props.run) {
             setIsLoading(true);
             setBoxPokemon(props.box);
-            fetchPokemonList(getPokemonSlugsFromBox(props.box), props.run.gameSlug).then(
-                (pokemonData: PokemonData[]) => {
-                    setBoxData(pokemonData);
-                    setIsLoading(false);
-                }
-            );
+            fetchPokemonList(
+                props.box.map((pokemon: CaughtPokemon) => pokemon.pokemon.slug),
+                props.run.gameSlug
+            ).then((pokemonData: PokemonData[]) => {
+                setBoxData(pokemonData);
+                setIsLoading(false);
+            });
         } else {
             setBoxPokemon([]);
             setBoxData([]);
