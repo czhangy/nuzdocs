@@ -1156,7 +1156,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         aroma_lady_daisy: {
             trainer: trainers.rse_aroma_lady,
             name: "Daisy",
-            location: "Route 103 (East)",
+            location: "Route 103",
             team: [
                 {
                     slug: "roselia",
@@ -1178,7 +1178,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         twins_amy_and_liv: {
             trainer: trainers.rse_twins,
             name: "Amy & Liv",
-            location: "Route 103 (East)",
+            location: "Route 103",
             team: [
                 {
                     slug: "plusle",
@@ -1214,7 +1214,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         pokefan_miguel: {
             trainer: trainers.rse_pokefan_m,
             name: "Miguel",
-            location: "Route 103 (East)",
+            location: "Route 103",
             team: [
                 {
                     slug: "skitty",
@@ -1237,7 +1237,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         fisherman_andrew: {
             trainer: trainers.rse_fisherman,
             name: "Andrew",
-            location: "Route 103 (East)",
+            location: "Route 103",
             team: [
                 {
                     slug: "magikarp",

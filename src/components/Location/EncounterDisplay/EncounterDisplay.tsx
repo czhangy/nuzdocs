@@ -2,111 +2,123 @@ import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import PokemonName from "@/models/PokemonName";
 import Run from "@/models/Run";
+import Segment from "@/models/Segment";
 import { fetchPokemon } from "@/utils/api";
 import { getGameData } from "@/utils/game";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import {
-    addFailedEncounter,
     addToBox,
     addToCaughtPokemonSlugs,
     getLocationEncounter,
+    getStatus,
     removeFromBox,
     removeFromCaughtPokemonSlugs,
     removeFromRIPs,
+    setEncounterStatus,
 } from "@/utils/run";
+import { isCustom } from "@/utils/segment";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { ChangeEvent, ReactElement, useEffect, useState } from "react";
 import styles from "./EncounterDisplay.module.scss";
 
 type Props = {
-    locationSlug: string;
+    location: Segment;
     run: Run;
 };
 
 const EncounterDisplay: React.FC<Props> = (props: Props) => {
     // Input states
-    const [searchValue, setSearchValue] = useState<string>("");
+    const [value, setValue] = useState<string>("");
     const [matches, setMatches] = useState<PokemonName[]>([]);
-    const [hasEncounter, setHasEncounter] = useState<boolean>(false);
 
     // Component states
+    const [isLocked, setIsLocked] = useState<boolean>(false);
     const [isFocused, setIsFocused] = useState<boolean>(false);
     const [isMinimized, setIsMinimized] = useState<boolean>(false);
 
-    // Fetched data state
+    // Fetched state
     const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | null>(null);
 
     // Delay close on blur to allow clicks to register
     const handleBlur = () => setTimeout(() => setIsFocused(false), 100);
 
     // Highlight matching substring
-    const renderMatch = (name: string) => {
-        const idx: number = name.toLowerCase().indexOf(searchValue.toLowerCase());
+    const renderMatch = (name: string): ReactElement => {
+        const idx: number = name.toLowerCase().indexOf(value.toLowerCase());
         return (
             <p>
                 {name.substring(0, idx)}
-                <span className={styles.highlight}>{name.substring(idx, idx + searchValue.length)}</span>
-                {name.substring(idx + searchValue.length, name.length)}
+                <span className={styles.highlight}>{name.substring(idx, idx + value.length)}</span>
+                {name.substring(idx + value.length, name.length)}
             </p>
         );
     };
 
     // Update display on reloads
-    const updateDisplay = (selected: boolean, value: string) => {
-        setHasEncounter(selected);
-        setSearchValue(value);
+    const updateDisplay = (selected: boolean, value: string): void => {
+        setIsLocked(selected);
+        setValue(value);
     };
 
-    // Update display + local storage on select
-    const handleUpdate = async (encounter: PokemonName | null) => {
-        if (encounter) {
-            updateDisplay(true, encounter.name);
-            if (encounter.slug === "failed") {
-                addFailedEncounter(props.run.id, props.locationSlug);
-            } else {
-                addToBox(
-                    props.run.id,
-                    initCaughtPokemon(initPokemon(encounter.slug, encounter.species), props.locationSlug, props.run.id)
-                );
-                addToCaughtPokemonSlugs(props.run.id, encounter.slug);
-                setEncounteredPokemon(await fetchPokemon(encounter.slug, props.run.gameSlug));
-            }
-        } else {
-            updateDisplay(false, "");
-            setEncounteredPokemon(null);
-            const caughtPokemon: CaughtPokemon = getLocationEncounter(props.run.id, props.locationSlug)!;
-            removeFromCaughtPokemonSlugs(props.run.id, caughtPokemon.id);
-            removeFromBox(props.run.id, caughtPokemon.id);
-            removeFromRIPs(props.run.id, caughtPokemon.id);
+    // Handles the catching of a Pokemon
+    const handleCatch = async (pokemon: PokemonName): Promise<void> => {
+        updateDisplay(true, pokemon.name);
+        addToBox(
+            props.run.id,
+            initCaughtPokemon(initPokemon(pokemon.slug, pokemon.species), props.location.slug, props.run.id)
+        );
+        addToCaughtPokemonSlugs(props.run.id, pokemon.slug);
+        setEncounteredPokemon(await fetchPokemon(pokemon.slug, props.run.gameSlug));
+        setEncounterStatus(props.run.id, props.location.slug, "Caught");
+    };
+
+    // Handles resetting of encounter
+    const handleReset = (): void => {
+        updateDisplay(false, "");
+        setEncounteredPokemon(null);
+        const status: string = getStatus(props.run.id, props.location.slug);
+        if (status === "Caught") {
+            const pokemon: CaughtPokemon = getLocationEncounter(props.run.id, props.location.slug)!;
+            removeFromCaughtPokemonSlugs(props.run.id, pokemon.id);
+            removeFromBox(props.run.id, pokemon.id);
+            removeFromRIPs(props.run.id, pokemon.id);
         }
+        setEncounterStatus(props.run.id, props.location.slug, "None");
+    };
+
+    // Handles complex statuses
+    const handleStatus = (status: "Failed" | "Delay" | "Skip"): void => {
+        updateDisplay(true, status);
+        setEncounterStatus(props.run.id, props.location.slug, status);
     };
 
     // Fetch saved encounter if it exists + update display on page change
     useEffect(() => {
-        if (props.run && props.locationSlug) {
+        if (props.location !== undefined && props.run !== undefined) {
             updateDisplay(false, "");
             setEncounteredPokemon(null);
-            const currentEncounter: CaughtPokemon | null = getLocationEncounter(props.run.id, props.locationSlug);
-            if (currentEncounter) {
-                if (currentEncounter.pokemon.slug === "failed") {
-                    updateDisplay(true, "Failed");
-                } else {
+            if (!isCustom(props.location)) {
+                const status: string = getStatus(props.run.id, props.location.slug);
+                if (status === "Caught") {
+                    const currentEncounter: CaughtPokemon = getLocationEncounter(props.run.id, props.location.slug);
                     fetchPokemon(currentEncounter.pastSlugs[0], props.run.gameSlug).then((pokemon: PokemonData) => {
                         updateDisplay(true, pokemon.pokemon.name);
                         setEncounteredPokemon(pokemon);
                     });
+                } else {
+                    updateDisplay(status !== "None", status === "None" ? "" : status);
                 }
             }
         }
-    }, [props.run, props.locationSlug]);
+    }, [props.location, props.run]);
 
     // Search for matches in dex when typing in input
     useEffect(() => {
-        if (props.run && !hasEncounter && searchValue.length > 2) {
+        if (props.run && !isLocked && value.length > 2) {
             const newMatches: PokemonName[] = [];
             getGameData(props.run.gameSlug).pokedex.forEach((pokemon: PokemonName) => {
                 if (
-                    pokemon.name.toLowerCase().includes(searchValue.toLowerCase()) &&
+                    pokemon.name.toLowerCase().includes(value.toLowerCase()) &&
                     !props.run.caughtPokemonSlugs.includes(pokemon.slug)
                 ) {
                     newMatches.push(pokemon);
@@ -116,7 +128,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
         } else {
             setMatches([]);
         }
-    }, [props.run, hasEncounter, searchValue]);
+    }, [props.run, isLocked, value]);
 
     return (
         <>
@@ -140,10 +152,10 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                     <div className={styles.text}>
                         <div className={styles.header}>
                             <h3 className={styles.title}>Encounter:</h3>
-                            {hasEncounter ? (
+                            {isLocked ? (
                                 <button
                                     className={`${styles["encounter-button"]} disable-select`}
-                                    onClick={() => handleUpdate(null)}
+                                    onClick={handleReset}
                                 >
                                     <Image
                                         src="/assets/icons/reset.svg"
@@ -153,49 +165,59 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                                     />
                                 </button>
                             ) : (
-                                <button
-                                    className={`${styles["encounter-button"]} disable-select`}
-                                    onClick={() => handleUpdate({ slug: "failed", name: "Failed", species: "failed" })}
-                                >
-                                    <Image
-                                        src="/assets/icons/x.svg"
-                                        alt="Fail encounter"
-                                        layout="fill"
-                                        objectFit="contain"
-                                    />
-                                </button>
+                                ""
                             )}
                         </div>
                         <input
                             className={styles.search}
-                            disabled={hasEncounter}
+                            disabled={isLocked}
                             type="text"
                             placeholder="Search..."
-                            onChange={(e) => setSearchValue(e.target.value)}
-                            value={searchValue}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
+                            value={value}
                             onFocus={() => setIsFocused(true)}
                             onBlur={handleBlur}
                             spellCheck={false}
                         />
-                        <ul className={`${styles.matches} ${!isFocused || matches.length === 0 ? styles.hide : ""}`}>
-                            {matches.map((match: PokemonName, key: number) => {
-                                return (
-                                    <li key={key}>
-                                        <button className={styles.match} onClick={() => handleUpdate(match)}>
-                                            {renderMatch(match.name)}
+                        {isFocused ? (
+                            value.length === 0 ? (
+                                <ul className={styles.matches}>
+                                    <li>
+                                        <button className={styles.match} onClick={() => handleStatus("Failed")}>
+                                            Failed
                                         </button>
                                     </li>
-                                );
-                            })}
-                        </ul>
+                                    <li>
+                                        <button className={styles.match} onClick={() => handleStatus("Delay")}>
+                                            Delay
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className={styles.match} onClick={() => handleStatus("Skip")}>
+                                            Skip
+                                        </button>
+                                    </li>
+                                </ul>
+                            ) : (
+                                <ul className={`${styles.matches} ${matches.length === 0 ? styles.hide : ""}`}>
+                                    {matches.map((match: PokemonName) => {
+                                        return (
+                                            <li key={match.slug}>
+                                                <button className={styles.match} onClick={() => handleCatch(match)}>
+                                                    {renderMatch(match.name)}
+                                                </button>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            )
+                        ) : (
+                            ""
+                        )}
                     </div>
-                    {isFocused ? (
-                        ""
-                    ) : (
-                        <button className={styles["display-button"]} onClick={() => setIsMinimized(!isMinimized)}>
-                            {isMinimized ? "+" : "-"}
-                        </button>
-                    )}
+                    <button className={styles.toggle} onClick={() => setIsMinimized(!isMinimized)}>
+                        {isMinimized ? "+" : "-"}
+                    </button>
                 </div>
             </div>
             <div className={`${styles.overlay} ${isFocused ? styles.show : ""}`} />

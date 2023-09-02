@@ -79,6 +79,10 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Road => Route translations for areas are buggy",
             group: "General",
         },
+        {
+            desc: "EncounterDisplay overlay does not overlap the footer",
+            group: "General",
+        },
     ],
 };
 

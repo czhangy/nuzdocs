@@ -1,14 +1,13 @@
-import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { fetchPokemon } from "@/utils/api";
-import { getLocationEncounter } from "@/utils/run";
+import { getLocationEncounter, getStatus } from "@/utils/run";
+import { isCustom } from "@/utils/segment";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./LocationOverview.module.scss";
-import LocationSegment from "@/models/LocationSegment";
 
 type Props = {
     location: Segment;
@@ -17,21 +16,24 @@ type Props = {
 };
 
 const LocationOverview: React.FC<Props> = (props: Props) => {
-    // Fetched data state
+    // Fetched state
     const [encounter, setEncounter] = useState<PokemonData | null>(null);
-    const [encounterText, setEncounterText] = useState<string>("None");
+
+    // Internal state
+    const [status, setStatus] = useState<string>("None");
 
     // Get encounter for location on component load
     useEffect(() => {
         if (props.location && props.run) {
-            const pokemon: CaughtPokemon | null = getLocationEncounter(props.run.id, props.location.slug);
-            if (pokemon) {
-                if (pokemon.pastSlugs[0] === "failed") {
-                    setEncounterText("Failed");
+            if (!isCustom(props.location)) {
+                const status: string = getStatus(props.run.id, props.location.slug);
+                if (status === "Caught") {
+                    fetchPokemon(
+                        getLocationEncounter(props.run.id, props.location.slug).pastSlugs[0],
+                        props.run.gameSlug
+                    ).then((pokemonData: PokemonData) => setEncounter(pokemonData));
                 } else {
-                    fetchPokemon(pokemon.pastSlugs[0], props.run.gameSlug).then((pokemonData: PokemonData) =>
-                        setEncounter(pokemonData)
-                    );
+                    setStatus(status);
                 }
             }
         }
@@ -40,10 +42,8 @@ const LocationOverview: React.FC<Props> = (props: Props) => {
     return (
         <Link href={`/runs/${props.run.id}/${props.idx}`}>
             <a className={styles["location-overview"]}>
-                <p className={`${styles.location} ${encounter || encounterText !== "None" ? styles.done : ""}`}>
-                    {props.location.name}
-                </p>
-                {(props.location.segment as LocationSegment).custom !== true ? (
+                <p className={styles.location}>{props.location.name}</p>
+                {!isCustom(props.location) ? (
                     <div className={styles.encounter}>
                         <p className={styles.title}>Encounter</p>
                         {encounter ? (
@@ -56,9 +56,7 @@ const LocationOverview: React.FC<Props> = (props: Props) => {
                                 />
                             </div>
                         ) : (
-                            <p className={`${styles.text} ${encounterText === "Failed" ? styles.failed : ""}`}>
-                                {encounterText}
-                            </p>
+                            <p className={`${styles.status} ${status === "None" ? styles.none : ""}`}>{status}</p>
                         )}
                     </div>
                 ) : (

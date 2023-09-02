@@ -143,12 +143,20 @@
                 }
             }
 
+            ::-webkit-scrollbar {
+                background: constants.$accent-color;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                border-color: constants.$accent-color;
+            }
+
             .hide {
                 display: none;
             }
         }
 
-        .display-button {
+        .toggle {
             display: none;
         }
     }
@@ -192,7 +200,7 @@
         --display-button-y-offset: -0.25rem;
         --display-button-size: 1.5rem;
 
-        .display > .display-button {
+        .display > .toggle {
             display: block;
             font-size: var(--display-button-size);
             left: var(--display-button-x-offset);

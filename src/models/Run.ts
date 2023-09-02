@@ -1,4 +1,5 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
+import Status from "@/models/Status";
 
 export default interface Run {
     id: string;
@@ -6,6 +7,7 @@ export default interface Run {
     gameSlug: string;
     character: string;
     prevIdx: number;
+    encounters: { [location: string]: Status };
     box: CaughtPokemon[];
     rips: CaughtPokemon[];
     caughtPokemonSlugs: string[];

@@ -8,8 +8,9 @@
     --location-font-size: 1rem;
     --location-letter-spacing: 0;
     --sprite-size: 75px;
+    --status-font-size: 1rem;
+    --status-letter-spacing: 1px;
     --text-font-size: 1rem;
-    --text-letter-spacing: 1px;
     --title-font-size: 0.75rem;
     --x-padding: 2rem;
 
@@ -28,10 +29,6 @@
         font-weight: bold;
         letter-spacing: var(--location-letter-spacing);
         line-height: var(--location-font-size);
-    }
-
-    .done {
-        text-decoration: line-through;
     }
 
     .encounter {
@@ -55,15 +52,15 @@
             width: var(--sprite-size);
         }
 
-        .text {
-            font-size: var(--text-font-size);
+        .status {
+            font-size: var(--status-font-size);
             font-weight: bold;
-            letter-spacing: var(--text-letter-spacing);
-            line-height: var(--text-font-size);
+            letter-spacing: var(--status-letter-spacing);
+            line-height: var(--status-font-size);
         }
 
-        .failed {
-            color: constants.$error-color;
+        .none {
+            color: constants.$disabled-color;
         }
     }
 }
@@ -72,8 +69,8 @@
     .location-overview {
         --location-font-size: 1.25rem;
         --location-letter-spacing: 1px;
-        --text-font-size: 1.5rem;
-        --text-letter-spacing: 2px;
+        --status-font-size: 1.25rem;
+        --status-letter-spacing: 1px;
         --title-font-size: 1rem;
     }
 }

@@ -3,7 +3,6 @@ import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import { fetchPokemonList } from "@/utils/api";
-import { getPokemonSlugsFromBox } from "@/utils/run";
 import { exportPokemon } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -20,8 +19,8 @@ type Props = {
 
 const Box: React.FC<Props> = (props: Props) => {
     // Fetched data state
-    const [boxPokemon, setBoxPokemon] = useState<CaughtPokemon[]>([]);
-    const [boxData, setBoxData] = useState<PokemonData[]>([]);
+    const [sets, setSets] = useState<CaughtPokemon[]>([]);
+    const [pokemon, setPokemon] = useState<PokemonData[]>([]);
 
     // Component state
     const [activeIdx, setActiveIdx] = useState<number | null>(null);
@@ -77,30 +76,31 @@ const Box: React.FC<Props> = (props: Props) => {
         return () => {
             window.removeEventListener("resize", getInvertedMenus);
         };
-    }, [boxData]);
+    }, [pokemon]);
 
-    // Use box to fetch data for all Pokemon in box, ignoring failed encounters
+    // Use box to fetch data for all Pokemon in box
     useEffect(() => {
         if (props.box.length > 0 && props.run) {
             setIsLoading(true);
-            setBoxPokemon(props.box.filter((pokemon: CaughtPokemon) => pokemon.pokemon.slug !== "failed"));
-            fetchPokemonList(getPokemonSlugsFromBox(props.box), props.run.gameSlug).then(
-                (pokemonData: PokemonData[]) => {
-                    setBoxData(pokemonData);
-                    setIsLoading(false);
-                }
-            );
+            setSets(props.box);
+            fetchPokemonList(
+                props.box.map((pokemon: CaughtPokemon) => pokemon.pokemon.slug),
+                props.run.gameSlug
+            ).then((pokemon: PokemonData[]) => {
+                setPokemon(pokemon);
+                setIsLoading(false);
+            });
         } else {
-            setBoxPokemon([]);
-            setBoxData([]);
+            setSets([]);
+            setPokemon([]);
             setIsLoading(false);
         }
     }, [props.box, props.run]);
 
-    return boxData.length > 0 && boxData.length === boxPokemon.length ? (
+    return pokemon.length > 0 && pokemon.length === sets.length ? (
         <div className={styles.box}>
-            {boxData.map((pokemon: PokemonData, idx: number) => (
-                <div className={styles.pokemon} key={boxPokemon[idx].id}>
+            {pokemon.map((pokemon: PokemonData, idx: number) => (
+                <div className={styles.pokemon} key={sets[idx].id}>
                     <button
                         className={`${styles.button} ${idx === activeIdx ? styles.active : ""}`}
                         onClick={() => setActiveIdx(idx)}
@@ -110,25 +110,25 @@ const Box: React.FC<Props> = (props: Props) => {
                     {props.onEvolve ? (
                         <BoxMenu
                             pokemon={pokemon}
-                            pokemonID={boxPokemon[idx].id}
+                            pokemonID={sets[idx].id}
                             runID={props.run.id}
                             open={idx === activeIdx}
                             inverted={isInverted[idx]}
                             onClose={() => setActiveIdx(null)}
-                            onEvolve={() => handleEvolve(pokemon, boxPokemon[idx].id)}
-                            onFormChange={() => handleFormChange(pokemon, boxPokemon[idx].id)}
-                            onRIP={() => handleRIP(pokemon, boxPokemon[idx].id)}
-                            onExport={() => handleExport(boxPokemon[idx], pokemon.pokemon.name)}
+                            onEvolve={() => handleEvolve(pokemon, sets[idx].id)}
+                            onFormChange={() => handleFormChange(pokemon, sets[idx].id)}
+                            onRIP={() => handleRIP(pokemon, sets[idx].id)}
+                            onExport={() => handleExport(sets[idx], pokemon.pokemon.name)}
                         />
                     ) : (
                         <BoxMenu
                             pokemon={pokemon}
-                            pokemonID={boxPokemon[idx].id}
+                            pokemonID={sets[idx].id}
                             runID={props.run.id}
                             open={idx === activeIdx}
                             inverted={isInverted[idx]}
                             onClose={() => setActiveIdx(null)}
-                            onRevive={() => handleRevive(pokemon, boxPokemon[idx].id)}
+                            onRevive={() => handleRevive(pokemon, sets[idx].id)}
                         />
                     )}
                 </div>
