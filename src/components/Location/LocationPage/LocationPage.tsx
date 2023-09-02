@@ -56,7 +56,7 @@ const LocationPage: React.FC<Props> = (props: Props) => {
                 {currentLocation ? <EncounterList location={currentLocation} run={props.run} /> : ""}
                 <Trainers battles={(segment.segment as LocationSegment).battles} run={props.run} />
             </div>
-            {currentLocation ? <EncounterDisplay locationSlug={segment.slug} run={props.run} /> : ""}
+            {currentLocation ? <EncounterDisplay location={segment} run={props.run} /> : ""}
         </div>
     ) : (
         <div className={styles.loading}>

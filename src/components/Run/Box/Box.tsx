@@ -83,7 +83,7 @@ const Box: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (props.box.length > 0 && props.run) {
             setIsLoading(true);
-            setBoxPokemon(props.box.filter((pokemon: CaughtPokemon) => pokemon.pokemon.slug !== "failed"));
+            setBoxPokemon(props.box);
             fetchPokemonList(getPokemonSlugsFromBox(props.box), props.run.gameSlug).then(
                 (pokemonData: PokemonData[]) => {
                     setBoxData(pokemonData);

@@ -2,24 +2,27 @@ import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonData from "@/models/PokemonData";
 import PokemonName from "@/models/PokemonName";
 import Run from "@/models/Run";
+import Segment from "@/models/Segment";
 import { fetchPokemon } from "@/utils/api";
 import { getGameData } from "@/utils/game";
 import { initCaughtPokemon, initPokemon } from "@/utils/initializers";
 import {
-    addFailedEncounter,
     addToBox,
     addToCaughtPokemonSlugs,
     getLocationEncounter,
+    getStatus,
     removeFromBox,
     removeFromCaughtPokemonSlugs,
     removeFromRIPs,
+    setEncounterStatus,
 } from "@/utils/run";
+import { isCustom } from "@/utils/segment";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { ChangeEvent, ReactElement, useEffect, useState } from "react";
 import styles from "./EncounterDisplay.module.scss";
 
 type Props = {
-    locationSlug: string;
+    location: Segment;
     run: Run;
 };
 
@@ -33,14 +36,14 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     const [isFocused, setIsFocused] = useState<boolean>(false);
     const [isMinimized, setIsMinimized] = useState<boolean>(false);
 
-    // Fetched data state
+    // Fetched state
     const [encounteredPokemon, setEncounteredPokemon] = useState<PokemonData | null>(null);
 
     // Delay close on blur to allow clicks to register
     const handleBlur = () => setTimeout(() => setIsFocused(false), 100);
 
     // Highlight matching substring
-    const renderMatch = (name: string) => {
+    const renderMatch = (name: string): ReactElement => {
         const idx: number = name.toLowerCase().indexOf(searchValue.toLowerCase());
         return (
             <p>
@@ -52,53 +55,62 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
     };
 
     // Update display on reloads
-    const updateDisplay = (selected: boolean, value: string) => {
+    const updateDisplay = (selected: boolean, value: string): void => {
         setHasEncounter(selected);
         setSearchValue(value);
     };
 
-    // Update display + local storage on select
-    const handleUpdate = async (encounter: PokemonName | null) => {
-        if (encounter) {
-            updateDisplay(true, encounter.name);
-            if (encounter.slug === "failed") {
-                addFailedEncounter(props.run.id, props.locationSlug);
-            } else {
-                addToBox(
-                    props.run.id,
-                    initCaughtPokemon(initPokemon(encounter.slug, encounter.species), props.locationSlug, props.run.id)
-                );
-                addToCaughtPokemonSlugs(props.run.id, encounter.slug);
-                setEncounteredPokemon(await fetchPokemon(encounter.slug, props.run.gameSlug));
-            }
-        } else {
-            updateDisplay(false, "");
-            setEncounteredPokemon(null);
-            const caughtPokemon: CaughtPokemon = getLocationEncounter(props.run.id, props.locationSlug)!;
-            removeFromCaughtPokemonSlugs(props.run.id, caughtPokemon.id);
-            removeFromBox(props.run.id, caughtPokemon.id);
-            removeFromRIPs(props.run.id, caughtPokemon.id);
+    // Handles the catching of a Pokemon
+    const handleCatch = async (pokemon: PokemonName): Promise<void> => {
+        updateDisplay(true, pokemon.name);
+        addToBox(
+            props.run.id,
+            initCaughtPokemon(initPokemon(pokemon.slug, pokemon.species), props.location.slug, props.run.id)
+        );
+        addToCaughtPokemonSlugs(props.run.id, pokemon.slug);
+        setEncounteredPokemon(await fetchPokemon(pokemon.slug, props.run.gameSlug));
+        setEncounterStatus(props.run.id, props.location.slug, "Caught");
+    };
+
+    // Handles resetting of encounter
+    const handleReset = (): void => {
+        updateDisplay(true, "");
+        setEncounteredPokemon(null);
+        const status: string = getStatus(props.run.id, props.location.slug);
+        if (status === "Caught") {
+            const pokemon: CaughtPokemon = getLocationEncounter(props.run.id, props.location.slug)!;
+            removeFromCaughtPokemonSlugs(props.run.id, pokemon.id);
+            removeFromBox(props.run.id, pokemon.id);
+            removeFromRIPs(props.run.id, pokemon.id);
         }
+        setEncounterStatus(props.run.id, props.location.slug, "None");
+    };
+
+    // Handles complex statuses
+    const handleStatus = (status: "Failed" | "Delayed" | "Skipped"): void => {
+        updateDisplay(true, status);
+        setEncounterStatus(props.run.id, props.location.slug, status);
     };
 
     // Fetch saved encounter if it exists + update display on page change
     useEffect(() => {
-        if (props.run && props.locationSlug) {
+        if (props.location !== undefined && props.run !== undefined) {
             updateDisplay(false, "");
             setEncounteredPokemon(null);
-            const currentEncounter: CaughtPokemon | null = getLocationEncounter(props.run.id, props.locationSlug);
-            if (currentEncounter) {
-                if (currentEncounter.pokemon.slug === "failed") {
-                    updateDisplay(true, "Failed");
-                } else {
+            if (!isCustom(props.location)) {
+                const status: string = getStatus(props.run.id, props.location.slug);
+                if (status === "Caught") {
+                    const currentEncounter: CaughtPokemon = getLocationEncounter(props.run.id, props.location.slug);
                     fetchPokemon(currentEncounter.pastSlugs[0], props.run.gameSlug).then((pokemon: PokemonData) => {
                         updateDisplay(true, pokemon.pokemon.name);
                         setEncounteredPokemon(pokemon);
                     });
+                } else {
+                    updateDisplay(status !== "None", status === "None" ? "" : status);
                 }
             }
         }
-    }, [props.run, props.locationSlug]);
+    }, [props.location, props.run]);
 
     // Search for matches in dex when typing in input
     useEffect(() => {
@@ -143,7 +155,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                             {hasEncounter ? (
                                 <button
                                     className={`${styles["encounter-button"]} disable-select`}
-                                    onClick={() => handleUpdate(null)}
+                                    onClick={handleReset}
                                 >
                                     <Image
                                         src="/assets/icons/reset.svg"
@@ -155,7 +167,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                             ) : (
                                 <button
                                     className={`${styles["encounter-button"]} disable-select`}
-                                    onClick={() => handleUpdate({ slug: "failed", name: "Failed", species: "failed" })}
+                                    onClick={() => handleStatus("Failed")}
                                 >
                                     <Image
                                         src="/assets/icons/x.svg"
@@ -171,17 +183,17 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
                             disabled={hasEncounter}
                             type="text"
                             placeholder="Search..."
-                            onChange={(e) => setSearchValue(e.target.value)}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value)}
                             value={searchValue}
                             onFocus={() => setIsFocused(true)}
                             onBlur={handleBlur}
                             spellCheck={false}
                         />
                         <ul className={`${styles.matches} ${!isFocused || matches.length === 0 ? styles.hide : ""}`}>
-                            {matches.map((match: PokemonName, key: number) => {
+                            {matches.map((match: PokemonName) => {
                                 return (
-                                    <li key={key}>
-                                        <button className={styles.match} onClick={() => handleUpdate(match)}>
+                                    <li key={match.slug}>
+                                        <button className={styles.match} onClick={() => handleCatch(match)}>
                                             {renderMatch(match.name)}
                                         </button>
                                     </li>
