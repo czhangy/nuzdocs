@@ -56,7 +56,7 @@ const LocationOverview: React.FC<Props> = (props: Props) => {
                                 />
                             </div>
                         ) : (
-                            <p className={styles.status}>{status}</p>
+                            <p className={`${styles.status} ${status === "None" ? styles.none : ""}`}>{status}</p>
                         )}
                     </div>
                 ) : (

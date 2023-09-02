@@ -58,6 +58,10 @@
             letter-spacing: var(--status-letter-spacing);
             line-height: var(--status-font-size);
         }
+
+        .none {
+            color: constants.$disabled-color;
+        }
     }
 }
 
