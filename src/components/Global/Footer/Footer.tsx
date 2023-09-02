@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
                     </p>
                     <p className={styles.text}>
                         Inspired by{" "}
-                        <a href="https://nuzlocke.app/" target="_blank" rel="noreferrer" className={styles.link}>
+                        <a className={styles.link} href="https://nuzlocke.app/" target="_blank" rel="noreferrer">
                             Nuzlocke Tracker
                         </a>
                     </p>

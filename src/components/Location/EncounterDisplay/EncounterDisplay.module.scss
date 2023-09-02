@@ -143,6 +143,14 @@
                 }
             }
 
+            ::-webkit-scrollbar {
+                background: constants.$accent-color;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                border-color: constants.$accent-color;
+            }
+
             .hide {
                 display: none;
             }
