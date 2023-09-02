@@ -5,8 +5,8 @@ import { getSegments } from "@/utils/game";
 import { getStarterSlug } from "./run";
 
 // Getters
-export const getSegment = (run: Run, segmentSlug: string): Segment => {
-    return getSegments(run).find((segment: Segment) => segment.slug === segmentSlug)!;
+export const getSegment = (run: Run, slug: string): Segment => {
+    return getSegments(run).find((segment: Segment) => segment.slug === slug)!;
 };
 
 // Predicates
@@ -14,9 +14,8 @@ export const isSegment = (run: Run, idx: string): boolean => {
     if (/^\d+$/.test(idx)) {
         const idxNum: number = parseInt(idx);
         return idxNum >= 0 && idxNum < getSegments(run).length;
-    } else {
-        return false;
     }
+    return false;
 };
 
 export const hasLevelCap = (segment: Segment): boolean => {
@@ -24,19 +23,16 @@ export const hasLevelCap = (segment: Segment): boolean => {
 };
 
 export const satisifesConditions = (segment: Segment, run: Run): boolean => {
-    if (segment.conditions) {
-        if (segment.conditions.game && segment.conditions.game !== run.gameSlug) {
+    if (segment.conditions !== undefined) {
+        if (segment.conditions.game !== undefined && segment.conditions.game !== run.gameSlug) {
             return false;
-        } else if (segment.conditions.character && segment.conditions.character !== run.character) {
+        } else if (segment.conditions.character !== undefined && segment.conditions.character !== run.character) {
             return false;
-        } else if (segment.conditions.starter && segment.conditions.starter !== getStarterSlug(run.id)) {
+        } else if (segment.conditions.starter !== undefined && segment.conditions.starter !== getStarterSlug(run.id)) {
             return false;
-        } else {
-            return true;
         }
-    } else {
-        return true;
     }
+    return true;
 };
 
 export const isCustom = (segment: Segment): boolean => {

@@ -10,6 +10,7 @@ import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { fetchLocation } from "@/utils/api";
 import { getGameData, getSegments } from "@/utils/game";
+import { isCustom } from "@/utils/segment";
 import { useEffect, useState } from "react";
 import styles from "./LocationPage.module.scss";
 
@@ -36,13 +37,13 @@ const LocationPage: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (segment !== null) {
             setCurrentLocation(null);
-            if ((segment.segment as LocationSegment).custom !== true) {
+            if (!isCustom(segment)) {
                 fetchLocation(segment.slug).then((location) => setCurrentLocation(location));
             }
         }
     }, [segment]);
 
-    return segment && (currentLocation || (segment.segment as LocationSegment).custom) ? (
+    return segment !== null && (currentLocation !== null || isCustom(segment)) ? (
         <div className={styles["location-page"]}>
             <div className={styles.info}>
                 <NextLevelCap segment={segment.slug} run={props.run} />
@@ -53,10 +54,10 @@ const LocationPage: React.FC<Props> = (props: Props) => {
                     ""
                 )}
                 {segment.slug === getGameData(props.run.gameSlug).startingTown ? <StarterSelect run={props.run} /> : ""}
-                {currentLocation ? <EncounterList location={currentLocation} run={props.run} /> : ""}
+                {currentLocation !== null ? <EncounterList location={currentLocation} run={props.run} /> : ""}
                 <Trainers battles={(segment.segment as LocationSegment).battles} run={props.run} />
             </div>
-            {currentLocation ? <EncounterDisplay location={segment} run={props.run} /> : ""}
+            {currentLocation !== null ? <EncounterDisplay location={segment} run={props.run} /> : ""}
         </div>
     ) : (
         <div className={styles.loading}>

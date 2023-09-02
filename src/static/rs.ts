@@ -105,14 +105,7 @@ const rs: GameData = {
                     slug: "hoenn-route-103",
                     name: "Route 103 (West)",
                     type: "location",
-                    segment: {
-                        battles: [
-                            battles.ruby_sapphire.aroma_lady_daisy,
-                            battles.ruby_sapphire.twins_amy_and_liv,
-                            battles.ruby_sapphire.pokefan_miguel,
-                            battles.ruby_sapphire.fisherman_andrew,
-                        ],
-                    },
+                    segment: { battles: [] },
                 },
                 {
                     slug: "hoenn-route-102",
@@ -347,6 +340,19 @@ const rs: GameData = {
                             battles.ruby_sapphire.collector_edwin,
                             battles.ruby_sapphire.psychic_edward,
                             battles.ruby_sapphire.fisherman_dale,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-103",
+                    name: "Route 103 (East)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.aroma_lady_daisy,
+                            battles.ruby_sapphire.twins_amy_and_liv,
+                            battles.ruby_sapphire.pokefan_miguel,
+                            battles.ruby_sapphire.fisherman_andrew,
                         ],
                     },
                 },
