@@ -1,3 +1,3 @@
 export default interface Status {
-    status: "None" | "Caught" | "Delayed" | "Skipped" | "Failed";
+    status: "None" | "Caught" | "Delay" | "Skip" | "Failed";
 }

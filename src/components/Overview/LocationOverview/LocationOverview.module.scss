@@ -8,8 +8,9 @@
     --location-font-size: 1rem;
     --location-letter-spacing: 0;
     --sprite-size: 75px;
-    --text-font-size: 1rem;
+    --status-font-size: 1rem;
     --status-letter-spacing: 1px;
+    --text-font-size: 1rem;
     --title-font-size: 0.75rem;
     --x-padding: 2rem;
 
@@ -64,8 +65,8 @@
     .location-overview {
         --location-font-size: 1.25rem;
         --location-letter-spacing: 1px;
-        --status-font-size: 1.5rem;
-        --status-letter-spacing: 2px;
+        --status-font-size: 1.25rem;
+        --status-letter-spacing: 1px;
         --title-font-size: 1rem;
     }
 }

@@ -125,7 +125,7 @@ export const setPrevIdx = (id: string, idx: number): void => {
 export const setEncounterStatus = (
     id: string,
     location: string,
-    status: "None" | "Caught" | "Delayed" | "Skipped" | "Failed"
+    status: "None" | "Caught" | "Delay" | "Skip" | "Failed"
 ): void => {
     const run: Run = getRun(id);
     run.encounters[location] = { status: status };
@@ -238,7 +238,7 @@ export const getNumRIPs = (id: string): number => {
 export const getStarterSlug = (id: string): string => {
     const starterSlug: string | undefined = getBox(id)
         .concat(getRIPs(id))
-        .find((pokemon: CaughtPokemon) => pokemon.locationSlug === "starter")!.pastSlugs[0];
+        .find((pokemon: CaughtPokemon) => pokemon.locationSlug === "starter")?.pastSlugs[0];
     return starterSlug ? starterSlug : "";
 };
 
