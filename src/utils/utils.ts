@@ -125,3 +125,8 @@ export const isInvalidForm = (form: string): boolean => {
     ];
     return invalidForms.some((suffix: string) => form.endsWith(suffix));
 };
+
+export const getPB = (game: string): string => {
+    const storedPBs: string | null = localStorage.getItem("pbs");
+    return storedPBs ? JSON.parse(storedPBs)[game] : "";
+};
