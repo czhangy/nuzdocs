@@ -45,7 +45,10 @@ const SegmentNav: React.FC<Props> = (props: Props) => {
             </nav>
             <h2 className={styles.header}>
                 {segments[props.idx].name}{" "}
-                <span title={`This is your personal best for a run of Pokémon ${getGame(props.run.gameSlug).name}!`}>
+                <span
+                    className={styles.pb}
+                    title={`This is your personal best for a run of Pokémon ${getGame(props.run.gameSlug).name}!`}
+                >
                     {pb === segments[props.idx].slug ? "🚩" : ""}
                 </span>
             </h2>
