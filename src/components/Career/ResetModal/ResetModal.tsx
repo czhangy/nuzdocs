@@ -14,7 +14,7 @@ const ResetModal: React.FC<Props> = (props: Props) => {
                 Reset your <strong>Pokémon {getGame(props.game).name}</strong> history?
             </p>
             <p className={styles.subtitle}>
-                <strong>Warning:</strong> you probably shouldn't do this if you
+                <strong>Warning:</strong> you probably shouldn&apos;t do this if you
                 <br />
                 have an active run of Pokémon {getGame(props.game).name}
             </p>
