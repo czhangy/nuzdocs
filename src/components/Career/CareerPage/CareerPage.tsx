@@ -35,7 +35,7 @@ const CareerPage: React.FC = () => {
             <h2 className={styles.header}>Your Career</h2>
             <div className={styles.history}>
                 {games.map((game: string) => {
-                    return <GameHistory game={game} onReset={() => handleResetAttempt(game)} />;
+                    return <GameHistory game={game} onReset={() => handleResetAttempt(game)} key={game} />;
                 })}
             </div>
             <Modal open={open} onClose={() => setOpen(false)}>

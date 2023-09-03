@@ -20,7 +20,7 @@ const ProgressBar: React.FC<Props> = (props) => {
                 document.getElementById(`bar-${props.barID}`)!.style.width = `${calculatePercentage()}%`;
             }, 100);
         }
-    }, [props.complete, props.total]);
+    }, [props.complete, props.total, props.barID]);
 
     return (
         <div className={styles["progress-bar"]}>

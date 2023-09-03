@@ -23,7 +23,7 @@ const Learnset: React.FC<Props> = (props: Props) => {
                 props.game
             ).then((moves: MoveData[]) => setMoves(moves));
         }
-    }, [props.moves]);
+    }, [props.moves, props.game]);
 
     return (
         <div className={styles.learnset}>
