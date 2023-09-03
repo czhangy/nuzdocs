@@ -1,6 +1,7 @@
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { getSegments } from "./game";
+import games from "@/static/games";
 
 // Getters
 export const getPB = (game: string): string => {
@@ -10,7 +11,12 @@ export const getPB = (game: string): string => {
 
 export const getPlayedGames = (): string[] => {
     const attempts: string | null = localStorage.getItem("attempts");
-    return attempts ? Object.keys(JSON.parse(attempts)) : [];
+    const priorities: string[] = Object.keys(games);
+    return attempts
+        ? Object.keys(JSON.parse(attempts)).sort(
+              (a: string, b: string) => priorities.indexOf(a) - priorities.indexOf(b)
+          )
+        : [];
 };
 
 export const getNumAttempts = (game: string): number => {
