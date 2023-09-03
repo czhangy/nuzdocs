@@ -2,6 +2,7 @@ import CaughtPokemon from "@/models/CaughtPokemon";
 import LocationSegment from "@/models/LocationSegment";
 import Run from "@/models/Run";
 import Status from "@/models/Status";
+import { incrementNumAttempts, setPB } from "@/utils/career";
 import { getGameData } from "@/utils/game";
 import { generateID } from "@/utils/utils";
 
@@ -38,6 +39,7 @@ export const initRun = (id: string, name: string, game: string): Run => {
         clearedBattles: [],
     };
     run.encounters = initEncounters(run);
+    incrementNumAttempts(game);
     return run;
 };
 
@@ -57,7 +59,8 @@ export const createRun = (name: string, game: string): string => {
 };
 
 export const loadRun = (runStr: string): boolean => {
-    const id: string = JSON.parse(runStr).id;
+    const run: Run = JSON.parse(runStr);
+    const id: string = run.id;
     const runIDs = getRunIDs();
     if (runIDs.includes(id)) {
         return false;
@@ -65,6 +68,7 @@ export const loadRun = (runStr: string): boolean => {
         runIDs.push(id);
         localStorage.setItem("runs", JSON.stringify(runIDs));
         localStorage.setItem(id, runStr);
+        incrementNumAttempts(run.gameSlug);
         return true;
     }
 };
@@ -190,6 +194,7 @@ export const removeFromCaughtPokemonSlugs = (runID: string, pokemonID: string): 
 export const addToClearedBattles = (id: string, battle: string): void => {
     const run: Run = getRun(id);
     run.clearedBattles.push(battle);
+    setPB(run, battle);
     setRun(id, run);
 };
 

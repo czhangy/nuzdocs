@@ -2,22 +2,24 @@
 
 .about-page {
     --font-size: 1.2rem;
-    --inner-spacing: 0.5rem;
+    --header-spacing: 0.5rem;
     --line-height: 2rem;
     --list-offset: 2rem;
     --section-spacing: 2rem;
+    --section-max-width: 600px;
 
     .section-container {
         display: flex;
         flex-direction: column;
         gap: var(--section-spacing);
+        max-width: var(--section-max-width);
 
         .section {
             width: 100%;
 
             .header {
                 font-weight: bold;
-                margin-bottom: var(--inner-spacing);
+                margin-bottom: var(--header-spacing);
                 text-decoration: underline;
             }
 

@@ -25,7 +25,7 @@ const Moveset: React.FC<Props> = (props: Props) => {
                 props.game
             ).then((moves: MoveData[]) => setMoves(moves));
         }
-    }, [props.caughtPokemon]);
+    }, [props.caughtPokemon, props.game]);
 
     return (
         <div className={styles.moveset}>

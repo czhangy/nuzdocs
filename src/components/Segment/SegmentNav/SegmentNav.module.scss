@@ -29,6 +29,10 @@
         line-height: var(--header-font-size);
         position: relative;
         text-align: center;
+
+        .pb {
+            cursor: default;
+        }
     }
 }
 

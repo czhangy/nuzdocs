@@ -1,0 +1,61 @@
+@use "@/styles/constants";
+
+.game-history {
+    --card-border-rad: 5px;
+    --card-inner-spacing: 1.5rem;
+    --card-padding: 1.5rem;
+    --count-font-size: 1.75rem;
+    --game-offset: -0.5rem;
+    --game-ratio: 1.5;
+    --game-size: 100px;
+    --label-font-size: 1rem;
+    --pb-font-size: 1.25rem;
+    --pb-letter-spacing: 1px;
+    --stat-inner-spacing: 0.5rem;
+    --stat-width: 100px;
+    --stats-inner-spacing: 1rem;
+
+    align-items: center;
+    background-color: constants.$accent-color;
+    border-radius: var(--card-border-rad);
+    display: flex;
+    flex-direction: column;
+    gap: var(--card-inner-spacing);
+    padding: var(--card-padding);
+
+    .game {
+        height: var(--game-size);
+        margin-top: var(--game-offset);
+        position: relative;
+        width: calc(var(--game-size) * var(--game-ratio));
+    }
+
+    .stats {
+        display: flex;
+        gap: var(--stats-inner-spacing);
+
+        .stat {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            gap: var(--stat-inner-spacing);
+            width: var(--stat-width);
+
+            .label {
+                font-size: var(--label-font-size);
+                line-height: var(--label-font-size);
+            }
+
+            .count {
+                font-size: var(--count-font-size);
+                line-height: var(--count-font-size);
+            }
+        }
+    }
+
+    .pb {
+        font-size: var(--pb-font-size);
+        letter-spacing: var(--pb-letter-spacing);
+        line-height: var(--pb-font-size);
+    }
+}

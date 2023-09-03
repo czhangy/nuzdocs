@@ -55,7 +55,7 @@ const RunEntry: React.FC<Props> = (props: Props) => {
                             total={getNumBattles(props.run)}
                             barID={props.run.id}
                         />
-                        <div className={styles.rips}>
+                        <div className={styles.rips} title={`# of RIPs: ${getNumRIPs(props.run.id)}`}>
                             <div className={`${styles.icon} disable-select`}>
                                 <Image src="/assets/icons/dead.svg" alt="Deaths" layout="fill" objectFit="contain" />
                             </div>
@@ -65,10 +65,10 @@ const RunEntry: React.FC<Props> = (props: Props) => {
                 </a>
             </Link>
             <div className={styles.buttons}>
-                <button className={`${styles.button} disable-select`} onClick={props.onDelete}>
+                <button className={`${styles.button} disable-select`} title="Delete run" onClick={props.onDelete}>
                     <Image src="/assets/icons/delete.svg" alt="Delete" layout="fill" objectFit="contain" />
                 </button>
-                <button className={`${styles.button} disable-select`} onClick={handleSave}>
+                <button className={`${styles.button} disable-select`} title="Save run to file" onClick={handleSave}>
                     <Image src="/assets/icons/save.svg" alt="Save" layout="fill" objectFit="contain" />
                 </button>
             </div>

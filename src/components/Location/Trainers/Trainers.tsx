@@ -40,7 +40,7 @@ const Trainers: React.FC<Props> = (props: Props) => {
                 setItems(itemData);
             });
         }
-    }, [props.battles]);
+    }, [props.battles, props.run]);
 
     return props.battles.length > 0 ? (
         <div className={styles.trainers}>

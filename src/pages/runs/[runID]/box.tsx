@@ -28,7 +28,7 @@ const Box: NextPage = () => {
     return (
         <>
             <Head>
-                <title>{run ? `${run.name} // Box` : "NuzlockeDB"}</title>
+                <title>{run ? `${run.name} // Box` : "NuzDocs"}</title>
             </Head>
             {run ? <BoxPage run={run} /> : ""}
         </>

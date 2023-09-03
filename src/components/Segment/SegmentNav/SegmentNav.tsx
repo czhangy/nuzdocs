@@ -1,6 +1,7 @@
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
-import { getSegments } from "@/utils/game";
+import { getPB } from "@/utils/career";
+import { getGame, getSegments } from "@/utils/game";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./SegmentNav.module.scss";
@@ -13,12 +14,14 @@ type Props = {
 const SegmentNav: React.FC<Props> = (props: Props) => {
     // Internal data state
     const [segments, setSegments] = useState<Segment[]>([]);
+    const [pb, setPB] = useState<string>("");
 
     // Get the segments of the current game from local storage on component load
     useEffect(() => {
         if (props.idx !== undefined && props.run !== undefined) {
             const segments: Segment[] = getSegments(props.run);
             setSegments(segments);
+            setPB(getPB(props.run.gameSlug));
         }
     }, [props.idx, props.run]);
 
@@ -40,7 +43,15 @@ const SegmentNav: React.FC<Props> = (props: Props) => {
                     ""
                 )}
             </nav>
-            <h2 className={styles.header}>{segments[props.idx].name}</h2>
+            <h2 className={styles.header}>
+                {segments[props.idx].name}{" "}
+                <span
+                    className={styles.pb}
+                    title={`This is your personal best for a run of Pokémon ${getGame(props.run.gameSlug).name}!`}
+                >
+                    {pb === segments[props.idx].slug ? "🚩" : ""}
+                </span>
+            </h2>
         </div>
     ) : (
         <></>

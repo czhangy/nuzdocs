@@ -34,7 +34,7 @@ const Segment: NextPage = () => {
     return (
         <>
             <Head>
-                <title>{run ? run.name : "NuzlockeDB"}</title>
+                <title>{run ? run.name : "NuzDocs"}</title>
             </Head>
             {run !== null && idx !== null ? <SegmentPage idx={idx} run={run} /> : ""}
         </>
