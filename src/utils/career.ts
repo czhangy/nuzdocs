@@ -1,7 +1,7 @@
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
-import { getSegments } from "./game";
 import games from "@/static/games";
+import { getSegments } from "./game";
 
 // Getters
 export const getPB = (game: string): string => {
@@ -80,4 +80,25 @@ export const updateNumHOFs = (game: string, inc: number): void => {
         hofs[game] = 1;
     }
     localStorage.setItem("hofs", JSON.stringify(hofs));
+};
+
+export const resetGame = (game: string): void => {
+    const storedAttempts: string | null = localStorage.getItem("attempts");
+    const storedPBs: string | null = localStorage.getItem("pbs");
+    const storedHOFs: string | null = localStorage.getItem("hofs");
+    if (storedAttempts) {
+        const attempts: { [game: string]: number } = JSON.parse(storedAttempts);
+        delete attempts[game];
+        localStorage.setItem("attempts", JSON.stringify(attempts));
+    }
+    if (storedPBs) {
+        const pbs: { [game: string]: string } = JSON.parse(storedPBs);
+        delete pbs[game];
+        localStorage.setItem("pbs", JSON.stringify(pbs));
+    }
+    if (storedHOFs) {
+        const hofs: { [game: string]: number } = JSON.parse(storedHOFs);
+        delete hofs[game];
+        localStorage.setItem("hofs", JSON.stringify(hofs));
+    }
 };

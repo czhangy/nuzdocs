@@ -1,0 +1,28 @@
+@use "@/styles/constants";
+
+.reset-modal {
+    --buttons-inner-spacing: 1rem;
+    --header-font-size: 1.25rem;
+    --modal-inner-spacing: 1.5rem;
+    --subtitle-font-size: 1rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--modal-inner-spacing);
+
+    .header {
+        font-size: var(--header-font-size);
+        line-height: var(--header-font-size);
+    }
+
+    .subtitle {
+        font-size: var(--subtitle-font-size);
+        text-align: center;
+    }
+
+    .buttons {
+        display: flex;
+        gap: var(--buttons-inner-spacing);
+    }
+}

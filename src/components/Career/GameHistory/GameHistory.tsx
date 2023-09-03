@@ -1,11 +1,12 @@
+import GameData from "@/models/GameData";
 import { getNumAttempts, getNumHOFs, getPB } from "@/utils/career";
 import { getGame, getGameData } from "@/utils/game";
 import Image from "next/image";
 import styles from "./GameHistory.module.scss";
-import GameData from "@/models/GameData";
 
 type Props = {
     game: string;
+    onReset: () => void;
 };
 
 const GameHistory: React.FC<Props> = (props: Props) => {
@@ -49,6 +50,9 @@ const GameHistory: React.FC<Props> = (props: Props) => {
             <p className={styles.pb}>
                 PB: <strong>{getPBName()}</strong>
             </p>
+            <button className="primary-button" onClick={props.onReset}>
+                Reset
+            </button>
         </div>
     );
 };
