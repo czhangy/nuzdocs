@@ -1,7 +1,7 @@
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
+import { getPB } from "@/utils/career";
 import { getGame, getSegments } from "@/utils/game";
-import { getPB } from "@/utils/utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./SegmentNav.module.scss";

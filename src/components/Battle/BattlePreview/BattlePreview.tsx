@@ -1,11 +1,13 @@
 import ItemDisplay from "@/components/Battle/ItemDisplay/ItemDisplay";
 import LevelCap from "@/components/Battle/LevelCap/LevelCap";
+import BattleSegment from "@/models/BattleSegment";
 import ItemData from "@/models/ItemData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import Trainer from "@/models/Trainer";
 import { fetchItems } from "@/utils/api";
 import { getBattle, getLevelCap, getTrainer } from "@/utils/battle";
+import { updateNumHOFs } from "@/utils/career";
 import { getSegments } from "@/utils/game";
 import { addToClearedBattles, getStarterSlug, isCleared, removeFromClearedBattles } from "@/utils/run";
 import { hasLevelCap } from "@/utils/segment";
@@ -13,7 +15,6 @@ import { exportPokemonList } from "@/utils/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./BattlePreview.module.scss";
-import BattleSegment from "@/models/BattleSegment";
 
 type Props = {
     segment: Segment;
@@ -37,6 +38,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
         setDefeated(true);
         addToClearedBattles(props.run.id, props.segment.slug);
         if (props.segment.slug === getSegments(props.run).at(-1)!.slug) {
+            updateNumHOFs(props.run.gameSlug, 1);
             props.onFinish();
         }
     };
@@ -45,6 +47,9 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     const handleUndo = (): void => {
         setDefeated(false);
         removeFromClearedBattles(props.run.id, props.segment.slug);
+        if (props.segment.slug === getSegments(props.run).at(-1)!.slug) {
+            updateNumHOFs(props.run.gameSlug, -1);
+        }
     };
 
     // Save battle team to clipboard

@@ -10,9 +10,9 @@ export const getEnglishName: (names: Name[]) => string = (names: Name[]): string
     return nameObj.name;
 };
 
-export const getPokemonTier = (pokemonSlug: string, gameSlug: string): string => {
-    const group = getGameData(gameSlug).group;
-    return pokemonSlug in tiers[group] ? tiers[group][pokemonSlug] : "?";
+export const getPokemonTier = (pokemon: string, game: string): string => {
+    const group = getGameData(game).group;
+    return pokemon in tiers[group] ? tiers[group][pokemon] : "?";
 };
 
 // Check if the Pokemon is in its final stage
@@ -107,8 +107,8 @@ export const exportPokemonList = (pokemon: Pokemon[], names: string[], tag: stri
         .catch((error: any) => alert("Something went wrong!"));
 };
 
-export const getPokedexLink = (runID: string, pokemon: string): string => {
-    return `/runs/${runID}/pokedex/${pokemon}`;
+export const getPokedexLink = (id: string, pokemon: string): string => {
+    return `/runs/${id}/pokedex/${pokemon}`;
 };
 
 export const isInvalidForm = (form: string): boolean => {
@@ -124,9 +124,4 @@ export const isInvalidForm = (form: string): boolean => {
         "-star",
     ];
     return invalidForms.some((suffix: string) => form.endsWith(suffix));
-};
-
-export const getPB = (game: string): string => {
-    const storedPBs: string | null = localStorage.getItem("pbs");
-    return storedPBs ? JSON.parse(storedPBs)[game] : "";
 };

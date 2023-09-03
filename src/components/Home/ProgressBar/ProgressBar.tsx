@@ -24,7 +24,9 @@ const ProgressBar: React.FC<Props> = (props) => {
 
     return (
         <div className={styles["progress-bar"]}>
-            <p className={styles.percent}>{calculatePercentage()}%</p>
+            <p className={styles.percent} title={`${props.complete}/${props.total} major battles completed`}>
+                {calculatePercentage()}%
+            </p>
             <div className={styles.bg}>
                 <div id={`bar-${props.barID}`} className={styles.bar} />
             </div>
