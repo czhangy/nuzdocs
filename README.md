@@ -48,7 +48,7 @@
 
 ### Summary
 
-NuzlockeDB is a web app designed as a tool for Nuzlocke runs in various Pokémon games, providing features like a run tracker, coverage calculator, damage calculator, etc. In its early development stages, the tracker will focus on HG/SS, but will expand once core features are implemented.
+NuzlockeDB is a web app designed as a tool for Nuzlocke runs in various Pokémon games, providing features like a run tracker, coverage calculator, damage calculator, etc. In its early development stages, the tracker will focus on RSE, but will expand once core features are implemented.
 
 The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzlocke-db.vercel.app/.
 
@@ -116,7 +116,6 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Box filters
 -   [ ] Customizable run settings
 -   [ ] Key items
--   [ ] PBs
 -   [ ] Game data
 -   [ ] Consider loading one-by-one instead of in groups (esp. for boxes)
 -   [ ] Nicer alerts for exports

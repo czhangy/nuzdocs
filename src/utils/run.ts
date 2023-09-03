@@ -1,9 +1,28 @@
 import CaughtPokemon from "@/models/CaughtPokemon";
 import LocationSegment from "@/models/LocationSegment";
 import Run from "@/models/Run";
+import Segment from "@/models/Segment";
 import Status from "@/models/Status";
-import { getGameData } from "@/utils/game";
+import { getGameData, getSegments } from "@/utils/game";
 import { generateID } from "@/utils/utils";
+
+// Helpers
+const setPB = (run: Run, battle: string): void => {
+    const storedPBs: string | null = localStorage.getItem("pbs");
+    const pbs: { [game: string]: string } = storedPBs ? JSON.parse(storedPBs) : {};
+    if (run.gameSlug in pbs) {
+        const segments: string[] = getSegments(run)
+            .filter((segment: Segment) => segment.type === "battle")
+            .map((segment: Segment) => segment.slug);
+        const prevIdx: number = segments.indexOf(pbs[run.gameSlug]);
+        if (segments.indexOf(battle) > prevIdx) {
+            pbs[run.gameSlug] = battle;
+        }
+    } else {
+        pbs[run.gameSlug] = battle;
+    }
+    localStorage.setItem("pbs", JSON.stringify(pbs));
+};
 
 // Constructors
 export const initEncounters = (run: Run): { [location: string]: Status } => {
@@ -190,6 +209,7 @@ export const removeFromCaughtPokemonSlugs = (runID: string, pokemonID: string): 
 export const addToClearedBattles = (id: string, battle: string): void => {
     const run: Run = getRun(id);
     run.clearedBattles.push(battle);
+    setPB(run, battle);
     setRun(id, run);
 };
 
