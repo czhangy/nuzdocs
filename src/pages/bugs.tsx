@@ -6,7 +6,7 @@ const Bugs: NextPage = () => {
     return (
         <>
             <Head>
-                <title>NuzlockeDB // Bugs</title>
+                <title>NuzDocs // Bugs</title>
             </Head>
             <BugsPage />
         </>

@@ -27,7 +27,7 @@ const RIPs: NextPage = () => {
     return (
         <>
             <Head>
-                <title>{run ? `${run.name} // RIPs` : "NuzlockeDB"}</title>
+                <title>{run ? `${run.name} // RIPs` : "NuzDocs"}</title>
             </Head>
             {run ? <RIPsPage run={run} /> : ""}
         </>

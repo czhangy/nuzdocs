@@ -11,7 +11,7 @@ const MainNavbar: React.FC = () => {
                     <div className={styles.logo}>
                         <Image src="/assets/images/nuzleaf.webp" alt="Logo" layout="fill" objectFit="contain" />
                     </div>
-                    <h1 className={styles["site-name"]}>NuzlockeDB</h1>
+                    <h1 className={styles["site-name"]}>NuzDocs</h1>
                 </a>
             </Link>
             <ul className={styles.links}>

@@ -4,7 +4,7 @@ import styles from "./AboutPage.module.scss";
 
 const AboutPage: React.FC = () => {
     // Static data
-    const pageNames: string[] = ["What is NuzlockeDB?", "What is a Nuzlocke?", "Resources", "Credits"];
+    const pageNames: string[] = ["What is NuzDocs?", "What is a Nuzlocke?", "Resources", "Credits"];
 
     // User state
     const [currentPage, setCurrentPage] = useState<number>(0);
@@ -28,7 +28,7 @@ const AboutPage: React.FC = () => {
                 >
                     <h2 className={styles.header}>{pageNames[0]}</h2>
                     <p className={styles.content}>
-                        NuzlockeDB is a resource intended to help players looking to complete a Nuzlocke run for any
+                        NuzDocs is a resource intended to help players looking to complete a Nuzlocke run for any
                         vanilla Pokémon game. This app can be used to track the progress of your run, search for details
                         on upcoming routes or Pokémon, and strategize your battles and encounters.
                     </p>
@@ -151,7 +151,7 @@ const AboutPage: React.FC = () => {
                 >
                     <h2 className={styles.header}>{pageNames[3]}</h2>
                     <p className={styles.content}>
-                        NuzlockeDB was developed by me,{" "}
+                        NuzDocs was developed by me,{" "}
                         <a href="https://czhangy.io/" target="_blank" rel="noreferrer" className={styles.link}>
                             Charles Zhang
                         </a>
@@ -186,7 +186,7 @@ const AboutPage: React.FC = () => {
                         <a href="https://nuzlocke.app/" target="_blank" rel="noreferrer" className={styles.link}>
                             Nuzlocke Tracker
                         </a>{" "}
-                        app for heavy inspiration 😊
+                        app for heavy inspiration! 😊
                     </p>
                 </section>
             </div>

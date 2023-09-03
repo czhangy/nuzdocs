@@ -29,7 +29,7 @@ const Summary: NextPage = () => {
     return (
         <>
             <Head>
-                <title>{run ? `${run.name} // Summary` : "NuzlockeDB"}</title>
+                <title>{run ? `${run.name} // Summary` : "NuzDocs"}</title>
             </Head>
             {run && pokemonID.length > 0 ? <SummaryPage run={run} pokemonID={pokemonID} /> : ""}
         </>

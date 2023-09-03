@@ -27,7 +27,7 @@ const Overview: NextPage = () => {
     return (
         <>
             <Head>
-                <title>{run ? `${run.name} // Overview` : "NuzlockeDB"}</title>
+                <title>{run ? `${run.name} // Overview` : "NuzDocs"}</title>
             </Head>
             {run ? <OverviewPage run={run} /> : ""}
         </>

@@ -6,7 +6,7 @@ const Career: NextPage = () => {
     return (
         <>
             <Head>
-                <title>NuzlockeDB // Career</title>
+                <title>NuzDocs // Career</title>
             </Head>
             <CareerPage />
         </>

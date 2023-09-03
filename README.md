@@ -3,7 +3,7 @@
 <!-- Title -->
 
 <img src="public/assets/images/nuzleaf.webp" alt="logo" width="200" height="auto" />
-<h1>NuzlockeDB</h1>
+<h1>NuzDocs</h1>
 
 <!-- Badges -->
 
@@ -48,9 +48,9 @@
 
 ### Summary
 
-NuzlockeDB is a web app designed as a tool for Nuzlocke runs in various Pokémon games, providing features like a run tracker, coverage calculator, damage calculator, etc. In its early development stages, the tracker will focus on RSE, but will expand once core features are implemented.
+NuzDocs is a web app designed as a tool for Nuzlocke runs in various Pokémon games, providing features like a run tracker, coverage calculator, damage calculator, etc. In its early development stages, the tracker will focus on RSE, but will expand once core features are implemented.
 
-The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzlocke-db.vercel.app/.
+The most up-to-date version of NuzDocs is currently deployed at: https://nuzdocs.vercel.app/.
 
 <!-- Tech Stack -->
 
