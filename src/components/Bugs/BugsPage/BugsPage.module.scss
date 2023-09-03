@@ -21,7 +21,6 @@
     display: flex;
     flex-direction: column;
     gap: var(--page-inner-spacing);
-    max-width: var(--page-max-width);
     min-height: calc(100vh - constants.$navbar-height - 2 * var(--page-y-padding));
     width: var(--page-width);
 

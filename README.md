@@ -122,6 +122,7 @@ The most up-to-date version of NuzlockeDB is currently deployed at: https://nuzl
 -   [ ] Double battle indicator
 -   [ ] Required battle indicator
 -   [ ] Add way to view/reset PBs
+-   [ ] Implement wiping
 
 ## License
 

@@ -16,6 +16,11 @@ const MainNavbar: React.FC = () => {
             </Link>
             <ul className={styles.links}>
                 <li>
+                    <Link href="/career">
+                        <a className={styles.link}>CAREER</a>
+                    </Link>
+                </li>
+                <li>
                     <Link href="/bugs">
                         <a className={styles.link}>BUGS</a>
                     </Link>
