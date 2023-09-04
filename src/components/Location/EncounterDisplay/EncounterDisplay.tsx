@@ -100,6 +100,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
             if (!isCustom(props.location)) {
                 const status: string = getStatus(props.run.id, props.location.slug);
                 if (status === "Caught") {
+                    updateDisplay(true, "");
                     const currentEncounter: CaughtPokemon = getLocationEncounter(props.run.id, props.location.slug);
                     fetchPokemon(currentEncounter.pastSlugs[0], props.run.gameSlug).then((pokemon: PokemonData) => {
                         updateDisplay(true, pokemon.pokemon.name);
@@ -119,7 +120,7 @@ const EncounterDisplay: React.FC<Props> = (props: Props) => {
             getGameData(props.run.gameSlug).pokedex.forEach((pokemon: PokemonName) => {
                 if (
                     pokemon.name.toLowerCase().includes(value.toLowerCase()) &&
-                    !props.run.caughtPokemonSlugs.includes(pokemon.slug)
+                    (!props.run.options.dupes || !props.run.caughtPokemonSlugs.includes(pokemon.slug))
                 ) {
                     newMatches.push(pokemon);
                 }
