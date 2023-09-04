@@ -1,6 +1,7 @@
 @use "@/styles/constants";
 
 .create-modal {
+    --desc-font-size: 0.75rem;
     --field-x-padding: 1rem;
     --form-inner-spacing: 1.5rem;
     --game-max-width: 120px;
@@ -13,7 +14,11 @@
     --header-font-size: 1.25rem;
     --input-font-size: 1rem;
     --input-y-padding: 0.5rem;
+    --label-font-size: 0.75rem;
+    --main-spacing: 0.5rem;
+    --main-inner-spacing: 0.5rem;
     --modal-width: 325px;
+    --toggle-x-padding: 1rem;
 
     display: flex;
     flex-direction: column;
@@ -69,18 +74,55 @@
                 pointer-events: none;
             }
         }
+
+        .settings {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+
+            .toggle {
+                width: 45%;
+
+                .main {
+                    align-items: center;
+                    display: flex;
+                    gap: var(--main-inner-spacing);
+                    margin-bottom: var(--main-spacing);
+
+                    .label {
+                        font-weight: bold;
+                        font-size: var(--label-font-size);
+                        line-height: var(--label-font-size);
+                    }
+                }
+
+                .desc {
+                    color: constants.$disabled-color;
+                    font-size: var(--desc-font-size);
+                }
+            }
+        }
     }
 }
 
 @media screen and (min-width: constants.$tablet) {
     .create-modal {
         --header-font-size: 1.5rem;
+        --label-font-size: 1rem;
+        --main-inner-spacing: 1rem;
         --modal-width: 400px;
     }
 }
 
 @media (hover: hover) {
-    .create-modal > .form > .games > .game:hover {
-        filter: none;
+    .create-modal > .form {
+        .games > .game:hover {
+            filter: none;
+        }
+
+        .settings > .toggle > .desc:hover {
+            color: constants.$text-color;
+            cursor: default;
+        }
     }
 }

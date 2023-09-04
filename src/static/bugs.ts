@@ -26,7 +26,7 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "General",
         },
         {
-            desc: "Pokemon with regional forms show up in all games' evolutions, even when not accessible",
+            desc: "Pokemon with regional forms show up in all games' evolutions, even when inaccessible",
             group: "General",
         },
         {
@@ -39,6 +39,10 @@ const bugs: { [priority: string]: Bug[] } = {
         },
         {
             desc: "Pokemon abilities carry through when they evolve, even when they can no longer have that abiilty",
+            group: "General",
+        },
+        {
+            desc: "Next level cap is not updating immediately on BattlePage",
             group: "General",
         },
     ],

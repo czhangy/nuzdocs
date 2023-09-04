@@ -1,0 +1,55 @@
+@use "@/styles/constants";
+
+.toggle {
+    --border-rad: 24px;
+    --border-size: 3px;
+    --thumb-size: calc(var(--toggle-height) - 10px);
+    --thumb-spacing: 2px;
+    --toggle-height: 20px;
+    --toggle-width: 40px;
+    --transition-time: 0.2s;
+
+    align-items: center;
+    border: var(--border-size) solid constants.$text-color;
+    border-radius: var(--border-rad);
+    display: flex;
+    position: relative;
+    height: var(--toggle-height);
+    width: var(--toggle-width);
+
+    .thumb {
+        background-color: constants.$text-color;
+        border-radius: 50%;
+        left: var(--thumb-spacing);
+        height: var(--thumb-size);
+        position: absolute;
+        transition: left var(--transition-time);
+        width: var(--thumb-size);
+    }
+}
+
+.active {
+    border-color: constants.$hover-color;
+
+    .thumb {
+        background-color: constants.$hover-color;
+        left: calc(100% - var(--thumb-size) - var(--thumb-spacing));
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .toggle {
+        --toggle-height: 24px;
+        --toggle-width: 48px;
+    }
+}
+
+@media (hover: hover) {
+    .toggle:hover {
+        border-color: constants.$hover-color;
+
+        .thumb {
+            background-color: constants.$hover-color;
+        }
+    }
+}

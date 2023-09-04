@@ -14,7 +14,7 @@
     --margin-bottom: 2rem;
     --match-x-padding: 1.5rem;
     --match-y-padding: 1rem;
-    --matches-max-height: 150px;
+    --matches-max-height: calc(3 * (var(--font-size) + 2 * var(--match-y-padding)) + 2 * var(--outline-size));
     --minimize-transition-time: 0.5s;
     --outline-size: 6px;
     --overlay-z: 99;

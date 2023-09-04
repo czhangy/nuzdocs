@@ -3,7 +3,8 @@
 .overview-page {
     --header-font-size: 2rem;
     --header-letter-spacing: 2px;
-    --header-spacing: 1rem;
+    --header-spacing: 3rem;
+    --notice-offset: -2rem;
     --notice-spacing: 3rem;
     --page-width: 350px;
     --page-y-padding: 2rem;
@@ -23,6 +24,7 @@
 
     .notice {
         margin-bottom: var(--notice-spacing);
+        margin-top: var(--notice-offset);
         text-align: center;
     }
 

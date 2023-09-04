@@ -2,6 +2,7 @@ import BattlePreview from "@/components/Battle/BattlePreview/BattlePreview";
 import FinishModal from "@/components/Battle/FinishModal/FinishModal";
 import PokemonCard from "@/components/Battle/PokemonCard/PokemonCard";
 import Modal from "@/components/Global/Modal/Modal";
+import NextLevelCap from "@/components/Segment/NextLevelCap/NextLevelCap";
 import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
@@ -11,7 +12,6 @@ import { getBattle } from "@/utils/battle";
 import { getStarterSlug } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./BattlePage.module.scss";
-import NextLevelCap from "@/components/Segment/NextLevelCap/NextLevelCap";
 
 type Props = {
     segment: Segment;
@@ -48,7 +48,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
 
     return (
         <div className={styles["battle-page"]}>
-            <NextLevelCap segment={props.segment.slug} run={props.run} />
+            {props.run.options.caps ? <NextLevelCap segment={props.segment.slug} run={props.run} /> : ""}
             <BattlePreview
                 segment={props.segment}
                 names={pokemon.map((pokemon: PokemonData) => pokemon.pokemon.name)}

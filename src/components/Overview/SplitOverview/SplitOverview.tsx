@@ -33,8 +33,14 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
                 <p className={styles.split}>
                     {isCleared(props.run.id, props.split.segments.at(-1)!.slug)
                         ? `👑 ${props.split.name}`
-                        : props.split.name}{" "}
-                    [{getLevelCap(props.run, props.split.segments.at(-1)!.slug, getStarterSlug(props.run.id))}]
+                        : props.split.name}
+                    {props.run.options.caps
+                        ? ` [${getLevelCap(
+                              props.run,
+                              props.split.segments.at(-1)!.slug,
+                              getStarterSlug(props.run.id)
+                          )}]`
+                        : ""}
                 </p>
                 <hr className={styles.line} />
                 <div className={`${styles.arrow} ${open ? styles.reversed : ""} disable-select`}>
