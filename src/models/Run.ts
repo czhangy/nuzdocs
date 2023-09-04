@@ -5,6 +5,7 @@ export default interface Run {
     id: string;
     name: string;
     gameSlug: string;
+    options: { caps: boolean; dupes: boolean };
     character: string;
     prevIdx: number;
     encounters: { [location: string]: Status };

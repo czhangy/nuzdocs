@@ -25,11 +25,12 @@ export const initEncounters = (run: Run): { [location: string]: Status } => {
     return encounters;
 };
 
-export const initRun = (id: string, name: string, game: string): Run => {
+export const initRun = (id: string, name: string, game: string, options: { caps: boolean; dupes: boolean }): Run => {
     const run: Run = {
         id: id,
         name: name,
         gameSlug: game,
+        options: options,
         character: getGameData(game).characters.length > 0 ? getGameData(game).characters[0].name! : "",
         prevIdx: 0,
         encounters: {},
@@ -43,7 +44,7 @@ export const initRun = (id: string, name: string, game: string): Run => {
     return run;
 };
 
-export const createRun = (name: string, game: string): string => {
+export const createRun = (name: string, game: string, options: { caps: boolean; dupes: boolean }): string => {
     const id: string = generateID(getRunIDs());
     const storedRuns: string | null = localStorage.getItem("runs");
     if (storedRuns) {
@@ -53,7 +54,7 @@ export const createRun = (name: string, game: string): string => {
     } else {
         localStorage.setItem("runs", JSON.stringify([id]));
     }
-    const run: Run = initRun(id, name, game);
+    const run: Run = initRun(id, name, game, options);
     localStorage.setItem(id, JSON.stringify(run));
     return id;
 };
