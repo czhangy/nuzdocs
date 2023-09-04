@@ -16,7 +16,7 @@
     --input-y-padding: 0.5rem;
     --label-font-size: 0.75rem;
     --main-spacing: 0.5rem;
-    --main-inner-spacing: 1rem;
+    --main-inner-spacing: 0.5rem;
     --modal-width: 325px;
     --toggle-x-padding: 1rem;
 
@@ -108,6 +108,7 @@
 @media screen and (min-width: constants.$tablet) {
     .create-modal {
         --header-font-size: 1.5rem;
+        --main-inner-spacing: 1rem;
         --modal-width: 400px;
     }
 }

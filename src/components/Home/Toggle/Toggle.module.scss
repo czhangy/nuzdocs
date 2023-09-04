@@ -5,8 +5,8 @@
     --border-size: 3px;
     --thumb-size: calc(var(--toggle-height) - 10px);
     --thumb-spacing: 2px;
-    --toggle-height: 24px;
-    --toggle-width: 48px;
+    --toggle-height: 20px;
+    --toggle-width: 40px;
     --transition-time: 0.2s;
 
     align-items: center;
@@ -34,6 +34,13 @@
     .thumb {
         background-color: constants.$hover-color;
         left: calc(100% - var(--thumb-size) - var(--thumb-spacing));
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .toggle {
+        --toggle-height: 24px;
+        --toggle-width: 48px;
     }
 }
 
