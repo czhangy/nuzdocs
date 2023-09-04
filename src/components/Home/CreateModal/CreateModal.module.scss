@@ -108,6 +108,7 @@
 @media screen and (min-width: constants.$tablet) {
     .create-modal {
         --header-font-size: 1.5rem;
+        --label-font-size: 1rem;
         --main-inner-spacing: 1rem;
         --modal-width: 400px;
     }

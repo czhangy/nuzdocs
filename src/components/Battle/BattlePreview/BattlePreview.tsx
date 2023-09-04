@@ -123,7 +123,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                     )}
                 </div>
             </div>
-            {hasLevelCap(props.segment) ? (
+            {props.run.options.caps && hasLevelCap(props.segment) ? (
                 <LevelCap level={getLevelCap(props.run, props.segment.slug, getStarterSlug(props.run.id))} />
             ) : (
                 ""

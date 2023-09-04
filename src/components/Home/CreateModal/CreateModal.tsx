@@ -74,7 +74,7 @@ const CreateModal: React.FC = () => {
                                 onToggle={() => setOptions({ ...options, dupes: !options.dupes })}
                             />
                         </div>
-                        <p className={styles.desc}>Allow duplicate encounters</p>
+                        <p className={styles.desc}>Disable duplicate encounters</p>
                     </div>
                 </div>
                 <button className="primary-button" disabled={!name || !selectedGame}>

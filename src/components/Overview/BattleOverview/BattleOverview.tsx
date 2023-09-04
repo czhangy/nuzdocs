@@ -55,7 +55,7 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
                         </div>
                     </div>
                 </div>
-                {hasLevelCap(props.battle) ? (
+                {props.run.options.caps && hasLevelCap(props.battle) ? (
                     <div className={styles["level-cap"]}>
                         <p className={styles.title}>Level Cap</p>
                         <p className={styles.level}>

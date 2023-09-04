@@ -46,7 +46,7 @@ const LocationPage: React.FC<Props> = (props: Props) => {
     return segment !== null && (currentLocation !== null || isCustom(segment)) ? (
         <div className={styles["location-page"]}>
             <div className={styles.info}>
-                <NextLevelCap segment={segment.slug} run={props.run} />
+                {props.run.options.caps ? <NextLevelCap segment={segment.slug} run={props.run} /> : ""}
                 {segment.slug === getGameData(props.run.gameSlug).startingTown &&
                 getGameData(props.run.gameSlug).characters.length > 1 ? (
                     <CharacterSelect run={props.run} />

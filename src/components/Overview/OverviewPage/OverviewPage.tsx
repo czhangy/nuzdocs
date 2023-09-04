@@ -25,7 +25,7 @@ const OverviewPage: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["overview-page"]}>
             <h2 className={styles.header}>Overview</h2>
-            <p className={styles.notice}>*Level caps noted at the top of each split*</p>
+            {props.run.options.caps ? <p className={styles.notice}>*Level caps noted at the top of each split*</p> : ""}
             <ul className={styles.splits}>
                 {getGameData(props.run.gameSlug).splits.map((split: Split, idx: number) => (
                     <li key={split.name}>
