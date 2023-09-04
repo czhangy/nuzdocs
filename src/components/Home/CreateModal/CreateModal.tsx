@@ -1,3 +1,4 @@
+import Toggle from "@/components/Home/Toggle/Toggle";
 import { getGame, getGameSlugs } from "@/utils/game";
 import { createRun } from "@/utils/run";
 import Image from "next/image";
@@ -7,13 +8,17 @@ import styles from "./CreateModal.module.scss";
 
 const CreateModal: React.FC = () => {
     // Form states
-    const [selectedName, setSelectedName] = useState<string>("");
+    const [name, setName] = useState<string>("");
     const [selectedGame, setSelectedGame] = useState<string>("");
+    const [options, setOptions] = useState<{ caps: boolean; dupes: boolean }>({
+        caps: false,
+        dupes: false,
+    });
 
     // Creates a run in local storage and adds the run to the run list, then redirects
     const handleCreate = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        Router.push(`/runs/${createRun(selectedName, selectedGame)}/0`);
+        Router.push(`/runs/${createRun(name, selectedGame)}/0`);
     };
 
     return (
@@ -25,8 +30,8 @@ const CreateModal: React.FC = () => {
                     maxLength={30}
                     placeholder="Name your run..."
                     type="text"
-                    value={selectedName}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => setSelectedName(e.target.value)}
+                    value={name}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
                     spellCheck={false}
                 />
                 <div className={styles.games}>
@@ -50,7 +55,29 @@ const CreateModal: React.FC = () => {
                         );
                     })}
                 </div>
-                <button className="primary-button" disabled={!selectedName || !selectedGame}>
+                <div className={styles.settings}>
+                    <div className={styles.toggle}>
+                        <div className={styles.main}>
+                            <p className={styles.label}>Level Caps</p>
+                            <Toggle
+                                enabled={options.caps}
+                                onToggle={() => setOptions({ ...options, caps: !options.caps })}
+                            />
+                        </div>
+                        <p className={styles.desc}>Show max levels for boss battles</p>
+                    </div>
+                    <div className={styles.toggle}>
+                        <div className={styles.main}>
+                            <p className={styles.label}>Dupe Clause</p>
+                            <Toggle
+                                enabled={options.dupes}
+                                onToggle={() => setOptions({ ...options, dupes: !options.dupes })}
+                            />
+                        </div>
+                        <p className={styles.desc}>Allow duplicate encounters</p>
+                    </div>
+                </div>
+                <button className="primary-button" disabled={!name || !selectedGame}>
                     Start!
                 </button>
             </form>

@@ -114,7 +114,6 @@ The most up-to-date version of NuzDocs is currently deployed at: https://nuzdocs
 -   [ ] Coverage graphs
 -   [ ] Add way to still show duplicates, but mark them
 -   [ ] Box filters
--   [ ] Customizable run settings
 -   [ ] Key items
 -   [ ] Game data
 -   [ ] Consider loading one-by-one instead of in groups (esp. for boxes)
