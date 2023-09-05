@@ -2,7 +2,8 @@ import LocationSegment from "@/models/LocationSegment";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { getSegments } from "@/utils/game";
-import { getStarterSlug } from "./run";
+import { getStarterSlug, isCleared } from "./run";
+import { getLevelCap } from "./battle";
 
 // Getters
 export const getSegment = (run: Run, slug: string): Segment => {
@@ -42,4 +43,14 @@ export const isCustom = (segment: Segment): boolean => {
 // Queries
 export const getNumBattles = (run: Run): number => {
     return getSegments(run).filter((segment: Segment) => segment.type === "battle").length;
+};
+
+export const getNextLevelCap = (run: Run): number => {
+    const segments: Segment[] = getSegments(run);
+    for (const segment of segments) {
+        if (!isCleared(run.id, segment.slug) && hasLevelCap(segment)) {
+            return getLevelCap(run, segment.slug, getStarterSlug(run.id));
+        }
+    }
+    return 0;
 };

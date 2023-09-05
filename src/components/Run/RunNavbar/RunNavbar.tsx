@@ -25,6 +25,7 @@ const RunNavbar: React.FC = () => {
     return run ? (
         <Navbar>
             <div className={styles["run-navbar"]}>
+                <p>{run.prevIdx}</p>
                 <Link href="/">
                     <a className={styles.game}>
                         <p className={styles["back-arrow"]}>←</p>

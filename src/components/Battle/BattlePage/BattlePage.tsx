@@ -8,10 +8,12 @@ import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { fetchPokemonList } from "@/utils/api";
-import { getBattle } from "@/utils/battle";
-import { getStarterSlug } from "@/utils/run";
+import { getBattle, getLevelCap } from "@/utils/battle";
+import { getStarterSlug, isCleared } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./BattlePage.module.scss";
+import { getSegments } from "@/utils/game";
+import { getNextLevelCap, hasLevelCap } from "@/utils/segment";
 
 type Props = {
     segment: Segment;
@@ -24,6 +26,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
 
     // Internal state
     const [sets, setSets] = useState<Pokemon[]>([]);
+    const [levelCap, setLevelCap] = useState<number>(0);
 
     // Fetched state
     const [pokemon, setPokemon] = useState<PokemonData[]>([]);
@@ -32,6 +35,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (props.segment && props.run) {
             setSets(getBattle(props.run, props.segment.slug, getStarterSlug(props.run.id)).team);
+            setLevelCap(getNextLevelCap(props.run));
         }
     }, [props.segment, props.run]);
 
@@ -48,11 +52,16 @@ const BattlePage: React.FC<Props> = (props: Props) => {
 
     return (
         <div className={styles["battle-page"]}>
-            {props.run.options.caps ? <NextLevelCap segment={props.segment.slug} run={props.run} /> : ""}
+            {props.run.options.caps ? (
+                <NextLevelCap segment={props.segment.slug} run={props.run} level={levelCap} />
+            ) : (
+                ""
+            )}
             <BattlePreview
                 segment={props.segment}
                 names={pokemon.map((pokemon: PokemonData) => pokemon.pokemon.name)}
                 run={props.run}
+                onUpdate={() => setLevelCap(getNextLevelCap(props.run))}
                 onFinish={() => setOpen(true)}
             />
             {pokemon.length === sets.length ? (

@@ -41,10 +41,6 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Pokemon abilities carry through when they evolve, even when they can no longer have that abiilty",
             group: "General",
         },
-        {
-            desc: "Next level cap is not updating immediately on BattlePage",
-            group: "General",
-        },
     ],
     Low: [
         {

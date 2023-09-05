@@ -20,6 +20,7 @@ type Props = {
     segment: Segment;
     names: string[];
     run: Run;
+    onUpdate: () => void;
     onFinish: () => void;
 };
 
@@ -41,6 +42,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
             updateNumHOFs(props.run.gameSlug, 1);
             props.onFinish();
         }
+        props.onUpdate();
     };
 
     // Sets component state and updates local storage when undo is clicked
@@ -50,6 +52,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
         if (props.segment.slug === getSegments(props.run).at(-1)!.slug) {
             updateNumHOFs(props.run.gameSlug, -1);
         }
+        props.onUpdate();
     };
 
     // Save battle team to clipboard
