@@ -17,10 +17,9 @@ const SegmentPage: React.FC<Props> = (props) => {
     // Internal state
     const [segment, setSegment] = useState<Segment | null>(null);
 
-    // Save segment as previous segment on nav
+    // Save segment on nav
     useEffect(() => {
         if (props.idx !== undefined && props.run !== undefined) {
-            setPrevIdx(props.run.id, props.idx);
             setSegment(getSegments(props.run)[props.idx]);
         }
     }, [props.idx, props.run]);

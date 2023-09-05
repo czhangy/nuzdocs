@@ -15,10 +15,6 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Underwater encounters display as part of their routes, not in the underwater location",
             group: "Emerald",
         },
-        {
-            desc: "Run navigation through the navbar doesn't update previous segment until refreshed",
-            group: "General",
-        },
     ],
     Medium: [
         {
