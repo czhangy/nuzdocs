@@ -7,6 +7,7 @@ import LocationData from "@/models/LocationData";
 import MoveData from "@/models/MoveData";
 import NamedResource from "@/models/NamedResource";
 import MyPokemon from "@/models/Pokemon";
+import MyPokemonAbility from "@/models/PokemonAbility";
 import PokemonData from "@/models/PokemonData";
 import PokemonMove from "@/models/PokemonMove";
 import PokemonName from "@/models/PokemonName";
@@ -23,6 +24,7 @@ import {
     Name,
     NamedAPIResource,
     Pokemon,
+    PokemonAbility,
     PokemonMoveVersion,
     PokemonPastType,
     PokemonSpecies,
@@ -43,7 +45,7 @@ export const initPokemonData = (
     pokemon: Pokemon,
     species: PokemonSpecies,
     evolutions: string[][],
-    abilities: string[],
+    abilities: MyPokemonAbility[],
     generation: string,
     group: string
 ): PokemonData => {
@@ -125,6 +127,7 @@ export const initCaughtPokemon = (pokemon: MyPokemon, locationSlug: string, runI
         nickname: pokemon.species,
         locationSlug: locationSlug,
         pastSlugs: [pokemon.slug],
+        abilityNum: 1,
     };
 };
 
@@ -228,5 +231,13 @@ export const initNamedResource = (slug: string, name: string): NamedResource => 
     return {
         slug: slug,
         name: name,
+    };
+};
+
+export const initPokemonAbility = (ability: PokemonAbility): MyPokemonAbility => {
+    return {
+        slug: ability.ability.name,
+        hidden: ability.is_hidden,
+        slot: ability.slot,
     };
 };

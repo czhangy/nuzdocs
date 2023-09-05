@@ -6,4 +6,5 @@ export default interface CaughtPokemon {
     nickname: string;
     locationSlug: string;
     pastSlugs: string[];
+    abilityNum: number;
 }

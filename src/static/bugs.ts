@@ -34,7 +34,7 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "General",
         },
         {
-            desc: "Pokemon abilities carry through when they evolve, even when they can no longer have that abiilty",
+            desc: "There's currently no way to detect if a Pokemon has a non-hidden ability that is only available in later generations",
             group: "General",
         },
     ],

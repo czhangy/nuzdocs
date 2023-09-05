@@ -1,16 +1,16 @@
 import Modal from "@/components/Global/Modal/Modal";
 import MoveModal from "@/components/Summary/MoveModal/MoveModal";
 import Moveset from "@/components/Summary/Moveset/Moveset";
+import Stats from "@/components/Summary/Stats/Stats";
 import SummaryHeader from "@/components/Summary/SummaryHeader/SummaryHeader";
 import SummaryInfo from "@/components/Summary/SummaryInfo/SummaryInfo";
-import Stats from "@/components/Summary/Stats/Stats";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import NamedResource from "@/models/NamedResource";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import Values from "@/models/Values";
 import { fetchPokemon } from "@/utils/api";
-import { getBox, getRIPs, getRun, isAlive, updateBox, updateRIPs } from "@/utils/run";
+import { getRun, isAlive, updateBox, updateRIPs } from "@/utils/run";
 import { useEffect, useState } from "react";
 import styles from "./SummaryPage.module.scss";
 
@@ -45,9 +45,9 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
     };
 
     // Update ability in local storage
-    const handleAbilityUpdate = (ability: NamedResource): void => {
+    const handleAbilityUpdate = (num: number): void => {
         const newCaughtPokemon: CaughtPokemon = JSON.parse(JSON.stringify(caughtPokemon));
-        newCaughtPokemon.pokemon.ability = ability;
+        newCaughtPokemon.abilityNum = num;
         handleUpdate(newCaughtPokemon);
     };
 
@@ -87,13 +87,13 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
     };
 
     // Update Pokemon in local storage
-    const handleUpdate = (newPokemon: CaughtPokemon): void => {
-        if (isAlive(props.run.id, newPokemon.id)) {
-            updateBox(props.run.id, newPokemon);
+    const handleUpdate = (pokemon: CaughtPokemon): void => {
+        if (isAlive(props.run.id, pokemon.id)) {
+            updateBox(props.run.id, pokemon);
         } else {
-            updateRIPs(props.run.id, newPokemon);
+            updateRIPs(props.run.id, pokemon);
         }
-        setCaughtPokemon(newPokemon);
+        setCaughtPokemon(pokemon);
         setSelectedIdx(null);
         setMoveModalOpen(false);
     };
@@ -107,6 +107,8 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
     // Find Pokemon on page load
     useEffect(() => {
         if (props.run && props.pokemonID) {
+            setCaughtPokemon(null);
+            setPokemonData(null);
             const pokemonList: CaughtPokemon[] = isAlive(props.run.id, props.pokemonID)
                 ? getRun(props.run.id).box
                 : getRun(props.run.id).rips;
@@ -133,7 +135,7 @@ const SummaryPage: React.FC<Props> = (props: Props) => {
                 pokemonData={pokemonData}
                 game={props.run.gameSlug}
                 onLevelUpdate={(level: number) => handleLevelUpdate(level)}
-                onAbilityUpdate={(ability: NamedResource) => handleAbilityUpdate(ability)}
+                onAbilityUpdate={(num: number) => handleAbilityUpdate(num)}
                 onNatureUpdate={(nature: string) => handleNatureUpdate(nature)}
             />
             <Moveset

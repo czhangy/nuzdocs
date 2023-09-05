@@ -44,7 +44,7 @@ const Dropdown: React.FC<Props> = (props: Props) => {
                 onClick={() => setOpen(false)}
                 onScroll={() => setOpen(false)}
             />
-            <div className={styles.controller} onClick={() => setOpen(true)} style={getStyling()}>
+            <div className={styles.controller} onClick={() => setOpen(props.options.length > 0)} style={getStyling()}>
                 <p className={styles.display}>{props.value ? props.value : props.placeholder}</p>
                 <div className={`${styles.arrow} ${open ? styles.flipped : ""} disable-select`}>
                     <Image
