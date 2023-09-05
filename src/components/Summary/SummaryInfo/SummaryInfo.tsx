@@ -100,9 +100,27 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
                 <div className={styles.value}>
                     <Dropdown
                         placeholder="???"
-                        value={abilities.length > 0 ? abilities[props.caughtPokemon.abilityNum - 1].name : null}
+                        value={
+                            abilities.length > 0
+                                ? abilities.find(
+                                      (ability: AbilityData) =>
+                                          props.pokemonData.abilities.find(
+                                              (ability: PokemonAbility) =>
+                                                  ability.slot === props.caughtPokemon.abilityNum
+                                          )!.slug === ability.slug
+                                  )!.name
+                                : null
+                        }
                         options={getAbilityNames()}
-                        onSelect={(name: string) => props.onAbilityUpdate(getAbilityNames().indexOf(name) + 1)}
+                        onSelect={(name: string) =>
+                            props.onAbilityUpdate(
+                                props.pokemonData.abilities.find(
+                                    (ability: PokemonAbility) =>
+                                        ability.slug ===
+                                        abilities.find((ability: AbilityData) => ability.name === name)!.slug
+                                )!.slot
+                            )
+                        }
                         border={false}
                         minWidth={150}
                     />
