@@ -125,3 +125,7 @@ export const isInvalidForm = (form: string): boolean => {
     ];
     return invalidForms.some((suffix: string) => form.endsWith(suffix));
 };
+
+export const isNumeric = (num: string): boolean => {
+    return /^-?\d+$/.test(num);
+};

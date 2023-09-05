@@ -15,10 +15,6 @@ const bugs: { [priority: string]: Bug[] } = {
             desc: "Underwater encounters display as part of their routes, not in the underwater location",
             group: "Emerald",
         },
-        {
-            desc: "Run navigation through the navbar doesn't update previous segment until refreshed",
-            group: "General",
-        },
     ],
     Medium: [
         {
@@ -39,10 +35,6 @@ const bugs: { [priority: string]: Bug[] } = {
         },
         {
             desc: "Pokemon abilities carry through when they evolve, even when they can no longer have that abiilty",
-            group: "General",
-        },
-        {
-            desc: "Next level cap is not updating immediately on BattlePage",
             group: "General",
         },
     ],

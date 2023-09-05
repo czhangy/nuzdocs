@@ -120,7 +120,6 @@ The most up-to-date version of NuzDocs is currently deployed at: https://nuzdocs
 -   [ ] Nicer alerts for exports
 -   [ ] Double battle indicator
 -   [ ] Required battle indicator
--   [ ] Implement wiping
 
 ## License
 

@@ -10,7 +10,7 @@ import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { fetchLocation } from "@/utils/api";
 import { getGameData, getSegments } from "@/utils/game";
-import { isCustom } from "@/utils/segment";
+import { getNextLevelCap, isCustom } from "@/utils/segment";
 import { useEffect, useState } from "react";
 import styles from "./LocationPage.module.scss";
 
@@ -46,7 +46,11 @@ const LocationPage: React.FC<Props> = (props: Props) => {
     return segment !== null && (currentLocation !== null || isCustom(segment)) ? (
         <div className={styles["location-page"]}>
             <div className={styles.info}>
-                {props.run.options.caps ? <NextLevelCap segment={segment.slug} run={props.run} /> : ""}
+                {props.run.options.caps ? (
+                    <NextLevelCap segment={segment.slug} run={props.run} level={getNextLevelCap(props.run)} />
+                ) : (
+                    ""
+                )}
                 {segment.slug === getGameData(props.run.gameSlug).startingTown &&
                 getGameData(props.run.gameSlug).characters.length > 1 ? (
                     <CharacterSelect run={props.run} />

@@ -2,7 +2,8 @@ import Navbar from "@/components/Global/Navbar/Navbar";
 import NavMenu from "@/components/Run/NavMenu/NavMenu";
 import Run from "@/models/Run";
 import { getGame } from "@/utils/game";
-import { getRun } from "@/utils/run";
+import { getRun, setPrevIdx } from "@/utils/run";
+import { isNumeric } from "@/utils/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -18,9 +19,14 @@ const RunNavbar: React.FC = () => {
     // Validate run and set game for valid runs
     useEffect(() => {
         if (router.isReady) {
-            setRun(getRun(router.query.runID as string));
+            const runID: string = router.query.runID as string;
+            const idx: string = router.query.idx as string;
+            if (isNumeric(idx)) {
+                setPrevIdx(runID, parseInt(idx));
+            }
+            setRun(getRun(runID));
         }
-    }, [router.isReady, router.query.runID, router.query.segmentSlug]);
+    }, [router.isReady, router.asPath, router.query.runID, router.query.idx]);
 
     return run ? (
         <Navbar>
