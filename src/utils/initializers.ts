@@ -45,7 +45,7 @@ export const initPokemonData = (
     pokemon: Pokemon,
     species: PokemonSpecies,
     evolutions: string[][],
-    abilities: string[],
+    abilities: MyPokemonAbility[],
     generation: string,
     group: string
 ): PokemonData => {

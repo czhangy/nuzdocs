@@ -11,6 +11,7 @@ import { fetchPokemon } from "@/utils/api";
 import { getPokemonTier } from "@/utils/utils";
 import { useEffect, useState } from "react";
 import styles from "./PokedexPage.module.scss";
+import PokemonAbility from "@/models/PokemonAbility";
 
 type Props = {
     pokemon: string;
@@ -50,7 +51,10 @@ const PokedexPage: React.FC<Props> = (props: Props) => {
                 <PokemonDisplay pokemon={pokemon} runID={props.run.id} />
                 <TierCard tier={getPokemonTier(props.pokemon, props.run.gameSlug)} />
             </div>
-            <Abilities abilities={pokemon.abilities} game={props.run.gameSlug} />
+            <Abilities
+                abilities={pokemon.abilities.map((ability: PokemonAbility) => ability.slug)}
+                game={props.run.gameSlug}
+            />
             <BaseStats stats={pokemon.stats} />
             <Learnset moves={learnset} game={props.run.gameSlug} />
             {pokemon.evolutions.some((chain: string[]) => chain.length > 1) ? (

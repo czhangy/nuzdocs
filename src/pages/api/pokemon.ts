@@ -1,6 +1,7 @@
+import MyPokemonAbility from "@/models/PokemonAbility";
 import PokemonData from "@/models/PokemonData";
 import priorities from "@/static/priorities";
-import { initPokemonData } from "@/utils/initializers";
+import { initPokemonAbility, initPokemonData } from "@/utils/initializers";
 import { isInvalidForm } from "@/utils/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
@@ -76,18 +77,15 @@ const fetchPokemonEvolutionChains = async (species: PokemonSpecies): Promise<str
     }
 };
 
-const fetchPokemon = async (pokemonSlug: string, generation: string, group: string): Promise<PokemonData> => {
+const fetchPokemon = async (slug: string, generation: string, group: string): Promise<PokemonData> => {
     const api: PokemonClient = new PokemonClient();
     try {
-        const pokemon: Pokemon = await api.getPokemonByName(pokemonSlug);
+        const pokemon: Pokemon = await api.getPokemonByName(slug);
         const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemon.species.name);
         const evolutions: string[][] = await fetchPokemonEvolutionChains(species);
-        const abilities: string[] =
-            priorities.generations.indexOf(generation) < 5
-                ? pokemon.abilities
-                      .filter((ability: PokemonAbility) => !ability.is_hidden)
-                      .map((ability: PokemonAbility) => ability.ability.name)
-                : pokemon.abilities.map((ability: PokemonAbility) => ability.ability.name);
+        const abilities: MyPokemonAbility[] = pokemon.abilities
+            .filter((ability: PokemonAbility) => !ability.is_hidden || priorities.generations.indexOf(generation) >= 4)
+            .map((ability: PokemonAbility) => initPokemonAbility(ability));
         return initPokemonData(pokemon, species, evolutions, abilities, generation, group);
     } catch (error: any) {
         throw error;

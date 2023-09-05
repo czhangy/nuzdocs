@@ -2,14 +2,15 @@ import Dropdown from "@/components/Global/Dropdown/Dropdown";
 import AbilityData from "@/models/AbilityData";
 import CaughtPokemon from "@/models/CaughtPokemon";
 import NamedResource from "@/models/NamedResource";
+import PokemonAbility from "@/models/PokemonAbility";
 import PokemonData from "@/models/PokemonData";
 import { fetchAbilities } from "@/utils/api";
+import { initNamedResource } from "@/utils/initializers";
 import { getListOfNatures } from "@/utils/natures";
 import { getTypeCardSrc } from "@/utils/utils";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
 import styles from "./SummaryInfo.module.scss";
-import { initNamedResource } from "@/utils/initializers";
 
 type Props = {
     caughtPokemon: CaughtPokemon;
@@ -59,9 +60,10 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
     // Fetch the ability data for the given Pokemon on component load
     useEffect(() => {
         if (props.pokemonData && props.game) {
-            fetchAbilities(props.pokemonData.abilities, props.game).then((abilities: AbilityData[]) =>
-                setAbilities(abilities)
-            );
+            fetchAbilities(
+                props.pokemonData.abilities.map((ability: PokemonAbility) => ability.slug),
+                props.game
+            ).then((abilities: AbilityData[]) => setAbilities(abilities));
         }
     }, [props.pokemonData, props.game]);
 
