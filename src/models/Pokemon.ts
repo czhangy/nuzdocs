@@ -7,7 +7,6 @@ export default interface Pokemon {
     level?: number;
     nature?: string;
     ability?: NamedResource;
-    abilityNum?: number;
     item?: NamedResource;
     moves: NamedResource[];
     ivs: Values;

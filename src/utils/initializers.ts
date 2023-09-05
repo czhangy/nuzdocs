@@ -127,6 +127,7 @@ export const initCaughtPokemon = (pokemon: MyPokemon, locationSlug: string, runI
         nickname: pokemon.species,
         locationSlug: locationSlug,
         pastSlugs: [pokemon.slug],
+        abilityNum: 1,
     };
 };
 

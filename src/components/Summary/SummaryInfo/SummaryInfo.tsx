@@ -1,7 +1,6 @@
 import Dropdown from "@/components/Global/Dropdown/Dropdown";
 import AbilityData from "@/models/AbilityData";
 import CaughtPokemon from "@/models/CaughtPokemon";
-import NamedResource from "@/models/NamedResource";
 import PokemonAbility from "@/models/PokemonAbility";
 import PokemonData from "@/models/PokemonData";
 import { fetchAbilities } from "@/utils/api";
@@ -17,7 +16,7 @@ type Props = {
     pokemonData: PokemonData;
     game: string;
     onLevelUpdate: (level: number) => void;
-    onAbilityUpdate: (ability: NamedResource) => void;
+    onAbilityUpdate: (num: number) => void;
     onNatureUpdate: (nature: string) => void;
 };
 
@@ -101,15 +100,9 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
                 <div className={styles.value}>
                     <Dropdown
                         placeholder="???"
-                        value={
-                            abilities.length > 0 && props.caughtPokemon.pokemon.ability
-                                ? props.caughtPokemon.pokemon.ability.name
-                                : null
-                        }
+                        value={abilities.length > 0 ? abilities[props.caughtPokemon.abilityNum - 1].name : null}
                         options={getAbilityNames()}
-                        onSelect={(name: string) =>
-                            props.onAbilityUpdate(initNamedResource(getAbilitySlug(name), name))
-                        }
+                        onSelect={(name: string) => props.onAbilityUpdate(getAbilityNames().indexOf(name) + 1)}
                         border={false}
                         minWidth={150}
                     />
