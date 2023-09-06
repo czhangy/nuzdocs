@@ -1,5 +1,4 @@
 import EvolveModal from "@/components/Box/EvolveModal/EvolveModal";
-import FormChangeModal from "@/components/Box/FormChangeModal/FormChangeModal";
 import Modal from "@/components/Global/Modal/Modal";
 import Box from "@/components/Run/Box/Box";
 import RIPModal from "@/components/Run/RIPModal/RIPModal";
@@ -20,7 +19,6 @@ const BoxPage: React.FC<Props> = (props: Props) => {
 
     // Component state
     const [evolveModalOpen, setEvolveModalOpen] = useState<boolean>(false);
-    const [formChangeModalOpen, setFormChangeModalOpen] = useState<boolean>(false);
     const [ripModalOpen, setRIPModalOpen] = useState<boolean>(false);
 
     // Internal data state
@@ -30,7 +28,6 @@ const BoxPage: React.FC<Props> = (props: Props) => {
     // Close all modals
     const closeModals = () => {
         setEvolveModalOpen(false);
-        setFormChangeModalOpen(false);
         setRIPModalOpen(false);
     };
 
@@ -44,12 +41,6 @@ const BoxPage: React.FC<Props> = (props: Props) => {
     const handleEvolveAttempt = (pokemon: PokemonData, id: string) => {
         handleSelect(pokemon, id);
         setEvolveModalOpen(true);
-    };
-
-    // Update state and open evolve modal
-    const handleFormChangeAttempt = (pokemon: PokemonData, id: string) => {
-        handleSelect(pokemon, id);
-        setFormChangeModalOpen(true);
     };
 
     // Update state and open RIP modal
@@ -79,15 +70,6 @@ const BoxPage: React.FC<Props> = (props: Props) => {
         handleClose();
     };
 
-    // Change the form of the Pokemon, updating component + local storage and closing the modal
-    const handleFormChange = (selection: PokemonData) => {
-        const updatedPokemon: CaughtPokemon = boxPokemon.find((pokemon: CaughtPokemon) => pokemon.id === selectedID)!;
-        updatedPokemon.pokemon.slug = selection.pokemon.slug;
-        updateBox(props.run.id, updatedPokemon);
-        setBoxPokemon(getBox(props.run.id));
-        handleClose();
-    };
-
     // RIP the Pokemon, updating component + local storage and closing the modal
     const handleRIP = () => {
         addToRIPs(props.run.id, boxPokemon.find((pokemon: CaughtPokemon) => pokemon.id === selectedID)!);
@@ -108,7 +90,6 @@ const BoxPage: React.FC<Props> = (props: Props) => {
                 box={boxPokemon}
                 run={props.run}
                 onEvolve={(pokemon: PokemonData, id: string) => handleEvolveAttempt(pokemon, id)}
-                onFormChange={(pokemon: PokemonData, id: string) => handleFormChangeAttempt(pokemon, id)}
                 onRIP={(pokemon: PokemonData, id: string) => handleRIPAttempt(pokemon, id)}
             />
             <Modal open={evolveModalOpen} onClose={handleClose}>
@@ -117,18 +98,6 @@ const BoxPage: React.FC<Props> = (props: Props) => {
                         pokemon={selectedPokemon}
                         gameSlug={props.run.gameSlug}
                         onEvolve={(selection: PokemonData) => handleEvolve(selection)}
-                        onClose={handleClose}
-                    />
-                ) : (
-                    ""
-                )}
-            </Modal>
-            <Modal open={formChangeModalOpen} onClose={handleClose}>
-                {selectedPokemon && formChangeModalOpen ? (
-                    <FormChangeModal
-                        pokemon={selectedPokemon}
-                        gameSlug={props.run.gameSlug}
-                        onFormChange={(selection: PokemonData) => handleFormChange(selection)}
                         onClose={handleClose}
                     />
                 ) : (

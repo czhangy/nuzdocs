@@ -11,7 +11,6 @@ type Props = {
     inverted: boolean;
     onClose: () => void;
     onEvolve?: () => void;
-    onFormChange?: () => void;
     onRIP?: () => void;
     onRevive?: () => void;
     onExport?: () => void;
@@ -32,16 +31,6 @@ const BoxMenu: React.FC<Props> = (props: Props) => {
                         onClick={props.onEvolve}
                     >
                         Evolve
-                    </button>
-                ) : (
-                    ""
-                )}
-                {props.onFormChange ? (
-                    <button
-                        className={`${styles.option} ${props.pokemon.forms.length === 1 ? styles.disabled : ""}`}
-                        onClick={props.onFormChange}
-                    >
-                        Forms
                     </button>
                 ) : (
                     ""

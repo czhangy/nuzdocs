@@ -94,9 +94,6 @@ export const initPokemonData = (
         sprite: sprite,
         stats: stats,
         evolutions: evolutions,
-        forms: species.varieties
-            .map((form: PokemonSpeciesVariety) => form.pokemon.name)
-            .filter((form: string) => !isInvalidForm(form)),
         abilities: abilities,
         movepool: movepool,
     };

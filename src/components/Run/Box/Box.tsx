@@ -12,7 +12,6 @@ type Props = {
     box: CaughtPokemon[];
     run: Run;
     onEvolve?: (pokemon: PokemonData, id: string) => void;
-    onFormChange?: (pokemon: PokemonData, id: string) => void;
     onRIP?: (pokemon: PokemonData, id: string) => void;
     onRevive?: (pokemon: PokemonData, id: string) => void;
 };
@@ -43,12 +42,6 @@ const Box: React.FC<Props> = (props: Props) => {
     const handleEvolve = (pokemon: PokemonData, id: string): void => {
         setActiveIdx(null);
         props.onEvolve!(pokemon, id);
-    };
-
-    // Close menu and propagate up
-    const handleFormChange = (pokemon: PokemonData, id: string): void => {
-        setActiveIdx(null);
-        props.onFormChange!(pokemon, id);
     };
 
     // Close menu and propagate up
@@ -116,7 +109,6 @@ const Box: React.FC<Props> = (props: Props) => {
                             inverted={isInverted[idx]}
                             onClose={() => setActiveIdx(null)}
                             onEvolve={() => handleEvolve(pokemon, sets[idx].id)}
-                            onFormChange={() => handleFormChange(pokemon, sets[idx].id)}
                             onRIP={() => handleRIP(pokemon, sets[idx].id)}
                             onExport={() => handleExport(sets[idx], pokemon.pokemon.name)}
                         />

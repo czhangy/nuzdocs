@@ -22,14 +22,6 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "General",
         },
         {
-            desc: "Pokemon with regional forms show up in all games' evolutions, even when inaccessible",
-            group: "General",
-        },
-        {
-            desc: "Pokemon with different forms can evolve between forms, such as Zigzagoon/Linoone/Obstagoon",
-            group: "General",
-        },
-        {
             desc: "Pokemon cannot learn moves from their past evolutions if they are no longer part of its moveset",
             group: "General",
         },
