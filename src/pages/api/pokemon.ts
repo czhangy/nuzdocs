@@ -12,6 +12,7 @@ import {
     PokemonAbility,
     PokemonClient,
     PokemonSpecies,
+    PokemonSpeciesVariety,
 } from "pokenode-ts";
 
 type ResData = {
@@ -46,20 +47,15 @@ const isPokemonListRequest = (req: NextApiRequest): boolean => {
 const createEvolutionChains = async (stage: ChainLink, chain: string[], chains: string[][]): Promise<void> => {
     const api: PokemonClient = new PokemonClient();
     const species: PokemonSpecies = await api.getPokemonSpeciesByName(stage.species.name);
-    for (const form of species.varieties) {
-        if (isInvalidForm(form.pokemon.name)) {
-            continue;
+    chain.push(species.varieties.find((psv: PokemonSpeciesVariety) => psv.is_default)!.pokemon.name);
+    if (stage.evolves_to.length === 0) {
+        chains.push([...chain]);
+    } else {
+        for (const link of stage.evolves_to) {
+            await createEvolutionChains(link, chain, chains);
         }
-        chain.push(form.pokemon.name);
-        if (stage.evolves_to.length === 0) {
-            chains.push([...chain]);
-        } else {
-            for (const link of stage.evolves_to) {
-                await createEvolutionChains(link, chain, chains);
-            }
-        }
-        chain.pop();
     }
+    chain.pop();
 };
 
 const fetchPokemonEvolutionChains = async (species: PokemonSpecies): Promise<string[][]> => {
