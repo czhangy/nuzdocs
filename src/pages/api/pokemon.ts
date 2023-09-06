@@ -87,32 +87,33 @@ const fetchPokemonEvolutionChains = async (species: PokemonSpecies, generation: 
     }
 };
 
+const fetchPokemonForms = async (slug: string, forms: PokemonSpeciesVariety[]) => {
+    return forms.map((form: PokemonSpeciesVariety) => form.pokemon.name).filter((form: string) => !isInvalidForm(form));
+};
+
 const fetchPokemon = async (slug: string, generation: string, group: string): Promise<PokemonData> => {
     const api: PokemonClient = new PokemonClient();
     try {
         const pokemon: Pokemon = await api.getPokemonByName(slug);
         const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemon.species.name);
         const evolutions: string[][] = await fetchPokemonEvolutionChains(species, generation);
+        const forms: string[] = await fetchPokemonForms(slug, species.varieties);
         const abilities: MyPokemonAbility[] = pokemon.abilities
             .filter((ability: PokemonAbility) => !ability.is_hidden || priorities.generations.indexOf(generation) >= 4)
             .map((ability: PokemonAbility) => initPokemonAbility(ability));
-        return initPokemonData(pokemon, species, evolutions, abilities, generation, group);
+        return initPokemonData(pokemon, species, evolutions, forms, abilities, generation, group);
     } catch (error: any) {
         throw error;
     }
 };
 
-const fetchPokemonList = async (
-    pokemonSlugList: string[],
-    generation: string,
-    group: string
-): Promise<PokemonData[]> => {
-    let pokemonPromises: Promise<PokemonData>[] = [];
-    pokemonSlugList.forEach((pokemonSlug: string) => {
-        pokemonPromises.push(fetchPokemon(pokemonSlug, generation, group));
+const fetchPokemonList = async (pokemon: string[], generation: string, group: string): Promise<PokemonData[]> => {
+    let promises: Promise<PokemonData>[] = [];
+    pokemon.forEach((slug: string) => {
+        promises.push(fetchPokemon(slug, generation, group));
     });
     try {
-        return await Promise.all(pokemonPromises);
+        return await Promise.all(promises);
     } catch (error: any) {
         throw error;
     }

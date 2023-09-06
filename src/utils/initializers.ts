@@ -45,6 +45,7 @@ export const initPokemonData = (
     pokemon: Pokemon,
     species: PokemonSpecies,
     evolutions: string[][],
+    forms: string[],
     abilities: MyPokemonAbility[],
     generation: string,
     group: string
@@ -94,9 +95,7 @@ export const initPokemonData = (
         sprite: sprite,
         stats: stats,
         evolutions: evolutions,
-        forms: species.varieties
-            .map((form: PokemonSpeciesVariety) => form.pokemon.name)
-            .filter((form: string) => !isInvalidForm(form)),
+        forms: forms,
         abilities: abilities,
         movepool: movepool,
     };

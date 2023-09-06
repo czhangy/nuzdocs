@@ -50,7 +50,12 @@ const EvolutionsDisplay: React.FC<Props> = (props: Props) => {
                             <div className={styles.chain} key={key}>
                                 {chain.map((slug: string, idx: number) => {
                                     return (
-                                        <div className={styles.link} key={slug}>
+                                        <div
+                                            className={`${styles.link} ${
+                                                props.pokemon.pokemon.slug === slug ? styles.disabled : ""
+                                            }`}
+                                            key={slug}
+                                        >
                                             {idx > 0 ? <p className={styles.arrow}>→</p> : ""}
                                             {slug in pokemonMap ? (
                                                 <Link href={getPokedexLink(props.run.id, slug)}>

@@ -47,6 +47,10 @@
                     width: var(--sprite-size);
                 }
             }
+
+            .disabled {
+                pointer-events: none;
+            }
         }
 
         .loading {
