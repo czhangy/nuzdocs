@@ -9,7 +9,6 @@ export default interface PokemonData {
     sprite: string;
     stats: Stat[];
     evolutions: string[][];
-    forms: string[];
     abilities: PokemonAbility[];
     movepool: PokemonMove[];
 }

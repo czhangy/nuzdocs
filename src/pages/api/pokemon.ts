@@ -87,21 +87,16 @@ const fetchPokemonEvolutionChains = async (species: PokemonSpecies, generation: 
     }
 };
 
-const fetchPokemonForms = async (slug: string, forms: PokemonSpeciesVariety[]) => {
-    return forms.map((form: PokemonSpeciesVariety) => form.pokemon.name).filter((form: string) => !isInvalidForm(form));
-};
-
 const fetchPokemon = async (slug: string, generation: string, group: string): Promise<PokemonData> => {
     const api: PokemonClient = new PokemonClient();
     try {
         const pokemon: Pokemon = await api.getPokemonByName(slug);
         const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemon.species.name);
         const evolutions: string[][] = await fetchPokemonEvolutionChains(species, generation);
-        const forms: string[] = await fetchPokemonForms(slug, species.varieties);
         const abilities: MyPokemonAbility[] = pokemon.abilities
             .filter((ability: PokemonAbility) => !ability.is_hidden || priorities.generations.indexOf(generation) >= 4)
             .map((ability: PokemonAbility) => initPokemonAbility(ability));
-        return initPokemonData(pokemon, species, evolutions, forms, abilities, generation, group);
+        return initPokemonData(pokemon, species, evolutions, abilities, generation, group);
     } catch (error: any) {
         throw error;
     }
