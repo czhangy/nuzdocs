@@ -15,36 +15,36 @@ const getTeam = (i, row, team) => {
     while (i < rows.length && (i === start || row[0] === ",")) {
         // Get Pokemon's JSON
         const attrs = row.split(",");
-        const name = attrs[3].toLowerCase();
-        const level = parseInt(attrs[6]);
+        const name = attrs[4].toLowerCase();
+        const level = parseInt(attrs[7]);
         const moves = [];
-        for (let j = 7; j <= 10; j++) {
+        for (let j = 8; j <= 11; j++) {
             if (!attrs[j]) {
                 break;
             } else {
                 moves.push({ slug: toSlug(attrs[j]), name: attrs[j] });
             }
         }
+        const iv = Math.floor((parseInt(attrs[12]) * 31) / 255);
         const ivs = {
-            hp: parseInt(attrs[11]),
-            atk: parseInt(attrs[12]),
-            spa: parseInt(attrs[13]),
-            def: parseInt(attrs[14]),
-            spd: parseInt(attrs[15]),
-            spe: parseInt(attrs[16]),
+            hp: iv,
+            atk: iv,
+            spa: iv,
+            def: iv,
+            spd: iv,
+            spe: iv,
         };
-
         const pokemon = {
             slug: name,
             species: name,
             level: level,
-            ability: { slug: toSlug(attrs[4]), name: attrs[4] },
+            ability: { slug: toSlug(attrs[5]), name: attrs[5] },
             moves: moves,
             ivs: ivs,
             evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
         };
-        if (attrs[5]) {
-            pokemon.item = { slug: toSlug(attrs[5]), name: attrs[5] };
+        if (attrs[6]) {
+            pokemon.item = { slug: toSlug(attrs[6]), name: attrs[6] };
         }
         team.push(pokemon);
 
@@ -56,21 +56,28 @@ const getTeam = (i, row, team) => {
 
 const saveBattle = (battleKey, row, team) => {
     const attrs = row.split(",");
-    // Construct battle object
     battleKey = battleKey.replace(/_\[.+?\]/, "");
+
+    // Remove condition from name
+    let name = attrs[1];
+    if (name.includes("{")) {
+        name = name.substring(0, name.indexOf("{") - 1);
+    }
+
+    // Construct battle object
     const battle = {
-        trainer: "[PLACEHOLDER]",
-        name: getName(battleKey),
-        location: attrs[1],
+        trainer: `{[trainers.${attrs[0]}]}`,
+        name: name,
+        location: attrs[2],
         team: team,
         items: [],
     };
 
     // If the battle uses items, parse/set items
-    if (attrs[2]) {
-        const count = attrs[2].substring(attrs[2].indexOf("[") + 1, attrs[2].indexOf("]"));
+    if (attrs[3]) {
+        const count = attrs[3].substring(attrs[3].indexOf("[") + 1, attrs[3].indexOf("]"));
         for (let i = 0; i < count; i++) {
-            battle.items.push(toSlug(attrs[2].substring(attrs[2].indexOf(" ") + 1)));
+            battle.items.push(toSlug(attrs[3].substring(attrs[3].indexOf(" ") + 1)));
         }
     }
 
@@ -94,19 +101,6 @@ const saveBattle = (battleKey, row, team) => {
     }
 };
 
-const getName = (battleKey) => {
-    const words = battleKey.split("_");
-    let name = words.at(-1);
-    if (words.includes("&")) {
-        const idx = words.indexOf("&");
-        name = `${words[idx - 1]} & ${words[idx + 1]}`;
-    } else if (words.some((word) => word.startsWith("{"))) {
-        const idx = words.findIndex((word) => word.startsWith("{"));
-        name = words[idx - 1];
-    }
-    return name;
-};
-
 const handleRepeatFights = () => {
     for ([key, value] of Object.entries(battleData)) {
         if (Array.isArray(value)) {
@@ -125,7 +119,21 @@ const parse = () => {
     while (i < rows.length) {
         // Get trainer key
         let row = rows[i];
-        let battleKey = row.substring(0, row.indexOf(",")).replace(/ /g, "_");
+        const attrs = row.split(",");
+
+        // Create key using Trainer + Name
+        let battleKey = attrs[0] + "_" + attrs[1].toLowerCase().replace(/\s/g, "_");
+        const words = battleKey.split("_");
+
+        // Remove the game group from the key
+        words.shift();
+
+        // Remove stuff like brendan_brendan
+        if (words[0] === words[1]) {
+            words.shift();
+        }
+
+        battleKey = words.join("_");
 
         // Iterate over trainer team
         const team = [];
