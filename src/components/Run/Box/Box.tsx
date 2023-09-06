@@ -66,7 +66,7 @@ const Box: React.FC<Props> = (props: Props) => {
     // Close menu and copy set to clipboard
     const handleExport = (pokemon: CaughtPokemon, name: string): void => {
         setActiveIdx(null);
-        exportPokemon(pokemon.pokemon, name, pokemon.nickname);
+        exportPokemon(pokemon.pokemon, name, pokemon.nickname ? pokemon.nickname : "NuzDocs");
     };
 
     // Listen for window resizes to recompute inverted menus when component ready

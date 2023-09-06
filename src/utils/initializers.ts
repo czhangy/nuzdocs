@@ -124,7 +124,6 @@ export const initCaughtPokemon = (pokemon: MyPokemon, locationSlug: string, runI
                 .concat(getRIPs(runID).map((pokemon: CaughtPokemon) => pokemon.id))
         ),
         pokemon: pokemon,
-        nickname: pokemon.species,
         locationSlug: locationSlug,
         pastSlugs: [pokemon.slug],
         abilityNum: 1,

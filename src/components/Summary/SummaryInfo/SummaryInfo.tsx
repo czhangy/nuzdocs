@@ -4,7 +4,6 @@ import CaughtPokemon from "@/models/CaughtPokemon";
 import PokemonAbility from "@/models/PokemonAbility";
 import PokemonData from "@/models/PokemonData";
 import { fetchAbilities } from "@/utils/api";
-import { initNamedResource } from "@/utils/initializers";
 import { getListOfNatures } from "@/utils/natures";
 import { getTypeCardSrc } from "@/utils/utils";
 import Image from "next/image";
@@ -37,23 +36,9 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
         }
     };
 
-    // Get the names of all abilities
-    const getAbilityNames = (): string[] => {
-        return abilities.map((ability: AbilityData) => ability.name);
-    };
-
-    // Convert an ability name to slug
-    const getAbilitySlug = (name: string): string => {
-        return abilities.find((ability: AbilityData) => ability.name === name)!.slug;
-    };
-
     // Set the level of the current Pokemon if it exists on component load
     useEffect(() => {
-        if (props.caughtPokemon.pokemon.level) {
-            setLevel(String(props.caughtPokemon.pokemon.level));
-        } else {
-            setLevel("");
-        }
+        setLevel(props.caughtPokemon.pokemon.level ? String(props.caughtPokemon.pokemon.level) : "");
     }, [props.caughtPokemon]);
 
     // Fetch the ability data for the given Pokemon on component load
@@ -111,7 +96,7 @@ const SummaryInfo: React.FC<Props> = (props: Props) => {
                                   )!.name
                                 : null
                         }
-                        options={getAbilityNames()}
+                        options={abilities.map((ability: AbilityData) => ability.name)}
                         onSelect={(name: string) =>
                             props.onAbilityUpdate(
                                 props.pokemonData.abilities.find(
