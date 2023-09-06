@@ -62,7 +62,7 @@ const SummaryHeader: React.FC<Props> = (props: Props) => {
     // Set the level of the current Pokemon if it exists on component load
     useEffect((): void => {
         if (props.caughtPokemon) {
-            handleChange(props.caughtPokemon.nickname);
+            handleChange(props.caughtPokemon.nickname ? props.caughtPokemon.nickname : props.pokemonData.pokemon.name);
             setPrevID(getAdjacentID(-1));
             setNextID(getAdjacentID(1));
         }
