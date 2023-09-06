@@ -44,29 +44,43 @@ const isPokemonListRequest = (req: NextApiRequest): boolean => {
     );
 };
 
-const createEvolutionChains = async (stage: ChainLink, chain: string[], chains: string[][]): Promise<void> => {
+const createEvolutionChains = async (
+    stage: ChainLink,
+    chain: string[],
+    chains: string[][],
+    generation: string
+): Promise<boolean> => {
     const api: PokemonClient = new PokemonClient();
     const species: PokemonSpecies = await api.getPokemonSpeciesByName(stage.species.name);
-    chain.push(species.varieties.find((psv: PokemonSpeciesVariety) => psv.is_default)!.pokemon.name);
-    if (stage.evolves_to.length === 0) {
-        chains.push([...chain]);
-    } else {
-        for (const link of stage.evolves_to) {
-            await createEvolutionChains(link, chain, chains);
+    if (priorities.generations.indexOf(generation) >= priorities.generations.indexOf(species.generation.name)) {
+        chain.push(species.varieties.find((psv: PokemonSpeciesVariety) => psv.is_default)!.pokemon.name);
+        if (stage.evolves_to.length === 0) {
+            chains.push([...chain]);
+        } else {
+            let pushed: boolean = false;
+            for (const link of stage.evolves_to) {
+                pushed = (await createEvolutionChains(link, chain, chains, generation)) || pushed;
+            }
+            if (!pushed) {
+                chains.push([...chain]);
+            }
         }
+        chain.pop();
+        return true;
+    } else {
+        return false;
     }
-    chain.pop();
 };
 
-const fetchPokemonEvolutionChains = async (species: PokemonSpecies): Promise<string[][]> => {
+const fetchPokemonEvolutionChains = async (species: PokemonSpecies, generation: string): Promise<string[][]> => {
     const evolutionAPI: EvolutionClient = new EvolutionClient();
     try {
         const id: number = Number(
             (species.evolution_chain.url.match(/\/evolution-chain\/(\d+)\//) as RegExpMatchArray)[1]
         );
         const chain: EvolutionChain = await evolutionAPI.getEvolutionChainById(id);
-        let chains: string[][] = [];
-        await createEvolutionChains(chain.chain, [], chains);
+        const chains: string[][] = [];
+        await createEvolutionChains(chain.chain, [], chains, generation);
         return chains;
     } catch (error: any) {
         throw error;
@@ -78,7 +92,7 @@ const fetchPokemon = async (slug: string, generation: string, group: string): Pr
     try {
         const pokemon: Pokemon = await api.getPokemonByName(slug);
         const species: PokemonSpecies = await api.getPokemonSpeciesByName(pokemon.species.name);
-        const evolutions: string[][] = await fetchPokemonEvolutionChains(species);
+        const evolutions: string[][] = await fetchPokemonEvolutionChains(species, generation);
         const abilities: MyPokemonAbility[] = pokemon.abilities
             .filter((ability: PokemonAbility) => !ability.is_hidden || priorities.generations.indexOf(generation) >= 4)
             .map((ability: PokemonAbility) => initPokemonAbility(ability));
