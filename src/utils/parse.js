@@ -31,7 +31,7 @@ const getTeam = (i, row, team) => {
         const name = attrs[POKEMON].toLowerCase();
         const level = parseInt(attrs[LEVEL]);
         const moves = [];
-        for (let j = MOVE_1; j <= MOVE_4 && attrs[j]; j++) {
+        for (let j = MOVE_1; j <= MOVE_4 && attrs[j] !== "~"; j++) {
             moves.push({ slug: toSlug(attrs[j]), name: attrs[j] });
         }
         const iv = Math.floor((parseInt(attrs[IV]) * 31) / 255);
