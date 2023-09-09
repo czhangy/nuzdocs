@@ -6,9 +6,9 @@ export default interface GameData {
     generation: string;
     group: string;
     pokedex: PokemonName[];
-    splits: Split[];
     characters: Trainer[];
     starters: string[];
     startingTown: string;
     invalidConditions: string[];
+    splits: Split[];
 }

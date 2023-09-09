@@ -1,4 +1,5 @@
 import Game from "@/models/Game";
+import emerald from "@/static/emerald";
 import rs from "@/static/rs";
 
 const games: { [game: string]: Game } = {
@@ -11,6 +12,11 @@ const games: { [game: string]: Game } = {
         name: "Sapphire",
         logo: "/assets/images/sapphire.webp",
         data: rs,
+    },
+    emerald: {
+        name: "Emerald",
+        logo: "/assets/images/emerald.webp",
+        data: emerald,
     },
 };
 
