@@ -74,9 +74,10 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                             )}
                         </div>
                         <p className={styles.location}>{props.battle.location}</p>
-                        {props.battle.items.length > 0 ? (
+                        {Object.keys(props.battle.items).length > 0 ? (
                             <div className={styles.items}>
-                                {props.battle.items.map((item: string, key: number) => {
+                                {Object.keys(props.battle.items).map((item: string, key: number) => {
+                                    console.log(item);
                                     return item in props.items ? (
                                         <ItemDisplay item={props.items[item]} showName={false} key={key} />
                                     ) : (

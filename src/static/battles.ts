@@ -14548,7 +14548,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokemon_breeder_f_gabrielle: {
             trainer: trainers.rse_pokemon_breeder_f,
@@ -14640,7 +14640,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_m_marcel: {
             trainer: trainers.rse_cool_trainer_m,
@@ -14676,7 +14676,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         bird_keeper_alberto: {
             trainer: trainers.rse_bird_keeper,
@@ -14712,7 +14712,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         collector_ed: {
             trainer: trainers.rse_collector,
@@ -14748,7 +14748,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_declan: {
             trainer: trainers.rse_swimmer_m,
@@ -14770,7 +14770,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         expert_m_fredrick: {
             trainer: trainers.rse_expert_m,
@@ -14806,7 +14806,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         matt: {
             trainer: trainers.rse_matt,
@@ -14842,7 +14842,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["super-potion"],
+            items: { "super-potion": 1 },
             required: true,
         },
         black_belt_zander: {
@@ -14865,7 +14865,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         archie: {
             trainer: trainers.rse_archie,
@@ -14915,7 +14915,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         hex_maniac_leah: {
@@ -14938,7 +14938,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         aroma_lady_daisy: {
             trainer: trainers.rse_aroma_lady,
@@ -14974,7 +14974,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         aroma_lady_rose: {
             trainer: trainers.rse_aroma_lady,
@@ -15024,7 +15024,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_m_felix: {
             trainer: trainers.rse_cool_trainer_m,
@@ -15060,7 +15060,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         aroma_lady_violet: {
             trainer: trainers.rse_aroma_lady,
@@ -15096,7 +15096,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         ruin_maniac_dusty: {
             trainer: trainers.rse_ruin_maniac,
@@ -15118,7 +15118,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         ruin_maniac_chip: {
             trainer: trainers.rse_ruin_maniac,
@@ -15168,7 +15168,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         ruin_maniac_foster: {
             trainer: trainers.rse_ruin_maniac,
@@ -15204,7 +15204,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         tuber_f_lola: {
             trainer: trainers.rse_tuber_f,
@@ -15240,7 +15240,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         tuber_f_austina: {
             trainer: trainers.rse_tuber_f,
@@ -15262,7 +15262,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         tuber_f_gwen: {
             trainer: trainers.rse_tuber_f,
@@ -15284,7 +15284,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         tuber_m_ricky: {
             trainer: trainers.rse_tuber_m,
@@ -15306,7 +15306,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         tuber_m_simon: {
             trainer: trainers.rse_tuber_m,
@@ -15342,7 +15342,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         tuber_m_charlie: {
             trainer: trainers.rse_tuber_m,
@@ -15364,7 +15364,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_m_randall: {
             trainer: trainers.rse_cool_trainer_m,
@@ -15386,7 +15386,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         cool_trainer_m_parker: {
             trainer: trainers.rse_cool_trainer_m,
@@ -15408,7 +15408,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         cool_trainer_m_george: {
             trainer: trainers.rse_cool_trainer_m,
@@ -15431,7 +15431,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "sitrus-berry", name: "Sitrus Berry" },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         cool_trainer_m_berke: {
             trainer: trainers.rse_cool_trainer_m,
@@ -15453,7 +15453,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         cool_trainer_m_braxton: {
             trainer: trainers.rse_cool_trainer_m,
@@ -15531,7 +15531,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         cool_trainer_m_wilton: {
             trainer: trainers.rse_cool_trainer_m,
@@ -15581,7 +15581,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["super-potion"],
+            items: { "super-potion": 1 },
         },
         cool_trainer_m_edgar: {
             trainer: trainers.rse_cool_trainer_m,
@@ -15617,7 +15617,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         cool_trainer_m_albert: {
             trainer: trainers.rse_cool_trainer_m,
@@ -15653,7 +15653,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         cool_trainer_m_samuel: {
             trainer: trainers.rse_cool_trainer_m,
@@ -15703,7 +15703,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         cool_trainer_m_vito: {
             trainer: trainers.rse_cool_trainer_m,
@@ -15767,7 +15767,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         cool_trainer_m_owen: {
             trainer: trainers.rse_cool_trainer_m,
@@ -15817,7 +15817,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         cool_trainer_m_warren: {
             trainer: trainers.rse_cool_trainer_m,
@@ -15853,7 +15853,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         cool_trainer_f_mary: {
             trainer: trainers.rse_cool_trainer_f,
@@ -15875,7 +15875,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         cool_trainer_f_alexia: {
             trainer: trainers.rse_cool_trainer_f,
@@ -15897,7 +15897,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         cool_trainer_f_jody: {
             trainer: trainers.rse_cool_trainer_f,
@@ -15919,7 +15919,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         cool_trainer_f_wendy: {
             trainer: trainers.rse_cool_trainer_f,
@@ -15969,7 +15969,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         cool_trainer_f_brooke: {
             trainer: trainers.rse_cool_trainer_f,
@@ -16018,7 +16018,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["super-potion"],
+            items: { "super-potion": 1 },
         },
         cool_trainer_f_jennifer: {
             trainer: trainers.rse_cool_trainer_f,
@@ -16040,7 +16040,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         cool_trainer_f_hope: {
             trainer: trainers.rse_cool_trainer_f,
@@ -16062,7 +16062,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         cool_trainer_f_shannon: {
             trainer: trainers.rse_cool_trainer_f,
@@ -16084,7 +16084,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         cool_trainer_f_michelle: {
             trainer: trainers.rse_cool_trainer_f,
@@ -16134,7 +16134,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         cool_trainer_f_caroline: {
             trainer: trainers.rse_cool_trainer_f,
@@ -16170,7 +16170,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         cool_trainer_f_julie: {
             trainer: trainers.rse_cool_trainer_f,
@@ -16220,7 +16220,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         hex_maniac_patricia: {
             trainer: trainers.rse_hex_maniac,
@@ -16256,7 +16256,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hex_maniac_kindra: {
             trainer: trainers.rse_hex_maniac,
@@ -16292,7 +16292,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hex_maniac_tammy: {
             trainer: trainers.rse_hex_maniac,
@@ -16328,7 +16328,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hex_maniac_valerie: {
             trainer: trainers.rse_hex_maniac,
@@ -16350,7 +16350,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hex_maniac_tasha: {
             trainer: trainers.rse_hex_maniac,
@@ -16372,7 +16372,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         lady_cindy: {
             trainer: trainers.rse_lady,
@@ -16394,7 +16394,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "nugget", name: "Nugget" },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         lady_daphne: {
             trainer: trainers.rse_lady,
@@ -16432,7 +16432,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "nugget", name: "Nugget" },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         lady_brianna: {
             trainer: trainers.rse_lady,
@@ -16455,7 +16455,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "nugget", name: "Nugget" },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         beauty_melissa: {
             trainer: trainers.rse_beauty,
@@ -16477,7 +16477,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         beauty_sheila: {
             trainer: trainers.rse_beauty,
@@ -16499,7 +16499,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         beauty_shirley: {
             trainer: trainers.rse_beauty,
@@ -16521,7 +16521,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         beauty_jessica: {
             trainer: trainers.rse_beauty,
@@ -16557,7 +16557,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         beauty_connie: {
             trainer: trainers.rse_beauty,
@@ -16579,7 +16579,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         beauty_bridget: {
             trainer: trainers.rse_beauty,
@@ -16601,7 +16601,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         beauty_olivia: {
             trainer: trainers.rse_beauty,
@@ -16651,7 +16651,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         beauty_tiffany: {
             trainer: trainers.rse_beauty,
@@ -16687,7 +16687,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         rich_boy_winston: {
             trainer: trainers.rse_rich_boy,
@@ -16709,7 +16709,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "nugget", name: "Nugget" },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         expert_f_mollie: {
             trainer: trainers.rse_expert_f,
@@ -16745,7 +16745,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokemaniac_steve: {
             trainer: trainers.rse_pokemaniac,
@@ -16767,7 +16767,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         beauty_thalia: {
             trainer: trainers.rse_beauty,
@@ -16803,7 +16803,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokemaniac_mark: {
             trainer: trainers.rse_pokemaniac,
@@ -16825,7 +16825,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_luis: {
             trainer: trainers.rse_swimmer_m,
@@ -16847,7 +16847,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_dominik: {
             trainer: trainers.rse_swimmer_m,
@@ -16869,7 +16869,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_douglas: {
             trainer: trainers.rse_swimmer_m,
@@ -16905,7 +16905,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_darrin: {
             trainer: trainers.rse_swimmer_m,
@@ -16955,7 +16955,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_tony: {
             trainer: trainers.rse_swimmer_m,
@@ -16977,7 +16977,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_jerome: {
             trainer: trainers.rse_swimmer_m,
@@ -16999,7 +16999,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_matthew: {
             trainer: trainers.rse_swimmer_m,
@@ -17021,7 +17021,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_david: {
             trainer: trainers.rse_swimmer_m,
@@ -17057,7 +17057,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_spencer: {
             trainer: trainers.rse_swimmer_m,
@@ -17093,7 +17093,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_roland: {
             trainer: trainers.rse_swimmer_m,
@@ -17115,7 +17115,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_nolen: {
             trainer: trainers.rse_swimmer_m,
@@ -17137,7 +17137,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_stan: {
             trainer: trainers.rse_swimmer_m,
@@ -17159,7 +17159,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_barry: {
             trainer: trainers.rse_swimmer_m,
@@ -17181,7 +17181,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_dean: {
             trainer: trainers.rse_swimmer_m,
@@ -17231,7 +17231,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_rodney: {
             trainer: trainers.rse_swimmer_m,
@@ -17253,7 +17253,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_richard: {
             trainer: trainers.rse_swimmer_m,
@@ -17275,7 +17275,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_herman: {
             trainer: trainers.rse_swimmer_m,
@@ -17311,7 +17311,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_santiago: {
             trainer: trainers.rse_swimmer_m,
@@ -17347,7 +17347,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_gilbert: {
             trainer: trainers.rse_swimmer_m,
@@ -17369,7 +17369,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_franklin: {
             trainer: trainers.rse_swimmer_m,
@@ -17391,7 +17391,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_kevin: {
             trainer: trainers.rse_swimmer_m,
@@ -17413,7 +17413,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_jack: {
             trainer: trainers.rse_swimmer_m,
@@ -17435,7 +17435,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_chad: {
             trainer: trainers.rse_swimmer_m,
@@ -17471,7 +17471,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         black_belt_takao: {
             trainer: trainers.rse_black_belt,
@@ -17493,7 +17493,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         black_belt_hitoshi: {
             trainer: trainers.rse_black_belt,
@@ -17529,7 +17529,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         black_belt_kiyo: {
             trainer: trainers.rse_black_belt,
@@ -17551,7 +17551,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         black_belt_koichi: {
             trainer: trainers.rse_black_belt,
@@ -17587,7 +17587,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         black_belt_nob: {
             trainer: trainers.rse_black_belt,
@@ -17609,7 +17609,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         black_belt_yuji: {
             trainer: trainers.rse_black_belt,
@@ -17645,7 +17645,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         black_belt_daisuke: {
             trainer: trainers.rse_black_belt,
@@ -17667,7 +17667,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         black_belt_atsushi: {
             trainer: trainers.rse_black_belt,
@@ -17689,7 +17689,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         guitarist_kirk: {
             trainer: trainers.rse_guitarist,
@@ -17725,7 +17725,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         guitarist_shawn: {
             trainer: trainers.rse_guitarist,
@@ -17761,7 +17761,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         guitarist_fernando: {
             trainer: trainers.rse_guitarist,
@@ -17797,7 +17797,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         guitarist_dalton: {
             trainer: trainers.rse_guitarist,
@@ -17832,7 +17832,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         kindler_cole: {
             trainer: trainers.rse_kindler,
@@ -17854,7 +17854,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         kindler_jeff: {
             trainer: trainers.rse_kindler,
@@ -17890,7 +17890,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         kindler_axle: {
             trainer: trainers.rse_kindler,
@@ -17912,7 +17912,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         kindler_jace: {
             trainer: trainers.rse_kindler,
@@ -17934,7 +17934,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         kindler_keegan: {
             trainer: trainers.rse_kindler,
@@ -17956,7 +17956,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         kindler_bernie: {
             trainer: trainers.rse_kindler,
@@ -17992,7 +17992,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         camper_drew: {
             trainer: trainers.rse_camper,
@@ -18014,7 +18014,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         camper_beau: {
             trainer: trainers.rse_camper,
@@ -18064,7 +18064,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         camper_larry: {
             trainer: trainers.rse_camper,
@@ -18086,7 +18086,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         camper_shane: {
             trainer: trainers.rse_camper,
@@ -18122,7 +18122,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         camper_justin: {
             trainer: trainers.rse_camper,
@@ -18144,7 +18144,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         camper_ethan: {
             trainer: trainers.rse_camper,
@@ -18180,7 +18180,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         picnicker_autumn: {
             trainer: trainers.rse_picnicker,
@@ -18202,7 +18202,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         camper_travis: {
             trainer: trainers.rse_camper,
@@ -18224,7 +18224,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bug_maniac_brent: {
             trainer: trainers.rse_bug_maniac,
@@ -18246,7 +18246,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bug_maniac_donald: {
             trainer: trainers.rse_bug_maniac,
@@ -18290,7 +18290,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bug_maniac_taylor: {
             trainer: trainers.rse_bug_maniac,
@@ -18334,7 +18334,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bug_maniac_jeffrey: {
             trainer: trainers.rse_bug_maniac,
@@ -18384,7 +18384,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bug_maniac_derek: {
             trainer: trainers.rse_bug_maniac,
@@ -18416,7 +18416,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_m_edward: {
             trainer: trainers.rse_psychic_m,
@@ -18436,7 +18436,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_m_preston: {
             trainer: trainers.rse_psychic_m,
@@ -18458,7 +18458,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_m_virgil: {
             trainer: trainers.rse_psychic_m,
@@ -18480,7 +18480,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_m_blake: {
             trainer: trainers.rse_psychic_m,
@@ -18502,7 +18502,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_m_william: {
             trainer: trainers.rse_psychic_m,
@@ -18552,7 +18552,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_m_joshua: {
             trainer: trainers.rse_psychic_m,
@@ -18588,7 +18588,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_m_cameron: {
             trainer: trainers.rse_psychic_m,
@@ -18610,7 +18610,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_f_jaclyn: {
             trainer: trainers.rse_psychic_f,
@@ -18630,7 +18630,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_f_hannah: {
             trainer: trainers.rse_psychic_f,
@@ -18652,7 +18652,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_f_samantha: {
             trainer: trainers.rse_psychic_f,
@@ -18674,7 +18674,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_f_maura: {
             trainer: trainers.rse_psychic_f,
@@ -18696,7 +18696,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_f_kayla: {
             trainer: trainers.rse_psychic_f,
@@ -18746,7 +18746,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_f_alexis: {
             trainer: trainers.rse_psychic_f,
@@ -18782,7 +18782,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_f_jacki: {
             trainer: trainers.rse_psychic_f,
@@ -18818,7 +18818,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         gentleman_walter: {
             trainer: trainers.rse_gentleman,
@@ -18840,7 +18840,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         sidney: {
             trainer: trainers.rse_sidney,
@@ -18919,7 +18919,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "sitrus-berry", name: "Sitrus Berry" },
                 },
             ],
-            items: ["full-restore", "full-restore"],
+            items: { "full-restore": 2 },
             required: true,
         },
         phoebe: {
@@ -18999,7 +18999,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "sitrus-berry", name: "Sitrus Berry" },
                 },
             ],
-            items: ["full-restore", "full-restore"],
+            items: { "full-restore": 2 },
             required: true,
         },
         glacia: {
@@ -19079,7 +19079,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "sitrus-berry", name: "Sitrus Berry" },
                 },
             ],
-            items: ["full-restore", "full-restore"],
+            items: { "full-restore": 2 },
             required: true,
         },
         drake: {
@@ -19159,7 +19159,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "sitrus-berry", name: "Sitrus Berry" },
                 },
             ],
-            items: ["full-restore", "full-restore"],
+            items: { "full-restore": 2 },
             required: true,
         },
         roxanne: {
@@ -19211,7 +19211,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "oran-berry", name: "Oran Berry" },
                 },
             ],
-            items: ["potion", "potion"],
+            items: { potion: 2 },
             required: true,
         },
         brawly: {
@@ -19263,7 +19263,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "sitrus-berry", name: "Sitrus Berry" },
                 },
             ],
-            items: ["super-potion", "super-potion"],
+            items: { "super-potion": 2 },
             required: true,
         },
         wattson: {
@@ -19329,7 +19329,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "sitrus-berry", name: "Sitrus Berry" },
                 },
             ],
-            items: ["super-potion", "super-potion"],
+            items: { "super-potion": 2 },
             required: true,
         },
         flannery: {
@@ -19395,7 +19395,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "white-herb", name: "White Herb" },
                 },
             ],
-            items: ["hyper-potion", "hyper-potion"],
+            items: { "hyper-potion": 2 },
             required: true,
         },
         norman: {
@@ -19461,7 +19461,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "sitrus-berry", name: "Sitrus Berry" },
                 },
             ],
-            items: ["hyper-potion", "hyper-potion"],
+            items: { "hyper-potion": 2 },
             required: true,
         },
         winona: {
@@ -19541,7 +19541,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "oran-berry", name: "Oran Berry" },
                 },
             ],
-            items: ["hyper-potion", "hyper-potion"],
+            items: { "hyper-potion": 2 },
             required: true,
         },
         tate_and_liza_tate_and_liza: {
@@ -19608,7 +19608,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "sitrus-berry", name: "Sitrus Berry" },
                 },
             ],
-            items: ["hyper-potion", "hyper-potion", "hyper-potion", "hyper-potion"],
+            items: { "hyper-potion": 4 },
             required: true,
             double: true,
         },
@@ -19689,7 +19689,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "chesto-berry", name: "Chesto Berry" },
                 },
             ],
-            items: ["hyper-potion", "hyper-potion"],
+            items: { "hyper-potion": 2 },
             required: true,
         },
         school_kid_m_jerry: {
@@ -19710,7 +19710,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         school_kid_m_ted: {
             trainer: trainers.rse_school_kid_m,
@@ -19732,7 +19732,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         school_kid_m_paul: {
             trainer: trainers.rse_school_kid_m,
@@ -19780,7 +19780,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         school_kid_f_karen: {
             trainer: trainers.rse_school_kid_f,
@@ -19801,7 +19801,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         school_kid_f_georgia: {
             trainer: trainers.rse_school_kid_f,
@@ -19835,7 +19835,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         sr_and_jr_kate_and_joy: {
             trainer: trainers.rse_sr_and_jr,
@@ -19871,7 +19871,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         sr_and_jr_anna_and_meg: {
@@ -19908,7 +19908,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         winstrate_victor_victor: {
@@ -19947,7 +19947,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "oran-berry", name: "Oran Berry" },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokefan_m_miguel: {
             trainer: trainers.rse_pokefan_m,
@@ -19970,7 +19970,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "oran-berry", name: "Oran Berry" },
                 },
             ],
-            items: [],
+            items: {},
         },
         winstrate_victoria_victoria: {
             trainer: trainers.rse_winstrate_victoria,
@@ -19993,7 +19993,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "oran-berry", name: "Oran Berry" },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokefan_f_vanessa: {
             trainer: trainers.rse_pokefan_f,
@@ -20016,7 +20016,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "oran-berry", name: "Oran Berry" },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokefan_f_bethany: {
             trainer: trainers.rse_pokefan_f,
@@ -20069,7 +20069,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "oran-berry", name: "Oran Berry" },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokefan_f_isabel: {
             trainer: trainers.rse_pokefan_f,
@@ -20107,7 +20107,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "oran-berry", name: "Oran Berry" },
                 },
             ],
-            items: [],
+            items: {},
         },
         expert_m_timothy: {
             trainer: trainers.rse_expert_m,
@@ -20129,7 +20129,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         winstrate_vicky_vicky: {
             trainer: trainers.rse_winstrate_vicky,
@@ -20151,7 +20151,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         expert_f_shelby: {
             trainer: trainers.rse_expert_f,
@@ -20187,7 +20187,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         youngster_calvin: {
             trainer: trainers.rse_youngster,
@@ -20207,7 +20207,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: { "hyper-potion": 1 },
             required: true,
         },
         youngster_billy: {
@@ -20242,7 +20242,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         youngster_josh: {
             trainer: trainers.rse_youngster,
@@ -20263,7 +20263,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         youngster_tommy: {
             trainer: trainers.rse_youngster,
@@ -20297,7 +20297,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         youngster_joey: {
             trainer: trainers.rse_youngster,
@@ -20318,7 +20318,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         youngster_ben: {
             trainer: trainers.rse_youngster,
@@ -20354,7 +20354,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_m_quincy: {
             trainer: trainers.rse_cool_trainer_m,
@@ -20390,7 +20390,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         cool_trainer_f_katelynn: {
             trainer: trainers.rse_cool_trainer_f,
@@ -20426,7 +20426,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         youngster_jaylen: {
             trainer: trainers.rse_youngster,
@@ -20447,7 +20447,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         youngster_dillon: {
             trainer: trainers.rse_youngster,
@@ -20469,7 +20469,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         youngster_eddie: {
             trainer: trainers.rse_youngster,
@@ -20505,7 +20505,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         youngster_allen: {
             trainer: trainers.rse_youngster,
@@ -20537,7 +20537,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         youngster_timmy: {
             trainer: trainers.rse_youngster,
@@ -20573,7 +20573,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         wallace: {
             trainer: trainers.emerald_wallace,
@@ -20666,7 +20666,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "sitrus-berry", name: "Sitrus Berry" },
                 },
             ],
-            items: ["full-restore", "full-restore", "full-restore", "full-restore"],
+            items: { "full-restore": 4 },
             required: true,
         },
         fisherman_andrew: {
@@ -20708,7 +20708,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_ivan: {
             trainer: trainers.rse_fisherman,
@@ -20743,7 +20743,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_claude: {
             trainer: trainers.rse_fisherman,
@@ -20791,7 +20791,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_elliot: {
             trainer: trainers.rse_fisherman,
@@ -20829,7 +20829,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_ned: {
             trainer: trainers.rse_fisherman,
@@ -20849,7 +20849,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_dale: {
             trainer: trainers.rse_fisherman,
@@ -20909,7 +20909,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_nolan: {
             trainer: trainers.rse_fisherman,
@@ -20931,7 +20931,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_barny: {
             trainer: trainers.rse_fisherman,
@@ -20967,7 +20967,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_wade: {
             trainer: trainers.rse_fisherman,
@@ -20988,7 +20988,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_carter: {
             trainer: trainers.rse_fisherman,
@@ -21024,7 +21024,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_ronald: {
             trainer: trainers.rse_fisherman,
@@ -21109,7 +21109,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_biker_m_jacob: {
             trainer: trainers.rse_triathlete_biker_m,
@@ -21155,7 +21155,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_biker_m_anthony: {
             trainer: trainers.rse_triathlete_biker_m,
@@ -21191,7 +21191,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_biker_m_benjamin: {
             trainer: trainers.rse_triathlete_biker_m,
@@ -21213,7 +21213,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_biker_f_abigail: {
             trainer: trainers.rse_triathlete_biker_f,
@@ -21235,7 +21235,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_biker_f_jasmine: {
             trainer: trainers.rse_triathlete_biker_f,
@@ -21283,7 +21283,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_runner_m_dylan: {
             trainer: trainers.rse_triathlete_runner_m,
@@ -21305,7 +21305,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_runner_f_maria: {
             trainer: trainers.rse_triathlete_runner_f,
@@ -21327,7 +21327,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_swimmer_m_camden: {
             trainer: trainers.rse_triathlete_swimmer_m,
@@ -21363,7 +21363,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         youngster_demetrius: {
             trainer: trainers.rse_youngster,
@@ -21399,7 +21399,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_swimmer_m_isaiah: {
             trainer: trainers.rse_triathlete_swimmer_m,
@@ -21421,7 +21421,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_swimmer_m_pablo: {
             trainer: trainers.rse_triathlete_swimmer_m,
@@ -21457,7 +21457,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_swimmer_m_chase: {
             trainer: trainers.rse_triathlete_swimmer_m,
@@ -21493,7 +21493,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_swimmer_f_isobel: {
             trainer: trainers.rse_triathlete_swimmer_f,
@@ -21515,7 +21515,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_swimmer_f_donny: {
             trainer: trainers.rse_triathlete_swimmer_f,
@@ -21551,7 +21551,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_swimmer_f_talia: {
             trainer: trainers.rse_triathlete_swimmer_f,
@@ -21573,7 +21573,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_swimmer_f_katelyn: {
             trainer: trainers.rse_triathlete_swimmer_f,
@@ -21595,7 +21595,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_swimmer_f_allison: {
             trainer: trainers.rse_triathlete_swimmer_f,
@@ -21631,7 +21631,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         dragon_tamer_nicolas: {
             trainer: trainers.rse_dragon_tamer,
@@ -21667,7 +21667,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         dragon_tamer_aaron: {
             trainer: trainers.rse_dragon_tamer,
@@ -21689,7 +21689,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_perry: {
             trainer: trainers.rse_bird_keeper,
@@ -21711,7 +21711,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_hugh: {
             trainer: trainers.rse_bird_keeper,
@@ -21747,7 +21747,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_phil: {
             trainer: trainers.rse_bird_keeper,
@@ -21769,7 +21769,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_jared: {
             trainer: trainers.rse_bird_keeper,
@@ -21819,7 +21819,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_humberto: {
             trainer: trainers.rse_bird_keeper,
@@ -21841,7 +21841,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_presley: {
             trainer: trainers.rse_bird_keeper,
@@ -21877,7 +21877,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_edwardo: {
             trainer: trainers.rse_bird_keeper,
@@ -21913,7 +21913,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_colin: {
             trainer: trainers.rse_bird_keeper,
@@ -21949,7 +21949,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_robert: {
             trainer: trainers.rse_bird_keeper,
@@ -21971,7 +21971,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_benny: {
             trainer: trainers.rse_bird_keeper,
@@ -22021,7 +22021,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_chester: {
             trainer: trainers.rse_bird_keeper,
@@ -22057,7 +22057,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_alex: {
             trainer: trainers.rse_bird_keeper,
@@ -22093,7 +22093,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_beck: {
             trainer: trainers.rse_bird_keeper,
@@ -22115,7 +22115,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         ninja_boy_yasu: {
             trainer: trainers.rse_ninja_boy,
@@ -22137,7 +22137,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         ninja_boy_takashi: {
             trainer: trainers.rse_ninja_boy,
@@ -22173,7 +22173,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_f_dianne: {
             trainer: trainers.rse_cool_trainer_f,
@@ -22209,7 +22209,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         tuber_f_jani: {
             trainer: trainers.rse_tuber_f,
@@ -22231,7 +22231,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         ninja_boy_lao: {
             trainer: trainers.rse_ninja_boy,
@@ -22281,7 +22281,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         ninja_boy_lung: {
             trainer: trainers.rse_ninja_boy,
@@ -22317,7 +22317,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         battle_girl_jocelyn: {
             trainer: trainers.rse_battle_girl,
@@ -22339,7 +22339,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         battle_girl_laura: {
             trainer: trainers.rse_battle_girl,
@@ -22361,7 +22361,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         battle_girl_cyndy: {
             trainer: trainers.rse_battle_girl,
@@ -22397,7 +22397,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         battle_girl_cora: {
             trainer: trainers.rse_battle_girl,
@@ -22419,7 +22419,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         battle_girl_paula: {
             trainer: trainers.rse_battle_girl,
@@ -22441,7 +22441,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         parasol_lady_madeline: {
             trainer: trainers.rse_parasol_lady,
@@ -22463,7 +22463,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         parasol_lady_clarissa: {
             trainer: trainers.rse_parasol_lady,
@@ -22499,7 +22499,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         parasol_lady_angelica: {
             trainer: trainers.rse_parasol_lady,
@@ -22521,7 +22521,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_beverly: {
             trainer: trainers.rse_swimmer_f,
@@ -22557,7 +22557,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_imani: {
             trainer: trainers.rse_swimmer_f,
@@ -22579,7 +22579,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_kyla: {
             trainer: trainers.rse_swimmer_f,
@@ -22601,7 +22601,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_denise: {
             trainer: trainers.rse_swimmer_f,
@@ -22638,7 +22638,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "-", name: " " },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_beth: {
             trainer: trainers.rse_swimmer_f,
@@ -22660,7 +22660,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_tara: {
             trainer: trainers.rse_swimmer_f,
@@ -22696,7 +22696,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_missy: {
             trainer: trainers.rse_swimmer_f,
@@ -22718,7 +22718,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_alice: {
             trainer: trainers.rse_swimmer_f,
@@ -22768,7 +22768,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_jenny: {
             trainer: trainers.rse_swimmer_f,
@@ -22790,7 +22790,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_grace: {
             trainer: trainers.rse_swimmer_f,
@@ -22812,7 +22812,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_tanya: {
             trainer: trainers.rse_swimmer_f,
@@ -22834,7 +22834,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_sharon: {
             trainer: trainers.rse_swimmer_f,
@@ -22856,7 +22856,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_nikki: {
             trainer: trainers.rse_swimmer_f,
@@ -22892,7 +22892,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_brenda: {
             trainer: trainers.rse_swimmer_f,
@@ -22914,7 +22914,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_katie: {
             trainer: trainers.rse_swimmer_f,
@@ -22950,7 +22950,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_susie: {
             trainer: trainers.rse_swimmer_f,
@@ -22972,7 +22972,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_kara: {
             trainer: trainers.rse_swimmer_f,
@@ -22994,7 +22994,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_dana: {
             trainer: trainers.rse_swimmer_f,
@@ -23016,7 +23016,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_sienna: {
             trainer: trainers.rse_swimmer_f,
@@ -23052,7 +23052,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_debra: {
             trainer: trainers.rse_swimmer_f,
@@ -23074,7 +23074,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_linda: {
             trainer: trainers.rse_swimmer_f,
@@ -23110,7 +23110,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_laurel: {
             trainer: trainers.rse_swimmer_f,
@@ -23146,7 +23146,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_carlee: {
             trainer: trainers.rse_swimmer_f,
@@ -23168,7 +23168,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         picnicker_heidi: {
             trainer: trainers.rse_picnicker,
@@ -23204,7 +23204,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         picnicker_becky: {
             trainer: trainers.rse_picnicker,
@@ -23240,7 +23240,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         picnicker_carol: {
             trainer: trainers.rse_picnicker,
@@ -23276,7 +23276,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         picnicker_nancy: {
             trainer: trainers.rse_picnicker,
@@ -23312,7 +23312,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         picnicker_martha: {
             trainer: trainers.rse_picnicker,
@@ -23348,7 +23348,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         picnicker_diana: {
             trainer: trainers.rse_picnicker,
@@ -23398,7 +23398,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_m_cedric: {
             trainer: trainers.rse_psychic_m,
@@ -23420,7 +23420,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         picnicker_irene: {
             trainer: trainers.rse_picnicker,
@@ -23456,7 +23456,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         twins_amy_and_liv: {
             trainer: trainers.rse_twins,
@@ -23492,7 +23492,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         twins_gina_and_mia: {
@@ -23525,7 +23525,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         twins_miu_and_yuki: {
@@ -23562,7 +23562,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         sailor_huey: {
@@ -23597,7 +23597,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         sailor_edmond: {
             trainer: trainers.rse_sailor,
@@ -23619,7 +23619,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         sailor_ernest: {
             trainer: trainers.rse_sailor,
@@ -23655,7 +23655,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         sailor_dwayne: {
             trainer: trainers.rse_sailor,
@@ -23701,7 +23701,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         sailor_duncan: {
             trainer: trainers.rse_sailor,
@@ -23737,7 +23737,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hiker_eli: {
             trainer: trainers.rse_hiker,
@@ -23759,7 +23759,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokefan_f_annika: {
             trainer: trainers.rse_pokefan_f,
@@ -23797,7 +23797,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "oran-berry", name: "Oran Berry" },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_f_jazmyn: {
             trainer: trainers.rse_cool_trainer_f,
@@ -23819,7 +23819,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         ninja_boy_jonas: {
             trainer: trainers.rse_ninja_boy,
@@ -23841,7 +23841,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         parasol_lady_kayley: {
             trainer: trainers.rse_parasol_lady,
@@ -23863,7 +23863,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         expert_m_auron: {
             trainer: trainers.rse_expert_m,
@@ -23899,7 +23899,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         sailor_kelvin: {
             trainer: trainers.rse_sailor,
@@ -23935,7 +23935,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_f_marley: {
             trainer: trainers.rse_cool_trainer_f,
@@ -23957,7 +23957,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         battle_girl_reyna: {
             trainer: trainers.rse_battle_girl,
@@ -23993,7 +23993,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         sailor_hudson: {
             trainer: trainers.rse_sailor,
@@ -24015,7 +24015,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         expert_m_conor: {
             trainer: trainers.rse_expert_m,
@@ -24051,7 +24051,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         collector_edwin: {
             trainer: trainers.rse_collector,
@@ -24087,7 +24087,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         collector_hector: {
             trainer: trainers.rse_collector,
@@ -24123,7 +24123,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokemon_breeder_m_isaac: {
             trainer: trainers.rse_pokemon_breeder_m,
@@ -24213,7 +24213,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bug_catcher_davis: {
             trainer: trainers.rse_bug_catcher,
@@ -24235,7 +24235,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_m_mitchell: {
             trainer: trainers.rse_cool_trainer_m,
@@ -24271,7 +24271,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokemon_breeder_f_lydia: {
             trainer: trainers.rse_pokemon_breeder_f,
@@ -24361,7 +24361,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_f_halle: {
             trainer: trainers.rse_cool_trainer_f,
@@ -24397,7 +24397,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         ruin_maniac_garrison: {
             trainer: trainers.rse_ruin_maniac,
@@ -24419,7 +24419,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokemon_ranger_m_jackson: {
             trainer: trainers.rse_pokemon_ranger_m,
@@ -24441,7 +24441,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         pokemon_ranger_m_lorenzo: {
             trainer: trainers.rse_pokemon_ranger_m,
@@ -24491,7 +24491,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         pokemon_ranger_m_sebastian: {
             trainer: trainers.rse_pokemon_ranger_m,
@@ -24513,7 +24513,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         pokemon_ranger_f_catherine: {
             trainer: trainers.rse_pokemon_ranger_f,
@@ -24549,7 +24549,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         pokemon_ranger_f_jenna: {
             trainer: trainers.rse_pokemon_ranger_f,
@@ -24599,7 +24599,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         pokemon_ranger_f_sophia: {
             trainer: trainers.rse_pokemon_ranger_f,
@@ -24635,7 +24635,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         triathlete_biker_m_julio: {
             trainer: trainers.rse_triathlete_biker_m,
@@ -24657,7 +24657,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hiker_marc: {
             trainer: trainers.rse_hiker,
@@ -24691,7 +24691,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         sailor_brenden: {
             trainer: trainers.rse_sailor,
@@ -24713,7 +24713,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         battle_girl_lilith: {
             trainer: trainers.rse_battle_girl,
@@ -24735,7 +24735,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         black_belt_cristian: {
             trainer: trainers.rse_black_belt,
@@ -24757,7 +24757,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hex_maniac_sylvia: {
             trainer: trainers.rse_hex_maniac,
@@ -24779,7 +24779,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_leonardo: {
             trainer: trainers.rse_swimmer_m,
@@ -24801,7 +24801,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_f_athena: {
             trainer: trainers.rse_cool_trainer_f,
@@ -24837,7 +24837,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         swimmer_m_harrison: {
             trainer: trainers.rse_swimmer_m,
@@ -24859,7 +24859,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_clarence: {
             trainer: trainers.rse_swimmer_m,
@@ -24881,7 +24881,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         gentleman_nate: {
             trainer: trainers.rse_gentleman,
@@ -24903,7 +24903,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hex_maniac_kathleen: {
             trainer: trainers.rse_hex_maniac,
@@ -24925,7 +24925,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         gentleman_clifford: {
             trainer: trainers.rse_gentleman,
@@ -24947,7 +24947,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_m_nicholas: {
             trainer: trainers.rse_psychic_m,
@@ -24969,7 +24969,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_f_macey: {
             trainer: trainers.rse_psychic_f,
@@ -24991,7 +24991,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         expert_m_paxton: {
             trainer: trainers.rse_expert_m,
@@ -25027,7 +25027,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_swimmer_f_isabella: {
             trainer: trainers.rse_triathlete_swimmer_f,
@@ -25049,7 +25049,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_m_jonathan: {
             trainer: trainers.rse_cool_trainer_m,
@@ -25085,9 +25085,9 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
-        maxie_and_tabitha: {
+        maxie_and_tabitha_maxie_and_tabitha: {
             trainer: trainers.emerald_maxie_and_tabitha,
             name: "Maxie & Tabitha",
             location: "Mossdeep Space Center (2F)",
@@ -25177,7 +25177,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
             double: true,
         },
@@ -25211,7 +25211,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         lass_haley: {
             trainer: trainers.rse_lass,
@@ -25243,7 +25243,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         lass_janice: {
             trainer: trainers.rse_lass,
@@ -25264,7 +25264,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         winstrate_vivi_vivi: {
             trainer: trainers.rse_winstrate_vivi,
@@ -25314,7 +25314,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         lass_sally: {
             trainer: trainers.rse_lass,
@@ -25335,7 +25335,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         lass_robin: {
             trainer: trainers.rse_lass,
@@ -25385,7 +25385,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         lass_andrea: {
             trainer: trainers.rse_lass,
@@ -25407,7 +25407,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         lass_crissy: {
             trainer: trainers.rse_lass,
@@ -25443,7 +25443,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bug_catcher_rick: {
             trainer: trainers.rse_bug_catcher,
@@ -25475,7 +25475,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bug_catcher_lyle: {
             trainer: trainers.rse_bug_catcher,
@@ -25531,7 +25531,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bug_catcher_jose: {
             trainer: trainers.rse_bug_catcher,
@@ -25565,7 +25565,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bug_catcher_doug: {
             trainer: trainers.rse_bug_catcher,
@@ -25601,7 +25601,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bug_catcher_greg: {
             trainer: trainers.rse_bug_catcher,
@@ -25637,7 +25637,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bug_catcher_kent: {
             trainer: trainers.rse_bug_catcher,
@@ -25659,7 +25659,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bug_catcher_james: {
             trainer: trainers.rse_bug_catcher,
@@ -25693,7 +25693,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hiker_brice: {
             trainer: trainers.rse_hiker,
@@ -25728,7 +25728,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hiker_trent: {
             trainer: trainers.rse_hiker,
@@ -25778,7 +25778,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hiker_lenny: {
             trainer: trainers.rse_hiker,
@@ -25814,7 +25814,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hiker_lucas: {
             trainer: trainers.rse_hiker,
@@ -25849,7 +25849,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hiker_alan: {
             trainer: trainers.rse_hiker,
@@ -25899,7 +25899,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hiker_clark: {
             trainer: trainers.rse_hiker,
@@ -25920,7 +25920,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hiker_eric: {
             trainer: trainers.rse_hiker,
@@ -25956,7 +25956,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hiker_mike: {
             trainer: trainers.rse_hiker,
@@ -26006,7 +26006,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         young_couple_dez_and_luke: {
             trainer: trainers.rse_young_couple,
@@ -26042,7 +26042,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         young_couple_kira_and_dan: {
@@ -26079,7 +26079,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         beauty_johanna: {
@@ -26102,7 +26102,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_m_gerald: {
             trainer: trainers.rse_cool_trainer_m,
@@ -26124,7 +26124,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         battle_girl_vivian: {
             trainer: trainers.rse_battle_girl,
@@ -26160,7 +26160,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         battle_girl_danielle: {
             trainer: trainers.rse_battle_girl,
@@ -26182,7 +26182,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         ninja_boy_hideo: {
             trainer: trainers.rse_ninja_boy,
@@ -26218,7 +26218,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         ninja_boy_keigo: {
             trainer: trainers.rse_ninja_boy,
@@ -26254,7 +26254,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         ninja_boy_riley: {
             trainer: trainers.rse_ninja_boy,
@@ -26290,7 +26290,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         camper_flint: {
             trainer: trainers.rse_camper,
@@ -26326,7 +26326,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         picnicker_ashley: {
             trainer: trainers.rse_picnicker,
@@ -26376,7 +26376,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_jonah: {
             trainer: trainers.rse_fisherman,
@@ -26426,7 +26426,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_henry: {
             trainer: trainers.rse_fisherman,
@@ -26462,7 +26462,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_roger: {
             trainer: trainers.rse_fisherman,
@@ -26508,7 +26508,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_f_alexa: {
             trainer: trainers.rse_cool_trainer_f,
@@ -26544,7 +26544,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         cool_trainer_m_ruben: {
             trainer: trainers.rse_cool_trainer_m,
@@ -26580,7 +26580,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         black_belt_koji: {
             trainer: trainers.rse_black_belt,
@@ -26602,7 +26602,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_wayne: {
             trainer: trainers.rse_fisherman,
@@ -26652,7 +26652,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_aidan: {
             trainer: trainers.rse_bird_keeper,
@@ -26688,7 +26688,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_m_reed: {
             trainer: trainers.rse_swimmer_m,
@@ -26724,7 +26724,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_tisha: {
             trainer: trainers.rse_swimmer_f,
@@ -26746,7 +26746,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         twins_tori_and_tia: {
             trainer: trainers.rse_twins,
@@ -26782,7 +26782,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         sr_and_jr_kim_and_iris: {
@@ -26819,7 +26819,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         sr_and_jr_tyra_and_ivy: {
@@ -26856,7 +26856,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         young_couple_mel_and_paul: {
@@ -26893,7 +26893,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         old_couple_john_and_jay: {
@@ -26930,7 +26930,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         sis_and_bro_reli_and_ian: {
@@ -26967,7 +26967,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         sis_and_bro_lila_and_roy: {
@@ -27004,7 +27004,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         sis_and_bro_lisa_and_ray: {
@@ -27041,7 +27041,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         fisherman_chris: {
@@ -27102,7 +27102,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         rich_boy_dawson: {
             trainer: trainers.rse_rich_boy,
@@ -27136,7 +27136,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         lady_sarah: {
             trainer: trainers.rse_lady,
@@ -27171,7 +27171,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "nugget", name: "Nugget" },
                 },
             ],
-            items: ["full-restore"],
+            items: { "full-restore": 1 },
         },
         fisherman_darian: {
             trainer: trainers.rse_fisherman,
@@ -27188,7 +27188,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         tuber_f_hailey: {
             trainer: trainers.rse_tuber_f,
@@ -27210,7 +27210,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         tuber_m_chandler: {
             trainer: trainers.rse_tuber_m,
@@ -27244,7 +27244,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokefan_m_kaleb: {
             trainer: trainers.rse_pokefan_m,
@@ -27282,7 +27282,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     item: { slug: "oran-berry", name: "Oran Berry" },
                 },
             ],
-            items: [],
+            items: {},
         },
         guitarist_joseph: {
             trainer: trainers.rse_guitarist,
@@ -27317,7 +27317,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_biker_f_alyssa: {
             trainer: trainers.rse_triathlete_biker_f,
@@ -27339,7 +27339,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         guitarist_marcos: {
             trainer: trainers.rse_guitarist,
@@ -27361,7 +27361,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         black_belt_rhett: {
             trainer: trainers.rse_black_belt,
@@ -27383,7 +27383,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         camper_tyron: {
             trainer: trainers.rse_camper,
@@ -27405,7 +27405,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         aroma_lady_celina: {
             trainer: trainers.rse_aroma_lady,
@@ -27427,7 +27427,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         picnicker_bianca: {
             trainer: trainers.rse_picnicker,
@@ -27449,7 +27449,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         kindler_hayden: {
             trainer: trainers.rse_kindler,
@@ -27470,7 +27470,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         picnicker_sophie: {
             trainer: trainers.rse_picnicker,
@@ -27506,7 +27506,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_coby: {
             trainer: trainers.rse_bird_keeper,
@@ -27542,7 +27542,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         camper_lawrence: {
             trainer: trainers.rse_camper,
@@ -27578,7 +27578,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokemaniac_wyatt: {
             trainer: trainers.rse_pokemaniac,
@@ -27614,7 +27614,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         picnicker_angelina: {
             trainer: trainers.rse_picnicker,
@@ -27650,7 +27650,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         fisherman_kai: {
             trainer: trainers.rse_fisherman,
@@ -27672,7 +27672,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         picnicker_charlotte: {
             trainer: trainers.rse_picnicker,
@@ -27694,7 +27694,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         youngster_deandre: {
             trainer: trainers.rse_youngster,
@@ -27744,7 +27744,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_f_darcy: {
             trainer: trainers.rse_cool_trainer_f,
@@ -27780,7 +27780,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         swimmer_m_pete: {
             trainer: trainers.rse_swimmer_m,
@@ -27801,7 +27801,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         swimmer_f_isabelle: {
             trainer: trainers.rse_swimmer_f,
@@ -27823,7 +27823,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         ruin_maniac_andres: {
             trainer: trainers.rse_ruin_maniac,
@@ -27859,7 +27859,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_josue: {
             trainer: trainers.rse_bird_keeper,
@@ -27895,7 +27895,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_swimmer_m_camron: {
             trainer: trainers.rse_triathlete_swimmer_m,
@@ -27917,7 +27917,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         sailor_cory: {
             trainer: trainers.rse_sailor,
@@ -27967,7 +27967,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_f_carolina: {
             trainer: trainers.rse_cool_trainer_f,
@@ -28017,7 +28017,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         bird_keeper_elijah: {
             trainer: trainers.rse_bird_keeper,
@@ -28053,7 +28053,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         picnicker_celia: {
             trainer: trainers.rse_picnicker,
@@ -28089,7 +28089,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         ruin_maniac_bryan: {
             trainer: trainers.rse_ruin_maniac,
@@ -28125,7 +28125,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         camper_branden: {
             trainer: trainers.rse_camper,
@@ -28161,7 +28161,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         kindler_bryant: {
             trainer: trainers.rse_kindler,
@@ -28196,7 +28196,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         aroma_lady_shayla: {
             trainer: trainers.rse_aroma_lady,
@@ -28232,7 +28232,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_runner_f_kyra: {
             trainer: trainers.rse_triathlete_runner_f,
@@ -28268,7 +28268,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         ninja_boy_jaiden: {
             trainer: trainers.rse_ninja_boy,
@@ -28304,7 +28304,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_f_alix: {
             trainer: trainers.rse_psychic_f,
@@ -28340,7 +28340,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         battle_girl_helene: {
             trainer: trainers.rse_battle_girl,
@@ -28376,7 +28376,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_f_marlene: {
             trainer: trainers.rse_psychic_f,
@@ -28412,7 +28412,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         hiker_devan: {
             trainer: trainers.rse_hiker,
@@ -28446,7 +28446,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         youngster_johnson: {
             trainer: trainers.rse_youngster,
@@ -28480,7 +28480,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         triathlete_runner_f_melina: {
             trainer: trainers.rse_triathlete_runner_f,
@@ -28502,7 +28502,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_f_brandi: {
             trainer: trainers.rse_psychic_f,
@@ -28524,7 +28524,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         battle_girl_aisha: {
             trainer: trainers.rse_battle_girl,
@@ -28546,7 +28546,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         expert_f_makayla: {
             trainer: trainers.rse_expert_f,
@@ -28582,7 +28582,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         guitarist_fabian: {
             trainer: trainers.rse_guitarist,
@@ -28604,7 +28604,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         kindler_dayton: {
             trainer: trainers.rse_kindler,
@@ -28640,7 +28640,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         parasol_lady_rachel: {
             trainer: trainers.rse_parasol_lady,
@@ -28662,7 +28662,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_m_leonel: {
             trainer: trainers.rse_cool_trainer_m,
@@ -28684,7 +28684,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         battle_girl_callie: {
             trainer: trainers.rse_battle_girl,
@@ -28720,7 +28720,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bug_maniac_cale: {
             trainer: trainers.rse_bug_maniac,
@@ -28756,7 +28756,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokemon_breeder_m_myles: {
             trainer: trainers.rse_pokemon_breeder_m,
@@ -28848,7 +28848,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         pokemon_breeder_f_pat: {
             trainer: trainers.rse_pokemon_breeder_f,
@@ -28940,7 +28940,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         cool_trainer_f_cristin: {
             trainer: trainers.rse_cool_trainer_f,
@@ -28976,7 +28976,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["hyper-potion"],
+            items: { "hyper-potion": 1 },
         },
         bug_maniac_angelo: {
             trainer: trainers.rse_bug_maniac,
@@ -29012,7 +29012,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         bird_keeper_darius: {
             trainer: trainers.rse_bird_keeper,
@@ -29034,7 +29034,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_f_mariela: {
             trainer: trainers.rse_psychic_f,
@@ -29056,7 +29056,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         psychic_m_alvaro: {
             trainer: trainers.rse_psychic_m,
@@ -29092,7 +29092,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         gentleman_everett: {
             trainer: trainers.rse_gentleman,
@@ -29114,7 +29114,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_1: {
             trainer: trainers.rse_team_aqua_m,
@@ -29136,7 +29136,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_2: {
             trainer: trainers.rse_team_aqua_m,
@@ -29172,7 +29172,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_3: {
             trainer: trainers.rse_team_aqua_m,
@@ -29194,7 +29194,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_4: {
             trainer: trainers.rse_team_aqua_m,
@@ -29216,7 +29216,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_5: {
             trainer: trainers.rse_team_aqua_m,
@@ -29238,7 +29238,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_6: {
             trainer: trainers.rse_team_aqua_m,
@@ -29260,7 +29260,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_7: {
             trainer: trainers.rse_team_aqua_m,
@@ -29282,7 +29282,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_8: {
             trainer: trainers.rse_team_aqua_m,
@@ -29303,7 +29303,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         team_aqua_m_grunt_9: {
@@ -29325,7 +29325,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         team_aqua_m_grunt_10: {
@@ -29362,7 +29362,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_11: {
             trainer: trainers.rse_team_aqua_m,
@@ -29398,7 +29398,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_12: {
             trainer: trainers.rse_team_aqua_m,
@@ -29448,7 +29448,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_13: {
             trainer: trainers.rse_team_aqua_m,
@@ -29470,7 +29470,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_14: {
             trainer: trainers.rse_team_aqua_m,
@@ -29505,7 +29505,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_15: {
             trainer: trainers.rse_team_aqua_m,
@@ -29527,7 +29527,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_16: {
             trainer: trainers.rse_team_aqua_m,
@@ -29549,7 +29549,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_17: {
             trainer: trainers.rse_team_aqua_m,
@@ -29585,7 +29585,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_18: {
             trainer: trainers.rse_team_aqua_m,
@@ -29607,7 +29607,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_m_grunt_19: {
             trainer: trainers.rse_team_aqua_m,
@@ -29643,7 +29643,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_f_grunt_1: {
             trainer: trainers.rse_team_aqua_f,
@@ -29665,7 +29665,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_f_grunt_2: {
             trainer: trainers.rse_team_aqua_f,
@@ -29687,7 +29687,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_f_grunt_3: {
             trainer: trainers.rse_team_aqua_f,
@@ -29709,7 +29709,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_f_grunt_4: {
             trainer: trainers.rse_team_aqua_f,
@@ -29731,7 +29731,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_f_grunt_5: {
             trainer: trainers.rse_team_aqua_f,
@@ -29767,7 +29767,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_f_grunt_6: {
             trainer: trainers.rse_team_aqua_f,
@@ -29803,7 +29803,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_aqua_f_grunt_7: {
             trainer: trainers.rse_team_aqua_f,
@@ -29839,7 +29839,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_1: {
             trainer: trainers.rse_team_magma_m,
@@ -29861,7 +29861,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_2: {
             trainer: trainers.rse_team_magma_m,
@@ -29911,7 +29911,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_3: {
             trainer: trainers.rse_team_magma_m,
@@ -29947,7 +29947,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_4: {
             trainer: trainers.rse_team_magma_m,
@@ -29969,7 +29969,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_5: {
             trainer: trainers.rse_team_magma_m,
@@ -29991,7 +29991,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_6: {
             trainer: trainers.rse_team_magma_m,
@@ -30013,7 +30013,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_7: {
             trainer: trainers.rse_team_magma_m,
@@ -30035,7 +30035,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_8: {
             trainer: trainers.rse_team_magma_m,
@@ -30057,7 +30057,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_9: {
             trainer: trainers.rse_team_magma_m,
@@ -30079,7 +30079,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_10: {
             trainer: trainers.rse_team_magma_m,
@@ -30101,7 +30101,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_11: {
             trainer: trainers.rse_team_magma_m,
@@ -30123,7 +30123,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_12: {
             trainer: trainers.rse_team_magma_m,
@@ -30159,7 +30159,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_13: {
             trainer: trainers.rse_team_magma_m,
@@ -30195,7 +30195,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_14: {
             trainer: trainers.rse_team_magma_m,
@@ -30217,7 +30217,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_15: {
             trainer: trainers.rse_team_magma_m,
@@ -30239,7 +30239,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_16: {
             trainer: trainers.rse_team_magma_m,
@@ -30261,7 +30261,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_17: {
             trainer: trainers.rse_team_magma_m,
@@ -30283,7 +30283,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_18: {
             trainer: trainers.rse_team_magma_m,
@@ -30305,7 +30305,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_19: {
             trainer: trainers.rse_team_magma_m,
@@ -30327,7 +30327,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_20: {
             trainer: trainers.rse_team_magma_m,
@@ -30349,7 +30349,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_m_grunt_21: {
             trainer: trainers.rse_team_magma_m,
@@ -30371,7 +30371,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         shelly_1: {
             trainer: trainers.rse_shelly,
@@ -30407,7 +30407,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         shelly_2: {
@@ -30444,7 +30444,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         interviewers_gabby_and_ty_1: {
@@ -30481,7 +30481,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         interviewers_gabby_and_ty_2: {
@@ -30518,7 +30518,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         interviewers_gabby_and_ty_3: {
@@ -30555,7 +30555,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             double: true,
         },
         team_magma_f_grunt_1: {
@@ -30578,7 +30578,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_f_grunt_2: {
             trainer: trainers.rse_team_magma_f,
@@ -30614,7 +30614,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_f_grunt_3: {
             trainer: trainers.rse_team_magma_f,
@@ -30636,7 +30636,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_f_grunt_4: {
             trainer: trainers.rse_team_magma_f,
@@ -30658,7 +30658,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         team_magma_f_grunt_5: {
             trainer: trainers.rse_team_magma_f,
@@ -30680,7 +30680,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         wally_1: {
             trainer: trainers.rse_wally,
@@ -30758,7 +30758,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["full-restore", "full-restore"],
+            items: { "full-restore": 2 },
             required: true,
         },
         wally_2: {
@@ -30781,7 +30781,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         brendan_mudkip_1: {
@@ -30802,7 +30802,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: { "hyper-potion": 1 },
             required: true,
         },
         brendan_mudkip_2: {
@@ -30853,7 +30853,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         brendan_mudkip_3: {
@@ -30904,7 +30904,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         brendan_mudkip_4: {
@@ -30941,7 +30941,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         brendan_mudkip_5: {
             trainer: trainers.emerald_brendan,
@@ -31005,7 +31005,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         brendan_treecko_1: {
             trainer: trainers.emerald_brendan,
@@ -31025,7 +31025,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         brendan_treecko_2: {
@@ -31076,7 +31076,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         brendan_treecko_3: {
@@ -31127,7 +31127,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         brendan_treecko_4: {
@@ -31164,7 +31164,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         brendan_treecko_5: {
             trainer: trainers.emerald_brendan,
@@ -31228,7 +31228,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         brendan_torchic_1: {
             trainer: trainers.emerald_brendan,
@@ -31248,7 +31248,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         brendan_torchic_2: {
@@ -31299,7 +31299,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         brendan_torchic_3: {
@@ -31350,7 +31350,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         brendan_torchic_4: {
@@ -31386,7 +31386,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         brendan_torchic_5: {
             trainer: trainers.emerald_brendan,
@@ -31450,7 +31450,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         may_mudkip_1: {
             trainer: trainers.emerald_may,
@@ -31470,7 +31470,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         may_mudkip_2: {
@@ -31521,7 +31521,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         may_mudkip_3: {
@@ -31572,7 +31572,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         may_mudkip_4: {
@@ -31609,7 +31609,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         may_mudkip_5: {
             trainer: trainers.emerald_may,
@@ -31673,7 +31673,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         may_treecko_1: {
             trainer: trainers.emerald_may,
@@ -31693,7 +31693,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         may_treecko_2: {
@@ -31744,7 +31744,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         may_treecko_3: {
@@ -31795,7 +31795,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         may_treecko_4: {
@@ -31860,7 +31860,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         may_treecko_5: {
             trainer: trainers.emerald_may,
@@ -31896,7 +31896,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         may_torchic_1: {
             trainer: trainers.emerald_may,
@@ -31916,7 +31916,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         may_torchic_2: {
@@ -31967,7 +31967,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         may_torchic_3: {
@@ -32018,7 +32018,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         may_torchic_4: {
@@ -32083,7 +32083,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         may_torchic_5: {
             trainer: trainers.emerald_may,
@@ -32118,7 +32118,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
         },
         tabitha_1: {
             trainer: trainers.rse_tabitha,
@@ -32181,7 +32181,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         tabitha_2: {
@@ -32246,7 +32246,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: [],
+            items: {},
             required: true,
         },
         maxie_1: {
@@ -32297,7 +32297,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["super-potion", "super-potion"],
+            items: { "super-potion": 2 },
             required: true,
         },
         maxie_2: {
@@ -32348,7 +32348,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: ["super-potion", "super-potion"],
+            items: { "super-potion": 2 },
             required: true,
         },
     },

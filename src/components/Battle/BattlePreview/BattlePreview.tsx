@@ -70,7 +70,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
             setTrainer(getTrainer(props.run, props.segment.slug, getStarterSlug(props.run.id)));
             setDefeated(isCleared(props.run.id, props.segment.slug));
             fetchItems(
-                getBattle(props.run, props.segment.slug, getStarterSlug(props.run.id)).items,
+                Object.keys(getBattle(props.run, props.segment.slug, getStarterSlug(props.run.id)).items),
                 props.run.gameSlug
             ).then((items: ItemData[]) => {
                 setItems(items);

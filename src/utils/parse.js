@@ -79,15 +79,14 @@ const saveBattle = (battleKey, row, team) => {
         name: name,
         location: attrs[LOCATION],
         team: team,
-        items: [],
+        items: {},
     };
 
     // If the battle uses items, parse/set items
     if (attrs[ITEMS]) {
+        const item = toSlug(attrs[ITEMS].substring(attrs[ITEMS].indexOf(" ") + 1));
         const count = attrs[ITEMS].substring(attrs[ITEMS].indexOf("[") + 1, attrs[ITEMS].indexOf("]"));
-        for (let i = 0; i < count; i++) {
-            battle.items.push(toSlug(attrs[ITEMS].substring(attrs[ITEMS].indexOf(" ") + 1)));
-        }
+        battle.items[item] = parseInt(count);
     }
 
     // Check required/double

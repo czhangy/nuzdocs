@@ -28,7 +28,7 @@ const Trainers: React.FC<Props> = (props: Props) => {
                     props.battles.map((battle: Battle) => battle.team.map((pokemon: Pokemon) => pokemon.slug)).flat()
                 ),
             ];
-            const uniqueItems = [...new Set(props.battles.map((battle: Battle) => battle.items).flat())];
+            const uniqueItems = [...new Set(props.battles.map((battle: Battle) => Object.keys(battle.items)).flat())];
             fetchPokemonList(uniquePokemon, props.run.gameSlug).then((pokemon: PokemonData[]) => {
                 const pokemonData: { [pokemon: string]: PokemonData } = {};
                 pokemon.forEach((pokemon: PokemonData) => (pokemonData[pokemon.pokemon.slug] = pokemon));

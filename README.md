@@ -118,8 +118,6 @@ The most up-to-date version of NuzDocs is currently deployed at: https://nuzdocs
 -   [ ] Game data
 -   [ ] Consider loading one-by-one instead of in groups (esp. for boxes)
 -   [ ] Nicer alerts for exports
--   [ ] Double battle indicator
--   [ ] Required battle indicator
 -   [ ] Pokemon form handling
 
 ## License
