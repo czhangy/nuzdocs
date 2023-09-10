@@ -2,10 +2,13 @@
 
 .battle-preview {
     --buttons-inner-spacing: 1rem;
+    --count-font-size: 0.75rem;
+    --count-letter-spacing: 3px;
     --name-font-size: 1rem;
-    --location-font-size: 0.75rem;
-    --icon-size: 16px;
+    --location-font-size: 1rem;
+    --icon-size: 12px;
     --info-inner-spacing: 0.5rem;
+    --item-size: 20px;
     --preview-inner-spacing: 0.5rem;
     --sprite-size: 0;
     --sprite-transition-time: 0.5s;
@@ -55,7 +58,20 @@
                 }
 
                 .items {
+                    align-items: center;
                     display: flex;
+
+                    .item {
+                        height: var(--item-size);
+                        position: relative;
+                        width: var(--item-size);
+                    }
+
+                    .count {
+                        font-size: var(--count-font-size);
+                        letter-spacing: var(--count-letter-spacing);
+                        line-height: var(--count-font-size);
+                    }
                 }
             }
 
@@ -82,6 +98,9 @@
 
 @media screen and (min-width: constants.$tablet) {
     .battle-preview {
+        --count-font-size: 1rem;
+        --icon-size: 16px;
+        --item-size: 24px;
         --location-font-size: 1.25rem;
         --name-font-size: 1.5rem;
         --preview-inner-spacing: 0.75rem;

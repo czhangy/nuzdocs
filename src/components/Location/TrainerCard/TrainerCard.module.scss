@@ -3,10 +3,14 @@
 .trainer-card {
     --body-padding: 2rem;
     --card-x-padding: 0.5rem;
+    --count-font-size: 0.75rem;
+    --count-letter-spacing: 3px;
     --export-offset: 0.5rem;
     --export-size: 24px;
-    --icon-size: 12px;
+    --icon-size: 10px;
     --info-inner-spacing: 0.5rem;
+    --item-size: 20px;
+    --items-offset: -4px;
     --loading-y-padding: 2rem;
     --location-font-size: 0.75rem;
     --main-inner-spacing: 0.25rem;
@@ -76,8 +80,21 @@
                 }
 
                 .items {
+                    align-items: center;
                     display: flex;
-                    pointer-events: none;
+                    margin-top: var(--items-offset);
+
+                    .item {
+                        height: var(--item-size);
+                        position: relative;
+                        width: var(--item-size);
+                    }
+
+                    .count {
+                        font-size: var(--count-font-size);
+                        letter-spacing: var(--count-letter-spacing);
+                        line-height: var(--count-font-size);
+                    }
                 }
             }
         }
@@ -144,11 +161,13 @@
 @media screen and (min-width: constants.$tablet) {
     .trainer-card {
         --card-x-padding: 1rem;
+        --count-font-size: 1rem;
         --export-offset: 1rem;
         --export-size: 36px;
-        --icon-size: 16px;
+        --icon-size: 12px;
         --info-inner-spacing: 0.75rem;
         --info-offset: 0;
+        --item-size: 24px;
         --location-font-size: 1rem;
         --main-inner-spacing: 0.5rem;
         --move-font-size: 1rem;

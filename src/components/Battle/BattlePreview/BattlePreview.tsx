@@ -1,11 +1,10 @@
-import ItemDisplay from "@/components/Battle/ItemDisplay/ItemDisplay";
 import LevelCap from "@/components/Battle/LevelCap/LevelCap";
 import BattleSegment from "@/models/BattleSegment";
 import ItemData from "@/models/ItemData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import Trainer from "@/models/Trainer";
-import { fetchItems } from "@/utils/api";
+import { fetchItem } from "@/utils/api";
 import { getBattle, getLevelCap, getTrainer } from "@/utils/battle";
 import { updateNumHOFs } from "@/utils/career";
 import { getSegments } from "@/utils/game";
@@ -32,7 +31,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     const [trainer, setTrainer] = useState<Trainer | null>();
 
     // Fetched state
-    const [items, setItems] = useState<ItemData[]>([]);
+    const [item, setItem] = useState<ItemData | null>(null);
 
     // Sets component state and updates local storage when defeat is clicked
     const handleDefeat = (): void => {
@@ -69,11 +68,11 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
         if (props.segment && props.run) {
             setTrainer(getTrainer(props.run, props.segment.slug, getStarterSlug(props.run.id)));
             setDefeated(isCleared(props.run.id, props.segment.slug));
-            fetchItems(
-                Object.keys(getBattle(props.run, props.segment.slug, getStarterSlug(props.run.id)).items),
+            fetchItem(
+                Object.keys(getBattle(props.run, props.segment.slug, getStarterSlug(props.run.id)).items)[0],
                 props.run.gameSlug
-            ).then((items: ItemData[]) => {
-                setItems(items);
+            ).then((item: ItemData | null) => {
+                setItem(item);
             });
         }
     }, [props.segment, props.run]);
@@ -108,11 +107,18 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                         ) : (
                             ""
                         )}
-                        <div className={styles.items}>
-                            {items.map((item: ItemData, key: number) => {
-                                return <ItemDisplay item={item} showName={false} key={key} />;
-                            })}
-                        </div>
+                        {item ? (
+                            <div className={styles.items}>
+                                <div className={styles.item}>
+                                    <Image src={item.sprite} alt={item.name} layout="fill" objectFit="contain" />
+                                </div>
+                                <p className={styles.count}>
+                                    ×{(props.segment.segment as BattleSegment).battle.items[item.slug]}
+                                </p>
+                            </div>
+                        ) : (
+                            ""
+                        )}
                     </div>
                     <p className={styles.location}>{(props.segment.segment as BattleSegment).battle.location}</p>
                     {defeated ? (
