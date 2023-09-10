@@ -4032,7 +4032,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         psychic_m_preston: {
             trainer: trainers.rse_psychic_m,
@@ -5727,7 +5727,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         expert_m_timothy: {
             trainer: trainers.rse_expert_m,
@@ -13092,7 +13092,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         guitarist_joseph: {
             trainer: trainers.rse_guitarist,
@@ -13151,7 +13151,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         guitarist_marcos: {
             trainer: trainers.rse_guitarist,

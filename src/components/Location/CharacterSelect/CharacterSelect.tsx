@@ -22,7 +22,7 @@ const CharacterSelect: React.FC<Props> = (props: Props) => {
 
     // Get run's selected character on component load
     useEffect(() => {
-        if (props.run !== undefined) {
+        if (props.run) {
             setSelectedCharacter(props.run.character);
         }
     }, [props.run]);

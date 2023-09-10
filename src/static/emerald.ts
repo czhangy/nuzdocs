@@ -279,6 +279,221 @@ const emerald: GameData = {
                 },
             ],
         },
+        {
+            name: "Wattson Split",
+            segments: [
+                {
+                    slug: "hoenn-route-109",
+                    name: "Route 109 (Beach)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.sailor_huey,
+                            battles.emerald.sailor_edmond,
+                            battles.emerald.tuber_f_hailey,
+                            battles.emerald.tuber_m_ricky,
+                            battles.emerald.tuber_f_lola,
+                            battles.emerald.tuber_m_chandler,
+                            battles.emerald.tuber_m_simon,
+                            battles.emerald.beauty_johanna,
+                            battles.emerald.sailor_dwayne,
+                        ],
+                    },
+                },
+                {
+                    slug: "slateport-city",
+                    name: "Slateport City",
+                    type: "location",
+                    segment: {
+                        battles: [battles.emerald.team_aqua_m_grunt_13, battles.emerald.team_aqua_m_grunt_14],
+                    },
+                },
+                {
+                    slug: "hoenn-route-110",
+                    name: "Route 110 (South)",
+                    type: "location",
+                    segment: {
+                        battles: [battles.emerald.pokefan_f_isabel, battles.emerald.pokefan_m_kaleb],
+                    },
+                },
+                {
+                    slug: "hoenn-route-103",
+                    name: "Route 103 (East)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.aroma_lady_daisy,
+                            battles.emerald.twins_amy_and_liv,
+                            battles.emerald.pokefan_m_miguel,
+                            battles.emerald.fisherman_andrew,
+                            battles.emerald.black_belt_rhett,
+                            battles.emerald.guitarist_marcos,
+                        ],
+                    },
+                },
+                {
+                    slug: "trick-house-1",
+                    name: "Trick House 1",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.lass_sally,
+                            battles.emerald.lass_robin,
+                            battles.emerald.youngster_eddie,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "hoenn-route-110",
+                    name: "Route 110 (South)",
+                    type: "location",
+                    segment: {
+                        battles: [battles.emerald.youngster_timmy],
+                    },
+                },
+                {
+                    slug: "rival-2",
+                    name: "Rival 2",
+                    type: "battle",
+                    conditions: {
+                        character: "brendan",
+                        starter: "treecko",
+                    },
+                    segment: {
+                        battle: battles.emerald.may_treecko_2,
+                    },
+                },
+                {
+                    slug: "rival-2",
+                    name: "Rival 2",
+                    type: "battle",
+                    conditions: {
+                        character: "brendan",
+                        starter: "torchic",
+                    },
+                    segment: {
+                        battle: battles.emerald.may_torchic_2,
+                    },
+                },
+                {
+                    slug: "rival-2",
+                    name: "Rival 2",
+                    type: "battle",
+                    conditions: {
+                        character: "brendan",
+                        starter: "mudkip",
+                    },
+                    segment: {
+                        battle: battles.emerald.may_mudkip_2,
+                    },
+                },
+                {
+                    slug: "rival-2",
+                    name: "Rival 2",
+                    type: "battle",
+                    conditions: {
+                        character: "may",
+                        starter: "treecko",
+                    },
+                    segment: {
+                        battle: battles.emerald.brendan_treecko_2,
+                    },
+                },
+                {
+                    slug: "rival-2",
+                    name: "Rival 2",
+                    type: "battle",
+                    conditions: {
+                        character: "may",
+                        starter: "torchic",
+                    },
+                    segment: {
+                        battle: battles.emerald.brendan_torchic_2,
+                    },
+                },
+                {
+                    slug: "rival-2",
+                    name: "Rival 2",
+                    type: "battle",
+                    conditions: {
+                        character: "may",
+                        starter: "mudkip",
+                    },
+                    segment: {
+                        battle: battles.emerald.brendan_mudkip_2,
+                    },
+                },
+                {
+                    slug: "hoenn-route-110",
+                    name: "Route 110 (North)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.collector_edwin,
+                            battles.emerald.guitarist_joseph,
+                            battles.emerald.triathlete_biker_f_alyssa,
+                            battles.emerald.psychic_m_edward,
+                            battles.emerald.fisherman_dale,
+                        ],
+                    },
+                },
+                {
+                    slug: "mauville-city",
+                    name: "Mauville City",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "wally-1",
+                    name: "Wally 1",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.wally_2,
+                    },
+                },
+                {
+                    slug: "cycling-road",
+                    name: "Cycling Road",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.psychic_f_jaclyn,
+                            battles.emerald.triathlete_biker_f_abigail,
+                            battles.emerald.triathlete_biker_m_anthony,
+                            battles.emerald.triathlete_biker_m_benjamin,
+                            battles.emerald.triathlete_biker_f_jasmine,
+                            battles.emerald.triathlete_biker_m_jacob,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "mauville-gym",
+                    name: "Mauville Gym",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.guitarist_kirk,
+                            battles.emerald.battle_girl_vivian,
+                            battles.emerald.youngster_ben,
+                            battles.emerald.bug_maniac_angelo,
+                            battles.emerald.guitarist_shawn,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "wattson",
+                    name: "Wattson",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.wattson,
+                        levelCap: true,
+                    },
+                },
+            ],
+        },
     ],
 };
 

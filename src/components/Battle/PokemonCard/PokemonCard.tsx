@@ -71,9 +71,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                 <p className={styles.level}>Lv. {props.set.level ? props.set.level : "?"}</p>
                 <AbilityDisplay ability={ability} />
                 {heldItem ? (
-                    <div className={styles.item}>
-                        <ItemDisplay item={heldItem} showName={true} />
-                    </div>
+                    <ItemDisplay item={heldItem} showName={true} />
                 ) : (
                     <p className={styles.missing}>No held item</p>
                 )}

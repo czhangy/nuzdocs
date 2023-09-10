@@ -37,8 +37,12 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
 
     // Save item on component load if it exists
     useEffect(() => {
-        if (Object.keys(props.battle.items).length > 0) {
-            setItem(props.items[Object.keys(props.battle.items)[0]]);
+        if (props.battle && props.items) {
+            setOpen(false);
+            setItem(null);
+            if (Object.keys(props.battle.items).length > 0) {
+                setItem(props.items[Object.keys(props.battle.items)[0]]);
+            }
         }
     }, [props.battle, props.items]);
 
