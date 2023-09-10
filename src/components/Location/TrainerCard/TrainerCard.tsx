@@ -60,6 +60,18 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                             ) : (
                                 ""
                             )}
+                            {props.battle.double ? (
+                                <div className={styles.icon} title="This is a double battle">
+                                    <Image
+                                        src="/assets/icons/double.svg"
+                                        alt="Double battle"
+                                        layout="fill"
+                                        objectFit="contain"
+                                    />
+                                </div>
+                            ) : (
+                                ""
+                            )}
                         </div>
                         <p className={styles.location}>{props.battle.location}</p>
                         {props.battle.items.length > 0 ? (

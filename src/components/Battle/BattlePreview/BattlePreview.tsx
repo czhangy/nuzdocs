@@ -96,6 +96,18 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                         ) : (
                             ""
                         )}
+                        {(props.segment.segment as BattleSegment).battle.double ? (
+                            <div className={styles.icon} title="This is a double battle">
+                                <Image
+                                    src="/assets/icons/double.svg"
+                                    alt="Double battle"
+                                    layout="fill"
+                                    objectFit="contain"
+                                />
+                            </div>
+                        ) : (
+                            ""
+                        )}
                         <div className={styles.items}>
                             {items.map((item: ItemData, key: number) => {
                                 return <ItemDisplay item={item} showName={false} key={key} />;
