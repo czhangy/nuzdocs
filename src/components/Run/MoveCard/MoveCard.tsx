@@ -1,10 +1,10 @@
+import Tooltip from "@/components/Run/Tooltip/Tooltip";
 import TypeIcon from "@/components/Run/TypeIcon/TypeIcon";
 import MoveData from "@/models/MoveData";
-import Image from "next/image";
-import styles from "./MoveCard.module.scss";
-import Tooltip from "@/components/Global/Tooltip/Tooltip";
-import { useState } from "react";
 import { capitalizeWord, getPreSplitCategories } from "@/utils/utils";
+import Image from "next/image";
+import { useState } from "react";
+import styles from "./MoveCard.module.scss";
 
 type Props = {
     move: MoveData;
