@@ -197,6 +197,88 @@ const emerald: GameData = {
                 },
             ],
         },
+        {
+            name: "Brawly Split",
+            segments: [
+                {
+                    slug: "hoenn-route-116",
+                    name: "Route 116",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.youngster_joey,
+                            battles.emerald.bug_catcher_jose,
+                            battles.emerald.school_kid_f_karen,
+                            battles.emerald.hiker_clark,
+                            battles.emerald.youngster_johnson,
+                            battles.emerald.hiker_devan,
+                            battles.emerald.lady_sarah,
+                            battles.emerald.rich_boy_dawson,
+                            battles.emerald.school_kid_m_jerry,
+                            battles.emerald.lass_janice,
+                        ],
+                    },
+                },
+                {
+                    slug: "rusturf-tunnel",
+                    name: "Rusturf Tunnel (West)",
+                    type: "location",
+                    segment: { battles: [battles.emerald.team_aqua_m_grunt_9] },
+                },
+                {
+                    slug: "dewford-town",
+                    name: "Dewford Town",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "hoenn-route-106",
+                    name: "Route 106 (Beach)",
+                    type: "location",
+                    segment: {
+                        battles: [battles.emerald.fisherman_ned, battles.emerald.fisherman_elliot],
+                    },
+                },
+                {
+                    slug: "granite-cave",
+                    name: "Granite Cave",
+                    type: "location",
+                    segment: {
+                        battles: [],
+                    },
+                },
+                {
+                    slug: "hoenn-route-107",
+                    name: "Route 107 (Beach)",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "dewford-gym",
+                    name: "Dewford Gym",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.battle_girl_laura,
+                            battles.emerald.lilith_and_brenden,
+                            battles.emerald.black_belt_takao,
+                            battles.emerald.black_belt_cristian,
+                            battles.emerald.battle_girl_jocelyn,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "brawly",
+                    name: "Brawly",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.brawly,
+                        levelCap: true,
+                    },
+                },
+            ],
+        },
     ],
 };
 

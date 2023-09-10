@@ -10448,32 +10448,9 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: {},
             tags: [],
         },
-        sailor_brenden: {
-            trainer: trainers.rse_sailor,
-            name: "Brenden",
-            location: "Dewford Gym",
-            team: [
-                {
-                    slug: "machop",
-                    species: "machop",
-                    level: 13,
-                    ability: { slug: "guts", name: "Guts" },
-                    moves: [
-                        { slug: "low-kick", name: "Low Kick" },
-                        { slug: "leer", name: "Leer" },
-                        { slug: "focus-energy", name: "Focus Energy" },
-                        { slug: "karate-chop", name: "Karate Chop" },
-                    ],
-                    ivs: { hp: 12, atk: 12, spa: 12, def: 12, spd: 12, spe: 12 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-            ],
-            items: {},
-            tags: [],
-        },
-        battle_girl_lilith: {
-            trainer: trainers.rse_battle_girl,
-            name: "Lilith",
+        lilith_and_brenden: {
+            trainer: trainers.emerald_lilith_and_brenden,
+            name: "Lilith & Brenden",
             location: "Dewford Gym",
             team: [
                 {
@@ -10490,9 +10467,23 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     ivs: { hp: 18, atk: 18, spa: 18, def: 18, spd: 18, spe: 18 },
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
+                {
+                    slug: "machop",
+                    species: "machop",
+                    level: 13,
+                    ability: { slug: "guts", name: "Guts" },
+                    moves: [
+                        { slug: "low-kick", name: "Low Kick" },
+                        { slug: "leer", name: "Leer" },
+                        { slug: "focus-energy", name: "Focus Energy" },
+                        { slug: "karate-chop", name: "Karate Chop" },
+                    ],
+                    ivs: { hp: 12, atk: 12, spa: 12, def: 12, spd: 12, spe: 12 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
             ],
             items: {},
-            tags: [],
+            tags: ["Double Battle"],
         },
         black_belt_cristian: {
             trainer: trainers.rse_black_belt,
