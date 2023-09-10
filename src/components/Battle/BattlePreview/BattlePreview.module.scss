@@ -6,7 +6,6 @@
     --count-letter-spacing: 3px;
     --name-font-size: 1rem;
     --location-font-size: 1rem;
-    --icon-size: 12px;
     --info-inner-spacing: 0.5rem;
     --item-size: 20px;
     --preview-inner-spacing: 0.5rem;
@@ -48,13 +47,6 @@
                 .name {
                     font-size: var(--name-font-size);
                     line-height: var(--name-font-size);
-                }
-
-                .icon {
-                    filter: constants.$svg-color;
-                    height: var(--icon-size);
-                    position: relative;
-                    width: var(--icon-size);
                 }
 
                 .items {
@@ -99,7 +91,6 @@
 @media screen and (min-width: constants.$tablet) {
     .battle-preview {
         --count-font-size: 1rem;
-        --icon-size: 16px;
         --item-size: 24px;
         --location-font-size: 1.25rem;
         --name-font-size: 1.5rem;

@@ -24,6 +24,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokemon_breeder_f_gabrielle: {
             trainer: trainers.rse_pokemon_breeder_f,
@@ -116,6 +117,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_m_marcel: {
             trainer: trainers.rse_cool_trainer_m,
@@ -152,6 +154,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         bird_keeper_alberto: {
             trainer: trainers.rse_bird_keeper,
@@ -188,6 +191,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         collector_ed: {
             trainer: trainers.rse_collector,
@@ -224,6 +228,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_declan: {
             trainer: trainers.rse_swimmer_m,
@@ -246,6 +251,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         expert_m_fredrick: {
             trainer: trainers.rse_expert_m,
@@ -282,6 +288,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         matt: {
             trainer: trainers.rse_matt,
@@ -318,7 +325,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "super-potion": 1 },
-            required: true,
+            tags: ["Required"],
         },
         black_belt_zander: {
             trainer: trainers.rse_black_belt,
@@ -341,6 +348,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         archie: {
             trainer: trainers.rse_archie,
@@ -391,7 +399,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         hex_maniac_leah: {
             trainer: trainers.rse_hex_maniac,
@@ -414,6 +422,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         aroma_lady_daisy: {
             trainer: trainers.rse_aroma_lady,
@@ -450,6 +459,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         aroma_lady_rose: {
             trainer: trainers.rse_aroma_lady,
@@ -500,6 +510,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_m_felix: {
             trainer: trainers.rse_cool_trainer_m,
@@ -536,6 +547,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         aroma_lady_violet: {
             trainer: trainers.rse_aroma_lady,
@@ -572,6 +584,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         ruin_maniac_dusty: {
             trainer: trainers.rse_ruin_maniac,
@@ -594,6 +607,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         ruin_maniac_chip: {
             trainer: trainers.rse_ruin_maniac,
@@ -644,6 +658,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         ruin_maniac_foster: {
             trainer: trainers.rse_ruin_maniac,
@@ -680,6 +695,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         tuber_f_lola: {
             trainer: trainers.rse_tuber_f,
@@ -716,6 +732,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         tuber_f_austina: {
             trainer: trainers.rse_tuber_f,
@@ -738,6 +755,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         tuber_f_gwen: {
             trainer: trainers.rse_tuber_f,
@@ -760,6 +778,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         tuber_m_ricky: {
             trainer: trainers.rse_tuber_m,
@@ -782,6 +801,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         tuber_m_simon: {
             trainer: trainers.rse_tuber_m,
@@ -818,6 +838,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         tuber_m_charlie: {
             trainer: trainers.rse_tuber_m,
@@ -840,6 +861,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_m_randall: {
             trainer: trainers.rse_cool_trainer_m,
@@ -862,6 +884,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         cool_trainer_m_parker: {
             trainer: trainers.rse_cool_trainer_m,
@@ -884,6 +907,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         cool_trainer_m_george: {
             trainer: trainers.rse_cool_trainer_m,
@@ -907,6 +931,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         cool_trainer_m_berke: {
             trainer: trainers.rse_cool_trainer_m,
@@ -929,6 +954,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         cool_trainer_m_braxton: {
             trainer: trainers.rse_cool_trainer_m,
@@ -1007,6 +1033,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         cool_trainer_m_wilton: {
             trainer: trainers.rse_cool_trainer_m,
@@ -1057,6 +1084,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "super-potion": 1 },
+            tags: [],
         },
         cool_trainer_m_edgar: {
             trainer: trainers.rse_cool_trainer_m,
@@ -1093,6 +1121,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         cool_trainer_m_albert: {
             trainer: trainers.rse_cool_trainer_m,
@@ -1129,6 +1158,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         cool_trainer_m_samuel: {
             trainer: trainers.rse_cool_trainer_m,
@@ -1179,6 +1209,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         cool_trainer_m_vito: {
             trainer: trainers.rse_cool_trainer_m,
@@ -1243,6 +1274,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         cool_trainer_m_owen: {
             trainer: trainers.rse_cool_trainer_m,
@@ -1293,6 +1325,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         cool_trainer_m_warren: {
             trainer: trainers.rse_cool_trainer_m,
@@ -1329,6 +1362,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         cool_trainer_f_mary: {
             trainer: trainers.rse_cool_trainer_f,
@@ -1351,6 +1385,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         cool_trainer_f_alexia: {
             trainer: trainers.rse_cool_trainer_f,
@@ -1373,6 +1408,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         cool_trainer_f_jody: {
             trainer: trainers.rse_cool_trainer_f,
@@ -1395,6 +1431,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         cool_trainer_f_wendy: {
             trainer: trainers.rse_cool_trainer_f,
@@ -1445,6 +1482,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         cool_trainer_f_brooke: {
             trainer: trainers.rse_cool_trainer_f,
@@ -1494,6 +1532,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "super-potion": 1 },
+            tags: [],
         },
         cool_trainer_f_jennifer: {
             trainer: trainers.rse_cool_trainer_f,
@@ -1516,6 +1555,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         cool_trainer_f_hope: {
             trainer: trainers.rse_cool_trainer_f,
@@ -1538,6 +1578,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         cool_trainer_f_shannon: {
             trainer: trainers.rse_cool_trainer_f,
@@ -1560,6 +1601,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         cool_trainer_f_michelle: {
             trainer: trainers.rse_cool_trainer_f,
@@ -1610,6 +1652,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         cool_trainer_f_caroline: {
             trainer: trainers.rse_cool_trainer_f,
@@ -1646,6 +1689,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         cool_trainer_f_julie: {
             trainer: trainers.rse_cool_trainer_f,
@@ -1696,6 +1740,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         hex_maniac_patricia: {
             trainer: trainers.rse_hex_maniac,
@@ -1732,6 +1777,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hex_maniac_kindra: {
             trainer: trainers.rse_hex_maniac,
@@ -1768,6 +1814,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hex_maniac_tammy: {
             trainer: trainers.rse_hex_maniac,
@@ -1804,6 +1851,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hex_maniac_valerie: {
             trainer: trainers.rse_hex_maniac,
@@ -1826,6 +1874,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hex_maniac_tasha: {
             trainer: trainers.rse_hex_maniac,
@@ -1848,6 +1897,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         lady_cindy: {
             trainer: trainers.rse_lady,
@@ -1870,6 +1920,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         lady_daphne: {
             trainer: trainers.rse_lady,
@@ -1908,6 +1959,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         lady_brianna: {
             trainer: trainers.rse_lady,
@@ -1931,6 +1983,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         beauty_melissa: {
             trainer: trainers.rse_beauty,
@@ -1953,6 +2006,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         beauty_sheila: {
             trainer: trainers.rse_beauty,
@@ -1975,6 +2029,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         beauty_shirley: {
             trainer: trainers.rse_beauty,
@@ -1997,6 +2052,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         beauty_jessica: {
             trainer: trainers.rse_beauty,
@@ -2033,6 +2089,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         beauty_connie: {
             trainer: trainers.rse_beauty,
@@ -2055,6 +2112,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         beauty_bridget: {
             trainer: trainers.rse_beauty,
@@ -2077,6 +2135,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         beauty_olivia: {
             trainer: trainers.rse_beauty,
@@ -2127,6 +2186,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         beauty_tiffany: {
             trainer: trainers.rse_beauty,
@@ -2163,6 +2223,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         rich_boy_winston: {
             trainer: trainers.rse_rich_boy,
@@ -2185,6 +2246,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         expert_f_mollie: {
             trainer: trainers.rse_expert_f,
@@ -2221,6 +2283,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokemaniac_steve: {
             trainer: trainers.rse_pokemaniac,
@@ -2243,6 +2306,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         beauty_thalia: {
             trainer: trainers.rse_beauty,
@@ -2279,6 +2343,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokemaniac_mark: {
             trainer: trainers.rse_pokemaniac,
@@ -2301,6 +2366,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_luis: {
             trainer: trainers.rse_swimmer_m,
@@ -2323,6 +2389,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_dominik: {
             trainer: trainers.rse_swimmer_m,
@@ -2345,6 +2412,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_douglas: {
             trainer: trainers.rse_swimmer_m,
@@ -2381,6 +2449,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_darrin: {
             trainer: trainers.rse_swimmer_m,
@@ -2431,6 +2500,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_tony: {
             trainer: trainers.rse_swimmer_m,
@@ -2453,6 +2523,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_jerome: {
             trainer: trainers.rse_swimmer_m,
@@ -2475,6 +2546,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_matthew: {
             trainer: trainers.rse_swimmer_m,
@@ -2497,6 +2569,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_david: {
             trainer: trainers.rse_swimmer_m,
@@ -2533,6 +2606,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_spencer: {
             trainer: trainers.rse_swimmer_m,
@@ -2569,6 +2643,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_roland: {
             trainer: trainers.rse_swimmer_m,
@@ -2591,6 +2666,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_nolen: {
             trainer: trainers.rse_swimmer_m,
@@ -2613,6 +2689,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_stan: {
             trainer: trainers.rse_swimmer_m,
@@ -2635,6 +2712,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_barry: {
             trainer: trainers.rse_swimmer_m,
@@ -2657,6 +2735,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_dean: {
             trainer: trainers.rse_swimmer_m,
@@ -2707,6 +2786,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_rodney: {
             trainer: trainers.rse_swimmer_m,
@@ -2729,6 +2809,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_richard: {
             trainer: trainers.rse_swimmer_m,
@@ -2751,6 +2832,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_herman: {
             trainer: trainers.rse_swimmer_m,
@@ -2787,6 +2869,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_santiago: {
             trainer: trainers.rse_swimmer_m,
@@ -2823,6 +2906,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_gilbert: {
             trainer: trainers.rse_swimmer_m,
@@ -2845,6 +2929,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_franklin: {
             trainer: trainers.rse_swimmer_m,
@@ -2867,6 +2952,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_kevin: {
             trainer: trainers.rse_swimmer_m,
@@ -2889,6 +2975,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_jack: {
             trainer: trainers.rse_swimmer_m,
@@ -2911,6 +2998,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_chad: {
             trainer: trainers.rse_swimmer_m,
@@ -2947,6 +3035,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         black_belt_takao: {
             trainer: trainers.rse_black_belt,
@@ -2969,6 +3058,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         black_belt_hitoshi: {
             trainer: trainers.rse_black_belt,
@@ -3005,6 +3095,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         black_belt_kiyo: {
             trainer: trainers.rse_black_belt,
@@ -3027,6 +3118,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         black_belt_koichi: {
             trainer: trainers.rse_black_belt,
@@ -3063,6 +3155,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         black_belt_nob: {
             trainer: trainers.rse_black_belt,
@@ -3085,6 +3178,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         black_belt_yuji: {
             trainer: trainers.rse_black_belt,
@@ -3121,6 +3215,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         black_belt_daisuke: {
             trainer: trainers.rse_black_belt,
@@ -3143,6 +3238,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         black_belt_atsushi: {
             trainer: trainers.rse_black_belt,
@@ -3165,6 +3261,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         guitarist_kirk: {
             trainer: trainers.rse_guitarist,
@@ -3201,6 +3298,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         guitarist_shawn: {
             trainer: trainers.rse_guitarist,
@@ -3237,6 +3335,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         guitarist_fernando: {
             trainer: trainers.rse_guitarist,
@@ -3273,6 +3372,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         guitarist_dalton: {
             trainer: trainers.rse_guitarist,
@@ -3308,6 +3408,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         kindler_cole: {
             trainer: trainers.rse_kindler,
@@ -3330,6 +3431,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         kindler_jeff: {
             trainer: trainers.rse_kindler,
@@ -3366,6 +3468,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         kindler_axle: {
             trainer: trainers.rse_kindler,
@@ -3388,6 +3491,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         kindler_jace: {
             trainer: trainers.rse_kindler,
@@ -3410,6 +3514,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         kindler_keegan: {
             trainer: trainers.rse_kindler,
@@ -3432,6 +3537,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         kindler_bernie: {
             trainer: trainers.rse_kindler,
@@ -3468,6 +3574,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         camper_drew: {
             trainer: trainers.rse_camper,
@@ -3490,6 +3597,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         camper_beau: {
             trainer: trainers.rse_camper,
@@ -3540,6 +3648,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         camper_larry: {
             trainer: trainers.rse_camper,
@@ -3562,6 +3671,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         camper_shane: {
             trainer: trainers.rse_camper,
@@ -3598,6 +3708,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         camper_justin: {
             trainer: trainers.rse_camper,
@@ -3620,6 +3731,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         camper_ethan: {
             trainer: trainers.rse_camper,
@@ -3656,6 +3768,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         picnicker_autumn: {
             trainer: trainers.rse_picnicker,
@@ -3678,6 +3791,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         camper_travis: {
             trainer: trainers.rse_camper,
@@ -3700,6 +3814,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bug_maniac_brent: {
             trainer: trainers.rse_bug_maniac,
@@ -3722,6 +3837,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bug_maniac_donald: {
             trainer: trainers.rse_bug_maniac,
@@ -3766,6 +3882,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bug_maniac_taylor: {
             trainer: trainers.rse_bug_maniac,
@@ -3810,6 +3927,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bug_maniac_jeffrey: {
             trainer: trainers.rse_bug_maniac,
@@ -3860,6 +3978,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bug_maniac_derek: {
             trainer: trainers.rse_bug_maniac,
@@ -3892,6 +4011,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_m_edward: {
             trainer: trainers.rse_psychic_m,
@@ -3912,6 +4032,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_m_preston: {
             trainer: trainers.rse_psychic_m,
@@ -3934,6 +4055,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_m_virgil: {
             trainer: trainers.rse_psychic_m,
@@ -3956,6 +4078,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_m_blake: {
             trainer: trainers.rse_psychic_m,
@@ -3978,6 +4101,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_m_william: {
             trainer: trainers.rse_psychic_m,
@@ -4028,6 +4152,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_m_joshua: {
             trainer: trainers.rse_psychic_m,
@@ -4064,6 +4189,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_m_cameron: {
             trainer: trainers.rse_psychic_m,
@@ -4086,6 +4212,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_f_jaclyn: {
             trainer: trainers.rse_psychic_f,
@@ -4106,6 +4233,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_f_hannah: {
             trainer: trainers.rse_psychic_f,
@@ -4128,6 +4256,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_f_samantha: {
             trainer: trainers.rse_psychic_f,
@@ -4150,6 +4279,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_f_maura: {
             trainer: trainers.rse_psychic_f,
@@ -4172,6 +4302,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_f_kayla: {
             trainer: trainers.rse_psychic_f,
@@ -4222,6 +4353,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_f_alexis: {
             trainer: trainers.rse_psychic_f,
@@ -4258,6 +4390,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_f_jacki: {
             trainer: trainers.rse_psychic_f,
@@ -4294,6 +4427,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         gentleman_walter: {
             trainer: trainers.rse_gentleman,
@@ -4316,6 +4450,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         sidney: {
             trainer: trainers.rse_sidney,
@@ -4395,7 +4530,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 2 },
-            required: true,
+            tags: ["Required"],
         },
         phoebe: {
             trainer: trainers.rse_phoebe,
@@ -4475,7 +4610,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 2 },
-            required: true,
+            tags: ["Required"],
         },
         glacia: {
             trainer: trainers.rse_glacia,
@@ -4555,7 +4690,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 2 },
-            required: true,
+            tags: ["Required"],
         },
         drake: {
             trainer: trainers.rse_drake,
@@ -4635,7 +4770,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 2 },
-            required: true,
+            tags: ["Required"],
         },
         roxanne: {
             trainer: trainers.rse_roxanne,
@@ -4687,7 +4822,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { potion: 2 },
-            required: true,
+            tags: ["Required"],
         },
         brawly: {
             trainer: trainers.rse_brawly,
@@ -4739,7 +4874,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "super-potion": 2 },
-            required: true,
+            tags: ["Required"],
         },
         wattson: {
             trainer: trainers.rse_wattson,
@@ -4805,7 +4940,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "super-potion": 2 },
-            required: true,
+            tags: ["Required"],
         },
         flannery: {
             trainer: trainers.rse_flannery,
@@ -4871,7 +5006,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 2 },
-            required: true,
+            tags: ["Required"],
         },
         norman: {
             trainer: trainers.rse_norman,
@@ -4937,7 +5072,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 2 },
-            required: true,
+            tags: ["Required"],
         },
         winona: {
             trainer: trainers.rse_winona,
@@ -5017,7 +5152,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 2 },
-            required: true,
+            tags: ["Required"],
         },
         tate_and_liza_tate_and_liza: {
             trainer: trainers.rse_tate_and_liza,
@@ -5084,8 +5219,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 4 },
-            required: true,
-            double: true,
+            tags: ["Required", "Double Battle"],
         },
         juan: {
             trainer: trainers.emerald_juan,
@@ -5165,7 +5299,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 2 },
-            required: true,
+            tags: ["Required"],
         },
         school_kid_m_jerry: {
             trainer: trainers.rse_school_kid_m,
@@ -5186,6 +5320,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         school_kid_m_ted: {
             trainer: trainers.rse_school_kid_m,
@@ -5208,6 +5343,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         school_kid_m_paul: {
             trainer: trainers.rse_school_kid_m,
@@ -5256,6 +5392,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         school_kid_f_karen: {
             trainer: trainers.rse_school_kid_f,
@@ -5277,6 +5414,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         school_kid_f_georgia: {
             trainer: trainers.rse_school_kid_f,
@@ -5311,6 +5449,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         sr_and_jr_kate_and_joy: {
             trainer: trainers.rse_sr_and_jr,
@@ -5347,7 +5486,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         sr_and_jr_anna_and_meg: {
             trainer: trainers.rse_sr_and_jr,
@@ -5384,7 +5523,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         winstrate_victor_victor: {
             trainer: trainers.rse_winstrate_victor,
@@ -5423,6 +5562,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokefan_m_miguel: {
             trainer: trainers.rse_pokefan_m,
@@ -5446,6 +5586,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         winstrate_victoria_victoria: {
             trainer: trainers.rse_winstrate_victoria,
@@ -5469,6 +5610,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokefan_f_vanessa: {
             trainer: trainers.rse_pokefan_f,
@@ -5492,6 +5634,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokefan_f_bethany: {
             trainer: trainers.rse_pokefan_f,
@@ -5545,6 +5688,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokefan_f_isabel: {
             trainer: trainers.rse_pokefan_f,
@@ -5583,6 +5727,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         expert_m_timothy: {
             trainer: trainers.rse_expert_m,
@@ -5605,6 +5750,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         winstrate_vicky_vicky: {
             trainer: trainers.rse_winstrate_vicky,
@@ -5627,6 +5773,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         expert_f_shelby: {
             trainer: trainers.rse_expert_f,
@@ -5663,6 +5810,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         youngster_calvin: {
             trainer: trainers.rse_youngster,
@@ -5683,7 +5831,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         youngster_billy: {
             trainer: trainers.rse_youngster,
@@ -5718,6 +5866,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         youngster_josh: {
             trainer: trainers.rse_youngster,
@@ -5739,6 +5888,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         youngster_tommy: {
             trainer: trainers.rse_youngster,
@@ -5773,6 +5923,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         youngster_joey: {
             trainer: trainers.rse_youngster,
@@ -5794,6 +5945,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         youngster_ben: {
             trainer: trainers.rse_youngster,
@@ -5830,6 +5982,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_m_quincy: {
             trainer: trainers.rse_cool_trainer_m,
@@ -5866,6 +6019,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         cool_trainer_f_katelynn: {
             trainer: trainers.rse_cool_trainer_f,
@@ -5902,6 +6056,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         youngster_jaylen: {
             trainer: trainers.rse_youngster,
@@ -5923,6 +6078,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         youngster_dillon: {
             trainer: trainers.rse_youngster,
@@ -5945,6 +6101,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         youngster_eddie: {
             trainer: trainers.rse_youngster,
@@ -5981,6 +6138,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         youngster_allen: {
             trainer: trainers.rse_youngster,
@@ -6013,6 +6171,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         youngster_timmy: {
             trainer: trainers.rse_youngster,
@@ -6049,6 +6208,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         wallace: {
             trainer: trainers.emerald_wallace,
@@ -6142,7 +6302,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 4 },
-            required: true,
+            tags: ["Required"],
         },
         fisherman_andrew: {
             trainer: trainers.rse_fisherman,
@@ -6184,6 +6344,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_ivan: {
             trainer: trainers.rse_fisherman,
@@ -6219,6 +6380,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_claude: {
             trainer: trainers.rse_fisherman,
@@ -6267,6 +6429,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_elliot: {
             trainer: trainers.rse_fisherman,
@@ -6305,6 +6468,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_ned: {
             trainer: trainers.rse_fisherman,
@@ -6325,6 +6489,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_dale: {
             trainer: trainers.rse_fisherman,
@@ -6385,6 +6550,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_nolan: {
             trainer: trainers.rse_fisherman,
@@ -6407,6 +6573,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_barny: {
             trainer: trainers.rse_fisherman,
@@ -6443,6 +6610,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_wade: {
             trainer: trainers.rse_fisherman,
@@ -6464,6 +6632,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_carter: {
             trainer: trainers.rse_fisherman,
@@ -6500,6 +6669,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_ronald: {
             trainer: trainers.rse_fisherman,
@@ -6585,6 +6755,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_biker_m_jacob: {
             trainer: trainers.rse_triathlete_biker_m,
@@ -6631,6 +6802,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_biker_m_anthony: {
             trainer: trainers.rse_triathlete_biker_m,
@@ -6667,6 +6839,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_biker_m_benjamin: {
             trainer: trainers.rse_triathlete_biker_m,
@@ -6689,6 +6862,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_biker_f_abigail: {
             trainer: trainers.rse_triathlete_biker_f,
@@ -6711,6 +6885,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_biker_f_jasmine: {
             trainer: trainers.rse_triathlete_biker_f,
@@ -6759,6 +6934,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_runner_m_dylan: {
             trainer: trainers.rse_triathlete_runner_m,
@@ -6781,6 +6957,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_runner_f_maria: {
             trainer: trainers.rse_triathlete_runner_f,
@@ -6803,6 +6980,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_swimmer_m_camden: {
             trainer: trainers.rse_triathlete_swimmer_m,
@@ -6839,6 +7017,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         youngster_demetrius: {
             trainer: trainers.rse_youngster,
@@ -6875,6 +7054,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_swimmer_m_isaiah: {
             trainer: trainers.rse_triathlete_swimmer_m,
@@ -6897,6 +7077,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_swimmer_m_pablo: {
             trainer: trainers.rse_triathlete_swimmer_m,
@@ -6933,6 +7114,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_swimmer_m_chase: {
             trainer: trainers.rse_triathlete_swimmer_m,
@@ -6969,6 +7151,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_swimmer_f_isobel: {
             trainer: trainers.rse_triathlete_swimmer_f,
@@ -6991,6 +7174,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_swimmer_f_donny: {
             trainer: trainers.rse_triathlete_swimmer_f,
@@ -7027,6 +7211,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_swimmer_f_talia: {
             trainer: trainers.rse_triathlete_swimmer_f,
@@ -7049,6 +7234,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_swimmer_f_katelyn: {
             trainer: trainers.rse_triathlete_swimmer_f,
@@ -7071,6 +7257,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_swimmer_f_allison: {
             trainer: trainers.rse_triathlete_swimmer_f,
@@ -7107,6 +7294,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         dragon_tamer_nicolas: {
             trainer: trainers.rse_dragon_tamer,
@@ -7143,6 +7331,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         dragon_tamer_aaron: {
             trainer: trainers.rse_dragon_tamer,
@@ -7165,6 +7354,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_perry: {
             trainer: trainers.rse_bird_keeper,
@@ -7187,6 +7377,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_hugh: {
             trainer: trainers.rse_bird_keeper,
@@ -7223,6 +7414,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_phil: {
             trainer: trainers.rse_bird_keeper,
@@ -7245,6 +7437,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_jared: {
             trainer: trainers.rse_bird_keeper,
@@ -7295,6 +7488,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_humberto: {
             trainer: trainers.rse_bird_keeper,
@@ -7317,6 +7511,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_presley: {
             trainer: trainers.rse_bird_keeper,
@@ -7353,6 +7548,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_edwardo: {
             trainer: trainers.rse_bird_keeper,
@@ -7389,6 +7585,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_colin: {
             trainer: trainers.rse_bird_keeper,
@@ -7425,6 +7622,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_robert: {
             trainer: trainers.rse_bird_keeper,
@@ -7447,6 +7645,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_benny: {
             trainer: trainers.rse_bird_keeper,
@@ -7497,6 +7696,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_chester: {
             trainer: trainers.rse_bird_keeper,
@@ -7533,6 +7733,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_alex: {
             trainer: trainers.rse_bird_keeper,
@@ -7569,6 +7770,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_beck: {
             trainer: trainers.rse_bird_keeper,
@@ -7591,6 +7793,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         ninja_boy_yasu: {
             trainer: trainers.rse_ninja_boy,
@@ -7613,6 +7816,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         ninja_boy_takashi: {
             trainer: trainers.rse_ninja_boy,
@@ -7649,6 +7853,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_f_dianne: {
             trainer: trainers.rse_cool_trainer_f,
@@ -7685,6 +7890,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         tuber_f_jani: {
             trainer: trainers.rse_tuber_f,
@@ -7707,6 +7913,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         ninja_boy_lao: {
             trainer: trainers.rse_ninja_boy,
@@ -7757,6 +7964,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         ninja_boy_lung: {
             trainer: trainers.rse_ninja_boy,
@@ -7793,6 +8001,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         battle_girl_jocelyn: {
             trainer: trainers.rse_battle_girl,
@@ -7815,6 +8024,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         battle_girl_laura: {
             trainer: trainers.rse_battle_girl,
@@ -7837,6 +8047,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         battle_girl_cyndy: {
             trainer: trainers.rse_battle_girl,
@@ -7873,6 +8084,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         battle_girl_cora: {
             trainer: trainers.rse_battle_girl,
@@ -7895,6 +8107,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         battle_girl_paula: {
             trainer: trainers.rse_battle_girl,
@@ -7917,6 +8130,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         parasol_lady_madeline: {
             trainer: trainers.rse_parasol_lady,
@@ -7939,6 +8153,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         parasol_lady_clarissa: {
             trainer: trainers.rse_parasol_lady,
@@ -7975,6 +8190,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         parasol_lady_angelica: {
             trainer: trainers.rse_parasol_lady,
@@ -7997,6 +8213,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_beverly: {
             trainer: trainers.rse_swimmer_f,
@@ -8033,6 +8250,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_imani: {
             trainer: trainers.rse_swimmer_f,
@@ -8055,6 +8273,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_kyla: {
             trainer: trainers.rse_swimmer_f,
@@ -8077,6 +8296,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_denise: {
             trainer: trainers.rse_swimmer_f,
@@ -8114,6 +8334,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_beth: {
             trainer: trainers.rse_swimmer_f,
@@ -8136,6 +8357,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_tara: {
             trainer: trainers.rse_swimmer_f,
@@ -8172,6 +8394,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_missy: {
             trainer: trainers.rse_swimmer_f,
@@ -8194,6 +8417,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_alice: {
             trainer: trainers.rse_swimmer_f,
@@ -8244,6 +8468,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_jenny: {
             trainer: trainers.rse_swimmer_f,
@@ -8266,6 +8491,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_grace: {
             trainer: trainers.rse_swimmer_f,
@@ -8288,6 +8514,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_tanya: {
             trainer: trainers.rse_swimmer_f,
@@ -8310,6 +8537,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_sharon: {
             trainer: trainers.rse_swimmer_f,
@@ -8332,6 +8560,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_nikki: {
             trainer: trainers.rse_swimmer_f,
@@ -8368,6 +8597,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_brenda: {
             trainer: trainers.rse_swimmer_f,
@@ -8390,6 +8620,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_katie: {
             trainer: trainers.rse_swimmer_f,
@@ -8426,6 +8657,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_susie: {
             trainer: trainers.rse_swimmer_f,
@@ -8448,6 +8680,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_kara: {
             trainer: trainers.rse_swimmer_f,
@@ -8470,6 +8703,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_dana: {
             trainer: trainers.rse_swimmer_f,
@@ -8492,6 +8726,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_sienna: {
             trainer: trainers.rse_swimmer_f,
@@ -8528,6 +8763,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_debra: {
             trainer: trainers.rse_swimmer_f,
@@ -8550,6 +8786,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_linda: {
             trainer: trainers.rse_swimmer_f,
@@ -8586,6 +8823,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_laurel: {
             trainer: trainers.rse_swimmer_f,
@@ -8622,6 +8860,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_carlee: {
             trainer: trainers.rse_swimmer_f,
@@ -8644,6 +8883,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         picnicker_heidi: {
             trainer: trainers.rse_picnicker,
@@ -8680,6 +8920,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         picnicker_becky: {
             trainer: trainers.rse_picnicker,
@@ -8716,6 +8957,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         picnicker_carol: {
             trainer: trainers.rse_picnicker,
@@ -8752,6 +8994,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         picnicker_nancy: {
             trainer: trainers.rse_picnicker,
@@ -8788,6 +9031,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         picnicker_martha: {
             trainer: trainers.rse_picnicker,
@@ -8824,6 +9068,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         picnicker_diana: {
             trainer: trainers.rse_picnicker,
@@ -8874,6 +9119,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_m_cedric: {
             trainer: trainers.rse_psychic_m,
@@ -8896,6 +9142,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         picnicker_irene: {
             trainer: trainers.rse_picnicker,
@@ -8932,6 +9179,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         twins_amy_and_liv: {
             trainer: trainers.rse_twins,
@@ -8968,7 +9216,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         twins_gina_and_mia: {
             trainer: trainers.rse_twins,
@@ -9001,7 +9249,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         twins_miu_and_yuki: {
             trainer: trainers.rse_twins,
@@ -9038,7 +9286,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         sailor_huey: {
             trainer: trainers.rse_sailor,
@@ -9073,6 +9321,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         sailor_edmond: {
             trainer: trainers.rse_sailor,
@@ -9095,6 +9344,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         sailor_ernest: {
             trainer: trainers.rse_sailor,
@@ -9131,6 +9381,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         sailor_dwayne: {
             trainer: trainers.rse_sailor,
@@ -9177,6 +9428,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         sailor_duncan: {
             trainer: trainers.rse_sailor,
@@ -9213,6 +9465,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hiker_eli: {
             trainer: trainers.rse_hiker,
@@ -9235,6 +9488,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokefan_f_annika: {
             trainer: trainers.rse_pokefan_f,
@@ -9273,6 +9527,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_f_jazmyn: {
             trainer: trainers.rse_cool_trainer_f,
@@ -9295,6 +9550,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         ninja_boy_jonas: {
             trainer: trainers.rse_ninja_boy,
@@ -9317,6 +9573,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         parasol_lady_kayley: {
             trainer: trainers.rse_parasol_lady,
@@ -9339,6 +9596,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         expert_m_auron: {
             trainer: trainers.rse_expert_m,
@@ -9375,6 +9633,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         sailor_kelvin: {
             trainer: trainers.rse_sailor,
@@ -9411,6 +9670,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_f_marley: {
             trainer: trainers.rse_cool_trainer_f,
@@ -9433,6 +9693,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         battle_girl_reyna: {
             trainer: trainers.rse_battle_girl,
@@ -9469,6 +9730,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         sailor_hudson: {
             trainer: trainers.rse_sailor,
@@ -9491,6 +9753,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         expert_m_conor: {
             trainer: trainers.rse_expert_m,
@@ -9527,6 +9790,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         collector_edwin: {
             trainer: trainers.rse_collector,
@@ -9563,6 +9827,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         collector_hector: {
             trainer: trainers.rse_collector,
@@ -9599,6 +9864,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokemon_breeder_m_isaac: {
             trainer: trainers.rse_pokemon_breeder_m,
@@ -9689,6 +9955,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bug_catcher_davis: {
             trainer: trainers.rse_bug_catcher,
@@ -9711,6 +9978,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_m_mitchell: {
             trainer: trainers.rse_cool_trainer_m,
@@ -9747,6 +10015,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokemon_breeder_f_lydia: {
             trainer: trainers.rse_pokemon_breeder_f,
@@ -9837,6 +10106,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_f_halle: {
             trainer: trainers.rse_cool_trainer_f,
@@ -9873,6 +10143,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         ruin_maniac_garrison: {
             trainer: trainers.rse_ruin_maniac,
@@ -9895,6 +10166,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokemon_ranger_m_jackson: {
             trainer: trainers.rse_pokemon_ranger_m,
@@ -9917,6 +10189,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         pokemon_ranger_m_lorenzo: {
             trainer: trainers.rse_pokemon_ranger_m,
@@ -9967,6 +10240,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         pokemon_ranger_m_sebastian: {
             trainer: trainers.rse_pokemon_ranger_m,
@@ -9989,6 +10263,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         pokemon_ranger_f_catherine: {
             trainer: trainers.rse_pokemon_ranger_f,
@@ -10025,6 +10300,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         pokemon_ranger_f_jenna: {
             trainer: trainers.rse_pokemon_ranger_f,
@@ -10075,6 +10351,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         pokemon_ranger_f_sophia: {
             trainer: trainers.rse_pokemon_ranger_f,
@@ -10111,6 +10388,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         triathlete_biker_m_julio: {
             trainer: trainers.rse_triathlete_biker_m,
@@ -10133,6 +10411,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hiker_marc: {
             trainer: trainers.rse_hiker,
@@ -10167,6 +10446,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         sailor_brenden: {
             trainer: trainers.rse_sailor,
@@ -10189,6 +10469,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         battle_girl_lilith: {
             trainer: trainers.rse_battle_girl,
@@ -10211,6 +10492,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         black_belt_cristian: {
             trainer: trainers.rse_black_belt,
@@ -10233,6 +10515,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hex_maniac_sylvia: {
             trainer: trainers.rse_hex_maniac,
@@ -10255,6 +10538,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_leonardo: {
             trainer: trainers.rse_swimmer_m,
@@ -10277,6 +10561,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_f_athena: {
             trainer: trainers.rse_cool_trainer_f,
@@ -10313,6 +10598,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         swimmer_m_harrison: {
             trainer: trainers.rse_swimmer_m,
@@ -10335,6 +10621,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_clarence: {
             trainer: trainers.rse_swimmer_m,
@@ -10357,6 +10644,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         gentleman_nate: {
             trainer: trainers.rse_gentleman,
@@ -10379,6 +10667,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hex_maniac_kathleen: {
             trainer: trainers.rse_hex_maniac,
@@ -10401,6 +10690,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         gentleman_clifford: {
             trainer: trainers.rse_gentleman,
@@ -10423,6 +10713,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_m_nicholas: {
             trainer: trainers.rse_psychic_m,
@@ -10445,6 +10736,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_f_macey: {
             trainer: trainers.rse_psychic_f,
@@ -10467,6 +10759,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         expert_m_paxton: {
             trainer: trainers.rse_expert_m,
@@ -10503,6 +10796,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_swimmer_f_isabella: {
             trainer: trainers.rse_triathlete_swimmer_f,
@@ -10525,6 +10819,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_m_jonathan: {
             trainer: trainers.rse_cool_trainer_m,
@@ -10561,6 +10856,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         maxie_and_tabitha_maxie_and_tabitha: {
             trainer: trainers.emerald_maxie_and_tabitha,
@@ -10653,8 +10949,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
-            double: true,
+            tags: ["Required", "Double Battle"],
         },
         lass_tiana: {
             trainer: trainers.rse_lass,
@@ -10687,6 +10982,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         lass_haley: {
             trainer: trainers.rse_lass,
@@ -10719,6 +11015,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         lass_janice: {
             trainer: trainers.rse_lass,
@@ -10740,6 +11037,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         winstrate_vivi_vivi: {
             trainer: trainers.rse_winstrate_vivi,
@@ -10790,6 +11088,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         lass_sally: {
             trainer: trainers.rse_lass,
@@ -10811,6 +11110,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         lass_robin: {
             trainer: trainers.rse_lass,
@@ -10861,6 +11161,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         lass_andrea: {
             trainer: trainers.rse_lass,
@@ -10883,6 +11184,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         lass_crissy: {
             trainer: trainers.rse_lass,
@@ -10919,6 +11221,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bug_catcher_rick: {
             trainer: trainers.rse_bug_catcher,
@@ -10951,6 +11254,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bug_catcher_lyle: {
             trainer: trainers.rse_bug_catcher,
@@ -11007,6 +11311,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bug_catcher_jose: {
             trainer: trainers.rse_bug_catcher,
@@ -11041,6 +11346,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bug_catcher_doug: {
             trainer: trainers.rse_bug_catcher,
@@ -11077,6 +11383,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bug_catcher_greg: {
             trainer: trainers.rse_bug_catcher,
@@ -11113,6 +11420,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bug_catcher_kent: {
             trainer: trainers.rse_bug_catcher,
@@ -11135,6 +11443,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bug_catcher_james: {
             trainer: trainers.rse_bug_catcher,
@@ -11169,6 +11478,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hiker_brice: {
             trainer: trainers.rse_hiker,
@@ -11204,6 +11514,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hiker_trent: {
             trainer: trainers.rse_hiker,
@@ -11254,6 +11565,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hiker_lenny: {
             trainer: trainers.rse_hiker,
@@ -11290,6 +11602,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hiker_lucas: {
             trainer: trainers.rse_hiker,
@@ -11325,6 +11638,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hiker_alan: {
             trainer: trainers.rse_hiker,
@@ -11375,6 +11689,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hiker_clark: {
             trainer: trainers.rse_hiker,
@@ -11396,6 +11711,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hiker_eric: {
             trainer: trainers.rse_hiker,
@@ -11432,6 +11748,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hiker_mike: {
             trainer: trainers.rse_hiker,
@@ -11482,6 +11799,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         young_couple_dez_and_luke: {
             trainer: trainers.rse_young_couple,
@@ -11518,7 +11836,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         young_couple_kira_and_dan: {
             trainer: trainers.rse_young_couple,
@@ -11555,7 +11873,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         beauty_johanna: {
             trainer: trainers.rse_beauty,
@@ -11578,6 +11896,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_m_gerald: {
             trainer: trainers.rse_cool_trainer_m,
@@ -11600,6 +11919,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         battle_girl_vivian: {
             trainer: trainers.rse_battle_girl,
@@ -11636,6 +11956,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         battle_girl_danielle: {
             trainer: trainers.rse_battle_girl,
@@ -11658,6 +11979,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         ninja_boy_hideo: {
             trainer: trainers.rse_ninja_boy,
@@ -11694,6 +12016,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         ninja_boy_keigo: {
             trainer: trainers.rse_ninja_boy,
@@ -11730,6 +12053,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         ninja_boy_riley: {
             trainer: trainers.rse_ninja_boy,
@@ -11766,6 +12090,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         camper_flint: {
             trainer: trainers.rse_camper,
@@ -11802,6 +12127,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         picnicker_ashley: {
             trainer: trainers.rse_picnicker,
@@ -11852,6 +12178,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_jonah: {
             trainer: trainers.rse_fisherman,
@@ -11902,6 +12229,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_henry: {
             trainer: trainers.rse_fisherman,
@@ -11938,6 +12266,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_roger: {
             trainer: trainers.rse_fisherman,
@@ -11984,6 +12313,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_f_alexa: {
             trainer: trainers.rse_cool_trainer_f,
@@ -12020,6 +12350,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         cool_trainer_m_ruben: {
             trainer: trainers.rse_cool_trainer_m,
@@ -12056,6 +12387,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         black_belt_koji: {
             trainer: trainers.rse_black_belt,
@@ -12078,6 +12410,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_wayne: {
             trainer: trainers.rse_fisherman,
@@ -12128,6 +12461,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_aidan: {
             trainer: trainers.rse_bird_keeper,
@@ -12164,6 +12498,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_m_reed: {
             trainer: trainers.rse_swimmer_m,
@@ -12200,6 +12535,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_tisha: {
             trainer: trainers.rse_swimmer_f,
@@ -12222,6 +12558,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         twins_tori_and_tia: {
             trainer: trainers.rse_twins,
@@ -12258,7 +12595,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         sr_and_jr_kim_and_iris: {
             trainer: trainers.rse_sr_and_jr,
@@ -12295,7 +12632,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         sr_and_jr_tyra_and_ivy: {
             trainer: trainers.rse_sr_and_jr,
@@ -12332,7 +12669,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         young_couple_mel_and_paul: {
             trainer: trainers.rse_young_couple,
@@ -12369,7 +12706,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         old_couple_john_and_jay: {
             trainer: trainers.rse_old_couple,
@@ -12406,7 +12743,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         sis_and_bro_reli_and_ian: {
             trainer: trainers.rse_sis_and_bro,
@@ -12443,7 +12780,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         sis_and_bro_lila_and_roy: {
             trainer: trainers.rse_sis_and_bro,
@@ -12480,7 +12817,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         sis_and_bro_lisa_and_ray: {
             trainer: trainers.rse_sis_and_bro,
@@ -12517,7 +12854,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         fisherman_chris: {
             trainer: trainers.rse_fisherman,
@@ -12578,6 +12915,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         rich_boy_dawson: {
             trainer: trainers.rse_rich_boy,
@@ -12612,6 +12950,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         lady_sarah: {
             trainer: trainers.rse_lady,
@@ -12647,6 +12986,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
+            tags: [],
         },
         fisherman_darian: {
             trainer: trainers.rse_fisherman,
@@ -12664,6 +13004,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         tuber_f_hailey: {
             trainer: trainers.rse_tuber_f,
@@ -12686,6 +13027,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         tuber_m_chandler: {
             trainer: trainers.rse_tuber_m,
@@ -12720,6 +13062,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokefan_m_kaleb: {
             trainer: trainers.rse_pokefan_m,
@@ -12758,6 +13101,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         guitarist_joseph: {
             trainer: trainers.rse_guitarist,
@@ -12793,6 +13137,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_biker_f_alyssa: {
             trainer: trainers.rse_triathlete_biker_f,
@@ -12815,6 +13160,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         guitarist_marcos: {
             trainer: trainers.rse_guitarist,
@@ -12837,6 +13183,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         black_belt_rhett: {
             trainer: trainers.rse_black_belt,
@@ -12859,6 +13206,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         camper_tyron: {
             trainer: trainers.rse_camper,
@@ -12881,6 +13229,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         aroma_lady_celina: {
             trainer: trainers.rse_aroma_lady,
@@ -12903,6 +13252,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         picnicker_bianca: {
             trainer: trainers.rse_picnicker,
@@ -12925,6 +13275,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         kindler_hayden: {
             trainer: trainers.rse_kindler,
@@ -12946,6 +13297,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         picnicker_sophie: {
             trainer: trainers.rse_picnicker,
@@ -12982,6 +13334,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_coby: {
             trainer: trainers.rse_bird_keeper,
@@ -13018,6 +13371,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         camper_lawrence: {
             trainer: trainers.rse_camper,
@@ -13054,6 +13408,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokemaniac_wyatt: {
             trainer: trainers.rse_pokemaniac,
@@ -13090,6 +13445,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         picnicker_angelina: {
             trainer: trainers.rse_picnicker,
@@ -13126,6 +13482,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         fisherman_kai: {
             trainer: trainers.rse_fisherman,
@@ -13148,6 +13505,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         picnicker_charlotte: {
             trainer: trainers.rse_picnicker,
@@ -13170,6 +13528,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         youngster_deandre: {
             trainer: trainers.rse_youngster,
@@ -13220,6 +13579,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_f_darcy: {
             trainer: trainers.rse_cool_trainer_f,
@@ -13256,6 +13616,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         swimmer_m_pete: {
             trainer: trainers.rse_swimmer_m,
@@ -13277,6 +13638,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         swimmer_f_isabelle: {
             trainer: trainers.rse_swimmer_f,
@@ -13299,6 +13661,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         ruin_maniac_andres: {
             trainer: trainers.rse_ruin_maniac,
@@ -13335,6 +13698,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_josue: {
             trainer: trainers.rse_bird_keeper,
@@ -13371,6 +13735,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_swimmer_m_camron: {
             trainer: trainers.rse_triathlete_swimmer_m,
@@ -13393,6 +13758,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         sailor_cory: {
             trainer: trainers.rse_sailor,
@@ -13443,6 +13809,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_f_carolina: {
             trainer: trainers.rse_cool_trainer_f,
@@ -13493,6 +13860,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         bird_keeper_elijah: {
             trainer: trainers.rse_bird_keeper,
@@ -13529,6 +13897,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         picnicker_celia: {
             trainer: trainers.rse_picnicker,
@@ -13565,6 +13934,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         ruin_maniac_bryan: {
             trainer: trainers.rse_ruin_maniac,
@@ -13601,6 +13971,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         camper_branden: {
             trainer: trainers.rse_camper,
@@ -13637,6 +14008,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         kindler_bryant: {
             trainer: trainers.rse_kindler,
@@ -13672,6 +14044,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         aroma_lady_shayla: {
             trainer: trainers.rse_aroma_lady,
@@ -13708,6 +14081,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_runner_f_kyra: {
             trainer: trainers.rse_triathlete_runner_f,
@@ -13744,6 +14118,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         ninja_boy_jaiden: {
             trainer: trainers.rse_ninja_boy,
@@ -13780,6 +14155,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_f_alix: {
             trainer: trainers.rse_psychic_f,
@@ -13816,6 +14192,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         battle_girl_helene: {
             trainer: trainers.rse_battle_girl,
@@ -13852,6 +14229,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_f_marlene: {
             trainer: trainers.rse_psychic_f,
@@ -13888,6 +14266,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         hiker_devan: {
             trainer: trainers.rse_hiker,
@@ -13922,6 +14301,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         youngster_johnson: {
             trainer: trainers.rse_youngster,
@@ -13956,6 +14336,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         triathlete_runner_f_melina: {
             trainer: trainers.rse_triathlete_runner_f,
@@ -13978,6 +14359,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_f_brandi: {
             trainer: trainers.rse_psychic_f,
@@ -14000,6 +14382,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         battle_girl_aisha: {
             trainer: trainers.rse_battle_girl,
@@ -14022,6 +14405,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         expert_f_makayla: {
             trainer: trainers.rse_expert_f,
@@ -14058,6 +14442,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         guitarist_fabian: {
             trainer: trainers.rse_guitarist,
@@ -14080,6 +14465,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         kindler_dayton: {
             trainer: trainers.rse_kindler,
@@ -14116,6 +14502,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         parasol_lady_rachel: {
             trainer: trainers.rse_parasol_lady,
@@ -14138,6 +14525,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_m_leonel: {
             trainer: trainers.rse_cool_trainer_m,
@@ -14160,6 +14548,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         battle_girl_callie: {
             trainer: trainers.rse_battle_girl,
@@ -14196,6 +14585,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bug_maniac_cale: {
             trainer: trainers.rse_bug_maniac,
@@ -14232,6 +14622,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokemon_breeder_m_myles: {
             trainer: trainers.rse_pokemon_breeder_m,
@@ -14324,6 +14715,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         pokemon_breeder_f_pat: {
             trainer: trainers.rse_pokemon_breeder_f,
@@ -14416,6 +14808,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         cool_trainer_f_cristin: {
             trainer: trainers.rse_cool_trainer_f,
@@ -14452,6 +14845,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "hyper-potion": 1 },
+            tags: [],
         },
         bug_maniac_angelo: {
             trainer: trainers.rse_bug_maniac,
@@ -14488,6 +14882,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         bird_keeper_darius: {
             trainer: trainers.rse_bird_keeper,
@@ -14510,6 +14905,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_f_mariela: {
             trainer: trainers.rse_psychic_f,
@@ -14532,6 +14928,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         psychic_m_alvaro: {
             trainer: trainers.rse_psychic_m,
@@ -14568,6 +14965,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         gentleman_everett: {
             trainer: trainers.rse_gentleman,
@@ -14590,6 +14988,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_1: {
             trainer: trainers.rse_team_aqua_m,
@@ -14612,6 +15011,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_2: {
             trainer: trainers.rse_team_aqua_m,
@@ -14648,6 +15048,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_3: {
             trainer: trainers.rse_team_aqua_m,
@@ -14670,6 +15071,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_4: {
             trainer: trainers.rse_team_aqua_m,
@@ -14692,6 +15094,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_5: {
             trainer: trainers.rse_team_aqua_m,
@@ -14714,6 +15117,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_6: {
             trainer: trainers.rse_team_aqua_m,
@@ -14736,6 +15140,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_7: {
             trainer: trainers.rse_team_aqua_m,
@@ -14758,6 +15163,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_8: {
             trainer: trainers.rse_team_aqua_m,
@@ -14779,7 +15185,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         team_aqua_m_grunt_9: {
             trainer: trainers.rse_team_aqua_m,
@@ -14801,7 +15207,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         team_aqua_m_grunt_10: {
             trainer: trainers.rse_team_aqua_m,
@@ -14838,6 +15244,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_11: {
             trainer: trainers.rse_team_aqua_m,
@@ -14874,6 +15281,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_12: {
             trainer: trainers.rse_team_aqua_m,
@@ -14924,6 +15332,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_13: {
             trainer: trainers.rse_team_aqua_m,
@@ -14946,6 +15355,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_14: {
             trainer: trainers.rse_team_aqua_m,
@@ -14981,6 +15391,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_15: {
             trainer: trainers.rse_team_aqua_m,
@@ -15003,6 +15414,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_16: {
             trainer: trainers.rse_team_aqua_m,
@@ -15025,6 +15437,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_17: {
             trainer: trainers.rse_team_aqua_m,
@@ -15061,6 +15474,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_18: {
             trainer: trainers.rse_team_aqua_m,
@@ -15083,6 +15497,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_m_grunt_19: {
             trainer: trainers.rse_team_aqua_m,
@@ -15119,6 +15534,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_f_grunt_1: {
             trainer: trainers.rse_team_aqua_f,
@@ -15141,6 +15557,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_f_grunt_2: {
             trainer: trainers.rse_team_aqua_f,
@@ -15163,6 +15580,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_f_grunt_3: {
             trainer: trainers.rse_team_aqua_f,
@@ -15185,6 +15603,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_f_grunt_4: {
             trainer: trainers.rse_team_aqua_f,
@@ -15207,6 +15626,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_f_grunt_5: {
             trainer: trainers.rse_team_aqua_f,
@@ -15243,6 +15663,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_f_grunt_6: {
             trainer: trainers.rse_team_aqua_f,
@@ -15279,6 +15700,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_aqua_f_grunt_7: {
             trainer: trainers.rse_team_aqua_f,
@@ -15315,6 +15737,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_1: {
             trainer: trainers.rse_team_magma_m,
@@ -15337,6 +15760,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_2: {
             trainer: trainers.rse_team_magma_m,
@@ -15387,6 +15811,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_3: {
             trainer: trainers.rse_team_magma_m,
@@ -15423,6 +15848,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_4: {
             trainer: trainers.rse_team_magma_m,
@@ -15445,6 +15871,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_5: {
             trainer: trainers.rse_team_magma_m,
@@ -15467,6 +15894,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_6: {
             trainer: trainers.rse_team_magma_m,
@@ -15489,6 +15917,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_7: {
             trainer: trainers.rse_team_magma_m,
@@ -15511,6 +15940,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_8: {
             trainer: trainers.rse_team_magma_m,
@@ -15533,6 +15963,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_9: {
             trainer: trainers.rse_team_magma_m,
@@ -15555,6 +15986,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_10: {
             trainer: trainers.rse_team_magma_m,
@@ -15577,6 +16009,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_11: {
             trainer: trainers.rse_team_magma_m,
@@ -15599,6 +16032,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_12: {
             trainer: trainers.rse_team_magma_m,
@@ -15635,6 +16069,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_13: {
             trainer: trainers.rse_team_magma_m,
@@ -15671,6 +16106,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_14: {
             trainer: trainers.rse_team_magma_m,
@@ -15693,6 +16129,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_15: {
             trainer: trainers.rse_team_magma_m,
@@ -15715,6 +16152,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_16: {
             trainer: trainers.rse_team_magma_m,
@@ -15737,6 +16175,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_17: {
             trainer: trainers.rse_team_magma_m,
@@ -15759,6 +16198,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_18: {
             trainer: trainers.rse_team_magma_m,
@@ -15781,6 +16221,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_19: {
             trainer: trainers.rse_team_magma_m,
@@ -15803,6 +16244,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_20: {
             trainer: trainers.rse_team_magma_m,
@@ -15825,6 +16267,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_m_grunt_21: {
             trainer: trainers.rse_team_magma_m,
@@ -15847,6 +16290,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         shelly_1: {
             trainer: trainers.rse_shelly,
@@ -15883,7 +16327,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         shelly_2: {
             trainer: trainers.rse_shelly,
@@ -15920,7 +16364,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         interviewers_gabby_and_ty_1: {
             trainer: trainers.rse_interviewers,
@@ -15957,7 +16401,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         interviewers_gabby_and_ty_2: {
             trainer: trainers.rse_interviewers,
@@ -15994,7 +16438,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         interviewers_gabby_and_ty_3: {
             trainer: trainers.rse_interviewers,
@@ -16031,7 +16475,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            double: true,
+            tags: ["Double Battle"],
         },
         team_magma_f_grunt_1: {
             trainer: trainers.rse_team_magma_f,
@@ -16054,6 +16498,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_f_grunt_2: {
             trainer: trainers.rse_team_magma_f,
@@ -16090,6 +16535,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_f_grunt_3: {
             trainer: trainers.rse_team_magma_f,
@@ -16112,6 +16558,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_f_grunt_4: {
             trainer: trainers.rse_team_magma_f,
@@ -16134,6 +16581,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         team_magma_f_grunt_5: {
             trainer: trainers.rse_team_magma_f,
@@ -16156,6 +16604,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         wally_1: {
             trainer: trainers.rse_wally,
@@ -16234,7 +16683,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 2 },
-            required: true,
+            tags: ["Required"],
         },
         wally_2: {
             trainer: trainers.rse_wally,
@@ -16257,7 +16706,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         brendan_mudkip_1: {
             trainer: trainers.emerald_brendan,
@@ -16278,7 +16727,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         brendan_mudkip_2: {
             trainer: trainers.emerald_brendan,
@@ -16329,7 +16778,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         brendan_mudkip_3: {
             trainer: trainers.emerald_brendan,
@@ -16380,7 +16829,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         brendan_mudkip_4: {
             trainer: trainers.emerald_brendan,
@@ -16417,6 +16866,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         brendan_mudkip_5: {
             trainer: trainers.emerald_brendan,
@@ -16481,6 +16931,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         brendan_treecko_1: {
             trainer: trainers.emerald_brendan,
@@ -16501,7 +16952,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         brendan_treecko_2: {
             trainer: trainers.emerald_brendan,
@@ -16552,7 +17003,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         brendan_treecko_3: {
             trainer: trainers.emerald_brendan,
@@ -16603,7 +17054,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         brendan_treecko_4: {
             trainer: trainers.emerald_brendan,
@@ -16640,6 +17091,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         brendan_treecko_5: {
             trainer: trainers.emerald_brendan,
@@ -16704,6 +17156,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         brendan_torchic_1: {
             trainer: trainers.emerald_brendan,
@@ -16724,7 +17177,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         brendan_torchic_2: {
             trainer: trainers.emerald_brendan,
@@ -16775,7 +17228,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         brendan_torchic_3: {
             trainer: trainers.emerald_brendan,
@@ -16826,7 +17279,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         brendan_torchic_4: {
             trainer: trainers.emerald_brendan,
@@ -16862,6 +17315,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         brendan_torchic_5: {
             trainer: trainers.emerald_brendan,
@@ -16926,6 +17380,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         may_mudkip_1: {
             trainer: trainers.emerald_may,
@@ -16946,7 +17401,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         may_mudkip_2: {
             trainer: trainers.emerald_may,
@@ -16997,7 +17452,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         may_mudkip_3: {
             trainer: trainers.emerald_may,
@@ -17048,7 +17503,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         may_mudkip_4: {
             trainer: trainers.emerald_may,
@@ -17085,6 +17540,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         may_mudkip_5: {
             trainer: trainers.emerald_may,
@@ -17149,6 +17605,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         may_treecko_1: {
             trainer: trainers.emerald_may,
@@ -17169,7 +17626,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         may_treecko_2: {
             trainer: trainers.emerald_may,
@@ -17220,7 +17677,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         may_treecko_3: {
             trainer: trainers.emerald_may,
@@ -17271,7 +17728,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         may_treecko_4: {
             trainer: trainers.emerald_may,
@@ -17336,6 +17793,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         may_treecko_5: {
             trainer: trainers.emerald_may,
@@ -17372,6 +17830,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         may_torchic_1: {
             trainer: trainers.emerald_may,
@@ -17392,7 +17851,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         may_torchic_2: {
             trainer: trainers.emerald_may,
@@ -17443,7 +17902,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         may_torchic_3: {
             trainer: trainers.emerald_may,
@@ -17494,7 +17953,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         may_torchic_4: {
             trainer: trainers.emerald_may,
@@ -17559,6 +18018,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         may_torchic_5: {
             trainer: trainers.emerald_may,
@@ -17594,6 +18054,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
+            tags: [],
         },
         tabitha_1: {
             trainer: trainers.rse_tabitha,
@@ -17657,7 +18118,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         tabitha_2: {
             trainer: trainers.rse_tabitha,
@@ -17722,7 +18183,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            required: true,
+            tags: ["Required"],
         },
         maxie_1: {
             trainer: trainers.rse_maxie,
@@ -17773,7 +18234,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "super-potion": 2 },
-            required: true,
+            tags: ["Required"],
         },
         maxie_2: {
             trainer: trainers.rse_maxie,
@@ -17824,7 +18285,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "super-potion": 2 },
-            required: true,
+            tags: ["Required"],
         },
     },
 };

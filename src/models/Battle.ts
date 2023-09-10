@@ -7,6 +7,5 @@ export default interface Battle {
     location: string;
     team: Pokemon[];
     items: { [item: string]: number };
-    required?: boolean;
-    double?: boolean;
+    tags: string[];
 }

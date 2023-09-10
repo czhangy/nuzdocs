@@ -1,0 +1,44 @@
+@use "@/styles/constants";
+
+.tags {
+    --double-color: rgb(69, 103, 255);
+    --required-color: rgb(196, 1, 1);
+    --tag-border-rad: 200px;
+    --tag-border-size: 2px;
+    --tag-font-size: 0.6rem;
+    --tag-letter-spacing: 1px;
+    --tag-x-padding: 0.5rem;
+    --tag-y-padding: 0.25rem;
+    --tags-inner-spacing: 0.5rem;
+
+    display: flex;
+    gap: var(--tags-inner-spacing);
+
+    .tag {
+        border: var(--tag-border-size) solid constants.$text-color;
+        border-radius: var(--tag-border-rad);
+        font-size: var(--tag-font-size);
+        font-weight: bold;
+        letter-spacing: var(--tag-letter-spacing);
+        line-height: var(--tag-font-size);
+        padding: var(--tag-y-padding) var(--tag-x-padding);
+    }
+
+    .required {
+        border-color: var(--required-color);
+        color: var(--required-color);
+    }
+
+    .double-battle {
+        border-color: var(--double-color);
+        color: var(--double-color);
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .tags {
+        --tag-font-size: 0.75rem;
+        --tag-x-padding: 1rem;
+        --tag-y-padding: 0.5rem;
+    }
+}

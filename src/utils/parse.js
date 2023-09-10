@@ -80,6 +80,7 @@ const saveBattle = (battleKey, row, team) => {
         location: attrs[LOCATION],
         team: team,
         items: {},
+        tags: [],
     };
 
     // If the battle uses items, parse/set items
@@ -89,12 +90,12 @@ const saveBattle = (battleKey, row, team) => {
         battle.items[item] = parseInt(count);
     }
 
-    // Check required/double
+    // Check for tags
     if (attrs[REQUIRED] === "y") {
-        battle.required = true;
+        battle.tags.push("Required");
     }
     if (attrs[DOUBLE] === "y") {
-        battle.double = true;
+        battle.tags.push("Double Battle");
     }
 
     // Remove invalid chars from key

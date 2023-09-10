@@ -1,0 +1,29 @@
+@use "@/styles/constants";
+
+.item-count {
+    --count-font-size: 0.75rem;
+    --count-letter-spacing: 3px;
+    --item-size: 20px;
+
+    align-items: center;
+    display: flex;
+
+    .item {
+        height: var(--item-size);
+        position: relative;
+        width: var(--item-size);
+    }
+
+    .count {
+        font-size: var(--count-font-size);
+        letter-spacing: var(--count-letter-spacing);
+        line-height: var(--count-font-size);
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .item-count {
+        --count-font-size: 1rem;
+        --item-size: 24px;
+    }
+}

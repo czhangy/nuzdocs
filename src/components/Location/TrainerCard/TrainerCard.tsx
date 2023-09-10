@@ -1,4 +1,6 @@
 import PokemonDisplay from "@/components/Run/PokemonDisplay/PokemonDisplay";
+import ItemCount from "@/components/Segment/ItemCount/ItemCount";
+import Tags from "@/components/Segment/Tags/Tags";
 import Battle from "@/models/Battle";
 import ItemData from "@/models/ItemData";
 import NamedResource from "@/models/NamedResource";
@@ -53,51 +55,14 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                         />
                     </div>
                     <div className={styles.info}>
+                        <Tags tags={props.battle.tags} />
                         <div className={styles.main}>
                             <p className={styles.name}>
                                 {props.battle.trainer.class} {props.battle.name}
                             </p>
-                            {props.battle.required ? (
-                                <div className={styles.icon} title="This battle is required">
-                                    <Image
-                                        src="/assets/icons/star.svg"
-                                        alt="Required"
-                                        layout="fill"
-                                        objectFit="contain"
-                                    />
-                                </div>
-                            ) : (
-                                ""
-                            )}
-                            {props.battle.double ? (
-                                <div className={styles.icon} title="This is a double battle">
-                                    <Image
-                                        src="/assets/icons/double.svg"
-                                        alt="Double battle"
-                                        layout="fill"
-                                        objectFit="contain"
-                                    />
-                                </div>
-                            ) : (
-                                ""
-                            )}
+                            <ItemCount item={item} count={item ? props.battle.items[item.slug] : -1} />
                         </div>
                         <p className={styles.location}>{props.battle.location}</p>
-                        {item ? (
-                            <div className={styles.items}>
-                                <div className={styles.item}>
-                                    <Image
-                                        src={props.items[item.slug].sprite}
-                                        alt={item.name}
-                                        layout="fill"
-                                        objectFit="contain"
-                                    />
-                                </div>
-                                <p className={styles.count}>×{props.battle.items[item.slug]}</p>
-                            </div>
-                        ) : (
-                            ""
-                        )}
                     </div>
                 </div>
                 <button

@@ -1,5 +1,6 @@
 import LevelCap from "@/components/Battle/LevelCap/LevelCap";
-import BattleSegment from "@/models/BattleSegment";
+import ItemCount from "@/components/Segment/ItemCount/ItemCount";
+import Tags from "@/components/Segment/Tags/Tags";
 import ItemData from "@/models/ItemData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
@@ -85,41 +86,15 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                     <Image src={trainer.sprite} alt={trainer.class} layout="fill" objectFit="contain" />
                 </div>
                 <div className={styles.preview}>
+                    <Tags tags={getBattle(props.run, props.segment.slug).tags} />
                     <div className={styles.info}>
                         <p className={styles.name}>{`${trainer.class} ${
                             getBattle(props.run, props.segment.slug).name
                         }`}</p>
-                        {getBattle(props.run, props.segment.slug).required ? (
-                            <div className={styles.icon} title="This battle is required">
-                                <Image src="/assets/icons/star.svg" alt="Required" layout="fill" objectFit="contain" />
-                            </div>
-                        ) : (
-                            ""
-                        )}
-                        {getBattle(props.run, props.segment.slug).double ? (
-                            <div className={styles.icon} title="This is a double battle">
-                                <Image
-                                    src="/assets/icons/double.svg"
-                                    alt="Double battle"
-                                    layout="fill"
-                                    objectFit="contain"
-                                />
-                            </div>
-                        ) : (
-                            ""
-                        )}
-                        {item ? (
-                            <div className={styles.items}>
-                                <div className={styles.item}>
-                                    <Image src={item.sprite} alt={item.name} layout="fill" objectFit="contain" />
-                                </div>
-                                <p className={styles.count}>
-                                    ×{(props.segment.segment as BattleSegment).battle.items[item.slug]}
-                                </p>
-                            </div>
-                        ) : (
-                            ""
-                        )}
+                        <ItemCount
+                            item={item}
+                            count={item ? getBattle(props.run, props.segment.slug).items[item.slug] : -1}
+                        />
                     </div>
                     <p className={styles.location}>{getBattle(props.run, props.segment.slug).location}</p>
                     {defeated ? (
