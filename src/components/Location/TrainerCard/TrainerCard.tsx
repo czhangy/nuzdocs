@@ -44,9 +44,23 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                         />
                     </div>
                     <div className={styles.info}>
-                        <p className={styles.name}>
-                            {props.battle.trainer.class} {props.battle.name}
-                        </p>
+                        <div className={styles.main}>
+                            <p className={styles.name}>
+                                {props.battle.trainer.class} {props.battle.name}
+                            </p>
+                            {props.battle.required ? (
+                                <div className={styles.icon} title="This battle is required">
+                                    <Image
+                                        src="/assets/icons/star.svg"
+                                        alt="Required"
+                                        layout="fill"
+                                        objectFit="contain"
+                                    />
+                                </div>
+                            ) : (
+                                ""
+                            )}
+                        </div>
                         <p className={styles.location}>{props.battle.location}</p>
                         {props.battle.items.length > 0 ? (
                             <div className={styles.items}>

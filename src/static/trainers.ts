@@ -331,6 +331,16 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         class: "Gym Leader",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/wallace-gen3rs.png",
     },
+    emerald_brendan: {
+        class: "Pokémon Trainer",
+        name: "brendan",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/brendan-gen3.png",
+    },
+    emerald_may: {
+        class: "Pokémon Trainer",
+        name: "may",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3.png",
+    },
 };
 
 export default trainers;

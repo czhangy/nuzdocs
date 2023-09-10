@@ -89,6 +89,13 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                         <p className={styles.name}>{`${trainer.class} ${
                             getBattle(props.run, props.segment.slug, getStarterSlug(props.run.id)).name
                         }`}</p>
+                        {(props.segment.segment as BattleSegment).battle.required ? (
+                            <div className={styles.icon} title="This battle is required">
+                                <Image src="/assets/icons/star.svg" alt="Required" layout="fill" objectFit="contain" />
+                            </div>
+                        ) : (
+                            ""
+                        )}
                         <div className={styles.items}>
                             {items.map((item: ItemData, key: number) => {
                                 return <ItemDisplay item={item} showName={false} key={key} />;

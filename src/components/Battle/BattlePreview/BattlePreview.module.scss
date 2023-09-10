@@ -4,6 +4,7 @@
     --buttons-inner-spacing: 1rem;
     --name-font-size: 1rem;
     --location-font-size: 0.75rem;
+    --icon-size: 16px;
     --info-inner-spacing: 0.5rem;
     --preview-inner-spacing: 0.5rem;
     --sprite-size: 0;
@@ -44,6 +45,13 @@
                 .name {
                     font-size: var(--name-font-size);
                     line-height: var(--name-font-size);
+                }
+
+                .icon {
+                    filter: constants.$svg-color;
+                    height: var(--icon-size);
+                    position: relative;
+                    width: var(--icon-size);
                 }
 
                 .items {

@@ -5,9 +5,11 @@
     --card-x-padding: 0.5rem;
     --export-offset: 0.5rem;
     --export-size: 24px;
+    --icon-size: 12px;
     --info-inner-spacing: 0.5rem;
     --loading-y-padding: 2rem;
     --location-font-size: 0.75rem;
+    --main-inner-spacing: 0.5rem;
     --move-border-rad: 5px;
     --move-font-size: 0.75rem;
     --move-y-padding: 1rem;
@@ -50,9 +52,22 @@
                 gap: var(--info-inner-spacing);
                 margin-left: var(--info-offset);
 
-                .name {
-                    font-size: var(--name-font-size);
-                    line-height: var(--name-font-size);
+                .main {
+                    align-items: center;
+                    display: flex;
+                    gap: var(--main-inner-spacing);
+
+                    .name {
+                        font-size: var(--name-font-size);
+                        line-height: var(--name-font-size);
+                    }
+
+                    .icon {
+                        filter: constants.$svg-color;
+                        height: var(--icon-size);
+                        position: relative;
+                        width: var(--icon-size);
+                    }
                 }
 
                 .location {

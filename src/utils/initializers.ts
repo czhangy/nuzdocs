@@ -16,7 +16,7 @@ import Values from "@/models/Values";
 import priorities from "@/static/priorities";
 import translations from "@/static/translations";
 import { getBox, getRIPs } from "@/utils/run";
-import { generateID, getDescription, getEnglishName, isInvalidForm } from "@/utils/utils";
+import { generateID, getDescription, getEnglishName } from "@/utils/utils";
 import {
     Ability,
     Item,
@@ -28,7 +28,6 @@ import {
     PokemonMoveVersion,
     PokemonPastType,
     PokemonSpecies,
-    PokemonSpeciesVariety,
     PokemonStat,
     PokemonType,
 } from "pokenode-ts";
