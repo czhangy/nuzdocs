@@ -12991,7 +12991,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         fisherman_darian: {
             trainer: trainers.rse_fisherman,
             name: "Darian",
-            location: "",
+            location: "Route 104",
             team: [
                 {
                     slug: "magikarp",

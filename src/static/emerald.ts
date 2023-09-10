@@ -116,7 +116,12 @@ const emerald: GameData = {
                     name: "Route 102",
                     type: "location",
                     segment: {
-                        battles: [battles.emerald.youngster_calvin],
+                        battles: [
+                            battles.emerald.youngster_calvin,
+                            battles.emerald.bug_catcher_rick,
+                            battles.emerald.youngster_allen,
+                            battles.emerald.lass_tiana,
+                        ],
                     },
                 },
                 {
@@ -130,7 +135,11 @@ const emerald: GameData = {
                     name: "Route 104 (South)",
                     type: "location",
                     segment: {
-                        battles: [],
+                        battles: [
+                            battles.emerald.youngster_billy,
+                            battles.emerald.fisherman_darian,
+                            battles.emerald.lady_cindy,
+                        ],
                     },
                 },
                 {
@@ -138,18 +147,11 @@ const emerald: GameData = {
                     name: "Petalburg Woods",
                     type: "location",
                     segment: {
-                        battles: [],
-                    },
-                },
-                {
-                    slug: "petalburg-woods",
-                    name: "Petalburg Woods",
-                    type: "location",
-                    conditions: {
-                        game: "sapphire",
-                    },
-                    segment: {
-                        battles: [],
+                        battles: [
+                            battles.emerald.bug_catcher_lyle,
+                            battles.emerald.team_aqua_m_grunt_8,
+                            battles.emerald.bug_catcher_james,
+                        ],
                     },
                 },
                 {
@@ -157,7 +159,12 @@ const emerald: GameData = {
                     name: "Route 104 (North)",
                     type: "location",
                     segment: {
-                        battles: [],
+                        battles: [
+                            battles.emerald.rich_boy_winston,
+                            battles.emerald.lass_haley,
+                            battles.emerald.twins_gina_and_mia,
+                            battles.emerald.fisherman_ivan,
+                        ],
                     },
                 },
                 {
@@ -171,7 +178,11 @@ const emerald: GameData = {
                     name: "Rustboro Gym",
                     type: "location",
                     segment: {
-                        battles: [],
+                        battles: [
+                            battles.emerald.youngster_josh,
+                            battles.emerald.youngster_tommy,
+                            battles.emerald.hiker_marc,
+                        ],
                         custom: true,
                     },
                 },
