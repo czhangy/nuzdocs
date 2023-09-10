@@ -5682,7 +5682,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: { "hyper-potion": 1 },
+            items: {},
             required: true,
         },
         youngster_billy: {
@@ -16277,7 +16277,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: { "hyper-potion": 1 },
+            items: {},
             required: true,
         },
         brendan_mudkip_2: {

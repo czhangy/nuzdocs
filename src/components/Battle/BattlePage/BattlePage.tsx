@@ -8,12 +8,10 @@ import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import { fetchPokemonList } from "@/utils/api";
-import { getBattle, getLevelCap } from "@/utils/battle";
-import { getStarterSlug, isCleared } from "@/utils/run";
+import { getBattle } from "@/utils/battle";
+import { getNextLevelCap } from "@/utils/segment";
 import { useEffect, useState } from "react";
 import styles from "./BattlePage.module.scss";
-import { getSegments } from "@/utils/game";
-import { getNextLevelCap, hasLevelCap } from "@/utils/segment";
 
 type Props = {
     segment: Segment;
@@ -34,7 +32,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
     // Save sets array on page load
     useEffect(() => {
         if (props.segment && props.run) {
-            setSets(getBattle(props.run, props.segment.slug, getStarterSlug(props.run.id)).team);
+            setSets(getBattle(props.run, props.segment.slug).team);
             setLevelCap(getNextLevelCap(props.run));
         }
     }, [props.segment, props.run]);
@@ -66,16 +64,14 @@ const BattlePage: React.FC<Props> = (props: Props) => {
             />
             {pokemon.length === sets.length ? (
                 <ul className={styles.team}>
-                    {getBattle(props.run, props.segment.slug, getStarterSlug(props.run.id)).team.map(
-                        (set: Pokemon, idx: number) => (
-                            <PokemonCard
-                                set={set}
-                                pokemon={pokemon[idx]}
-                                run={props.run}
-                                key={`${props.run.gameSlug} + ${set.slug} + ${idx}`}
-                            />
-                        )
-                    )}
+                    {getBattle(props.run, props.segment.slug).team.map((set: Pokemon, idx: number) => (
+                        <PokemonCard
+                            set={set}
+                            pokemon={pokemon[idx]}
+                            run={props.run}
+                            key={`${props.run.gameSlug} + ${set.slug} + ${idx}`}
+                        />
+                    ))}
                 </ul>
             ) : (
                 <div className={styles.loading}>

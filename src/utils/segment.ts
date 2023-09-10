@@ -25,12 +25,12 @@ export const hasLevelCap = (segment: Segment): boolean => {
 };
 
 export const satisifesConditions = (segment: Segment, run: Run): boolean => {
-    if (segment.conditions !== undefined) {
-        if (segment.conditions.game !== undefined && segment.conditions.game !== run.gameSlug) {
+    if (segment.conditions) {
+        if (segment.conditions.game && segment.conditions.game !== run.gameSlug) {
             return false;
-        } else if (segment.conditions.character !== undefined && segment.conditions.character !== run.character) {
+        } else if (segment.conditions.character && segment.conditions.character !== run.character) {
             return false;
-        } else if (segment.conditions.starter !== undefined && segment.conditions.starter !== getStarterSlug(run.id)) {
+        } else if (segment.conditions.starter && segment.conditions.starter !== getStarterSlug(run.id)) {
             return false;
         }
     }
@@ -50,7 +50,7 @@ export const getNextLevelCap = (run: Run): number => {
     const segments: Segment[] = getSegments(run);
     for (const segment of segments) {
         if (!isCleared(run.id, segment.slug) && hasLevelCap(segment)) {
-            return getLevelCap(run, segment.slug, getStarterSlug(run.id));
+            return getLevelCap(run, segment.slug);
         }
     }
     return 0;

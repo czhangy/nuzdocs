@@ -4,7 +4,7 @@ import Trainer from "@/models/Trainer";
 import { getLevelCap, getTrainer } from "@/utils/battle";
 import { getPB } from "@/utils/career";
 import { getGame } from "@/utils/game";
-import { getStarterSlug, isCleared } from "@/utils/run";
+import { isCleared } from "@/utils/run";
 import { hasLevelCap } from "@/utils/segment";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,7 +25,7 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
     // Get trainer info on component load
     useEffect(() => {
         if (props.battle && props.run) {
-            setTrainer(getTrainer(props.run, props.battle.slug, getStarterSlug(props.run.id)));
+            setTrainer(getTrainer(props.run, props.battle.slug));
             setPB(getPB(props.run.gameSlug));
         }
     }, [props.battle, props.run]);
@@ -58,9 +58,7 @@ const BattleOverview: React.FC<Props> = (props: Props) => {
                 {props.run.options.caps && hasLevelCap(props.battle) ? (
                     <div className={styles["level-cap"]}>
                         <p className={styles.title}>Level Cap</p>
-                        <p className={styles.level}>
-                            {getLevelCap(props.run, props.battle.slug, getStarterSlug(props.run.id))}
-                        </p>
+                        <p className={styles.level}>{getLevelCap(props.run, props.battle.slug)}</p>
                     </div>
                 ) : (
                     ""

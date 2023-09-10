@@ -6,15 +6,15 @@ import Trainer from "@/models/Trainer";
 import { getSegment } from "@/utils/segment";
 
 // Getters
-export const getBattle = (run: Run, battle: string, starter: string): Battle => {
+export const getBattle = (run: Run, battle: string): Battle => {
     return (getSegment(run, battle).segment as BattleSegment).battle;
 };
 
-export const getTrainer = (run: Run, battle: string, starter: string): Trainer => {
-    return getBattle(run, battle, starter).trainer;
+export const getTrainer = (run: Run, battle: string): Trainer => {
+    return getBattle(run, battle).trainer;
 };
 
-export const getLevelCap = (run: Run, battle: string, starter: string): number => {
-    const levels: number[] = getBattle(run, battle, starter).team.map((pokemon: Pokemon) => pokemon.level!);
+export const getLevelCap = (run: Run, battle: string): number => {
+    const levels: number[] = getBattle(run, battle).team.map((pokemon: Pokemon) => pokemon.level!);
     return Math.max(...levels);
 };
