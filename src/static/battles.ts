@@ -464,7 +464,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         aroma_lady_rose: {
             trainer: trainers.rse_aroma_lady,
             name: "Rose",
-            location: "Route 118",
+            location: "Route 118 (West)",
             team: [
                 {
                     slug: "roselia",
@@ -510,7 +510,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         cool_trainer_m_felix: {
             trainer: trainers.rse_cool_trainer_m,
@@ -3377,7 +3377,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         guitarist_dalton: {
             trainer: trainers.rse_guitarist,
             name: "Dalton",
-            location: "Route 118",
+            location: "Route 118 (West)",
             team: [
                 {
                     slug: "magnemite",
@@ -6578,7 +6578,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         fisherman_barny: {
             trainer: trainers.rse_fisherman,
             name: "Barny",
-            location: "Route 118",
+            location: "Route 118 (East)",
             team: [
                 {
                     slug: "tentacool",
@@ -6615,7 +6615,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         fisherman_wade: {
             trainer: trainers.rse_fisherman,
             name: "Wade",
-            location: "Route 118",
+            location: "Route 118 (West)",
             team: [
                 {
                     slug: "tentacool",
@@ -7359,7 +7359,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         bird_keeper_perry: {
             trainer: trainers.rse_bird_keeper,
             name: "Perry",
-            location: "Route 118",
+            location: "Route 118 (East)",
             team: [
                 {
                     slug: "wingull",
@@ -7550,11 +7550,39 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: {},
             tags: [],
         },
-        bird_keeper_edwardo: {
-            trainer: trainers.rse_bird_keeper,
-            name: "Edwardo",
+        flint_and_edwardo: {
+            trainer: trainers.emerald_flint_and_edwardo,
+            name: "Flint & Edwardo",
             location: "Fortree Gym",
             team: [
+                {
+                    slug: "swellow",
+                    species: "swellow",
+                    level: 29,
+                    ability: { slug: "guts", name: "Guts" },
+                    moves: [
+                        { slug: "quick-attack", name: "Quick Attack" },
+                        { slug: "wing-attack", name: "Wing Attack" },
+                        { slug: "double-team", name: "Double Team" },
+                        { slug: "endeavor", name: "Endeavor" },
+                    ],
+                    ivs: { hp: 18, atk: 18, spa: 18, def: 18, spd: 18, spe: 18 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+                {
+                    slug: "xatu",
+                    species: "xatu",
+                    level: 29,
+                    ability: { slug: "synchronize", name: "Synchronize" },
+                    moves: [
+                        { slug: "peck", name: "Peck" },
+                        { slug: "leer", name: "Leer" },
+                        { slug: "night-shade", name: "Night Shade" },
+                        { slug: "teleport", name: "Teleport" },
+                    ],
+                    ivs: { hp: 18, atk: 18, spa: 18, def: 18, spd: 18, spe: 18 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
                 {
                     slug: "doduo",
                     species: "doduo",
@@ -7585,7 +7613,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required", "Double Battle"],
         },
         bird_keeper_colin: {
             trainer: trainers.rse_bird_keeper,
@@ -7701,7 +7729,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         bird_keeper_chester: {
             trainer: trainers.rse_bird_keeper,
             name: "Chester",
-            location: "Route 118",
+            location: "Route 118 (East)",
             team: [
                 {
                     slug: "taillow",
@@ -12083,43 +12111,6 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: {},
             tags: [],
         },
-        camper_flint: {
-            trainer: trainers.rse_camper,
-            name: "Flint",
-            location: "Fortree Gym",
-            team: [
-                {
-                    slug: "swellow",
-                    species: "swellow",
-                    level: 29,
-                    ability: { slug: "guts", name: "Guts" },
-                    moves: [
-                        { slug: "quick-attack", name: "Quick Attack" },
-                        { slug: "wing-attack", name: "Wing Attack" },
-                        { slug: "double-team", name: "Double Team" },
-                        { slug: "endeavor", name: "Endeavor" },
-                    ],
-                    ivs: { hp: 18, atk: 18, spa: 18, def: 18, spd: 18, spe: 18 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-                {
-                    slug: "xatu",
-                    species: "xatu",
-                    level: 29,
-                    ability: { slug: "synchronize", name: "Synchronize" },
-                    moves: [
-                        { slug: "peck", name: "Peck" },
-                        { slug: "leer", name: "Leer" },
-                        { slug: "night-shade", name: "Night Shade" },
-                        { slug: "teleport", name: "Teleport" },
-                    ],
-                    ivs: { hp: 18, atk: 18, spa: 18, def: 18, spd: 18, spe: 18 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-            ],
-            items: {},
-            tags: [],
-        },
         picnicker_ashley: {
             trainer: trainers.rse_picnicker,
             name: "Ashley",
@@ -13524,7 +13515,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         youngster_deandre: {
             trainer: trainers.rse_youngster,
             name: "Deandre",
-            location: "Route 118",
+            location: "Route 118 (West)",
             team: [
                 {
                     slug: "zigzagoon",
@@ -13570,7 +13561,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         cool_trainer_f_darcy: {
             trainer: trainers.rse_cool_trainer_f,
@@ -14896,7 +14887,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         psychic_f_mariela: {
             trainer: trainers.rse_psychic_f,
@@ -15272,7 +15263,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         team_aqua_m_grunt_12: {
             trainer: trainers.rse_team_aqua_m,
@@ -15728,7 +15719,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         team_magma_m_grunt_1: {
             trainer: trainers.rse_team_magma_m,
@@ -16397,7 +16388,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         interviewers_gabby_and_ty_2: {
             trainer: trainers.rse_interviewers,
             name: "Gabby & Ty",
-            location: "Route 118",
+            location: "Route 118 (East)",
             team: [
                 {
                     slug: "magnemite",

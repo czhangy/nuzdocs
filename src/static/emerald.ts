@@ -813,6 +813,334 @@ const emerald: GameData = {
                 },
             ],
         },
+        {
+            name: "Winona Split",
+            segments: [
+                {
+                    slug: "hoenn-route-115",
+                    name: "Route 115 (North)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.ninja_boy_jaiden,
+                            battles.emerald.expert_m_timothy,
+                            battles.emerald.triathlete_runner_f_kyra,
+                            battles.emerald.black_belt_koichi,
+                            battles.emerald.battle_girl_helene,
+                            battles.emerald.psychic_f_alix,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-105",
+                    name: "Route 105",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.swimmer_f_imani,
+                            battles.emerald.swimmer_m_dominik,
+                            battles.emerald.ruin_maniac_foster,
+                            battles.emerald.swimmer_f_beverly,
+                            battles.emerald.ruin_maniac_andres,
+                            battles.emerald.bird_keeper_josue,
+                            battles.emerald.swimmer_m_luis,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-106",
+                    name: "Route 106 (Ocean)",
+                    type: "location",
+                    segment: {
+                        battles: [battles.emerald.swimmer_m_douglas, battles.emerald.swimmer_f_kyla],
+                    },
+                },
+                {
+                    slug: "hoenn-route-107",
+                    name: "Route 107 (Ocean)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.swimmer_f_denise,
+                            battles.emerald.swimmer_m_tony,
+                            battles.emerald.sis_and_bro_lisa_and_ray,
+                            battles.emerald.swimmer_m_darrin,
+                            battles.emerald.swimmer_f_beth,
+                            battles.emerald.triathlete_swimmer_m_camron,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-108",
+                    name: "Route 108",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.swimmer_f_missy,
+                            battles.emerald.swimmer_m_matthew,
+                            battles.emerald.swimmer_f_tara,
+                            battles.emerald.cool_trainer_f_carolina,
+                            battles.emerald.sailor_cory,
+                            battles.emerald.swimmer_m_jerome,
+                        ],
+                    },
+                },
+                {
+                    slug: "abandoned-ship",
+                    name: "Abandoned Ship",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.beauty_thalia,
+                            battles.emerald.youngster_demetrius,
+                            battles.emerald.sailor_duncan,
+                            battles.emerald.tuber_m_charlie,
+                            battles.emerald.ruin_maniac_garrison,
+                            battles.emerald.tuber_f_jani,
+                            battles.emerald.young_couple_kira_and_dan,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-109",
+                    name: "Route 109 (Ocean)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.tuber_f_austina,
+                            battles.emerald.tuber_f_gwen,
+                            battles.emerald.swimmer_m_david,
+                            battles.emerald.swimmer_f_alice,
+                            battles.emerald.fisherman_carter,
+                            battles.emerald.bird_keeper_elijah,
+                            battles.emerald.young_couple_mel_and_paul,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-103",
+                    name: "Route 103 (Middle)",
+                    type: "location",
+                    segment: {
+                        battles: [battles.emerald.swimmer_f_isabelle, battles.emerald.swimmer_m_pete],
+                    },
+                },
+                {
+                    slug: "trick-house-4",
+                    name: "Trick House 4",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.black_belt_yuji,
+                            battles.emerald.battle_girl_cora,
+                            battles.emerald.battle_girl_paula,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "new-mauville",
+                    name: "New Mauville",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "hoenn-route-118",
+                    name: "Route 118",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.aroma_lady_rose,
+                            battles.emerald.youngster_deandre,
+                            battles.emerald.fisherman_wade,
+                            battles.emerald.guitarist_dalton,
+                            battles.emerald.interviewers_gabby_and_ty_2,
+                            battles.emerald.fisherman_barny,
+                            battles.emerald.bird_keeper_chester,
+                            battles.emerald.bird_keeper_perry,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-119",
+                    name: "Route 119 (South)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.bug_catcher_kent,
+                            battles.emerald.bug_maniac_donald,
+                            battles.emerald.bug_catcher_greg,
+                            battles.emerald.bug_maniac_taylor,
+                            battles.emerald.bug_catcher_doug,
+                            battles.emerald.bug_maniac_brent,
+                            battles.emerald.fisherman_chris,
+                            battles.emerald.pokemon_ranger_f_catherine,
+                            battles.emerald.pokemon_ranger_m_jackson,
+                            battles.emerald.parasol_lady_rachel,
+                            battles.emerald.bird_keeper_phil,
+                            battles.emerald.ninja_boy_takashi,
+                            battles.emerald.kindler_dayton,
+                            battles.emerald.bird_keeper_hugh,
+                        ],
+                    },
+                },
+                {
+                    slug: "weather-institute",
+                    name: "Weather Institute",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.team_aqua_f_grunt_2,
+                            battles.emerald.team_aqua_m_grunt_10,
+                            battles.emerald.team_aqua_m_grunt_11,
+                            battles.emerald.team_aqua_f_grunt_7,
+                            battles.emerald.team_aqua_m_grunt_12,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "shelly-1",
+                    name: "Shelly",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.shelly_1,
+                    },
+                },
+                {
+                    slug: "rival-3",
+                    name: "Rival 3",
+                    type: "battle",
+                    conditions: {
+                        character: "brendan",
+                        starter: "treecko",
+                    },
+                    segment: {
+                        battle: battles.emerald.may_treecko_3,
+                    },
+                },
+                {
+                    slug: "rival-3",
+                    name: "Rival 3",
+                    type: "battle",
+                    conditions: {
+                        character: "brendan",
+                        starter: "torchic",
+                    },
+                    segment: {
+                        battle: battles.emerald.may_torchic_3,
+                    },
+                },
+                {
+                    slug: "rival-3",
+                    name: "Rival 3",
+                    type: "battle",
+                    conditions: {
+                        character: "brendan",
+                        starter: "mudkip",
+                    },
+                    segment: {
+                        battle: battles.emerald.may_mudkip_3,
+                    },
+                },
+                {
+                    slug: "rival-3",
+                    name: "Rival 3",
+                    type: "battle",
+                    conditions: {
+                        character: "may",
+                        starter: "treecko",
+                    },
+                    segment: {
+                        battle: battles.emerald.brendan_treecko_3,
+                    },
+                },
+                {
+                    slug: "rival-3",
+                    name: "Rival 3",
+                    type: "battle",
+                    conditions: {
+                        character: "may",
+                        starter: "torchic",
+                    },
+                    segment: {
+                        battle: battles.emerald.brendan_torchic_3,
+                    },
+                },
+                {
+                    slug: "rival-3",
+                    name: "Rival 3",
+                    type: "battle",
+                    conditions: {
+                        character: "may",
+                        starter: "mudkip",
+                    },
+                    segment: {
+                        battle: battles.emerald.brendan_mudkip_3,
+                    },
+                },
+                {
+                    slug: "hoenn-route-119",
+                    name: "Route 119 (North)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.guitarist_fabian,
+                            battles.emerald.ninja_boy_yasu,
+                            battles.emerald.ninja_boy_hideo,
+                        ],
+                    },
+                },
+                {
+                    slug: "fortree-city",
+                    name: "Fortree City",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "hoenn-route-120",
+                    name: "Route 120 (North)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.parasol_lady_clarissa,
+                            battles.emerald.interviewers_gabby_and_ty_3,
+                            battles.emerald.bird_keeper_robert,
+                        ],
+                    },
+                },
+                {
+                    slug: "scorched-slab",
+                    name: "Scorched Slab",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "fortree-gym",
+                    name: "Fortree Gym",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.bird_keeper_humberto,
+                            battles.emerald.bird_keeper_jared,
+                            battles.emerald.picnicker_ashley,
+                            battles.emerald.flint_and_edwardo,
+                            battles.emerald.bird_keeper_darius,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "winona",
+                    name: "Winona",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.winona,
+                        levelCap: true,
+                    },
+                },
+            ],
+        },
     ],
 };
 
