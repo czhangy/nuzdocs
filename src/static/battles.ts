@@ -254,7 +254,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             tags: ["Required"],
         },
         team_aqua_grunts: {
-            trainer: trainers.emerald_team_aqua_grunts,
+            trainer: trainers.rse_team_aqua_grunts,
             name: "Grunts",
             location: "Mt. Pyre",
             team: [
@@ -5287,7 +5287,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             tags: ["Required", "Double Battle"],
         },
         juan: {
-            trainer: trainers.emerald_juan,
+            trainer: trainers.rse_juan,
             name: "Juan",
             location: "Sootopolis Gym",
             team: [
@@ -9581,7 +9581,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             tags: [],
         },
         ninja_boy_and_parasol_lady_jonas_and_kayley: {
-            trainer: trainers.emerald_ninja_boy_and_parasol_lady,
+            trainer: trainers.rse_ninja_boy_and_parasol_lady,
             name: "Jonas & Kayley",
             location: "Route 123",
             team: [
@@ -10468,7 +10468,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             tags: [],
         },
         battle_girl_and_sailor_lilith_and_brenden: {
-            trainer: trainers.emerald_battle_girl_and_sailor,
+            trainer: trainers.rse_battle_girl_and_sailor,
             name: "Lilith & Brenden",
             location: "Dewford Gym",
             team: [
@@ -10869,7 +10869,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             tags: [],
         },
         maxie_and_tabitha: {
-            trainer: trainers.emerald_maxie_and_tabitha,
+            trainer: trainers.rse_maxie_and_tabitha,
             name: "Maxie & Tabitha",
             location: "Mossdeep Space Center (2F)",
             team: [
@@ -12103,7 +12103,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             tags: [],
         },
         camper_and_bird_keeper_flint_and_edwardo: {
-            trainer: trainers.emerald_camper_and_bird_keeper,
+            trainer: trainers.rse_camper_and_bird_keeper,
             name: "Flint & Edwardo",
             location: "Fortree Gym",
             team: [
@@ -13620,7 +13620,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             tags: [],
         },
         team_magma_grunts: {
-            trainer: trainers.emerald_team_magma_grunts,
+            trainer: trainers.rse_team_magma_grunts,
             name: "Grunts",
             location: "Magma Hideout (8F)",
             team: [

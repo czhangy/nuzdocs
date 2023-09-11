@@ -1074,7 +1074,7 @@ const emerald: GameData = {
                 },
                 {
                     slug: "shelly-1",
-                    name: "Shelly",
+                    name: "Shelly 1",
                     type: "battle",
                     segment: {
                         battle: battles.emerald.shelly_1,
@@ -1527,6 +1527,225 @@ const emerald: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.emerald.tate_and_liza,
+                        levelCap: true,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Juan Split",
+            segments: [
+                {
+                    slug: "trick-house-6",
+                    name: "Trick House 6",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.pokemon_ranger_f_sophia,
+                            battles.emerald.pokemon_ranger_m_sebastian,
+                            battles.emerald.bird_keeper_benny,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "mossdeep-space-center",
+                    name: "Mossdeep Space Center",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.team_magma_f_grunt_2,
+                            battles.emerald.team_magma_m_grunt_1,
+                            battles.emerald.team_magma_m_grunt_5,
+                            battles.emerald.team_magma_m_grunt_2,
+                            battles.emerald.team_magma_m_grunt_6,
+                            battles.emerald.team_magma_m_grunt_7,
+                            battles.emerald.team_magma_m_grunt_8,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "maxie-and-tabitha",
+                    name: "Maxie & Tabitha",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.maxie_and_tabitha,
+                    },
+                },
+                {
+                    slug: "hoenn-route-126",
+                    name: "Route 126",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.swimmer_m_leonardo,
+                            battles.emerald.triathlete_swimmer_f_isobel,
+                            battles.emerald.swimmer_m_dean,
+                            battles.emerald.swimmer_f_nikki,
+                            battles.emerald.swimmer_m_barry,
+                            battles.emerald.swimmer_f_sienna,
+                            battles.emerald.triathlete_swimmer_m_pablo,
+                            battles.emerald.swimmer_f_brenda,
+                        ],
+                    },
+                },
+                {
+                    slug: "underwater",
+                    name: "Underwater",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "sootopolis-city",
+                    name: "Sootopolis City",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "hoenn-route-127",
+                    name: "Route 127",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.bird_keeper_aidan,
+                            battles.emerald.cool_trainer_f_athena,
+                            battles.emerald.fisherman_jonah,
+                            battles.emerald.fisherman_roger,
+                            battles.emerald.fisherman_henry,
+                            battles.emerald.triathlete_swimmer_m_camden,
+                            battles.emerald.black_belt_koji,
+                            battles.emerald.triathlete_swimmer_f_donny,
+                        ],
+                    },
+                },
+                {
+                    slug: "seafloor-cavern",
+                    name: "Seafloor Cavern",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.team_aqua_m_grunt_5,
+                            battles.emerald.team_aqua_m_grunt_6,
+                            battles.emerald.team_aqua_m_grunt_7,
+                            battles.emerald.team_aqua_f_grunt_1,
+                            battles.emerald.team_aqua_m_grunt_18,
+                            battles.emerald.shelly_2,
+                        ],
+                    },
+                },
+                {
+                    slug: "archie",
+                    name: "Archie",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.archie,
+                    },
+                },
+                {
+                    slug: "hoenn-route-128",
+                    name: "Route 128",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.cool_trainer_m_ruben,
+                            battles.emerald.cool_trainer_f_alexa,
+                            battles.emerald.fisherman_wayne,
+                            battles.emerald.triathlete_swimmer_m_isaiah,
+                            battles.emerald.triathlete_swimmer_f_katelyn,
+                            battles.emerald.swimmer_f_carlee,
+                            battles.emerald.swimmer_m_harrison,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-129",
+                    name: "Route 129",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.swimmer_m_reed,
+                            battles.emerald.triathlete_swimmer_m_chase,
+                            battles.emerald.triathlete_swimmer_f_allison,
+                            battles.emerald.swimmer_m_clarence,
+                            battles.emerald.swimmer_f_tisha,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-130",
+                    name: "Route 130",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.swimmer_m_rodney,
+                            battles.emerald.swimmer_f_katie,
+                            battles.emerald.swimmer_m_santiago,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-131",
+                    name: "Route 131",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.swimmer_m_kevin,
+                            battles.emerald.triathlete_swimmer_f_talia,
+                            battles.emerald.swimmer_m_richard,
+                            battles.emerald.swimmer_f_kara,
+                            battles.emerald.swimmer_m_herman,
+                            battles.emerald.swimmer_f_susie,
+                            battles.emerald.sis_and_bro_reli_and_ian,
+                        ],
+                    },
+                },
+                {
+                    slug: "pacifidlog-town",
+                    name: "Pacifidlog Town",
+                    type: "location",
+                    segment: {
+                        battles: [],
+                    },
+                },
+                {
+                    slug: "cave-of-origin",
+                    name: "Cave of Origin",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "sky-pillar",
+                    name: "Sky Pillar",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "sootopolis-gym",
+                    name: "Sootopolis Gym",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.beauty_connie,
+                            battles.emerald.lass_andrea,
+                            battles.emerald.lady_daphne,
+                            battles.emerald.pokefan_f_annika,
+                            battles.emerald.beauty_tiffany,
+                            battles.emerald.lass_crissy,
+                            battles.emerald.pokefan_f_bethany,
+                            battles.emerald.beauty_olivia,
+                            battles.emerald.lady_brianna,
+                            battles.emerald.beauty_bridget,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "juan",
+                    name: "Juan",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.juan,
                         levelCap: true,
                     },
                 },

@@ -13,6 +13,10 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         class: "Battle Girl",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/battlegirl-gen3.png",
     },
+    rse_battle_girl_and_sailor: {
+        class: "Gym Trainers",
+        sprite: "/assets/sprites/rse_battle_girl_and_sailor.webp",
+    },
     rse_beauty: {
         class: "Beauty",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/beauty-gen3rs.png",
@@ -40,6 +44,10 @@ const trainers: { [trainerSlug: string]: Trainer } = {
     rse_camper: {
         class: "Camper",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/camper-gen3rs.png",
+    },
+    rse_camper_and_bird_keeper: {
+        class: "Gym Trainers",
+        sprite: "/assets/sprites/rse_camper_and_bird_keeper.webp",
     },
     rse_collector: {
         class: "Collector",
@@ -105,6 +113,10 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         class: "Interviewers",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/interviewers-gen3.png",
     },
+    rse_juan: {
+        class: "Gym Leader",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/juan-gen3.png",
+    },
     rse_kindler: {
         class: "Kindler",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/kindler-gen3.png",
@@ -125,9 +137,17 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         class: "Magma Leader",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/maxie-gen3.png",
     },
+    rse_maxie_and_tabitha: {
+        class: "Team Magma",
+        sprite: "/assets/sprites/rse_maxie_and_tabitha.webp",
+    },
     rse_ninja_boy: {
         class: "Ninja Boy",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/ninjaboy-gen3.png",
+    },
+    rse_ninja_boy_and_parasol_lady: {
+        class: "Trainers",
+        sprite: "/assets/sprites/rse_ninja_boy_and_parasol_lady.webp",
     },
     rse_norman: {
         class: "Gym Leader",
@@ -245,6 +265,10 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         class: "Team Aqua",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/teamaquagruntf-gen3.png",
     },
+    rse_team_aqua_grunts: {
+        class: "Team Aqua",
+        sprite: "/assets/sprites/rse_team_aqua_grunts.webp",
+    },
     rse_team_aqua_m: {
         class: "Team Aqua",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/teamaquagruntm-gen3.png",
@@ -252,6 +276,10 @@ const trainers: { [trainerSlug: string]: Trainer } = {
     rse_team_magma_f: {
         class: "Team Magma",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/teammagmagruntf-gen3.png",
+    },
+    rse_team_magma_grunts: {
+        class: "Team Magma",
+        sprite: "/assets/sprites/rse_team_magma_grunts.webp",
     },
     rse_team_magma_m: {
         class: "Team Magma",
@@ -347,35 +375,15 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         class: "Gym Leader",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/wallace-gen3rs.png",
     },
-    emerald_battle_girl_and_sailor: {
-        class: "Gym Trainers",
-        sprite: "/assets/sprites/emerald_battle_girl_and_sailor.webp",
-    },
     emerald_brendan: {
         class: "Pokémon Trainer",
         name: "brendan",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/brendan-gen3.png",
     },
-    emerald_camper_and_bird_keeper: {
-        class: "Gym Trainers",
-        sprite: "/assets/sprites/emerald_camper_and_bird_keeper.webp",
-    },
-    emerald_ninja_boy_and_parasol_lady: {
-        class: "Trainers",
-        sprite: "/assets/sprites/emerald_ninja_boy_and_parasol_lady.webp",
-    },
     emerald_may: {
         class: "Pokémon Trainer",
         name: "may",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3.png",
-    },
-    emerald_team_aqua_grunts: {
-        class: "Team Aqua",
-        sprite: "/assets/sprites/emerald_team_aqua_grunts.webp",
-    },
-    emerald_team_magma_grunts: {
-        class: "Team Magma",
-        sprite: "/assets/sprites/emerald_team_magma_grunts.webp",
     },
 };
 
