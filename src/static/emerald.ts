@@ -752,6 +752,67 @@ const emerald: GameData = {
                 },
             ],
         },
+        {
+            name: "Norman Split",
+            segments: [
+                {
+                    slug: "hoenn-route-111",
+                    name: "Route 111 (Desert)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.camper_beau,
+                            battles.emerald.camper_drew,
+                            battles.emerald.picnicker_heidi,
+                            battles.emerald.picnicker_becky,
+                            battles.emerald.ruin_maniac_dusty,
+                            battles.emerald.picnicker_celia,
+                            battles.emerald.ruin_maniac_bryan,
+                            battles.emerald.camper_branden,
+                        ],
+                    },
+                },
+                {
+                    slug: "trick-house-3",
+                    name: "Trick House 3",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.camper_justin,
+                            battles.emerald.picnicker_martha,
+                            battles.emerald.hiker_alan,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "petalburg-gym",
+                    name: "Petalburg Gym",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.cool_trainer_m_randall,
+                            battles.emerald.cool_trainer_f_mary,
+                            battles.emerald.cool_trainer_m_parker,
+                            battles.emerald.cool_trainer_f_alexia,
+                            battles.emerald.cool_trainer_m_george,
+                            battles.emerald.cool_trainer_f_jody,
+                            battles.emerald.cool_trainer_m_berke,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "norman",
+                    name: "Norman",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.norman,
+                        levelCap: true,
+                    },
+                },
+            ],
+        },
     ],
 };
 
