@@ -494,6 +494,264 @@ const emerald: GameData = {
                 },
             ],
         },
+        {
+            name: "Flannery Split",
+            segments: [
+                {
+                    slug: "trick-house-2",
+                    name: "Trick House 2",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.school_kid_m_ted,
+                            battles.emerald.school_kid_m_paul,
+                            battles.emerald.school_kid_f_georgia,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "hoenn-route-117",
+                    name: "Route 117",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.sr_and_jr_anna_and_meg,
+                            battles.emerald.triathlete_runner_m_dylan,
+                            battles.emerald.pokemon_breeder_m_isaac,
+                            battles.emerald.triathlete_runner_f_maria,
+                            battles.emerald.battle_girl_aisha,
+                            battles.emerald.triathlete_runner_f_melina,
+                            battles.emerald.psychic_f_brandi,
+                            battles.emerald.bug_maniac_derek,
+                            battles.emerald.pokemon_breeder_f_lydia,
+                        ],
+                    },
+                },
+                {
+                    slug: "verdanturf-town",
+                    name: "Verdanturf Town",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "rusturf-tunnel",
+                    name: "Rusturf Tunnel (East)",
+                    type: "location",
+                    segment: { battles: [battles.emerald.hiker_mike] },
+                },
+                {
+                    slug: "hoenn-route-111",
+                    name: "Route 111 (South)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.aroma_lady_celina,
+                            battles.emerald.camper_tyron,
+                            battles.emerald.picnicker_bianca,
+                            battles.emerald.kindler_hayden,
+                            battles.emerald.winstrate_victor,
+                            battles.emerald.winstrate_victoria,
+                            battles.emerald.winstrate_vivi,
+                            battles.emerald.winstrate_vicky,
+                            battles.emerald.interviewers_gabby_and_ty_1,
+                            battles.emerald.picnicker_irene,
+                            battles.emerald.camper_travis,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-112",
+                    name: "Route 112 (South)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.camper_larry,
+                            battles.emerald.picnicker_carol,
+                            battles.emerald.hiker_trent,
+                            battles.emerald.hiker_brice,
+                        ],
+                    },
+                },
+                {
+                    slug: "fiery-path",
+                    name: "Fiery Path",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "hoenn-route-112",
+                    name: "Route 112 (North)",
+                    type: "location",
+                    segment: {
+                        battles: [battles.emerald.aroma_lady_shayla, battles.emerald.kindler_bryant],
+                    },
+                },
+                {
+                    slug: "hoenn-route-111",
+                    name: "Route 111 (North)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.cool_trainer_m_wilton,
+                            battles.emerald.black_belt_daisuke,
+                            battles.emerald.cool_trainer_f_brooke,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-113",
+                    name: "Route 113",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.youngster_jaylen,
+                            battles.emerald.ninja_boy_lung,
+                            battles.emerald.camper_lawrence,
+                            battles.emerald.pokemaniac_wyatt,
+                            battles.emerald.parasol_lady_madeline,
+                            battles.emerald.twins_tori_and_tia,
+                            battles.emerald.ninja_boy_lao,
+                            battles.emerald.youngster_dillon,
+                            battles.emerald.picnicker_sophie,
+                            battles.emerald.bird_keeper_coby,
+                        ],
+                    },
+                },
+                {
+                    slug: "fallarbor-town",
+                    name: "Fallarbor Town",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "hoenn-route-114",
+                    name: "Route 114",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.fisherman_nolan,
+                            battles.emerald.picnicker_charlotte,
+                            battles.emerald.fisherman_kai,
+                            battles.emerald.fisherman_claude,
+                            battles.emerald.picnicker_nancy,
+                            battles.emerald.sr_and_jr_tyra_and_ivy,
+                            battles.emerald.camper_shane,
+                            battles.emerald.pokemaniac_steve,
+                            battles.emerald.kindler_bernie,
+                            battles.emerald.hiker_lucas,
+                            battles.emerald.picnicker_angelina,
+                            battles.emerald.hiker_lenny,
+                        ],
+                    },
+                },
+                {
+                    slug: "meteor-falls",
+                    name: "Meteor Falls",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "hoenn-route-115",
+                    name: "Route 115 (South)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.black_belt_nob,
+                            battles.emerald.battle_girl_cyndy,
+                            battles.emerald.collector_hector,
+                            battles.emerald.psychic_f_marlene,
+                        ],
+                    },
+                },
+                {
+                    slug: "mt-chimney",
+                    name: "Mt. Chimney",
+                    type: "location",
+                    segment: {
+                        battles: [battles.emerald.team_magma_f_grunt_1, battles.emerald.team_magma_m_grunt_4],
+                    },
+                },
+                {
+                    slug: "tabitha-1",
+                    name: "Tabitha 1",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.tabitha_1,
+                    },
+                },
+                {
+                    slug: "maxie-1",
+                    name: "Maxie 1",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.maxie_2,
+                    },
+                },
+                {
+                    slug: "jagged-pass",
+                    name: "Jagged Pass",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.hiker_eric,
+                            battles.emerald.team_magma_m_grunt_3,
+                            battles.emerald.picnicker_diana,
+                            battles.emerald.picnicker_autumn,
+                            battles.emerald.triathlete_biker_m_julio,
+                            battles.emerald.camper_ethan,
+                        ],
+                    },
+                },
+                {
+                    slug: "lavaridge-town",
+                    name: "Lavaridge Town",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "mt-chimney",
+                    name: "Mt. Chimney",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.beauty_shirley,
+                            battles.emerald.beauty_sheila,
+                            battles.emerald.expert_f_shelby,
+                            battles.emerald.hiker_sawyer,
+                            battles.emerald.beauty_melissa,
+                        ],
+                    },
+                },
+                {
+                    slug: "lavaridge-gym",
+                    name: "Lavaridge Gym",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.kindler_jeff,
+                            battles.emerald.hiker_eli,
+                            battles.emerald.kindler_jace,
+                            battles.emerald.kindler_cole,
+                            battles.emerald.cool_trainer_m_gerald,
+                            battles.emerald.kindler_axle,
+                            battles.emerald.kindler_keegan,
+                            battles.emerald.battle_girl_danielle,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "flannery",
+                    name: "Flannery",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.flannery,
+                        levelCap: true,
+                    },
+                },
+            ],
+        },
     ],
 };
 

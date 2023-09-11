@@ -3514,7 +3514,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         kindler_keegan: {
             trainer: trainers.rse_kindler,
@@ -5525,7 +5525,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: {},
             tags: ["Double Battle"],
         },
-        winstrate_victor_victor: {
+        winstrate_victor: {
             trainer: trainers.rse_winstrate_victor,
             name: "Victor",
             location: "Winstrate House",
@@ -5588,7 +5588,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: {},
             tags: [],
         },
-        winstrate_victoria_victoria: {
+        winstrate_victoria: {
             trainer: trainers.rse_winstrate_victoria,
             name: "Victoria",
             location: "Winstrate House",
@@ -5752,7 +5752,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: {},
             tags: [],
         },
-        winstrate_vicky_vicky: {
+        winstrate_vicky: {
             trainer: trainers.rse_winstrate_vicky,
             name: "Vicky",
             location: "Winstrate House",
@@ -9488,7 +9488,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         pokefan_f_annika: {
             trainer: trainers.rse_pokefan_f,
@@ -11030,7 +11030,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: {},
             tags: [],
         },
-        winstrate_vivi_vivi: {
+        winstrate_vivi: {
             trainer: trainers.rse_winstrate_vivi,
             name: "Vivi",
             location: "Winstrate House",
@@ -11629,7 +11629,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         hiker_alan: {
             trainer: trainers.rse_hiker,
@@ -15862,7 +15862,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         team_magma_m_grunt_5: {
             trainer: trainers.rse_team_magma_m,
@@ -16489,7 +16489,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         team_magma_f_grunt_2: {
             trainer: trainers.rse_team_magma_f,

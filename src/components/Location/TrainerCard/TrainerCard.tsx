@@ -70,7 +70,7 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                     </div>
                 </div>
                 <button
-                    className={styles.export}
+                    className={`${styles.export} disable-select`}
                     disabled={Object.keys(props.pokemon).length === 0}
                     onClick={handleExport}
                 >

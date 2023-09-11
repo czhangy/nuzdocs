@@ -305,6 +305,22 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         class: "Gym Leader",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/winona-gen3.png",
     },
+    rse_winstrate_victor: {
+        class: "Winstrate",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/pokefan-gen3.png",
+    },
+    rse_winstrate_vicky: {
+        class: "Winstrate",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/expertf-gen3.png",
+    },
+    rse_winstrate_victoria: {
+        class: "Winstrate",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/pokefanf-gen3.png",
+    },
+    rse_winstrate_vivi: {
+        class: "Winstrate",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/lass-gen3rs.png",
+    },
     rse_young_couple: {
         class: "Young Couple",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/youngcouple-gen3rs.png",
