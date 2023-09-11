@@ -61,6 +61,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
                 run={props.run}
                 onUpdate={() => setLevelCap(getNextLevelCap(props.run))}
                 onFinish={() => setOpen(true)}
+                key={props.segment.slug}
             />
             {pokemon.length === sets.length ? (
                 <ul className={styles.team}>

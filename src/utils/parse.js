@@ -65,7 +65,6 @@ const getTeam = (i, row, team) => {
 
 const saveBattle = (battleKey, row, team) => {
     const attrs = row.split(",");
-    battleKey = battleKey.replace(/_\[.+?\]/, "");
 
     // Remove condition from name
     let name = attrs[NAME];
@@ -97,12 +96,6 @@ const saveBattle = (battleKey, row, team) => {
     if (attrs[DOUBLE] === "y") {
         battle.tags.push("Double Battle");
     }
-
-    // Remove invalid chars from key
-    battleKey = battleKey
-        .replace(/[\{\}\.]/g, "")
-        .replace(/\&/, "and")
-        .toLowerCase();
 
     // Handle repeat fights by putting them into an array
     if (battleKey in battleData) {
@@ -139,17 +132,32 @@ const parse = () => {
         const attrs = row.split(",");
 
         // Create key using Trainer + Name
-        let battleKey = attrs[TRAINER] + "_" + attrs[NAME].toLowerCase().replace(/\s/g, "_");
+        let battleKey = attrs[TRAINER];
+
+        // Handle cases like maxie_and_tabitha_maxie_and_tabitha
+        const name = attrs[NAME].replace(/[\{\}\.]/g, "")
+            .replace(/\&/, "and")
+            .replace(/\s/g, "_")
+            .toLowerCase();
+        if (!battleKey.endsWith(name)) {
+            battleKey += "_" + name;
+        }
+
+        // Split key by word
         const words = battleKey.split("_");
 
         // Remove the game group from the key
         words.shift();
 
         // Remove stuff like brendan_brendan
+        if (words.at(-2) === words.at(-1)) {
+            words.pop();
+        }
         if (words[0] === words[1]) {
             words.shift();
         }
 
+        // Rejoin into string
         battleKey = words.join("_");
 
         // Iterate over trainer team

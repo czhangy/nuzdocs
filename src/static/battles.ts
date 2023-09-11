@@ -251,7 +251,72 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
+        },
+        team_aqua_grunts: {
+            trainer: trainers.emerald_team_aqua_grunts,
+            name: "Grunts",
+            location: "Mt. Pyre",
+            team: [
+                {
+                    slug: "wailmer",
+                    species: "wailmer",
+                    level: 30,
+                    ability: { slug: "water-veil", name: "Water Veil" },
+                    moves: [
+                        { slug: "rollout", name: "Rollout" },
+                        { slug: "whirlpool", name: "Whirlpool" },
+                        { slug: "astonish", name: "Astonish" },
+                        { slug: "water-pulse", name: "Water Pulse" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+                {
+                    slug: "zubat",
+                    species: "zubat",
+                    level: 30,
+                    ability: { slug: "inner-focus", name: "Inner Focus" },
+                    moves: [
+                        { slug: "astonish", name: "Astonish" },
+                        { slug: "bite", name: "Bite" },
+                        { slug: "wing-attack", name: "Wing Attack" },
+                        { slug: "confuse-ray", name: "Confuse Ray" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+                {
+                    slug: "poochyena",
+                    species: "poochyena",
+                    level: 30,
+                    ability: { slug: "run-away", name: "Run Away" },
+                    moves: [
+                        { slug: "odor-sleuth", name: "Odor Sleuth" },
+                        { slug: "roar", name: "Roar" },
+                        { slug: "swagger", name: "Swagger" },
+                        { slug: "scary-face", name: "Scary Face" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+                {
+                    slug: "carvanha",
+                    species: "carvanha",
+                    level: 30,
+                    ability: { slug: "rough-skin", name: "Rough Skin" },
+                    moves: [
+                        { slug: "focus-energy", name: "Focus Energy" },
+                        { slug: "scary-face", name: "Scary Face" },
+                        { slug: "crunch", name: "Crunch" },
+                        { slug: "screech", name: "Screech" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+            ],
+            items: {},
+            tags: ["Required", "Double Battle"],
         },
         expert_m_fredrick: {
             trainer: trainers.rse_expert_m,
@@ -464,7 +529,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         aroma_lady_rose: {
             trainer: trainers.rse_aroma_lady,
             name: "Rose",
-            location: "Route 118 (West)",
+            location: "Route 118",
             team: [
                 {
                     slug: "roselia",
@@ -510,7 +575,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: ["Required"],
+            tags: [],
         },
         cool_trainer_m_felix: {
             trainer: trainers.rse_cool_trainer_m,
@@ -3377,7 +3442,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         guitarist_dalton: {
             trainer: trainers.rse_guitarist,
             name: "Dalton",
-            location: "Route 118 (West)",
+            location: "Route 118",
             team: [
                 {
                     slug: "magnemite",
@@ -5154,7 +5219,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: { "hyper-potion": 2 },
             tags: ["Required"],
         },
-        tate_and_liza_tate_and_liza: {
+        tate_and_liza: {
             trainer: trainers.rse_tate_and_liza,
             name: "Tate & Liza",
             location: "Mossdeep Gym",
@@ -6578,7 +6643,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         fisherman_barny: {
             trainer: trainers.rse_fisherman,
             name: "Barny",
-            location: "Route 118 (East)",
+            location: "Route 118",
             team: [
                 {
                     slug: "tentacool",
@@ -6615,7 +6680,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         fisherman_wade: {
             trainer: trainers.rse_fisherman,
             name: "Wade",
-            location: "Route 118 (West)",
+            location: "Route 118",
             team: [
                 {
                     slug: "tentacool",
@@ -7359,7 +7424,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         bird_keeper_perry: {
             trainer: trainers.rse_bird_keeper,
             name: "Perry",
-            location: "Route 118 (East)",
+            location: "Route 118",
             team: [
                 {
                     slug: "wingull",
@@ -7550,71 +7615,6 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: {},
             tags: [],
         },
-        flint_and_edwardo: {
-            trainer: trainers.emerald_flint_and_edwardo,
-            name: "Flint & Edwardo",
-            location: "Fortree Gym",
-            team: [
-                {
-                    slug: "swellow",
-                    species: "swellow",
-                    level: 29,
-                    ability: { slug: "guts", name: "Guts" },
-                    moves: [
-                        { slug: "quick-attack", name: "Quick Attack" },
-                        { slug: "wing-attack", name: "Wing Attack" },
-                        { slug: "double-team", name: "Double Team" },
-                        { slug: "endeavor", name: "Endeavor" },
-                    ],
-                    ivs: { hp: 18, atk: 18, spa: 18, def: 18, spd: 18, spe: 18 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-                {
-                    slug: "xatu",
-                    species: "xatu",
-                    level: 29,
-                    ability: { slug: "synchronize", name: "Synchronize" },
-                    moves: [
-                        { slug: "peck", name: "Peck" },
-                        { slug: "leer", name: "Leer" },
-                        { slug: "night-shade", name: "Night Shade" },
-                        { slug: "teleport", name: "Teleport" },
-                    ],
-                    ivs: { hp: 18, atk: 18, spa: 18, def: 18, spd: 18, spe: 18 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-                {
-                    slug: "doduo",
-                    species: "doduo",
-                    level: 29,
-                    ability: { slug: "run-away", name: "Run Away" },
-                    moves: [
-                        { slug: "pursuit", name: "Pursuit" },
-                        { slug: "fury-attack", name: "Fury Attack" },
-                        { slug: "tri-attack", name: "Tri Attack" },
-                        { slug: "rage", name: "Rage" },
-                    ],
-                    ivs: { hp: 18, atk: 18, spa: 18, def: 18, spd: 18, spe: 18 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-                {
-                    slug: "pelipper",
-                    species: "pelipper",
-                    level: 29,
-                    ability: { slug: "keen-eye", name: "Keen Eye" },
-                    moves: [
-                        { slug: "supersonic", name: "Supersonic" },
-                        { slug: "wing-attack", name: "Wing Attack" },
-                        { slug: "mist", name: "Mist" },
-                        { slug: "protect", name: "Protect" },
-                    ],
-                    ivs: { hp: 18, atk: 18, spa: 18, def: 18, spd: 18, spe: 18 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-            ],
-            items: {},
-            tags: ["Required", "Double Battle"],
-        },
         bird_keeper_colin: {
             trainer: trainers.rse_bird_keeper,
             name: "Colin",
@@ -7729,7 +7729,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         bird_keeper_chester: {
             trainer: trainers.rse_bird_keeper,
             name: "Chester",
-            location: "Route 118 (East)",
+            location: "Route 118",
             team: [
                 {
                     slug: "taillow",
@@ -9580,9 +9580,9 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: { "hyper-potion": 1 },
             tags: [],
         },
-        ninja_boy_jonas: {
-            trainer: trainers.rse_ninja_boy,
-            name: "Jonas",
+        ninja_boy_and_parasol_lady_jonas_and_kayley: {
+            trainer: trainers.emerald_ninja_boy_and_parasol_lady,
+            name: "Jonas & Kayley",
             location: "Route 123",
             team: [
                 {
@@ -9599,15 +9599,6 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
-            ],
-            items: {},
-            tags: [],
-        },
-        parasol_lady_kayley: {
-            trainer: trainers.rse_parasol_lady,
-            name: "Kayley",
-            location: "Route 123",
-            team: [
                 {
                     slug: "castform",
                     species: "castform",
@@ -9624,7 +9615,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Double Battle"],
         },
         expert_m_auron: {
             trainer: trainers.rse_expert_m,
@@ -10476,8 +10467,8 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: {},
             tags: [],
         },
-        lilith_and_brenden: {
-            trainer: trainers.emerald_lilith_and_brenden,
+        battle_girl_and_sailor_lilith_and_brenden: {
+            trainer: trainers.emerald_battle_girl_and_sailor,
             name: "Lilith & Brenden",
             location: "Dewford Gym",
             team: [
@@ -10877,7 +10868,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: { "hyper-potion": 1 },
             tags: [],
         },
-        maxie_and_tabitha_maxie_and_tabitha: {
+        maxie_and_tabitha: {
             trainer: trainers.emerald_maxie_and_tabitha,
             name: "Maxie & Tabitha",
             location: "Mossdeep Space Center (2F)",
@@ -11657,7 +11648,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: ["Required"],
+            tags: [],
         },
         hiker_alan: {
             trainer: trainers.rse_hiker,
@@ -11818,7 +11809,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         young_couple_dez_and_luke: {
             trainer: trainers.rse_young_couple,
@@ -12110,6 +12101,71 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             ],
             items: {},
             tags: [],
+        },
+        camper_and_bird_keeper_flint_and_edwardo: {
+            trainer: trainers.emerald_camper_and_bird_keeper,
+            name: "Flint & Edwardo",
+            location: "Fortree Gym",
+            team: [
+                {
+                    slug: "swellow",
+                    species: "swellow",
+                    level: 29,
+                    ability: { slug: "guts", name: "Guts" },
+                    moves: [
+                        { slug: "quick-attack", name: "Quick Attack" },
+                        { slug: "wing-attack", name: "Wing Attack" },
+                        { slug: "double-team", name: "Double Team" },
+                        { slug: "endeavor", name: "Endeavor" },
+                    ],
+                    ivs: { hp: 18, atk: 18, spa: 18, def: 18, spd: 18, spe: 18 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+                {
+                    slug: "xatu",
+                    species: "xatu",
+                    level: 29,
+                    ability: { slug: "synchronize", name: "Synchronize" },
+                    moves: [
+                        { slug: "peck", name: "Peck" },
+                        { slug: "leer", name: "Leer" },
+                        { slug: "night-shade", name: "Night Shade" },
+                        { slug: "teleport", name: "Teleport" },
+                    ],
+                    ivs: { hp: 18, atk: 18, spa: 18, def: 18, spd: 18, spe: 18 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+                {
+                    slug: "doduo",
+                    species: "doduo",
+                    level: 29,
+                    ability: { slug: "run-away", name: "Run Away" },
+                    moves: [
+                        { slug: "pursuit", name: "Pursuit" },
+                        { slug: "fury-attack", name: "Fury Attack" },
+                        { slug: "tri-attack", name: "Tri Attack" },
+                        { slug: "rage", name: "Rage" },
+                    ],
+                    ivs: { hp: 18, atk: 18, spa: 18, def: 18, spd: 18, spe: 18 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+                {
+                    slug: "pelipper",
+                    species: "pelipper",
+                    level: 29,
+                    ability: { slug: "keen-eye", name: "Keen Eye" },
+                    moves: [
+                        { slug: "supersonic", name: "Supersonic" },
+                        { slug: "wing-attack", name: "Wing Attack" },
+                        { slug: "mist", name: "Mist" },
+                        { slug: "protect", name: "Protect" },
+                    ],
+                    ivs: { hp: 18, atk: 18, spa: 18, def: 18, spd: 18, spe: 18 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+            ],
+            items: {},
+            tags: ["Required", "Double Battle"],
         },
         picnicker_ashley: {
             trainer: trainers.rse_picnicker,
@@ -13515,7 +13571,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         youngster_deandre: {
             trainer: trainers.rse_youngster,
             name: "Deandre",
-            location: "Route 118 (West)",
+            location: "Route 118",
             team: [
                 {
                     slug: "zigzagoon",
@@ -13561,7 +13617,44 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: ["Required"],
+            tags: [],
+        },
+        team_magma_grunts: {
+            trainer: trainers.emerald_team_magma_grunts,
+            name: "Grunts",
+            location: "Magma Hideout (8F)",
+            team: [
+                {
+                    slug: "mightyena",
+                    species: "mightyena",
+                    level: 29,
+                    ability: { slug: "intimidate", name: "Intimidate" },
+                    moves: [
+                        { slug: "bite", name: "Bite" },
+                        { slug: "odor-sleuth", name: "Odor Sleuth" },
+                        { slug: "roar", name: "Roar" },
+                        { slug: "swagger", name: "Swagger" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+                {
+                    slug: "numel",
+                    species: "numel",
+                    level: 29,
+                    ability: { slug: "oblivious", name: "Oblivious" },
+                    moves: [
+                        { slug: "ember", name: "Ember" },
+                        { slug: "magnitude", name: "Magnitude" },
+                        { slug: "focus-energy", name: "Focus Energy" },
+                        { slug: "take-down", name: "Take Down" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+            ],
+            items: {},
+            tags: ["Double Battle"],
         },
         cool_trainer_f_darcy: {
             trainer: trainers.rse_cool_trainer_f,
@@ -15030,12 +15123,12 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         team_aqua_m_grunt_3: {
             trainer: trainers.rse_team_aqua_m,
             name: "Grunt",
-            location: "Mt. Pyre (Summit)",
+            location: "Mt. Pyre",
             team: [
                 {
                     slug: "zubat",
@@ -15058,7 +15151,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         team_aqua_m_grunt_4: {
             trainer: trainers.rse_team_aqua_m,
             name: "Grunt",
-            location: "Mt. Pyre (Summit)",
+            location: "Mt. Pyre",
             team: [
                 {
                     slug: "carvanha",
@@ -15263,7 +15356,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: ["Required"],
+            tags: [],
         },
         team_aqua_m_grunt_12: {
             trainer: trainers.rse_team_aqua_m,
@@ -15424,43 +15517,6 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         team_aqua_m_grunt_17: {
             trainer: trainers.rse_team_aqua_m,
             name: "Grunt",
-            location: "Mt. Pyre (Summit)",
-            team: [
-                {
-                    slug: "poochyena",
-                    species: "poochyena",
-                    level: 30,
-                    ability: { slug: "run-away", name: "Run Away" },
-                    moves: [
-                        { slug: "odor-sleuth", name: "Odor Sleuth" },
-                        { slug: "roar", name: "Roar" },
-                        { slug: "swagger", name: "Swagger" },
-                        { slug: "scary-face", name: "Scary Face" },
-                    ],
-                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-                {
-                    slug: "carvanha",
-                    species: "carvanha",
-                    level: 30,
-                    ability: { slug: "rough-skin", name: "Rough Skin" },
-                    moves: [
-                        { slug: "focus-energy", name: "Focus Energy" },
-                        { slug: "scary-face", name: "Scary Face" },
-                        { slug: "crunch", name: "Crunch" },
-                        { slug: "screech", name: "Screech" },
-                    ],
-                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-            ],
-            items: {},
-            tags: [],
-        },
-        team_aqua_m_grunt_18: {
-            trainer: trainers.rse_team_aqua_m,
-            name: "Grunt",
             location: "Aqua Hideout (B2F)",
             team: [
                 {
@@ -15479,9 +15535,9 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
-        team_aqua_m_grunt_19: {
+        team_aqua_m_grunt_18: {
             trainer: trainers.rse_team_aqua_m,
             name: "Grunt",
             location: "Seafloor Cavern",
@@ -15608,7 +15664,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         team_aqua_f_grunt_5: {
             trainer: trainers.rse_team_aqua_f,
@@ -15645,46 +15701,9 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         team_aqua_f_grunt_6: {
-            trainer: trainers.rse_team_aqua_f,
-            name: "Grunt",
-            location: "Mt. Pyre (Summit)",
-            team: [
-                {
-                    slug: "wailmer",
-                    species: "wailmer",
-                    level: 30,
-                    ability: { slug: "water-veil", name: "Water Veil" },
-                    moves: [
-                        { slug: "rollout", name: "Rollout" },
-                        { slug: "whirlpool", name: "Whirlpool" },
-                        { slug: "astonish", name: "Astonish" },
-                        { slug: "water-pulse", name: "Water Pulse" },
-                    ],
-                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-                {
-                    slug: "zubat",
-                    species: "zubat",
-                    level: 30,
-                    ability: { slug: "inner-focus", name: "Inner Focus" },
-                    moves: [
-                        { slug: "astonish", name: "Astonish" },
-                        { slug: "bite", name: "Bite" },
-                        { slug: "wing-attack", name: "Wing Attack" },
-                        { slug: "confuse-ray", name: "Confuse Ray" },
-                    ],
-                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-            ],
-            items: {},
-            tags: [],
-        },
-        team_aqua_f_grunt_7: {
             trainer: trainers.rse_team_aqua_f,
             name: "Grunt",
             location: "Weather Institute (2F)",
@@ -15719,7 +15738,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: ["Required"],
+            tags: [],
         },
         team_magma_m_grunt_1: {
             trainer: trainers.rse_team_magma_m,
@@ -15991,7 +16010,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         team_magma_m_grunt_11: {
             trainer: trainers.rse_team_magma_m,
@@ -16014,7 +16033,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         team_magma_m_grunt_12: {
             trainer: trainers.rse_team_magma_m,
@@ -16096,29 +16115,6 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             location: "Magma Hideout (8F)",
             team: [
                 {
-                    slug: "mightyena",
-                    species: "mightyena",
-                    level: 29,
-                    ability: { slug: "intimidate", name: "Intimidate" },
-                    moves: [
-                        { slug: "bite", name: "Bite" },
-                        { slug: "odor-sleuth", name: "Odor Sleuth" },
-                        { slug: "roar", name: "Roar" },
-                        { slug: "swagger", name: "Swagger" },
-                    ],
-                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-            ],
-            items: {},
-            tags: [],
-        },
-        team_magma_m_grunt_15: {
-            trainer: trainers.rse_team_magma_m,
-            name: "Grunt",
-            location: "Magma Hideout (8F)",
-            team: [
-                {
                     slug: "zubat",
                     species: "zubat",
                     level: 29,
@@ -16136,7 +16132,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: {},
             tags: [],
         },
-        team_magma_m_grunt_16: {
+        team_magma_m_grunt_15: {
             trainer: trainers.rse_team_magma_m,
             name: "Grunt",
             location: "Magma Hideout (8F)",
@@ -16159,7 +16155,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: {},
             tags: [],
         },
-        team_magma_m_grunt_17: {
+        team_magma_m_grunt_16: {
             trainer: trainers.rse_team_magma_m,
             name: "Grunt",
             location: "Magma Hideout (3F)",
@@ -16180,12 +16176,12 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
-        team_magma_m_grunt_18: {
+        team_magma_m_grunt_17: {
             trainer: trainers.rse_team_magma_m,
             name: "Grunt",
-            location: "Magma Hideout (3F)",
+            location: "Magma Hideout (7F)",
             team: [
                 {
                     slug: "mightyena",
@@ -16205,7 +16201,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: {},
             tags: [],
         },
-        team_magma_m_grunt_19: {
+        team_magma_m_grunt_18: {
             trainer: trainers.rse_team_magma_m,
             name: "Grunt",
             location: "Magma Hideout (4F)",
@@ -16226,9 +16222,9 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
-        team_magma_m_grunt_20: {
+        team_magma_m_grunt_19: {
             trainer: trainers.rse_team_magma_m,
             name: "Grunt",
             location: "Magma Hideout (4F)",
@@ -16249,9 +16245,9 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
-        team_magma_m_grunt_21: {
+        team_magma_m_grunt_20: {
             trainer: trainers.rse_team_magma_m,
             name: "Grunt",
             location: "Magma Hideout (4F)",
@@ -16272,7 +16268,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         shelly_1: {
             trainer: trainers.rse_shelly,
@@ -16388,7 +16384,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         interviewers_gabby_and_ty_2: {
             trainer: trainers.rse_interviewers,
             name: "Gabby & Ty",
-            location: "Route 118 (East)",
+            location: "Route 118",
             team: [
                 {
                     slug: "magnemite",
@@ -16545,29 +16541,6 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         team_magma_f_grunt_4: {
             trainer: trainers.rse_team_magma_f,
             name: "Grunt",
-            location: "Magma Hideout (8F)",
-            team: [
-                {
-                    slug: "numel",
-                    species: "numel",
-                    level: 29,
-                    ability: { slug: "oblivious", name: "Oblivious" },
-                    moves: [
-                        { slug: "ember", name: "Ember" },
-                        { slug: "magnitude", name: "Magnitude" },
-                        { slug: "focus-energy", name: "Focus Energy" },
-                        { slug: "take-down", name: "Take Down" },
-                    ],
-                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-            ],
-            items: {},
-            tags: [],
-        },
-        team_magma_f_grunt_5: {
-            trainer: trainers.rse_team_magma_f,
-            name: "Grunt",
             location: "Magma Hideout (3F)",
             team: [
                 {
@@ -16586,7 +16559,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         wally_1: {
             trainer: trainers.rse_wally,

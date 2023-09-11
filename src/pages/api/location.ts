@@ -51,7 +51,7 @@ const handleTimeBasedEncounter = (
     if (encounter) {
         encounter.chance += encounterDetail.chance;
         encounter.minLevel = Math.min(encounter.minLevel, encounterDetail.min_level);
-        encounter.maxLevel = Math.min(encounter.maxLevel, encounterDetail.max_level);
+        encounter.maxLevel = Math.max(encounter.maxLevel, encounterDetail.max_level);
     } else {
         encounterData[timeCondition][methodName].push(
             initEncounterData(

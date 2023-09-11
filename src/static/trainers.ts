@@ -347,23 +347,35 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         class: "Gym Leader",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/wallace-gen3rs.png",
     },
+    emerald_battle_girl_and_sailor: {
+        class: "Gym Trainers",
+        sprite: "/assets/sprites/emerald_battle_girl_and_sailor.webp",
+    },
     emerald_brendan: {
         class: "Pokémon Trainer",
         name: "brendan",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/brendan-gen3.png",
     },
-    emerald_flint_and_edwardo: {
+    emerald_camper_and_bird_keeper: {
         class: "Gym Trainers",
-        sprite: "/assets/sprites/flint_and_edwardo.webp",
+        sprite: "/assets/sprites/emerald_camper_and_bird_keeper.webp",
     },
-    emerald_lilith_and_brenden: {
-        class: "Gym Trainers",
-        sprite: "/assets/sprites/lilith_and_brenden.webp",
+    emerald_ninja_boy_and_parasol_lady: {
+        class: "Trainers",
+        sprite: "/assets/sprites/emerald_ninja_boy_and_parasol_lady.webp",
     },
     emerald_may: {
         class: "Pokémon Trainer",
         name: "may",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3.png",
+    },
+    emerald_team_aqua_grunts: {
+        class: "Team Aqua",
+        sprite: "/assets/sprites/emerald_team_aqua_grunts.webp",
+    },
+    emerald_team_magma_grunts: {
+        class: "Team Magma",
+        sprite: "/assets/sprites/emerald_team_magma_grunts.webp",
     },
 };
 
