@@ -1,4 +1,4 @@
-import Tooltip from "@/components/Global/Tooltip/Tooltip";
+import Tooltip from "@/components/Run/Tooltip/Tooltip";
 import AbilityData from "@/models/AbilityData";
 import { useState } from "react";
 import styles from "./AbilityDisplay.module.scss";

@@ -7,6 +7,10 @@ const rs: GameData = {
     generation: "generation-iii",
     group: "ruby-sapphire",
     pokedex: pokedex.slice(0, 386),
+    characters: [trainers.rs_brendan, trainers.rs_may],
+    starters: ["treecko", "torchic", "mudkip"],
+    startingTown: "littleroot-town",
+    invalidConditions: [],
     splits: [
         {
             name: "Roxanne Split",
@@ -1773,10 +1777,6 @@ const rs: GameData = {
             ],
         },
     ],
-    characters: [trainers.rs_brendan, trainers.rs_may],
-    starters: ["treecko", "torchic", "mudkip"],
-    startingTown: "littleroot-town",
-    invalidConditions: [],
 };
 
 export default rs;

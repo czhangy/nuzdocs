@@ -1,4 +1,17 @@
 const OUT_FILE = "./data/out.json";
+const TRAINER = 0;
+const NAME = 1;
+const LOCATION = 2;
+const ITEMS = 3;
+const REQUIRED = 4;
+const DOUBLE = 5;
+const POKEMON = 6;
+const ABILITY = 7;
+const HELD_ITEM = 8;
+const LEVEL = 9;
+const MOVE_1 = 10;
+const MOVE_4 = 13;
+const IV = 14;
 
 const game = process.argv[2];
 const fs = require("fs");
@@ -15,36 +28,32 @@ const getTeam = (i, row, team) => {
     while (i < rows.length && (i === start || row[0] === ",")) {
         // Get Pokemon's JSON
         const attrs = row.split(",");
-        const name = attrs[3].toLowerCase();
-        const level = parseInt(attrs[6]);
+        const name = attrs[POKEMON].toLowerCase();
+        const level = parseInt(attrs[LEVEL]);
         const moves = [];
-        for (let j = 7; j <= 10; j++) {
-            if (!attrs[j]) {
-                break;
-            } else {
-                moves.push({ slug: toSlug(attrs[j]), name: attrs[j] });
-            }
+        for (let j = MOVE_1; j <= MOVE_4 && attrs[j] !== "~"; j++) {
+            moves.push({ slug: toSlug(attrs[j]), name: attrs[j] });
         }
+        const iv = Math.floor((parseInt(attrs[IV]) * 31) / 255);
         const ivs = {
-            hp: parseInt(attrs[11]),
-            atk: parseInt(attrs[12]),
-            spa: parseInt(attrs[13]),
-            def: parseInt(attrs[14]),
-            spd: parseInt(attrs[15]),
-            spe: parseInt(attrs[16]),
+            hp: iv,
+            atk: iv,
+            spa: iv,
+            def: iv,
+            spd: iv,
+            spe: iv,
         };
-
         const pokemon = {
             slug: name,
             species: name,
             level: level,
-            ability: { slug: toSlug(attrs[4]), name: attrs[4] },
+            ability: { slug: toSlug(attrs[ABILITY]), name: attrs[ABILITY] },
             moves: moves,
             ivs: ivs,
             evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
         };
-        if (attrs[5]) {
-            pokemon.item = { slug: toSlug(attrs[5]), name: attrs[5] };
+        if (attrs[HELD_ITEM]) {
+            pokemon.item = { slug: toSlug(attrs[HELD_ITEM]), name: attrs[HELD_ITEM] };
         }
         team.push(pokemon);
 
@@ -56,29 +65,37 @@ const getTeam = (i, row, team) => {
 
 const saveBattle = (battleKey, row, team) => {
     const attrs = row.split(",");
+
+    // Remove condition from name
+    let name = attrs[NAME];
+    if (name.includes("{")) {
+        name = name.substring(0, name.indexOf("{") - 1);
+    }
+
     // Construct battle object
-    battleKey = battleKey.replace(/_\[.+?\]/, "");
     const battle = {
-        trainer: "[PLACEHOLDER]",
-        name: getName(battleKey),
-        location: attrs[1],
+        trainer: `{[trainers.${attrs[TRAINER]}]}`,
+        name: name,
+        location: attrs[LOCATION],
         team: team,
-        items: [],
+        items: {},
+        tags: [],
     };
 
     // If the battle uses items, parse/set items
-    if (attrs[2]) {
-        const count = attrs[2].substring(attrs[2].indexOf("[") + 1, attrs[2].indexOf("]"));
-        for (let i = 0; i < count; i++) {
-            battle.items.push(toSlug(attrs[2].substring(attrs[2].indexOf(" ") + 1)));
-        }
+    if (attrs[ITEMS]) {
+        const item = toSlug(attrs[ITEMS].substring(attrs[ITEMS].indexOf(" ") + 1));
+        const count = attrs[ITEMS].substring(attrs[ITEMS].indexOf("[") + 1, attrs[ITEMS].indexOf("]"));
+        battle.items[item] = parseInt(count);
     }
 
-    // Remove invalid chars from key
-    battleKey = battleKey
-        .replace(/[\{\}\.]/g, "")
-        .replace(/\&/, "and")
-        .toLowerCase();
+    // Check for tags
+    if (attrs[REQUIRED] === "y") {
+        battle.tags.push("Required");
+    }
+    if (attrs[DOUBLE] === "y") {
+        battle.tags.push("Double Battle");
+    }
 
     // Handle repeat fights by putting them into an array
     if (battleKey in battleData) {
@@ -92,19 +109,6 @@ const saveBattle = (battleKey, row, team) => {
     } else {
         battleData[battleKey] = battle;
     }
-};
-
-const getName = (battleKey) => {
-    const words = battleKey.split("_");
-    let name = words.at(-1);
-    if (words.includes("&")) {
-        const idx = words.indexOf("&");
-        name = `${words[idx - 1]} & ${words[idx + 1]}`;
-    } else if (words.some((word) => word.startsWith("{"))) {
-        const idx = words.findIndex((word) => word.startsWith("{"));
-        name = words[idx - 1];
-    }
-    return name;
 };
 
 const handleRepeatFights = () => {
@@ -125,7 +129,36 @@ const parse = () => {
     while (i < rows.length) {
         // Get trainer key
         let row = rows[i];
-        let battleKey = row.substring(0, row.indexOf(",")).replace(/ /g, "_");
+        const attrs = row.split(",");
+
+        // Create key using Trainer + Name
+        let battleKey = attrs[TRAINER];
+
+        // Handle cases like maxie_and_tabitha_maxie_and_tabitha
+        const name = attrs[NAME].replace(/[\{\}\.]/g, "")
+            .replace(/\&/, "and")
+            .replace(/\s/g, "_")
+            .toLowerCase();
+        if (!battleKey.endsWith(name)) {
+            battleKey += "_" + name;
+        }
+
+        // Split key by word
+        const words = battleKey.split("_");
+
+        // Remove the game group from the key
+        words.shift();
+
+        // Remove stuff like brendan_brendan
+        if (words.at(-2) === words.at(-1)) {
+            words.pop();
+        }
+        if (words[0] === words[1]) {
+            words.shift();
+        }
+
+        // Rejoin into string
+        battleKey = words.join("_");
 
         // Iterate over trainer team
         const team = [];
@@ -136,7 +169,7 @@ const parse = () => {
     }
 
     handleRepeatFights();
-    fs.writeFileSync(OUT_FILE, JSON.stringify(battleData, null, 4), "utf-8");
+    fs.writeFileSync(OUT_FILE, JSON.stringify(battleData).replace(/"\{\[|\]\}"/g, ""), "utf-8");
 };
 
 parse();

@@ -1,5 +1,6 @@
-import ItemDisplay from "@/components/Battle/ItemDisplay/ItemDisplay";
 import PokemonDisplay from "@/components/Run/PokemonDisplay/PokemonDisplay";
+import ItemCount from "@/components/Segment/ItemCount/ItemCount";
+import Tags from "@/components/Segment/Tags/Tags";
 import Battle from "@/models/Battle";
 import ItemData from "@/models/ItemData";
 import NamedResource from "@/models/NamedResource";
@@ -8,7 +9,7 @@ import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import { exportPokemonList } from "@/utils/utils";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./TrainerCard.module.scss";
 
 type Props = {
@@ -22,6 +23,9 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
     // Component state
     const [open, setOpen] = useState<boolean>(false);
 
+    // Internal state
+    const [item, setItem] = useState<ItemData | null>(null);
+
     // Save battle team to clipboard
     const handleExport = (): void => {
         exportPokemonList(
@@ -30,6 +34,17 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
             `${props.run.gameSlug}-${props.battle.trainer.class.toLowerCase()}-${props.battle.name.toLowerCase()}`
         );
     };
+
+    // Save item on component load if it exists
+    useEffect(() => {
+        if (props.battle && props.items) {
+            setOpen(false);
+            setItem(null);
+            if (Object.keys(props.battle.items).length > 0) {
+                setItem(props.items[Object.keys(props.battle.items)[0]]);
+            }
+        }
+    }, [props.battle, props.items]);
 
     return (
         <div className={`${styles["trainer-card"]} ${open ? styles.open : ""}`}>
@@ -44,27 +59,18 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                         />
                     </div>
                     <div className={styles.info}>
-                        <p className={styles.name}>
-                            {props.battle.trainer.class} {props.battle.name}
-                        </p>
+                        <Tags tags={props.battle.tags} />
+                        <div className={styles.main}>
+                            <p className={styles.name}>
+                                {props.battle.trainer.class} {props.battle.name}
+                            </p>
+                            <ItemCount item={item} count={item ? props.battle.items[item.slug] : -1} />
+                        </div>
                         <p className={styles.location}>{props.battle.location}</p>
-                        {props.battle.items.length > 0 ? (
-                            <div className={styles.items}>
-                                {props.battle.items.map((item: string, key: number) => {
-                                    return item in props.items ? (
-                                        <ItemDisplay item={props.items[item]} showName={false} key={key} />
-                                    ) : (
-                                        ""
-                                    );
-                                })}
-                            </div>
-                        ) : (
-                            ""
-                        )}
                     </div>
                 </div>
                 <button
-                    className={styles.export}
+                    className={`${styles.export} disable-select`}
                     disabled={Object.keys(props.pokemon).length === 0}
                     onClick={handleExport}
                 >

@@ -4,7 +4,7 @@ import Run from "@/models/Run";
 import Segment from "@/models/Segment";
 import Split from "@/models/Split";
 import { getLevelCap } from "@/utils/battle";
-import { getStarterSlug, isCleared } from "@/utils/run";
+import { isCleared } from "@/utils/run";
 import { satisifesConditions } from "@/utils/segment";
 import Image from "next/image";
 import { useState } from "react";
@@ -34,13 +34,7 @@ const SplitOverview: React.FC<Props> = (props: Props) => {
                     {isCleared(props.run.id, props.split.segments.at(-1)!.slug)
                         ? `👑 ${props.split.name}`
                         : props.split.name}
-                    {props.run.options.caps
-                        ? ` [${getLevelCap(
-                              props.run,
-                              props.split.segments.at(-1)!.slug,
-                              getStarterSlug(props.run.id)
-                          )}]`
-                        : ""}
+                    {props.run.options.caps ? ` [${getLevelCap(props.run, props.split.segments.at(-1)!.slug)}]` : ""}
                 </p>
                 <hr className={styles.line} />
                 <div className={`${styles.arrow} ${open ? styles.reversed : ""} disable-select`}>

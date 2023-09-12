@@ -5,16 +5,18 @@
     --card-x-padding: 0.5rem;
     --export-offset: 0.5rem;
     --export-size: 24px;
+    --header-y-padding: 1rem;
     --info-inner-spacing: 0.5rem;
     --loading-y-padding: 2rem;
     --location-font-size: 0.75rem;
+    --main-inner-spacing: 0.25rem;
     --move-border-rad: 5px;
     --move-font-size: 0.75rem;
     --move-y-padding: 1rem;
     --move-width: 9rem;
     --moves-inner-spacing: 0.5rem;
     --moves-spacing: 0.5rem;
-    --name-font-size: 1rem;
+    --name-font-size: 0.9rem;
     --pokemon-border-size: 2px;
     --pokemon-y-padding: 1rem;
     --sprite-size: 90px;
@@ -23,7 +25,7 @@
     --trainer-inner-spacing: 0.5rem;
 
     background-color: constants.$accent-color;
-    max-height: var(--sprite-size);
+    max-height: calc(var(--sprite-size) + 2 * var(--header-y-padding));
     overflow-y: hidden;
     padding: 0 var(--card-x-padding);
     position: relative;
@@ -32,6 +34,7 @@
         align-items: center;
         display: flex;
         justify-content: space-between;
+        padding: var(--header-y-padding) 0;
 
         .trainer {
             align-items: center;
@@ -50,19 +53,20 @@
                 gap: var(--info-inner-spacing);
                 margin-left: var(--info-offset);
 
-                .name {
-                    font-size: var(--name-font-size);
-                    line-height: var(--name-font-size);
+                .main {
+                    align-items: center;
+                    display: flex;
+                    gap: var(--main-inner-spacing);
+
+                    .name {
+                        font-size: var(--name-font-size);
+                        line-height: var(--name-font-size);
+                    }
                 }
 
                 .location {
                     font-size: var(--location-font-size);
                     line-height: var(--location-font-size);
-                }
-
-                .items {
-                    display: flex;
-                    pointer-events: none;
                 }
             }
         }
@@ -134,6 +138,7 @@
         --info-inner-spacing: 0.75rem;
         --info-offset: 0;
         --location-font-size: 1rem;
+        --main-inner-spacing: 0.5rem;
         --move-font-size: 1rem;
         --move-width: 10rem;
         --moves-spacing: 0;

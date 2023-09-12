@@ -1,4 +1,4 @@
-import Tooltip from "@/components/Global/Tooltip/Tooltip";
+import Tooltip from "@/components/Run/Tooltip/Tooltip";
 import ItemData from "@/models/ItemData";
 import Image from "next/image";
 import { useState } from "react";
