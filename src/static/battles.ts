@@ -1186,7 +1186,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
-            tags: [],
+            tags: ["Required"],
         },
         cool_trainer_m_albert: {
             trainer: trainers.rse_cool_trainer_m,
@@ -1643,7 +1643,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
-            tags: [],
+            tags: ["Required"],
         },
         cool_trainer_f_shannon: {
             trainer: trainers.rse_cool_trainer_f,
@@ -1805,7 +1805,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: { "full-restore": 1 },
-            tags: [],
+            tags: ["Required"],
         },
         hex_maniac_kindra: {
             trainer: trainers.rse_hex_maniac,
@@ -18226,4 +18226,5 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         },
     },
 };
+
 export default battles;

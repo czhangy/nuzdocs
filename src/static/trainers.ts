@@ -253,6 +253,10 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         class: "Sr. and Jr.",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/srandjr-gen3.png",
     },
+    rse_steven: {
+        class: "Champion",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/steven-gen3.png",
+    },
     rse_swimmer_f: {
         class: "Swimmer",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/swimmerf-gen3rs.png",
@@ -375,10 +379,6 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         name: "may",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3rs.png",
     },
-    rs_steven: {
-        class: "Champion",
-        sprite: "https://play.pokemonshowdown.com/sprites/trainers/steven-gen3.png",
-    },
     rs_wallace: {
         class: "Gym Leader",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/wallace-gen3rs.png",
@@ -392,6 +392,10 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         class: "Pokémon Trainer",
         name: "may",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/may-gen3.png",
+    },
+    emerald_wallace: {
+        class: "Champion",
+        sprite: "https://play.pokemonshowdown.com/sprites/trainers/wallace-gen3.png",
     },
 };
 

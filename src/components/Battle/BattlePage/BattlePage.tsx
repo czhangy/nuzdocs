@@ -2,7 +2,7 @@ import BattlePreview from "@/components/Battle/BattlePreview/BattlePreview";
 import FinishModal from "@/components/Battle/FinishModal/FinishModal";
 import PokemonCard from "@/components/Battle/PokemonCard/PokemonCard";
 import Modal from "@/components/Global/Modal/Modal";
-import NextLevelCap from "@/components/Segment/NextLevelCap/NextLevelCap";
+import LevelCap from "@/components/Segment/LevelCap/LevelCap";
 import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
@@ -50,11 +50,7 @@ const BattlePage: React.FC<Props> = (props: Props) => {
 
     return (
         <div className={styles["battle-page"]}>
-            {props.run.options.caps ? (
-                <NextLevelCap segment={props.segment.slug} run={props.run} level={levelCap} />
-            ) : (
-                ""
-            )}
+            {props.run.options.caps ? <LevelCap segment={props.segment.slug} run={props.run} level={levelCap} /> : ""}
             <BattlePreview
                 segment={props.segment}
                 names={pokemon.map((pokemon: PokemonData) => pokemon.pokemon.name)}

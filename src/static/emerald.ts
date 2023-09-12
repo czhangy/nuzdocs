@@ -1,7 +1,7 @@
 import GameData from "@/models/GameData";
+import battles from "@/static/battles";
 import pokedex from "@/static/pokedex";
-import trainers from "./trainers";
-import battles from "./battles";
+import trainers from "@/static/trainers";
 
 const emerald: GameData = {
     generation: "generation-iii",

@@ -52,10 +52,6 @@ const bugs: { [priority: string]: Bug[] } = {
             group: "General",
         },
         {
-            desc: "All Aqua/Magma grunts currently use their male sprites",
-            group: "Ruby/Sapphire",
-        },
-        {
             desc: "Too much page spacing in LocationPage when a custom location is loaded",
             group: "General",
         },

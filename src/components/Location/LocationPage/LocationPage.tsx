@@ -3,7 +3,7 @@ import EncounterDisplay from "@/components/Location/EncounterDisplay/EncounterDi
 import EncounterList from "@/components/Location/EncounterList/EncounterList";
 import StarterSelect from "@/components/Location/StarterSelect/StarterSelect";
 import Trainers from "@/components/Location/Trainers/Trainers";
-import NextLevelCap from "@/components/Segment/NextLevelCap/NextLevelCap";
+import LevelCap from "@/components/Segment/LevelCap/LevelCap";
 import LocationData from "@/models/LocationData";
 import LocationSegment from "@/models/LocationSegment";
 import Run from "@/models/Run";
@@ -47,7 +47,7 @@ const LocationPage: React.FC<Props> = (props: Props) => {
         <div className={styles["location-page"]}>
             <div className={styles.info}>
                 {props.run.options.caps ? (
-                    <NextLevelCap segment={segment.slug} run={props.run} level={getNextLevelCap(props.run)} />
+                    <LevelCap segment={segment.slug} run={props.run} level={getNextLevelCap(props.run)} />
                 ) : (
                     ""
                 )}
