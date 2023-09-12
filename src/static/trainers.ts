@@ -197,6 +197,14 @@ const trainers: { [trainerSlug: string]: Trainer } = {
         class: "Pokémon Ranger",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/pokemonranger-gen3rs.png",
     },
+    rse_psychic_and_gentleman: {
+        class: "Trainers",
+        sprite: "/assets/sprites/rse_psychic_and_gentleman.webp",
+    },
+    rse_psychic_and_hex_maniac: {
+        class: "Trainers",
+        sprite: "/assets/sprites/rse_psychic_and_hex_maniac.webp",
+    },
     rse_psychic_f: {
         class: "Psychic",
         sprite: "https://play.pokemonshowdown.com/sprites/trainers/psychicf-gen3rs.png",

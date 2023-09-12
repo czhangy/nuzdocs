@@ -230,7 +230,7 @@ const emerald: GameData = {
                     name: "Rustboro City",
                     type: "location",
                     conditions: {
-                        character: "brendan",
+                        character: "may",
                         starter: "treecko",
                     },
                     segment: { battles: [battles.emerald.brendan_treecko_4] },
@@ -240,7 +240,7 @@ const emerald: GameData = {
                     name: "Rustboro City",
                     type: "location",
                     conditions: {
-                        character: "brendan",
+                        character: "may",
                         starter: "torchic",
                     },
                     segment: { battles: [battles.emerald.brendan_torchic_4] },
@@ -250,7 +250,7 @@ const emerald: GameData = {
                     name: "Rustboro City",
                     type: "location",
                     conditions: {
-                        character: "brendan",
+                        character: "may",
                         starter: "mudkip",
                     },
                     segment: { battles: [battles.emerald.brendan_mudkip_4] },
@@ -260,7 +260,7 @@ const emerald: GameData = {
                     name: "Rustboro City",
                     type: "location",
                     conditions: {
-                        character: "may",
+                        character: "brendan",
                         starter: "treecko",
                     },
                     segment: { battles: [battles.emerald.may_treecko_5] },
@@ -270,7 +270,7 @@ const emerald: GameData = {
                     name: "Rustboro City",
                     type: "location",
                     conditions: {
-                        character: "may",
+                        character: "brendan",
                         starter: "torchic",
                     },
                     segment: { battles: [battles.emerald.may_torchic_5] },
@@ -280,7 +280,7 @@ const emerald: GameData = {
                     name: "Rustboro City",
                     type: "location",
                     conditions: {
-                        character: "may",
+                        character: "brendan",
                         starter: "mudkip",
                     },
                     segment: { battles: [battles.emerald.may_mudkip_4] },
@@ -1270,7 +1270,7 @@ const emerald: GameData = {
                     name: "Lilycove City",
                     type: "location",
                     conditions: {
-                        character: "brendan",
+                        character: "may",
                         starter: "treecko",
                     },
                     segment: { battles: [battles.emerald.brendan_treecko_5] },
@@ -1280,7 +1280,7 @@ const emerald: GameData = {
                     name: "Lilycove City",
                     type: "location",
                     conditions: {
-                        character: "brendan",
+                        character: "may",
                         starter: "torchic",
                     },
                     segment: { battles: [battles.emerald.brendan_torchic_5] },
@@ -1290,7 +1290,7 @@ const emerald: GameData = {
                     name: "Lilycove City",
                     type: "location",
                     conditions: {
-                        character: "brendan",
+                        character: "may",
                         starter: "mudkip",
                     },
                     segment: { battles: [battles.emerald.brendan_mudkip_5] },
@@ -1300,7 +1300,7 @@ const emerald: GameData = {
                     name: "Lilycove City",
                     type: "location",
                     conditions: {
-                        character: "may",
+                        character: "brendan",
                         starter: "treecko",
                     },
                     segment: { battles: [battles.emerald.may_treecko_4] },
@@ -1310,7 +1310,7 @@ const emerald: GameData = {
                     name: "Lilycove City",
                     type: "location",
                     conditions: {
-                        character: "may",
+                        character: "brendan",
                         starter: "torchic",
                     },
                     segment: { battles: [battles.emerald.may_torchic_4] },
@@ -1320,7 +1320,7 @@ const emerald: GameData = {
                     name: "Lilycove City",
                     type: "location",
                     conditions: {
-                        character: "may",
+                        character: "brendan",
                         starter: "mudkip",
                     },
                     segment: { battles: [battles.emerald.may_mudkip_5] },
@@ -1746,6 +1746,168 @@ const emerald: GameData = {
                     type: "battle",
                     segment: {
                         battle: battles.emerald.juan,
+                        levelCap: true,
+                    },
+                },
+            ],
+        },
+        {
+            name: "Champion Split",
+            segments: [
+                {
+                    slug: "trick-house-7",
+                    name: "Trick House 7",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.psychic_and_hex_maniac_joshua_and_patricia,
+                            battles.emerald.psychic_and_gentleman_mariela_and_everett,
+                            battles.emerald.psychic_f_alexis,
+                            battles.emerald.psychic_m_alvaro,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "hoenn-route-132",
+                    name: "Route 132",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.swimmer_m_gilbert,
+                            battles.emerald.swimmer_f_dana,
+                            battles.emerald.fisherman_ronald,
+                            battles.emerald.black_belt_kiyo,
+                            battles.emerald.expert_m_paxton,
+                            battles.emerald.cool_trainer_f_darcy,
+                            battles.emerald.expert_f_makayla,
+                            battles.emerald.cool_trainer_m_jonathan,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-133",
+                    name: "Route 133",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.swimmer_f_linda,
+                            battles.emerald.bird_keeper_beck,
+                            battles.emerald.expert_m_conor,
+                            battles.emerald.expert_f_mollie,
+                            battles.emerald.cool_trainer_m_warren,
+                            battles.emerald.swimmer_f_debra,
+                            battles.emerald.swimmer_m_franklin,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-134",
+                    name: "Route 134",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.swimmer_f_laurel,
+                            battles.emerald.swimmer_m_jack,
+                            battles.emerald.black_belt_hitoshi,
+                            battles.emerald.battle_girl_reyna,
+                            battles.emerald.sailor_hudson,
+                            battles.emerald.dragon_tamer_aaron,
+                            battles.emerald.cool_trainer_f_marley,
+                            battles.emerald.bird_keeper_alex,
+                            battles.emerald.sailor_kelvin,
+                        ],
+                    },
+                },
+                {
+                    slug: "meteor-falls",
+                    name: "Meteor Falls",
+                    type: "location",
+                    segment: {
+                        battles: [battles.emerald.old_couple_john_and_jay, battles.emerald.dragon_tamer_nicolas],
+                    },
+                },
+                {
+                    slug: "ever-grande-city",
+                    name: "Ever Grande City",
+                    type: "location",
+                    segment: { battles: [] },
+                },
+                {
+                    slug: "wally-2",
+                    name: "Wally 2",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.wally_1,
+                    },
+                },
+                {
+                    slug: "hoenn-victory-road",
+                    name: "Victory Road",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.emerald.cool_trainer_m_albert,
+                            battles.emerald.cool_trainer_f_hope,
+                            battles.emerald.cool_trainer_f_shannon,
+                            battles.emerald.cool_trainer_m_samuel,
+                            battles.emerald.cool_trainer_f_julie,
+                            battles.emerald.cool_trainer_m_owen,
+                            battles.emerald.cool_trainer_f_dianne,
+                            battles.emerald.cool_trainer_m_felix,
+                            battles.emerald.cool_trainer_f_caroline,
+                            battles.emerald.cool_trainer_m_vito,
+                            battles.emerald.cool_trainer_f_michelle,
+                            battles.emerald.cool_trainer_m_mitchell,
+                            battles.emerald.cool_trainer_f_halle,
+                            battles.emerald.cool_trainer_m_edgar,
+                            battles.emerald.cool_trainer_f_katelynn,
+                            battles.emerald.cool_trainer_m_quincy,
+                        ],
+                    },
+                },
+                {
+                    slug: "sidney",
+                    name: "Sidney",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.sidney,
+                        levelCap: true,
+                    },
+                },
+                {
+                    slug: "phoebe",
+                    name: "Phoebe",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.phoebe,
+                        levelCap: true,
+                    },
+                },
+                {
+                    slug: "glacia",
+                    name: "Glacia",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.glacia,
+                        levelCap: true,
+                    },
+                },
+                {
+                    slug: "drake",
+                    name: "Drake",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.drake,
+                        levelCap: true,
+                    },
+                },
+                {
+                    slug: "wallace",
+                    name: "Wallace",
+                    type: "battle",
+                    segment: {
+                        battle: battles.emerald.wallace,
                         levelCap: true,
                     },
                 },

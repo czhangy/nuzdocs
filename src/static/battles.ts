@@ -1807,43 +1807,6 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: { "full-restore": 1 },
             tags: [],
         },
-        hex_maniac_patricia: {
-            trainer: trainers.rse_hex_maniac,
-            name: "Patricia",
-            location: "Trick House 7",
-            team: [
-                {
-                    slug: "banette",
-                    species: "banette",
-                    level: 41,
-                    ability: { slug: "insomnia", name: "Insomnia" },
-                    moves: [
-                        { slug: "curse", name: "Curse" },
-                        { slug: "spite", name: "Spite" },
-                        { slug: "will-o-wisp", name: "Will-O-Wisp" },
-                        { slug: "feint-attack", name: "Feint Attack" },
-                    ],
-                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-                {
-                    slug: "lunatone",
-                    species: "lunatone",
-                    level: 41,
-                    ability: { slug: "levitate", name: "Levitate" },
-                    moves: [
-                        { slug: "hypnosis", name: "Hypnosis" },
-                        { slug: "psywave", name: "Psywave" },
-                        { slug: "cosmic-power", name: "Cosmic Power" },
-                        { slug: "psychic", name: "Psychic" },
-                    ],
-                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-            ],
-            items: {},
-            tags: [],
-        },
         hex_maniac_kindra: {
             trainer: trainers.rse_hex_maniac,
             name: "Kindra",
@@ -4102,7 +4065,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         psychic_m_preston: {
             trainer: trainers.rse_psychic_m,
             name: "Preston",
-            location: "Mossdeep Gym",
+            location: "Mossdeep Gym (Entrance)",
             team: [
                 {
                     slug: "kirlia",
@@ -4120,12 +4083,12 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         psychic_m_virgil: {
             trainer: trainers.rse_psychic_m,
             name: "Virgil",
-            location: "Mossdeep Gym",
+            location: "Mossdeep Gym (Northwest)",
             team: [
                 {
                     slug: "ralts",
@@ -4148,7 +4111,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         psychic_m_blake: {
             trainer: trainers.rse_psychic_m,
             name: "Blake",
-            location: "Mossdeep Gym",
+            location: "Mossdeep Gym (West)",
             team: [
                 {
                     slug: "girafarig",
@@ -4219,9 +4182,9 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: {},
             tags: [],
         },
-        psychic_m_joshua: {
-            trainer: trainers.rse_psychic_m,
-            name: "Joshua",
+        psychic_and_hex_maniac_joshua_and_patricia: {
+            trainer: trainers.rse_psychic_and_hex_maniac,
+            name: "Joshua & Patricia",
             location: "Trick House 7",
             team: [
                 {
@@ -4252,9 +4215,37 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
+                {
+                    slug: "banette",
+                    species: "banette",
+                    level: 41,
+                    ability: { slug: "insomnia", name: "Insomnia" },
+                    moves: [
+                        { slug: "curse", name: "Curse" },
+                        { slug: "spite", name: "Spite" },
+                        { slug: "will-o-wisp", name: "Will-O-Wisp" },
+                        { slug: "feint-attack", name: "Feint Attack" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
+                {
+                    slug: "lunatone",
+                    species: "lunatone",
+                    level: 41,
+                    ability: { slug: "levitate", name: "Levitate" },
+                    moves: [
+                        { slug: "hypnosis", name: "Hypnosis" },
+                        { slug: "psywave", name: "Psywave" },
+                        { slug: "cosmic-power", name: "Cosmic Power" },
+                        { slug: "psychic", name: "Psychic" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
             ],
             items: {},
-            tags: [],
+            tags: ["Double Battle"],
         },
         psychic_m_cameron: {
             trainer: trainers.rse_psychic_m,
@@ -4303,7 +4294,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         psychic_f_hannah: {
             trainer: trainers.rse_psychic_f,
             name: "Hannah",
-            location: "Mossdeep Gym",
+            location: "Mossdeep Gym (Northwest)",
             team: [
                 {
                     slug: "kirlia",
@@ -4321,12 +4312,12 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         psychic_f_samantha: {
             trainer: trainers.rse_psychic_f,
             name: "Samantha",
-            location: "Mossdeep Gym",
+            location: "Mossdeep Gym (West)",
             team: [
                 {
                     slug: "xatu",
@@ -4349,7 +4340,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         psychic_f_maura: {
             trainer: trainers.rse_psychic_f,
             name: "Maura",
-            location: "Mossdeep Gym",
+            location: "Mossdeep Gym (Entrance)",
             team: [
                 {
                     slug: "kadabra",
@@ -9277,7 +9268,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: ["Double Battle"],
+            tags: ["Required", "Double Battle"],
         },
         twins_miu_and_yuki: {
             trainer: trainers.rse_twins,
@@ -10530,7 +10521,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         hex_maniac_sylvia: {
             trainer: trainers.rse_hex_maniac,
             name: "Sylvia",
-            location: "Mossdeep Gym",
+            location: "Mossdeep Gym (Northwest)",
             team: [
                 {
                     slug: "meditite",
@@ -10548,7 +10539,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         swimmer_m_leonardo: {
             trainer: trainers.rse_swimmer_m,
@@ -10659,7 +10650,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         gentleman_nate: {
             trainer: trainers.rse_gentleman,
             name: "Nate",
-            location: "Mossdeep Gym",
+            location: "Mossdeep Gym (Northwest)",
             team: [
                 {
                     slug: "spoink",
@@ -10682,7 +10673,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         hex_maniac_kathleen: {
             trainer: trainers.rse_hex_maniac,
             name: "Kathleen",
-            location: "Mossdeep Gym",
+            location: "Mossdeep Gym (Southeast)",
             team: [
                 {
                     slug: "kadabra",
@@ -10705,7 +10696,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         gentleman_clifford: {
             trainer: trainers.rse_gentleman,
             name: "Clifford",
-            location: "Mossdeep Gym",
+            location: "Mossdeep Gym (Southeast)",
             team: [
                 {
                     slug: "girafarig",
@@ -10728,7 +10719,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         psychic_m_nicholas: {
             trainer: trainers.rse_psychic_m,
             name: "Nicholas",
-            location: "Mossdeep Gym",
+            location: "Mossdeep Gym (Southeast)",
             team: [
                 {
                     slug: "wobbuffet",
@@ -10751,7 +10742,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         psychic_f_macey: {
             trainer: trainers.rse_psychic_f,
             name: "Macey",
-            location: "Mossdeep Gym",
+            location: "Mossdeep Gym (Southeast)",
             team: [
                 {
                     slug: "natu",
@@ -10769,7 +10760,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         expert_m_paxton: {
             trainer: trainers.rse_expert_m,
@@ -14982,9 +14973,9 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
             items: {},
             tags: ["Required"],
         },
-        psychic_f_mariela: {
-            trainer: trainers.rse_psychic_f,
-            name: "Mariela",
+        psychic_and_gentleman_mariela_and_everett: {
+            trainer: trainers.rse_psychic_and_gentleman,
+            name: "Mariela & Everett",
             location: "Trick House 7",
             team: [
                 {
@@ -15001,9 +14992,23 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
+                {
+                    slug: "wobbuffet",
+                    species: "wobbuffet",
+                    level: 41,
+                    ability: { slug: "shadow-tag", name: "Shadow Tag" },
+                    moves: [
+                        { slug: "counter", name: "Counter" },
+                        { slug: "mirror-coat", name: "Mirror Coat" },
+                        { slug: "safeguard", name: "Safeguard" },
+                        { slug: "destiny-bond", name: "Destiny Bond" },
+                    ],
+                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
+                },
             ],
             items: {},
-            tags: [],
+            tags: ["Double Battle"],
         },
         psychic_m_alvaro: {
             trainer: trainers.rse_psychic_m,
@@ -15034,29 +15039,6 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                         { slug: "future-sight", name: "Future Sight" },
                         { slug: "role-play", name: "Role Play" },
                         { slug: "psychic", name: "Psychic" },
-                    ],
-                    ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                    evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
-                },
-            ],
-            items: {},
-            tags: [],
-        },
-        gentleman_everett: {
-            trainer: trainers.rse_gentleman,
-            name: "Everett",
-            location: "Trick House 7",
-            team: [
-                {
-                    slug: "wobbuffet",
-                    species: "wobbuffet",
-                    level: 41,
-                    ability: { slug: "shadow-tag", name: "Shadow Tag" },
-                    moves: [
-                        { slug: "counter", name: "Counter" },
-                        { slug: "mirror-coat", name: "Mirror Coat" },
-                        { slug: "safeguard", name: "Safeguard" },
-                        { slug: "destiny-bond", name: "Destiny Bond" },
                     ],
                     ivs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
@@ -15174,7 +15156,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         team_aqua_m_grunt_5: {
             trainer: trainers.rse_team_aqua_m,
             name: "Grunt",
-            location: "Seafloor Cavern",
+            location: "Seafloor Cavern (Room 1)",
             team: [
                 {
                     slug: "poochyena",
@@ -15197,7 +15179,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         team_aqua_m_grunt_6: {
             trainer: trainers.rse_team_aqua_m,
             name: "Grunt",
-            location: "Seafloor Cavern",
+            location: "Seafloor Cavern (Room 1)",
             team: [
                 {
                     slug: "carvanha",
@@ -15220,7 +15202,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         team_aqua_m_grunt_7: {
             trainer: trainers.rse_team_aqua_m,
             name: "Grunt",
-            location: "Seafloor Cavern",
+            location: "Seafloor Cavern (Room 3)",
             team: [
                 {
                     slug: "zubat",
@@ -15540,7 +15522,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         team_aqua_m_grunt_18: {
             trainer: trainers.rse_team_aqua_m,
             name: "Grunt",
-            location: "Seafloor Cavern",
+            location: "Seafloor Cavern (Room 7)",
             team: [
                 {
                     slug: "mightyena",
@@ -15577,7 +15559,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         team_aqua_f_grunt_1: {
             trainer: trainers.rse_team_aqua_f,
             name: "Grunt",
-            location: "Seafloor Cavern",
+            location: "Seafloor Cavern (Room 3)",
             team: [
                 {
                     slug: "carvanha",
@@ -15812,7 +15794,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         team_magma_m_grunt_3: {
             trainer: trainers.rse_team_magma_m,
@@ -15895,7 +15877,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         team_magma_m_grunt_6: {
             trainer: trainers.rse_team_magma_m,
@@ -15918,7 +15900,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         team_magma_m_grunt_7: {
             trainer: trainers.rse_team_magma_m,
@@ -15941,7 +15923,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         team_magma_m_grunt_8: {
             trainer: trainers.rse_team_magma_m,
@@ -15964,7 +15946,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: [],
+            tags: ["Required"],
         },
         team_magma_m_grunt_9: {
             trainer: trainers.rse_team_magma_m,
@@ -16342,7 +16324,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                 },
             ],
             items: {},
-            tags: ["Required"],
+            tags: [],
         },
         interviewers_gabby_and_ty_1: {
             trainer: trainers.rse_interviewers,
