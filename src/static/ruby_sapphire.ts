@@ -442,6 +442,238 @@ const ruby_sapphire: GameData = {
                 },
             ],
         },
+        {
+            name: "Flannery Split",
+            segments: [
+                {
+                    slug: "trick-house-2",
+                    name: "Trick House 2",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.school_kid_m_ted,
+                            battles.ruby_sapphire.school_kid_m_paul,
+                            battles.ruby_sapphire.school_kid_f_georgia,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "hoenn-route-117",
+                    name: "Route 117",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.sr_and_jr_anna_and_meg,
+                            battles.ruby_sapphire.triathlete_runner_m_dylan,
+                            battles.ruby_sapphire.pokemon_breeder_f_lydia,
+                            battles.ruby_sapphire.triathlete_runner_f_maria,
+                            battles.ruby_sapphire.bug_maniac_derek,
+                            battles.ruby_sapphire.pokemon_breeder_m_isaac,
+                        ],
+                    },
+                },
+                { slug: "verdanturf-town", name: "Verdanturf Town", type: "location", segment: { battles: [] } },
+                {
+                    slug: "rusturf-tunnel",
+                    name: "Rusturf Tunnel (East)",
+                    type: "location",
+                    segment: { battles: [battles.ruby_sapphire.hiker_mike] },
+                },
+                {
+                    slug: "hoenn-route-111",
+                    name: "Route 111 (South)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.winstrate_victor,
+                            battles.ruby_sapphire.winstrate_victoria,
+                            battles.ruby_sapphire.winstrate_vivi,
+                            battles.ruby_sapphire.winstrate_vicky,
+                            battles.ruby_sapphire.interviewers_gabby_and_ty_1,
+                            battles.ruby_sapphire.picnicker_irene,
+                            battles.ruby_sapphire.camper_travis,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-112",
+                    name: "Route 112",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.camper_larry,
+                            battles.ruby_sapphire.picnicker_carol,
+                            battles.ruby_sapphire.hiker_trent,
+                            battles.ruby_sapphire.hiker_brice,
+                        ],
+                    },
+                },
+                { slug: "fiery-path", name: "Fiery Path", type: "location", segment: { battles: [] } },
+                {
+                    slug: "hoenn-route-111",
+                    name: "Route 111 (North)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.cool_trainer_m_wilton,
+                            battles.ruby_sapphire.cool_trainer_f_brooke,
+                            battles.ruby_sapphire.black_belt_daisuke,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-113",
+                    name: "Route 113",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.youngster_neal,
+                            battles.ruby_sapphire.ninja_boy_lao,
+                            battles.ruby_sapphire.parasol_lady_madeline,
+                            battles.ruby_sapphire.twins_tori_and_tia,
+                            battles.ruby_sapphire.ninja_boy_lung,
+                            battles.ruby_sapphire.youngster_dillon,
+                        ],
+                    },
+                },
+                { slug: "fallarbor-town", name: "Fallarbor Town", type: "location", segment: { battles: [] } },
+                {
+                    slug: "hoenn-route-114",
+                    name: "Route 114",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.fisherman_nolan,
+                            battles.ruby_sapphire.fisherman_claude,
+                            battles.ruby_sapphire.picnicker_nancy,
+                            battles.ruby_sapphire.sr_and_jr_tyra_and_ivy,
+                            battles.ruby_sapphire.camper_shane,
+                            battles.ruby_sapphire.pokemaniac_steve,
+                            battles.ruby_sapphire.kindler_bernie,
+                            battles.ruby_sapphire.hiker_lucas,
+                            battles.ruby_sapphire.hiker_lenny,
+                        ],
+                    },
+                },
+                { slug: "meteor-falls", name: "Meteor Falls", type: "location", segment: { battles: [] } },
+                {
+                    slug: "hoenn-route-115",
+                    name: "Route 115 (South)",
+                    type: "location",
+                    conditions: { game: "ruby" },
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.black_belt_nob,
+                            battles.ruby_sapphire.collector_hector_ruby,
+                            battles.ruby_sapphire.battle_girl_cyndy,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-115",
+                    name: "Route 115 (South)",
+                    type: "location",
+                    conditions: { game: "sapphire" },
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.black_belt_nob,
+                            battles.ruby_sapphire.collector_hector_sapphire,
+                            battles.ruby_sapphire.battle_girl_cyndy,
+                        ],
+                    },
+                },
+                {
+                    slug: "mt-chimney",
+                    name: "Mt. Chimney",
+                    type: "location",
+                    conditions: { game: "ruby" },
+                    segment: { battles: [battles.ruby_sapphire.team_magma_m_grunt_5] },
+                },
+                {
+                    slug: "mt-chimney",
+                    name: "Mt. Chimney",
+                    type: "location",
+                    conditions: { game: "sapphire" },
+                    segment: { battles: [battles.ruby_sapphire.team_aqua_m_grunt_5] },
+                },
+                {
+                    slug: "tabitha-1",
+                    name: "Tabitha 1",
+                    type: "battle",
+                    conditions: { game: "ruby" },
+                    segment: { battle: battles.ruby_sapphire.tabitha_1 },
+                },
+                {
+                    slug: "matt-1",
+                    name: "Matt 1",
+                    type: "battle",
+                    conditions: { game: "sapphire" },
+                    segment: { battle: battles.ruby_sapphire.matt_1 },
+                },
+                {
+                    slug: "maxie-1",
+                    name: "Maxie 1",
+                    type: "battle",
+                    conditions: { game: "ruby" },
+                    segment: { battle: battles.ruby_sapphire.maxie_1 },
+                },
+                {
+                    slug: "archie-1",
+                    name: "Archie 1",
+                    type: "battle",
+                    conditions: { game: "sapphire" },
+                    segment: { battle: battles.ruby_sapphire.archie_1 },
+                },
+                {
+                    slug: "jagged-pass",
+                    name: "Jagged Pass",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.hiker_eric,
+                            battles.ruby_sapphire.camper_ethan,
+                            battles.ruby_sapphire.picnicker_diana,
+                        ],
+                    },
+                },
+                { slug: "lavaridge-town", name: "Lavaridge Town", type: "location", segment: { battles: [] } },
+                {
+                    slug: "mt-chimney",
+                    name: "Mt. Chimney",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.beauty_shirley,
+                            battles.ruby_sapphire.beauty_sheila,
+                            battles.ruby_sapphire.expert_f_shelby,
+                            battles.ruby_sapphire.beauty_melissa,
+                        ],
+                    },
+                },
+                {
+                    slug: "lavaridge-gym",
+                    name: "Lavaridge Gym",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.kindler_cole,
+                            battles.ruby_sapphire.cool_trainer_m_zane,
+                            battles.ruby_sapphire.kindler_axle,
+                            battles.ruby_sapphire.battle_girl_sadie,
+                            battles.ruby_sapphire.kindler_andy,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "flannery",
+                    name: "Flannery",
+                    type: "battle",
+                    segment: { battle: battles.ruby_sapphire.flannery, levelCap: true },
+                },
+            ],
+        },
     ],
 };
 
