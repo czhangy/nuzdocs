@@ -31680,7 +31680,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         brendan_mudkip_1: {
             trainer: trainers.emerald_brendan,
             name: "Brendan",
-            location: "Route 103",
+            location: "Route 103 (West)",
             team: [
                 {
                     slug: "treecko",
@@ -31752,7 +31752,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         brendan_mudkip_3: {
             trainer: trainers.emerald_brendan,
             name: "Brendan",
-            location: "Route 119",
+            location: "Route 119 (North)",
             team: [
                 {
                     slug: "slugma",
@@ -31905,7 +31905,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         brendan_treecko_1: {
             trainer: trainers.emerald_brendan,
             name: "Brendan",
-            location: "Route 103",
+            location: "Route 103 (West)",
             team: [
                 {
                     slug: "torchic",
@@ -31977,7 +31977,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         brendan_treecko_3: {
             trainer: trainers.emerald_brendan,
             name: "Brendan",
-            location: "Route 119",
+            location: "Route 119 (North)",
             team: [
                 {
                     slug: "pelipper",
@@ -32130,7 +32130,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         brendan_torchic_1: {
             trainer: trainers.emerald_brendan,
             name: "Brendan",
-            location: "Route 103",
+            location: "Route 103 (West)",
             team: [
                 {
                     slug: "mudkip",
@@ -32202,7 +32202,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         brendan_torchic_3: {
             trainer: trainers.emerald_brendan,
             name: "Brendan",
-            location: "Route 119",
+            location: "Route 119 (North)",
             team: [
                 {
                     slug: "lombre",
@@ -32354,7 +32354,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         may_mudkip_1: {
             trainer: trainers.emerald_may,
             name: "May",
-            location: "Route 103",
+            location: "Route 103 (West)",
             team: [
                 {
                     slug: "treecko",
@@ -32426,7 +32426,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         may_mudkip_3: {
             trainer: trainers.emerald_may,
             name: "May",
-            location: "Route 119",
+            location: "Route 119 (North)",
             team: [
                 {
                     slug: "slugma",
@@ -32579,7 +32579,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         may_treecko_1: {
             trainer: trainers.emerald_may,
             name: "May",
-            location: "Route 103",
+            location: "Route 103 (West)",
             team: [
                 {
                     slug: "torchic",
@@ -32651,7 +32651,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         may_treecko_3: {
             trainer: trainers.emerald_may,
             name: "May",
-            location: "Route 119",
+            location: "Route 119 (North)",
             team: [
                 {
                     slug: "pelipper",
@@ -32804,7 +32804,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         may_torchic_1: {
             trainer: trainers.emerald_may,
             name: "May",
-            location: "Route 103",
+            location: "Route 103 (West)",
             team: [
                 {
                     slug: "mudkip",
@@ -32876,7 +32876,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
         may_torchic_3: {
             trainer: trainers.emerald_may,
             name: "May",
-            location: "Route 119",
+            location: "Route 119 (North)",
             team: [
                 {
                     slug: "lombre",
