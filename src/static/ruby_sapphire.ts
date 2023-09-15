@@ -203,6 +203,68 @@ const ruby_sapphire: GameData = {
                 },
             ],
         },
+        {
+            name: "Brawly Split",
+            segments: [
+                {
+                    slug: "hoenn-route-116",
+                    name: "Route 116",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.youngster_joey,
+                            battles.ruby_sapphire.bug_catcher_jose,
+                            battles.ruby_sapphire.lass_janice,
+                            battles.ruby_sapphire.hiker_clark,
+                            battles.ruby_sapphire.school_kid_m_jerry,
+                            battles.ruby_sapphire.school_kid_f_karen,
+                        ],
+                    },
+                },
+                {
+                    slug: "rusturf-tunnel",
+                    name: "Rusturf Tunnel (West)",
+                    type: "location",
+                    conditions: { game: "ruby" },
+                    segment: { battles: [battles.ruby_sapphire.team_magma_m_grunt_2] },
+                },
+                {
+                    slug: "rusturf-tunnel",
+                    name: "Rusturf Tunnel (West)",
+                    type: "location",
+                    conditions: { game: "sapphire" },
+                    segment: { battles: [battles.ruby_sapphire.team_aqua_m_grunt_2] },
+                },
+                { slug: "dewford-town", name: "Dewford Town", type: "location", segment: { battles: [] } },
+                {
+                    slug: "hoenn-route-106",
+                    name: "Route 106 (Beach)",
+                    type: "location",
+                    segment: { battles: [battles.ruby_sapphire.fisherman_ned, battles.ruby_sapphire.fisherman_elliot] },
+                },
+                { slug: "granite-cave", name: "Granite Cave", type: "location", segment: { battles: [] } },
+                { slug: "hoenn-route-107", name: "Route 107 (Beach)", type: "location", segment: { battles: [] } },
+                {
+                    slug: "dewford-gym",
+                    name: "Dewford Gym",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.battle_girl_laura,
+                            battles.ruby_sapphire.black_belt_hideki,
+                            battles.ruby_sapphire.battle_girl_tessa,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "brawly",
+                    name: "Brawly",
+                    type: "battle",
+                    segment: { battle: battles.ruby_sapphire.brawly, levelCap: true },
+                },
+            ],
+        },
     ],
 };
 
