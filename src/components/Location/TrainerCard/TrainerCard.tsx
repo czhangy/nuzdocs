@@ -1,6 +1,7 @@
 import PokemonDisplay from "@/components/Run/PokemonDisplay/PokemonDisplay";
 import ItemCount from "@/components/Segment/ItemCount/ItemCount";
 import Tags from "@/components/Segment/Tags/Tags";
+import Toggle from "@/components/Segment/Toggle/Toggle";
 import Battle from "@/models/Battle";
 import ItemData from "@/models/ItemData";
 import NamedResource from "@/models/NamedResource";
@@ -106,15 +107,7 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                     <div className="bg-spinner" />
                 </div>
             )}
-            {open ? (
-                <button className={styles.toggle} onClick={() => setOpen(false)} title="Hide team">
-                    -
-                </button>
-            ) : (
-                <button className={styles.toggle} onClick={() => setOpen(true)} title="Show team">
-                    +
-                </button>
-            )}
+            <Toggle open={open} onClick={(open: boolean) => setOpen(open)} />
         </div>
     );
 };

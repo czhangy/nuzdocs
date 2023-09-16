@@ -498,7 +498,7 @@ const ruby_sapphire: GameData = {
                 },
                 {
                     slug: "hoenn-route-112",
-                    name: "Route 112",
+                    name: "Route 112 (South)",
                     type: "location",
                     segment: {
                         battles: [
@@ -510,6 +510,14 @@ const ruby_sapphire: GameData = {
                     },
                 },
                 { slug: "fiery-path", name: "Fiery Path", type: "location", segment: { battles: [] } },
+                {
+                    slug: "hoenn-route-112",
+                    name: "Route 112 (North)",
+                    type: "location",
+                    segment: {
+                        battles: [],
+                    },
+                },
                 {
                     slug: "hoenn-route-111",
                     name: "Route 111 (North)",
@@ -1002,6 +1010,249 @@ const ruby_sapphire: GameData = {
                     name: "Winona",
                     type: "battle",
                     segment: { battle: battles.ruby_sapphire.winona, levelCap: true },
+                },
+            ],
+        },
+        {
+            name: "Tate & Liza Split",
+            segments: [
+                {
+                    slug: "trick-house-5",
+                    name: "Trick House 5",
+                    type: "location",
+                    segment: { battles: [], custom: true },
+                },
+                {
+                    slug: "hoenn-route-120",
+                    name: "Route 120 (South)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.bird_keeper_colin,
+                            battles.ruby_sapphire.parasol_lady_angelica,
+                            battles.ruby_sapphire.ninja_boy_tsunao,
+                            battles.ruby_sapphire.cool_trainer_f_jennifer,
+                            battles.ruby_sapphire.pokemon_ranger_f_jenna,
+                            battles.ruby_sapphire.pokemon_ranger_m_carlos,
+                            battles.ruby_sapphire.bug_maniac_brandon,
+                            battles.ruby_sapphire.ninja_boy_keigo,
+                            battles.ruby_sapphire.ruin_maniac_chip,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-121",
+                    name: "Route 121",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.hex_maniac_tammy,
+                            battles.ruby_sapphire.beauty_jessica,
+                            battles.ruby_sapphire.sr_and_jr_kate_and_joy,
+                            battles.ruby_sapphire.gentleman_walter,
+                            battles.ruby_sapphire.pokefan_f_vanessa,
+                        ],
+                    },
+                },
+                {
+                    slug: "lilycove-city",
+                    name: "Lilycove City",
+                    type: "location",
+                    conditions: { character: "may", starter: "treecko" },
+                    segment: { battles: [battles.ruby_sapphire.brendan_treecko_4] },
+                },
+                {
+                    slug: "lilycove-city",
+                    name: "Lilycove City",
+                    type: "location",
+                    conditions: { character: "may", starter: "torchic" },
+                    segment: { battles: [battles.ruby_sapphire.brendan_torchic_4] },
+                },
+                {
+                    slug: "lilycove-city",
+                    name: "Lilycove City",
+                    type: "location",
+                    conditions: { character: "may", starter: "mudkip" },
+                    segment: { battles: [battles.ruby_sapphire.brendan_mudkip_4] },
+                },
+                {
+                    slug: "lilycove-city",
+                    name: "Lilycove City",
+                    type: "location",
+                    conditions: { character: "brendan", starter: "treecko" },
+                    segment: { battles: [battles.ruby_sapphire.may_treecko_4] },
+                },
+                {
+                    slug: "lilycove-city",
+                    name: "Lilycove City",
+                    type: "location",
+                    conditions: { character: "brendan", starter: "torchic" },
+                    segment: { battles: [battles.ruby_sapphire.may_torchic_4] },
+                },
+                {
+                    slug: "lilycove-city",
+                    name: "Lilycove City",
+                    type: "location",
+                    conditions: { character: "brendan", starter: "mudkip" },
+                    segment: { battles: [battles.ruby_sapphire.may_mudkip_4] },
+                },
+                { slug: "hoenn-safari-zone", name: "Safari Zone", type: "location", segment: { battles: [] } },
+                { slug: "hoenn-route-122", name: "Route 122", type: "location", segment: { battles: [] } },
+                {
+                    slug: "mt-pyre",
+                    name: "Mt. Pyre (Interior)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.pokemaniac_mark,
+                            battles.ruby_sapphire.young_couple_dez_and_luke,
+                            battles.ruby_sapphire.psychic_f_kayla,
+                            battles.ruby_sapphire.psychic_m_william,
+                            battles.ruby_sapphire.black_belt_atsushi,
+                            battles.ruby_sapphire.hex_maniac_tasha,
+                            battles.ruby_sapphire.hex_maniac_valerie,
+                        ],
+                    },
+                },
+                {
+                    slug: "mt-pyre",
+                    name: "Mt. Pyre (Summit)",
+                    type: "location",
+                    conditions: { game: "ruby" },
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.team_magma_m_grunt_9,
+                            battles.ruby_sapphire.team_magma_m_grunt_10,
+                            battles.ruby_sapphire.team_magma_m_grunt_11,
+                        ],
+                    },
+                },
+                {
+                    slug: "mt-pyre",
+                    name: "Mt. Pyre (Summit)",
+                    type: "location",
+                    conditions: { game: "sapphire" },
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.team_aqua_m_grunt_9,
+                            battles.ruby_sapphire.team_aqua_m_grunt_10,
+                            battles.ruby_sapphire.team_aqua_m_grunt_11,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-123",
+                    name: "Route 123 (East)",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.psychic_m_cameron,
+                            battles.ruby_sapphire.hex_maniac_kindra,
+                            battles.ruby_sapphire.cool_trainer_f_wendy,
+                            battles.ruby_sapphire.cool_trainer_m_clyde,
+                            battles.ruby_sapphire.psychic_f_jacki,
+                        ],
+                    },
+                },
+                {
+                    slug: "team-magma-hideout",
+                    name: "Magma Hideout",
+                    type: "location",
+                    conditions: { game: "ruby" },
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.team_magma_m_grunt_12,
+                            battles.ruby_sapphire.team_magma_f_grunt_2,
+                            battles.ruby_sapphire.team_magma_m_grunt_13,
+                            battles.ruby_sapphire.team_magma_m_grunt_14,
+                            battles.ruby_sapphire.team_magma_m_grunt_15,
+                            battles.ruby_sapphire.team_magma_f_grunt_3,
+                        ],
+                    },
+                },
+                {
+                    slug: "team-aqua-hideout",
+                    name: "Aqua Hideout",
+                    type: "location",
+                    conditions: { game: "sapphire" },
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.team_aqua_m_grunt_12,
+                            battles.ruby_sapphire.team_aqua_f_grunt_2,
+                            battles.ruby_sapphire.team_aqua_m_grunt_13,
+                            battles.ruby_sapphire.team_aqua_m_grunt_14,
+                            battles.ruby_sapphire.team_aqua_m_grunt_15,
+                            battles.ruby_sapphire.team_aqua_f_grunt_3,
+                        ],
+                    },
+                },
+                {
+                    slug: "tabitha-2",
+                    name: "Tabitha 2",
+                    type: "battle",
+                    conditions: { game: "ruby" },
+                    segment: { battle: battles.ruby_sapphire.tabitha_2 },
+                },
+                {
+                    slug: "matt-2",
+                    name: "Matt 2",
+                    type: "battle",
+                    conditions: { game: "sapphire" },
+                    segment: { battle: battles.ruby_sapphire.matt_2 },
+                },
+                {
+                    slug: "hoenn-route-124",
+                    name: "Route 124",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.swimmer_f_grace,
+                            battles.ruby_sapphire.sis_and_bro_rita_and_sam,
+                            battles.ruby_sapphire.swimmer_m_spencer,
+                            battles.ruby_sapphire.swimmer_f_jenny,
+                            battles.ruby_sapphire.swimmer_m_chad,
+                            battles.ruby_sapphire.swimmer_m_roland,
+                        ],
+                    },
+                },
+                { slug: "mossdeep-city", name: "Mossdeep City", type: "location", segment: { battles: [] } },
+                {
+                    slug: "hoenn-route-125",
+                    name: "Route 125",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.swimmer_f_sharon,
+                            battles.ruby_sapphire.sailor_ernest,
+                            battles.ruby_sapphire.swimmer_f_tanya,
+                            battles.ruby_sapphire.sr_and_jr_kim_and_iris,
+                            battles.ruby_sapphire.swimmer_m_stan,
+                            battles.ruby_sapphire.swimmer_m_cody,
+                        ],
+                    },
+                },
+                { slug: "shoal-cave", name: "Shoal Cave", type: "location", segment: { battles: [] } },
+                {
+                    slug: "mossdeep-gym",
+                    name: "Mossdeep Gym",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.psychic_m_preston,
+                            battles.ruby_sapphire.psychic_f_maura,
+                            battles.ruby_sapphire.psychic_f_samantha,
+                            battles.ruby_sapphire.psychic_m_fritz,
+                            battles.ruby_sapphire.psychic_m_virgil,
+                            battles.ruby_sapphire.psychic_f_hannah,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "tate-and-liza",
+                    name: "Tate and Liza",
+                    type: "battle",
+                    segment: { battle: battles.ruby_sapphire.tate_and_liza, levelCap: true },
                 },
             ],
         },

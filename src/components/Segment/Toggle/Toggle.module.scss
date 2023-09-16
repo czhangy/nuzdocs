@@ -1,0 +1,25 @@
+@use "@/styles/constants";
+
+.toggle {
+    --toggle-font-size: 1.5rem;
+    --toggle-offset: 0.25rem;
+
+    font-size: var(--toggle-font-size);
+    left: var(--toggle-offset);
+    line-height: var(--toggle-font-size);
+    position: absolute;
+    top: var(--toggle-offset);
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .toggle {
+        --toggle-font-size: 2rem;
+        --toggle-offset: 0.5rem;
+    }
+}
+
+@media (hover: hover) {
+    .toggle:hover {
+        color: constants.$hover-color;
+    }
+}

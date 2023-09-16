@@ -1147,7 +1147,7 @@ const emerald: GameData = {
                         ],
                     },
                 },
-                { slug: "Matt", name: "Matt", type: "battle", segment: { battle: battles.emerald.matt } },
+                { slug: "matt", name: "Matt", type: "battle", segment: { battle: battles.emerald.matt } },
                 {
                     slug: "hoenn-route-124",
                     name: "Route 124",
