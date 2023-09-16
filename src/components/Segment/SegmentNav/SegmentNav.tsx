@@ -30,14 +30,18 @@ const SegmentNav: React.FC<Props> = (props: Props) => {
             <nav className={styles.nav}>
                 {props.idx - 1 >= 0 ? (
                     <Link href={`/runs/${props.run.id}/${props.idx - 1}`}>
-                        <a className={styles.arrow}>← {segments[props.idx - 1].name}</a>
+                        <a className={styles.arrow} title="Previous segment">
+                            ← {segments[props.idx - 1].name}
+                        </a>
                     </Link>
                 ) : (
                     <div />
                 )}
                 {props.idx + 1 < segments.length ? (
                     <Link href={`/runs/${props.run.id}/${props.idx + 1}`}>
-                        <a className={styles.arrow}>{segments[props.idx + 1].name} →</a>
+                        <a className={styles.arrow} title="Next segment">
+                            {segments[props.idx + 1].name} →
+                        </a>
                     </Link>
                 ) : (
                     ""

@@ -73,6 +73,7 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                     className={`${styles.export} disable-select`}
                     disabled={Object.keys(props.pokemon).length === 0}
                     onClick={handleExport}
+                    title="Export team to clipboard"
                 >
                     <Image src="/assets/icons/copy.svg" alt="Copy sets" layout="fill" objectFit="contain" />
                 </button>
@@ -105,9 +106,15 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                     <div className="bg-spinner" />
                 </div>
             )}
-            <button className={styles.toggle} onClick={() => setOpen(!open)}>
-                {open ? "-" : "+"}
-            </button>
+            {open ? (
+                <button className={styles.toggle} onClick={() => setOpen(false)} title="Hide team">
+                    -
+                </button>
+            ) : (
+                <button className={styles.toggle} onClick={() => setOpen(true)} title="Show team">
+                    +
+                </button>
+            )}
         </div>
     );
 };

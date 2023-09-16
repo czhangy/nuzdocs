@@ -119,6 +119,7 @@ The most up-to-date version of NuzDocs is currently deployed at: https://nuzdocs
 -   [ ] Consider loading one-by-one instead of in groups (esp. for boxes)
 -   [ ] Nicer alerts for exports
 -   [ ] Pokemon form handling
+-   [ ] Switch tooltips to title and clean up hacky code
 
 ## License
 

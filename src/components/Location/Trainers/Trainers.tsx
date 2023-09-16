@@ -29,6 +29,7 @@ const Trainers: React.FC<Props> = (props: Props) => {
                 ),
             ];
             const uniqueItems = [...new Set(props.battles.map((battle: Battle) => Object.keys(battle.items)).flat())];
+            console.log(uniqueItems);
             fetchPokemonList(uniquePokemon, props.run.gameSlug).then((pokemon: PokemonData[]) => {
                 const pokemonData: { [pokemon: string]: PokemonData } = {};
                 pokemon.forEach((pokemon: PokemonData) => (pokemonData[pokemon.pokemon.slug] = pokemon));

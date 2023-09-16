@@ -2482,7 +2482,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: { "x-defend": 2 },
+            items: { "x-defense": 2 },
             tags: [],
         },
         cool_trainer_f_mary: {
@@ -2889,7 +2889,7 @@ const battles: { [group: string]: { [battle: string]: Battle } } = {
                     evs: { hp: 0, atk: 0, spa: 0, def: 0, spd: 0, spe: 0 },
                 },
             ],
-            items: { "guard-spec.": 2 },
+            items: { "guard-spec": 2 },
             tags: [],
         },
         cool_trainer_m_randall: {

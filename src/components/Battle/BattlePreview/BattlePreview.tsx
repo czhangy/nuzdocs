@@ -100,10 +100,12 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                     <p className={styles.location}>{getBattle(props.run, props.segment.slug).location}</p>
                     {defeated ? (
                         <div className={styles.buttons}>
-                            <button className="primary-button" disabled={true}>
-                                Defeated!
-                            </button>
-                            <button className={`${styles.undo} disable-select`} onClick={handleUndo}>
+                            <div className="disabled-button">Defeated!</div>
+                            <button
+                                className={`${styles.undo} disable-select`}
+                                onClick={handleUndo}
+                                title="Undo defeat"
+                            >
                                 <Image
                                     src="/assets/icons/reset.svg"
                                     alt="Undo defeat"
@@ -118,10 +120,15 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
                                 className="secondary-button"
                                 disabled={props.names.length === 0}
                                 onClick={handleExport}
+                                title="Export team to clipboard"
                             >
                                 Export
                             </button>
-                            <button className="primary-button" onClick={handleDefeat}>
+                            <button
+                                className="primary-button"
+                                onClick={handleDefeat}
+                                title={`Defeat ${props.segment.name}`}
+                            >
                                 Defeat!
                             </button>
                         </div>
