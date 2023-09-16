@@ -1256,6 +1256,310 @@ const ruby_sapphire: GameData = {
                 },
             ],
         },
+        {
+            name: "Wallace Split",
+            segments: [
+                {
+                    slug: "trick-house-6",
+                    name: "Trick House 6",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.pokemon_ranger_f_sophia,
+                            battles.ruby_sapphire.pokemon_ranger_m_sebastian,
+                            battles.ruby_sapphire.bird_keeper_benny,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "hoenn-route-126",
+                    name: "Route 126",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.swimmer_m_barry,
+                            battles.ruby_sapphire.swimmer_m_dean,
+                            battles.ruby_sapphire.swimmer_f_brenda,
+                            battles.ruby_sapphire.swimmer_f_nikki,
+                        ],
+                    },
+                },
+                { slug: "underwater", name: "Underwater", type: "location", segment: { battles: [] } },
+                { slug: "sootopolis-city", name: "Sootopolis City", type: "location", segment: { battles: [] } },
+                {
+                    slug: "hoenn-route-127",
+                    name: "Route 127",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.bird_keeper_byron,
+                            battles.ruby_sapphire.triathlete_swimmer_f_connor,
+                            battles.ruby_sapphire.fisherman_jonah,
+                            battles.ruby_sapphire.fisherman_roger,
+                            battles.ruby_sapphire.fisherman_henry,
+                            battles.ruby_sapphire.triathlete_swimmer_m_caleb,
+                            battles.ruby_sapphire.black_belt_koji,
+                        ],
+                    },
+                },
+                {
+                    slug: "seafloor-cavern",
+                    name: "Seafloor Cavern",
+                    type: "location",
+                    conditions: { game: "ruby" },
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.team_magma_m_grunt_16,
+                            battles.ruby_sapphire.team_magma_m_grunt_17,
+                            battles.ruby_sapphire.team_magma_m_grunt_18,
+                        ],
+                    },
+                },
+                {
+                    slug: "seafloor-cavern",
+                    name: "Seafloor Cavern",
+                    type: "location",
+                    conditions: { game: "sapphire" },
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.team_aqua_m_grunt_16,
+                            battles.ruby_sapphire.team_aqua_m_grunt_17,
+                            battles.ruby_sapphire.team_aqua_m_grunt_18,
+                        ],
+                    },
+                },
+                {
+                    slug: "courtney-2",
+                    name: "Courtney 2",
+                    type: "battle",
+                    conditions: { game: "ruby" },
+                    segment: { battle: battles.ruby_sapphire.courtney_2 },
+                },
+                {
+                    slug: "shelly-2",
+                    name: "Shelly 2",
+                    type: "battle",
+                    conditions: { game: "sapphire" },
+                    segment: { battle: battles.ruby_sapphire.shelly_2 },
+                },
+                {
+                    slug: "maxie-2",
+                    name: "Maxie 2",
+                    type: "battle",
+                    conditions: { game: "ruby" },
+                    segment: { battle: battles.ruby_sapphire.maxie_2 },
+                },
+                {
+                    slug: "archie-2",
+                    name: "Archie 2",
+                    type: "battle",
+                    conditions: { game: "sapphire" },
+                    segment: { battle: battles.ruby_sapphire.archie_2 },
+                },
+                { slug: "cave-of-origin", name: "Cave of Origin", type: "location", segment: { battles: [] } },
+                {
+                    slug: "sootopolis-gym",
+                    name: "Sootopolis Gym",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.beauty_connie,
+                            battles.ruby_sapphire.lass_andrea,
+                            battles.ruby_sapphire.beauty_bridget,
+                            battles.ruby_sapphire.lady_brianna,
+                            battles.ruby_sapphire.beauty_olivia,
+                            battles.ruby_sapphire.lass_crissy,
+                            battles.ruby_sapphire.beauty_tiffany,
+                            battles.ruby_sapphire.pokefan_f_marissa,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "wallace",
+                    name: "Wallace",
+                    type: "battle",
+                    segment: { battle: battles.ruby_sapphire.wallace, levelCap: true },
+                },
+            ],
+        },
+        {
+            name: "Champion Split",
+            segments: [
+                {
+                    slug: "trick-house-7",
+                    name: "Trick House 7",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.psychic_m_joshua,
+                            battles.ruby_sapphire.hex_maniac_patricia,
+                            battles.ruby_sapphire.psychic_f_alexis,
+                        ],
+                        custom: true,
+                    },
+                },
+                {
+                    slug: "hoenn-route-128",
+                    name: "Route 128",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.cool_trainer_m_ruben,
+                            battles.ruby_sapphire.cool_trainer_f_alexa,
+                            battles.ruby_sapphire.fisherman_wayne,
+                            battles.ruby_sapphire.triathlete_swimmer_m_isaiah,
+                            battles.ruby_sapphire.triathlete_swimmer_f_katelyn,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-129",
+                    name: "Route 129",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.triathlete_swimmer_f_allison,
+                            battles.ruby_sapphire.triathlete_swimmer_m_chase,
+                            battles.ruby_sapphire.swimmer_m_reed,
+                            battles.ruby_sapphire.swimmer_f_tisha,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-130",
+                    name: "Route 130",
+                    type: "location",
+                    segment: {
+                        battles: [battles.ruby_sapphire.swimmer_f_katie, battles.ruby_sapphire.swimmer_m_rodney],
+                    },
+                },
+                {
+                    slug: "hoenn-route-131",
+                    name: "Route 131",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.swimmer_f_kara,
+                            battles.ruby_sapphire.swimmer_m_herman,
+                            battles.ruby_sapphire.swimmer_f_susie,
+                            battles.ruby_sapphire.swimmer_m_richard,
+                            battles.ruby_sapphire.sis_and_bro_reli_and_ian,
+                        ],
+                    },
+                },
+                { slug: "pacifidlog-town", name: "Pacifidlog Town", type: "location", segment: { battles: [] } },
+                {
+                    slug: "hoenn-route-132",
+                    name: "Route 132",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.swimmer_f_dana,
+                            battles.ruby_sapphire.swimmer_m_gilbert,
+                            battles.ruby_sapphire.black_belt_kiyo,
+                            battles.ruby_sapphire.fisherman_ronald,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-133",
+                    name: "Route 133",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.swimmer_m_franklin,
+                            battles.ruby_sapphire.cool_trainer_m_warren,
+                            battles.ruby_sapphire.bird_keeper_beck,
+                            battles.ruby_sapphire.swimmer_f_debra,
+                            battles.ruby_sapphire.swimmer_f_linda,
+                        ],
+                    },
+                },
+                {
+                    slug: "hoenn-route-134",
+                    name: "Route 134",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.swimmer_m_jack,
+                            battles.ruby_sapphire.swimmer_f_laurel,
+                            battles.ruby_sapphire.black_belt_hitoshi,
+                            battles.ruby_sapphire.dragon_tamer_aaron,
+                            battles.ruby_sapphire.bird_keeper_alex,
+                        ],
+                    },
+                },
+                {
+                    slug: "meteor-falls",
+                    name: "Meteor Falls",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.old_couple_john_and_jay,
+                            battles.ruby_sapphire.dragon_tamer_nicolas,
+                        ],
+                    },
+                },
+                { slug: "ever-grande-city", name: "Ever Grande City", type: "location", segment: { battles: [] } },
+                {
+                    slug: "hoenn-victory-road",
+                    name: "Victory Road",
+                    type: "location",
+                    segment: {
+                        battles: [
+                            battles.ruby_sapphire.cool_trainer_m_albert,
+                            battles.ruby_sapphire.cool_trainer_f_hope,
+                            battles.ruby_sapphire.cool_trainer_f_shannon,
+                            battles.ruby_sapphire.cool_trainer_m_samuel,
+                            battles.ruby_sapphire.cool_trainer_f_julie,
+                            battles.ruby_sapphire.cool_trainer_m_owen,
+                            battles.ruby_sapphire.cool_trainer_f_caroline,
+                            battles.ruby_sapphire.cool_trainer_m_vito,
+                            battles.ruby_sapphire.cool_trainer_f_michelle,
+                            battles.ruby_sapphire.cool_trainer_m_edgar,
+                        ],
+                    },
+                },
+                {
+                    slug: "wally-2",
+                    name: "Wally 2",
+                    type: "battle",
+                    segment: { battle: battles.ruby_sapphire.wally_2 },
+                },
+                {
+                    slug: "sidney",
+                    name: "Sidney",
+                    type: "battle",
+                    segment: { battle: battles.ruby_sapphire.sidney, levelCap: true },
+                },
+                {
+                    slug: "phoebe",
+                    name: "Phoebe",
+                    type: "battle",
+                    segment: { battle: battles.ruby_sapphire.phoebe, levelCap: true },
+                },
+                {
+                    slug: "glacia",
+                    name: "Glacia",
+                    type: "battle",
+                    segment: { battle: battles.ruby_sapphire.glacia, levelCap: true },
+                },
+                {
+                    slug: "drake",
+                    name: "Drake",
+                    type: "battle",
+                    segment: { battle: battles.ruby_sapphire.drake, levelCap: true },
+                },
+                {
+                    slug: "steven",
+                    name: "Steven",
+                    type: "battle",
+                    segment: { battle: battles.ruby_sapphire.steven, levelCap: true },
+                },
+            ],
+        },
     ],
 };
 
