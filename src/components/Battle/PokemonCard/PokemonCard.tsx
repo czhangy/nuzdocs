@@ -10,9 +10,9 @@ import Pokemon from "@/models/Pokemon";
 import PokemonData from "@/models/PokemonData";
 import Run from "@/models/Run";
 import { fetchAbility, fetchItem, fetchMoves } from "@/utils/api";
-import { getGameData } from "@/utils/game";
 import { useEffect, useState } from "react";
 import styles from "./PokemonCard.module.scss";
+import Toggle from "@/components/Segment/Toggle/Toggle";
 
 type Props = {
     set: Pokemon;
@@ -27,7 +27,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
     const [heldItem, setHeldItem] = useState<ItemData | null>(null);
 
     // Component state
-    const [isMinimized, setIsMinimized] = useState<boolean>(true);
+    const [open, setOpen] = useState<boolean>(false);
 
     // Fetch all related data on component load
     useEffect(() => {
@@ -47,10 +47,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
 
     return props.pokemon && ability && moves.length > 0 ? (
         <li className={styles["pokemon-card"]}>
-            <div className={`${styles.card} ${isMinimized ? styles.minimized : ""}`}>
-                <button className={styles.toggle} onClick={() => setIsMinimized(!isMinimized)}>
-                    {isMinimized ? "+" : "-"}
-                </button>
+            <div className={`${styles.card} ${open ? styles.open : ""}`}>
                 <div className={styles.header}>
                     <PokemonDisplay pokemon={props.pokemon} runID={props.run.id} />
                 </div>
@@ -66,6 +63,7 @@ const PokemonCard: React.FC<Props> = (props: Props) => {
                         );
                     })}
                 </div>
+                <Toggle open={open} onClick={(open: boolean) => setOpen(open)} />
             </div>
             <div className={styles.info}>
                 <p className={styles.level}>Lv. {props.set.level ? props.set.level : "?"}</p>

@@ -125,7 +125,8 @@ const handleRepeatFights = () => {
 };
 
 const parse = () => {
-    let i = 1;
+    // Skip headers
+    let i = 2;
     while (i < rows.length) {
         // Get trainer key
         let row = rows[i];

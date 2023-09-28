@@ -1,6 +1,7 @@
 import PokemonDisplay from "@/components/Run/PokemonDisplay/PokemonDisplay";
 import ItemCount from "@/components/Segment/ItemCount/ItemCount";
 import Tags from "@/components/Segment/Tags/Tags";
+import Toggle from "@/components/Segment/Toggle/Toggle";
 import Battle from "@/models/Battle";
 import ItemData from "@/models/ItemData";
 import NamedResource from "@/models/NamedResource";
@@ -73,6 +74,7 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                     className={`${styles.export} disable-select`}
                     disabled={Object.keys(props.pokemon).length === 0}
                     onClick={handleExport}
+                    title="Export team to clipboard"
                 >
                     <Image src="/assets/icons/copy.svg" alt="Copy sets" layout="fill" objectFit="contain" />
                 </button>
@@ -105,9 +107,7 @@ const TrainerCard: React.FC<Props> = (props: Props) => {
                     <div className="bg-spinner" />
                 </div>
             )}
-            <button className={styles.toggle} onClick={() => setOpen(!open)}>
-                {open ? "-" : "+"}
-            </button>
+            <Toggle open={open} onClick={(open: boolean) => setOpen(open)} />
         </div>
     );
 };
