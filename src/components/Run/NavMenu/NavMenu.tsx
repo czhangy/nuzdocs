@@ -26,7 +26,7 @@ const NavMenu: React.FC<Props> = (props: Props) => {
     return (
         <div className={`${styles["nav-menu"]} ${open ? styles.open : ""}`}>
             <div className={styles.overlay} onClick={() => setOpen(false)} />
-            <button className={styles.button} onClick={() => setOpen(!open)}>
+            <button className={styles.button} onClick={() => setOpen(!open)} title={open ? "Close menu" : "Open menu"}>
                 <hr className={styles.dash} />
                 <hr className={styles.dash} />
                 <hr className={styles.dash} />

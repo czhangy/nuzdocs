@@ -32,7 +32,7 @@ const RunNavbar: React.FC = () => {
         <Navbar>
             <div className={styles["run-navbar"]}>
                 <Link href="/">
-                    <a className={styles.game}>
+                    <a className={styles.game} title="Back to home">
                         <p className={styles["back-arrow"]}>←</p>
                         <div className={styles.logo}>
                             <Image

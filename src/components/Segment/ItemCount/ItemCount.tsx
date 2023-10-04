@@ -10,7 +10,7 @@ type Props = {
 const ItemCount: React.FC<Props> = (props: Props) => {
     return props.item ? (
         <div className={styles["item-count"]}>
-            <div className={styles.item}>
+            <div className={styles.item} title={props.item.desc}>
                 <Image src={props.item.sprite} alt={props.item.name} layout="fill" objectFit="contain" />
             </div>
             <p className={styles.count}>×{props.count}</p>
