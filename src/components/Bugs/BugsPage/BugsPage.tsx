@@ -10,7 +10,7 @@ const BugsPage: React.FC = () => {
             <h2 className={styles.header}>Known Bugs</h2>
             <a
                 className={styles.button}
-                href="https://github.com/czhangy/nuzlocke-db/issues"
+                href="https://github.com/czhangy/nuzdocs/issues"
                 target="_blank"
                 rel="noreferrer"
             >

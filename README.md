@@ -9,18 +9,18 @@
 
 <p>
     <a href="">
-        <img src="https://img.shields.io/github/last-commit/czhangy/nuzlocke-db" alt="last update" />
+        <img src="https://img.shields.io/github/last-commit/czhangy/nuzdocs" alt="last update" />
     </a>
-    <a href="https://github.com/czhangy/nuzlocke-db/stargazers">
-        <img src="https://img.shields.io/github/stars/czhangy/nuzlocke-db" alt="stars" />
+    <a href="https://github.com/czhangy/nuzdocs/stargazers">
+        <img src="https://img.shields.io/github/stars/czhangy/nuzdocs" alt="stars" />
     </a>
-    <a href="https://github.com/czhangy/nuzlocke-db/issues/">
-        <img src="https://img.shields.io/github/issues/czhangy/nuzlocke-db" alt="open issues" />
+    <a href="https://github.com/czhangy/nuzdocs/issues/">
+        <img src="https://img.shields.io/github/issues/czhangy/nuzdocs" alt="open issues" />
 </p>
 <h4>
-    <a href="https://github.com/czhangy/nuzlocke-db">Documentation</a>
+    <a href="https://github.com/czhangy/nuzdocs">Documentation</a>
     <span> · </span>
-    <a href="https://github.com/czhangy/nuzlocke-db/issues">Report Bug</a>
+    <a href="https://github.com/czhangy/nuzdocs/issues">Report Bug</a>
 </h4>
 
 </div>

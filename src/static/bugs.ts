@@ -9,7 +9,7 @@ const bugs: { [priority: string]: Bug[] } = {
         {
             desc: "Headbutt encounters are missing",
             group: "HeartGold/SoulSilver",
-            link: "https://github.com/czhangy/nuzlocke-db/issues/25",
+            link: "https://github.com/czhangy/nuzdocs/issues/25",
         },
         {
             desc: "Underwater encounters display as part of their routes, not in the underwater location",
