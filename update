@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# Constants
+LINE="-----------------------------------------------------------------------"
+GREEN="\e[32m"
+RED="\e[31m"
+END="\e[0m"
+
+# State
+query="http://localhost:3000/api/data?"
+pokemon=false
+
+# Allow selection of update fields
+input=""
+while [ "$input" != "done" ]
+do
+    # Clear screen on each loop
+    tput reset
+
+    # Show list of toggled params
+    if [ "$pokemon" = true ]
+    then
+        printf "${GREEN}%s${END}\n\n" "POKEMON [✓]"
+    else
+        printf "${RED}%s${END}\n\n" "POKEMON [ ]"
+    fi
+
+    # Prompt for user input
+    read -p "Pick a field to toggle or type \"Done\" to run the update: " input
+    input=$(echo $input | tr '[A-Z]' '[a-z]')
+
+    # Toggle any selections
+    if [ "$input" = "pokemon" ]
+    then
+        pokemon=true
+    fi
+done
+
+# Construct query
+if [ "$pokemon" = true ]
+then
+    query+="pokemon=true"
+fi
+
+# Status message to show while updating
+printf "\n%s\n\n" "$LINE"
+printf "%s\n\n" "Running update..."
+
+# Run update and begin timing
+printf "%s\n\n" "$LINE"
+start=$SECONDS
+curl "$query" | json_pp
+
+# Update succeeded, get metrics
+if [ $? -eq 0 ]
+then
+    duration=$(( SECONDS - start ))
+    printf "\n\n%s\n\n" "Update took ${duration} seconds to complete"
+# Update failed
+else
+    printf "%s\n\n" "Update failed"
+fi
