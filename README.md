@@ -52,6 +52,10 @@ NuzDocs is a web app designed as a tool for Nuzlocke runs in various Pokémon ga
 
 The most up-to-date version of NuzDocs is currently deployed at: https://nuzdocs.vercel.app/.
 
+### Environment Variables
+
+-   `DATABASE_URL`
+
 <!-- Tech Stack -->
 
 ### Tech Stack
@@ -84,6 +88,17 @@ The most up-to-date version of NuzDocs is currently deployed at: https://nuzdocs
     <a href="https://nextjs.org/">
         <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" alt="NextJS" />
     </a>
+    <a href="https://www.prisma.io/">
+        <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" alt="Prisma" />
+    </a>
+</details>
+
+<details>
+    <summary>Database</summary>
+    <br />
+    <a href="https://www.mongodb.com/">
+        <img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+    </a>
 </details>
     
 <details>
@@ -91,17 +106,6 @@ The most up-to-date version of NuzDocs is currently deployed at: https://nuzdocs
     <br />
     <a href="https://www.vercel.com/">
         <img src="https://img.shields.io/badge/-vercel-black?logo=vercel&logoColor=white&style=for-the-badge" alt="Vercel" />
-    </a>
-</details>
-
-<details>
-    <summary>Testing</summary>
-    <br />
-    <a href="https://jestjs.io/">
-        <img src="https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white" alt="Jest" />
-    </a>
-    <a href="https://testing-library.com/">
-        <img src="https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white" alt="Testing Library" />
     </a>
 </details>
 
@@ -146,7 +150,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Acknowledgements
 
 -   [Awesome README](https://github.com/matiassingers/awesome-readme)
--   [Mooba's Emerald Any% Guide](https://docs.google.com/spreadsheets/d/1YBll3FbJfaIMJ2CtV72kXfYTlF0qRDxuWHHKhUJ76Uo/)
 -   [Nuzlocke Tracker](https://nuzlocke.app/)
 -   [PokéAPI](https://pokeapi.co/)
 -   [Pokémon Database](https://pokemondb.net/)
