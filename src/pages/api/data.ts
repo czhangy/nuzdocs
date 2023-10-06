@@ -1,9 +1,48 @@
 import Sprite from "@/models/Sprite";
+import Types from "@/models/Types";
 import priorities from "@/static/priorities";
 import { getEnglishName } from "@/utils/utils";
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { Pokemon, PokemonClient, PokemonForm, PokemonSpecies, PokemonType } from "pokenode-ts";
+
+// Get list of all types for a Pokemon
+const getTypesList = (pokemon: Pokemon): Types[] => {
+    const GEN_IDXS: { [generation: string]: number } = {
+        "generation-iii": 2,
+        "generation-iv": 5,
+        "generation-v": 7,
+        "generation-vi": 9,
+        "generation-vii": 12,
+        "generation-viii": 17,
+        "generation-ix": 18,
+    };
+
+    const types: Types[] = [];
+
+    // Insert any past typings
+    for (const typing of pokemon.past_types) {
+        // Protect against missing generation names
+        if (!(typing.generation.name in GEN_IDXS)) {
+            console.log(`Error when finding typings for ${pokemon.name}`);
+            return [];
+        }
+
+        types.push({
+            types: typing.types.map((type: PokemonType) => type.type.name),
+            group: GEN_IDXS[typing.generation.name],
+        });
+    }
+
+    // Insert most recent typing
+    types.push({
+        types: pokemon.types.map((type: PokemonType) => type.type.name),
+        group: priorities.groups.length - 1,
+    });
+
+    // Sort types by group
+    return types.sort((a: Types, b: Types) => a.group - b.group);
+};
 
 // Get list of all sprites for a Pokemon
 const getSpriteList = (pokemon: Pokemon): Sprite[] => {
@@ -40,7 +79,7 @@ const handleCreatePokemon = async (prisma: PrismaClient, species: PokemonSpecies
         data: {
             slug: pokemon.name,
             name: getEnglishName(species.names),
-            types: [],
+            types: getTypesList(pokemon),
             sprites: getSpriteList(pokemon),
             prevEvolutions: [],
             nextEvolutions: [],
@@ -62,7 +101,7 @@ const createPokemon = async (prisma: PrismaClient): Promise<void> => {
     const api: PokemonClient = new PokemonClient();
 
     // Fetch species
-    const species: PokemonSpecies = await api.getPokemonSpeciesById(1);
+    const species: PokemonSpecies = await api.getPokemonSpeciesById(183);
 
     // Iterate through each variety of the Pokemon species
     for (const variety of species.varieties) {
