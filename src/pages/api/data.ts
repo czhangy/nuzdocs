@@ -62,6 +62,7 @@ const createPokemon = async (prisma: PrismaClient): Promise<void> => {
             }
         }
     }
+
     // await prisma.pokemon.create({
     //     data: {
     //         slug: pokemon.name,

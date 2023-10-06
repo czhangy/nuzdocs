@@ -11,8 +11,8 @@ query="http://localhost:3000/api/data?"
 pokemon=false
 
 # Allow selection of update fields
-input=""
-while [ "$input" != "done" ]
+input="asdf"
+while [ "$input" != "" ]
 do
     # Clear screen on each loop
     tput reset
@@ -20,17 +20,16 @@ do
     # Show list of toggled params
     if [ "$pokemon" = true ]
     then
-        printf "${GREEN}%s${END}\n\n" "POKEMON [✓]"
+        printf "${GREEN}%s${END}\n\n" "(1) POKEMON [✓]"
     else
-        printf "${RED}%s${END}\n\n" "POKEMON [ ]"
+        printf "${RED}%s${END}\n\n" "(1) POKEMON [ ]"
     fi
 
     # Prompt for user input
-    read -p "Pick a field to toggle or type \"Done\" to run the update: " input
-    input=$(echo $input | tr '[A-Z]' '[a-z]')
+    read -p "Pick a field # to toggle or leave empty to run the update: " input
 
     # Toggle any selections
-    if [ "$input" = "pokemon" ]
+    if [ "$input" = "1" ]
     then
         pokemon=true
     fi
