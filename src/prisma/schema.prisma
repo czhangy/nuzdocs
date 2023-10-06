@@ -10,9 +10,19 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model pokemon {
-    id    String   @id @default(auto()) @map("_id") @db.ObjectId
-    slug  String   @unique
-    name  String   @unique
-    types String[]
+type Sprite {
+    url   String
+    group String
+}
+
+model Pokemon {
+    id             String   @id @default(auto()) @map("_id") @db.ObjectId
+    slug           String   @unique
+    name           String   @unique
+    types          String[]
+    sprites        Sprite[]
+    prevEvolutions String[]
+    nextEvolutions String[]
+    stats          Int[]
+    formChangeable Boolean
 }
