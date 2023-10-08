@@ -1,12 +1,17 @@
-import priorities from "@/static/priorities";
-import { getEnglishName } from "@/utils/utils";
-import { PrismaClient, Sprite, Stats, Types } from "@prisma/client";
+import { capitalizeWord, getEnglishName } from "@/utils/utils";
+import { PrismaClient, Stats, Types } from "@prisma/client";
 import { changedStats } from "data/changed_stats";
 import { NextApiRequest, NextApiResponse } from "next";
 import { Pokemon, PokemonClient, PokemonForm, PokemonSpecies, PokemonStat, PokemonType } from "pokenode-ts";
 
+// Format the name of a Pokemon form (assumes slug is the form [POKEMON]-[FORM_NAME])
+const getFormName = (form: string): string => {
+    const arr: string[] = form.split("-").map((word: string) => capitalizeWord(word));
+    return `${arr[0]} (${arr[1]})`;
+};
+
 // Get list of all types for a Pokemon (assumes Pokemon have only changed types 1 time maximum)
-const getTypesList = (pokemon: Pokemon): Types[] => {
+const getTypes = (pokemon: Pokemon | PokemonForm): Types[] => {
     const GEN_IDXS: { [generation: string]: number } = {
         "generation-iii": 3,
         "generation-iv": 6,
@@ -20,7 +25,7 @@ const getTypesList = (pokemon: Pokemon): Types[] => {
     let currentGroup: number = -1;
 
     // Insert any past typings
-    if (pokemon.past_types.length > 0) {
+    if ("past_types" in pokemon && pokemon.past_types.length > 0) {
         // Protect against missing generation names
         if (!(pokemon.past_types[0].generation.name in GEN_IDXS)) {
             console.log(`Error when finding past type for ${pokemon.name}`);
@@ -45,34 +50,8 @@ const getTypesList = (pokemon: Pokemon): Types[] => {
     return types;
 };
 
-// Get list of all sprites for a Pokemon
-const getSpriteList = (pokemon: Pokemon): Sprite[] => {
-    const GEN_III_IDX: number = 2;
-    const GEN_VI_IDX: number = 5;
-    const BW_IDX: number = 6;
-
-    const sprites: Sprite[] = [];
-
-    // Iterate generation-by-generation from Gen III until Gen VI
-    const generations: any[] = Object.values(pokemon.sprites.versions).slice(GEN_III_IDX, GEN_VI_IDX);
-    for (const groups of generations) {
-        // Iterate group-by-group through current generation's groups
-        for (const group of Object.keys(groups)) {
-            // Skip nulls
-            if (groups[group].front_default) {
-                sprites.push({ url: groups[group].front_default, group: priorities.groups.indexOf(group) });
-            }
-        }
-    }
-
-    // Log any potential errors
-    if (sprites.length === 0 || !sprites.find((sprite: Sprite) => sprite.group >= BW_IDX)) {
-        console.log(`Error when finding sprites for ${pokemon.name}`);
-    }
-
-    // Sort sprites by group
-    return sprites.sort((a: Sprite, b: Sprite) => a.group - b.group);
-};
+// Get lists of all adjacent evolutions for a Pokemon
+const getEvos = (species: PokemonSpecies) => {};
 
 // Get stats for a Pokemon
 const getStats = (pokemon: Pokemon): Stats[] => {
@@ -98,24 +77,57 @@ const getStats = (pokemon: Pokemon): Stats[] => {
     return stats;
 };
 
-// Create a Pokemon and add it to the DB
-const handleCreatePokemon = async (prisma: PrismaClient, species: PokemonSpecies, pokemon: Pokemon): Promise<void> => {
-    await prisma.pokemon.create({
-        data: {
-            slug: pokemon.name,
-            name: getEnglishName(species.names),
-            types: getTypesList(pokemon),
-            sprites: getSpriteList(pokemon),
-            prevEvolutions: [],
-            nextEvolutions: [],
-            stats: getStats(pokemon),
-            formChangeable: species.forms_switchable,
-        },
-    });
+// Create a Pokemon and add it to the DB (assumes any Pokemon with forms have slugs of the format [POKEMON]-[FORM_NAME])
+const handleCreatePokemon = async (
+    prisma: PrismaClient,
+    species: PokemonSpecies,
+    pokemon: Pokemon,
+    hasForms: boolean
+): Promise<void> => {
+    // Log potential errors
+    if (!pokemon.sprites.front_default) {
+        console.log(`Error finding sprite for ${pokemon.name}`);
+    } else {
+        await prisma.pokemon.create({
+            data: {
+                slug: pokemon.name,
+                name: hasForms ? getFormName(pokemon.name) : getEnglishName(species.names),
+                types: getTypes(pokemon),
+                sprite: pokemon.sprites.front_default,
+                prevEvolutions: [],
+                nextEvolutions: [],
+                stats: getStats(pokemon),
+                formChangeable: species.forms_switchable,
+            },
+        });
+    }
 };
 
 // Create a Pokemon form and add it to the DB
-const handleCreateForm = async (prisma: PrismaClient, species: PokemonSpecies, form: PokemonForm): Promise<void> => {};
+const handleCreateForm = async (
+    prisma: PrismaClient,
+    species: PokemonSpecies,
+    form: PokemonForm,
+    pokemon: Pokemon
+): Promise<void> => {
+    // Log potential errors
+    if (!form.sprites.front_default) {
+        console.log(`Error finding sprite for ${form.name}`);
+    } else {
+        await prisma.pokemon.create({
+            data: {
+                slug: form.name,
+                name: getFormName(form.name),
+                types: getTypes(form),
+                sprite: form.sprites.front_default,
+                prevEvolutions: [],
+                nextEvolutions: [],
+                stats: getStats(pokemon),
+                formChangeable: species.forms_switchable,
+            },
+        });
+    }
+};
 
 // Fetch Pokemon data from PokeAPI and format it into proper schema
 const createPokemon = async (prisma: PrismaClient): Promise<void> => {
@@ -126,7 +138,7 @@ const createPokemon = async (prisma: PrismaClient): Promise<void> => {
     const api: PokemonClient = new PokemonClient();
 
     // Fetch species
-    const species: PokemonSpecies = await api.getPokemonSpeciesById(24);
+    const species: PokemonSpecies = await api.getPokemonSpeciesById(487);
 
     // Iterate through each variety of the Pokemon species
     for (const variety of species.varieties) {
@@ -135,10 +147,10 @@ const createPokemon = async (prisma: PrismaClient): Promise<void> => {
 
         // Handle DB update based on # of forms
         if (pokemon.forms.length === 1) {
-            handleCreatePokemon(prisma, species, pokemon);
+            handleCreatePokemon(prisma, species, pokemon, species.varieties.length > 1);
         } else {
             for (const form of pokemon.forms) {
-                handleCreateForm(prisma, species, await api.getPokemonFormByName(form.name));
+                handleCreateForm(prisma, species, await api.getPokemonFormByName(form.name), pokemon);
             }
         }
     }

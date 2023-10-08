@@ -15,11 +15,6 @@ type Types {
     group Int
 }
 
-type Sprite {
-    url   String
-    group Int
-}
-
 type Stats {
     stats Int[]
     group Int
@@ -30,7 +25,7 @@ model Pokemon {
     slug           String   @unique
     name           String   @unique
     types          Types[]
-    sprites        Sprite[]
+    sprite         String
     prevEvolutions String[]
     nextEvolutions String[]
     stats          Stats[]
