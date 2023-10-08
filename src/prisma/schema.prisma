@@ -20,6 +20,11 @@ type Sprite {
     group Int
 }
 
+type Stats {
+    stats Int[]
+    group Int
+}
+
 model Pokemon {
     id             String   @id @default(auto()) @map("_id") @db.ObjectId
     slug           String   @unique
@@ -28,6 +33,6 @@ model Pokemon {
     sprites        Sprite[]
     prevEvolutions String[]
     nextEvolutions String[]
-    stats          Int[]
+    stats          Stats[]
     formChangeable Boolean
 }
