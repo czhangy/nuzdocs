@@ -1,14 +1,27 @@
+import { changedEvos } from "@/data/changed_evos";
+import { changedStats } from "@/data/changed_stats";
+import { unusedForms } from "@/data/unused_forms";
+import prisma from "@/lib/prisma";
 import { capitalizeWord, getEnglishName } from "@/utils/utils";
-import { PrismaClient, Stats, Types } from "@prisma/client";
-import { changedStats } from "data/changed_stats";
+import { Stats, Types } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
-import { Pokemon, PokemonClient, PokemonForm, PokemonSpecies, PokemonStat, PokemonType } from "pokenode-ts";
+import {
+    ChainLink,
+    EvolutionChain,
+    EvolutionClient,
+    Pokemon,
+    PokemonClient,
+    PokemonForm,
+    PokemonSpecies,
+    PokemonStat,
+    PokemonType,
+} from "pokenode-ts";
 
-// Format the name of a Pokemon form (assumes slug is the form [POKEMON]-[FORM_NAME])
-const getFormName = (form: string): string => {
-    const arr: string[] = form.split("-").map((word: string) => capitalizeWord(word));
-    return `${arr[0]} (${arr[1]})`;
-};
+// Console color constants
+const RESET: string = "\x1b[0m";
+const BEGIN: string = "\x1b[33m";
+const SUCCESS: string = "\x1b[32m";
+const ERROR: string = "\x1b[31m";
 
 // Get list of all types for a Pokemon (assumes Pokemon have only changed types 1 time maximum)
 const getTypes = (pokemon: Pokemon | PokemonForm): Types[] => {
@@ -50,8 +63,41 @@ const getTypes = (pokemon: Pokemon | PokemonForm): Types[] => {
     return types;
 };
 
-// Get lists of all adjacent evolutions for a Pokemon
-const getEvos = (species: PokemonSpecies) => {};
+// Get lists of all adjacent evolutions for a Pokemon (assumes chains take on a tree structure in PokeAPI)
+const getEvos = async (
+    species: PokemonSpecies,
+    evolutionAPI: EvolutionClient
+): Promise<[string[] | undefined, string[] | undefined]> => {
+    const evos: [string[] | undefined, string[] | undefined] = [undefined, undefined];
+
+    // Fetch evolution chain data from PokeAPI
+    const id: number = Number((species.evolution_chain.url.match(/\/evolution-chain\/(\d+)\//) as RegExpMatchArray)[1]);
+    const chain: EvolutionChain = await evolutionAPI.getEvolutionChainById(id);
+
+    let cur: [ChainLink, string | undefined] | undefined = [chain.chain, undefined];
+
+    // Find current Pokemon within chain with DFS
+    const next: [ChainLink, string | undefined][] = [];
+    while (cur && cur[0].species.name !== species.name) {
+        // Add all next evolutions to stack
+        cur[0].evolves_to.forEach((link: ChainLink) => next.push([link, cur![0].species.name]));
+
+        // Pop off stack and go to next link
+        cur = next.pop();
+    }
+
+    // Save previous evolution
+    if (cur && cur[1]) {
+        evos[0] = [cur[1]];
+    }
+
+    // Save next evolutions
+    if (cur && cur[0].evolves_to.length > 0) {
+        evos[1] = cur[0].evolves_to.map((link: ChainLink) => link.species.name);
+    }
+
+    return evos;
+};
 
 // Get stats for a Pokemon
 const getStats = (pokemon: Pokemon): Stats[] => {
@@ -79,23 +125,26 @@ const getStats = (pokemon: Pokemon): Stats[] => {
 
 // Create a Pokemon and add it to the DB (assumes any Pokemon with forms have slugs of the format [POKEMON]-[FORM_NAME])
 const handleCreatePokemon = async (
-    prisma: PrismaClient,
+    evolutionAPI: EvolutionClient,
     species: PokemonSpecies,
-    pokemon: Pokemon,
-    hasForms: boolean
+    pokemon: Pokemon
 ): Promise<void> => {
-    // Log potential errors
     if (!pokemon.sprites.front_default) {
-        console.log(`Error finding sprite for ${pokemon.name}`);
+        // Log sprite error
+        console.log(`${ERROR}Error finding sprite for ${pokemon.name}${RESET}`);
     } else {
+        // Get evolutions
+        const evos: (string[] | undefined)[] =
+            pokemon.name in changedEvos ? changedEvos[pokemon.name] : await getEvos(species, evolutionAPI);
+
         await prisma.pokemon.create({
             data: {
                 slug: pokemon.name,
-                name: hasForms ? getFormName(pokemon.name) : getEnglishName(species.names),
+                name: getEnglishName(species.names),
                 types: getTypes(pokemon),
                 sprite: pokemon.sprites.front_default,
-                prevEvolutions: [],
-                nextEvolutions: [],
+                prevEvolutions: evos[0],
+                nextEvolutions: evos[1],
                 stats: getStats(pokemon),
                 formChangeable: species.forms_switchable,
             },
@@ -105,23 +154,27 @@ const handleCreatePokemon = async (
 
 // Create a Pokemon form and add it to the DB
 const handleCreateForm = async (
-    prisma: PrismaClient,
+    evolutionAPI: EvolutionClient,
     species: PokemonSpecies,
     form: PokemonForm,
     pokemon: Pokemon
 ): Promise<void> => {
-    // Log potential errors
     if (!form.sprites.front_default) {
-        console.log(`Error finding sprite for ${form.name}`);
+        // Log sprite error
+        console.log(`${ERROR}Error finding sprite for ${form.name}${RESET}`);
     } else {
+        // Get evolutions
+        const evos: (string[] | undefined)[] =
+            form.name in changedEvos ? changedEvos[form.name] : await getEvos(species, evolutionAPI);
+
         await prisma.pokemon.create({
             data: {
                 slug: form.name,
-                name: getFormName(form.name),
+                name: getEnglishName(species.names),
                 types: getTypes(form),
                 sprite: form.sprites.front_default,
-                prevEvolutions: [],
-                nextEvolutions: [],
+                prevEvolutions: evos[0],
+                nextEvolutions: evos[1],
                 stats: getStats(pokemon),
                 formChangeable: species.forms_switchable,
             },
@@ -130,46 +183,55 @@ const handleCreateForm = async (
 };
 
 // Fetch Pokemon data from PokeAPI and format it into proper schema
-const createPokemon = async (prisma: PrismaClient): Promise<void> => {
+const createPokemon = async (): Promise<void> => {
     // Clear table
     await prisma.pokemon.deleteMany({});
 
-    // Init API wrapper
-    const api: PokemonClient = new PokemonClient();
+    // Init API wrappers
+    const pokemonAPI: PokemonClient = new PokemonClient();
+    const evolutionAPI: EvolutionClient = new EvolutionClient();
 
     // Fetch species
-    const species: PokemonSpecies = await api.getPokemonSpeciesById(487);
+    const species: PokemonSpecies = await pokemonAPI.getPokemonSpeciesById(555);
 
     // Iterate through each variety of the Pokemon species
     for (const variety of species.varieties) {
+        // Ignore unused forms
+        if (unusedForms.some((affix: string) => variety.pokemon.name.includes(affix))) {
+            continue;
+        }
+
         // Fetch Pokemon object
-        const pokemon: Pokemon = await api.getPokemonByName(variety.pokemon.name);
+        const pokemon: Pokemon = await pokemonAPI.getPokemonByName(variety.pokemon.name);
 
         // Handle DB update based on # of forms
         if (pokemon.forms.length === 1) {
-            handleCreatePokemon(prisma, species, pokemon, species.varieties.length > 1);
+            handleCreatePokemon(evolutionAPI, species, pokemon);
         } else {
             for (const form of pokemon.forms) {
-                handleCreateForm(prisma, species, await api.getPokemonFormByName(form.name), pokemon);
+                handleCreateForm(evolutionAPI, species, await pokemonAPI.getPokemonFormByName(form.name), pokemon);
             }
         }
     }
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
+    // Disable this handler in prod
     if (process.env.NODE_ENV === "development") {
         const updated: string[] = [];
-        const prisma = new PrismaClient();
+
+        // Space in console
+        console.log("\n");
 
         // Update Pokemon data if requested
         if ("pokemon" in req.query) {
-            console.log("Creating Pokemon collection...");
-            await createPokemon(prisma);
+            console.log(`${BEGIN}Creating Pokemon collection...${RESET}`);
+            await createPokemon();
             updated.push("Pokemon");
-            console.log("Pokemon collection completed...");
+            console.log(`${SUCCESS}Pokemon collection completed...${RESET}\n`);
         }
 
-        console.log("DB update complete!");
+        console.log(`${SUCCESS}DB update complete!${RESET}`);
         return res.status(200).json({ updated: updated });
     } else {
         return res.status(403).json("Forbidden");
