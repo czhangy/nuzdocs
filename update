@@ -1,61 +1,111 @@
 #!/bin/bash
 
 # Constants
+SERVER_URL="http://localhost:3000"
 LINE="-----------------------------------------------------------------------"
 GREEN="\e[32m"
 RED="\e[31m"
 END="\e[0m"
 
 # State
-query="http://localhost:3000/api/data?"
+query="${SERVER_URL}/api/data?"
+first_param=true
 pokemon=false
+pokemon_start=1
+pokemon_end=20
+clear=false
 
-# Allow selection of update fields
-input="asdf"
-while [ "$input" != "" ]
-do
-    # Clear screen on each loop
-    tput reset
+# Check if server is running
+status="$(curl -LIs "$SERVER_URL" | head -1)"
+validate=( $status )
+if curl --output /dev/null --silent --head --fail "$SERVER_URL";
+then
+    # Allow selection of update fields
+    input="#"
+    while [ "$input" != "" ]
+    do
+        # Clear screen on each loop
+        tput reset
 
-    # Show list of toggled params
+        # Show list of toggled params
+        if [ "$pokemon" = true ]
+        then
+            printf "${GREEN}%s${END}\n" "(1) Modify Pokemon [✓]"
+        else
+            printf "${RED}%s${END}\n" "(1) Modify Pokemon [ ]"
+        fi
+
+        if [ "$clear" = true ]
+        then
+            printf "${GREEN}%s${END}\n\n" "(X) Clear collections [✓]"
+        else
+            printf "${RED}%s${END}\n\n" "(X) Clear collections [ ]"
+        fi
+
+        # Prompt for user input
+        read -p "Pick a field # to toggle or leave empty to run the update: " input
+
+        # Toggle any selections
+        if [ "$input" = "1" ]
+        then
+            if [ "$pokemon" = true ]
+            then
+                pokemon=false
+            else
+                pokemon=true
+
+                # Get inputs for start/end
+                read -p "Start with dex #: " pokemon_start
+                read -p "End with dex #: " pokemon_end
+            fi
+        fi
+
+        if [ "$input" = "X" ] || [ "$input" = "x" ]
+        then
+            if [ "$clear" = true ]
+            then
+                clear=false
+            else
+                clear=true
+            fi
+        fi
+    done
+
+    # Construct query
     if [ "$pokemon" = true ]
     then
-        printf "${GREEN}%s${END}\n\n" "(1) POKEMON [✓]"
-    else
-        printf "${RED}%s${END}\n\n" "(1) POKEMON [ ]"
+        query+="pokemon=true&start=${pokemon_start}&end=${pokemon_end}"
+        first_param=false
     fi
 
-    # Prompt for user input
-    read -p "Pick a field # to toggle or leave empty to run the update: " input
-
-    # Toggle any selections
-    if [ "$input" = "1" ]
+    if [ "$clear" = true ]
     then
-        pokemon=true
+        if [ "$first_param" = false ]
+        then
+            query+="&"
+        fi
+        query+="clear=true"
+        first_param=false
     fi
-done
 
-# Construct query
-if [ "$pokemon" = true ]
-then
-    query+="pokemon=true"
-fi
+    # Status message to show while updating
+    printf "\n%s\n\n" "$LINE"
+    printf "%s\n\n" "Running update..."
 
-# Status message to show while updating
-printf "\n%s\n\n" "$LINE"
-printf "%s\n\n" "Running update..."
+    # Run update and begin timing
+    printf "%s\n\n" "$LINE"
+    start=$SECONDS
+    curl "$query" | json_pp
 
-# Run update and begin timing
-printf "%s\n\n" "$LINE"
-start=$SECONDS
-curl "$query" | json_pp
-
-# Update succeeded, get metrics
-if [ $? -eq 0 ]
-then
-    duration=$(( SECONDS - start ))
-    printf "\n\n%s\n\n" "Update took ${duration} seconds to complete"
-# Update failed
+    if [ $? -eq 0 ]
+    then
+        # Update succeeded, get metrics
+        duration=$(( SECONDS - start ))
+        printf "\n\n${GREEN}%s${END}\n\n" "Update took ${duration} seconds to complete"
+    else
+        # Update failed
+        printf "\n${RED}%s${END}\n\n" "Update failed"
+    fi
 else
-    printf "%s\n\n" "Update failed"
+    printf "\n${RED}%s${END}\n\n" "The server is unreachable"
 fi

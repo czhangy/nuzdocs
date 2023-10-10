@@ -137,6 +137,7 @@ const handleCreatePokemon = async (
         const evos: (string[] | undefined)[] =
             pokemon.name in changedEvos ? changedEvos[pokemon.name] : await getEvos(species, evolutionAPI);
 
+        console.log(`${BEGIN}Creating ${pokemon.name}${RESET}...`);
         await prisma.pokemon.create({
             data: {
                 slug: pokemon.name,
@@ -167,6 +168,7 @@ const handleCreateForm = async (
         const evos: (string[] | undefined)[] =
             form.name in changedEvos ? changedEvos[form.name] : await getEvos(species, evolutionAPI);
 
+        console.log(`${BEGIN}Creating ${form.name}${RESET}...`);
         await prisma.pokemon.create({
             data: {
                 slug: form.name,
@@ -183,56 +185,77 @@ const handleCreateForm = async (
 };
 
 // Fetch Pokemon data from PokeAPI and format it into proper schema
-const createPokemon = async (): Promise<void> => {
+const createPokemon = async (clear: boolean, start: number, end: number): Promise<void> => {
+    console.log(`${BEGIN}Updating Pokemon collection from #${start} to #${end}...${RESET}`);
+
     // Clear table
-    await prisma.pokemon.deleteMany({});
+    if (clear) {
+        await prisma.pokemon.deleteMany({});
+    }
 
     // Init API wrappers
     const pokemonAPI: PokemonClient = new PokemonClient();
     const evolutionAPI: EvolutionClient = new EvolutionClient();
 
-    // Fetch species
-    const species: PokemonSpecies = await pokemonAPI.getPokemonSpeciesById(555);
+    for (let i = start; i <= end; i++) {
+        // Fetch species
+        const species: PokemonSpecies = await pokemonAPI.getPokemonSpeciesById(i);
 
-    // Iterate through each variety of the Pokemon species
-    for (const variety of species.varieties) {
-        // Ignore unused forms
-        if (unusedForms.some((affix: string) => variety.pokemon.name.includes(affix))) {
-            continue;
-        }
+        // Iterate through each variety of the Pokemon species
+        for (const variety of species.varieties) {
+            // Ignore unused forms
+            if (unusedForms.some((affix: string) => variety.pokemon.name.includes(affix))) {
+                continue;
+            }
 
-        // Fetch Pokemon object
-        const pokemon: Pokemon = await pokemonAPI.getPokemonByName(variety.pokemon.name);
+            // Fetch Pokemon object
+            const pokemon: Pokemon = await pokemonAPI.getPokemonByName(variety.pokemon.name);
 
-        // Handle DB update based on # of forms
-        if (pokemon.forms.length === 1) {
-            handleCreatePokemon(evolutionAPI, species, pokemon);
-        } else {
-            for (const form of pokemon.forms) {
-                handleCreateForm(evolutionAPI, species, await pokemonAPI.getPokemonFormByName(form.name), pokemon);
+            // Handle DB update based on # of forms
+            if (pokemon.forms.length === 1) {
+                await handleCreatePokemon(evolutionAPI, species, pokemon);
+            } else {
+                for (const form of pokemon.forms) {
+                    // Ignore unused forms
+                    if (
+                        unusedForms.some((affix: string) => form.name.includes(affix)) ||
+                        (variety.pokemon.name === "unown" && form.name !== "unown-question")
+                    ) {
+                        continue;
+                    }
+
+                    await handleCreateForm(
+                        evolutionAPI,
+                        species,
+                        await pokemonAPI.getPokemonFormByName(form.name),
+                        pokemon
+                    );
+                }
             }
         }
     }
+
+    console.log(`${SUCCESS}Pokemon collection updated!${RESET}`);
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
     // Disable this handler in prod
     if (process.env.NODE_ENV === "development") {
-        const updated: string[] = [];
-
-        // Space in console
-        console.log("\n");
+        const modified: string[] = [];
+        const clear: boolean = "clear" in req.query;
 
         // Update Pokemon data if requested
         if ("pokemon" in req.query) {
-            console.log(`${BEGIN}Creating Pokemon collection...${RESET}`);
-            await createPokemon();
-            updated.push("Pokemon");
-            console.log(`${SUCCESS}Pokemon collection completed...${RESET}\n`);
+            // Get options
+            const start: number = parseInt(req.query.start as string);
+            const end: number = parseInt(req.query.end as string);
+
+            await createPokemon(clear, start, end);
+            modified.push("Pokemon");
         }
 
         console.log(`${SUCCESS}DB update complete!${RESET}`);
-        return res.status(200).json({ updated: updated });
+        return res.status(200).json({ mode: clear ? "Clear" : "Update", modified: modified });
     } else {
         return res.status(403).json("Forbidden");
     }

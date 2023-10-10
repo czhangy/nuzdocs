@@ -4,8 +4,10 @@ export const unusedForms: string[] = [
     "-cosplay",
     "-gmax",
     "-libre",
+    "-mega",
     "-phd",
     "-spiky-eared",
     "-star",
     "-starter",
+    "-totem",
 ];
