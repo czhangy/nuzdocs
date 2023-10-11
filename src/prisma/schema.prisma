@@ -10,6 +10,11 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+type Descriptions {
+    desc  String
+    group Int
+}
+
 type Types {
     types String[]
     group Int
@@ -18,6 +23,12 @@ type Types {
 type Stats {
     stats Int[]
     group Int
+}
+
+model Abilities {
+    id   String         @id @default(auto()) @map("_id") @db.ObjectId
+    name String
+    desc Descriptions[]
 }
 
 model Pokemon {

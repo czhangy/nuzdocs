@@ -1,14 +1,19 @@
 import { changedEvos } from "@/data/changed_evos";
 import { changedStats } from "@/data/changed_stats";
+import missingAbilities from "@/data/missing_abilities";
 import { unusedForms } from "@/data/unused_forms";
 import prisma from "@/lib/prisma";
-import { capitalizeWord, getEnglishName } from "@/utils/utils";
-import { Stats, Types } from "@prisma/client";
+import priorities from "@/static/priorities";
+import { getEnglishName } from "@/utils/utils";
+import { Descriptions, Stats, Types } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import {
+    Ability,
+    AbilityFlavorText,
     ChainLink,
     EvolutionChain,
     EvolutionClient,
+    NamedAPIResource,
     Pokemon,
     PokemonClient,
     PokemonForm,
@@ -22,6 +27,41 @@ const RESET: string = "\x1b[0m";
 const BEGIN: string = "\x1b[33m";
 const SUCCESS: string = "\x1b[32m";
 const ERROR: string = "\x1b[31m";
+
+// Get list of ability descriptions for an ability object
+const getAbilityDescriptions = (ability: Ability): Descriptions[] => {
+    // Get English flavor texts
+    const fte = ability.flavor_text_entries.filter((aft: AbilityFlavorText) => aft.language.name === "en");
+
+    // Map FTE object to Descriptions object
+    let descriptions: Descriptions[] = fte
+        .map((aft: AbilityFlavorText) => {
+            return {
+                desc: aft.flavor_text.replace("\n", " "),
+                group: priorities.groups.indexOf(aft.version_group.name),
+            };
+        })
+        .sort((a: Descriptions, b: Descriptions) => a.group - b.group);
+
+    // Add local descriptions
+    if (ability.name in missingAbilities) {
+        descriptions = missingAbilities[ability.name];
+    }
+
+    // Log missing description errors
+    if (descriptions.length === 0) {
+        console.log(`Error when finding descriptions for ${ability.name}`);
+    }
+
+    // Set first entry to default description
+    descriptions[0].group = -1;
+
+    // Filter out any duplicate descriptions, saving the first occurrence only
+    return descriptions.filter(
+        (desc: Descriptions, i: number, arr: Descriptions[]) =>
+            arr.findIndex((desc2: Descriptions) => desc.desc === desc2.desc) === i
+    );
+};
 
 // Get list of all types for a Pokemon (assumes Pokemon have only changed types 1 time maximum)
 const getTypes = (pokemon: Pokemon | PokemonForm): Types[] => {
@@ -42,7 +82,6 @@ const getTypes = (pokemon: Pokemon | PokemonForm): Types[] => {
         // Protect against missing generation names
         if (!(pokemon.past_types[0].generation.name in GEN_IDXS)) {
             console.log(`Error when finding past type for ${pokemon.name}`);
-            return [];
         }
 
         types.push({
@@ -123,6 +162,20 @@ const getStats = (pokemon: Pokemon): Stats[] => {
     return stats;
 };
 
+// Create an ability and add it to the DB
+const handleCreateAbility = async (pokemonAPI: PokemonClient, name: string): Promise<void> => {
+    // Fetch ability data
+    const ability: Ability = await pokemonAPI.getAbilityByName(name);
+
+    console.log(`${BEGIN}Creating ${name}${RESET}...`);
+    await prisma.abilities.create({
+        data: {
+            name: name in changedAbilities ? changedAbilities[name] : getEnglishName(ability.names),
+            desc: getAbilityDescriptions(ability),
+        },
+    });
+};
+
 // Create a Pokemon and add it to the DB (assumes any Pokemon with forms have slugs of the format [POKEMON]-[FORM_NAME])
 const handleCreatePokemon = async (
     evolutionAPI: EvolutionClient,
@@ -184,6 +237,33 @@ const handleCreateForm = async (
     }
 };
 
+// Fetch ability data from PokeAPI and format it into proper schema
+const createAbilities = async (clear: boolean): Promise<void> => {
+    const NUM_ABILITIES = 303;
+
+    console.log(`${BEGIN}Updating abilities collection...${RESET}`);
+
+    // Clear table
+    if (clear) {
+        await prisma.abilities.deleteMany({});
+    }
+
+    // Init API wrappers
+    const pokemonAPI: PokemonClient = new PokemonClient();
+
+    // Get list of ability names
+    const abilities: string[] = (await pokemonAPI.listAbilities(0, NUM_ABILITIES)).results.map(
+        (ability: NamedAPIResource) => ability.name
+    );
+
+    // Fetch data for each ability
+    for (const ability of abilities) {
+        await handleCreateAbility(pokemonAPI, ability);
+    }
+
+    console.log(`${SUCCESS}Abilities collection updated!${RESET}`);
+};
+
 // Fetch Pokemon data from PokeAPI and format it into proper schema
 const createPokemon = async (clear: boolean, start: number, end: number): Promise<void> => {
     console.log(`${BEGIN}Updating Pokemon collection from #${start} to #${end}...${RESET}`);
@@ -243,6 +323,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (process.env.NODE_ENV === "development") {
         const modified: string[] = [];
         const clear: boolean = "clear" in req.query;
+
+        // Update ability data if requested
+        if ("abilities" in req.query) {
+            await createAbilities(clear);
+            modified.push("Abilities");
+        }
 
         // Update Pokemon data if requested
         if ("pokemon" in req.query) {

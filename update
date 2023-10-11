@@ -10,6 +10,7 @@ END="\e[0m"
 # State
 query="${SERVER_URL}/api/data?"
 first_param=true
+abilities=false
 pokemon=false
 pokemon_start=1
 pokemon_end=20
@@ -28,18 +29,25 @@ then
         tput reset
 
         # Show list of toggled params
+        if [ "$abilities" = true ]
+        then
+            printf "${GREEN}%s\t%s${END}\n" "(1) Modify Abilities" "[✓]"
+        else
+            printf "${RED}%s\t%s${END}\n" "(1) Modify Abilities" "[ ]"
+        fi
+
         if [ "$pokemon" = true ]
         then
-            printf "${GREEN}%s${END}\n" "(1) Modify Pokemon [✓]"
+            printf "${GREEN}%s\t%s${END}\n" "(2) Modify Pokemon" "[✓]"
         else
-            printf "${RED}%s${END}\n" "(1) Modify Pokemon [ ]"
+            printf "${RED}%s\t%s${END}\n" "(2) Modify Pokemon" "[ ]"
         fi
 
         if [ "$clear" = true ]
         then
-            printf "${GREEN}%s${END}\n\n" "(X) Clear collections [✓]"
+            printf "${GREEN}%s\t%s${END}\n\n" "(X) Clear collections" "[✓]"
         else
-            printf "${RED}%s${END}\n\n" "(X) Clear collections [ ]"
+            printf "${RED}%s\t%s${END}\n\n" "(X) Clear collections" "[ ]"
         fi
 
         # Prompt for user input
@@ -47,6 +55,16 @@ then
 
         # Toggle any selections
         if [ "$input" = "1" ]
+        then
+            if [ "$abilities" = true ]
+            then
+                abilities=false
+            else
+                abilities=true
+            fi
+        fi
+
+        if [ "$input" = "2" ]
         then
             if [ "$pokemon" = true ]
             then
@@ -72,8 +90,18 @@ then
     done
 
     # Construct query
+    if [ "$abilities" = true ]
+    then
+        query+="abilities=true"
+        first_param=false
+    fi
+    
     if [ "$pokemon" = true ]
     then
+    if [ "$first_param" = false ]
+        then
+            query+="&"
+        fi
         query+="pokemon=true&start=${pokemon_start}&end=${pokemon_end}"
         first_param=false
     fi
