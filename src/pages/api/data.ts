@@ -1,3 +1,4 @@
+import changedAbilities from "@/data/changed_abilities";
 import { changedEvos } from "@/data/changed_evos";
 import { changedStats } from "@/data/changed_stats";
 import missingAbilities from "@/data/missing_abilities";
@@ -163,17 +164,35 @@ const getStats = (pokemon: Pokemon): Stats[] => {
 };
 
 // Create an ability and add it to the DB
-const handleCreateAbility = async (pokemonAPI: PokemonClient, name: string): Promise<void> => {
+const handleCreateAbility = async (pokemonAPI: PokemonClient, name: string): Promise<boolean> => {
+    const GEN_IDXS: { [generation: string]: number } = {
+        "generation-iii": 0,
+        "generation-iv": 3,
+        "generation-v": 6,
+        "generation-vi": 8,
+        "generation-vii": 10,
+        "generation-viii": 13,
+        "generation-ix": 18,
+    };
+
     // Fetch ability data
     const ability: Ability = await pokemonAPI.getAbilityByName(name);
+
+    // If ability is not a main series ability, fetching is done
+    if (!ability.is_main_series) {
+        return false;
+    }
 
     console.log(`${BEGIN}Creating ${name}${RESET}...`);
     await prisma.abilities.create({
         data: {
             name: name in changedAbilities ? changedAbilities[name] : getEnglishName(ability.names),
             desc: getAbilityDescriptions(ability),
+            group: GEN_IDXS[ability.generation.name],
         },
     });
+
+    return true;
 };
 
 // Create a Pokemon and add it to the DB (assumes any Pokemon with forms have slugs of the format [POKEMON]-[FORM_NAME])
@@ -239,8 +258,6 @@ const handleCreateForm = async (
 
 // Fetch ability data from PokeAPI and format it into proper schema
 const createAbilities = async (clear: boolean): Promise<void> => {
-    const NUM_ABILITIES = 303;
-
     console.log(`${BEGIN}Updating abilities collection...${RESET}`);
 
     // Clear table
@@ -251,14 +268,20 @@ const createAbilities = async (clear: boolean): Promise<void> => {
     // Init API wrappers
     const pokemonAPI: PokemonClient = new PokemonClient();
 
+    // Get number of abilities
+    const count: number = (await pokemonAPI.listAbilities()).count;
+
     // Get list of ability names
-    const abilities: string[] = (await pokemonAPI.listAbilities(0, NUM_ABILITIES)).results.map(
+    const abilities: string[] = (await pokemonAPI.listAbilities(0, count)).results.map(
         (ability: NamedAPIResource) => ability.name
     );
 
     // Fetch data for each ability
     for (const ability of abilities) {
-        await handleCreateAbility(pokemonAPI, ability);
+        // Check if all main series abilities have been processed
+        if (!(await handleCreateAbility(pokemonAPI, ability))) {
+            break;
+        }
     }
 
     console.log(`${SUCCESS}Abilities collection updated!${RESET}`);

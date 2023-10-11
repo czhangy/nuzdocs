@@ -26,9 +26,10 @@ type Stats {
 }
 
 model Abilities {
-    id   String         @id @default(auto()) @map("_id") @db.ObjectId
-    name String
-    desc Descriptions[]
+    id    String         @id @default(auto()) @map("_id") @db.ObjectId
+    name  String
+    desc  Descriptions[]
+    group Int
 }
 
 model Pokemon {

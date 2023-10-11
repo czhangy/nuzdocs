@@ -156,30 +156,6 @@ const missingAbilities: { [ability: string]: Descriptions[] } = {
             group: 18,
         },
     ],
-    "minds-eye": [
-        {
-            desc: "The Pokémon ignores changes to opponents' evasiveness, its accuracy can't be lowered, and it can hit Ghost types with Normal- and Fighting-type moves.",
-            group: 18,
-        },
-    ],
-    "supersweet-syrup": [
-        {
-            desc: "A sickly sweet scent spreads across the field the first time the Pokémon enters a battle, lowering the evasiveness of opposing Pokémon.",
-            group: 18,
-        },
-    ],
-    hospitality: [
-        {
-            desc: "When the Pokémon enters a battle, it showers its ally with hospitality, restoring a small amount of the ally's HP.",
-            group: 18,
-        },
-    ],
-    "toxic-chain": [
-        {
-            desc: "The power of the Pokémon's toxic chain may badly poison any target the Pokémon hits with a move.",
-            group: 18,
-        },
-    ],
     "embody-aspect": [
         {
             desc: "The Pokémon's heart fills with memories, causing its mask to shine and one of the Pokémon's stats to be boosted.",
