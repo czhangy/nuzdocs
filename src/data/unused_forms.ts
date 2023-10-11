@@ -1,4 +1,4 @@
-export const unusedForms: string[] = [
+const unusedForms: string[] = [
     "-belle",
     "-cap",
     "-cosplay",
@@ -11,3 +11,5 @@ export const unusedForms: string[] = [
     "-starter",
     "-totem",
 ];
+
+export default unusedForms;

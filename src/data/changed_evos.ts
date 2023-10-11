@@ -1,5 +1,5 @@
 // Format is [POKEMON]#[EVO_MODE]
-export const changedEvos: { [pokemon: string]: [string[] | undefined, string[] | undefined] } = {
+const changedEvos: { [pokemon: string]: [string[] | undefined, string[] | undefined] } = {
     "rattata-alola": [undefined, ["raticate-alola"]],
     "raticate-alola": [["rattata-alola"], undefined],
     pikachu: [["pichu"], ["raichu", "raichu-alola"]],
@@ -77,3 +77,5 @@ export const changedEvos: { [pokemon: string]: [string[] | undefined, string[] |
     overqwil: [["qwilfish-hisui"], undefined],
     clodsire: [["wooper-paldea"], undefined],
 };
+
+export default changedEvos;

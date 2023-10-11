@@ -1,12 +1,13 @@
 import changedAbilities from "@/data/changed_abilities";
-import { changedEvos } from "@/data/changed_evos";
-import { changedStats } from "@/data/changed_stats";
+import changedEvos from "@/data/changed_evos";
+import changedPokemonAbilities from "@/data/changed_pokemon_abilities";
+import changedStats from "@/data/changed_stats";
 import missingAbilities from "@/data/missing_abilities";
-import { unusedForms } from "@/data/unused_forms";
+import unusedForms from "@/data/unused_forms";
 import prisma from "@/lib/prisma";
 import priorities from "@/static/priorities";
 import { getEnglishName } from "@/utils/utils";
-import { Descriptions, Stats, Types } from "@prisma/client";
+import { Descriptions, PokemonAbilities, Stats, Types } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import {
     Ability,
@@ -16,6 +17,7 @@ import {
     EvolutionClient,
     NamedAPIResource,
     Pokemon,
+    PokemonAbility,
     PokemonClient,
     PokemonForm,
     PokemonSpecies,
@@ -147,13 +149,10 @@ const getStats = (pokemon: Pokemon): Stats[] => {
     let currentGroup: number = -1;
 
     // Get old stats for Pokemon whose BSTs have changed
-    const old: string[] = Object.keys(changedStats).filter((key: string) => key.startsWith(pokemon.name));
-    old.forEach((key: string) => {
-        stats.push({ stats: changedStats[key], group: currentGroup });
-
-        // Update current group using key
-        currentGroup = parseInt(key.split("#")[1]);
-    });
+    if (pokemon.name in changedStats) {
+        stats.push({ stats: changedStats[pokemon.name][0], group: -1 });
+        currentGroup = changedStats[pokemon.name][1];
+    }
 
     // Get most recent stats from PokeAPI
     const recent: number[] = [];
@@ -161,6 +160,28 @@ const getStats = (pokemon: Pokemon): Stats[] => {
     stats.push({ stats: recent, group: currentGroup });
 
     return stats;
+};
+
+// Get abilities for a Pokemon
+const getAbilities = (pokemon: Pokemon): PokemonAbilities[] => {
+    const abilities: PokemonAbilities[] = [];
+    let currentGroup: number = -1;
+
+    // Get local abilities
+    if (pokemon.name in changedPokemonAbilities) {
+        abilities.push({ abilities: changedPokemonAbilities[pokemon.name][0], group: -1 });
+        currentGroup = changedPokemonAbilities[pokemon.name][1];
+    }
+
+    // Get most recent abilities from PokeAPI
+    let recent: [string, string, string] = ["", "", ""];
+    pokemon.abilities.map((ability: PokemonAbility) => (recent[ability.slot - 1] = ability.ability.name));
+    abilities.push({
+        abilities: recent,
+        group: currentGroup,
+    });
+
+    return abilities;
 };
 
 // Create an ability and add it to the DB
@@ -186,6 +207,7 @@ const handleCreateAbility = async (pokemonAPI: PokemonClient, name: string): Pro
     console.log(`${BEGIN}Creating ${name}${RESET}...`);
     await prisma.abilities.create({
         data: {
+            slug: ability.name,
             name: name in changedAbilities ? changedAbilities[name] : getEnglishName(ability.names),
             desc: getAbilityDescriptions(ability),
             group: GEN_IDXS[ability.generation.name],
@@ -219,6 +241,7 @@ const handleCreatePokemon = async (
                 prevEvolutions: evos[0],
                 nextEvolutions: evos[1],
                 stats: getStats(pokemon),
+                abilities: getAbilities(pokemon),
                 formChangeable: species.forms_switchable,
             },
         });

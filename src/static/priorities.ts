@@ -30,6 +30,7 @@ const priorities: { [group: string]: string[] } = {
         "brilliant-diamond-and-shining-pearl",
         "legends-arceus",
         "scarlet-violet",
+        "the-teal-mask",
     ],
 };
 
