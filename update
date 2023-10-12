@@ -11,7 +11,9 @@ END="\e[0m"
 query="${SERVER_URL}/api/data?"
 first_param=true
 abilities=false
+abilities_start=1
 moves=false
+moves_start=1
 pokemon=false
 pokemon_start=1
 pokemon_end=20
@@ -70,6 +72,9 @@ then
             else
                 abilities=true
             fi
+
+            # Get input for start
+            read -p "Start with ability #: " abilities_start
         fi
 
         if [ "$input" = "2" ]
@@ -79,6 +84,9 @@ then
                 moves=false
             else
                 moves=true
+
+                # Get input for start
+                read -p "Start with move #: " move_start
             fi
         fi
 
@@ -110,7 +118,7 @@ then
     # Construct query
     if [ "$abilities" = true ]
     then
-        query+="abilities=true"
+        query+="abilities=true&abilities_start=${abilities_start}"
         first_param=false
     fi
 
@@ -120,7 +128,7 @@ then
         then
             query+="&"
         fi
-        query+="moves=true"
+        query+="moves=true&moves_start=${moves_start}"
         first_param=false
     fi
     
@@ -130,7 +138,7 @@ then
         then
             query+="&"
         fi
-        query+="pokemon=true&start=${pokemon_start}&end=${pokemon_end}"
+        query+="pokemon=true&pokemon_start=${pokemon_start}&pokemon_end=${pokemon_end}"
         first_param=false
     fi
 

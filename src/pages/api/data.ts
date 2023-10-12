@@ -2,12 +2,11 @@ import changedAbilities from "@/data/changed_abilities";
 import changedEvos from "@/data/changed_evos";
 import changedPokemonAbilities from "@/data/changed_pokemon_abilities";
 import changedStats from "@/data/changed_stats";
-import missingAbilities from "@/data/missing_abilities";
 import unusedForms from "@/data/unused_forms";
 import prisma from "@/lib/prisma";
 import priorities from "@/static/priorities";
 import { getEnglishName } from "@/utils/utils";
-import { Description, PokemonAbilities, PokemonType, Stats } from "@prisma/client";
+import { Description, MoveClass, MoveNum, MoveType, PokemonAbilities, PokemonType, Stats } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import {
     Ability,
@@ -15,46 +14,52 @@ import {
     ChainLink,
     EvolutionChain,
     EvolutionClient,
+    Move,
     MoveClient,
+    MoveFlavorText,
     NamedAPIResource,
     Pokemon,
     PokemonAbility,
     PokemonClient,
     PokemonForm,
+    PokemonMove,
     PokemonSpecies,
     PokemonStat,
     PokemonType as Type,
 } from "pokenode-ts";
 
-// Console color constants
+// ---------------------------------------------------------------------------------------------------------------------
+// CONSTANTS
+// ---------------------------------------------------------------------------------------------------------------------
+
 const RESET: string = "\x1b[0m";
 const BEGIN: string = "\x1b[33m";
 const SUCCESS: string = "\x1b[32m";
 const ERROR: string = "\x1b[31m";
+const FETCH_LIMIT: number = 100;
+const ID_IDX: number = -2;
+const ID_BREAKPOINT: number = 10000;
 
-// Get list of ability descriptions for an ability object
-const getAbilityDescriptions = (ability: Ability): Description[] => {
-    // Get English flavor texts
-    const fte = ability.flavor_text_entries.filter((aft: AbilityFlavorText) => aft.language.name === "en");
+// ---------------------------------------------------------------------------------------------------------------------
+// PROPERTY GETTERS
+// ---------------------------------------------------------------------------------------------------------------------
 
+// Get list of descriptions for an ability/move
+const getDescriptions = (fte: AbilityFlavorText[] | MoveFlavorText[], name: string): Description[] => {
     // Map FTE object to Descriptions object
     let descriptions: Description[] = fte
-        .map((aft: AbilityFlavorText) => {
+        .map((ft: AbilityFlavorText | MoveFlavorText) => {
             return {
-                desc: aft.flavor_text.replace("\n", " "),
-                group: priorities.groups.indexOf(aft.version_group.name),
+                desc: ft.flavor_text.replaceAll("\n", " "),
+                group: priorities.groups.indexOf(ft.version_group.name),
             };
         })
         .sort((a: Description, b: Description) => a.group - b.group);
 
-    // Add local descriptions
-    if (ability.name in missingAbilities) {
-        descriptions = missingAbilities[ability.name];
-    }
-
     // Log missing description errors
     if (descriptions.length === 0) {
-        console.log(`Error when finding descriptions for ${ability.name}`);
+        console.log(`Error when finding descriptions for ${name}`);
+        return [];
     }
 
     // Set first entry to default description
@@ -67,8 +72,113 @@ const getAbilityDescriptions = (ability: Ability): Description[] => {
     );
 };
 
+// Get list of all types for a move
+const getMoveTypes = (move: Move): MoveType[] => {
+    const types: MoveType[] = [];
+    let currentGroup = -1;
+
+    // Add past types
+    for (const pastValue of move.past_values) {
+        if (pastValue.type) {
+            types.push({ type: pastValue.type.name, group: currentGroup });
+            currentGroup = priorities.groups.indexOf(pastValue.version_group.name);
+        }
+    }
+
+    // Add most recent type
+    types.push({ type: move.type.name, group: currentGroup });
+
+    return types;
+};
+
+// Get damage class of a move
+const getMoveClass = (move: Move): MoveClass[] => {
+    const PRE_SPLIT_GENS: string[] = ["generation-i", "generation-ii", "generation-iii"];
+    const PHYSICAL_TYPES: string[] = [
+        "normal",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "bug",
+        "rock",
+        "ghost",
+        "steel",
+    ];
+    const GEN_4_IDX: number = 3;
+
+    const classes: MoveClass[] = [];
+    let currentGroup = -1;
+
+    // Log any damage class errors
+    if (!move.damage_class) {
+        console.log(`Error when finding damage class for ${move.name}`);
+        return [];
+    }
+
+    // Add pre-split class if the move is Gen III or earlier
+    if (PRE_SPLIT_GENS.includes(move.generation.name)) {
+        if (move.damage_class.name === "physical" && !PHYSICAL_TYPES.includes(move.type.name)) {
+            classes.push({ class: "special", group: -1 });
+            currentGroup = GEN_4_IDX;
+        } else if (move.damage_class.name === "special" && PHYSICAL_TYPES.includes(move.type.name)) {
+            classes.push({ class: "physical", group: -1 });
+            currentGroup = GEN_4_IDX;
+        }
+    }
+
+    // Add most recent damage class
+    classes.push({ class: move.damage_class!.name as "physical" | "special" | "status", group: currentGroup });
+
+    return classes;
+};
+
+// Get base power of a move
+const getMoveBP = (move: Move): MoveNum[] => {
+    const bp: MoveNum[] = [];
+    let currentGroup: number = -1;
+
+    // Add any past BPs
+    for (const pastValue of move.past_values) {
+        if (pastValue.power) {
+            bp.push({ num: pastValue.power, group: currentGroup });
+            currentGroup = priorities.groups.indexOf(pastValue.version_group.name);
+        }
+    }
+
+    // Add current BP
+    bp.push({ num: move.power ? move.power : 0, group: currentGroup });
+
+    return bp;
+};
+
+// Get PP of a move
+const getMovePP = (move: Move): MoveNum[] => {
+    const pp: MoveNum[] = [];
+    let currentGroup: number = -1;
+
+    // Add any past PPs
+    for (const pastValue of move.past_values) {
+        if (pastValue.pp) {
+            pp.push({ num: pastValue.pp, group: currentGroup });
+            currentGroup = priorities.groups.indexOf(pastValue.version_group.name);
+        }
+    }
+
+    // Log any PP errors
+    if (!move.pp) {
+        console.log(`Error when finding PP for ${move.name}`);
+        return [];
+    }
+
+    // Add current PP
+    pp.push({ num: move.pp!, group: currentGroup });
+
+    return pp;
+};
+
 // Get list of all types for a Pokemon (assumes Pokemon have only changed types 1 time maximum)
-const getTypes = (pokemon: Pokemon | PokemonForm): PokemonType[] => {
+const getPokemonTypes = (pokemon: Pokemon | PokemonForm): PokemonType[] => {
     const GEN_IDXS: { [generation: string]: number } = {
         "generation-iii": 3,
         "generation-iv": 6,
@@ -185,8 +295,12 @@ const getAbilities = (pokemon: Pokemon): PokemonAbilities[] => {
     return abilities;
 };
 
+// ---------------------------------------------------------------------------------------------------------------------
+// CREATE API
+// ---------------------------------------------------------------------------------------------------------------------
+
 // Create an ability and add it to the DB
-const handleCreateAbility = async (pokemonAPI: PokemonClient, name: string): Promise<void> => {
+const handleCreateAbility = async (pokemonAPI: PokemonClient, id: number): Promise<void> => {
     const GEN_IDXS: { [generation: string]: number } = {
         "generation-iii": 0,
         "generation-iv": 3,
@@ -198,21 +312,43 @@ const handleCreateAbility = async (pokemonAPI: PokemonClient, name: string): Pro
     };
 
     // Fetch ability data
-    const ability: Ability = await pokemonAPI.getAbilityByName(name);
+    const ability: Ability = await pokemonAPI.getAbilityById(id);
 
-    console.log(`${BEGIN}Creating ${name}${RESET}...`);
+    console.log(`${BEGIN}Creating [${id}] ${ability.name}${RESET}...`);
     await prisma.abilities.create({
         data: {
             slug: ability.name,
-            name: name in changedAbilities ? changedAbilities[name] : getEnglishName(ability.names),
-            desc: getAbilityDescriptions(ability),
+            name: ability.name in changedAbilities ? changedAbilities[ability.name] : getEnglishName(ability.names),
+            desc: getDescriptions(
+                ability.flavor_text_entries.filter((aft: AbilityFlavorText) => aft.language.name === "en"),
+                ability.name
+            ),
             group: GEN_IDXS[ability.generation.name],
         },
     });
 };
 
 // Create a move and add it to the DB
-const handleCreateMove = async (moveAPI: MoveClient, name: string): Promise<void> => {};
+const handleCreateMove = async (moveAPI: MoveClient, id: number): Promise<void> => {
+    // Fetch move data
+    const move: Move = await moveAPI.getMoveById(id);
+
+    console.log(`${BEGIN}Creating [${id}] ${move.name}${RESET}...`);
+    await prisma.moves.create({
+        data: {
+            slug: move.name,
+            name: getEnglishName(move.names),
+            type: getMoveTypes(move),
+            class: getMoveClass(move),
+            bp: getMoveBP(move),
+            pp: getMovePP(move),
+            desc: getDescriptions(
+                move.flavor_text_entries.filter((mft: MoveFlavorText) => mft.language.name === "en"),
+                move.name
+            ),
+        },
+    });
+};
 
 // Create a Pokemon and add it to the DB (assumes any Pokemon with forms have slugs of the format [POKEMON]-[FORM_NAME])
 const handleCreatePokemon = async (
@@ -228,12 +364,12 @@ const handleCreatePokemon = async (
         const evos: (string[] | undefined)[] =
             pokemon.name in changedEvos ? changedEvos[pokemon.name] : await getEvos(species, evolutionAPI);
 
-        console.log(`${BEGIN}Creating ${pokemon.name}${RESET}...`);
+        console.log(`${BEGIN}Creating [${pokemon.id}] ${pokemon.name}${RESET}...`);
         await prisma.pokemon.create({
             data: {
                 slug: pokemon.name,
                 name: getEnglishName(species.names),
-                types: getTypes(pokemon),
+                types: getPokemonTypes(pokemon),
                 sprite: pokemon.sprites.front_default,
                 prevEvolutions: evos[0],
                 nextEvolutions: evos[1],
@@ -265,7 +401,7 @@ const handleCreateForm = async (
             data: {
                 slug: form.name,
                 name: getEnglishName(species.names),
-                types: getTypes(form),
+                types: getPokemonTypes(form),
                 sprite: form.sprites.front_default,
                 prevEvolutions: evos[0],
                 nextEvolutions: evos[1],
@@ -276,48 +412,13 @@ const handleCreateForm = async (
     }
 };
 
-// Getch move data from PokeAPI and format it into proper schema
-const createMoves = async (clear: boolean): Promise<void> => {
-    const FETCH_LIMIT: number = 100;
-    const ID_IDX: number = -2;
-    const ID_BREAKPOINT: number = 10000;
-
-    console.log(`${BEGIN}Updating moves collection...${RESET}`);
-
-    // Clear table
-    if (clear) {
-        await prisma.moves.deleteMany({});
-    }
-
-    // Init API wrapper
-    const moveAPI: MoveClient = new MoveClient();
-
-    // Get number of moves
-    const count: number = (await moveAPI.listMoves(900, 20)).count;
-
-    // Fetch moves 100 at a time
-    for (let i = 0; i < count; i += FETCH_LIMIT) {
-        // Filter out moves that aren't from a main series game
-        const moves: string[] = (await moveAPI.listMoves(i, FETCH_LIMIT)).results
-            .filter((result: NamedAPIResource) => parseInt(result.url.split("/").at(ID_IDX) as string) < ID_BREAKPOINT)
-            .map((result: NamedAPIResource) => result.name);
-
-        // Fetch data for each move
-        for (const move of moves) {
-            await handleCreateMove(moveAPI, move);
-        }
-    }
-
-    console.log(`${SUCCESS}Moves collection updated!${RESET}`);
-};
+// ---------------------------------------------------------------------------------------------------------------------
+// CONTROLLERS
+// ---------------------------------------------------------------------------------------------------------------------
 
 // Fetch ability data from PokeAPI and format it into proper schema
-const createAbilities = async (clear: boolean): Promise<void> => {
-    const FETCH_LIMIT: number = 100;
-    const ID_IDX: number = -2;
-    const ID_BREAKPOINT: number = 10000;
-
-    console.log(`${BEGIN}Updating abilities collection...${RESET}`);
+const createAbilities = async (clear: boolean, start: number): Promise<void> => {
+    console.log(`${BEGIN}Updating abilities collection from ability #${start}...${RESET}`);
 
     // Clear table
     if (clear) {
@@ -331,19 +432,50 @@ const createAbilities = async (clear: boolean): Promise<void> => {
     const count: number = (await pokemonAPI.listAbilities()).count;
 
     // Fetch abilities 100 at a time
-    for (let i = 0; i < count; i += FETCH_LIMIT) {
+    for (let i = start - 1; i < count; i += FETCH_LIMIT) {
         // Filter out abilities that aren't from a main series game
-        const abilities: string[] = (await pokemonAPI.listAbilities(i, FETCH_LIMIT)).results
-            .filter((result: NamedAPIResource) => parseInt(result.url.split("/").at(ID_IDX) as string) < ID_BREAKPOINT)
-            .map((result: NamedAPIResource) => result.name);
+        const abilities: NamedAPIResource[] = (await pokemonAPI.listAbilities(i, FETCH_LIMIT)).results.filter(
+            (result: NamedAPIResource) => parseInt(result.url.split("/").at(ID_IDX) as string) < ID_BREAKPOINT
+        );
 
         // Fetch data for each ability
-        for (const ability of abilities) {
-            await handleCreateAbility(pokemonAPI, ability);
+        for (let j = i; j < i + abilities.length; j++) {
+            await handleCreateAbility(pokemonAPI, j + 1);
         }
     }
 
     console.log(`${SUCCESS}Abilities collection updated!${RESET}`);
+};
+
+// Getch move data from PokeAPI and format it into proper schema
+const createMoves = async (clear: boolean, start: number): Promise<void> => {
+    console.log(`${BEGIN}Updating moves collection from move #${start}...${RESET}`);
+
+    // Clear table
+    if (clear) {
+        await prisma.moves.deleteMany({});
+    }
+
+    // Init API wrapper
+    const moveAPI: MoveClient = new MoveClient();
+
+    // Get number of moves
+    const count: number = (await moveAPI.listMoves()).count;
+
+    // Fetch moves 100 at a time
+    for (let i = start - 1; i < count; i += FETCH_LIMIT) {
+        // Filter out moves that aren't from a main series game
+        const moves: NamedAPIResource[] = (await moveAPI.listMoves(i, FETCH_LIMIT)).results.filter(
+            (result: NamedAPIResource) => parseInt(result.url.split("/").at(ID_IDX) as string) < ID_BREAKPOINT
+        );
+
+        // Fetch data for each move
+        for (let j = i; j < i + moves.length; j++) {
+            await handleCreateMove(moveAPI, j + 1);
+        }
+    }
+
+    console.log(`${SUCCESS}Moves collection updated!${RESET}`);
 };
 
 // Fetch Pokemon data from PokeAPI and format it into proper schema
@@ -400,6 +532,10 @@ const createPokemon = async (clear: boolean, start: number, end: number): Promis
     console.log(`${SUCCESS}Pokemon collection updated!${RESET}`);
 };
 
+// ---------------------------------------------------------------------------------------------------------------------
+// MAIN
+// ---------------------------------------------------------------------------------------------------------------------
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
     // Disable this handler in prod
     if (process.env.NODE_ENV === "development") {
@@ -408,23 +544,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         // Update ability data if requested
         if ("abilities" in req.query) {
-            await createAbilities(clear);
+            await createAbilities(clear, parseInt(req.query.abilities_start as string));
             modified.push("Abilities");
         }
 
-        // Update move data if requests
+        // Update move data if requested
         if ("moves" in req.query) {
-            await createMoves(clear);
+            await createMoves(clear, parseInt(req.query.moves_start as string));
             modified.push("Moves");
         }
 
         // Update Pokemon data if requested
         if ("pokemon" in req.query) {
-            // Get options
-            const start: number = parseInt(req.query.start as string);
-            const end: number = parseInt(req.query.end as string);
-
-            await createPokemon(clear, start, end);
+            await createPokemon(
+                clear,
+                parseInt(req.query.pokemon_start as string),
+                parseInt(req.query.pokemon_end as string)
+            );
             modified.push("Pokemon");
         }
 
