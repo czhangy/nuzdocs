@@ -11,6 +11,7 @@ END="\e[0m"
 query="${SERVER_URL}/api/data?"
 first_param=true
 abilities=false
+moves=false
 pokemon=false
 pokemon_start=1
 pokemon_end=20
@@ -36,11 +37,18 @@ then
             printf "${RED}%s\t%s${END}\n" "(1) Modify Abilities" "[ ]"
         fi
 
+        if [ "$moves" = true ]
+        then
+            printf "${GREEN}%s\t%s${END}\n" "(2) Modify Moves" "[✓]"
+        else
+            printf "${RED}%s\t%s${END}\n" "(2) Modify Moves" "[ ]"
+        fi
+
         if [ "$pokemon" = true ]
         then
-            printf "${GREEN}%s\t%s${END}\n" "(2) Modify Pokemon" "[✓]"
+            printf "${GREEN}%s\t%s${END}\n" "(3) Modify Pokemon" "[✓]"
         else
-            printf "${RED}%s\t%s${END}\n" "(2) Modify Pokemon" "[ ]"
+            printf "${RED}%s\t%s${END}\n" "(3) Modify Pokemon" "[ ]"
         fi
 
         if [ "$clear" = true ]
@@ -65,6 +73,16 @@ then
         fi
 
         if [ "$input" = "2" ]
+        then
+            if [ "$moves" = true ]
+            then
+                moves=false
+            else
+                moves=true
+            fi
+        fi
+
+        if [ "$input" = "3" ]
         then
             if [ "$pokemon" = true ]
             then
@@ -95,10 +113,20 @@ then
         query+="abilities=true"
         first_param=false
     fi
+
+    if [ "$moves" = true ]
+    then
+        if [ "$first_param" = false ]
+        then
+            query+="&"
+        fi
+        query+="moves=true"
+        first_param=false
+    fi
     
     if [ "$pokemon" = true ]
     then
-    if [ "$first_param" = false ]
+        if [ "$first_param" = false ]
         then
             query+="&"
         fi

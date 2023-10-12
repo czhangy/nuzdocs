@@ -10,12 +10,33 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-type Descriptions {
+enum Category {
+    physical
+    special
+    other
+}
+
+type Description {
     desc  String
     group Int
 }
 
-type Types {
+type MoveType {
+    type  String
+    group Int
+}
+
+type MoveClass {
+    class Category
+    group Int
+}
+
+type MoveNum {
+    num   Int
+    group Int
+}
+
+type PokemonType {
     types String[]
     group Int
 }
@@ -31,18 +52,28 @@ type PokemonAbilities {
 }
 
 model Abilities {
-    id    String         @id @default(auto()) @map("_id") @db.ObjectId
-    slug  String         @unique
+    id    String        @id @default(auto()) @map("_id") @db.ObjectId
+    slug  String        @unique
     name  String
-    desc  Descriptions[]
+    desc  Description[]
     group Int
+}
+
+model Moves {
+    id    String      @id @default(auto()) @map("_id") @db.ObjectId
+    slug  String      @unique
+    name  String
+    type  MoveType[]
+    class MoveClass[]
+    bp    MoveNum[]
+    pp    MoveNum[]
 }
 
 model Pokemon {
     id             String             @id @default(auto()) @map("_id") @db.ObjectId
     slug           String             @unique
     name           String
-    types          Types[]
+    types          PokemonType[]
     sprite         String
     prevEvolutions String[]
     nextEvolutions String[]
