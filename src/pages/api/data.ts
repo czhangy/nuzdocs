@@ -3,6 +3,7 @@ import changedEvos from "@/data/changed_evos";
 import changedPokemonAbilities from "@/data/changed_pokemon_abilities";
 import changedStats from "@/data/changed_stats";
 import unusedForms from "@/data/unused_forms";
+import usedItems from "@/data/used_items";
 import prisma from "@/lib/prisma";
 import priorities from "@/static/priorities";
 import { getEnglishName } from "@/utils/utils";
@@ -14,6 +15,8 @@ import {
     ChainLink,
     EvolutionChain,
     EvolutionClient,
+    Item,
+    ItemClient,
     Move,
     MoveClient,
     MoveFlavorText,
@@ -26,6 +29,7 @@ import {
     PokemonSpecies,
     PokemonStat,
     PokemonType as Type,
+    VersionGroupFlavorText,
 } from "pokenode-ts";
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -45,12 +49,16 @@ const ID_BREAKPOINT: number = 10000;
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Get list of descriptions for an ability/move
-const getDescriptions = (fte: AbilityFlavorText[] | MoveFlavorText[], name: string): Description[] => {
+const getDescriptions = (
+    fte: AbilityFlavorText[] | MoveFlavorText[] | VersionGroupFlavorText[],
+    name: string
+): Description[] => {
     // Map FTE object to Descriptions object
     let descriptions: Description[] = fte
-        .map((ft: AbilityFlavorText | MoveFlavorText) => {
+        .map((ft: AbilityFlavorText | MoveFlavorText | VersionGroupFlavorText) => {
+            const text: string = "flavor_text" in ft ? ft.flavor_text : ft.text;
             return {
-                desc: ft.flavor_text.replaceAll("\n", " "),
+                desc: text.replaceAll("\n", " "),
                 group: priorities.groups.indexOf(ft.version_group.name),
             };
         })
@@ -58,7 +66,7 @@ const getDescriptions = (fte: AbilityFlavorText[] | MoveFlavorText[], name: stri
 
     // Log missing description errors
     if (descriptions.length === 0) {
-        console.log(`Error when finding descriptions for ${name}`);
+        console.log(`${ERROR}Error when finding descriptions for ${name}${RESET}`);
         return [];
     }
 
@@ -112,7 +120,7 @@ const getMoveClass = (move: Move): MoveClass[] => {
 
     // Log any damage class errors
     if (!move.damage_class) {
-        console.log(`Error when finding damage class for ${move.name}`);
+        console.log(`${ERROR}Error when finding damage class for ${move.name}${RESET}`);
         return [];
     }
 
@@ -167,7 +175,7 @@ const getMovePP = (move: Move): MoveNum[] => {
 
     // Log any PP errors
     if (!move.pp) {
-        console.log(`Error when finding PP for ${move.name}`);
+        console.log(`${ERROR}Error when finding PP for ${move.name}${RESET}`);
         return [];
     }
 
@@ -195,7 +203,7 @@ const getPokemonTypes = (pokemon: Pokemon | PokemonForm): PokemonType[] => {
     if ("past_types" in pokemon && pokemon.past_types.length > 0) {
         // Protect against missing generation names
         if (!(pokemon.past_types[0].generation.name in GEN_IDXS)) {
-            console.log(`Error when finding past type for ${pokemon.name}`);
+            console.log(`${ERROR}Error when finding past type for ${pokemon.name}${RESET}`);
         }
 
         types.push({
@@ -328,6 +336,25 @@ const handleCreateAbility = async (pokemonAPI: PokemonClient, id: number): Promi
     });
 };
 
+// Create an item and add it to the DB
+const handleCreateItem = async (itemAPI: ItemClient, name: string): Promise<void> => {
+    // Fetch item data
+    const item: Item = await itemAPI.getItemByName(name);
+
+    console.log(`${BEGIN}Creating ${name}${RESET}...`);
+    await prisma.items.create({
+        data: {
+            slug: name,
+            name: getEnglishName(item.names),
+            sprite: item.sprites.default,
+            desc: getDescriptions(
+                item.flavor_text_entries.filter((vgft: VersionGroupFlavorText) => vgft.language.name === "en"),
+                item.name
+            ),
+        },
+    });
+};
+
 // Create a move and add it to the DB
 const handleCreateMove = async (moveAPI: MoveClient, id: number): Promise<void> => {
     // Fetch move data
@@ -447,6 +474,26 @@ const createAbilities = async (clear: boolean, start: number): Promise<void> => 
     console.log(`${SUCCESS}Abilities collection updated!${RESET}`);
 };
 
+// Fetch item data from PokeAPI and format it into proper schema
+const createItems = async (clear: boolean): Promise<void> => {
+    console.log(`${BEGIN}Updating items collection...${RESET}`);
+
+    // Clear table
+    if (clear) {
+        await prisma.abilities.deleteMany({});
+    }
+
+    // Init API wrapper
+    const itemAPI: ItemClient = new ItemClient();
+
+    // Fetch all needed items
+    for (const item of usedItems) {
+        await handleCreateItem(itemAPI, item);
+    }
+
+    console.log(`${SUCCESS}Items collection updated!${RESET}`);
+};
+
 // Getch move data from PokeAPI and format it into proper schema
 const createMoves = async (clear: boolean, start: number): Promise<void> => {
     console.log(`${BEGIN}Updating moves collection from move #${start}...${RESET}`);
@@ -546,6 +593,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if ("abilities" in req.query) {
             await createAbilities(clear, parseInt(req.query.abilities_start as string));
             modified.push("Abilities");
+        }
+
+        // Update item data if requested
+        if ("items" in req.query) {
+            await createItems(clear);
+            modified.push("Items");
         }
 
         // Update move data if requested

@@ -59,6 +59,14 @@ model Abilities {
     group Int
 }
 
+model Items {
+    id     String        @id @default(auto()) @map("_id") @db.ObjectId
+    slug   String        @unique
+    name   String
+    sprite String
+    desc   Description[]
+}
+
 model Moves {
     id    String        @id @default(auto()) @map("_id") @db.ObjectId
     slug  String        @unique

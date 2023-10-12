@@ -12,6 +12,7 @@ query="${SERVER_URL}/api/data?"
 first_param=true
 abilities=false
 abilities_start=1
+items=false
 moves=false
 moves_start=1
 pokemon=false
@@ -22,39 +23,39 @@ clear=false
 # Check if server is running
 status="$(curl -LIs "$SERVER_URL" | head -1)"
 validate=( $status )
-if curl --output /dev/null --silent --head --fail "$SERVER_URL";
-then
+if curl --output /dev/null --silent --head --fail "$SERVER_URL"; then
     # Allow selection of update fields
     input="#"
-    while [ "$input" != "" ]
-    do
+    while [ "$input" != "" ]; do
         # Clear screen on each loop
         tput reset
 
         # Show list of toggled params
-        if [ "$abilities" = true ]
-        then
+        if [ "$abilities" = true ]; then
             printf "${GREEN}%s\t%s${END}\n" "(1) Modify Abilities" "[✓]"
         else
             printf "${RED}%s\t%s${END}\n" "(1) Modify Abilities" "[ ]"
         fi
 
-        if [ "$moves" = true ]
-        then
-            printf "${GREEN}%s\t%s${END}\n" "(2) Modify Moves" "[✓]"
+        if [ "$items" = true ]; then
+            printf "${GREEN}%s\t%s${END}\n" "(2) Modify Items" "[✓]"
         else
-            printf "${RED}%s\t%s${END}\n" "(2) Modify Moves" "[ ]"
+            printf "${RED}%s\t%s${END}\n" "(2) Modify Items" "[ ]"
         fi
 
-        if [ "$pokemon" = true ]
-        then
-            printf "${GREEN}%s\t%s${END}\n" "(3) Modify Pokemon" "[✓]"
+        if [ "$moves" = true ]; then
+            printf "${GREEN}%s\t%s${END}\n" "(3) Modify Moves" "[✓]"
         else
-            printf "${RED}%s\t%s${END}\n" "(3) Modify Pokemon" "[ ]"
+            printf "${RED}%s\t%s${END}\n" "(3) Modify Moves" "[ ]"
         fi
 
-        if [ "$clear" = true ]
-        then
+        if [ "$pokemon" = true ]; then
+            printf "${GREEN}%s\t%s${END}\n" "(4) Modify Pokemon" "[✓]"
+        else
+            printf "${RED}%s\t%s${END}\n" "(4) Modify Pokemon" "[ ]"
+        fi
+
+        if [ "$clear" = true ]; then
             printf "${GREEN}%s\t%s${END}\n\n" "(X) Clear collections" "[✓]"
         else
             printf "${RED}%s\t%s${END}\n\n" "(X) Clear collections" "[ ]"
@@ -64,50 +65,44 @@ then
         read -p "Pick a field # to toggle or leave empty to run the update: " input
 
         # Toggle any selections
-        if [ "$input" = "1" ]
-        then
-            if [ "$abilities" = true ]
-            then
+        if [ "$input" = "1" ]; then
+            if [ "$abilities" = true ]; then
                 abilities=false
             else
                 abilities=true
+                read -p "Start with ability #: " abilities_start
             fi
-
-            # Get input for start
-            read -p "Start with ability #: " abilities_start
         fi
 
-        if [ "$input" = "2" ]
-        then
-            if [ "$moves" = true ]
-            then
+        if [ "$input" = "2" ]; then
+            if [ "$items" = true ]; then
+                items=false
+            else
+                items=true
+            fi
+        fi
+
+        if [ "$input" = "3" ]; then
+            if [ "$moves" = true ]; then
                 moves=false
             else
                 moves=true
-
-                # Get input for start
                 read -p "Start with move #: " move_start
             fi
         fi
 
-        if [ "$input" = "3" ]
-        then
-            if [ "$pokemon" = true ]
-            then
+        if [ "$input" = "4" ]; then
+            if [ "$pokemon" = true ]; then
                 pokemon=false
             else
                 pokemon=true
-
-                # Get inputs for start/end
                 read -p "Start with dex #: " pokemon_start
                 read -p "End with dex #: " pokemon_end
             fi
         fi
 
-        if [ "$input" = "X" ] || [ "$input" = "x" ]
-        then
-            if [ "$clear" = true ]
-            then
+        if [ "$input" = "X" ] || [ "$input" = "x" ]; then
+            if [ "$clear" = true ]; then
                 clear=false
             else
                 clear=true
@@ -116,36 +111,37 @@ then
     done
 
     # Construct query
-    if [ "$abilities" = true ]
-    then
+    if [ "$abilities" = true ]; then
         query+="abilities=true&abilities_start=${abilities_start}"
         first_param=false
     fi
 
-    if [ "$moves" = true ]
-    then
-        if [ "$first_param" = false ]
-        then
+    if [ "$items" = true ]; then
+        if [ "$first_param" = false ]; then
+            query+="&"
+        fi
+        query+="items=true"
+        first_param=false
+    fi
+
+    if [ "$moves" = true ]; then
+        if [ "$first_param" = false ]; then
             query+="&"
         fi
         query+="moves=true&moves_start=${moves_start}"
         first_param=false
     fi
     
-    if [ "$pokemon" = true ]
-    then
-        if [ "$first_param" = false ]
-        then
+    if [ "$pokemon" = true ]; then
+        if [ "$first_param" = false ]; then
             query+="&"
         fi
         query+="pokemon=true&pokemon_start=${pokemon_start}&pokemon_end=${pokemon_end}"
         first_param=false
     fi
 
-    if [ "$clear" = true ]
-    then
-        if [ "$first_param" = false ]
-        then
+    if [ "$clear" = true ]; then
+        if [ "$first_param" = false ]; then
             query+="&"
         fi
         query+="clear=true"
@@ -161,8 +157,7 @@ then
     start=$SECONDS
     curl "$query" | json_pp
 
-    if [ $? -eq 0 ]
-    then
+    if [ $? -eq 0 ]; then
         # Update succeeded, get metrics
         duration=$(( SECONDS - start ))
         printf "\n\n${GREEN}%s${END}\n\n" "Update took ${duration} seconds to complete"
