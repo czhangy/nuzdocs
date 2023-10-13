@@ -2,7 +2,6 @@ import MyPokemonAbility from "@/models/PokemonAbility";
 import PokemonData from "@/models/PokemonData";
 import priorities from "@/static/priorities";
 import { initPokemonAbility, initPokemonData } from "@/utils/initializers";
-import { isInvalidForm } from "@/utils/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
     ChainLink,

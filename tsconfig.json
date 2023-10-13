@@ -20,7 +20,8 @@
             "@/lib/*": ["lib/*"],
             "@/models/*": ["models/*"],
             "@/static/*": ["static/*"],
-            "@/utils/*": ["utils/*"]
+            "@/utils/*": ["utils/*"],
+            "@/data/*": ["data/*"]
         },
         "target": "es6"
     },
