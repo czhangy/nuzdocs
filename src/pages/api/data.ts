@@ -7,7 +7,17 @@ import usedItems from "@/data/used_items";
 import prisma from "@/lib/prisma";
 import priorities from "@/static/priorities";
 import { getEnglishName } from "@/utils/utils";
-import { Description, MoveClass, MoveNum, MoveType, PokemonAbilities, PokemonType, Stats } from "@prisma/client";
+import {
+    Description,
+    Learnset,
+    LearnsetMove,
+    MoveClass,
+    MoveNum,
+    MoveType,
+    PokemonAbilities,
+    PokemonType,
+    Stats,
+} from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import {
     Ability,
@@ -26,6 +36,7 @@ import {
     PokemonClient,
     PokemonForm,
     PokemonMove,
+    PokemonMoveVersion,
     PokemonSpecies,
     PokemonStat,
     PokemonType as Type,
@@ -303,6 +314,46 @@ const getAbilities = (pokemon: Pokemon): PokemonAbilities[] => {
     return abilities;
 };
 
+// Get learnsets for a Pokemon
+const getLearnsets = (pokemon: Pokemon): Learnset[] => {
+    const groups: { [group: string]: LearnsetMove[] } = {};
+
+    // Get all level-up moves into object
+    for (const move of pokemon.moves) {
+        for (const version of move.version_group_details) {
+            const group: string = version.version_group.name;
+            if (version.move_learn_method.name === "level-up" && priorities.groups.includes(group)) {
+                const newMove: LearnsetMove = { move: move.move.name, level: version.level_learned_at };
+                if (group in groups) {
+                    groups[group].push(newMove);
+                } else {
+                    groups[group] = [newMove];
+                }
+            }
+        }
+    }
+
+    // Format object into Learnset[] and sort by group #
+    const learnsets: Learnset[] = [];
+    for (const [group, moves] of Object.entries(groups)) {
+        learnsets.push({
+            moves: moves.sort((a: LearnsetMove, b: LearnsetMove) => a.level - b.level),
+            group: priorities.groups.indexOf(group),
+        });
+    }
+    learnsets.sort((a: Learnset, b: Learnset) => a.group - b.group);
+    learnsets[0].group = -1;
+
+    // Collapse adjacent duplicate learnsets
+    return learnsets.filter((learnset: Learnset, idx: number) => {
+        if (idx > 0) {
+            return JSON.stringify(learnsets[idx - 1].moves) !== JSON.stringify(learnset.moves);
+        } else {
+            return true;
+        }
+    });
+};
+
 // ---------------------------------------------------------------------------------------------------------------------
 // CREATE API
 // ---------------------------------------------------------------------------------------------------------------------
@@ -404,6 +455,7 @@ const handleCreatePokemon = async (
             pokemon.name in changedEvos ? changedEvos[pokemon.name] : await getEvos(evolutionAPI, species);
         const stats: Stats[] = getStats(pokemon);
         const abilities: PokemonAbilities[] = getAbilities(pokemon);
+        const learnsets: Learnset[] = getLearnsets(pokemon);
         const formChangeable: boolean = species.forms_switchable;
 
         await prisma.pokemon.upsert({
@@ -416,6 +468,7 @@ const handleCreatePokemon = async (
                 nextEvolutions: evos[1],
                 stats: stats,
                 abilities: abilities,
+                learnsets: learnsets,
                 formChangeable: formChangeable,
             },
             create: {
@@ -427,6 +480,7 @@ const handleCreatePokemon = async (
                 nextEvolutions: evos[1],
                 stats: stats,
                 abilities: abilities,
+                learnsets: learnsets,
                 formChangeable: formChangeable,
             },
         });

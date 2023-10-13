@@ -51,6 +51,16 @@ type PokemonAbilities {
     group     Int
 }
 
+type Learnset {
+    moves LearnsetMove[]
+    group Int
+}
+
+type LearnsetMove {
+    move  String
+    level Int
+}
+
 model Abilities {
     id    String        @id @default(auto()) @map("_id") @db.ObjectId
     slug  String        @unique
@@ -88,5 +98,6 @@ model Pokemon {
     nextEvolutions String[]
     stats          Stats[]
     abilities      PokemonAbilities[]
+    learnsets      Learnset[]
     formChangeable Boolean
 }
