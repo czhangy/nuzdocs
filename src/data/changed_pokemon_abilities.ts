@@ -1,5 +1,3 @@
-import { PokemonAbilities } from "@prisma/client";
-
 const changedPokemonAbilities: { [pokemon: string]: [[string, string, string], number] } = {
     gengar: [["levitate", "", ""], 10],
     raikou: [["pressure", "", "volt-absorb"], 10],
