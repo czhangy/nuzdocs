@@ -226,8 +226,8 @@ const getPokemonTypes = (pokemon: Pokemon | PokemonForm): PokemonType[] => {
 
 // Get lists of all adjacent evolutions for a Pokemon (assumes chains take on a tree structure in PokeAPI)
 const getEvos = async (
-    species: PokemonSpecies,
-    evolutionAPI: EvolutionClient
+    evolutionAPI: EvolutionClient,
+    species: PokemonSpecies
 ): Promise<[string[] | undefined, string[] | undefined]> => {
     const evos: [string[] | undefined, string[] | undefined] = [undefined, undefined];
 
@@ -319,39 +319,43 @@ const handleCreateAbility = async (pokemonAPI: PokemonClient, id: number): Promi
         "generation-ix": 18,
     };
 
-    // Fetch ability data
     const ability: Ability = await pokemonAPI.getAbilityById(id);
 
     console.log(`${BEGIN}Creating [${id}] ${ability.name}${RESET}...`);
-    await prisma.abilities.create({
-        data: {
-            slug: ability.name,
-            name: ability.name in changedAbilities ? changedAbilities[ability.name] : getEnglishName(ability.names),
-            desc: getDescriptions(
-                ability.flavor_text_entries.filter((aft: AbilityFlavorText) => aft.language.name === "en"),
-                ability.name
-            ),
-            group: GEN_IDXS[ability.generation.name],
-        },
+
+    const slug: string = ability.name;
+    const name: string =
+        ability.name in changedAbilities ? changedAbilities[ability.name] : getEnglishName(ability.names);
+    const desc: Description[] = getDescriptions(
+        ability.flavor_text_entries.filter((aft: AbilityFlavorText) => aft.language.name === "en"),
+        ability.name
+    );
+    const group: number = GEN_IDXS[ability.generation.name];
+
+    await prisma.abilities.upsert({
+        where: { slug: slug },
+        update: { name: name, desc: desc, group: group },
+        create: { slug: slug, name: name, desc: desc, group: group },
     });
 };
 
 // Create an item and add it to the DB
-const handleCreateItem = async (itemAPI: ItemClient, name: string): Promise<void> => {
-    // Fetch item data
-    const item: Item = await itemAPI.getItemByName(name);
+const handleCreateItem = async (itemAPI: ItemClient, slug: string): Promise<void> => {
+    console.log(`${BEGIN}Creating ${slug}${RESET}...`);
 
-    console.log(`${BEGIN}Creating ${name}${RESET}...`);
-    await prisma.items.create({
-        data: {
-            slug: name,
-            name: getEnglishName(item.names),
-            sprite: item.sprites.default,
-            desc: getDescriptions(
-                item.flavor_text_entries.filter((vgft: VersionGroupFlavorText) => vgft.language.name === "en"),
-                item.name
-            ),
-        },
+    const item: Item = await itemAPI.getItemByName(slug);
+
+    const name: string = getEnglishName(item.names);
+    const sprite: string = item.sprites.default;
+    const desc: Description[] = getDescriptions(
+        item.flavor_text_entries.filter((vgft: VersionGroupFlavorText) => vgft.language.name === "en"),
+        item.name
+    );
+
+    await prisma.items.upsert({
+        where: { slug: slug },
+        update: { name: name, sprite: sprite, desc: desc },
+        create: { slug: slug, name: name, sprite: sprite, desc: desc },
     });
 };
 
@@ -361,19 +365,22 @@ const handleCreateMove = async (moveAPI: MoveClient, id: number): Promise<void> 
     const move: Move = await moveAPI.getMoveById(id);
 
     console.log(`${BEGIN}Creating [${id}] ${move.name}${RESET}...`);
-    await prisma.moves.create({
-        data: {
-            slug: move.name,
-            name: getEnglishName(move.names),
-            type: getMoveTypes(move),
-            class: getMoveClass(move),
-            bp: getMoveBP(move),
-            pp: getMovePP(move),
-            desc: getDescriptions(
-                move.flavor_text_entries.filter((mft: MoveFlavorText) => mft.language.name === "en"),
-                move.name
-            ),
-        },
+
+    const slug: string = move.name;
+    const name: string = getEnglishName(move.names);
+    const type: MoveType[] = getMoveTypes(move);
+    const damageClass: MoveClass[] = getMoveClass(move);
+    const bp: MoveNum[] = getMoveBP(move);
+    const pp: MoveNum[] = getMovePP(move);
+    const desc: Description[] = getDescriptions(
+        move.flavor_text_entries.filter((mft: MoveFlavorText) => mft.language.name === "en"),
+        move.name
+    );
+
+    await prisma.moves.upsert({
+        where: { slug: slug },
+        update: { name: name, type: type, class: damageClass, bp: bp, pp: pp, desc: desc },
+        create: { slug: slug, name: name, type: type, class: damageClass, bp: bp, pp: pp, desc: desc },
     });
 };
 
@@ -387,22 +394,40 @@ const handleCreatePokemon = async (
         // Log sprite error
         console.log(`${ERROR}Error finding sprite for ${pokemon.name}${RESET}`);
     } else {
-        // Get evolutions
-        const evos: (string[] | undefined)[] =
-            pokemon.name in changedEvos ? changedEvos[pokemon.name] : await getEvos(species, evolutionAPI);
-
         console.log(`${BEGIN}Creating [${pokemon.id}] ${pokemon.name}${RESET}...`);
-        await prisma.pokemon.create({
-            data: {
-                slug: pokemon.name,
-                name: getEnglishName(species.names),
-                types: getPokemonTypes(pokemon),
-                sprite: pokemon.sprites.front_default,
+
+        const slug: string = pokemon.name;
+        const name: string = getEnglishName(species.names);
+        const types: PokemonType[] = getPokemonTypes(pokemon);
+        const sprite: string = pokemon.sprites.front_default;
+        const evos: (string[] | undefined)[] =
+            pokemon.name in changedEvos ? changedEvos[pokemon.name] : await getEvos(evolutionAPI, species);
+        const stats: Stats[] = getStats(pokemon);
+        const abilities: PokemonAbilities[] = getAbilities(pokemon);
+        const formChangeable: boolean = species.forms_switchable;
+
+        await prisma.pokemon.upsert({
+            where: { slug: slug },
+            update: {
+                name: name,
+                types: types,
+                sprite: sprite,
                 prevEvolutions: evos[0],
                 nextEvolutions: evos[1],
-                stats: getStats(pokemon),
-                abilities: getAbilities(pokemon),
-                formChangeable: species.forms_switchable,
+                stats: stats,
+                abilities: abilities,
+                formChangeable: formChangeable,
+            },
+            create: {
+                slug: slug,
+                name: name,
+                types: types,
+                sprite: sprite,
+                prevEvolutions: evos[0],
+                nextEvolutions: evos[1],
+                stats: stats,
+                abilities: abilities,
+                formChangeable: formChangeable,
             },
         });
     }
@@ -416,24 +441,42 @@ const handleCreateForm = async (
     pokemon: Pokemon
 ): Promise<void> => {
     if (!form.sprites.front_default) {
-        // Log sprite error
         console.log(`${ERROR}Error finding sprite for ${form.name}${RESET}`);
     } else {
-        // Get evolutions
-        const evos: (string[] | undefined)[] =
-            form.name in changedEvos ? changedEvos[form.name] : await getEvos(species, evolutionAPI);
-
         console.log(`${BEGIN}Creating ${form.name}${RESET}...`);
-        await prisma.pokemon.create({
-            data: {
-                slug: form.name,
-                name: getEnglishName(species.names),
-                types: getPokemonTypes(form),
-                sprite: form.sprites.front_default,
+
+        const slug: string = form.name;
+        const name: string = getEnglishName(species.names);
+        const types: PokemonType[] = getPokemonTypes(form);
+        const sprite: string = form.sprites.front_default;
+        const evos: (string[] | undefined)[] =
+            form.name in changedEvos ? changedEvos[form.name] : await getEvos(evolutionAPI, species);
+        const stats: Stats[] = getStats(pokemon);
+        const abilities: PokemonAbilities[] = getAbilities(pokemon);
+        const formChangeable: boolean = species.forms_switchable;
+
+        await prisma.pokemon.upsert({
+            where: { slug: slug },
+            update: {
+                name: name,
+                types: types,
+                sprite: sprite,
                 prevEvolutions: evos[0],
                 nextEvolutions: evos[1],
-                stats: getStats(pokemon),
-                formChangeable: species.forms_switchable,
+                stats: stats,
+                abilities: abilities,
+                formChangeable: formChangeable,
+            },
+            create: {
+                slug: slug,
+                name: name,
+                types: types,
+                sprite: sprite,
+                prevEvolutions: evos[0],
+                nextEvolutions: evos[1],
+                stats: stats,
+                abilities: abilities,
+                formChangeable: formChangeable,
             },
         });
     }
