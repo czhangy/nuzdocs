@@ -13,6 +13,8 @@ clear=false
 first_param=true
 abilities=false
 abilities_start=1
+battles=false
+battles_start=1
 items=false
 moves=false
 moves_start=1
@@ -39,28 +41,34 @@ if curl --output /dev/null --silent --head --fail "$SERVER_URL"; then
             printf "${RED}%s\t%s${END}\n" "(1) Modify Abilities" "[ ]"
         fi
 
-        if [ "$items" = true ]; then
-            printf "${GREEN}%s\t%s${END}\n" "(2) Modify Items" "[✓]"
+        if [ "$battles" = true ]; then
+            printf "${GREEN}%s\t%s${END}\n" "(2) Modify Battles" "[✓]"
         else
-            printf "${RED}%s\t%s${END}\n" "(2) Modify Items" "[ ]"
+            printf "${RED}%s\t%s${END}\n" "(2) Modify Battles" "[ ]"
+        fi
+
+        if [ "$items" = true ]; then
+            printf "${GREEN}%s\t%s${END}\n" "(3) Modify Items" "[✓]"
+        else
+            printf "${RED}%s\t%s${END}\n" "(3) Modify Items" "[ ]"
         fi
 
         if [ "$moves" = true ]; then
-            printf "${GREEN}%s\t%s${END}\n" "(3) Modify Moves" "[✓]"
+            printf "${GREEN}%s\t%s${END}\n" "(4) Modify Moves" "[✓]"
         else
-            printf "${RED}%s\t%s${END}\n" "(3) Modify Moves" "[ ]"
+            printf "${RED}%s\t%s${END}\n" "(4) Modify Moves" "[ ]"
         fi
 
         if [ "$pokemon" = true ]; then
-            printf "${GREEN}%s\t%s${END}\n" "(4) Modify Pokemon" "[✓]"
+            printf "${GREEN}%s\t%s${END}\n" "(5) Modify Pokemon" "[✓]"
         else
-            printf "${RED}%s\t%s${END}\n" "(4) Modify Pokemon" "[ ]"
+            printf "${RED}%s\t%s${END}\n" "(5) Modify Pokemon" "[ ]"
         fi
 
         if [ "$trainers" = true ]; then
-            printf "${GREEN}%s\t%s${END}\n" "(5) Modify Trainers" "[✓]"
+            printf "${GREEN}%s\t%s${END}\n" "(6) Modify Trainers" "[✓]"
         else
-            printf "${RED}%s\t%s${END}\n" "(5) Modify Trainers" "[ ]"
+            printf "${RED}%s\t%s${END}\n" "(6) Modify Trainers" "[ ]"
         fi
 
         if [ "$clear" = true ]; then
@@ -83,6 +91,15 @@ if curl --output /dev/null --silent --head --fail "$SERVER_URL"; then
         fi
 
         if [ "$input" = "2" ]; then
+            if [ "$battles" = true ]; then
+                battles=false
+            else
+                battles=true
+                read -p "Start with battle #: " battles_start
+            fi
+        fi
+
+        if [ "$input" = "3" ]; then
             if [ "$items" = true ]; then
                 items=false
             else
@@ -90,7 +107,7 @@ if curl --output /dev/null --silent --head --fail "$SERVER_URL"; then
             fi
         fi
 
-        if [ "$input" = "3" ]; then
+        if [ "$input" = "4" ]; then
             if [ "$moves" = true ]; then
                 moves=false
             else
@@ -99,7 +116,7 @@ if curl --output /dev/null --silent --head --fail "$SERVER_URL"; then
             fi
         fi
 
-        if [ "$input" = "4" ]; then
+        if [ "$input" = "5" ]; then
             if [ "$pokemon" = true ]; then
                 pokemon=false
             else
@@ -109,7 +126,7 @@ if curl --output /dev/null --silent --head --fail "$SERVER_URL"; then
             fi
         fi
 
-        if [ "$input" = "5" ]; then
+        if [ "$input" = "6" ]; then
             if [ "$trainers" = true ]; then
                 trainers=false
             else
@@ -130,6 +147,14 @@ if curl --output /dev/null --silent --head --fail "$SERVER_URL"; then
     # Construct query
     if [ "$abilities" = true ]; then
         query+="abilities=true&abilities_start=${abilities_start}"
+        first_param=false
+    fi
+
+    if [ "$battles" = true ]; then
+        if [ "$first_param" = false ]; then
+            query+="&"
+        fi
+        query+="battles=true&battles_start=${battles_start}"
         first_param=false
     fi
 
