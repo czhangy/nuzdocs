@@ -1,8 +1,8 @@
 import Pokemon from "@/models/Pokemon";
-import Trainer from "@/models/Trainer";
+import OutdatedTrainer from "@/models/OutdatedTrainer";
 
 export default interface Battle {
-    trainer: Trainer;
+    trainer: OutdatedTrainer;
     name: string;
     location: string;
     team: Pokemon[];

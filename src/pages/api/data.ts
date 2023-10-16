@@ -2,9 +2,11 @@ import changedAbilities from "@/data/changed_abilities";
 import changedEvos from "@/data/changed_evos";
 import changedPokemonAbilities from "@/data/changed_pokemon_abilities";
 import changedStats from "@/data/changed_stats";
+import trainers from "@/data/trainers";
 import unusedForms from "@/data/unused_forms";
 import usedItems from "@/data/used_items";
 import prisma from "@/lib/prisma";
+import Trainer from "@/models/Trainer";
 import priorities from "@/static/priorities";
 import { getEnglishName } from "@/utils/utils";
 import {
@@ -35,8 +37,6 @@ import {
     PokemonAbility,
     PokemonClient,
     PokemonForm,
-    PokemonMove,
-    PokemonMoveVersion,
     PokemonSpecies,
     PokemonStat,
     PokemonType as Type,
@@ -497,7 +497,7 @@ const handleCreateForm = async (
     if (!form.sprites.front_default) {
         console.log(`${ERROR}Error finding sprite for ${form.name}${RESET}`);
     } else {
-        console.log(`${BEGIN}Creating ${form.name}${RESET}...`);
+        console.log(`${BEGIN}Creating [${pokemon.id}] ${form.name}${RESET}...`);
 
         const slug: string = form.name;
         const name: string = getEnglishName(species.names);
@@ -534,6 +534,26 @@ const handleCreateForm = async (
             },
         });
     }
+};
+
+// Create a trainer and add it to the DB
+const handleCreateTrainer = async (trainer: Trainer, id: number): Promise<void> => {
+    console.log(`${BEGIN}Creating [${id + 1}] ${trainer.slug}${RESET}...`);
+
+    const slug: string = trainer.slug;
+    const trainerClass: string = trainer.class;
+    const sprite: string = trainer.sprite;
+
+    await prisma.trainers.upsert({
+        where: { slug: slug },
+        update: {
+            class: trainerClass,
+            sprite: sprite,
+        },
+        create: {
+            ...trainer,
+        },
+    });
 };
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -676,6 +696,21 @@ const createPokemon = async (clear: boolean, start: number, end: number): Promis
     console.log(`${SUCCESS}Pokemon collection updated!${RESET}`);
 };
 
+// Fetch Trainer data from local file and push to DB
+const createTrainers = async (clear: boolean, start: number): Promise<void> => {
+    console.log(`${BEGIN}Updating Trainers collection from #${start}...${RESET}`);
+
+    if (clear) {
+        await prisma.pokemon.deleteMany({});
+    }
+
+    for (let i = start - 1; i < trainers.length; i++) {
+        await handleCreateTrainer(trainers[i], i);
+    }
+
+    console.log(`${SUCCESS}Trainers collection updated!${RESET}`);
+};
+
 // ---------------------------------------------------------------------------------------------------------------------
 // MAIN
 // ---------------------------------------------------------------------------------------------------------------------
@@ -712,6 +747,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 parseInt(req.query.pokemon_end as string)
             );
             modified.push("Pokemon");
+        }
+
+        // Update trainer data if requested
+        if ("trainers" in req.query) {
+            await createTrainers(clear, parseInt(req.query.trainers_start as string));
+            modified.push("Trainers");
         }
 
         console.log(`${SUCCESS}DB update complete!${RESET}`);

@@ -101,3 +101,10 @@ model Pokemon {
     learnsets      Learnset[]
     formChangeable Boolean
 }
+
+model Trainers {
+    id     String @id @default(auto()) @map("_id") @db.ObjectId
+    slug   String @unique
+    class  String
+    sprite String
+}

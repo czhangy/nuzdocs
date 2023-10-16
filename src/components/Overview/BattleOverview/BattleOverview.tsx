@@ -1,6 +1,6 @@
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
-import Trainer from "@/models/Trainer";
+import OutdatedTrainer from "@/models/OutdatedTrainer";
 import { getLevelCap, getTrainer } from "@/utils/battle";
 import { getPB } from "@/utils/career";
 import { getGame } from "@/utils/game";
@@ -19,7 +19,7 @@ type Props = {
 
 const BattleOverview: React.FC<Props> = (props: Props) => {
     // Internal state
-    const [trainer, setTrainer] = useState<Trainer | null>();
+    const [trainer, setTrainer] = useState<OutdatedTrainer | null>();
     const [pb, setPB] = useState<string>("");
 
     // Get trainer info on component load

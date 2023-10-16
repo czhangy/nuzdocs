@@ -1,5 +1,5 @@
 export default interface Trainer {
+    slug: string;
     class: string;
-    name?: string;
     sprite: string;
 }
