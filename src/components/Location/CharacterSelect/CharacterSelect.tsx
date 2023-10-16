@@ -1,5 +1,5 @@
 import Run from "@/models/Run";
-import Trainer from "@/models/Trainer";
+import OutdatedTrainer from "@/models/OutdatedTrainer";
 import { getGameData } from "@/utils/game";
 import Image from "next/image";
 import styles from "./CharacterSelect.module.scss";
@@ -31,7 +31,7 @@ const CharacterSelect: React.FC<Props> = (props: Props) => {
         <div className={styles["character-select"]}>
             <h3 className={styles.header}>Character:</h3>
             <div className={styles.characters}>
-                {getGameData(props.run.gameSlug).characters.map((character: Trainer) => {
+                {getGameData(props.run.gameSlug).characters.map((character: OutdatedTrainer) => {
                     return (
                         <button
                             className={`${styles.character} ${

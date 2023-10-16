@@ -4,7 +4,7 @@ import Tags from "@/components/Segment/Tags/Tags";
 import ItemData from "@/models/ItemData";
 import Run from "@/models/Run";
 import Segment from "@/models/Segment";
-import Trainer from "@/models/Trainer";
+import OutdatedTrainer from "@/models/OutdatedTrainer";
 import { fetchItem } from "@/utils/api";
 import { getBattle, getLevelCap, getTrainer } from "@/utils/battle";
 import { updateNumHOFs } from "@/utils/career";
@@ -29,7 +29,7 @@ const BattlePreview: React.FC<Props> = (props: Props) => {
     const [defeated, setDefeated] = useState<boolean>(false);
 
     // Internal state
-    const [trainer, setTrainer] = useState<Trainer | null>();
+    const [trainer, setTrainer] = useState<OutdatedTrainer | null>();
 
     // Fetched state
     const [item, setItem] = useState<ItemData | null>(null);

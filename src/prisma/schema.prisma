@@ -10,45 +10,33 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-enum Category {
+// ---------------------------------------------------------------------------------------------------------------------
+// ENUMS
+// ---------------------------------------------------------------------------------------------------------------------
+
+enum BattleTags {
+    required
+    double
+}
+
+enum MoveCategory {
     physical
     special
     status
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// TYPES
+// ---------------------------------------------------------------------------------------------------------------------
+
+type BattleItems {
+    item  String
+    count Int
+}
+
 type Description {
     desc  String
     group Int
-}
-
-type MoveType {
-    type  String
-    group Int
-}
-
-type MoveClass {
-    class Category
-    group Int
-}
-
-type MoveNum {
-    num   Int
-    group Int
-}
-
-type PokemonType {
-    types String[]
-    group Int
-}
-
-type Stats {
-    stats Int[]
-    group Int
-}
-
-type PokemonAbilities {
-    abilities String[]
-    group     Int
 }
 
 type Learnset {
@@ -61,12 +49,66 @@ type LearnsetMove {
     level Int
 }
 
+type MoveClass {
+    class MoveCategory
+    group Int
+}
+
+type MoveNum {
+    num   Int
+    group Int
+}
+
+type MoveType {
+    type  String
+    group Int
+}
+
+type PokemonAbilities {
+    abilities String[]
+    group     Int
+}
+
+type PokemonSet {
+    pokemon String
+    level   Int
+    ability String
+    moves   String[]
+    iv      Int
+    ev      Int
+}
+
+type PokemonType {
+    types String[]
+    group Int
+}
+
+type Stats {
+    stats Int[]
+    group Int
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// MODELS
+// ---------------------------------------------------------------------------------------------------------------------
+
 model Abilities {
     id    String        @id @default(auto()) @map("_id") @db.ObjectId
     slug  String        @unique
     name  String
     desc  Description[]
     group Int
+}
+
+model Battles {
+    id        String       @id @default(auto()) @map("_id") @db.ObjectId
+    slug      String       @unique
+    name      String
+    trainer   Trainers     @relation(fields: [trainerID], references: [id])
+    trainerID String       @db.ObjectId
+    team      PokemonSet[]
+    items     BattleItems
+    tags      BattleTags
 }
 
 model Items {
@@ -100,4 +142,12 @@ model Pokemon {
     abilities      PokemonAbilities[]
     learnsets      Learnset[]
     formChangeable Boolean
+}
+
+model Trainers {
+    id      String    @id @default(auto()) @map("_id") @db.ObjectId
+    slug    String    @unique
+    class   String
+    sprite  String
+    battles Battles[]
 }
